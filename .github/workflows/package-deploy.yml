@@ -24,4 +24,3 @@ jobs:
         run: mvn deploy
         env:
           GITHUB_TOKEN: ${{ github.token }} # GITHUB_TOKEN is the default env for the password
-  © 2020 GitHub, Inc.
