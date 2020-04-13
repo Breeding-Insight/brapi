@@ -52,12 +52,4 @@
         </plugins>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub Breeding Insight Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/Breeding-Insight/brapi-pheno-model</url>
-        </repository>
-    </distributionManagement>
-
 </project>
