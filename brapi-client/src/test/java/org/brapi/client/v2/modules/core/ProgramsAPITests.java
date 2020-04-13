@@ -35,7 +35,21 @@ public class ProgramsAPITests extends BrAPIClientTest {
 
         assertEquals(true, program.isPresent(), "Program was not returned");
 
-        //TODO: Check the response was parsed correctly.
+        // Check the response was parsed correctly.
+        BrApiProgram brApiProgram = program.get();
+        assertEquals(true, brApiProgram.getAbbreviation() != null, "Abbreviation was not populated");
+        assertEquals(true, brApiProgram.getAdditionalInfo() != null, "Additional Info was not populated");
+        assertEquals(true, brApiProgram.getAdditionalInfo().size() > 0, "Additional Info had no entries");
+        assertEquals(true, brApiProgram.getCommonCropName() != null, "Common crop name was not populated");
+        assertEquals(true, brApiProgram.getDocumentationURL() != null, "Documentation url was not populated");
+        assertEquals(true, brApiProgram.getExternalReferences() != null, "External references were not populated");
+        assertEquals(true, brApiProgram.getExternalReferences().get(0).getReferenceSource() != null, "Reference source was not populated");
+        assertEquals(true, brApiProgram.getExternalReferences().get(0).getReferenceID() != null, "Reference Id was not populated");
+        assertEquals(true, brApiProgram.getLeadPersonDbId() != null, "Lead person id was not populated");
+        assertEquals(true, brApiProgram.getLeadPersonName() != null, "Lead person name were not populated");
+        assertEquals(true, brApiProgram.getObjective() != null, "Objective was not populated");
+        assertEquals(true, brApiProgram.getProgramDbId() != null, "Program DbId was not populated");
+        assertEquals(true, brApiProgram.getProgramName() != null, "Program name was not populated");
     }
 
     @Test
