@@ -6,7 +6,10 @@ import org.brapi.v2.core.model.BrApiProgram;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.v2.core.model.request.ProgramsRequest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,7 +80,6 @@ public class ProgramsAPITests extends BrAPIClientTest {
         assertEquals(true, programs.size() > 0, "List of programs was empty");
     }
 
-    // This one fails because search parameters are not implemented yet.
     @Test
     @SneakyThrows
     public void getProgramByExternalReferenceIDDoesNotExist() {
@@ -89,4 +91,51 @@ public class ProgramsAPITests extends BrAPIClientTest {
 
         assertEquals(true, programs.size() == 0, "List of programs was not empty");
     }
+
+    @Test
+    @SneakyThrows
+    public void createProgramSuccess() {
+
+        BrApiProgram brApiProgram = BrApiProgram.builder()
+                .programName("new test program")
+                .build();
+
+        Optional<BrApiProgram> createdProgram = this.programsAPI.createProgram(brApiProgram);
+
+        assertEquals(true, createdProgram.isPresent());
+        //TODO: Test that program Id and program name are in return object
+    }
+
+    @Test
+    @SneakyThrows
+    public void createMultipleProgramsSuccess() {
+
+        BrApiProgram brApiProgram1 = BrApiProgram.builder()
+                .programName("new test program")
+                .build();
+        BrApiProgram brApiProgram2 = BrApiProgram.builder()
+                .programName("new test program")
+                .build();
+        List<BrApiProgram> brApiPrograms = new ArrayList<>();
+        brApiPrograms.add(brApiProgram1);
+        brApiPrograms.add(brApiProgram2);
+
+        List<BrApiProgram> createdPrograms = this.programsAPI.createPrograms(brApiPrograms);
+
+        assertEquals(true, createdPrograms.size() > 0);
+        //TODO: Test that program Id and program name are in return objects
+    }
+
+    @Test
+    @SneakyThrows
+    public void createProgramIdPresentFailure() {
+
+    }
+
+    @Test
+    @SneakyThrows
+    public void createProgramEmptyProgramSuccess() {
+
+    }
+
 }

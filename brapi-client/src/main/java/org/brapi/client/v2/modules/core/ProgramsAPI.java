@@ -5,7 +5,6 @@ import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpException;
 import org.brapi.client.v2.model.BrAPIRequest;
 import org.brapi.client.v2.model.HttpMethod;
-import org.brapi.client.v2.model.exceptions.*;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.BrAPIEndpoint;
 
@@ -76,6 +75,44 @@ public class ProgramsAPI extends BrAPIEndpoint {
         }).orElse(Optional.empty());
 
         return searchResult;
+    }
+
+    public List<BrApiProgram> createPrograms(List<BrApiProgram> brApiPrograms) throws HttpException, APIException {
+
+        // Check if our values are passed in and raise error if not
+        if (brApiPrograms.stream().anyMatch(program -> program.getProgramDbId() != null)) {
+            throw new APIException("BrAPI program must not have an existing programDbId.");
+        }
+
+        // Build our request
+        String endpoint = String.format(BrAPICoreEndpoints_V2.getProgramsPath());
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .data(brApiPrograms)
+                .method(HttpMethod.POST)
+                .build();
+
+        List<BrApiProgram> createdProgram = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            Type resultGsonType = new TypeToken<DataResponse<BrApiProgram>>() {}.getType();
+            DataResponse<BrApiProgram> dataResponse = gson.fromJson(resultJson, resultGsonType);
+            return dataResponse.data();
+        }).orElse(new ArrayList<>());
+
+        return createdProgram;
+    }
+
+    public Optional<BrApiProgram> createProgram(BrApiProgram brApiProgram) throws HttpException, APIException {
+        List<BrApiProgram> brApiPrograms = new ArrayList<>();
+        brApiPrograms.add(brApiProgram);
+        List<BrApiProgram> createdPrograms = createPrograms(brApiPrograms);
+
+        if (createdPrograms.size() > 0){
+            return Optional.of(createdPrograms.get(0));
+        }
+        else {
+            return Optional.empty();
+        }
     }
 
 }
