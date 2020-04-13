@@ -45,7 +45,7 @@ public class BrApiTrial {
   private LocalDate endDate;
 
   @JsonProperty("externalReferences")
-  private BrApiExternalReferences externalReferences;
+  private List<BrApiExternalReference> externalReferences;
 
   @JsonProperty("programDbId")
   private String programDbId;

@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.brapi.v2.core.model.BrApiExternalReferences;
+import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiSeason;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,7 +32,7 @@ public class BrApiObservation {
   private String collector;
 
   @JsonProperty("externalReferences")
-  private BrApiExternalReferences externalReferences;
+  private List<BrApiExternalReference> externalReferences;
 
   @JsonProperty("germplasmDbId")
   @NotNull

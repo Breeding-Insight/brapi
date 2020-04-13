@@ -56,7 +56,7 @@ public class BrApiStudy {
   private BrApiExperimentalDesign experimentalDesign;
 
   @JsonProperty("externalReferences")
-  private BrApiExternalReferences externalReferences;
+  private List<BrApiExternalReference> externalReferences;
 
   @JsonProperty("growthFacility")
   private BrApiGrowthFacility growthFacility;

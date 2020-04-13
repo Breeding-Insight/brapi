@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,7 +30,7 @@ public class BrApiPerson {
   private String emailAddress;
 
   @JsonProperty("externalReferences")
-  private BrApiExternalReferences externalReferences;
+  private List<BrApiExternalReference> externalReferences;
 
   @JsonProperty("firstName")
   private String firstName;

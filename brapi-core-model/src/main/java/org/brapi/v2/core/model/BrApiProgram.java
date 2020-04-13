@@ -7,6 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,7 +36,7 @@ public class BrApiProgram {
 
   @JsonProperty("externalReferences")
   @Valid
-  private BrApiExternalReferences externalReferences;
+  private List<BrApiExternalReference> externalReferences;
 
   @JsonProperty("leadPersonDbId")
   private String leadPersonDbId;

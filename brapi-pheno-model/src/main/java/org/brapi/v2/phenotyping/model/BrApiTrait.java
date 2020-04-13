@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.brapi.v2.core.model.BrApiExternalReferences;
+import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiOntologyReference;
 
 import javax.validation.Valid;
@@ -31,7 +31,7 @@ public class BrApiTrait {
   private String entity;
 
   @JsonProperty("externalReferences")
-  private BrApiExternalReferences externalReferences;
+  private List<BrApiExternalReference> externalReferences;
 
   @JsonProperty("mainAbbreviation")
   private String mainAbbreviation;

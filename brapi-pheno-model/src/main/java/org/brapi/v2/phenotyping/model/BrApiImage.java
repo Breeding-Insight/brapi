@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.brapi.v2.core.model.BrApiExternalReferences;
+import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiGeoJSON;
 
 import javax.validation.Valid;
@@ -37,7 +37,7 @@ public class BrApiImage {
   private List<String> descriptiveOntologyTerms;
 
   @JsonProperty("externalReferences")
-  private BrApiExternalReferences externalReferences;
+  private List<BrApiExternalReference> externalReferences;
 
   @JsonProperty("imageFileName")
   private String imageFileName;

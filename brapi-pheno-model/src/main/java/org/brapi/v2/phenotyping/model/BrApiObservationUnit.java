@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.brapi.v2.core.model.BrApiExternalReferences;
+import org.brapi.v2.core.model.BrApiExternalReference;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,7 +25,7 @@ public class BrApiObservationUnit {
   private Map<String, String> additionalInfo;
 
   @JsonProperty("externalReferences")
-  private BrApiExternalReferences externalReferences;
+  private List<BrApiExternalReference> externalReferences;
 
   @JsonProperty("germplasmDbId")
   private String germplasmDbId;
