@@ -1,6 +1,7 @@
 package org.brapi.client.v2.modules.core;
 
 import lombok.SneakyThrows;
+import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.v2.core.model.BrApiProgram;
 import org.brapi.client.v2.BrAPIClientTest;
@@ -103,7 +104,9 @@ public class ProgramsAPITests extends BrAPIClientTest {
         Optional<BrApiProgram> createdProgram = this.programsAPI.createProgram(brApiProgram);
 
         assertEquals(true, createdProgram.isPresent());
-        //TODO: Test that program Id and program name are in return object
+        BrApiProgram program = createdProgram.get();
+        assertEquals(true, program.getProgramDbId() != null, "Program Id was not parsed properly");
+        assertEquals(true, program.getProgramName() != null, "Program Name was not parsed properly");
     }
 
     @Test
@@ -111,10 +114,10 @@ public class ProgramsAPITests extends BrAPIClientTest {
     public void createMultipleProgramsSuccess() {
 
         BrApiProgram brApiProgram1 = BrApiProgram.builder()
-                .programName("new test program")
+                .programName("test1")
                 .build();
         BrApiProgram brApiProgram2 = BrApiProgram.builder()
-                .programName("new test program")
+                .programName("test2")
                 .build();
         List<BrApiProgram> brApiPrograms = new ArrayList<>();
         brApiPrograms.add(brApiProgram1);
@@ -122,20 +125,36 @@ public class ProgramsAPITests extends BrAPIClientTest {
 
         List<BrApiProgram> createdPrograms = this.programsAPI.createPrograms(brApiPrograms);
 
-        assertEquals(true, createdPrograms.size() > 0);
-        //TODO: Test that program Id and program name are in return objects
+        assertEquals(true, createdPrograms.size() == 2);
+        assertEquals("test1", createdPrograms.get(0).getProgramName(), "Sent name and returned program name does not match");
+        assertEquals(true, createdPrograms.get(0).getProgramDbId() != null, "Program Id was not parsed properly");
+        assertEquals("test2", createdPrograms.get(1).getProgramName(), "Sent name and returned program name does not match");
+        assertEquals(true, createdPrograms.get(1).getProgramDbId() != null, "Program Id was not parsed properly");
     }
 
     @Test
     @SneakyThrows
     public void createProgramIdPresentFailure() {
 
+        BrApiProgram brApiProgram = BrApiProgram.builder()
+                .programName("new test program")
+                .programDbId("id1123")
+                .build();
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiProgram> createdProgram = this.programsAPI.createProgram(brApiProgram);
+        });
     }
 
     @Test
     @SneakyThrows
     public void createProgramEmptyProgramSuccess() {
+        BrApiProgram brApiProgram = new BrApiProgram();
+        Optional<BrApiProgram> createdProgram = this.programsAPI.createProgram(brApiProgram);
 
+        assertEquals(true, createdProgram.isPresent());
+        BrApiProgram program = createdProgram.get();
+        assertEquals(true, program.getProgramDbId() != null, "Program Id was not parsed properly");
     }
 
 }
