@@ -115,4 +115,27 @@ public class ProgramsAPI extends BrAPIEndpoint {
         }
     }
 
+    public Optional<BrApiProgram> updateProgram(BrApiProgram brApiProgram) throws HttpException, APIException {
+
+        if (brApiProgram.getProgramDbId() == null){
+            throw new APIException("BrAPI program must have an existing programDbId.");
+        }
+
+        // Build our request
+        String endpoint = BrAPICoreEndpoints_V2.getProgramsByIdPath(brApiProgram.getProgramDbId());
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .data(brApiProgram)
+                .method(HttpMethod.PUT)
+                .build();
+
+        Optional<BrApiProgram> updatedProgram = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiProgram resultResponse = gson.fromJson(resultJson, BrApiProgram.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return updatedProgram;
+    }
+
 }

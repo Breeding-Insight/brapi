@@ -157,4 +157,21 @@ public class ProgramsAPITests extends BrAPIClientTest {
         assertEquals(true, program.getProgramDbId() != null, "Program Id was not parsed properly");
     }
 
+    @Test
+    @SneakyThrows
+    public void updateProgramSuccess() {
+        // Check that it is a success and all data matches
+    }
+
+    @Test
+    @SneakyThrows
+    public void updateProgramBadId() {
+        // Check that it throws a 404
+    }
+
+    @Test
+    @SneakyThrows
+    public void updateProgramMissingId() {
+        // Check that it throws an APIException
+    }
 }
