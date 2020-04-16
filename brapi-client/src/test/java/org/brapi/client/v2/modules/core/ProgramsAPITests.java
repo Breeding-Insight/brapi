@@ -6,7 +6,7 @@ import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.v2.core.model.BrApiProgram;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.v2.core.model.request.ProgramsRequest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import javax.swing.text.html.Option;
@@ -16,11 +16,14 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProgramsAPITests extends BrAPIClientTest {
 
     //TODO: Maybe query these before tests instead of hard coding.
     private String programId = "program3";
     private String externalReferenceID = "https://brapi.org/specification";
+    private BrApiProgram createdProgram;
 
     private ProgramsAPI programsAPI = new ProgramsAPI(this.client);
 
@@ -148,30 +151,59 @@ public class ProgramsAPITests extends BrAPIClientTest {
 
     @Test
     @SneakyThrows
+    @Order(1)
     public void createProgramEmptyProgramSuccess() {
         BrApiProgram brApiProgram = new BrApiProgram();
         Optional<BrApiProgram> createdProgram = this.programsAPI.createProgram(brApiProgram);
 
         assertEquals(true, createdProgram.isPresent());
         BrApiProgram program = createdProgram.get();
+        this.createdProgram = program;
         assertEquals(true, program.getProgramDbId() != null, "Program Id was not parsed properly");
     }
 
     @Test
     @SneakyThrows
+    @Order(2)
     public void updateProgramSuccess() {
+        BrApiProgram program = this.createdProgram;
+        program.setProgramName("updated_name");
+        program.setObjective("planting stuff");
+
         // Check that it is a success and all data matches
+        Optional<BrApiProgram> updatedProgramResult = this.programsAPI.updateProgram(program);
+
+        assertEquals(true, updatedProgramResult.isPresent(), "Program was not returned");
+        BrApiProgram updatedProgram = updatedProgramResult.get();
+        assertEquals("updated_name", updatedProgram.getProgramName(), "Program name was not parsed correctly");
+        assertEquals("planting stuff", updatedProgram.getObjective(), "Program name was not parsed correctly");
+
     }
 
     @Test
     @SneakyThrows
     public void updateProgramBadId() {
         // Check that it throws a 404
+        BrApiProgram program = this.createdProgram;
+        program.setProgramDbId("i_do_not_exist");
+
+        // Check that it is a success and all data matches
+        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+            Optional<BrApiProgram> updatedProgramResult = this.programsAPI.updateProgram(program);
+        });
     }
 
     @Test
     @SneakyThrows
     public void updateProgramMissingId() {
         // Check that it throws an APIException
+        BrApiProgram brApiProgram = BrApiProgram.builder()
+                .programName("new test program")
+                .build();
+
+        // Check that it is a success and all data matches
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiProgram> updatedProgramResult = this.programsAPI.updateProgram(brApiProgram);
+        });
     }
 }
