@@ -106,7 +106,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
         assertEquals(true, createdProgram.isPresent());
         BrApiProgram program = createdProgram.get();
         assertEquals(true, program.getProgramDbId() != null, "Program Id was not parsed properly");
-        assertEquals(true, program.getProgramName() != null, "Program Name was not parsed properly");
+        assertEquals("new test program", program.getProgramName() , "Program Name was not parsed properly");
     }
 
     @Test

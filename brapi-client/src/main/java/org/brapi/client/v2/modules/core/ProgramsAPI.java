@@ -29,7 +29,7 @@ public class ProgramsAPI extends BrAPIEndpoint {
         }
 
         // Build our request
-        String endpoint = String.format(BrAPICoreEndpoints_V2.getProgramsPath());
+        String endpoint = BrAPICoreEndpoints_V2.getProgramsPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
                 .parameter("dataType", "application/json")
@@ -85,7 +85,7 @@ public class ProgramsAPI extends BrAPIEndpoint {
         }
 
         // Build our request
-        String endpoint = String.format(BrAPICoreEndpoints_V2.getProgramsPath());
+        String endpoint = BrAPICoreEndpoints_V2.getProgramsPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
                 .parameter("dataType", "application/json")
@@ -107,7 +107,7 @@ public class ProgramsAPI extends BrAPIEndpoint {
         brApiPrograms.add(brApiProgram);
         List<BrApiProgram> createdPrograms = createPrograms(brApiPrograms);
 
-        if (createdPrograms.size() > 0){
+        if (createdPrograms.size() == 1){
             return Optional.of(createdPrograms.get(0));
         }
         else {

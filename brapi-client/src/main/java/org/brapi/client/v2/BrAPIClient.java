@@ -175,7 +175,7 @@ public class BrAPIClient {
             else if (response.code() == 500) {
                 throw new HttpInternalServerError(response.body().string());
             }
-            if(response.isSuccessful()) {
+            else if(response.isSuccessful()) {
                 // If a callback function was passed. Run it now.
                 if (responseHandler.isPresent()) {
                     try (ResponseBody body = response.body()) {
