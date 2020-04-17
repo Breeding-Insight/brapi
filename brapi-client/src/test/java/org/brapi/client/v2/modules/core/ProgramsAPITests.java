@@ -7,9 +7,7 @@ import org.brapi.v2.core.model.BrApiProgram;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.v2.core.model.request.ProgramsRequest;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

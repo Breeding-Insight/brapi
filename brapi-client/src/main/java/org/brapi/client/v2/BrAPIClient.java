@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 
 @Accessors(fluent=true)
 public class BrAPIClient {
+    @Getter
     private final String brapiURI;
     @Getter
     private final Gson gson;
@@ -157,7 +158,7 @@ public class BrAPIClient {
                               .collect(Collectors.joining("&")));
         }
 
-        httpReq.url(this.brapiURI + url.toString());
+        httpReq.url(this.brapiURI() + url.toString());
 
         try(Response response = client.newCall(httpReq.build()).execute()) {
             if (response.code() == 400) {
@@ -180,11 +181,14 @@ public class BrAPIClient {
                 if (responseHandler.isPresent()) {
                     try (ResponseBody body = response.body()) {
                         if(body != null) {
-                            JsonObject responseJson = gson.fromJson(body.string(), JsonObject.class);
-                            JsonElement resultJson = responseJson.get("result");
-                            Metadata metadata = gson.fromJson(responseJson.get("metadata"), Metadata.class);
+                            String bodyString = body.string();
+                            if (bodyString != ""){
+                                JsonObject responseJson = gson.fromJson(bodyString, JsonObject.class);
+                                JsonElement resultJson = responseJson.get("result");
+                                Metadata metadata = gson.fromJson(responseJson.get("metadata"), Metadata.class);
 
-                            return Optional.ofNullable(responseHandler.get().apply(metadata, resultJson, gson()));
+                                return Optional.ofNullable(responseHandler.get().apply(metadata, resultJson, gson()));
+                            }
                         }
                     }
                 }
@@ -199,7 +203,7 @@ public class BrAPIClient {
         return Optional.empty();
     }
 
-    private OkHttpClient getHttpClient() {
+    public OkHttpClient getHttpClient() {
         return new OkHttpClient(); //have this here in case we want to configure the client later
     }
 }
