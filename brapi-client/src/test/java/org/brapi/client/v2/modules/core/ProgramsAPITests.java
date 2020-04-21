@@ -1,10 +1,10 @@
 package org.brapi.client.v2.modules.core;
 
 import lombok.SneakyThrows;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.v2.core.model.BrApiProgram;
-import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.v2.core.model.request.ProgramsRequest;
 import org.junit.jupiter.api.*;
 
@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -107,7 +108,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
         assertEquals(true, createdProgram.isPresent());
         BrApiProgram program = createdProgram.get();
         assertEquals(true, program.getProgramDbId() != null, "Program Id was not parsed properly");
-        assertEquals("new test program", program.getProgramName() , "Program Name was not parsed properly");
+        assertEquals("new test program", program.getProgramName(), "Program Name was not parsed properly");
     }
 
     @Test
@@ -174,7 +175,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
         assertEquals(true, updatedProgramResult.isPresent(), "Program was not returned");
         BrApiProgram updatedProgram = updatedProgramResult.get();
         assertEquals("updated_name", updatedProgram.getProgramName(), "Program name was not parsed correctly");
-        assertEquals("planting stuff", updatedProgram.getObjective(), "Program name was not parsed correctly");
+        assertEquals("planting stuff", updatedProgram.getObjective(), "Program objective was not parsed correctly");
 
     }
 

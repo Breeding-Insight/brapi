@@ -1,20 +1,20 @@
 package org.brapi.client.v2.modules.core;
 
 import com.google.gson.reflect.TypeToken;
-import org.brapi.client.v2.model.exceptions.APIException;
-import org.brapi.client.v2.model.exceptions.HttpException;
-import org.brapi.client.v2.model.BrAPIRequest;
-import org.brapi.client.v2.model.HttpMethod;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.BrAPIEndpoint;
+import org.brapi.client.v2.model.BrAPIRequest;
+import org.brapi.client.v2.model.HttpMethod;
+import org.brapi.client.v2.model.exceptions.APIException;
+import org.brapi.client.v2.model.exceptions.HttpException;
+import org.brapi.v2.core.model.BrApiProgram;
+import org.brapi.v2.core.model.request.ProgramsRequest;
+import org.brapi.v2.core.model.response.DataResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.brapi.v2.core.model.BrApiProgram;
-import org.brapi.v2.core.model.request.ProgramsRequest;
-import org.brapi.v2.core.model.response.DataResponse;
 
 
 public class ProgramsAPI extends BrAPIEndpoint {

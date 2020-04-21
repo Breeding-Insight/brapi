@@ -2,7 +2,6 @@ package org.brapi.client.v2.modules.core;
 
 import lombok.SneakyThrows;
 import org.brapi.client.v2.BrAPIClient;
-import org.brapi.client.v2.MockedBrAPIClient;
 import org.brapi.client.v2.ResponseHandlerFunction;
 import org.brapi.client.v2.model.BrAPIRequest;
 import org.brapi.v2.core.model.BrApiProgram;
@@ -40,7 +39,7 @@ public class ProgramAPIUnitTests {
                 .thenReturn(Optional.empty());
         List<BrApiProgram> brApiPrograms = programsAPI.getPrograms();
 
-        assertEquals(0, brApiPrograms.size(), "List size is greater than 1");
+        assertEquals(0, brApiPrograms.size(), "List size is greater than 0");
     }
 
     @Test
@@ -65,7 +64,7 @@ public class ProgramAPIUnitTests {
         brApiPrograms.add(brApiProgram);
         List<BrApiProgram> createdBrAPIPrograms = programsAPI.createPrograms(brApiPrograms);
 
-        assertEquals(0, createdBrAPIPrograms.size(), "List size is greater than 1");
+        assertEquals(0, createdBrAPIPrograms.size(), "List size is greater than 0");
     }
 
     @Test

@@ -10,16 +10,13 @@ import org.brapi.client.v2.modules.core.BrAPICoreEndpoints_V2;
 import org.brapi.client.v2.modules.core.ProgramsAPI;
 import org.brapi.v2.core.model.BrApiProgram;
 import org.junit.jupiter.api.*;
-import org.mockito.MockitoAnnotations;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BrAPIClientUnitTests {
 
     private ProgramsAPI programsAPI;

@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import okhttp3.*;
 import org.brapi.client.v2.model.BrAPIRequest;
-import org.brapi.v2.core.model.BrApiProgram;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 

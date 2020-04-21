@@ -4,17 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.Getter;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import okhttp3.RequestBody;
-import okhttp3.MediaType;
-import okhttp3.internal.http.HttpMethod;
 import lombok.experimental.Accessors;
+import okhttp3.*;
+import okhttp3.internal.http.HttpMethod;
 import org.brapi.client.v2.model.BrAPIRequest;
-import org.brapi.client.v2.model.exceptions.*;
-import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.*;
 import org.brapi.v2.core.model.response.Metadata;
 
@@ -24,11 +17,10 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Getter
 @Accessors(fluent=true)
 public class BrAPIClient {
-    @Getter
     private final String brapiURI;
-    @Getter
     private final Gson gson;
     private String authToken;
 
