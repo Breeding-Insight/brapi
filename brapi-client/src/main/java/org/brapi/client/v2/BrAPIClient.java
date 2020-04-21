@@ -4,17 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.Getter;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import okhttp3.RequestBody;
-import okhttp3.MediaType;
-import okhttp3.internal.http.HttpMethod;
 import lombok.experimental.Accessors;
+import okhttp3.*;
+import okhttp3.internal.http.HttpMethod;
 import org.brapi.client.v2.model.BrAPIRequest;
-import org.brapi.client.v2.model.exceptions.*;
-import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.*;
 import org.brapi.v2.core.model.response.Metadata;
 
@@ -24,10 +17,10 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Getter
 @Accessors(fluent=true)
 public class BrAPIClient {
     private final String brapiURI;
-    @Getter
     private final Gson gson;
     private String authToken;
 
@@ -157,7 +150,7 @@ public class BrAPIClient {
                               .collect(Collectors.joining("&")));
         }
 
-        httpReq.url(this.brapiURI + url.toString());
+        httpReq.url(this.brapiURI() + url.toString());
 
         try(Response response = client.newCall(httpReq.build()).execute()) {
             if (response.code() == 400) {
@@ -175,16 +168,19 @@ public class BrAPIClient {
             else if (response.code() == 500) {
                 throw new HttpInternalServerError(response.body().string());
             }
-            if(response.isSuccessful()) {
+            else if(response.isSuccessful()) {
                 // If a callback function was passed. Run it now.
                 if (responseHandler.isPresent()) {
                     try (ResponseBody body = response.body()) {
                         if(body != null) {
-                            JsonObject responseJson = gson.fromJson(body.string(), JsonObject.class);
-                            JsonElement resultJson = responseJson.get("result");
-                            Metadata metadata = gson.fromJson(responseJson.get("metadata"), Metadata.class);
+                            String bodyString = body.string();
+                            if (!bodyString.equals("")){
+                                JsonObject responseJson = gson.fromJson(bodyString, JsonObject.class);
+                                JsonElement resultJson = responseJson.get("result");
+                                Metadata metadata = gson.fromJson(responseJson.get("metadata"), Metadata.class);
 
-                            return Optional.ofNullable(responseHandler.get().apply(metadata, resultJson, gson()));
+                                return Optional.ofNullable(responseHandler.get().apply(metadata, resultJson, gson()));
+                            }
                         }
                     }
                 }
@@ -199,7 +195,7 @@ public class BrAPIClient {
         return Optional.empty();
     }
 
-    private OkHttpClient getHttpClient() {
+    public OkHttpClient getHttpClient() {
         return new OkHttpClient(); //have this here in case we want to configure the client later
     }
 }

@@ -1,22 +1,28 @@
 package org.brapi.client.v2.modules.core;
 
 import lombok.SneakyThrows;
+import org.brapi.client.v2.BrAPIClientTest;
+import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.v2.core.model.BrApiProgram;
-import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.v2.core.model.request.ProgramsRequest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProgramsAPITests extends BrAPIClientTest {
 
     //TODO: Maybe query these before tests instead of hard coding.
     private String programId = "program3";
     private String externalReferenceID = "https://brapi.org/specification";
+    private BrApiProgram createdProgram;
 
     private ProgramsAPI programsAPI = new ProgramsAPI(this.client);
 
@@ -77,7 +83,6 @@ public class ProgramsAPITests extends BrAPIClientTest {
         assertEquals(true, programs.size() > 0, "List of programs was empty");
     }
 
-    // This one fails because search parameters are not implemented yet.
     @Test
     @SneakyThrows
     public void getProgramByExternalReferenceIDDoesNotExist() {
@@ -88,5 +93,116 @@ public class ProgramsAPITests extends BrAPIClientTest {
         List<BrApiProgram> programs = this.programsAPI.getPrograms(programsRequest);
 
         assertEquals(true, programs.size() == 0, "List of programs was not empty");
+    }
+
+    @Test
+    @SneakyThrows
+    public void createProgramSuccess() {
+
+        BrApiProgram brApiProgram = BrApiProgram.builder()
+                .programName("new test program")
+                .build();
+
+        Optional<BrApiProgram> createdProgram = this.programsAPI.createProgram(brApiProgram);
+
+        assertEquals(true, createdProgram.isPresent());
+        BrApiProgram program = createdProgram.get();
+        assertEquals(true, program.getProgramDbId() != null, "Program Id was not parsed properly");
+        assertEquals("new test program", program.getProgramName(), "Program Name was not parsed properly");
+    }
+
+    @Test
+    @SneakyThrows
+    public void createMultipleProgramsSuccess() {
+
+        BrApiProgram brApiProgram1 = BrApiProgram.builder()
+                .programName("test1")
+                .build();
+        BrApiProgram brApiProgram2 = BrApiProgram.builder()
+                .programName("test2")
+                .build();
+        List<BrApiProgram> brApiPrograms = new ArrayList<>();
+        brApiPrograms.add(brApiProgram1);
+        brApiPrograms.add(brApiProgram2);
+
+        List<BrApiProgram> createdPrograms = this.programsAPI.createPrograms(brApiPrograms);
+
+        assertEquals(true, createdPrograms.size() == 2);
+        assertEquals("test1", createdPrograms.get(0).getProgramName(), "Sent name and returned program name does not match");
+        assertEquals(true, createdPrograms.get(0).getProgramDbId() != null, "Program Id was not parsed properly");
+        assertEquals("test2", createdPrograms.get(1).getProgramName(), "Sent name and returned program name does not match");
+        assertEquals(true, createdPrograms.get(1).getProgramDbId() != null, "Program Id was not parsed properly");
+    }
+
+    @Test
+    @SneakyThrows
+    public void createProgramIdPresentFailure() {
+
+        BrApiProgram brApiProgram = BrApiProgram.builder()
+                .programName("new test program")
+                .programDbId("id1123")
+                .build();
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiProgram> createdProgram = this.programsAPI.createProgram(brApiProgram);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(1)
+    public void createProgramEmptyProgramSuccess() {
+        BrApiProgram brApiProgram = new BrApiProgram();
+        Optional<BrApiProgram> createdProgram = this.programsAPI.createProgram(brApiProgram);
+
+        assertEquals(true, createdProgram.isPresent());
+        BrApiProgram program = createdProgram.get();
+        this.createdProgram = program;
+        assertEquals(true, program.getProgramDbId() != null, "Program Id was not parsed properly");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    public void updateProgramSuccess() {
+        BrApiProgram program = this.createdProgram;
+        program.setProgramName("updated_name");
+        program.setObjective("planting stuff");
+
+        // Check that it is a success and all data matches
+        Optional<BrApiProgram> updatedProgramResult = this.programsAPI.updateProgram(program);
+
+        assertEquals(true, updatedProgramResult.isPresent(), "Program was not returned");
+        BrApiProgram updatedProgram = updatedProgramResult.get();
+        assertEquals("updated_name", updatedProgram.getProgramName(), "Program name was not parsed correctly");
+        assertEquals("planting stuff", updatedProgram.getObjective(), "Program objective was not parsed correctly");
+
+    }
+
+    @Test
+    @SneakyThrows
+    public void updateProgramBadId() {
+        // Check that it throws a 404
+        BrApiProgram program = this.createdProgram;
+        program.setProgramDbId("i_do_not_exist");
+
+        // Check that it is a success and all data matches
+        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+            Optional<BrApiProgram> updatedProgramResult = this.programsAPI.updateProgram(program);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    public void updateProgramMissingId() {
+        // Check that it throws an APIException
+        BrApiProgram brApiProgram = BrApiProgram.builder()
+                .programName("new test program")
+                .build();
+
+        // Check that it is a success and all data matches
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiProgram> updatedProgramResult = this.programsAPI.updateProgram(brApiProgram);
+        });
     }
 }
