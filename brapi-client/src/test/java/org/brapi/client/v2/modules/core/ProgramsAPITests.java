@@ -186,7 +186,6 @@ public class ProgramsAPITests extends BrAPIClientTest {
         BrApiProgram program = this.createdProgram;
         program.setProgramDbId("i_do_not_exist");
 
-        // Check that it is a success and all data matches
         HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
             Optional<BrApiProgram> updatedProgramResult = this.programsAPI.updateProgram(program);
         });
@@ -200,7 +199,6 @@ public class ProgramsAPITests extends BrAPIClientTest {
                 .programName("new test program")
                 .build();
 
-        // Check that it is a success and all data matches
         APIException exception = assertThrows(APIException.class, () -> {
             Optional<BrApiProgram> updatedProgramResult = this.programsAPI.updateProgram(brApiProgram);
         });
