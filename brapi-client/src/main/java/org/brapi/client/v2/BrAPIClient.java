@@ -174,7 +174,7 @@ public class BrAPIClient {
                     try (ResponseBody body = response.body()) {
                         if(body != null) {
                             String bodyString = body.string();
-                            if (bodyString != ""){
+                            if (!bodyString.equals("")){
                                 JsonObject responseJson = gson.fromJson(bodyString, JsonObject.class);
                                 JsonElement resultJson = responseJson.get("result");
                                 Metadata metadata = gson.fromJson(responseJson.get("metadata"), Metadata.class);
