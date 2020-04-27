@@ -51,9 +51,28 @@ public class TraitsAPITests extends BrAPIClientTest {
     @Test
     @SneakyThrows
     void getTraitByIdSuccess() {
-        Optional<BrApiTrait> traits = this.traitsAPI.getTraitById(traitId);
+        Optional<BrApiTrait> optionalBrApiTrait = this.traitsAPI.getTraitById(traitId);
 
-        assertEquals(true, traits.isPresent(), "An empty optional was returned");
+        assertEquals(true, optionalBrApiTrait.isPresent(), "An empty optional was returned");
+        BrApiTrait trait = optionalBrApiTrait.get();
+        assertEquals(true, trait.getTraitDbId() != null, "TraitDbId was not parsed properly.");
+        assertEquals(true, trait.getAlternativeAbbreviations() != null, "Alternative Abbreviations were not parsed properly.");
+        //TODO: Test alternative abbreviations
+        assertEquals(true, trait.getAttribute() != null, "Attribute was not parsed properly.");
+        assertEquals(true, trait.getAdditionalInfo() != null, "Additional Info was not parsed properly.");
+        //TODO: Test additional info
+        assertEquals(true, trait.getEntity() != null, "Entity was not parsed properly.");
+        assertEquals(true, trait.getExternalReferences() != null, "External References were not parsed properly.");
+        //TODO: Test external references
+        assertEquals(true, trait.getMainAbbreviation() != null, "Main abbreviations were not parsed properly.");
+        assertEquals(true, trait.getOntologyReference() != null, "Ontology reference was not parsed properly.");
+        //TODO: Test ontology reference
+        assertEquals(true, trait.getStatus() != null, "Status was not parsed properly.");
+        assertEquals(true, trait.getSynonyms() != null, "Synonyms were not parsed properly.");
+        //TODO: Test synonyms
+        assertEquals(true, trait.getTraitClass() != null, "Trait class was not parsed properly.");
+        assertEquals(true, trait.getTraitDescription() != null, "Trait description was not parsed properly.");
+        assertEquals(true, trait.getTraitName() != null, "Trait name was not parsed properly.");
     }
 
     @Test
