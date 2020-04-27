@@ -9,6 +9,7 @@ import org.brapi.v2.core.model.BrApiOntologyReference;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 /**
  * TraitBaseClass
@@ -26,6 +27,10 @@ public class BrApiTrait {
 
   @JsonProperty("attribute")
   private String attribute;
+
+  @JsonProperty("additionalInfo")
+  @Valid
+  private Map<String, String> additionalInfo;
 
   @JsonProperty("entity")
   private String entity;

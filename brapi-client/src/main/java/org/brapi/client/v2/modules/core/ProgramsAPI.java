@@ -47,11 +47,7 @@ public class ProgramsAPI extends BrAPIEndpoint {
     }
 
     public List<BrApiProgram> getPrograms() throws HttpException, APIException {
-        try {
-            return getPrograms(null);
-        } catch (APIException e){
-            throw new APIException(e.getMessage());
-        }
+        return getPrograms(null);
     }
 
     public Optional<BrApiProgram> getProgramById(String programID) throws HttpException, APIException {
