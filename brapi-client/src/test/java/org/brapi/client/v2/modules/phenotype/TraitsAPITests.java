@@ -3,17 +3,12 @@ package org.brapi.client.v2.modules.phenotype;
 import lombok.SneakyThrows;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
-import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
-import org.brapi.client.v2.modules.core.ProgramsAPI;
-import org.brapi.v2.core.model.BrApiProgram;
-import org.brapi.v2.core.model.request.ProgramsRequest;
+import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.phenotyping.model.BrApiTrait;
 import org.brapi.v2.phenotyping.model.request.TraitsRequest;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class TraitsAPITests extends BrAPIClientTest {
 
     private TraitsAPI traitsAPI = new TraitsAPI(this.client);
-    private String externalReferenceID = "https://brapi.org/specification";
+    private String externalReferenceID = "test";
     public String traitId = "trait_attribute1";
 
     @Test
@@ -38,6 +33,7 @@ public class TraitsAPITests extends BrAPIClientTest {
 
     @Test
     @SneakyThrows
+    @Order(2)
     void getTraitsByExternalReferenceIdSuccess() {
         TraitsRequest traitsRequest = TraitsRequest.builder()
                 .externalReferenceID(this.externalReferenceID)
@@ -80,6 +76,76 @@ public class TraitsAPITests extends BrAPIClientTest {
     public void getTraitByIdMissingID() {
         APIException exception = assertThrows(APIException.class, () -> {
             Optional<BrApiTrait> traits = this.traitsAPI.getTraitById(null);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    public void createTraitsMultipleSuccess() {
+        BrApiTrait brApiTrait = BrApiTrait.builder()
+                .traitName("new test trait1")
+                .build();
+        BrApiTrait brApiTrait2 = BrApiTrait.builder()
+                .traitName("new test trait2")
+                .build();
+        List<BrApiTrait> traits = new ArrayList<>();
+        traits.add(brApiTrait);
+        traits.add(brApiTrait2);
+
+        List<BrApiTrait> createdTraits = this.traitsAPI.createTraits(traits);
+
+        assertEquals(true, createdTraits.size() == 2);
+        assertEquals(true, createdTraits.get(0).getTraitDbId() != null, "Program Id was not parsed properly");
+
+        assertEquals("new test trait1", createdTraits.get(0).getTraitName(), "Program Name was not parsed properly");
+        assertEquals("new test trait2", createdTraits.get(1).getTraitName(), "Program Name was not parsed properly");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(1)
+    public void createTraitSuccess() {
+        BrApiExternalReference brApiExternalReference = BrApiExternalReference.builder()
+                .referenceID(externalReferenceID)
+                .build();
+        List<BrApiExternalReference> externalReferences = new ArrayList<>();
+        externalReferences.add(brApiExternalReference);
+        BrApiTrait brApiTrait = BrApiTrait.builder()
+                .traitName("new test trait")
+                .externalReferences(externalReferences)
+                .build();
+
+        Optional<BrApiTrait> createdTrait = this.traitsAPI.createTrait(brApiTrait);
+
+        assertEquals(true, createdTrait.isPresent());
+        BrApiTrait trait = createdTrait.get();
+        assertEquals("new test trait", trait.getTraitName(), "Program Name was not parsed properly");
+    }
+
+    @Test
+    @SneakyThrows
+    public void createTraitIdPresent(){
+        BrApiTrait brApiTrait = BrApiTrait.builder()
+                .traitDbId("test")
+                .build();
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiTrait> traits = this.traitsAPI.createTrait(brApiTrait);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    public void createTraitsMultipleIdPresent(){
+        BrApiTrait brApiTrait = BrApiTrait.builder()
+                .traitDbId("test")
+                .build();
+        BrApiTrait brApiTrait1 = new BrApiTrait();
+        List<BrApiTrait> brApiTraits = new ArrayList<>();
+        brApiTraits.add(brApiTrait);
+        brApiTraits.add(brApiTrait1);
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            List<BrApiTrait> traits = this.traitsAPI.createTraits(brApiTraits);
         });
     }
 }

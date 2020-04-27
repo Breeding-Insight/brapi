@@ -7,6 +7,7 @@ import org.brapi.client.v2.model.BrAPIRequest;
 import org.brapi.client.v2.model.HttpMethod;
 import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpException;
+import org.brapi.client.v2.modules.core.BrAPICoreEndpoints_V2;
 import org.brapi.v2.core.model.BrApiProgram;
 import org.brapi.v2.core.model.response.DataResponse;
 import org.brapi.v2.phenotyping.model.BrApiTrait;
@@ -72,5 +73,43 @@ public class TraitsAPI extends BrAPIEndpoint {
         }).orElse(Optional.empty());
 
         return searchResult;
+    }
+
+    public List<BrApiTrait> createTraits(List<BrApiTrait> brApiTraits) throws HttpException, APIException {
+
+        // Check if our values are passed in and raise error if not
+        if (brApiTraits.stream().anyMatch(program -> program.getTraitDbId() != null)) {
+            throw new APIException("BrAPI program must not have an existing programDbId.");
+        }
+
+        // Build our request
+        String endpoint = BrAPIPhenotypeEndpoints_V2.getTraitsPath();
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .data(brApiTraits)
+                .method(HttpMethod.POST)
+                .build();
+
+        List<BrApiTrait> createdTrait = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            Type resultGsonType = new TypeToken<DataResponse<BrApiTrait>>() {}.getType();
+            DataResponse<BrApiTrait> dataResponse = gson.fromJson(resultJson, resultGsonType);
+            return dataResponse.data();
+        }).orElse(new ArrayList<>());
+
+        return createdTrait;
+    }
+
+    public Optional<BrApiTrait> createTrait(BrApiTrait brApiTrait) throws HttpException, APIException {
+        List<BrApiTrait> brApiTraits = new ArrayList<>();
+        brApiTraits.add(brApiTrait);
+        List<BrApiTrait> createdTraits = createTraits(brApiTraits);
+
+        if (createdTraits.size() == 1){
+            return Optional.of(createdTraits.get(0));
+        }
+        else {
+            return Optional.empty();
+        }
     }
 }

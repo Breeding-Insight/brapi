@@ -54,4 +54,14 @@ public class TraitsAPIUnitTests {
         assertEquals(false, brApiTrait.isPresent(), "Empty optional was not returned.");
     }
 
+    @Test
+    @SneakyThrows
+    void createTraitsEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+        Optional<BrApiTrait> brApiTrait = traitsAPI.createTrait(new BrApiTrait());
+
+        assertEquals(false, brApiTrait.isPresent(), "Empty optional was not returned.");
+    }
+
 }
