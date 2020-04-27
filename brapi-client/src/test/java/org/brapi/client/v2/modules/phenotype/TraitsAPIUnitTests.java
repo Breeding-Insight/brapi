@@ -44,4 +44,14 @@ public class TraitsAPIUnitTests {
         assertEquals(0, brApiTraits.size(), "List size is greater than 0");
     }
 
+    @Test
+    @SneakyThrows
+    void getTraitsByIdEmtpyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+        Optional<BrApiTrait> brApiTrait = traitsAPI.getTraitById("test");
+
+        assertEquals(false, brApiTrait.isPresent(), "Empty optional was not returned.");
+    }
+
 }

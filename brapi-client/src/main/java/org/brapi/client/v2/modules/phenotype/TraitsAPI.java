@@ -15,6 +15,7 @@ import org.brapi.v2.phenotyping.model.request.TraitsRequest;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class TraitsAPI extends BrAPIEndpoint {
 
@@ -48,5 +49,28 @@ public class TraitsAPI extends BrAPIEndpoint {
 
     public List<BrApiTrait> getTraits() throws HttpException, APIException {
         return getTraits(null);
+    }
+
+    public Optional<BrApiTrait> getTraitById(String traitId) throws HttpException, APIException {
+
+        // Check if our values are passed in and raise error if not
+        if (traitId == null) {
+            throw new APIException("Must specify traitId for the getTraitById endpoint.");
+        }
+
+        // Build our request
+        String endpoint = BrAPIPhenotypeEndpoints_V2.getTraitsByIdPath(traitId);
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .method(HttpMethod.GET)
+                .build();
+
+        Optional<BrApiTrait> searchResult = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiTrait resultResponse = gson.fromJson(resultJson, BrApiTrait.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return searchResult;
     }
 }

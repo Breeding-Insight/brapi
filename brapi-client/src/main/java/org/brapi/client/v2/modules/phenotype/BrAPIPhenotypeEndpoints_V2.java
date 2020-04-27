@@ -9,4 +9,9 @@ public class BrAPIPhenotypeEndpoints_V2 {
     public static String getTraitsPath() {
         return getRootPath() + "/traits";
     }
+
+    public static String getTraitsByIdPath(String traitId) {
+        return String.format(getRootPath() + "/traits/%s", traitId);
+    }
+
 }
