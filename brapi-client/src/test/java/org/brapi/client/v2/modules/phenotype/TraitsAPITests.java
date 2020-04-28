@@ -4,14 +4,11 @@ import lombok.SneakyThrows;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.v2.core.model.BrApiExternalReference;
-import org.brapi.v2.core.model.BrApiProgram;
 import org.brapi.v2.phenotyping.model.BrApiTrait;
 import org.brapi.v2.phenotyping.model.request.TraitsRequest;
 import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -54,20 +51,19 @@ public class TraitsAPITests extends BrAPIClientTest {
         assertEquals(true, optionalBrApiTrait.isPresent(), "An empty optional was returned");
         BrApiTrait trait = optionalBrApiTrait.get();
         assertEquals(true, trait.getTraitDbId() != null, "TraitDbId was not parsed properly.");
-        assertEquals(true, trait.getAlternativeAbbreviations() != null, "Alternative Abbreviations were not parsed properly.");
-        //TODO: Test alternative abbreviations
+        assertEquals(true, trait.getAlternativeAbbreviations() != null, "Alternative Abbreviations was not parsed properly.");
+        assertEquals(true, trait.getAlternativeAbbreviations().size() > 0, "Alternative abbreviations was not parsed properly.");
         assertEquals(true, trait.getAttribute() != null, "Attribute was not parsed properly.");
         assertEquals(true, trait.getAdditionalInfo() != null, "Additional Info was not parsed properly.");
-        //TODO: Test additional info
+        assertEquals(true, trait.getAdditionalInfo().size() > 0, "Additional Info was not parsed properly.");
         assertEquals(true, trait.getEntity() != null, "Entity was not parsed properly.");
         assertEquals(true, trait.getExternalReferences() != null, "External References were not parsed properly.");
-        //TODO: Test external references
+        assertEquals(true, trait.getExternalReferences().get(0).getReferenceID() != null, "External Reference was not parsed properly.");
         assertEquals(true, trait.getMainAbbreviation() != null, "Main abbreviations were not parsed properly.");
         assertEquals(true, trait.getOntologyReference() != null, "Ontology reference was not parsed properly.");
-        //TODO: Test ontology reference
         assertEquals(true, trait.getStatus() != null, "Status was not parsed properly.");
         assertEquals(true, trait.getSynonyms() != null, "Synonyms were not parsed properly.");
-        //TODO: Test synonyms
+        assertEquals(true, trait.getSynonyms().size() > 0, "Synonyms were not parsed properly.");
         assertEquals(true, trait.getTraitClass() != null, "Trait class was not parsed properly.");
         assertEquals(true, trait.getTraitDescription() != null, "Trait description was not parsed properly.");
         assertEquals(true, trait.getTraitName() != null, "Trait name was not parsed properly.");
@@ -112,9 +108,22 @@ public class TraitsAPITests extends BrAPIClientTest {
                 .build();
         List<BrApiExternalReference> externalReferences = new ArrayList<>();
         externalReferences.add(brApiExternalReference);
+        List<String> alternativeAbbreviations = new ArrayList<>();
+        alternativeAbbreviations.add("test abbrev");
+        Map<String, String> additionalInfo = new HashMap<>();
+        additionalInfo.put("test", "test");
         BrApiTrait brApiTrait = BrApiTrait.builder()
-                .traitName("new test trait")
+                .alternativeAbbreviations(alternativeAbbreviations)
+                .attribute("test")
+                .additionalInfo(additionalInfo)
+                .entity("trait")
                 .externalReferences(externalReferences)
+                .mainAbbreviation("trait")
+                .status("trait")
+                .synonyms(alternativeAbbreviations)
+                .traitClass("test")
+                .traitDescription("a trait for things")
+                .traitName("new test trait")
                 .build();
 
         Optional<BrApiTrait> createdTrait = this.traitsAPI.createTrait(brApiTrait);
@@ -159,6 +168,7 @@ public class TraitsAPITests extends BrAPIClientTest {
         BrApiTrait trait = this.createdTrait;
         trait.setTraitName("updated_name");
         trait.setTraitDescription("recording stuff");
+        trait.setOntologyReference(null);
 
         // Check that it is a success and all data matches
         Optional<BrApiTrait> updatedTraitResult = this.traitsAPI.updateTrait(trait);

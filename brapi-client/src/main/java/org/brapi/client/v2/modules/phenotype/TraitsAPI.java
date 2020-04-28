@@ -7,8 +7,6 @@ import org.brapi.client.v2.model.BrAPIRequest;
 import org.brapi.client.v2.model.HttpMethod;
 import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpException;
-import org.brapi.client.v2.modules.core.BrAPICoreEndpoints_V2;
-import org.brapi.v2.core.model.BrApiProgram;
 import org.brapi.v2.core.model.response.DataResponse;
 import org.brapi.v2.phenotyping.model.BrApiTrait;
 import org.brapi.v2.phenotyping.model.request.TraitsRequest;
