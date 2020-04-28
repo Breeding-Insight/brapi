@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.v2.core.model.BrApiExternalReference;
+import org.brapi.v2.core.model.BrApiProgram;
 import org.brapi.v2.phenotyping.model.BrApiTrait;
 import org.brapi.v2.phenotyping.model.request.TraitsRequest;
 import org.junit.jupiter.api.*;
@@ -21,7 +22,7 @@ public class TraitsAPITests extends BrAPIClientTest {
 
     private TraitsAPI traitsAPI = new TraitsAPI(this.client);
     private String externalReferenceID = "test";
-    public String traitId = "trait_attribute1";
+    private BrApiTrait createdTrait;
 
     @Test
     @SneakyThrows
@@ -46,8 +47,9 @@ public class TraitsAPITests extends BrAPIClientTest {
 
     @Test
     @SneakyThrows
+    @Order(3)
     void getTraitByIdSuccess() {
-        Optional<BrApiTrait> optionalBrApiTrait = this.traitsAPI.getTraitById(traitId);
+        Optional<BrApiTrait> optionalBrApiTrait = this.traitsAPI.getTraitById(createdTrait.getTraitDbId());
 
         assertEquals(true, optionalBrApiTrait.isPresent(), "An empty optional was returned");
         BrApiTrait trait = optionalBrApiTrait.get();
@@ -120,6 +122,7 @@ public class TraitsAPITests extends BrAPIClientTest {
         assertEquals(true, createdTrait.isPresent());
         BrApiTrait trait = createdTrait.get();
         assertEquals("new test trait", trait.getTraitName(), "Program Name was not parsed properly");
+        this.createdTrait = trait;
     }
 
     @Test
@@ -146,6 +149,37 @@ public class TraitsAPITests extends BrAPIClientTest {
 
         APIException exception = assertThrows(APIException.class, () -> {
             List<BrApiTrait> traits = this.traitsAPI.createTraits(brApiTraits);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(4)
+    public void updateTraitSuccess() {
+        BrApiTrait trait = this.createdTrait;
+        trait.setTraitName("updated_name");
+        trait.setTraitDescription("recording stuff");
+
+        // Check that it is a success and all data matches
+        Optional<BrApiTrait> updatedTraitResult = this.traitsAPI.updateTrait(trait);
+
+        assertEquals(true, updatedTraitResult.isPresent(), "Program was not returned");
+        BrApiTrait updatedTrait = updatedTraitResult.get();
+        assertEquals("updated_name", updatedTrait.getTraitName(), "Program name was not parsed correctly");
+        assertEquals("recording stuff", updatedTrait.getTraitDescription(), "Program objective was not parsed correctly");
+
+    }
+
+    @Test
+    @SneakyThrows
+    public void updateProgramMissingId() {
+        // Check that it throws an APIException
+        BrApiTrait brApiTrait = BrApiTrait.builder()
+                .traitName("new test trait")
+                .build();
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiTrait> updatedProgramResult = this.traitsAPI.updateTrait(brApiTrait);
         });
     }
 }

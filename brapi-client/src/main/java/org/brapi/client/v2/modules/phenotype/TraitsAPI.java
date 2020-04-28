@@ -112,4 +112,27 @@ public class TraitsAPI extends BrAPIEndpoint {
             return Optional.empty();
         }
     }
+
+    public Optional<BrApiTrait> updateTrait(BrApiTrait brApiTrait) throws HttpException, APIException {
+
+        if (brApiTrait.getTraitDbId() == null){
+            throw new APIException("BrAPI program must have an existing programDbId.");
+        }
+
+        // Build our request
+        String endpoint = BrAPIPhenotypeEndpoints_V2.getTraitsByIdPath(brApiTrait.getTraitDbId());
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .data(brApiTrait)
+                .method(HttpMethod.PUT)
+                .build();
+
+        Optional<BrApiTrait> updatedProgram = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiTrait resultResponse = gson.fromJson(resultJson, BrApiTrait.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return updatedProgram;
+    }
 }
