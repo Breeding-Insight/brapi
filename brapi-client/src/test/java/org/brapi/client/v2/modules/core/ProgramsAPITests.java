@@ -5,6 +5,7 @@ import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.v2.core.model.BrApiProgram;
+import org.brapi.v2.core.model.request.BaseRequest;
 import org.brapi.v2.core.model.request.ProgramsRequest;
 import org.junit.jupiter.api.*;
 
@@ -29,9 +30,23 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @Test
     @SneakyThrows
     public void getProgramsSuccess() {
+
         List<BrApiProgram> programs = this.programsAPI.getPrograms();
 
         assertEquals(true, !programs.isEmpty(), "List of programs was empty");
+    }
+
+    @Test
+    @SneakyThrows
+    public void getProgramsPageFilter() {
+        ProgramsRequest baseRequest = ProgramsRequest.builder()
+                .page(0)
+                .pageSize(1)
+                .build();
+
+        List<BrApiProgram> programs = this.programsAPI.getPrograms(baseRequest);
+
+        assertEquals(true, programs.size() == 1, "More than one program was returned");
     }
 
     @Test

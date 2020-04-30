@@ -2,13 +2,14 @@ package org.brapi.v2.core.model.request;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import lombok.experimental.SuperBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(fluent=true)
@@ -25,8 +26,7 @@ public class ProgramsRequest extends BaseRequest {
 
         Map<String, String> params = new HashMap<>();
 
-        if (page != null) params.put("page", page.toString());
-        if (pageSize != null) params.put("pageSize", pageSize.toString());
+        params.putAll(super.constructParameters());
         if (commonCropName != null) params.put("commonCropName", commonCropName);
         if (programDbId != null) params.put("programDbId", programDbId);
         if (programName != null) params.put("programName", programName);

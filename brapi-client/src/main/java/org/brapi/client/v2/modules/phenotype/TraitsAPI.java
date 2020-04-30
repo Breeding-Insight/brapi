@@ -22,7 +22,6 @@ public class TraitsAPI extends BrAPIEndpoint {
 
     public List<BrApiTrait> getTraits(TraitsRequest traitsRequest) throws HttpException, APIException {
 
-        // Check if our values are passed in and raise error if not
         if (traitsRequest == null) {
             traitsRequest = new TraitsRequest();
         }
@@ -52,7 +51,6 @@ public class TraitsAPI extends BrAPIEndpoint {
 
     public Optional<BrApiTrait> getTraitById(String traitId) throws HttpException, APIException {
 
-        // Check if our values are passed in and raise error if not
         if (traitId == null) {
             throw new APIException("Must specify traitId for the getTraitById endpoint.");
         }
@@ -75,9 +73,8 @@ public class TraitsAPI extends BrAPIEndpoint {
 
     public List<BrApiTrait> createTraits(List<BrApiTrait> brApiTraits) throws HttpException, APIException {
 
-        // Check if our values are passed in and raise error if not
         if (brApiTraits.stream().anyMatch(program -> program.getTraitDbId() != null)) {
-            throw new APIException("BrAPI program must not have an existing programDbId.");
+            throw new APIException("BrAPI trait must not have an existing traitDbId.");
         }
 
         // Build our request
@@ -114,7 +111,7 @@ public class TraitsAPI extends BrAPIEndpoint {
     public Optional<BrApiTrait> updateTrait(BrApiTrait brApiTrait) throws HttpException, APIException {
 
         if (brApiTrait.getTraitDbId() == null){
-            throw new APIException("BrAPI program must have an existing programDbId.");
+            throw new APIException("BrAPI trait must have an existing traitDbId.");
         }
 
         // Build our request

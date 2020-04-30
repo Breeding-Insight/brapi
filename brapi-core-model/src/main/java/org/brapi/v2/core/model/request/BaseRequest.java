@@ -1,9 +1,16 @@
 package org.brapi.v2.core.model.request;
 
 
+import lombok.*;
+import lombok.experimental.Accessors;
+import lombok.experimental.SuperBuilder;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class BaseRequest {
 
     protected Integer page;

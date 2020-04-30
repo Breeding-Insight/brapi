@@ -4,6 +4,8 @@ import lombok.SneakyThrows;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.v2.core.model.BrApiExternalReference;
+import org.brapi.v2.core.model.BrApiProgram;
+import org.brapi.v2.core.model.request.ProgramsRequest;
 import org.brapi.v2.phenotyping.model.BrApiTrait;
 import org.brapi.v2.phenotyping.model.request.TraitsRequest;
 import org.junit.jupiter.api.*;
@@ -23,10 +25,85 @@ public class TraitsAPITests extends BrAPIClientTest {
 
     @Test
     @SneakyThrows
+    public void createTraitIdPresent(){
+        BrApiTrait brApiTrait = BrApiTrait.builder()
+                .traitDbId("test")
+                .build();
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiTrait> traits = this.traitsAPI.createTrait(brApiTrait);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    public void createTraitsMultipleIdPresent(){
+        BrApiTrait brApiTrait = BrApiTrait.builder()
+                .traitDbId("test")
+                .build();
+        BrApiTrait brApiTrait1 = new BrApiTrait();
+        List<BrApiTrait> brApiTraits = new ArrayList<>();
+        brApiTraits.add(brApiTrait);
+        brApiTraits.add(brApiTrait1);
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            List<BrApiTrait> traits = this.traitsAPI.createTraits(brApiTraits);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(1)
+    public void createTraitSuccess() {
+        BrApiExternalReference brApiExternalReference = BrApiExternalReference.builder()
+                .referenceID(externalReferenceID)
+                .build();
+        List<BrApiExternalReference> externalReferences = new ArrayList<>();
+        externalReferences.add(brApiExternalReference);
+        List<String> alternativeAbbreviations = new ArrayList<>();
+        alternativeAbbreviations.add("test abbrev");
+        Map<String, String> additionalInfo = new HashMap<>();
+        additionalInfo.put("test", "test");
+        BrApiTrait brApiTrait = BrApiTrait.builder()
+                .alternativeAbbreviations(alternativeAbbreviations)
+                .attribute("test")
+                .additionalInfo(additionalInfo)
+                .entity("trait")
+                .externalReferences(externalReferences)
+                .mainAbbreviation("trait")
+                .status("trait")
+                .synonyms(alternativeAbbreviations)
+                .traitClass("test")
+                .traitDescription("a trait for things")
+                .traitName("new test trait")
+                .build();
+
+        Optional<BrApiTrait> createdTrait = this.traitsAPI.createTrait(brApiTrait);
+
+        assertEquals(true, createdTrait.isPresent());
+        BrApiTrait trait = createdTrait.get();
+        assertEquals("new test trait", trait.getTraitName(), "Program Name was not parsed properly");
+        this.createdTrait = trait;
+    }
+
+    @Test
+    @SneakyThrows
     void getTraitsSuccess() {
         List<BrApiTrait> traits = this.traitsAPI.getTraits();
 
         assertEquals(true, !traits.isEmpty(), "List of programs was empty");
+    }
+
+    @Test
+    @SneakyThrows
+    void getTraitsPageFilter() {
+        TraitsRequest baseRequest = TraitsRequest.builder()
+                .page(0)
+                .pageSize(1)
+                .build();
+
+        List<BrApiTrait> traits = this.traitsAPI.getTraits(baseRequest);
+
+        assertEquals(true, traits.size() == 1, "More than one trait was returned");
     }
 
     @Test
@@ -97,68 +174,6 @@ public class TraitsAPITests extends BrAPIClientTest {
 
         assertEquals("new test trait1", createdTraits.get(0).getTraitName(), "Program Name was not parsed properly");
         assertEquals("new test trait2", createdTraits.get(1).getTraitName(), "Program Name was not parsed properly");
-    }
-
-    @Test
-    @SneakyThrows
-    @Order(1)
-    public void createTraitSuccess() {
-        BrApiExternalReference brApiExternalReference = BrApiExternalReference.builder()
-                .referenceID(externalReferenceID)
-                .build();
-        List<BrApiExternalReference> externalReferences = new ArrayList<>();
-        externalReferences.add(brApiExternalReference);
-        List<String> alternativeAbbreviations = new ArrayList<>();
-        alternativeAbbreviations.add("test abbrev");
-        Map<String, String> additionalInfo = new HashMap<>();
-        additionalInfo.put("test", "test");
-        BrApiTrait brApiTrait = BrApiTrait.builder()
-                .alternativeAbbreviations(alternativeAbbreviations)
-                .attribute("test")
-                .additionalInfo(additionalInfo)
-                .entity("trait")
-                .externalReferences(externalReferences)
-                .mainAbbreviation("trait")
-                .status("trait")
-                .synonyms(alternativeAbbreviations)
-                .traitClass("test")
-                .traitDescription("a trait for things")
-                .traitName("new test trait")
-                .build();
-
-        Optional<BrApiTrait> createdTrait = this.traitsAPI.createTrait(brApiTrait);
-
-        assertEquals(true, createdTrait.isPresent());
-        BrApiTrait trait = createdTrait.get();
-        assertEquals("new test trait", trait.getTraitName(), "Program Name was not parsed properly");
-        this.createdTrait = trait;
-    }
-
-    @Test
-    @SneakyThrows
-    public void createTraitIdPresent(){
-        BrApiTrait brApiTrait = BrApiTrait.builder()
-                .traitDbId("test")
-                .build();
-        APIException exception = assertThrows(APIException.class, () -> {
-            Optional<BrApiTrait> traits = this.traitsAPI.createTrait(brApiTrait);
-        });
-    }
-
-    @Test
-    @SneakyThrows
-    public void createTraitsMultipleIdPresent(){
-        BrApiTrait brApiTrait = BrApiTrait.builder()
-                .traitDbId("test")
-                .build();
-        BrApiTrait brApiTrait1 = new BrApiTrait();
-        List<BrApiTrait> brApiTraits = new ArrayList<>();
-        brApiTraits.add(brApiTrait);
-        brApiTraits.add(brApiTrait1);
-
-        APIException exception = assertThrows(APIException.class, () -> {
-            List<BrApiTrait> traits = this.traitsAPI.createTraits(brApiTraits);
-        });
     }
 
     @Test
