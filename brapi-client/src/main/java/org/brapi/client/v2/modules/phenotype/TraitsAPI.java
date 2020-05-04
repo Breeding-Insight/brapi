@@ -11,6 +11,7 @@ import org.brapi.v2.core.model.response.DataResponse;
 import org.brapi.v2.phenotyping.model.BrApiTrait;
 import org.brapi.v2.phenotyping.model.request.TraitsRequest;
 
+import javax.validation.constraints.NotNull;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +21,10 @@ public class TraitsAPI extends BrAPIEndpoint {
 
     public TraitsAPI(BrAPIClient brAPIClient) { super(brAPIClient); }
 
-    public List<BrApiTrait> getTraits(TraitsRequest traitsRequest) throws HttpException, APIException {
+    public List<BrApiTrait> getTraits(@NotNull TraitsRequest traitsRequest) throws HttpException, APIException {
 
         if (traitsRequest == null) {
-            traitsRequest = new TraitsRequest();
+            throw new IllegalArgumentException("Traits request cannot be null");
         }
 
         // Build our request
@@ -46,7 +47,7 @@ public class TraitsAPI extends BrAPIEndpoint {
     }
 
     public List<BrApiTrait> getTraits() throws HttpException, APIException {
-        return getTraits(null);
+        return getTraits(new TraitsRequest());
     }
 
     public Optional<BrApiTrait> getTraitById(String traitId) throws HttpException, APIException {
@@ -73,7 +74,7 @@ public class TraitsAPI extends BrAPIEndpoint {
 
     public List<BrApiTrait> createTraits(List<BrApiTrait> brApiTraits) throws HttpException, APIException {
 
-        if (brApiTraits.stream().anyMatch(program -> program.getTraitDbId() != null)) {
+        if (brApiTraits.stream().anyMatch(trait -> trait.getTraitDbId() != null)) {
             throw new APIException("BrAPI trait must not have an existing traitDbId.");
         }
 
@@ -123,11 +124,11 @@ public class TraitsAPI extends BrAPIEndpoint {
                 .method(HttpMethod.PUT)
                 .build();
 
-        Optional<BrApiTrait> updatedProgram = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+        Optional<BrApiTrait> updateTrait = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
             BrApiTrait resultResponse = gson.fromJson(resultJson, BrApiTrait.class);
             return Optional.of(resultResponse);
         }).orElse(Optional.empty());
 
-        return updatedProgram;
+        return updateTrait;
     }
 }

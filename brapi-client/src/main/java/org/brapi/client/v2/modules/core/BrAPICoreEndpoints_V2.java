@@ -1,10 +1,8 @@
 package org.brapi.client.v2.modules.core;
 
-public class BrAPICoreEndpoints_V2 {
+import org.brapi.client.v2.BrAPIEndpoints_V2;
 
-    public static String getRootPath() {
-        return "/brapi/v2";
-    }
+public class BrAPICoreEndpoints_V2 extends BrAPIEndpoints_V2 {
 
     public static String getProgramsPath() {
         return getRootPath() + "/programs";
