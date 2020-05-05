@@ -11,6 +11,7 @@ import org.brapi.v2.core.model.BrApiProgram;
 import org.brapi.v2.core.model.request.ProgramsRequest;
 import org.brapi.v2.core.model.response.DataResponse;
 
+import javax.validation.constraints.NotNull;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +22,11 @@ public class ProgramsAPI extends BrAPIEndpoint {
 
     public ProgramsAPI(BrAPIClient brAPIClient) { super(brAPIClient); }
 
-    public List<BrApiProgram> getPrograms(ProgramsRequest programFilter) throws HttpException, APIException {
+    public List<BrApiProgram> getPrograms(@NotNull ProgramsRequest programFilter) throws HttpException, APIException {
 
         // Check if our values are passed in and raise error if not
         if (programFilter == null) {
-            programFilter = new ProgramsRequest();
+            throw new IllegalArgumentException("Programs request cannot be null");
         }
 
         // Build our request
@@ -47,11 +48,7 @@ public class ProgramsAPI extends BrAPIEndpoint {
     }
 
     public List<BrApiProgram> getPrograms() throws HttpException, APIException {
-        try {
-            return getPrograms(null);
-        } catch (APIException e){
-            throw new APIException(e.getMessage());
-        }
+        return getPrograms(new ProgramsRequest());
     }
 
     public Optional<BrApiProgram> getProgramById(String programID) throws HttpException, APIException {

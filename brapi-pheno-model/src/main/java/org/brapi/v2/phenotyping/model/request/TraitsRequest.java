@@ -1,8 +1,9 @@
-package org.brapi.v2.core.model.request;
+package org.brapi.v2.phenotyping.model.request;
 
 import lombok.*;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
+import org.brapi.v2.core.model.request.BaseRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,12 +14,10 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(fluent=true)
-public class ProgramsRequest extends BaseRequest {
+public class TraitsRequest extends BaseRequest {
 
-    private String commonCropName;
-    private String programDbId;
-    private String programName;
-    private String abbreviation;
+    private String traitDbId;
+    private String observationVariableDbId;
     private String externalReferenceID;
     private String externalReferenceSource;
 
@@ -27,10 +26,8 @@ public class ProgramsRequest extends BaseRequest {
         Map<String, String> params = new HashMap<>();
 
         params.putAll(super.constructParameters());
-        if (commonCropName != null) params.put("commonCropName", commonCropName);
-        if (programDbId != null) params.put("programDbId", programDbId);
-        if (programName != null) params.put("programName", programName);
-        if (abbreviation != null) params.put("abbreviation", abbreviation);
+        if (traitDbId != null) params.put("traitDbId", traitDbId);
+        if (observationVariableDbId != null) params.put("observationVariableDbId", observationVariableDbId);
         if (externalReferenceID != null) params.put("externalReferenceID", externalReferenceID);
         if (externalReferenceSource != null) params.put("externalReferenceSource", externalReferenceSource);
 

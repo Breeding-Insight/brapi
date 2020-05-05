@@ -45,6 +45,11 @@
             <artifactId>brapi-core-model</artifactId>
             <version>${parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.brapi</groupId>
+            <artifactId>brapi-pheno-model</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
     </dependencies>
 
 
