@@ -23,7 +23,7 @@ public class MethodsAPI extends BrAPIEndpoint {
 
     public List<BrApiMethod> createMethods(List<BrApiMethod> brApiMethods) throws HttpException, APIException {
 
-        if (brApiMethods.stream().anyMatch(trait -> trait.getMethodDbId() != null)) {
+        if (brApiMethods.stream().anyMatch(method -> method.getMethodDbId() != null)) {
             throw new APIException("BrAPI method must not have an existing methodDbId.");
         }
 
