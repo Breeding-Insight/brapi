@@ -32,7 +32,7 @@ public class MethodsAPIUnitTests {
 
     @Test
     @SneakyThrows
-    void createTraitsEmptyBody() {
+    void createMethodsEmptyBody() {
         when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
                 .thenReturn(Optional.empty());
         Optional<BrApiMethod> brApiMethod = methodsAPI.createMethod(new BrApiMethod());
