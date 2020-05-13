@@ -6,6 +6,7 @@ import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiOntologyReference;
 import org.brapi.v2.phenotyping.model.BrApiMethod;
+import org.brapi.v2.phenotyping.model.request.MethodsRequest;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
@@ -13,10 +14,12 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MethodsAPITests extends BrAPIClientTest {
 
     private MethodsAPI methodsAPI = new MethodsAPI(this.client);
-    private String externalReferenceID = "test";
+    private String externalReferenceID = "testId";
+    private String externalReferenceSource = "testSource";
     // depends on this existing in test db until we can create our own
     // don't have GET /ontologies yet either
     private String validOntologyDbId = "ontology_attribute1";
@@ -27,7 +30,7 @@ public class MethodsAPITests extends BrAPIClientTest {
                 .methodDbId("test")
                 .build();
         APIException exception = assertThrows(APIException.class, () -> {
-            Optional<BrApiMethod> method = this.methodsAPI.createMethod(brApiMethod);
+            Optional<BrApiMethod> method = methodsAPI.createMethod(brApiMethod);
         });
     }
 
@@ -42,16 +45,17 @@ public class MethodsAPITests extends BrAPIClientTest {
         brApiMethods.add(brApiMethod1);
 
         APIException exception = assertThrows(APIException.class, () -> {
-            List<BrApiMethod> methods = this.methodsAPI.createMethods(brApiMethods);
+            List<BrApiMethod> methods = methodsAPI.createMethods(brApiMethods);
         });
     }
 
     @Test
+    @Order(1)
     @SneakyThrows
     public void createMethodSuccess() {
         BrApiExternalReference brApiExternalReference = BrApiExternalReference.builder()
                 .referenceID(externalReferenceID)
-                .referenceSource("test")
+                .referenceSource(externalReferenceSource)
                 .build();
         List<BrApiExternalReference> externalReferences = new ArrayList<>();
         externalReferences.add(brApiExternalReference);
@@ -75,7 +79,7 @@ public class MethodsAPITests extends BrAPIClientTest {
                 .methodName("new test method")
                 .build();
 
-        Optional<BrApiMethod> createdMethod = this.methodsAPI.createMethod(brApiMethod);
+        Optional<BrApiMethod> createdMethod = methodsAPI.createMethod(brApiMethod);
 
         assertTrue(createdMethod.isPresent());
         BrApiMethod method = createdMethod.get();
@@ -108,7 +112,7 @@ public class MethodsAPITests extends BrAPIClientTest {
         methods.add(brApiMethod);
         methods.add(brApiMethod2);
 
-        List<BrApiMethod> createdMethods = this.methodsAPI.createMethods(methods);
+        List<BrApiMethod> createdMethods = methodsAPI.createMethods(methods);
 
         assertEquals(true, createdMethods.size() == 2);
         assertEquals(true, createdMethods.get(0).getMethodDbId() != null, "Method id missing");
@@ -117,5 +121,53 @@ public class MethodsAPITests extends BrAPIClientTest {
         assertEquals(brApiMethod.getMethodName(), createdMethods.get(0).getMethodName(), "Method name mismatch");
         assertEquals(brApiMethod2.getMethodName(), createdMethods.get(1).getMethodName(), "Method name mismatch");
     }
+
+    @Test
+    @SneakyThrows
+    void getMethodsSuccess() {
+        List<BrApiMethod> methods = methodsAPI.getMethods();
+
+        assertEquals(true, !methods.isEmpty(), "List of methods was empty");
+    }
+
+    @Test
+    @SneakyThrows
+    void getMethodsPageFilter() {
+        MethodsRequest baseRequest = MethodsRequest.builder()
+                .page(0)
+                .pageSize(1)
+                .build();
+
+        List<BrApiMethod> methods = methodsAPI.getMethods(baseRequest);
+
+        assertEquals(true, methods.size() == 1, "More than one method was returned");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getMethodsByExternalReferenceIdSuccess() {
+        MethodsRequest methodsRequest = MethodsRequest.builder()
+                .externalReferenceID(externalReferenceID)
+                .build();
+
+        List<BrApiMethod> methods = methodsAPI.getMethods(methodsRequest);
+
+        assertEquals(true, methods.size() > 0, "List of methods was empty");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getMethodsByExternalReferenceSourceSuccess() {
+        MethodsRequest methodsRequest = MethodsRequest.builder()
+                .externalReferenceSource(externalReferenceSource)
+                .build();
+
+        List<BrApiMethod> methods = methodsAPI.getMethods(methodsRequest);
+
+        assertEquals(true, methods.size() > 0, "List of methods was empty");
+    }
+
 
 }

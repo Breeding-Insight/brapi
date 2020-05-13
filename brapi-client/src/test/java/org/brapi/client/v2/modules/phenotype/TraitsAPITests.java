@@ -4,8 +4,6 @@ import lombok.SneakyThrows;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.v2.core.model.BrApiExternalReference;
-import org.brapi.v2.core.model.BrApiProgram;
-import org.brapi.v2.core.model.request.ProgramsRequest;
 import org.brapi.v2.phenotyping.model.BrApiTrait;
 import org.brapi.v2.phenotyping.model.request.TraitsRequest;
 import org.junit.jupiter.api.*;

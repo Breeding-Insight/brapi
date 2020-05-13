@@ -11,6 +11,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,5 +39,15 @@ public class MethodsAPIUnitTests {
         Optional<BrApiMethod> brApiMethod = methodsAPI.createMethod(new BrApiMethod());
 
         assertEquals(false, brApiMethod.isPresent(), "Empty optional was not returned.");
+    }
+
+    @Test
+    @SneakyThrows
+    void getMethodsEmtpyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+        List<BrApiMethod> brApiMethods = methodsAPI.getMethods();
+
+        assertEquals(0, brApiMethods.size(), "List size is greater than 0");
     }
 }
