@@ -1,6 +1,9 @@
 package org.brapi.v2.phenotyping.model.request;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
 
@@ -13,16 +16,16 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(fluent=true)
-public class TraitsRequest extends ObservationVariablesRequest {
+public class MethodsRequest extends ObservationVariablesRequest {
 
-    private String traitDbId;
+    private String methodDbId;
 
     public Map<String, String> constructParameters() {
 
         Map<String, String> params = new HashMap<>();
 
         params.putAll(super.constructParameters());
-        if (traitDbId != null) params.put("traitDbId", traitDbId);
+        if (methodDbId != null) params.put("methodDbId", methodDbId);
 
         return params;
 

@@ -9,6 +9,7 @@ import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpException;
 import org.brapi.v2.core.model.response.DataResponse;
 import org.brapi.v2.phenotyping.model.BrApiMethod;
+import org.brapi.v2.phenotyping.model.request.MethodsRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -56,6 +57,35 @@ public class MethodsAPI extends BrAPIEndpoint {
         else {
             return Optional.empty();
         }
+    }
+
+    public List<BrApiMethod> getMethods(MethodsRequest methodsRequest) throws HttpException, APIException {
+
+        if (methodsRequest == null) {
+            throw new IllegalArgumentException("Methods request cannot be null");
+        }
+
+        // Build our request
+        String endpoint = BrAPIPhenotypeEndpoints_V2.getMethodsPath();
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .parameters(methodsRequest.constructParameters())
+                .method(HttpMethod.GET)
+                .build();
+
+        List<BrApiMethod> searchResult = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            Type resultGsonType = new TypeToken<DataResponse<BrApiMethod>>() {
+            }.getType();
+            DataResponse<BrApiMethod> dataResponse = gson.fromJson(resultJson, resultGsonType);
+            return dataResponse.data();
+        }).orElse(new ArrayList<>());
+
+        return searchResult;
+    }
+
+    public List<BrApiMethod> getMethods() throws HttpException, APIException {
+        return getMethods(new MethodsRequest());
     }
 
 }
