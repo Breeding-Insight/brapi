@@ -3,6 +3,7 @@ package org.brapi.client.v2.modules.phenotype;
 import lombok.SneakyThrows;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
+import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiOntologyReference;
 import org.brapi.v2.phenotyping.model.BrApiMethod;
@@ -20,6 +21,8 @@ public class MethodsAPITests extends BrAPIClientTest {
     private MethodsAPI methodsAPI = new MethodsAPI(this.client);
     private String externalReferenceID = "testId";
     private String externalReferenceSource = "testSource";
+    private BrApiMethod createdMethod;
+
     // depends on this existing in test db until we can create our own
     // don't have GET /ontologies yet either
     private String validOntologyDbId = "ontology_attribute1";
@@ -86,13 +89,17 @@ public class MethodsAPITests extends BrAPIClientTest {
 
         assertFalse(method.getMethodDbId() == null, "Method id missing");
         methodAssertEquals(brApiMethod, method);
+
+        this.createdMethod = method;
     }
 
     private void methodAssertEquals(BrApiMethod expected, BrApiMethod actual) {
         assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Method additionalInfo mismatch");
         assertEquals(expected.getMethodName(), actual.getMethodName(), "Method name mismatch");
         assertEquals(expected.getBibliographicalReference(), actual.getBibliographicalReference(), "Method bibliographical mismatch");
-        assertEquals(expected.getOntologyReference(), actual.getOntologyReference(), "Method ontology reference mismatch");
+        assertEquals(expected.getOntologyReference().getOntologyDbId(), actual.getOntologyReference().getOntologyDbId(), "Method ontology dbId mismatch");
+        assertEquals(expected.getOntologyReference().getOntologyName(), actual.getOntologyReference().getOntologyName(), "Method ontology name mismatch");
+        assertEquals(expected.getOntologyReference().getVersion(), actual.getOntologyReference().getVersion(), "Method ontology version mismatch");
         assertEquals(expected.getDescription(), actual.getDescription(), "Method description mismatch");
         assertEquals(expected.getExternalReferences(), actual.getExternalReferences(), "Method external reference mismatch");
         assertEquals(expected.getFormula(), actual.getFormula(), "Method formula mismatch");
@@ -169,5 +176,58 @@ public class MethodsAPITests extends BrAPIClientTest {
         assertEquals(true, methods.size() > 0, "List of methods was empty");
     }
 
+    @Test
+    public void getMethodByIdMissingId() {
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiMethod> method = methodsAPI.getMethodById(null);
+        });
+    }
+
+    @Test
+    public void getMethodByExternalReferenceIdMissingId() {
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiMethod> method = methodsAPI.getMethodByExternalReferenceId(null);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getMethodByIdSuccess() {
+        Optional<BrApiMethod> optionalBrApiMethod = methodsAPI.getMethodById(createdMethod.getMethodDbId());
+
+        assertEquals(true, optionalBrApiMethod.isPresent(), "An empty optional was returned");
+        BrApiMethod method = optionalBrApiMethod.get();
+        assertEquals(true, method.getMethodDbId() != null, "MethodDbId was not parsed properly.");
+        methodAssertEquals(createdMethod, method);
+    }
+
+    @Test
+    @SneakyThrows
+    void getMethodByIdInvalid() {
+        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+            Optional<BrApiMethod> method = methodsAPI.getMethodById("badMethodId");
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getMethodByExternalReferenceIdSuccess() {
+
+        Optional<BrApiMethod> optionalBrApiMethod = methodsAPI.getMethodByExternalReferenceId(externalReferenceID);
+
+        assertEquals(true, optionalBrApiMethod.isPresent(), "An empty optional was returned");
+        BrApiMethod method = optionalBrApiMethod.get();
+        assertEquals(true, method.getMethodDbId() != null, "MethodDbId was not parsed properly.");
+        methodAssertEquals(createdMethod, method);
+    }
+
+    @Test
+    @SneakyThrows
+    void getMethodByExternalReferenceIdInvalid() {
+        Optional<BrApiMethod> optionalBrApiMethod = methodsAPI.getMethodByExternalReferenceId("badExternalReferenceId");
+        assertEquals(false, optionalBrApiMethod.isPresent(), "A present optional was returned");
+    }
 
 }

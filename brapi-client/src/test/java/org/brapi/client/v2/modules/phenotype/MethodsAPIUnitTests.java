@@ -43,11 +43,34 @@ public class MethodsAPIUnitTests {
 
     @Test
     @SneakyThrows
-    void getMethodsEmtpyBody() {
+    void getMethodsEmptyBody() {
         when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
                 .thenReturn(Optional.empty());
         List<BrApiMethod> brApiMethods = methodsAPI.getMethods();
 
         assertEquals(0, brApiMethods.size(), "List size is greater than 0");
     }
+
+    @Test
+    @SneakyThrows
+    void getMethodsByIdEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+        Optional<BrApiMethod> brApiMethod = methodsAPI.getMethodById("test");
+
+        assertEquals(false, brApiMethod.isPresent(), "Empty optional was not returned.");
+    }
+
+    @Test
+    @SneakyThrows
+    void getMethodsByExternalReferenceIdEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+        Optional<BrApiMethod> brApiMethod = methodsAPI.getMethodByExternalReferenceId("test");
+
+        assertEquals(false, brApiMethod.isPresent(), "Empty optional was not returned.");
+    }
+
+
+
 }
