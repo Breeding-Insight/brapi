@@ -230,4 +230,40 @@ public class MethodsAPITests extends BrAPIClientTest {
         assertEquals(false, optionalBrApiMethod.isPresent(), "A present optional was returned");
     }
 
+    @Test
+    @SneakyThrows
+    @Order(2)
+    public void updateMethodSuccess() {
+        BrApiMethod method = this.createdMethod;
+        method.setMethodName("updated_name");
+        method.setDescription("updated_description");
+
+        // Check that it is a success and all data matches
+        Optional<BrApiMethod> updatedMethodResult = this.methodsAPI.updateMethod(method);
+
+        assertEquals(true, updatedMethodResult.isPresent(), "Method was not returned");
+        BrApiMethod updatedMethod = updatedMethodResult.get();
+        methodAssertEquals(method, updatedMethod);
+    }
+
+    @Test
+    @SneakyThrows
+    public void updateMethodMissingId() {
+        // Check that it throws an APIException
+        BrApiMethod brApiMethod = BrApiMethod.builder()
+                .methodName("new test method")
+                .build();
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiMethod> updatedMethodResult = this.methodsAPI.updateMethod(brApiMethod);
+        });
+    }
+
+    @Test
+    public void updateMethodNull() {
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiMethod> method = this.methodsAPI.updateMethod(null);
+        });
+    }
+
 }

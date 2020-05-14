@@ -43,6 +43,21 @@ public class MethodsAPIUnitTests {
 
     @Test
     @SneakyThrows
+    void updateMethodsEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+
+        BrApiMethod method = BrApiMethod.builder()
+                .methodDbId("test")
+                .build();
+
+        Optional<BrApiMethod> brApiMethod = methodsAPI.updateMethod(method);
+
+        assertEquals(false, brApiMethod.isPresent(), "Empty optional was not returned.");
+    }
+
+    @Test
+    @SneakyThrows
     void getMethodsEmptyBody() {
         when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
                 .thenReturn(Optional.empty());
