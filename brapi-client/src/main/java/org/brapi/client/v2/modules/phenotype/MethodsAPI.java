@@ -59,6 +59,33 @@ public class MethodsAPI extends BrAPIEndpoint {
         }
     }
 
+    public Optional<BrApiMethod> updateMethod(BrApiMethod brApiMethod) throws HttpException, APIException {
+
+        if (brApiMethod == null) {
+            throw new APIException("BrAPI method cannot be null");
+        }
+
+        if (brApiMethod.getMethodDbId() == null){
+            throw new APIException("BrAPI method must have an existing methodDbId.");
+        }
+
+        // Build our request
+        String endpoint = BrAPIPhenotypeEndpoints_V2.getMethodsByIdPath(brApiMethod.getMethodDbId());
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .data(brApiMethod)
+                .method(HttpMethod.PUT)
+                .build();
+
+        Optional<BrApiMethod> updateMethod = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiMethod resultResponse = gson.fromJson(resultJson, BrApiMethod.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return updateMethod;
+    }
+
     public List<BrApiMethod> getMethods(MethodsRequest methodsRequest) throws HttpException, APIException {
 
         if (methodsRequest == null) {
@@ -129,4 +156,6 @@ public class MethodsAPI extends BrAPIEndpoint {
 
         return Optional.of(searchResult.get(0));
     }
+
+
 }
