@@ -88,4 +88,45 @@ public class MethodsAPI extends BrAPIEndpoint {
         return getMethods(new MethodsRequest());
     }
 
+    public Optional<BrApiMethod> getMethodById(String methodId) throws HttpException, APIException {
+
+        if (methodId == null) {
+            throw new APIException("Must specify methodId for the getMethodById endpoint.");
+        }
+
+        // Build our request
+        String endpoint = BrAPIPhenotypeEndpoints_V2.getMethodsByIdPath(methodId);
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .method(HttpMethod.GET)
+                .build();
+
+        Optional<BrApiMethod> searchResult = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiMethod resultResponse = gson.fromJson(resultJson, BrApiMethod.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return searchResult;
+    }
+
+    // returns first result if there are multiple matches
+    public Optional<BrApiMethod> getMethodByExternalReferenceId(String externalReferenceId) throws HttpException, APIException {
+
+        if (externalReferenceId == null) {
+            throw new APIException("Must specify externalReferenceId for the getMethodByExternalReferenceId endpoint.");
+        }
+
+        MethodsRequest methodsRequest = MethodsRequest.builder()
+                .externalReferenceID(externalReferenceId)
+                .build();
+
+        List<BrApiMethod> searchResult = getMethods(methodsRequest);
+
+        if (searchResult.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(searchResult.get(0));
+    }
 }

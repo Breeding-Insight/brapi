@@ -9,11 +9,15 @@ public class BrAPIPhenotypeEndpoints_V2 extends BrAPIEndpoints_V2 {
     }
 
     public static String getTraitsByIdPath(String traitId) {
-        return String.format(getRootPath() + "/traits/%s", traitId);
+        return getTraitsPath() + "/" + traitId;
     }
 
     public static String getMethodsPath() {
         return getRootPath() + "/methods";
+    }
+
+    public static String getMethodsByIdPath(String methodId) {
+        return getMethodsPath() + "/" + methodId;
     }
 
 }
