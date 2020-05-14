@@ -38,6 +38,13 @@ public class MethodsAPITests extends BrAPIClientTest {
     }
 
     @Test
+    public void createMethodNull() {
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiMethod> method = methodsAPI.createMethod(null);
+        });
+    }
+
+    @Test
     public void createMethodMultipleIdPresent() {
         BrApiMethod brApiMethod = BrApiMethod.builder()
                 .methodDbId("test")
@@ -49,6 +56,24 @@ public class MethodsAPITests extends BrAPIClientTest {
 
         APIException exception = assertThrows(APIException.class, () -> {
             List<BrApiMethod> methods = methodsAPI.createMethods(brApiMethods);
+        });
+    }
+
+    @Test
+    public void createMethodMultipleEmptyList() {
+
+        List<BrApiMethod> brApiMethods = new ArrayList<>();
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            List<BrApiMethod> methods = methodsAPI.createMethods(brApiMethods);
+        });
+    }
+
+    @Test
+    public void createMethodMultipleNull() {
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            List<BrApiMethod> methods = methodsAPI.createMethods(null);
         });
     }
 
