@@ -24,6 +24,14 @@ public class MethodsAPI extends BrAPIEndpoint {
 
     public List<BrApiMethod> createMethods(List<BrApiMethod> brApiMethods) throws HttpException, APIException {
 
+        if (brApiMethods == null) {
+            throw new APIException("BrAPI methods cannot be null");
+        }
+
+        if (brApiMethods.isEmpty()) {
+            throw new APIException("BrAPI methods cannot be empty");
+        }
+
         if (brApiMethods.stream().anyMatch(method -> method.getMethodDbId() != null)) {
             throw new APIException("BrAPI method must not have an existing methodDbId.");
         }
@@ -47,6 +55,11 @@ public class MethodsAPI extends BrAPIEndpoint {
     }
 
     public Optional<BrApiMethod> createMethod(BrApiMethod brApiMethod) throws HttpException, APIException {
+
+        if (brApiMethod == null) {
+            throw new APIException("BrAPI method cannot be null");
+        }
+
         List<BrApiMethod> brApiMethods = new ArrayList<>();
         brApiMethods.add(brApiMethod);
         List<BrApiMethod> createdMethods = createMethods(brApiMethods);
