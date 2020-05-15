@@ -132,6 +132,7 @@ public class MethodsAPITests extends BrAPIClientTest {
     }
 
     @Test
+    @Order(1)
     @SneakyThrows
     public void createMethodsMultipleSuccess() {
         BrApiMethod brApiMethod = BrApiMethod.builder()
@@ -156,6 +157,7 @@ public class MethodsAPITests extends BrAPIClientTest {
 
     @Test
     @SneakyThrows
+    @Order(2)
     void getMethodsSuccess() {
         List<BrApiMethod> methods = methodsAPI.getMethods();
 
@@ -164,6 +166,7 @@ public class MethodsAPITests extends BrAPIClientTest {
 
     @Test
     @SneakyThrows
+    @Order(2)
     void getMethodsPageFilter() {
         MethodsRequest baseRequest = MethodsRequest.builder()
                 .page(0)
