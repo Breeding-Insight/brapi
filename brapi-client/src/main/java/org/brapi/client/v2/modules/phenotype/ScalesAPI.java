@@ -1,6 +1,7 @@
 package org.brapi.client.v2.modules.phenotype;
 
 import com.google.gson.reflect.TypeToken;
+import lombok.NonNull;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.BrAPIEndpoint;
 import org.brapi.client.v2.model.BrAPIRequest;
@@ -22,11 +23,7 @@ public class ScalesAPI extends BrAPIEndpoint {
         super(brAPIClient);
     }
 
-    public List<BrApiScale> createScales(List<BrApiScale> brApiScales) throws HttpException, APIException {
-
-        if (brApiScales == null) {
-            throw new APIException("BrAPI scales cannot be null");
-        }
+    public List<BrApiScale> createScales(@NonNull List<BrApiScale> brApiScales) throws HttpException, APIException {
 
         if (brApiScales.isEmpty()) {
             throw new APIException("BrAPI scales cannot be empty");
@@ -54,11 +51,7 @@ public class ScalesAPI extends BrAPIEndpoint {
         return createdScale;
     }
 
-    public Optional<BrApiScale> createScale(BrApiScale brApiScale) throws HttpException, APIException {
-
-        if (brApiScale == null) {
-            throw new APIException("BrAPI scale cannot be null");
-        }
+    public Optional<BrApiScale> createScale(@NonNull BrApiScale brApiScale) throws HttpException, APIException {
 
         List<BrApiScale> brApiScales = new ArrayList<>();
         brApiScales.add(brApiScale);
@@ -72,11 +65,7 @@ public class ScalesAPI extends BrAPIEndpoint {
         }
     }
 
-    public Optional<BrApiScale> updateScale(BrApiScale brApiScale) throws HttpException, APIException {
-
-        if (brApiScale == null) {
-            throw new APIException("BrAPI scale cannot be null");
-        }
+    public Optional<BrApiScale> updateScale(@NonNull BrApiScale brApiScale) throws HttpException, APIException {
 
         if (brApiScale.getScaleDbId() == null){
             throw new APIException("BrAPI scale must have an existing scaleDbId.");
@@ -99,11 +88,7 @@ public class ScalesAPI extends BrAPIEndpoint {
         return updateScale;
     }
 
-    public List<BrApiScale> getScales(ScalesRequest scalesRequest) throws HttpException, APIException {
-
-        if (scalesRequest == null) {
-            throw new IllegalArgumentException("Scales request cannot be null");
-        }
+    public List<BrApiScale> getScales(@NonNull ScalesRequest scalesRequest) throws HttpException, APIException {
 
         // Build our request
         String endpoint = BrAPIPhenotypeEndpoints_V2.getScalesPath();
@@ -128,11 +113,7 @@ public class ScalesAPI extends BrAPIEndpoint {
         return getScales(new ScalesRequest());
     }
 
-    public Optional<BrApiScale> getScaleById(String scaleId) throws HttpException, APIException {
-
-        if (scaleId == null) {
-            throw new APIException("Must specify scaleId for the getScaleById endpoint.");
-        }
+    public Optional<BrApiScale> getScaleById(@NonNull String scaleId) throws HttpException, APIException {
 
         // Build our request
         String endpoint = BrAPIPhenotypeEndpoints_V2.getScalesByIdPath(scaleId);

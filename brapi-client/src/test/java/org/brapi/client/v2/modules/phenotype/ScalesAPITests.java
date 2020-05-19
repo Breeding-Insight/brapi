@@ -40,7 +40,7 @@ public class ScalesAPITests extends BrAPIClientTest {
 
     @Test
     public void createScaleNull() {
-        APIException exception = assertThrows(APIException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             Optional<BrApiScale> scale = scalesAPI.createScale(null);
         });
     }
@@ -73,7 +73,7 @@ public class ScalesAPITests extends BrAPIClientTest {
     @Test
     public void createScaleMultipleNull() {
 
-        APIException exception = assertThrows(APIException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             List<BrApiScale> scales = scalesAPI.createScales(null);
         });
     }
@@ -224,7 +224,7 @@ public class ScalesAPITests extends BrAPIClientTest {
 
     @Test
     public void getScaleByIdMissingId() {
-        APIException exception = assertThrows(APIException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             Optional<BrApiScale> scale = scalesAPI.getScaleById(null);
         });
     }
@@ -279,7 +279,7 @@ public class ScalesAPITests extends BrAPIClientTest {
 
     @Test
     public void updateScaleNull() {
-        APIException exception = assertThrows(APIException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             Optional<BrApiScale> scale = this.scalesAPI.updateScale(null);
         });
     }
