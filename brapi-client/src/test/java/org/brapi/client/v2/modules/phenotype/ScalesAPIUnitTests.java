@@ -43,6 +43,21 @@ public class ScalesAPIUnitTests {
 
     @Test
     @SneakyThrows
+    void updateScalesEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+
+        BrApiScale scale = BrApiScale.builder()
+                .scaleDbId("test")
+                .build();
+
+        Optional<BrApiScale> brApiScale = scalesAPI.updateScale(scale);
+
+        assertEquals(false, brApiScale.isPresent(), "Empty optional was not returned.");
+    }
+
+    @Test
+    @SneakyThrows
     void getScalesEmptyBody() {
         when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
                 .thenReturn(Optional.empty());

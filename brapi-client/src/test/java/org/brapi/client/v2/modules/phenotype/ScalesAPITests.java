@@ -249,4 +249,39 @@ public class ScalesAPITests extends BrAPIClientTest {
         });
     }
 
+    @Test
+    @SneakyThrows
+    @Order(2)
+    public void updateScaleSuccess() {
+        BrApiScale scale = this.createdScale;
+        scale.setScaleName("updated_name");
+
+        // Check that it is a success and all data matches
+        Optional<BrApiScale> updatedScaleResult = this.scalesAPI.updateScale(scale);
+
+        assertEquals(true, updatedScaleResult.isPresent(), "Scale was not returned");
+        BrApiScale updatedScale = updatedScaleResult.get();
+        scaleAssertEquals(scale, updatedScale);
+    }
+
+    @Test
+    @SneakyThrows
+    public void updateScaleMissingId() {
+        // Check that it throws an APIException
+        BrApiScale brApiScale = BrApiScale.builder()
+                .scaleName("new test scale")
+                .build();
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiScale> updatedScaleResult = this.scalesAPI.updateScale(brApiScale);
+        });
+    }
+
+    @Test
+    public void updateScaleNull() {
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiScale> scale = this.scalesAPI.updateScale(null);
+        });
+    }
+
 }

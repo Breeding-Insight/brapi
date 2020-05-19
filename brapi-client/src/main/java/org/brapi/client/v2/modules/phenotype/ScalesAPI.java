@@ -72,6 +72,33 @@ public class ScalesAPI extends BrAPIEndpoint {
         }
     }
 
+    public Optional<BrApiScale> updateScale(BrApiScale brApiScale) throws HttpException, APIException {
+
+        if (brApiScale == null) {
+            throw new APIException("BrAPI scale cannot be null");
+        }
+
+        if (brApiScale.getScaleDbId() == null){
+            throw new APIException("BrAPI scale must have an existing scaleDbId.");
+        }
+
+        // Build our request
+        String endpoint = BrAPIPhenotypeEndpoints_V2.getScalesByIdPath(brApiScale.getScaleDbId());
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .data(brApiScale)
+                .method(HttpMethod.PUT)
+                .build();
+
+        Optional<BrApiScale> updateScale = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiScale resultResponse = gson.fromJson(resultJson, BrApiScale.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return updateScale;
+    }
+
     public List<BrApiScale> getScales(ScalesRequest scalesRequest) throws HttpException, APIException {
 
         if (scalesRequest == null) {
