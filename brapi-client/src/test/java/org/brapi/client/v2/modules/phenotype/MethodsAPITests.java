@@ -156,6 +156,13 @@ public class MethodsAPITests extends BrAPIClientTest {
     }
 
     @Test
+    public void getMethodsNull() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            List<BrApiMethod> methods = this.methodsAPI.getMethods(null);
+        });
+    }
+
+    @Test
     @SneakyThrows
     @Order(2)
     void getMethodsSuccess() {
@@ -205,16 +212,20 @@ public class MethodsAPITests extends BrAPIClientTest {
     }
 
     @Test
-    public void getMethodByIdMissingId() {
-        APIException exception = assertThrows(APIException.class, () -> {
-            Optional<BrApiMethod> method = methodsAPI.getMethodById(null);
-        });
+    @SneakyThrows
+    void getMethodByExternalReferenceIdInvalid() {
+        MethodsRequest methodsRequest = MethodsRequest.builder()
+                .externalReferenceSource("badExternalReferenceId")
+                .build();
+
+        List<BrApiMethod> methods = methodsAPI.getMethods(methodsRequest);
+        assertEquals(true, methods.isEmpty(), "A method was found that shouldn't have been");
     }
 
     @Test
-    public void getMethodByExternalReferenceIdMissingId() {
+    public void getMethodByIdMissingId() {
         APIException exception = assertThrows(APIException.class, () -> {
-            Optional<BrApiMethod> method = methodsAPI.getMethodByExternalReferenceId(null);
+            Optional<BrApiMethod> method = methodsAPI.getMethodById(null);
         });
     }
 
@@ -236,26 +247,6 @@ public class MethodsAPITests extends BrAPIClientTest {
         HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
             Optional<BrApiMethod> method = methodsAPI.getMethodById("badMethodId");
         });
-    }
-
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getMethodByExternalReferenceIdSuccess() {
-
-        Optional<BrApiMethod> optionalBrApiMethod = methodsAPI.getMethodByExternalReferenceId(externalReferenceID);
-
-        assertEquals(true, optionalBrApiMethod.isPresent(), "An empty optional was returned");
-        BrApiMethod method = optionalBrApiMethod.get();
-        assertEquals(true, method.getMethodDbId() != null, "MethodDbId was not parsed properly.");
-        methodAssertEquals(createdMethod, method);
-    }
-
-    @Test
-    @SneakyThrows
-    void getMethodByExternalReferenceIdInvalid() {
-        Optional<BrApiMethod> optionalBrApiMethod = methodsAPI.getMethodByExternalReferenceId("badExternalReferenceId");
-        assertEquals(false, optionalBrApiMethod.isPresent(), "A present optional was returned");
     }
 
     @Test
