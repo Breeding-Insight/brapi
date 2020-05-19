@@ -51,5 +51,15 @@ public class ScalesAPIUnitTests {
         assertEquals(0, brApiScales.size(), "List size is greater than 0");
     }
 
+    @Test
+    @SneakyThrows
+    void getScalesByIdEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+        Optional<BrApiScale> brApiScale = scalesAPI.getScaleById("test");
+
+        assertEquals(false, brApiScale.isPresent(), "Empty optional was not returned.");
+    }
+
 
 }

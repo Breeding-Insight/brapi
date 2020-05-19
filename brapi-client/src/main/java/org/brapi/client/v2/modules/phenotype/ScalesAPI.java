@@ -101,4 +101,26 @@ public class ScalesAPI extends BrAPIEndpoint {
         return getScales(new ScalesRequest());
     }
 
+    public Optional<BrApiScale> getScaleById(String scaleId) throws HttpException, APIException {
+
+        if (scaleId == null) {
+            throw new APIException("Must specify scaleId for the getScaleById endpoint.");
+        }
+
+        // Build our request
+        String endpoint = BrAPIPhenotypeEndpoints_V2.getScalesByIdPath(scaleId);
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .method(HttpMethod.GET)
+                .build();
+
+        Optional<BrApiScale> searchResult = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiScale resultResponse = gson.fromJson(resultJson, BrApiScale.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return searchResult;
+    }
+
 }

@@ -3,6 +3,7 @@ package org.brapi.client.v2.modules.phenotype;
 import lombok.SneakyThrows;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
+import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiOntologyReference;
 import org.brapi.v2.phenotyping.model.*;
@@ -193,6 +194,59 @@ public class ScalesAPITests extends BrAPIClientTest {
         List<BrApiScale> scales = scalesAPI.getScales(baseRequest);
 
         assertEquals(true, scales.size() == 1, "More than one scale was returned");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getScalesByExternalReferenceIdSuccess() {
+        ScalesRequest scalesRequest = ScalesRequest.builder()
+                .externalReferenceID(externalReferenceID)
+                .build();
+
+        List<BrApiScale> scales = scalesAPI.getScales(scalesRequest);
+
+        assertEquals(true, scales.size() > 0, "List of scales was empty");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getScalesByExternalReferenceSourceSuccess() {
+        ScalesRequest scalesRequest = ScalesRequest.builder()
+                .externalReferenceSource(externalReferenceSource)
+                .build();
+
+        List<BrApiScale> scales = scalesAPI.getScales(scalesRequest);
+
+        assertEquals(true, scales.size() > 0, "List of scales was empty");
+    }
+
+    @Test
+    public void getScaleByIdMissingId() {
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiScale> scale = scalesAPI.getScaleById(null);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getScaleByIdSuccess() {
+        Optional<BrApiScale> optionalBrApiScale = scalesAPI.getScaleById(createdScale.getScaleDbId());
+
+        assertEquals(true, optionalBrApiScale.isPresent(), "An empty optional was returned");
+        BrApiScale scale = optionalBrApiScale.get();
+        assertEquals(true, scale.getScaleDbId() != null, "ScaleDbId was not parsed properly.");
+        scaleAssertEquals(createdScale, scale);
+    }
+
+    @Test
+    @SneakyThrows
+    void getScaleByIdInvalid() {
+        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+            Optional<BrApiScale> scale = scalesAPI.getScaleById("badScaleId");
+        });
     }
 
 }
