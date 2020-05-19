@@ -9,6 +9,7 @@ import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpException;
 import org.brapi.v2.core.model.response.DataResponse;
 import org.brapi.v2.phenotyping.model.BrApiScale;
+import org.brapi.v2.phenotyping.model.request.ScalesRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -69,6 +70,35 @@ public class ScalesAPI extends BrAPIEndpoint {
         else {
             return Optional.empty();
         }
+    }
+
+    public List<BrApiScale> getScales(ScalesRequest scalesRequest) throws HttpException, APIException {
+
+        if (scalesRequest == null) {
+            throw new IllegalArgumentException("Scales request cannot be null");
+        }
+
+        // Build our request
+        String endpoint = BrAPIPhenotypeEndpoints_V2.getScalesPath();
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .parameters(scalesRequest.constructParameters())
+                .method(HttpMethod.GET)
+                .build();
+
+        List<BrApiScale> searchResult = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            Type resultGsonType = new TypeToken<DataResponse<BrApiScale>>() {
+            }.getType();
+            DataResponse<BrApiScale> dataResponse = gson.fromJson(resultJson, resultGsonType);
+            return dataResponse.data();
+        }).orElse(new ArrayList<>());
+
+        return searchResult;
+    }
+
+    public List<BrApiScale> getScales() throws HttpException, APIException {
+        return getScales(new ScalesRequest());
     }
 
 }

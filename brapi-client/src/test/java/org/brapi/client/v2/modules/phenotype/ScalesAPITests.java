@@ -6,6 +6,7 @@ import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiOntologyReference;
 import org.brapi.v2.phenotyping.model.*;
+import org.brapi.v2.phenotyping.model.request.ScalesRequest;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
@@ -170,4 +171,28 @@ public class ScalesAPITests extends BrAPIClientTest {
         assertEquals(brApiScale.getScaleName(), createdScales.get(0).getScaleName(), "Scale name mismatch");
         assertEquals(brApiScale2.getScaleName(), createdScales.get(1).getScaleName(), "Scale name mismatch");
     }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getScalesSuccess() {
+        List<BrApiScale> scales = scalesAPI.getScales();
+
+        assertEquals(true, !scales.isEmpty(), "List of scales was empty");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getScalesPageFilter() {
+        ScalesRequest baseRequest = ScalesRequest.builder()
+                .page(0)
+                .pageSize(1)
+                .build();
+
+        List<BrApiScale> scales = scalesAPI.getScales(baseRequest);
+
+        assertEquals(true, scales.size() == 1, "More than one scale was returned");
+    }
+
 }

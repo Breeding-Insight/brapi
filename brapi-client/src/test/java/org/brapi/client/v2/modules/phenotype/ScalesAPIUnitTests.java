@@ -11,6 +11,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,6 +41,15 @@ public class ScalesAPIUnitTests {
         assertEquals(false, brApiScale.isPresent(), "Empty optional was not returned.");
     }
 
+    @Test
+    @SneakyThrows
+    void getScalesEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+        List<BrApiScale> brApiScales = scalesAPI.getScales();
+
+        assertEquals(0, brApiScales.size(), "List size is greater than 0");
+    }
 
 
 }
