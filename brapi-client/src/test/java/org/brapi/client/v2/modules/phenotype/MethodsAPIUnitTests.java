@@ -76,16 +76,4 @@ public class MethodsAPIUnitTests {
         assertEquals(false, brApiMethod.isPresent(), "Empty optional was not returned.");
     }
 
-    @Test
-    @SneakyThrows
-    void getMethodsByExternalReferenceIdEmptyBody() {
-        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
-                .thenReturn(Optional.empty());
-        Optional<BrApiMethod> brApiMethod = methodsAPI.getMethodByExternalReferenceId("test");
-
-        assertEquals(false, brApiMethod.isPresent(), "Empty optional was not returned.");
-    }
-
-
-
 }

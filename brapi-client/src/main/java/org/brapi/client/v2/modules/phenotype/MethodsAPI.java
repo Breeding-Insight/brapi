@@ -150,25 +150,4 @@ public class MethodsAPI extends BrAPIEndpoint {
         return searchResult;
     }
 
-    // returns first result if there are multiple matches
-    public Optional<BrApiMethod> getMethodByExternalReferenceId(String externalReferenceId) throws HttpException, APIException {
-
-        if (externalReferenceId == null) {
-            throw new APIException("Must specify externalReferenceId for the getMethodByExternalReferenceId endpoint.");
-        }
-
-        MethodsRequest methodsRequest = MethodsRequest.builder()
-                .externalReferenceID(externalReferenceId)
-                .build();
-
-        List<BrApiMethod> searchResult = getMethods(methodsRequest);
-
-        if (searchResult.isEmpty()) {
-            return Optional.empty();
-        }
-
-        return Optional.of(searchResult.get(0));
-    }
-
-
 }
