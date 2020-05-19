@@ -1,6 +1,7 @@
 package org.brapi.client.v2.modules.phenotype;
 
 import com.google.gson.reflect.TypeToken;
+import lombok.NonNull;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.BrAPIEndpoint;
 import org.brapi.client.v2.model.BrAPIRequest;
@@ -22,11 +23,7 @@ public class MethodsAPI extends BrAPIEndpoint {
         super(brAPIClient);
     }
 
-    public List<BrApiMethod> createMethods(List<BrApiMethod> brApiMethods) throws HttpException, APIException {
-
-        if (brApiMethods == null) {
-            throw new APIException("BrAPI methods cannot be null");
-        }
+    public List<BrApiMethod> createMethods(@NonNull List<BrApiMethod> brApiMethods) throws HttpException, APIException {
 
         if (brApiMethods.isEmpty()) {
             throw new APIException("BrAPI methods cannot be empty");
@@ -54,11 +51,7 @@ public class MethodsAPI extends BrAPIEndpoint {
         return createdMethod;
     }
 
-    public Optional<BrApiMethod> createMethod(BrApiMethod brApiMethod) throws HttpException, APIException {
-
-        if (brApiMethod == null) {
-            throw new APIException("BrAPI method cannot be null");
-        }
+    public Optional<BrApiMethod> createMethod(@NonNull BrApiMethod brApiMethod) throws HttpException, APIException {
 
         List<BrApiMethod> brApiMethods = new ArrayList<>();
         brApiMethods.add(brApiMethod);
@@ -72,11 +65,7 @@ public class MethodsAPI extends BrAPIEndpoint {
         }
     }
 
-    public Optional<BrApiMethod> updateMethod(BrApiMethod brApiMethod) throws HttpException, APIException {
-
-        if (brApiMethod == null) {
-            throw new APIException("BrAPI method cannot be null");
-        }
+    public Optional<BrApiMethod> updateMethod(@NonNull BrApiMethod brApiMethod) throws HttpException, APIException {
 
         if (brApiMethod.getMethodDbId() == null){
             throw new APIException("BrAPI method must have an existing methodDbId.");
@@ -99,11 +88,7 @@ public class MethodsAPI extends BrAPIEndpoint {
         return updateMethod;
     }
 
-    public List<BrApiMethod> getMethods(MethodsRequest methodsRequest) throws HttpException, APIException {
-
-        if (methodsRequest == null) {
-            throw new IllegalArgumentException("Methods request cannot be null");
-        }
+    public List<BrApiMethod> getMethods(@NonNull MethodsRequest methodsRequest) throws HttpException, APIException {
 
         // Build our request
         String endpoint = BrAPIPhenotypeEndpoints_V2.getMethodsPath();
@@ -128,11 +113,7 @@ public class MethodsAPI extends BrAPIEndpoint {
         return getMethods(new MethodsRequest());
     }
 
-    public Optional<BrApiMethod> getMethodById(String methodId) throws HttpException, APIException {
-
-        if (methodId == null) {
-            throw new APIException("Must specify methodId for the getMethodById endpoint.");
-        }
+    public Optional<BrApiMethod> getMethodById(@NonNull String methodId) throws HttpException, APIException {
 
         // Build our request
         String endpoint = BrAPIPhenotypeEndpoints_V2.getMethodsByIdPath(methodId);
@@ -149,26 +130,5 @@ public class MethodsAPI extends BrAPIEndpoint {
 
         return searchResult;
     }
-
-    // returns first result if there are multiple matches
-    public Optional<BrApiMethod> getMethodByExternalReferenceId(String externalReferenceId) throws HttpException, APIException {
-
-        if (externalReferenceId == null) {
-            throw new APIException("Must specify externalReferenceId for the getMethodByExternalReferenceId endpoint.");
-        }
-
-        MethodsRequest methodsRequest = MethodsRequest.builder()
-                .externalReferenceID(externalReferenceId)
-                .build();
-
-        List<BrApiMethod> searchResult = getMethods(methodsRequest);
-
-        if (searchResult.isEmpty()) {
-            return Optional.empty();
-        }
-
-        return Optional.of(searchResult.get(0));
-    }
-
 
 }
