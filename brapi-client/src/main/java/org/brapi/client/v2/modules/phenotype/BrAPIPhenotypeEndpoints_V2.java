@@ -20,4 +20,8 @@ public class BrAPIPhenotypeEndpoints_V2 extends BrAPIEndpoints_V2 {
         return getMethodsPath() + "/" + methodId;
     }
 
+    public static String getScalesPath() {
+        return getRootPath() + "/scales";
+    }
+
 }
