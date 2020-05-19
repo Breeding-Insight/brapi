@@ -39,7 +39,7 @@ public class MethodsAPITests extends BrAPIClientTest {
 
     @Test
     public void createMethodNull() {
-        APIException exception = assertThrows(APIException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             Optional<BrApiMethod> method = methodsAPI.createMethod(null);
         });
     }
@@ -72,7 +72,7 @@ public class MethodsAPITests extends BrAPIClientTest {
     @Test
     public void createMethodMultipleNull() {
 
-        APIException exception = assertThrows(APIException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             List<BrApiMethod> methods = methodsAPI.createMethods(null);
         });
     }
@@ -224,7 +224,7 @@ public class MethodsAPITests extends BrAPIClientTest {
 
     @Test
     public void getMethodByIdMissingId() {
-        APIException exception = assertThrows(APIException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             Optional<BrApiMethod> method = methodsAPI.getMethodById(null);
         });
     }
@@ -280,7 +280,7 @@ public class MethodsAPITests extends BrAPIClientTest {
 
     @Test
     public void updateMethodNull() {
-        APIException exception = assertThrows(APIException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             Optional<BrApiMethod> method = this.methodsAPI.updateMethod(null);
         });
     }
