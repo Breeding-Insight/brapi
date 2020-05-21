@@ -1,6 +1,7 @@
 package org.brapi.v2.phenotyping.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -19,58 +20,58 @@ import java.util.Map;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiVariable {
-  @JsonProperty("additionalInfo")
+  @SerializedName("additionalInfo")
   @Valid
   private Map<String, String> additionalInfo;
 
-  @JsonProperty("commonCropName")
+  @SerializedName("commonCropName")
   private String commonCropName;
 
-  @JsonProperty("contextOfUse")
+  @SerializedName("contextOfUse")
   @Valid
   private List<String> contextOfUse;
 
-  @JsonProperty("defaultValue")
+  @SerializedName("defaultValue")
   private String defaultValue;
 
-  @JsonProperty("documentationURL")
+  @SerializedName("documentationURL")
   private String documentationURL;
 
-  @JsonProperty("externalReferences")
+  @SerializedName("externalReferences")
   private List<BrApiExternalReference> externalReferences;
 
-  @JsonProperty("growthStage")
+  @SerializedName("growthStage")
   private String growthStage;
 
-  @JsonProperty("institution")
+  @SerializedName("institution")
   private String institution;
 
-  @JsonProperty("language")
+  @SerializedName("language")
   private String language;
 
-  @JsonProperty("method")
+  @SerializedName("method")
   private BrApiMethod method;
 
-  @JsonProperty("ontologyReference")
+  @SerializedName("ontologyReference")
   private BrApiOntologyReference ontologyReference;
 
-  @JsonProperty("scale")
+  @SerializedName("scale")
   private BrApiScale scale;
 
-  @JsonProperty("scientist")
+  @SerializedName("scientist")
   private String scientist;
 
-  @JsonProperty("status")
+  @SerializedName("status")
   private String status;
 
-  @JsonProperty("submissionTimestamp")
+  @SerializedName("submissionTimestamp")
   private OffsetDateTime submissionTimestamp;
 
-  @JsonProperty("synonyms")
+  @SerializedName("synonyms")
   @Valid
   private List<String> synonyms;
 
-  @JsonProperty("trait")
+  @SerializedName("trait")
   private BrApiTrait trait;
 
 }
