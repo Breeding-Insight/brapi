@@ -28,4 +28,6 @@ public class BrAPIPhenotypeEndpoints_V2 extends BrAPIEndpoints_V2 {
         return getScalesPath() + "/" + scaleId;
     }
 
+    public static String getVariablesPath() { return getRootPath() + "/variables"; }
+
 }

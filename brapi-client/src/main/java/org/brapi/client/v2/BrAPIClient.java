@@ -1,8 +1,6 @@
 package org.brapi.client.v2;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 import okhttp3.*;
@@ -13,6 +11,9 @@ import org.brapi.v2.core.model.response.Metadata;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -26,7 +27,19 @@ public class BrAPIClient {
 
     public BrAPIClient(String brapiURI) {
         this.brapiURI = brapiURI;
-        this.gson = new Gson();
+        this.gson = new GsonBuilder().registerTypeAdapter(OffsetDateTime.class, new JsonDeserializer<OffsetDateTime>() {
+            @Override
+            public OffsetDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                    throws JsonParseException {
+                return OffsetDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+            }
+        }).registerTypeAdapter(OffsetDateTime.class, new JsonSerializer<OffsetDateTime>() {
+            @Override
+            public JsonElement serialize(OffsetDateTime offsetDateTime, Type typeOfT, JsonSerializationContext context)
+                    throws JsonParseException {
+                return new JsonPrimitive(DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(offsetDateTime));
+            }
+        }).create();
     }
 
     /**
