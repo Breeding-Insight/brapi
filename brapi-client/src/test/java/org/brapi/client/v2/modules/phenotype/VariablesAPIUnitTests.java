@@ -31,6 +31,17 @@ public class VariablesAPIUnitTests {
         variablesAPI = new VariablesAPI(brAPIClient);
     }
 
+
+    @Test
+    @SneakyThrows
+    void createVariablesEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+        Optional<BrApiVariable> brApiVariable = variablesAPI.createVariable(new BrApiVariable());
+
+        assertEquals(false, brApiVariable.isPresent(), "Empty optional was not returned.");
+    }
+
     @Test
     @SneakyThrows
     void getVariablesEmptyBody() {
