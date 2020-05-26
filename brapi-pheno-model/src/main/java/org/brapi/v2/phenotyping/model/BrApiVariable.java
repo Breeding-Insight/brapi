@@ -20,58 +20,45 @@ import java.util.Map;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiVariable {
-  @SerializedName("additionalInfo")
+  private String observationVariableDbId;
+
   @Valid
   private Map<String, String> additionalInfo;
 
-  @SerializedName("commonCropName")
   private String commonCropName;
 
-  @SerializedName("contextOfUse")
   @Valid
   private List<String> contextOfUse;
 
-  @SerializedName("defaultValue")
   private String defaultValue;
 
-  @SerializedName("documentationURL")
   private String documentationURL;
 
-  @SerializedName("externalReferences")
   private List<BrApiExternalReference> externalReferences;
 
-  @SerializedName("growthStage")
   private String growthStage;
 
-  @SerializedName("institution")
   private String institution;
 
-  @SerializedName("language")
   private String language;
 
-  @SerializedName("method")
   private BrApiMethod method;
 
-  @SerializedName("ontologyReference")
   private BrApiOntologyReference ontologyReference;
 
-  @SerializedName("scale")
   private BrApiScale scale;
 
-  @SerializedName("scientist")
   private String scientist;
 
-  @SerializedName("status")
   private String status;
 
-  @SerializedName("submissionTimestamp")
   private OffsetDateTime submissionTimestamp;
 
-  @SerializedName("synonyms")
   @Valid
   private List<String> synonyms;
 
-  @SerializedName("trait")
   private BrApiTrait trait;
+
+  private String observationVariableName;
 
 }
