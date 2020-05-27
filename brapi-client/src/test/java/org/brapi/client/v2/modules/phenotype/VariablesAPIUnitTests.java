@@ -44,6 +44,21 @@ public class VariablesAPIUnitTests {
 
     @Test
     @SneakyThrows
+    void updateVariablesEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+
+        BrApiVariable variable = BrApiVariable.builder()
+                .observationVariableDbId("test")
+                .build();
+
+        Optional<BrApiVariable> brApiVariable = variablesAPI.updateVariable(variable);
+
+        assertEquals(false, brApiVariable.isPresent(), "Empty optional was not returned.");
+    }
+
+    @Test
+    @SneakyThrows
     void getVariablesEmptyBody() {
         when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
                 .thenReturn(Optional.empty());
@@ -54,7 +69,7 @@ public class VariablesAPIUnitTests {
 
     @Test
     @SneakyThrows
-    void getScalesByIdEmptyBody() {
+    void getVariablesByIdEmptyBody() {
         when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
                 .thenReturn(Optional.empty());
         Optional<BrApiVariable> brApiVariable = variablesAPI.getVariableById("test");

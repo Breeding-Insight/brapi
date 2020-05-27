@@ -65,6 +65,29 @@ public class VariablesAPI extends BrAPIEndpoint {
         }
     }
 
+    public Optional<BrApiVariable> updateVariable(@NonNull BrApiVariable brApiVariable) throws HttpException, APIException {
+
+        if (brApiVariable.getObservationVariableDbId() == null){
+            throw new APIException("BrAPI variable must have an existing variableDbId.");
+        }
+
+        // Build our request
+        String endpoint = BrAPIPhenotypeEndpoints_V2.getVariablesByIdPath(brApiVariable.getObservationVariableDbId());
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .data(brApiVariable)
+                .method(HttpMethod.PUT)
+                .build();
+
+        Optional<BrApiVariable> updateVariable = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiVariable resultResponse = gson.fromJson(resultJson, BrApiVariable.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return updateVariable;
+    }
+
     public List<BrApiVariable> getVariables(@NonNull VariablesRequest variablesRequest) throws HttpException, APIException {
 
         // Build our request
