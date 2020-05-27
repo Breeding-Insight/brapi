@@ -7,7 +7,9 @@ import lombok.experimental.SuperBuilder;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiOntologyReference;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Scale
@@ -18,6 +20,10 @@ import java.util.List;
 public class BrApiScale {
   @JsonProperty("scaleDbId")
   private String scaleDbId;
+
+  @JsonProperty("additionalInfo")
+  @Valid
+  private Map<String, String> additionalInfo;
 
   @JsonProperty("dataType")
   private BrApiTraitDataType dataType;
