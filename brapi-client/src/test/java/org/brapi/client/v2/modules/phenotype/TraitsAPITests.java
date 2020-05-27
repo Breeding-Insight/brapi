@@ -195,14 +195,14 @@ public class TraitsAPITests extends BrAPIClientTest {
 
     @Test
     @SneakyThrows
-    public void updateProgramMissingId() {
+    public void updateTraitMissingId() {
         // Check that it throws an APIException
         BrApiTrait brApiTrait = BrApiTrait.builder()
                 .traitName("new test trait")
                 .build();
 
         APIException exception = assertThrows(APIException.class, () -> {
-            Optional<BrApiTrait> updatedProgramResult = this.traitsAPI.updateTrait(brApiTrait);
+            Optional<BrApiTrait> updatedTraitResult = this.traitsAPI.updateTrait(brApiTrait);
         });
     }
 }

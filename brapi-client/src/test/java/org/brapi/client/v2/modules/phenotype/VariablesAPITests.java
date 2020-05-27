@@ -3,6 +3,7 @@ package org.brapi.client.v2.modules.phenotype;
 import lombok.SneakyThrows;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
+import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiOntologyReference;
 import org.brapi.v2.phenotyping.model.BrApiMethod;
@@ -10,8 +11,7 @@ import org.brapi.v2.phenotyping.model.BrApiScale;
 import org.brapi.v2.phenotyping.model.BrApiTrait;
 import org.brapi.v2.phenotyping.model.BrApiVariable;
 import org.brapi.v2.phenotyping.model.request.VariablesRequest;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +19,8 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class VariablesAPITests extends BrAPIClientTest {
 
     private VariablesAPI variablesAPI = new VariablesAPI(this.client);
@@ -161,10 +163,10 @@ public class VariablesAPITests extends BrAPIClientTest {
         assertEquals(expected.getContextOfUse(), actual.getContextOfUse(), "Variable contextOfUse mismatch");
         assertEquals(expected.getDefaultValue(), actual.getDefaultValue(), "Variable defaultValue mismatch");
         assertEquals(expected.getDocumentationURL(), actual.getDocumentationURL(), "Variable documentationUrl mismatch");
-        assertEquals(expected.getOntologyReference().getOntologyDbId(), actual.getOntologyReference().getOntologyDbId(), "Scale ontology dbId mismatch");
-        assertEquals(expected.getOntologyReference().getOntologyName(), actual.getOntologyReference().getOntologyName(), "Scale ontology name mismatch");
-        assertEquals(expected.getOntologyReference().getVersion(), actual.getOntologyReference().getVersion(), "Scale ontology version mismatch");
-        assertEquals(expected.getExternalReferences(), actual.getExternalReferences(), "Scale external reference mismatch");
+        assertEquals(expected.getOntologyReference().getOntologyDbId(), actual.getOntologyReference().getOntologyDbId(), "Variable ontology dbId mismatch");
+        assertEquals(expected.getOntologyReference().getOntologyName(), actual.getOntologyReference().getOntologyName(), "Variable ontology name mismatch");
+        assertEquals(expected.getOntologyReference().getVersion(), actual.getOntologyReference().getVersion(), "Variable ontology version mismatch");
+        assertEquals(expected.getExternalReferences(), actual.getExternalReferences(), "Variable external reference mismatch");
         assertEquals(expected.getGrowthStage(), actual.getGrowthStage(), "Variable growthStage mismatch");
         assertEquals(expected.getInstitution(), actual.getInstitution(), "Variable institution mismatch");
         assertEquals(expected.getLanguage(), actual.getLanguage(), "Variable language mismatch");
@@ -220,22 +222,49 @@ public class VariablesAPITests extends BrAPIClientTest {
                 .pageSize(1)
                 .build();
 
-        List<BrApiVariable> scales = variablesAPI.getVariables(baseRequest);
+        List<BrApiVariable> variables = variablesAPI.getVariables(baseRequest);
 
-        assertEquals(true, scales.size() == 1, "More than one variable was returned");
+        assertEquals(true, variables.size() == 1, "More than one variable was returned");
     }
 
     @Test
     @SneakyThrows
     @Order(2)
     void getVariablesByExternalReferenceIdSuccess() {
-        VariablesRequest scalesRequest = VariablesRequest.builder()
+        VariablesRequest variablesRequest = VariablesRequest.builder()
                 .externalReferenceID(externalReferenceID)
                 .build();
 
-        List<BrApiVariable> variables = variablesAPI.getVariables(scalesRequest);
+        List<BrApiVariable> variables = variablesAPI.getVariables(variablesRequest);
 
         assertEquals(true, variables.size() > 0, "List of variables was empty");
+    }
+
+    @Test
+    public void getVariableByIdMissingId() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            Optional<BrApiVariable> variable = variablesAPI.getVariableById(null);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getVariableByIdSuccess() {
+        Optional<BrApiVariable> optionalBrApiVariable = variablesAPI.getVariableById(createdVariable.getObservationVariableDbId());
+
+        assertEquals(true, optionalBrApiVariable.isPresent(), "An empty optional was returned");
+        BrApiVariable variable = optionalBrApiVariable.get();
+        assertEquals(true, variable.getObservationVariableDbId() != null, "VariableDbId was not parsed properly.");
+        variableAssertEquals(createdVariable, variable);
+    }
+
+    @Test
+    @SneakyThrows
+    void getVariableByIdInvalid() {
+        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+            Optional<BrApiVariable> variable = variablesAPI.getVariableById("badVariableId");
+        });
     }
     
 
