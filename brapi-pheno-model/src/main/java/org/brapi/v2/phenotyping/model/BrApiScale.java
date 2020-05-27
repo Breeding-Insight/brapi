@@ -18,29 +18,21 @@ import java.util.Map;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiScale {
-  @JsonProperty("scaleDbId")
   private String scaleDbId;
 
-  @JsonProperty("additionalInfo")
   @Valid
   private Map<String, String> additionalInfo;
 
-  @JsonProperty("dataType")
   private BrApiTraitDataType dataType;
 
-  @JsonProperty("decimalPlaces")
   private Integer decimalPlaces;
 
-  @JsonProperty("externalReferences")
   private List<BrApiExternalReference> externalReferences;
 
-  @JsonProperty("ontologyReference")
   private BrApiOntologyReference ontologyReference;
 
-  @JsonProperty("scaleName")
   private String scaleName;
 
-  @JsonProperty("validValues")
   private BrApiScaleValidValues validValues;
 
 }

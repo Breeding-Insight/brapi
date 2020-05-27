@@ -12,10 +12,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiScaleCategories {
-  @JsonProperty("label")
   private String label;
 
-  @JsonProperty("value")
   private String value;
 
 }

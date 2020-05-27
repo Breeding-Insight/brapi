@@ -18,46 +18,33 @@ import java.util.Map;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiTrait {
-  @JsonProperty("traitDbId")
   private String traitDbId;
 
-  @JsonProperty("alternativeAbbreviations")
   @Valid
   private List<String> alternativeAbbreviations;
 
-  @JsonProperty("attribute")
   private String attribute;
 
-  @JsonProperty("additionalInfo")
   @Valid
   private Map<String, String> additionalInfo;
 
-  @JsonProperty("entity")
   private String entity;
 
-  @JsonProperty("externalReferences")
   private List<BrApiExternalReference> externalReferences;
 
-  @JsonProperty("mainAbbreviation")
   private String mainAbbreviation;
 
-  @JsonProperty("ontologyReference")
   private BrApiOntologyReference ontologyReference;
 
-  @JsonProperty("status")
   private String status;
 
-  @JsonProperty("synonyms")
   @Valid
   private List<String> synonyms;
 
-  @JsonProperty("traitClass")
   private String traitClass;
 
-  @JsonProperty("traitDescription")
   private String traitDescription;
 
-  @JsonProperty("traitName")
   private String traitName;
 
 }

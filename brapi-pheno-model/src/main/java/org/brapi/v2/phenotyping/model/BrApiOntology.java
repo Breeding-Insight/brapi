@@ -15,32 +15,23 @@ import java.util.Map;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiOntology {
-  @JsonProperty("additionalInfo")
   @Valid
   private Map<String, String> additionalInfo;
 
-  @JsonProperty("authors")
   private String authors;
 
-  @JsonProperty("copyright")
   private String copyright;
 
-  @JsonProperty("description")
   private String description;
 
-  @JsonProperty("documentationURL")
   private String documentationURL;
 
-  @JsonProperty("licence")
   private String licence;
 
-  @JsonProperty("ontologyDbId")
   private String ontologyDbId;
 
-  @JsonProperty("ontologyName")
   private String ontologyName;
 
-  @JsonProperty("version")
   private String version;
 
 }

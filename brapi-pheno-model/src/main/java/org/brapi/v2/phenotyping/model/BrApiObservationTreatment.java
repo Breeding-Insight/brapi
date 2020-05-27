@@ -12,10 +12,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiObservationTreatment {
-  @JsonProperty("factor")
   private String factor;
 
-  @JsonProperty("modality")
   private String modality;
 
 }

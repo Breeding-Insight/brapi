@@ -15,15 +15,13 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiObservationUnitTable {
-  @JsonProperty("data")
+
   @Valid
   private List<List<String>> data;
 
-  @JsonProperty("headerRow")
   @Valid
   private List<HeaderRowName> headerRow;
 
-  @JsonProperty("observationVariables")
   @Valid
   private List<BrApiObservationUnitTableObservationVariables> observationVariables;
 

@@ -12,13 +12,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiEventParameters {
-  @JsonProperty("key")
   private String key;
 
-  @JsonProperty("rdfValue")
   private String rdfValue;
 
-  @JsonProperty("value")
   private String value;
 
 }

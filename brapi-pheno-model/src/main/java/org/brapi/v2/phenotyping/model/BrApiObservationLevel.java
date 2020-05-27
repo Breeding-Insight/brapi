@@ -2,11 +2,12 @@ package org.brapi.v2.phenotyping.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.brapi.v2.core.model.BrApiEnum;
 
 /**
  * observation levels available in this database
  */
-public enum BrApiObservationLevel {
+public enum BrApiObservationLevel implements BrApiEnum {
   FIELD("field"),
   PLOT("plot"),
   SUBPLOT("subplot"),
@@ -20,18 +21,7 @@ public enum BrApiObservationLevel {
   }
 
   @Override
-  @JsonValue
-  public String toString() {
-    return String.valueOf(value);
-  }
-
-  @JsonCreator
-  public static BrApiObservationLevel fromValue(String text) {
-    for (BrApiObservationLevel b : BrApiObservationLevel.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
-    }
-    return null;
+  public String getBrapiValue() {
+    return value;
   }
 }

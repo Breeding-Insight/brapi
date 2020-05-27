@@ -15,14 +15,11 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiScaleValidValues {
-  @JsonProperty("categories")
   @Valid
   private List<BrApiScaleCategories> categories;
 
-  @JsonProperty("max")
   private Integer max;
 
-  @JsonProperty("min")
   private Integer min;
 
 }

@@ -2,11 +2,12 @@ package org.brapi.v2.phenotyping.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.brapi.v2.core.model.BrApiEnum;
 
 /**
  * valid header fields
  */
-public enum HeaderRowName {
+public enum HeaderRowName implements BrApiEnum {
   OBSERVATIONTIMESTAMP("observationTimeStamp"),
   STUDYDBID("studyDbId"),
   STUDYNAME("studyName"),
@@ -29,18 +30,7 @@ public enum HeaderRowName {
   }
 
   @Override
-  @JsonValue
-  public String toString() {
-    return String.valueOf(value);
-  }
-
-  @JsonCreator
-  public static HeaderRowName fromValue(String text) {
-    for (HeaderRowName b : HeaderRowName.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
-    }
-    return null;
+  public String getBrapiValue() {
+    return value;
   }
 }
