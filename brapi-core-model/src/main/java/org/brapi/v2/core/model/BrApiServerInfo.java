@@ -16,29 +16,21 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiServerInfo {
-  @JsonProperty("calls")
   @Valid
   private List<BrApiService> calls = new ArrayList<BrApiService>();
 
-  @JsonProperty("contactEmail")
   private String contactEmail;
 
-  @JsonProperty("documentationURL")
   private String documentationURL;
 
-  @JsonProperty("location")
   private String location;
 
-  @JsonProperty("organizationName")
   private String organizationName;
 
-  @JsonProperty("organizationURL")
   private String organizationURL;
 
-  @JsonProperty("serverDescription")
   private String serverDescription;
 
-  @JsonProperty("serverName")
   private String serverName;
 
 }

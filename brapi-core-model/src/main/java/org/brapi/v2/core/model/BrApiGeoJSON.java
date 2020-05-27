@@ -12,10 +12,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiGeoJSON {
-  @JsonProperty("geometry")
   private BrApiOneOfGeoJSONGeometry geometry;
 
-  @JsonProperty("type")
   private String type = "Feature";
 
 }

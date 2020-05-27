@@ -12,10 +12,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiGrowthFacility {
-  @JsonProperty("PUI")
   private String PUI;
 
-  @JsonProperty("description")
   private String description;
 
 }

@@ -16,62 +16,43 @@ import java.util.Map;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiLocation {
-  @JsonProperty("locationDbId")
   private String locationDbId;
 
-  @JsonProperty("abbreviation")
   private String abbreviation;
 
-  @JsonProperty("additionalInfo")
   @Valid
   private Map<String, String> additionalInfo;
 
-  @JsonProperty("coordinateDescription")
   private String coordinateDescription;
 
-  @JsonProperty("coordinateUncertainty")
   private String coordinateUncertainty;
 
-  @JsonProperty("coordinates")
   private BrApiGeoJSON coordinates;
 
-  @JsonProperty("countryCode")
   private String countryCode;
 
-  @JsonProperty("countryName")
   private String countryName;
 
-  @JsonProperty("documentationURL")
   private String documentationURL;
 
-  @JsonProperty("environmentType")
   private String environmentType;
 
-  @JsonProperty("exposure")
   private String exposure;
 
-  @JsonProperty("externalReferences")
   private List<BrApiExternalReference> externalReferences;
 
-  @JsonProperty("instituteAddress")
   private String instituteAddress;
 
-  @JsonProperty("instituteName")
   private String instituteName;
 
-  @JsonProperty("locationName")
   private String locationName;
 
-  @JsonProperty("locationType")
   private String locationType;
 
-  @JsonProperty("siteStatus")
   private String siteStatus;
 
-  @JsonProperty("slope")
   private String slope;
 
-  @JsonProperty("topography")
   private String topography;
 
 }

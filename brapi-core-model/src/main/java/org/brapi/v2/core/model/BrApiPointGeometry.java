@@ -12,10 +12,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiPointGeometry implements BrApiOneOfGeoJSONSearchAreaGeometry, BrApiOneOfGeoJSONGeometry {
-  @JsonProperty("coordinates")
   private BrApiPosition coordinates;
 
-  @JsonProperty("type")
   private String type = "Point";
 
 }

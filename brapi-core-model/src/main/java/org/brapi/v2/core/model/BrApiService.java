@@ -18,18 +18,14 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiService {
-  @JsonProperty("dataTypes")
   @Valid
   private List<BrApiWSMIMEDataTypes> dataTypes;
 
-  @JsonProperty("methods")
   @Valid
   private List<MethodsEnum> methods = new ArrayList<MethodsEnum>();
 
-  @JsonProperty("service")
   private String service;
 
-  @JsonProperty("versions")
   @Valid
   private List<VersionsEnum> versions = new ArrayList<VersionsEnum>();
 
@@ -46,7 +42,7 @@ public class BrApiService {
   /**
    * Gets or Sets versions
    */
-  public enum VersionsEnum {
+  public enum VersionsEnum implements BrApiEnum {
     _0("2.0"),
 
     _1("2.1"),
@@ -60,19 +56,8 @@ public class BrApiService {
     }
 
     @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static VersionsEnum fromValue(String text) {
-      for (VersionsEnum b : VersionsEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
+    public String getBrapiValue() {
+      return value;
     }
   }
 

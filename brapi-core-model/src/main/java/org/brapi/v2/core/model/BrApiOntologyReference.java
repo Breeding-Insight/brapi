@@ -15,17 +15,13 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiOntologyReference {
-  @JsonProperty("documentationLinks")
   @Valid
   private List<BrApiOntologyReferenceDocumentationLinks> documentationLinks;
 
-  @JsonProperty("ontologyDbId")
   private String ontologyDbId;
 
-  @JsonProperty("ontologyName")
   private String ontologyName;
 
-  @JsonProperty("version")
   private String version;
 
 }

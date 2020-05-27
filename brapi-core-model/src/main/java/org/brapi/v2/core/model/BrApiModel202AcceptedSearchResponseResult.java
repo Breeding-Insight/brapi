@@ -12,6 +12,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiModel202AcceptedSearchResponseResult {
-  @JsonProperty("searchResultsDbId")
   private String searchResultsDbId;
 }

@@ -29,7 +29,6 @@ import java.util.List;
 @EqualsAndHashCode
 @ToString
 public class DataResponse<T> {
-  @JsonProperty("data")
   private List<T> data;
 
 }

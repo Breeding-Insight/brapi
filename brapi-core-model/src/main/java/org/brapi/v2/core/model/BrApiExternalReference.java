@@ -12,10 +12,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiExternalReference {
-  @JsonProperty("referenceID")
   private Object referenceID;
 
-  @JsonProperty("referenceSource")
   private String referenceSource;
 
 }

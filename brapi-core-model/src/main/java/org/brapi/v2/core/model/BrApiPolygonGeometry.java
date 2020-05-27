@@ -12,10 +12,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiPolygonGeometry implements BrApiOneOfGeoJSONSearchAreaGeometry, BrApiOneOfGeoJSONGeometry {
-  @JsonProperty("coordinates")
   private BrApiPolygon coordinates;
 
-  @JsonProperty("type")
   private String type = "Polygon";
 
 }
