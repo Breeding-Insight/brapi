@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets WSMIMEDataTypes
  */
-public enum BrApiWSMIMEDataTypes {
+public enum BrApiWSMIMEDataTypes implements BrApiEnum {
   APPLICATION_JSON("application/json"),
     TEXT_CSV("text/csv"),
     TEXT_TSV("text/tsv"),
@@ -19,18 +19,7 @@ public enum BrApiWSMIMEDataTypes {
   }
 
   @Override
-  @JsonValue
-  public String toString() {
-    return String.valueOf(value);
-  }
-
-  @JsonCreator
-  public static BrApiWSMIMEDataTypes fromValue(String text) {
-    for (BrApiWSMIMEDataTypes b : BrApiWSMIMEDataTypes.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
-    }
-    return null;
+  public String getBrapiValue() {
+    return value;
   }
 }

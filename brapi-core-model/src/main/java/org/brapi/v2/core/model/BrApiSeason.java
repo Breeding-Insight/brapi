@@ -14,14 +14,11 @@ import javax.validation.constraints.NotNull;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiSeason {
-  @JsonProperty("season")
   private String season;
 
-  @JsonProperty("seasonDbId")
   @NotNull
   private String seasonDbId;
 
-  @JsonProperty("year")
   private Integer year;
 
 }

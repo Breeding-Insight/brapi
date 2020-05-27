@@ -12,9 +12,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiRequestPublications {
-  @JsonProperty("publicationPUI")
   private String publicationPUI;
 
-  @JsonProperty("publicationReference")
   private String publicationReference;
 }

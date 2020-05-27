@@ -12,10 +12,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiOntologyReferenceDocumentationLinks {
-  @JsonProperty("URL")
   private String URL;
 
-  @JsonProperty("type")
   private TypeEnum type;
 
   /**

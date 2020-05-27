@@ -15,16 +15,12 @@ import java.time.LocalDate;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiDatasetAuthorships {
-  @JsonProperty("datasetPUI")
   private String datasetPUI;
 
-  @JsonProperty("license")
   private String license;
 
-  @JsonProperty("publicReleaseDate")
   private LocalDate publicReleaseDate;
 
-  @JsonProperty("submissionDate")
   private LocalDate submissionDate;
 
 }

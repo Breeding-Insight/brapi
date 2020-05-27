@@ -12,25 +12,18 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiEnvironmentParameter {
-  @JsonProperty("description")
   private String description;
 
-  @JsonProperty("parameterName")
   private String parameterName;
 
-  @JsonProperty("parameterPUI")
   private String parameterPUI;
 
-  @JsonProperty("unit")
   private String unit;
 
-  @JsonProperty("unitPUI")
   private String unitPUI;
 
-  @JsonProperty("value")
   private String value;
 
-  @JsonProperty("valuePUI")
   private String valuePUI;
 
 }

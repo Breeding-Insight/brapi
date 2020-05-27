@@ -14,10 +14,8 @@ import java.time.OffsetDateTime;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiLastUpdate {
-  @JsonProperty("timestamp")
   private OffsetDateTime timestamp;
 
-  @JsonProperty("version")
   private String version;
 
 }
