@@ -266,6 +266,41 @@ public class VariablesAPITests extends BrAPIClientTest {
             Optional<BrApiVariable> variable = variablesAPI.getVariableById("badVariableId");
         });
     }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    public void updateVariableSuccess() {
+        BrApiVariable variable = this.createdVariable;
+        variable.setObservationVariableName("updated_name");
+
+        // Check that it is a success and all data matches
+        Optional<BrApiVariable> updatedVaribleResult = this.variablesAPI.updateVariable(variable);
+
+        assertEquals(true, updatedVaribleResult.isPresent(), "Variable was not returned");
+        BrApiVariable updatedVariable = updatedVaribleResult.get();
+        variableAssertEquals(variable, updatedVariable);
+    }
+
+    @Test
+    @SneakyThrows
+    public void updateVariableMissingId() {
+        // Check that it throws an APIException
+        BrApiVariable brApiVariable = BrApiVariable.builder()
+                .observationVariableName("new test variable")
+                .build();
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiVariable> updatedVariableResult = this.variablesAPI.updateVariable(brApiVariable);
+        });
+    }
+
+    @Test
+    public void updateVariableNull() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            Optional<BrApiVariable> variable = this.variablesAPI.updateVariable(null);
+        });
+    }
     
 
 }
