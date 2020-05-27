@@ -90,4 +90,22 @@ public class VariablesAPI extends BrAPIEndpoint {
         return getVariables(new VariablesRequest());
     }
 
+    public Optional<BrApiVariable> getVariableById(@NonNull String variableId) throws HttpException, APIException {
+
+        // Build our request
+        String endpoint = BrAPIPhenotypeEndpoints_V2.getVariablesByIdPath(variableId);
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .method(HttpMethod.GET)
+                .build();
+
+        Optional<BrApiVariable> searchResult = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiVariable resultResponse = gson.fromJson(resultJson, BrApiVariable.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return searchResult;
+    }
+
 }

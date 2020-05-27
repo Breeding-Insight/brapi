@@ -47,9 +47,19 @@ public class VariablesAPIUnitTests {
     void getVariablesEmptyBody() {
         when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
                 .thenReturn(Optional.empty());
-        List<BrApiVariable> brApiScales = variablesAPI.getVariables();
+        List<BrApiVariable> brApiVariables = variablesAPI.getVariables();
 
-        assertEquals(0, brApiScales.size(), "List size is greater than 0");
+        assertEquals(0, brApiVariables.size(), "List size is greater than 0");
+    }
+
+    @Test
+    @SneakyThrows
+    void getScalesByIdEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+        Optional<BrApiVariable> brApiVariable = variablesAPI.getVariableById("test");
+
+        assertEquals(false, brApiVariable.isPresent(), "Empty optional was not returned.");
     }
 
 }

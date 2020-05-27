@@ -30,4 +30,8 @@ public class BrAPIPhenotypeEndpoints_V2 extends BrAPIEndpoints_V2 {
 
     public static String getVariablesPath() { return getRootPath() + "/variables"; }
 
+    public static String getVariablesByIdPath(String variableId) {
+        return getVariablesPath() + "/" + variableId;
+    }
+
 }
