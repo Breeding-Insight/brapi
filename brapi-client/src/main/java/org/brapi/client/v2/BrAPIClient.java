@@ -39,7 +39,7 @@ public class BrAPIClient {
                     throws JsonParseException {
                 return new JsonPrimitive(DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(offsetDateTime));
             }
-        }).create();
+        }).registerTypeAdapterFactory(new BrApiEnumTypeAdapterFactory()).create();
     }
 
     /**
