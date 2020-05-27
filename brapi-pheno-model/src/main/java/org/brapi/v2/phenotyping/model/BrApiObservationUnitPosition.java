@@ -13,10 +13,8 @@ import org.brapi.v2.core.model.BrApiGeoJSON;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiObservationUnitPosition {
-  @JsonProperty("blockNumber")
   private String blockNumber;
 
-  @JsonProperty("entryNumber")
   private String entryNumber;
 
   /**
@@ -27,13 +25,10 @@ public class BrApiObservationUnitPosition {
     TEST,
     FILLER;
   }
-  @JsonProperty("entryType")
   private EntryTypeEnum entryType;
 
-  @JsonProperty("geoCoordinates")
   private BrApiGeoJSON geoCoordinates;
 
-  @JsonProperty("positionCoordinateX")
   private String positionCoordinateX;
 
   /**
@@ -49,16 +44,12 @@ public class BrApiObservationUnitPosition {
     MEASURED_ROW,
     MEASURED_COL;
   }
-  @JsonProperty("positionCoordinateXType")
   private PositionCoordinateType positionCoordinateXType;
 
-  @JsonProperty("positionCoordinateY")
   private String positionCoordinateY;
 
-  @JsonProperty("positionCoordinateYType")
   private PositionCoordinateType positionCoordinateYType;
 
-  @JsonProperty("replicate")
   private String replicate;
 
 }

@@ -20,58 +20,43 @@ import java.util.Map;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiObservation {
-  @JsonProperty("observationDbId")
   private String observationDbId;
 
-  @JsonProperty("additionalInfo")
   @Valid
   private Map<String, String> additionalInfo;
 
-  @JsonProperty("collector")
   @NotNull
   private String collector;
 
-  @JsonProperty("externalReferences")
   private List<BrApiExternalReference> externalReferences;
 
-  @JsonProperty("germplasmDbId")
   @NotNull
   private String germplasmDbId;
 
-  @JsonProperty("germplasmName")
   private String germplasmName;
 
-  @JsonProperty("observationTimeStamp")
   @NotNull
   private OffsetDateTime observationTimeStamp;
 
-  @JsonProperty("observationUnitDbId")
   @NotNull
   private String observationUnitDbId;
 
-  @JsonProperty("observationUnitName")
   private String observationUnitName;
 
-  @JsonProperty("observationVariableDbId")
   @NotNull
   private String observationVariableDbId;
 
-  @JsonProperty("observationVariableName")
   private String observationVariableName;
 
-  @JsonProperty("season")
   @NotNull
   private BrApiSeason season;
 
-  @JsonProperty("studyDbId")
   @NotNull
   private String studyDbId;
 
-  @JsonProperty("uploadedBy")
   @NotNull
   private String uploadedBy;
 
-  @JsonProperty("value")
   @NotNull
   private String value;
 

@@ -12,10 +12,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiObservationUnitTableObservationVariables {
-  @JsonProperty("observationVariableDbId")
   private String observationVariableDbId;
 
-  @JsonProperty("observationVariableName")
   private String observationVariableName;
 
 }

@@ -18,32 +18,23 @@ import java.util.Map;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiMethod {
-  @JsonProperty("methodDbId")
   private String methodDbId;
 
-  @JsonProperty("additionalInfo")
   @Valid
   private Map<String, String> additionalInfo;
 
-  @JsonProperty("bibliographicalReference")
   private String bibliographicalReference;
 
-  @JsonProperty("description")
   private String description;
 
-  @JsonProperty("externalReferences")
   private List<BrApiExternalReference> externalReferences;
 
-  @JsonProperty("formula")
   private String formula;
 
-  @JsonProperty("methodClass")
   private String methodClass;
 
-  @JsonProperty("methodName")
   private String methodName;
 
-  @JsonProperty("ontologyReference")
   private BrApiOntologyReference ontologyReference;
 
 }

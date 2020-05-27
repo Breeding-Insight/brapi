@@ -15,19 +15,15 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiObservationTable {
-  @JsonProperty("data")
   @Valid
   private List<List<String>> data;
 
-  @JsonProperty("headerRow")
   @Valid
   private List<HeaderRowName> headerRow;
 
-  @JsonProperty("observationVariableDbIds")
   @Valid
   private List<String> observationVariableDbIds;
 
-  @JsonProperty("observationVariableNames")
   @Valid
   private List<String> observationVariableNames;
 
