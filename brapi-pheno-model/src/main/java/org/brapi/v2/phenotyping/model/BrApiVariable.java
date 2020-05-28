@@ -17,7 +17,7 @@ import java.util.Map;
  * Variable
  */
 @Data
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 public class BrApiVariable {
   private String observationVariableDbId;
