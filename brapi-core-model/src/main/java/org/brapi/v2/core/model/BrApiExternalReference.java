@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiExternalReference {
-  private Object referenceID;
+  private String referenceID;
 
   private String referenceSource;
 
