@@ -17,8 +17,6 @@
 
 package org.brapi.v2.core.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
