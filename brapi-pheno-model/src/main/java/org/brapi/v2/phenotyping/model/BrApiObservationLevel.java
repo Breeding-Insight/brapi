@@ -17,8 +17,6 @@
 
 package org.brapi.v2.phenotyping.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 import org.brapi.v2.core.model.BrApiEnum;
 
 /**
