@@ -17,9 +17,6 @@
 
 package org.brapi.v2.core.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
 /**
  * Gets or Sets WSMIMEDataTypes
  */

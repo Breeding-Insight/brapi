@@ -29,8 +29,6 @@
 
 package org.brapi.v2.core.model.response;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.*;
 import lombok.experimental.Accessors;
 
