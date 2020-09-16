@@ -1,9 +1,10 @@
 package org.brapi.v2.germplasm.model;
 
 import lombok.Getter;
+import org.brapi.v2.core.model.BrApiEnum;
 
 @Getter
-public enum BrApiBiologicalStatusOfAccessionCode {
+public enum BrApiBiologicalStatusOfAccessionCode implements BrApiEnum {
     _100("100", "Wild"),
     _110("110", "Natural"),
     _120("120", "Semi-natural/wild"),
@@ -32,5 +33,10 @@ public enum BrApiBiologicalStatusOfAccessionCode {
     BrApiBiologicalStatusOfAccessionCode(String value, String description) {
         this.value = value;
         this.description = description;
+    }
+
+    @Override
+    public String getBrapiValue() {
+        return value;
     }
 }

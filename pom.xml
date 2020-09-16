@@ -41,6 +41,7 @@
   <modules>
     <module>brapi-core-model</module>
     <module>brapi-pheno-model</module>
+    <module>brapi-germplasm-model</module>
     <module>brapi-client</module>
   </modules>
 

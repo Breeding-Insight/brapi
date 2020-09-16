@@ -17,6 +17,7 @@
 
 package org.brapi.client.v2;
 
+import com.github.filosganga.geogson.gson.GeometryAdapterFactory;
 import com.google.gson.*;
 import lombok.Getter;
 import lombok.experimental.Accessors;
@@ -56,7 +57,9 @@ public class BrAPIClient {
                     throws JsonParseException {
                 return new JsonPrimitive(DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(offsetDateTime));
             }
-        }).registerTypeAdapterFactory(new BrApiEnumTypeAdapterFactory()).create();
+        }).registerTypeAdapterFactory(new BrApiEnumTypeAdapterFactory())
+        .registerTypeAdapterFactory(new GeometryAdapterFactory())
+        .create();
     }
 
     /**

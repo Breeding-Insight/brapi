@@ -1,11 +1,9 @@
 package org.brapi.v2.germplasm.model;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.brapi.v2.core.model.BrApiExternalReference;
-import org.brapi.v2.core.model.request.BaseRequest;
 
 import java.util.Date;
 import java.util.List;
@@ -41,10 +39,9 @@ public class BrApiGermplasm {
     private String seedSourceDescription;
     private String species;
     private String speciesAuthority;
-    private List<BrApiGermplasmStorageType> stoageTypes;
+    private List<BrApiGermplasmStorageType> storageTypes;
     private String subtaxa;
     private String subtaxaAuthority;
     private List<BrApiGermplasmSynonym> synonyms;
     private List<BrApiGermplasmTaxon> taxonIds;
-
 }
