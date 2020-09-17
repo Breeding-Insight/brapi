@@ -30,8 +30,10 @@ import org.brapi.v2.core.model.response.Metadata;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -57,7 +59,15 @@ public class BrAPIClient {
                     throws JsonParseException {
                 return new JsonPrimitive(DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(offsetDateTime));
             }
-        }).registerTypeAdapterFactory(new BrApiEnumTypeAdapterFactory())
+        }).registerTypeAdapter(Date.class, new JsonSerializer<Date>() {
+            @Override
+            public JsonElement serialize(Date date, Type typeOfT, JsonSerializationContext context)
+                throws JsonParseException {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                return new JsonPrimitive(format.format(date));
+            }
+        })
+        .registerTypeAdapterFactory(new BrApiEnumTypeAdapterFactory())
         .registerTypeAdapterFactory(new GeometryAdapterFactory())
         .create();
     }

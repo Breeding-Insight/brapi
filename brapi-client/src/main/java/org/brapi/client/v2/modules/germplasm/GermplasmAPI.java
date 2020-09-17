@@ -75,4 +75,43 @@ public class GermplasmAPI extends BrAPIEndpoint {
 
         return searchResult;
     }
+
+    public List<BrApiGermplasm> createGermplasm(List<BrApiGermplasm> brApiGermplasm) throws HttpException, APIException {
+
+        // Check if our values are passed in and raise error if not
+        if (brApiGermplasm.stream().anyMatch(germplasm -> germplasm.getGermplasmDbId() != null)) {
+            throw new APIException("BrAPI germplasm must not have an existing germplasmDbId.");
+        }
+
+        // Build our request
+        String endpoint = BrAPIGermplasmEndpoints_V2.getGermplasmPath();
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .data(brApiGermplasm)
+                .method(HttpMethod.POST)
+                .build();
+
+        List<BrApiGermplasm> createdGermplasm = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            Type resultGsonType = new TypeToken<DataResponse<BrApiGermplasm>>() {}.getType();
+            DataResponse<BrApiGermplasm> dataResponse = gson.fromJson(resultJson, resultGsonType);
+            return dataResponse.data();
+        }).orElse(new ArrayList<>());
+
+        return createdGermplasm;
+    }
+
+    public Optional<BrApiGermplasm> createGermplasm(BrApiGermplasm brApiGermplasm) throws HttpException, APIException {
+        List<BrApiGermplasm> brApiGermplasmList = new ArrayList<>();
+        brApiGermplasmList.add(brApiGermplasm);
+        List<BrApiGermplasm> createdGermplasm = createGermplasm(brApiGermplasmList);
+
+        if (createdGermplasm.size() == 1){
+            return Optional.of(createdGermplasm.get(0));
+        }
+        else {
+            return Optional.empty();
+        }
+    }
+
 }
