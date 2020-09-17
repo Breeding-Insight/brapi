@@ -9,6 +9,7 @@ import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiGeoJSON;
+import org.brapi.v2.core.model.BrApiProgram;
 import org.brapi.v2.germplasm.model.*;
 import org.brapi.v2.germplasm.model.request.GermplasmRequest;
 import org.junit.jupiter.api.*;
@@ -313,5 +314,47 @@ public class GermplasmAPITests extends BrAPIClientTest {
         // Check out return message is returned
         String errorMsg = exception.getMessage();
         assertEquals(true, errorMsg.length() > 0, "Error message was not returned");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(3)
+    public void updateProgramSuccess() {
+        BrApiGermplasm germplasm = this.germplasm;
+        germplasm.setGermplasmName("updated_name");
+        germplasm.setAccessionNumber("A000004");
+
+        // Check that it is a success and all data matches
+        Optional<BrApiGermplasm> updatedGermplasmResult = this.germplasmAPI.updateGermplasm(germplasm);
+
+        assertEquals(true, updatedGermplasmResult.isPresent(), "Germplasm was not returned");
+        BrApiGermplasm updatedGermplasm = updatedGermplasmResult.get();
+        assertEquals(germplasm.getGermplasmName(), updatedGermplasm.getGermplasmName(), "Wrong Germplasm name");
+        assertEquals(germplasm.getAccessionNumber(), updatedGermplasm.getAccessionNumber(), "Wrong Program objective");
+    }
+
+    @Test
+    @SneakyThrows
+    public void updateProgramBadId() {
+        // Check that it throws a 404
+        BrApiGermplasm germplasm = this.germplasm;
+        germplasm.setGermplasmDbId("i_do_not_exist");
+
+        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+            Optional<BrApiGermplasm> updatedGermplasmResult = this.germplasmAPI.updateGermplasm(germplasm);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    public void updateProgramMissingId() {
+        // Check that it throws an APIException
+        BrApiGermplasm brApiGermplasm = BrApiGermplasm.builder()
+                .germplasmName("new test program")
+                .build();
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiGermplasm> updateGermplasm = this.germplasmAPI.updateGermplasm(brApiGermplasm);
+        });
     }
 }

@@ -114,4 +114,27 @@ public class GermplasmAPI extends BrAPIEndpoint {
         }
     }
 
+    public Optional<BrApiGermplasm> updateGermplasm(BrApiGermplasm brApiGermplasm) throws HttpException, APIException {
+
+        if (brApiGermplasm.getGermplasmDbId() == null){
+            throw new APIException("BrAPI germplasm must have an existing germplasmDbId.");
+        }
+
+        // Build our request
+        String endpoint = BrAPIGermplasmEndpoints_V2.getGermplasmByIdPath(brApiGermplasm.getGermplasmDbId());
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .data(brApiGermplasm)
+                .method(HttpMethod.PUT)
+                .build();
+
+        Optional<BrApiGermplasm> updatedGermplasm = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiGermplasm resultResponse = gson.fromJson(resultJson, BrApiGermplasm.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return updatedGermplasm;
+    }
+
 }
