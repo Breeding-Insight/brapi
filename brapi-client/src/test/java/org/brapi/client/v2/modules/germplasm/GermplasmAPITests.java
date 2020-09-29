@@ -1,3 +1,20 @@
+/*
+ * See the NOTICE file distributed with this work for additional information
+ * regarding copyright ownership.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.brapi.client.v2.modules.germplasm;
 
 import com.github.filosganga.geogson.model.Coordinates;
@@ -9,7 +26,6 @@ import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiGeoJSON;
-import org.brapi.v2.core.model.BrApiProgram;
 import org.brapi.v2.germplasm.model.*;
 import org.brapi.v2.germplasm.model.request.GermplasmRequest;
 import org.junit.jupiter.api.*;
@@ -28,16 +44,16 @@ public class GermplasmAPITests extends BrAPIClientTest {
 
     @Test
     @SneakyThrows
-    public void getProgramsSuccess() {
+    public void getGermplasmSuccess() {
 
         List<BrApiGermplasm> germplasm = this.germplasmAPI.getGermplasm();
 
-        assertEquals(true, !germplasm.isEmpty(), "List of programs was empty");
+        assertEquals(true, !germplasm.isEmpty(), "List of germplasm was empty");
     }
 
     @Test
     @SneakyThrows
-    public void getProgramsPageFilter() {
+    public void getsGermplasmPageFilter() {
         GermplasmRequest baseRequest = GermplasmRequest.builder()
                 .page(0)
                 .pageSize(1)
@@ -45,7 +61,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
 
         List<BrApiGermplasm> germplasm = this.germplasmAPI.getGermplasm(baseRequest);
 
-        assertEquals(true, germplasm.size() == 1, "More than one program was returned");
+        assertEquals(true, germplasm.size() == 1, "More than one germplasm was returned");
     }
 
     @Test
@@ -158,7 +174,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
         assertEquals(true, createdGermplasm.size() == 2);
         assertEquals(brApiGermplasm1.getGermplasmName(), createdGermplasm.get(0).getGermplasmName(), "Sent name and returned germplasm name does not match");
         assertEquals(true, createdGermplasm.get(0).getGermplasmDbId() != null, "Germplasm Id was not parsed properly");
-        assertEquals("test2", createdGermplasm.get(1).getGermplasmName(), "Sent name and returned germplasm name does not match");
+        assertEquals(brApiGermplasm2.getGermplasmName(), createdGermplasm.get(1).getGermplasmName(), "Sent name and returned germplasm name does not match");
         assertEquals(true, createdGermplasm.get(1).getGermplasmDbId() != null, "Germplasm Id was not parsed properly");
     }
 
@@ -167,7 +183,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     public void createGermplasmIdPresentFailure() {
 
         BrApiGermplasm brApiGermplasm = BrApiGermplasm.builder()
-                .germplasmName("new test program")
+                .germplasmName("new test germplasm")
                 .germplasmDbId("id1123")
                 .build();
 
@@ -190,10 +206,10 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @Test
     @SneakyThrows
     @Order(2)
-    public void getProgramByIDSuccess() {
+    public void getGermplasmByIDSuccess() {
         Optional<BrApiGermplasm> germplasm = this.germplasmAPI.getGermplasmById(this.germplasm.getGermplasmDbId());
 
-        assertEquals(true, germplasm.isPresent(), "Program was not returned");
+        assertEquals(true, germplasm.isPresent(), "Germplasm was not returned");
 
         // Check the response was parsed correctly.
         BrApiGermplasm brApiGermplasm = germplasm.get();
@@ -288,15 +304,15 @@ public class GermplasmAPITests extends BrAPIClientTest {
 
         List<BrApiGermplasm> germplasm = this.germplasmAPI.getGermplasm(germplasmRequest);
 
-        assertEquals(true, germplasm.size() == 0, "List of programs was not empty");
+        assertEquals(true, germplasm.size() == 0, "List of germplasm was not empty");
     }
 
     @Test
     @SneakyThrows
-    public void getProgramByIdMissingID() {
+    public void getGermplasmByIdMissingID() {
 
         HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
-            Optional<BrApiGermplasm> program = this.germplasmAPI.getGermplasmById("does not exist");
+            Optional<BrApiGermplasm> germplasm = this.germplasmAPI.getGermplasmById("does not exist");
         });
 
         // Check out return message is returned
@@ -307,7 +323,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @Test
     @SneakyThrows
     @Order(3)
-    public void updateProgramSuccess() {
+    public void updateGermplasmSuccess() {
         BrApiGermplasm germplasm = this.germplasm;
         germplasm.setGermplasmName("updated_name");
         germplasm.setAccessionNumber("A000004");
@@ -317,13 +333,13 @@ public class GermplasmAPITests extends BrAPIClientTest {
 
         assertEquals(true, updatedGermplasmResult.isPresent(), "Germplasm was not returned");
         BrApiGermplasm updatedGermplasm = updatedGermplasmResult.get();
-        assertEquals(germplasm.getGermplasmName(), updatedGermplasm.getGermplasmName(), "Wrong Germplasm name");
-        assertEquals(germplasm.getAccessionNumber(), updatedGermplasm.getAccessionNumber(), "Wrong Program objective");
+        assertEquals(germplasm.getGermplasmName(), updatedGermplasm.getGermplasmName(), "Wrong germplasm name");
+        assertEquals(germplasm.getAccessionNumber(), updatedGermplasm.getAccessionNumber(), "Wrong germplasm accession number");
     }
 
     @Test
     @SneakyThrows
-    public void updateProgramBadId() {
+    public void updateGermplasmBadId() {
         // Check that it throws a 404
         BrApiGermplasm germplasm = this.germplasm;
         germplasm.setGermplasmDbId("i_do_not_exist");
@@ -335,10 +351,10 @@ public class GermplasmAPITests extends BrAPIClientTest {
 
     @Test
     @SneakyThrows
-    public void updateProgramMissingId() {
+    public void updateGermplasmMissingId() {
         // Check that it throws an APIException
         BrApiGermplasm brApiGermplasm = BrApiGermplasm.builder()
-                .germplasmName("new test program")
+                .germplasmName("new test germplasm")
                 .build();
 
         APIException exception = assertThrows(APIException.class, () -> {
