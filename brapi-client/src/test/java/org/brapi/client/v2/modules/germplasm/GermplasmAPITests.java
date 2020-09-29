@@ -327,7 +327,6 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(3)
     public void updateGermplasmSuccess() {
-        BrApiGermplasm germplasm = this.germplasm;
         germplasm.setGermplasmName("updated_name");
         germplasm.setAccessionNumber("A000004");
 

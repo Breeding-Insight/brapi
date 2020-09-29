@@ -18,6 +18,7 @@
 package org.brapi.client.v2.modules.germplasm;
 
 import com.google.gson.reflect.TypeToken;
+import lombok.NonNull;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.BrAPIEndpoint;
 import org.brapi.client.v2.model.BrAPIRequest;
@@ -28,7 +29,6 @@ import org.brapi.v2.core.model.response.DataResponse;
 import org.brapi.v2.germplasm.model.BrApiGermplasm;
 import org.brapi.v2.germplasm.model.request.GermplasmRequest;
 
-import javax.validation.constraints.NotNull;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +38,7 @@ public class GermplasmAPI extends BrAPIEndpoint {
 
     public GermplasmAPI(BrAPIClient brAPIClient) { super(brAPIClient); }
 
-    public List<BrApiGermplasm> getGermplasm(@NotNull GermplasmRequest germplasmFilter) throws HttpException, APIException {
-
-        // Check if our values are passed in and raise error if not
-        if (germplasmFilter == null) {
-            throw new IllegalArgumentException("Germplasm request cannot be null");
-        }
+    public List<BrApiGermplasm> getGermplasm(@NonNull GermplasmRequest germplasmFilter) throws HttpException, APIException {
 
         // Build our request
         String endpoint = BrAPIGermplasmEndpoints_V2.getGermplasmPath();
@@ -67,12 +62,7 @@ public class GermplasmAPI extends BrAPIEndpoint {
         return getGermplasm(new GermplasmRequest());
     }
 
-    public Optional<BrApiGermplasm> getGermplasmById(String germplasmId) throws HttpException, APIException {
-
-        // Check if our values are passed in and raise error if not
-        if (germplasmId == null) {
-            throw new APIException("Must specify germplasmID for the getGermplasmById endpoint.");
-        }
+    public Optional<BrApiGermplasm> getGermplasmById(@NonNull String germplasmId) throws HttpException, APIException {
 
         // Build our request
         String endpoint =BrAPIGermplasmEndpoints_V2.getGermplasmByIdPath(germplasmId);
