@@ -22,27 +22,27 @@ import org.brapi.v2.core.model.BrApiEnum;
 
 @Getter
 public enum BrApiBiologicalStatusOfAccessionCode implements BrApiEnum {
-    _100("100", "Wild"),
-    _110("110", "Natural"),
-    _120("120", "Semi-natural/wild"),
-    _130("130", "Semi-natural/sown"),
-    _200("200", "Weedy"),
-    _300("300", "Traditional cultivar/landrace"),
-    _400("400", "Breeding/research material"),
-    _410("410", "Breeders line"),
-    _411("411", "Synthetic population"),
-    _412("412", "Hybrid"),
-    _413("413", "Founder stock/base population"),
-    _414("414", "Inbred line (parent of hybrid cultivar)"),
-    _415("415", "Segregating population"),
-    _416("416", "Clonal selection"),
-    _420("420", "Genetic stock"),
-    _421("421", "Mutant (e.g. induced/insertion mutants, tilling populations)"),
-    _422("422", "Cytogenetic stocks (e.g. chromosome addition/substitution, aneuploids, amphiploids)"),
-    _423("423", "Other genetic stocks (e.g. mapping populations)"),
-    _500("500", "Advanced or improved cultivar (conventional breeding methods)"),
-    _600("600", "GMO (by genetic engineering)"),
-    _999("999", "Other (Elaborate in REMARKS field)");
+    WILD("100", "Wild"),
+    NATURAL("110", "Natural"),
+    SEMI_NATURAL_WILD("120", "Semi-natural/wild"),
+    SEMI_NATURAL_SOWN("130", "Semi-natural/sown"),
+    WEEDY("200", "Weedy"),
+    TRADITIONAL_CULTIVAR_LANDRACE("300", "Traditional cultivar/landrace"),
+    BREEDING_RESEARCH_MATERIAL("400", "Breeding/research material"),
+    BREEDERS_LINE("410", "Breeders line"),
+    SYNTHETIC_POPULATION("411", "Synthetic population"),
+    HYBRID("412", "Hybrid"),
+    FOUNDER_STOCK_BASE_POPULATION("413", "Founder stock/base population"),
+    INBRED_LINE("414", "Inbred line (parent of hybrid cultivar)"),
+    SEGREGATING_POPULATION("415", "Segregating population"),
+    CLONAL_SELECTION("416", "Clonal selection"),
+    GENETIC_STOCK("420", "Genetic stock"),
+    MUTANT("421", "Mutant (e.g. induced/insertion mutants, tilling populations)"),
+    CYTOGENETIC_STOCKS("422", "Cytogenetic stocks (e.g. chromosome addition/substitution, aneuploids, amphiploids)"),
+    OTHER_GENETIC_STOCKS("423", "Other genetic stocks (e.g. mapping populations)"),
+    IMPROVED_CULTIVAR("500", "Advanced or improved cultivar (conventional breeding methods)"),
+    GMO("600", "GMO (by genetic engineering)"),
+    OTHER("999", "Other (Elaborate in REMARKS field)");
 
     private String value;
     private String description;

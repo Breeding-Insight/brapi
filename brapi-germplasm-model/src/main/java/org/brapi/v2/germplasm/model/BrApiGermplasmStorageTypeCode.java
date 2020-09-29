@@ -23,15 +23,15 @@ import org.brapi.v2.core.model.BrApiEnum;
 @Getter
 public enum BrApiGermplasmStorageTypeCode implements BrApiEnum {
 
-    _10("10", "Seed collection"),
-    _11("11", "Short term"),
-    _12("12", "Medium term"),
-    _13("13", "Long term"),
-    _20("20", "Field collection"),
-    _30("30", "In vitro collection"),
-    _40("40", "Cryo-preserved collection"),
-    _50("50", "DNA collection"),
-    _99("99", "Other");
+    SEED_COLLECTION("10", "Seed collection"),
+    SHORT_TERM("11", "Short term"),
+    MEDIUM_TERM("12", "Medium term"),
+    LONG_TERM("13", "Long term"),
+    FIELD_COLLECTION("20", "Field collection"),
+    IN_VITRO_COLLECTION("30", "In vitro collection"),
+    CRYOPRESERVED_COLLECTION("40", "Cryo-preserved collection"),
+    DNA_COLLECTION("50", "DNA collection"),
+    OTHER("99", "Other");
 
     private String value;
     private String description;

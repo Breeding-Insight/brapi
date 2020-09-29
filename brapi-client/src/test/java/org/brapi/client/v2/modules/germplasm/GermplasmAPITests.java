@@ -96,8 +96,8 @@ public class GermplasmAPITests extends BrAPIClientTest {
         );
         List<BrApiGermplasmStorageType> storageTypes = new ArrayList<>();
         storageTypes.add(BrApiGermplasmStorageType.builder()
-                .code(BrApiGermplasmStorageTypeCode._10)
-                .description(BrApiGermplasmStorageTypeCode._10.getDescription())
+                .code(BrApiGermplasmStorageTypeCode.SEED_COLLECTION)
+                .description(BrApiGermplasmStorageTypeCode.SEED_COLLECTION.getDescription())
                 .build()
         );
         List<BrApiGermplasmSynonym> synonyms = new ArrayList<>();
@@ -117,8 +117,8 @@ public class GermplasmAPITests extends BrAPIClientTest {
                 .accessionNumber("A000002")
                 .acquisitionDate(new Date(System.currentTimeMillis()))
                 .additionalInfo(additionalInfo)
-                .biologicalStatusOfAccessionCode(BrApiBiologicalStatusOfAccessionCode._100)
-                .biologicalStatusOfAccessionDescription(BrApiBiologicalStatusOfAccessionCode._100.getDescription())
+                .biologicalStatusOfAccessionCode(BrApiBiologicalStatusOfAccessionCode.WILD)
+                .biologicalStatusOfAccessionDescription(BrApiBiologicalStatusOfAccessionCode.WILD.getDescription())
                 .collection("resistance population")
                 .commonCropName("Tomatillo")
                 .countryOfOriginCode("United States")
