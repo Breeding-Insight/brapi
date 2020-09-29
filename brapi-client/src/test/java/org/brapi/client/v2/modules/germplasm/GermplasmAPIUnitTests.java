@@ -50,7 +50,7 @@ public class GermplasmAPIUnitTests {
 
     @Test
     @SneakyThrows
-    public void getProgramsEmptyBody() {
+    public void getGermplasmEmptyBody() {
         when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
                 .thenReturn(Optional.empty());
         List<BrApiGermplasm> brApiGermplasm = germplasmAPI.getGermplasm();
