@@ -71,7 +71,7 @@ public class GermplasmAPI extends BrAPIEndpoint {
 
         // Check if our values are passed in and raise error if not
         if (germplasmId == null) {
-            throw new APIException("Must specify programID for the getProgramById endpoint.");
+            throw new APIException("Must specify germplasmID for the getGermplasmById endpoint.");
         }
 
         // Build our request

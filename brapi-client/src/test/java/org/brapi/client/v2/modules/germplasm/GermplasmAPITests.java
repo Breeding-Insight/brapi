@@ -182,6 +182,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void createGermplasmIdPresentFailure() {
 
+        String createGermplasmIdPresentError = "BrAPI germplasm must not have an existing germplasmDbId.";
         BrApiGermplasm brApiGermplasm = BrApiGermplasm.builder()
                 .germplasmName("new test germplasm")
                 .germplasmDbId("id1123")
@@ -190,6 +191,8 @@ public class GermplasmAPITests extends BrAPIClientTest {
         APIException exception = assertThrows(APIException.class, () -> {
             Optional<BrApiGermplasm> createdGermplasm = this.germplasmAPI.createGermplasm(brApiGermplasm);
         });
+
+        assertEquals(createGermplasmIdPresentError, exception.getMessage(), "Wrong error message returned");
     }
 
     @Test
@@ -309,7 +312,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
 
     @Test
     @SneakyThrows
-    public void getGermplasmByIdMissingID() {
+    public void getGermplasmByIdNotExist() {
 
         HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
             Optional<BrApiGermplasm> germplasm = this.germplasmAPI.getGermplasmById("does not exist");
@@ -352,6 +355,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @Test
     @SneakyThrows
     public void updateGermplasmMissingId() {
+        String updateGermplasmIdMissingError = "BrAPI germplasm must have an existing germplasmDbId.";
         // Check that it throws an APIException
         BrApiGermplasm brApiGermplasm = BrApiGermplasm.builder()
                 .germplasmName("new test germplasm")
@@ -360,5 +364,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
         APIException exception = assertThrows(APIException.class, () -> {
             Optional<BrApiGermplasm> updateGermplasm = this.germplasmAPI.updateGermplasm(brApiGermplasm);
         });
+
+        assertEquals(updateGermplasmIdMissingError, exception.getMessage(), "Wrong error message");
     }
 }
