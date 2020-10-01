@@ -15,18 +15,17 @@
  * limitations under the License.
  */
 
-package org.brapi.v2.core.model;
+package org.brapi.v2.germplasm.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
-
-/**
- * An array of at least four positions where the first equals the last
- */
-@EqualsAndHashCode
-@ToString
-public class BrApiLinearRing extends ArrayList<BrApiPosition>  {
-
+@Data
+@SuperBuilder
+@NoArgsConstructor
+public class BrApiGermplasmDonor {
+    private String donorAccessionNumber;
+    private String donorInstituteCode;
+    private String germplasmPUI;
 }

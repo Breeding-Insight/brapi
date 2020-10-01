@@ -40,5 +40,10 @@
             <artifactId>validation-api</artifactId>
             <version>${javax.validation.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.filosganga</groupId>
+            <artifactId>geogson-core</artifactId>
+            <version>1.2.21</version>
+        </dependency>
     </dependencies>
 </project>

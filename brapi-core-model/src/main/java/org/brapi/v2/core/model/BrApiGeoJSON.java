@@ -17,6 +17,7 @@
 
 package org.brapi.v2.core.model;
 
+import com.github.filosganga.geogson.model.Geometry;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -28,8 +29,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class BrApiGeoJSON {
-  private BrApiOneOfGeoJSONGeometry geometry;
-
+  private Geometry geometry;
   private String type = "Feature";
-
 }

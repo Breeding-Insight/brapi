@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.brapi.v2.core.model;
+package org.brapi.v2.germplasm.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.brapi.v2.core.model.BrApiGeoJSON;
 
-import java.util.ArrayList;
-
-/**
- * An array of linear rings
- */
-@EqualsAndHashCode
-@ToString
-public class BrApiPolygon extends ArrayList<BrApiLinearRing>  {
+@Data
+@SuperBuilder
+@NoArgsConstructor
+public class BrApiGermplasmOrigin {
+    private String coordinateUncertainty;
+    private BrApiGeoJSON coordinates;
 }

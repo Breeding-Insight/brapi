@@ -17,5 +17,15 @@
 
 package org.brapi.client.v2.modules.germplasm;
 
+import static org.brapi.client.v2.BrAPIEndpoints_V2.getRootPath;
+
 public class BrAPIGermplasmEndpoints_V2 {
+
+    public static String getGermplasmPath() {
+        return getRootPath() + "/germplasm";
+    }
+
+    public static String getGermplasmByIdPath(String germplasmId) {
+        return String.format(getRootPath() + "/germplasm/%s", germplasmId);
+    }
 }

@@ -15,19 +15,17 @@
  * limitations under the License.
  */
 
-package org.brapi.v2.core.model;
+package org.brapi.v2.germplasm.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-
-/**
- * A single position
- */
-@EqualsAndHashCode
-@ToString
-public class BrApiPosition extends ArrayList<BigDecimal>  {
-
+@Data
+@SuperBuilder
+@NoArgsConstructor
+public class BrApiGermplasmStorageType {
+    // TODO: Change once Pete fixes brapi test server
+    private BrApiGermplasmStorageTypeCode code;
+    private String description;
 }
