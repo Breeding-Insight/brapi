@@ -28,4 +28,12 @@ public class BrAPICoreEndpoints_V2 extends BrAPIEndpoints_V2 {
     public static String getProgramsByIdPath(String programID) {
         return String.format(getRootPath() + "/programs/%s", programID);
     }
+
+    public static String getLocationsPath() {
+        return getRootPath() + "/locations";
+    }
+
+    public static String getLocationsByIdPath(String locationId) {
+        return getLocationsPath() + "/" + locationId;
+    }
 }
