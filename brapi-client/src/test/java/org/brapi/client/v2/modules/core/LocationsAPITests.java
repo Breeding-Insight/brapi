@@ -233,9 +233,35 @@ public class LocationsAPITests extends BrAPIClientTest {
     @Test
     @SneakyThrows
     @Order(2)
+    void getLocationsByExternalReferenceSourceSuccess() {
+        LocationsRequest locationsRequest = LocationsRequest.builder()
+                .externalReferenceSource(externalReferenceSource)
+                .build();
+
+        List<BrApiLocation> locations = locationsAPI.getLocations(locationsRequest);
+
+        assertEquals(true, locations.size() > 0, "List of locations was empty");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
     void getLocationsByLocationType() {
         LocationsRequest locationsRequest = LocationsRequest.builder()
                 .locationType(createdLocation.getLocationType())
+                .build();
+
+        List<BrApiLocation> locations = locationsAPI.getLocations(locationsRequest);
+
+        assertEquals(true, locations.size() > 0, "List of locations was empty");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getLocationsByLocationId() {
+        LocationsRequest locationsRequest = LocationsRequest.builder()
+                .locationDbId(createdLocation.getLocationDbId())
                 .build();
 
         List<BrApiLocation> locations = locationsAPI.getLocations(locationsRequest);
@@ -270,7 +296,39 @@ public class LocationsAPITests extends BrAPIClientTest {
         });
     }
 
+    @Test
+    @SneakyThrows
+    @Order(2)
+    public void updateLocationSuccess() {
+        BrApiLocation location = this.createdLocation;
+        location.setLocationName("updated_name");
 
+        // Check that it is a success and all data matches
+        Optional<BrApiLocation> updatedLocationResult = this.locationsAPI.updateLocation(location);
 
+        assertEquals(true, updatedLocationResult.isPresent(), "Location was not returned");
+        BrApiLocation updatedLocation = updatedLocationResult.get();
+        locationAssertEquals(location, updatedLocation);
+    }
+
+    @Test
+    @SneakyThrows
+    public void updateLocationMissingId() {
+        // Check that it throws an APIException
+        BrApiLocation brApiLocation = BrApiLocation.builder()
+                .locationName("new test location")
+                .build();
+
+        APIException exception = assertThrows(APIException.class, () -> {
+            Optional<BrApiLocation> updatedLocationResult = this.locationsAPI.updateLocation(brApiLocation);
+        });
+    }
+
+    @Test
+    public void updateLocationNull() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            Optional<BrApiLocation> location = this.locationsAPI.updateLocation(null);
+        });
+    }
 
 }

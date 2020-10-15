@@ -60,6 +60,21 @@ public class LocationsAPIUnitTests {
 
     @Test
     @SneakyThrows
+    void updateLocationsEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+
+        BrApiLocation location = BrApiLocation.builder()
+                .locationDbId("test")
+                .build();
+
+        Optional<BrApiLocation> brApiLocation = locationsAPI.updateLocation(location);
+
+        assertEquals(false, brApiLocation.isPresent(), "Empty optional was not returned.");
+    }
+
+    @Test
+    @SneakyThrows
     void getLocationsEmptyBody() {
         when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
                 .thenReturn(Optional.empty());

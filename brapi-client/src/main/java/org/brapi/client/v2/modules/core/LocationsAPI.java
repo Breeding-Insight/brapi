@@ -82,6 +82,29 @@ public class LocationsAPI extends BrAPIEndpoint {
         }
     }
 
+    public Optional<BrApiLocation> updateLocation(@NonNull BrApiLocation brApiLocation) throws HttpException, APIException {
+
+        if (brApiLocation.getLocationDbId() == null){
+            throw new APIException("BrAPI location must have an existing locationDbId.");
+        }
+
+        // Build our request
+        String endpoint = BrAPICoreEndpoints_V2.getLocationsByIdPath(brApiLocation.getLocationDbId());
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .data(brApiLocation)
+                .method(HttpMethod.PUT)
+                .build();
+
+        Optional<BrApiLocation> updateLocation = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiLocation resultResponse = gson.fromJson(resultJson, BrApiLocation.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return updateLocation;
+    }
+
     public List<BrApiLocation> getLocations(@NonNull LocationsRequest locationsRequest) throws HttpException, APIException {
 
         // Build our request
@@ -124,6 +147,5 @@ public class LocationsAPI extends BrAPIEndpoint {
 
         return searchResult;
     }
-
 
 }
