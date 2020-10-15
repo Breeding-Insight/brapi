@@ -28,6 +28,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -53,6 +54,26 @@ public class LocationsAPIUnitTests {
         when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
                 .thenReturn(Optional.empty());
         Optional<BrApiLocation> brApiLocation = locationsAPI.createLocation(new BrApiLocation());
+
+        assertEquals(false, brApiLocation.isPresent(), "Empty optional was not returned.");
+    }
+
+    @Test
+    @SneakyThrows
+    void getLocationsEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+        List<BrApiLocation> brApiLocations = locationsAPI.getLocations();
+
+        assertEquals(0, brApiLocations.size(), "List size is greater than 0");
+    }
+
+    @Test
+    @SneakyThrows
+    void getLocationsByIdEmptyBody() {
+        when(brAPIClient.execute(any(BrAPIRequest.class), any(ResponseHandlerFunction.class)))
+                .thenReturn(Optional.empty());
+        Optional<BrApiLocation> brApiLocation = locationsAPI.getLocationById("test");
 
         assertEquals(false, brApiLocation.isPresent(), "Empty optional was not returned.");
     }

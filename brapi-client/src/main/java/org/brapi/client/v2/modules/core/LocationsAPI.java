@@ -26,6 +26,7 @@ import org.brapi.client.v2.model.HttpMethod;
 import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpException;
 import org.brapi.v2.core.model.BrApiLocation;
+import org.brapi.v2.core.model.request.LocationsRequest;
 import org.brapi.v2.core.model.response.DataResponse;
 
 import java.lang.reflect.Type;
@@ -80,5 +81,49 @@ public class LocationsAPI extends BrAPIEndpoint {
             return Optional.empty();
         }
     }
+
+    public List<BrApiLocation> getLocations(@NonNull LocationsRequest locationsRequest) throws HttpException, APIException {
+
+        // Build our request
+        String endpoint = BrAPICoreEndpoints_V2.getLocationsPath();
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .parameters(locationsRequest.constructParameters())
+                .method(HttpMethod.GET)
+                .build();
+
+        List<BrApiLocation> searchResult = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            Type resultGsonType = new TypeToken<DataResponse<BrApiLocation>>() {
+            }.getType();
+            DataResponse<BrApiLocation> dataResponse = gson.fromJson(resultJson, resultGsonType);
+            return dataResponse.data();
+        }).orElse(new ArrayList<>());
+
+        return searchResult;
+    }
+
+    public List<BrApiLocation> getLocations() throws HttpException, APIException {
+        return getLocations(new LocationsRequest());
+    }
+
+    public Optional<BrApiLocation> getLocationById(@NonNull String locationId) throws HttpException, APIException {
+
+        // Build our request
+        String endpoint = BrAPICoreEndpoints_V2.getLocationsByIdPath(locationId);
+        BrAPIRequest request = BrAPIRequest.builder()
+                .target(endpoint)
+                .parameter("dataType", "application/json")
+                .method(HttpMethod.GET)
+                .build();
+
+        Optional<BrApiLocation> searchResult = getBrAPIClient().execute(request, (metadata, resultJson, gson) -> {
+            BrApiLocation resultResponse = gson.fromJson(resultJson, BrApiLocation.class);
+            return Optional.of(resultResponse);
+        }).orElse(Optional.empty());
+
+        return searchResult;
+    }
+
 
 }
