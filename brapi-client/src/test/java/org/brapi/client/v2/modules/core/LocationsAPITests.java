@@ -23,9 +23,11 @@ import com.github.filosganga.geogson.model.positions.SinglePosition;
 import lombok.SneakyThrows;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
+import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiGeoJSON;
 import org.brapi.v2.core.model.BrApiLocation;
+import org.brapi.v2.core.model.request.LocationsRequest;
 import org.junit.jupiter.api.*;
 import java.util.*;
 
@@ -190,4 +192,85 @@ public class LocationsAPITests extends BrAPIClientTest {
         assertEquals(brApiLocation.getLocationName(), createdLocations.get(0).getLocationName(), "Location name mismatch");
         assertEquals(brApiLocation2.getLocationName(), createdLocations.get(1).getLocationName(), "Location name mismatch");
     }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getLocationsSuccess() {
+        List<BrApiLocation> locations = locationsAPI.getLocations();
+
+        assertEquals(true, !locations.isEmpty(), "List of locations was empty");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getLocationsPageFilter() {
+
+        LocationsRequest baseRequest = LocationsRequest.builder()
+                .page(0)
+                .pageSize(1)
+                .build();
+
+        List<BrApiLocation> locations = locationsAPI.getLocations(baseRequest);
+
+        assertEquals(true, locations.size() == 1, "More than one location was returned");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getLocationsByExternalReferenceIdSuccess() {
+        LocationsRequest locationsRequest = LocationsRequest.builder()
+                .externalReferenceID(externalReferenceID)
+                .build();
+
+        List<BrApiLocation> locations = locationsAPI.getLocations(locationsRequest);
+
+        assertEquals(true, locations.size() > 0, "List of locations was empty");
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getLocationsByLocationType() {
+        LocationsRequest locationsRequest = LocationsRequest.builder()
+                .locationType(createdLocation.getLocationType())
+                .build();
+
+        List<BrApiLocation> locations = locationsAPI.getLocations(locationsRequest);
+
+        assertEquals(true, locations.size() > 0, "List of locations was empty");
+    }
+
+    @Test
+    public void getLocationByIdMissingId() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            Optional<BrApiLocation> location = locationsAPI.getLocationById(null);
+        });
+    }
+
+    @Test
+    @SneakyThrows
+    @Order(2)
+    void getLocationByIdSuccess() {
+        Optional<BrApiLocation> optionalBrApiLocation = locationsAPI.getLocationById(createdLocation.getLocationDbId());
+
+        assertEquals(true, optionalBrApiLocation.isPresent(), "An empty optional was returned");
+        BrApiLocation location = optionalBrApiLocation.get();
+        assertEquals(true, location.getLocationDbId() != null, "locationDbId was not parsed properly.");
+        locationAssertEquals(createdLocation, location);
+    }
+
+    @Test
+    @SneakyThrows
+    void getLocationByIdInvalid() {
+        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+            Optional<BrApiLocation> location = locationsAPI.getLocationById("badLocationId");
+        });
+    }
+
+
+
+
 }
