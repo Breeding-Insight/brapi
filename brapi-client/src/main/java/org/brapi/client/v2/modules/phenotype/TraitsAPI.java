@@ -48,7 +48,6 @@ public class TraitsAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getTraitsPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .parameters(traitsRequest.constructParameters())
                 .method(HttpMethod.GET)
                 .build();
@@ -77,7 +76,6 @@ public class TraitsAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getTraitsByIdPath(traitId);
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .method(HttpMethod.GET)
                 .build();
 
@@ -99,7 +97,6 @@ public class TraitsAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getTraitsPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiTraits)
                 .method(HttpMethod.POST)
                 .build();
@@ -136,7 +133,6 @@ public class TraitsAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getTraitsByIdPath(brApiTrait.getTraitDbId());
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiTrait)
                 .method(HttpMethod.PUT)
                 .build();

@@ -54,7 +54,6 @@ public class ScalesAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getScalesPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiScales)
                 .method(HttpMethod.POST)
                 .build();
@@ -92,7 +91,6 @@ public class ScalesAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getScalesByIdPath(brApiScale.getScaleDbId());
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiScale)
                 .method(HttpMethod.PUT)
                 .build();
@@ -111,7 +109,6 @@ public class ScalesAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getScalesPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .parameters(scalesRequest.constructParameters())
                 .method(HttpMethod.GET)
                 .build();
@@ -136,7 +133,6 @@ public class ScalesAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getScalesByIdPath(scaleId);
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .method(HttpMethod.GET)
                 .build();
 

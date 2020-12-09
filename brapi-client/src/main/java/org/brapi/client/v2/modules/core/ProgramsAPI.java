@@ -50,7 +50,6 @@ public class ProgramsAPI extends BrAPIEndpoint {
         String endpoint = BrAPICoreEndpoints_V2.getProgramsPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .parameters(programFilter.constructParameters())
                 .method(HttpMethod.GET)
                 .build();
@@ -79,7 +78,6 @@ public class ProgramsAPI extends BrAPIEndpoint {
         String endpoint = BrAPICoreEndpoints_V2.getProgramsByIdPath(programID);
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .method(HttpMethod.GET)
                 .build();
 
@@ -102,7 +100,6 @@ public class ProgramsAPI extends BrAPIEndpoint {
         String endpoint = BrAPICoreEndpoints_V2.getProgramsPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiPrograms)
                 .method(HttpMethod.POST)
                 .build();
@@ -139,7 +136,6 @@ public class ProgramsAPI extends BrAPIEndpoint {
         String endpoint = BrAPICoreEndpoints_V2.getProgramsByIdPath(brApiProgram.getProgramDbId());
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiProgram)
                 .method(HttpMethod.PUT)
                 .build();
