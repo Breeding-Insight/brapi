@@ -25,7 +25,7 @@ public class BrAPIClientTest {
     protected BrAPIClient client;
 
     public BrAPIClientTest() {
-        brapiTestServer = "https://test-server.brapi.org/";
+        brapiTestServer = "https://test-server.brapi.org";
         client = new BrAPIClient(brapiTestServer);
     }
 
