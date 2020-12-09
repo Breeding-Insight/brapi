@@ -54,7 +54,6 @@ public class VariablesAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getVariablesPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiVariables)
                 .method(HttpMethod.POST)
                 .build();
@@ -92,7 +91,6 @@ public class VariablesAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getVariablesByIdPath(brApiVariable.getObservationVariableDbId());
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiVariable)
                 .method(HttpMethod.PUT)
                 .build();
@@ -111,7 +109,6 @@ public class VariablesAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getVariablesPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .parameters(variablesRequest.constructParameters())
                 .method(HttpMethod.GET)
                 .build();
@@ -136,7 +133,6 @@ public class VariablesAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getVariablesByIdPath(variableId);
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .method(HttpMethod.GET)
                 .build();
 

@@ -54,7 +54,6 @@ public class MethodsAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getMethodsPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiMethods)
                 .method(HttpMethod.POST)
                 .build();
@@ -92,7 +91,6 @@ public class MethodsAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getMethodsByIdPath(brApiMethod.getMethodDbId());
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiMethod)
                 .method(HttpMethod.PUT)
                 .build();
@@ -111,7 +109,6 @@ public class MethodsAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getMethodsPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .parameters(methodsRequest.constructParameters())
                 .method(HttpMethod.GET)
                 .build();
@@ -136,7 +133,6 @@ public class MethodsAPI extends BrAPIEndpoint {
         String endpoint = BrAPIPhenotypeEndpoints_V2.getMethodsByIdPath(methodId);
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .method(HttpMethod.GET)
                 .build();
 

@@ -54,7 +54,6 @@ public class LocationsAPI extends BrAPIEndpoint {
         String endpoint = BrAPICoreEndpoints_V2.getLocationsPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiLocations)
                 .method(HttpMethod.POST)
                 .build();
@@ -92,7 +91,6 @@ public class LocationsAPI extends BrAPIEndpoint {
         String endpoint = BrAPICoreEndpoints_V2.getLocationsByIdPath(brApiLocation.getLocationDbId());
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiLocation)
                 .method(HttpMethod.PUT)
                 .build();
@@ -111,7 +109,6 @@ public class LocationsAPI extends BrAPIEndpoint {
         String endpoint = BrAPICoreEndpoints_V2.getLocationsPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .parameters(locationsRequest.constructParameters())
                 .method(HttpMethod.GET)
                 .build();
@@ -136,7 +133,6 @@ public class LocationsAPI extends BrAPIEndpoint {
         String endpoint = BrAPICoreEndpoints_V2.getLocationsByIdPath(locationId);
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .method(HttpMethod.GET)
                 .build();
 

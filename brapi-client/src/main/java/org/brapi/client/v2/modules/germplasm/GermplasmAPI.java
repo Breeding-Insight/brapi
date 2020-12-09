@@ -44,7 +44,6 @@ public class GermplasmAPI extends BrAPIEndpoint {
         String endpoint = BrAPIGermplasmEndpoints_V2.getGermplasmPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .parameters(germplasmFilter.constructParameters())
                 .method(HttpMethod.GET)
                 .build();
@@ -68,7 +67,6 @@ public class GermplasmAPI extends BrAPIEndpoint {
         String endpoint =BrAPIGermplasmEndpoints_V2.getGermplasmByIdPath(germplasmId);
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .method(HttpMethod.GET)
                 .build();
 
@@ -91,7 +89,6 @@ public class GermplasmAPI extends BrAPIEndpoint {
         String endpoint = BrAPIGermplasmEndpoints_V2.getGermplasmPath();
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiGermplasm)
                 .method(HttpMethod.POST)
                 .build();
@@ -128,7 +125,6 @@ public class GermplasmAPI extends BrAPIEndpoint {
         String endpoint = BrAPIGermplasmEndpoints_V2.getGermplasmByIdPath(brApiGermplasm.getGermplasmDbId());
         BrAPIRequest request = BrAPIRequest.builder()
                 .target(endpoint)
-                .parameter("dataType", "application/json")
                 .data(brApiGermplasm)
                 .method(HttpMethod.PUT)
                 .build();
