@@ -21,6 +21,7 @@ import lombok.SneakyThrows;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ResponseHandlerFunction;
 import org.brapi.client.v2.model.BrAPIRequest;
+import org.brapi.client.v2.modules.germplasm.GermplasmAPI;
 import org.brapi.v2.germplasm.model.BrApiGermplasm;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

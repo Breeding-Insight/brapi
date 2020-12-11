@@ -18,8 +18,10 @@
 package org.brapi.client.v2.modules.phenotype;
 
 import lombok.SneakyThrows;
+
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
+import org.brapi.client.v2.modules.phenotype.TraitsAPI;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.phenotyping.model.BrApiTrait;
 import org.brapi.v2.phenotyping.model.request.TraitsRequest;

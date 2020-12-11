@@ -22,11 +22,19 @@ import org.brapi.client.v2.BrAPIEndpoints_V2;
 public class BrAPICoreEndpoints_V2 extends BrAPIEndpoints_V2 {
 
     public static String getProgramsPath() {
-        return getRootPath() + "/programs";
+        return getRootPath() + "/trials";
     }
 
-    public static String getProgramsByIdPath(String programID) {
-        return String.format(getRootPath() + "/programs/%s", programID);
+    public static String getProgramsByIdPath(String trialId) {
+        return String.format(getRootPath() + "/trials/%s", trialId);
+    }
+
+    public static String getTrialsPath() {
+        return getRootPath() + "/trials";
+    }
+
+    public static String getTrialsByIdPath(String trialId) {
+        return String.format(getRootPath() + "/trials/%s", trialId);
     }
 
     public static String getLocationsPath() {

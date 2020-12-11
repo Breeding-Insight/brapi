@@ -18,9 +18,11 @@
 package org.brapi.client.v2.modules.phenotype;
 
 import lombok.SneakyThrows;
+
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
+import org.brapi.client.v2.modules.phenotype.MethodsAPI;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiOntologyReference;
 import org.brapi.v2.phenotyping.model.BrApiMethod;

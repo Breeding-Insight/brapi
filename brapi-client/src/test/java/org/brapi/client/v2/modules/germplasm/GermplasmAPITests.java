@@ -21,9 +21,11 @@ import com.github.filosganga.geogson.model.Coordinates;
 import com.github.filosganga.geogson.model.Point;
 import com.github.filosganga.geogson.model.positions.SinglePosition;
 import lombok.SneakyThrows;
+
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.APIException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
+import org.brapi.client.v2.modules.germplasm.GermplasmAPI;
 import org.brapi.v2.core.model.BrApiExternalReference;
 import org.brapi.v2.core.model.BrApiGeoJSON;
 import org.brapi.v2.germplasm.model.*;

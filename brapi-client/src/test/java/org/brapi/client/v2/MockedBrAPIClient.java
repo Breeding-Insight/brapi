@@ -20,6 +20,9 @@ package org.brapi.client.v2;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import okhttp3.*;
+
+import org.brapi.client.v2.BrAPIClient;
+import org.brapi.client.v2.ResponseHandlerFunction;
 import org.brapi.client.v2.model.BrAPIRequest;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;

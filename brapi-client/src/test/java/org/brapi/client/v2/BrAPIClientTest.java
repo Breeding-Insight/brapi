@@ -17,16 +17,19 @@
 
 package org.brapi.client.v2;
 
+import io.swagger.client.org.brapi.client.ApiClient;
 import org.brapi.client.v2.BrAPIClient;
 
 public class BrAPIClientTest {
 
     protected String brapiTestServer;
     protected BrAPIClient client;
+    protected ApiClient apiClient;
 
     public BrAPIClientTest() {
-        brapiTestServer = "https://test-server.brapi.org/";
+        brapiTestServer = "https://test-server.brapi.org/brapi/v2";
         client = new BrAPIClient(brapiTestServer);
+        apiClient = new ApiClient().setBasePath(brapiTestServer);
     }
 
 }
