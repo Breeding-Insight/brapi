@@ -39,10 +39,8 @@
   </properties>
 
   <modules>
-    <module>brapi-core-model</module>
-    <module>brapi-pheno-model</module>
-    <module>brapi-germplasm-model</module>
-    <module>brapi-client</module>
+    <module>brapi-java-model</module>
+    <module>brapi-java-client</module>
   </modules>
 
   <dependencies>
