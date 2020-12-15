@@ -24,9 +24,9 @@ import org.brapi.client.v2.ApiClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.BrAPIRequest;
 import org.brapi.client.v2.model.queryParams.phenotype.ScaleQueryParams;
-import org.brapi.v2.model.pheno.Scale;
-import org.brapi.v2.model.pheno.ScaleListResponse;
-import org.brapi.v2.model.pheno.ScaleSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIScale;
+import org.brapi.v2.model.pheno.BrAPIScaleListResponse;
+import org.brapi.v2.model.pheno.BrAPIScaleSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -60,7 +60,7 @@ public class ScalesAPIUnitTests {
     @SneakyThrows
     void createScalesEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<ScaleListResponse> brApiScale = scalesAPI.scalesPost(Arrays.asList(new Scale()));
+        ApiResponse<BrAPIScaleListResponse> brApiScale = scalesAPI.scalesPost(Arrays.asList(new BrAPIScale()));
 
         assertNotNull(brApiScale, "Empty optional was not returned.");
     }
@@ -70,9 +70,9 @@ public class ScalesAPIUnitTests {
     void updateScalesEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
 
-        Scale scale = new Scale().scaleDbId("test");
+        BrAPIScale scale = new BrAPIScale().scaleDbId("test");
 
-        ApiResponse<ScaleSingleResponse> brApiScale = scalesAPI.scalesScaleDbIdPut("test", scale);
+        ApiResponse<BrAPIScaleSingleResponse> brApiScale = scalesAPI.scalesScaleDbIdPut("test", scale);
 
         assertNotNull(brApiScale, "Empty optional was not returned.");
     }
@@ -81,7 +81,7 @@ public class ScalesAPIUnitTests {
     @SneakyThrows
     void getScalesEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<ScaleListResponse> brApiScales = scalesAPI.scalesGet(new ScaleQueryParams());
+        ApiResponse<BrAPIScaleListResponse> brApiScales = scalesAPI.scalesGet(new ScaleQueryParams());
 
         assertEquals(0, brApiScales.getBody().getResult().getData().size(), "List size is greater than 0");
     }
@@ -90,7 +90,7 @@ public class ScalesAPIUnitTests {
     @SneakyThrows
     void getScalesByIdEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<ScaleSingleResponse> brApiScale = scalesAPI.scalesScaleDbIdGet("test");
+        ApiResponse<BrAPIScaleSingleResponse> brApiScale = scalesAPI.scalesScaleDbIdGet("test");
 
         assertNotNull(brApiScale, "Empty optional was not returned.");
     }

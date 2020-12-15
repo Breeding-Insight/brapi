@@ -15,7 +15,7 @@ package org.brapi.client.v2.modules.phenotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.OntologyQueryParams;
-import org.brapi.v2.model.pheno.OntologyListResponse;
+import org.brapi.v2.model.pheno.BrAPIOntologyListResponse;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -40,7 +40,7 @@ public class OntologiesApiTest {
         Integer pageSize = null;
         
         OntologyQueryParams queryParams = new OntologyQueryParams();
-        ApiResponse<OntologyListResponse> response = api.ontologiesGet(queryParams);
+        ApiResponse<BrAPIOntologyListResponse> response = api.ontologiesGet(queryParams);
 
         // TODO: test validations
     }

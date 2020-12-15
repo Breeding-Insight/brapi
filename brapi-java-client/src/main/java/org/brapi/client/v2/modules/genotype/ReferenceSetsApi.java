@@ -25,9 +25,9 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.ReferenceSetQueryParams;
-import org.brapi.v2.model.geno.ReferenceSetsListResponse;
-import org.brapi.v2.model.geno.ReferenceSetsSearchRequest;
-import org.brapi.v2.model.geno.ReferenceSetsSingleResponse;
+import org.brapi.v2.model.geno.BrAPIReferenceSetsListResponse;
+import org.brapi.v2.model.geno.BrAPIReferenceSetsSearchRequest;
+import org.brapi.v2.model.geno.BrAPIReferenceSetsSingleResponse;
 
 public class ReferenceSetsApi {
     private ApiClient apiClient;
@@ -104,9 +104,9 @@ public class ReferenceSetsApi {
      * @return ApiResponse&lt;ReferenceSetsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ReferenceSetsListResponse> referencesetsGet(ReferenceSetQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIReferenceSetsListResponse> referencesetsGet(ReferenceSetQueryParams queryParams) throws ApiException {
         Call call = referencesetsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<ReferenceSetsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIReferenceSetsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -118,9 +118,9 @@ public class ReferenceSetsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call referencesetsGetAsync(ReferenceSetQueryParams queryParams, final ApiCallback<ReferenceSetsListResponse> callback) throws ApiException {
+    public Call referencesetsGetAsync(ReferenceSetQueryParams queryParams, final ApiCallback<BrAPIReferenceSetsListResponse> callback) throws ApiException {
         Call call = referencesetsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<ReferenceSetsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIReferenceSetsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -173,9 +173,9 @@ public class ReferenceSetsApi {
      * @return ApiResponse&lt;ReferenceSetsSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ReferenceSetsSingleResponse> referencesetsReferenceSetDbIdGet(String referenceSetDbId) throws ApiException {
+    public ApiResponse<BrAPIReferenceSetsSingleResponse> referencesetsReferenceSetDbIdGet(String referenceSetDbId) throws ApiException {
         Call call = referencesetsReferenceSetDbIdGetCall(referenceSetDbId);
-        Type localVarReturnType = new TypeToken<ReferenceSetsSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIReferenceSetsSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -188,9 +188,9 @@ public class ReferenceSetsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call referencesetsReferenceSetDbIdGetAsync(String referenceSetDbId, final ApiCallback<ReferenceSetsSingleResponse> callback) throws ApiException {
+    public Call referencesetsReferenceSetDbIdGetAsync(String referenceSetDbId, final ApiCallback<BrAPIReferenceSetsSingleResponse> callback) throws ApiException {
         Call call = referencesetsReferenceSetDbIdGetCall(referenceSetDbId);
-        Type localVarReturnType = new TypeToken<ReferenceSetsSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIReferenceSetsSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -203,7 +203,7 @@ public class ReferenceSetsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call searchReferencesetsPostCall(ReferenceSetsSearchRequest body) throws ApiException {
+    private Call searchReferencesetsPostCall(BrAPIReferenceSetsSearchRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -242,9 +242,9 @@ public class ReferenceSetsApi {
      * @return ApiResponse&lt;ReferenceSetsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ReferenceSetsListResponse> searchReferencesetsPost(ReferenceSetsSearchRequest body) throws ApiException {
+    public ApiResponse<BrAPIReferenceSetsListResponse> searchReferencesetsPost(BrAPIReferenceSetsSearchRequest body) throws ApiException {
         Call call = searchReferencesetsPostCall(body);
-        Type localVarReturnType = new TypeToken<ReferenceSetsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIReferenceSetsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -257,9 +257,9 @@ public class ReferenceSetsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchReferencesetsPostAsync(ReferenceSetsSearchRequest body, final ApiCallback<ReferenceSetsListResponse> callback) throws ApiException {
+    public Call searchReferencesetsPostAsync(BrAPIReferenceSetsSearchRequest body, final ApiCallback<BrAPIReferenceSetsListResponse> callback) throws ApiException {
         Call call = searchReferencesetsPostCall(body);
-        Type localVarReturnType = new TypeToken<ReferenceSetsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIReferenceSetsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -318,9 +318,9 @@ public class ReferenceSetsApi {
      * @return ApiResponse&lt;ReferenceSetsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ReferenceSetsListResponse> searchReferencesetsSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIReferenceSetsListResponse> searchReferencesetsSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchReferencesetsSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<ReferenceSetsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIReferenceSetsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -335,9 +335,9 @@ public class ReferenceSetsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchReferencesetsSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<ReferenceSetsListResponse> callback) throws ApiException {
+    public Call searchReferencesetsSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<BrAPIReferenceSetsListResponse> callback) throws ApiException {
         Call call = searchReferencesetsSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<ReferenceSetsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIReferenceSetsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

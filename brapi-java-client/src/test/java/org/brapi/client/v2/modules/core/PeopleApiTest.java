@@ -15,10 +15,10 @@ package org.brapi.client.v2.modules.core;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.PeopleQueryParams;
-import org.brapi.v2.model.core.PersonListResponse;
-import org.brapi.v2.model.core.PersonNewRequest;
-import org.brapi.v2.model.core.PersonSearchRequest;
-import org.brapi.v2.model.core.PersonSingleResponse;
+import org.brapi.v2.model.core.BrAPIPersonListResponse;
+import org.brapi.v2.model.core.BrAPIPersonNewRequest;
+import org.brapi.v2.model.core.BrAPIPersonSearchRequest;
+import org.brapi.v2.model.core.BrAPIPersonSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class PeopleApiTest {
         Integer pageSize = null;
         
         PeopleQueryParams queryParams = new PeopleQueryParams();
-        ApiResponse<PersonListResponse> response = api.peopleGet(queryParams);
+        ApiResponse<BrAPIPersonListResponse> response = api.peopleGet(queryParams);
 
         // TODO: test validations
     }
@@ -69,7 +69,7 @@ public class PeopleApiTest {
     public void peoplePersonDbIdGetTest() throws ApiException {
         String personDbId = null;
         
-        ApiResponse<PersonSingleResponse> response = api.peoplePersonDbIdGet(personDbId);
+        ApiResponse<BrAPIPersonSingleResponse> response = api.peoplePersonDbIdGet(personDbId);
 
         // TODO: test validations
     }
@@ -84,9 +84,9 @@ public class PeopleApiTest {
     @Test
     public void peoplePersonDbIdPutTest() throws ApiException {
         String personDbId = null;
-        PersonNewRequest body = null;
+        BrAPIPersonNewRequest body = null;
         
-        ApiResponse<PersonSingleResponse> response = api.peoplePersonDbIdPut(personDbId, body);
+        ApiResponse<BrAPIPersonSingleResponse> response = api.peoplePersonDbIdPut(personDbId, body);
 
         // TODO: test validations
     }
@@ -100,9 +100,9 @@ public class PeopleApiTest {
      */
     @Test
     public void peoplePostTest() throws ApiException {
-        List<PersonNewRequest> body = null;
+        List<BrAPIPersonNewRequest> body = null;
         
-        ApiResponse<PersonListResponse> response = api.peoplePost(body);
+        ApiResponse<BrAPIPersonListResponse> response = api.peoplePost(body);
 
         // TODO: test validations
     }
@@ -116,9 +116,9 @@ public class PeopleApiTest {
      */
     @Test
     public void searchPeoplePostTest() throws ApiException {
-        PersonSearchRequest body = null;
+        BrAPIPersonSearchRequest body = null;
         
-        ApiResponse<PersonListResponse> response = api.searchPeoplePost(body);
+        ApiResponse<BrAPIPersonListResponse> response = api.searchPeoplePost(body);
 
         // TODO: test validations
     }
@@ -136,7 +136,7 @@ public class PeopleApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<PersonListResponse> response = api.searchPeopleSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIPersonListResponse> response = api.searchPeopleSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

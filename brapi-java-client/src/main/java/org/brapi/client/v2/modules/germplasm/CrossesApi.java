@@ -27,10 +27,10 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.CrossQueryParams;
 import org.brapi.client.v2.model.queryParams.germplasm.PlannedCrossQueryParams;
-import org.brapi.v2.model.germ.CrossNewRequest;
-import org.brapi.v2.model.germ.CrossesListResponse;
-import org.brapi.v2.model.germ.PlannedCrossNewRequest;
-import org.brapi.v2.model.germ.PlannedCrossesListResponse;
+import org.brapi.v2.model.germ.BrAPICrossNewRequest;
+import org.brapi.v2.model.germ.BrAPICrossesListResponse;
+import org.brapi.v2.model.germ.BrAPIPlannedCrossNewRequest;
+import org.brapi.v2.model.germ.BrAPIPlannedCrossesListResponse;
 
 public class CrossesApi {
     private ApiClient apiClient;
@@ -107,9 +107,9 @@ public class CrossesApi {
      * @return ApiResponse&lt;CrossesListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CrossesListResponse> crossesGet(CrossQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPICrossesListResponse> crossesGet(CrossQueryParams queryParams) throws ApiException {
         Call call = crossesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<CrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossesListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -121,9 +121,9 @@ public class CrossesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call crossesGetAsync(CrossQueryParams queryParams, final ApiCallback<CrossesListResponse> callback) throws ApiException {
+    public Call crossesGetAsync(CrossQueryParams queryParams, final ApiCallback<BrAPICrossesListResponse> callback) throws ApiException {
         Call call = crossesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<CrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossesListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -136,7 +136,7 @@ public class CrossesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call crossesPostCall(List<CrossNewRequest> body) throws ApiException {
+    private Call crossesPostCall(List<BrAPICrossNewRequest> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -175,9 +175,9 @@ public class CrossesApi {
      * @return ApiResponse&lt;CrossesListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CrossesListResponse> crossesPost(List<CrossNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPICrossesListResponse> crossesPost(List<BrAPICrossNewRequest> body) throws ApiException {
         Call call = crossesPostCall(body);
-        Type localVarReturnType = new TypeToken<CrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossesListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -190,9 +190,9 @@ public class CrossesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call crossesPostAsync(List<CrossNewRequest> body, final ApiCallback<CrossesListResponse> callback) throws ApiException {
+    public Call crossesPostAsync(List<BrAPICrossNewRequest> body, final ApiCallback<BrAPICrossesListResponse> callback) throws ApiException {
         Call call = crossesPostCall(body);
-        Type localVarReturnType = new TypeToken<CrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossesListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -205,7 +205,7 @@ public class CrossesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call crossesPutCall(Map<String, CrossNewRequest> body) throws ApiException {
+    private Call crossesPutCall(Map<String, BrAPICrossNewRequest> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -244,9 +244,9 @@ public class CrossesApi {
      * @return ApiResponse&lt;CrossesListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CrossesListResponse> crossesPut(Map<String, CrossNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPICrossesListResponse> crossesPut(Map<String, BrAPICrossNewRequest> body) throws ApiException {
         Call call = crossesPutCall(body);
-        Type localVarReturnType = new TypeToken<CrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossesListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -259,9 +259,9 @@ public class CrossesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call crossesPutAsync(Map<String, CrossNewRequest> body, final ApiCallback<CrossesListResponse> callback) throws ApiException {
+    public Call crossesPutAsync(Map<String, BrAPICrossNewRequest> body, final ApiCallback<BrAPICrossesListResponse> callback) throws ApiException {
         Call call = crossesPutCall(body);
-        Type localVarReturnType = new TypeToken<CrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossesListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -321,9 +321,9 @@ public class CrossesApi {
      * @return ApiResponse&lt;PlannedCrossesListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<PlannedCrossesListResponse> plannedcrossesGet(PlannedCrossQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIPlannedCrossesListResponse> plannedcrossesGet(PlannedCrossQueryParams queryParams) throws ApiException {
         Call call = plannedcrossesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<PlannedCrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIPlannedCrossesListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -335,9 +335,9 @@ public class CrossesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call plannedcrossesGetAsync(PlannedCrossQueryParams queryParams, final ApiCallback<PlannedCrossesListResponse> callback) throws ApiException {
+    public Call plannedcrossesGetAsync(PlannedCrossQueryParams queryParams, final ApiCallback<BrAPIPlannedCrossesListResponse> callback) throws ApiException {
         Call call = plannedcrossesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<PlannedCrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIPlannedCrossesListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -350,7 +350,7 @@ public class CrossesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call plannedcrossesPostCall(List<PlannedCrossNewRequest> body) throws ApiException {
+    private Call plannedcrossesPostCall(List<BrAPIPlannedCrossNewRequest> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -389,9 +389,9 @@ public class CrossesApi {
      * @return ApiResponse&lt;PlannedCrossesListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<PlannedCrossesListResponse> plannedcrossesPost(List<PlannedCrossNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPIPlannedCrossesListResponse> plannedcrossesPost(List<BrAPIPlannedCrossNewRequest> body) throws ApiException {
         Call call = plannedcrossesPostCall(body);
-        Type localVarReturnType = new TypeToken<PlannedCrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIPlannedCrossesListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -404,9 +404,9 @@ public class CrossesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call plannedcrossesPostAsync(List<PlannedCrossNewRequest> body, final ApiCallback<PlannedCrossesListResponse> callback) throws ApiException {
+    public Call plannedcrossesPostAsync(List<BrAPIPlannedCrossNewRequest> body, final ApiCallback<BrAPIPlannedCrossesListResponse> callback) throws ApiException {
         Call call = plannedcrossesPostCall(body);
-        Type localVarReturnType = new TypeToken<PlannedCrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIPlannedCrossesListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -419,7 +419,7 @@ public class CrossesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call plannedcrossesPutCall(Map<String, PlannedCrossNewRequest> body) throws ApiException {
+    private Call plannedcrossesPutCall(Map<String, BrAPIPlannedCrossNewRequest> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -458,9 +458,9 @@ public class CrossesApi {
      * @return ApiResponse&lt;PlannedCrossesListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<PlannedCrossesListResponse> plannedcrossesPut(Map<String, PlannedCrossNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPIPlannedCrossesListResponse> plannedcrossesPut(Map<String, BrAPIPlannedCrossNewRequest> body) throws ApiException {
         Call call = plannedcrossesPutCall(body);
-        Type localVarReturnType = new TypeToken<PlannedCrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIPlannedCrossesListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -473,9 +473,9 @@ public class CrossesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call plannedcrossesPutAsync(Map<String, PlannedCrossNewRequest> body, final ApiCallback<PlannedCrossesListResponse> callback) throws ApiException {
+    public Call plannedcrossesPutAsync(Map<String, BrAPIPlannedCrossNewRequest> body, final ApiCallback<BrAPIPlannedCrossesListResponse> callback) throws ApiException {
         Call call = plannedcrossesPutCall(body);
-        Type localVarReturnType = new TypeToken<PlannedCrossesListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIPlannedCrossesListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

@@ -25,8 +25,8 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
-import org.brapi.v2.model.geno.CallsListResponse;
-import org.brapi.v2.model.geno.CallsSearchRequest;
+import org.brapi.v2.model.geno.BrAPICallsListResponse;
+import org.brapi.v2.model.geno.BrAPICallsSearchRequest;
 
 public class CallsApi {
     private ApiClient apiClient;
@@ -109,9 +109,9 @@ public class CallsApi {
      * @return ApiResponse&lt;CallsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CallsListResponse> callsGet(CallQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPICallsListResponse> callsGet(CallQueryParams queryParams) throws ApiException {
         Call call = callsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<CallsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -123,9 +123,9 @@ public class CallsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call callsGetAsync(CallQueryParams queryParams, final ApiCallback<CallsListResponse> callback) throws ApiException {
+    public Call callsGetAsync(CallQueryParams queryParams, final ApiCallback<BrAPICallsListResponse> callback) throws ApiException {
         Call call = callsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<CallsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -138,7 +138,7 @@ public class CallsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call searchCallsPostCall(CallsSearchRequest body) throws ApiException {
+    private Call searchCallsPostCall(BrAPICallsSearchRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -177,9 +177,9 @@ public class CallsApi {
      * @return ApiResponse&lt;CallsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CallsListResponse> searchCallsPost(CallsSearchRequest body) throws ApiException {
+    public ApiResponse<BrAPICallsListResponse> searchCallsPost(BrAPICallsSearchRequest body) throws ApiException {
         Call call = searchCallsPostCall(body);
-        Type localVarReturnType = new TypeToken<CallsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -192,9 +192,9 @@ public class CallsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchCallsPostAsync(CallsSearchRequest body, final ApiCallback<CallsListResponse> callback) throws ApiException {
+    public Call searchCallsPostAsync(BrAPICallsSearchRequest body, final ApiCallback<BrAPICallsListResponse> callback) throws ApiException {
         Call call = searchCallsPostCall(body);
-        Type localVarReturnType = new TypeToken<CallsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -255,9 +255,9 @@ public class CallsApi {
      * @return ApiResponse&lt;CallsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CallsListResponse> searchCallsSearchResultsDbIdGet(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPICallsListResponse> searchCallsSearchResultsDbIdGet(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
         Call call = searchCallsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, pageSize);
-        Type localVarReturnType = new TypeToken<CallsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -272,9 +272,9 @@ public class CallsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchCallsSearchResultsDbIdGetAsync(String searchResultsDbId, String pageToken, Integer pageSize, final ApiCallback<CallsListResponse> callback) throws ApiException {
+    public Call searchCallsSearchResultsDbIdGetAsync(String searchResultsDbId, String pageToken, Integer pageSize, final ApiCallback<BrAPICallsListResponse> callback) throws ApiException {
         Call call = searchCallsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, pageSize);
-        Type localVarReturnType = new TypeToken<CallsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

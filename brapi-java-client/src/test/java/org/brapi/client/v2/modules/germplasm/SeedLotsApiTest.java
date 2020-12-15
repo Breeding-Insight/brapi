@@ -16,11 +16,11 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.SeedLotQueryParams;
 import org.brapi.client.v2.model.queryParams.germplasm.SeedLotTransactionQueryParams;
-import org.brapi.v2.model.germ.SeedLotListResponse;
-import org.brapi.v2.model.germ.SeedLotNewRequest;
-import org.brapi.v2.model.germ.SeedLotNewTransactionRequest;
-import org.brapi.v2.model.germ.SeedLotSingleResponse;
-import org.brapi.v2.model.germ.SeedLotTransactionListResponse;
+import org.brapi.v2.model.germ.BrAPISeedLotListResponse;
+import org.brapi.v2.model.germ.BrAPISeedLotNewRequest;
+import org.brapi.v2.model.germ.BrAPISeedLotNewTransactionRequest;
+import org.brapi.v2.model.germ.BrAPISeedLotSingleResponse;
+import org.brapi.v2.model.germ.BrAPISeedLotTransactionListResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class SeedLotsApiTest {
         Integer pageSize = null;
         
         SeedLotQueryParams queryParams = new SeedLotQueryParams();
-        ApiResponse<SeedLotListResponse> response = api.seedlotsGet(queryParams);
+        ApiResponse<BrAPISeedLotListResponse> response = api.seedlotsGet(queryParams);
 
         // TODO: test validations
     }
@@ -67,9 +67,9 @@ public class SeedLotsApiTest {
      */
     @Test
     public void seedlotsPostTest() throws ApiException {
-        List<SeedLotNewRequest> body = null;
+        List<BrAPISeedLotNewRequest> body = null;
         
-        ApiResponse<SeedLotListResponse> response = api.seedlotsPost(body);
+        ApiResponse<BrAPISeedLotListResponse> response = api.seedlotsPost(body);
 
         // TODO: test validations
     }
@@ -85,7 +85,7 @@ public class SeedLotsApiTest {
     public void seedlotsSeedLotDbIdGetTest() throws ApiException {
         String seedLotDbId = null;
         
-        ApiResponse<SeedLotSingleResponse> response = api.seedlotsSeedLotDbIdGet(seedLotDbId);
+        ApiResponse<BrAPISeedLotSingleResponse> response = api.seedlotsSeedLotDbIdGet(seedLotDbId);
 
         // TODO: test validations
     }
@@ -100,9 +100,9 @@ public class SeedLotsApiTest {
     @Test
     public void seedlotsSeedLotDbIdPutTest() throws ApiException {
         String seedLotDbId = null;
-        SeedLotNewRequest body = null;
+        BrAPISeedLotNewRequest body = null;
         
-        ApiResponse<SeedLotSingleResponse> response = api.seedlotsSeedLotDbIdPut(seedLotDbId, body);
+        ApiResponse<BrAPISeedLotSingleResponse> response = api.seedlotsSeedLotDbIdPut(seedLotDbId, body);
 
         // TODO: test validations
     }
@@ -122,7 +122,7 @@ public class SeedLotsApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<SeedLotTransactionListResponse> response = api.seedlotsSeedLotDbIdTransactionsGet(seedLotDbId, transactionDbId, transactionDirection, page, pageSize);
+        ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsSeedLotDbIdTransactionsGet(seedLotDbId, transactionDbId, transactionDirection, page, pageSize);
 
         // TODO: test validations
     }
@@ -145,7 +145,7 @@ public class SeedLotsApiTest {
         Integer pageSize = null;
         
         SeedLotTransactionQueryParams queryParams = new SeedLotTransactionQueryParams();
-        ApiResponse<SeedLotTransactionListResponse> response = api.seedlotsTransactionsGet(queryParams);
+        ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsTransactionsGet(queryParams);
 
         // TODO: test validations
     }
@@ -159,9 +159,9 @@ public class SeedLotsApiTest {
      */
     @Test
     public void seedlotsTransactionsPostTest() throws ApiException {
-        List<SeedLotNewTransactionRequest> body = null;
+        List<BrAPISeedLotNewTransactionRequest> body = null;
         
-        ApiResponse<SeedLotTransactionListResponse> response = api.seedlotsTransactionsPost(body);
+        ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsTransactionsPost(body);
 
         // TODO: test validations
     }

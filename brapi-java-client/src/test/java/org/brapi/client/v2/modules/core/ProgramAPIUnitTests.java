@@ -23,10 +23,10 @@ import okhttp3.Call;
 import org.brapi.client.v2.ApiClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.BrAPIRequest;
-import org.brapi.v2.model.core.Program;
-import org.brapi.v2.model.core.ProgramListResponse;
-import org.brapi.v2.model.core.ProgramNewRequest;
-import org.brapi.v2.model.core.ProgramSingleResponse;
+import org.brapi.v2.model.core.BrAPIProgram;
+import org.brapi.v2.model.core.BrAPIProgramListResponse;
+import org.brapi.v2.model.core.BrAPIProgramNewRequest;
+import org.brapi.v2.model.core.BrAPIProgramSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -61,7 +61,7 @@ public class ProgramAPIUnitTests {
     @SneakyThrows
     public void getProgramsEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<ProgramListResponse> brApiPrograms = programsAPI.programsGet(null);
+        ApiResponse<BrAPIProgramListResponse> brApiPrograms = programsAPI.programsGet(null);
 
         assertEquals(0, brApiPrograms.getBody().getResult().getData().size(), "List size is greater than 0");
     }
@@ -70,7 +70,7 @@ public class ProgramAPIUnitTests {
     @SneakyThrows
     public void getProgramByIdEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<ProgramSingleResponse> brApiProgram = programsAPI.programsProgramDbIdGet("test");
+        ApiResponse<BrAPIProgramSingleResponse> brApiProgram = programsAPI.programsProgramDbIdGet("test");
 
         assertNotNull(brApiProgram, "BrAPI program was not empty");
     }
@@ -79,10 +79,10 @@ public class ProgramAPIUnitTests {
     @SneakyThrows
     public void createProgramsEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        List<ProgramNewRequest> brApiPrograms = new ArrayList<>();
-        ProgramNewRequest brApiProgram = new ProgramNewRequest().programName("test");
+        List<BrAPIProgramNewRequest> brApiPrograms = new ArrayList<>();
+        BrAPIProgramNewRequest brApiProgram = new BrAPIProgramNewRequest().programName("test");
         brApiPrograms.add(brApiProgram);
-        ApiResponse<ProgramListResponse> createdBrAPIPrograms = programsAPI.programsPost(brApiPrograms);
+        ApiResponse<BrAPIProgramListResponse> createdBrAPIPrograms = programsAPI.programsPost(brApiPrograms);
 
         assertEquals(0, createdBrAPIPrograms.getBody().getResult().getData().size(), "List size is greater than 0");
     }
@@ -91,8 +91,8 @@ public class ProgramAPIUnitTests {
     @SneakyThrows
     public void createProgramEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ProgramNewRequest brApiProgram = new ProgramNewRequest().programName("test");
-        ApiResponse<ProgramListResponse> brApiPrograms = programsAPI.programsPost(Arrays.asList(brApiProgram));
+        BrAPIProgramNewRequest brApiProgram = new BrAPIProgramNewRequest().programName("test");
+        ApiResponse<BrAPIProgramListResponse> brApiPrograms = programsAPI.programsPost(Arrays.asList(brApiProgram));
 
         assertNotNull(brApiPrograms, "BrAPI program was not empty");
     }
@@ -102,7 +102,7 @@ public class ProgramAPIUnitTests {
     public void updateProgramEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
 
-        ApiResponse<ProgramSingleResponse> brApiPrograms = programsAPI.programsProgramDbIdPut("fake DbId", null);
+        ApiResponse<BrAPIProgramSingleResponse> brApiPrograms = programsAPI.programsProgramDbIdPut("fake DbId", null);
 
         assertNotNull(brApiPrograms, "BrAPI program was not empty");
     }

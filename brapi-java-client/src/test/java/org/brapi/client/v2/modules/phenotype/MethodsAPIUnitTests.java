@@ -24,9 +24,9 @@ import org.brapi.client.v2.ApiClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.BrAPIRequest;
 import org.brapi.client.v2.model.queryParams.phenotype.MethodQueryParams;
-import org.brapi.v2.model.pheno.Method;
-import org.brapi.v2.model.pheno.MethodListResponse;
-import org.brapi.v2.model.pheno.MethodSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIMethod;
+import org.brapi.v2.model.pheno.BrAPIMethodListResponse;
+import org.brapi.v2.model.pheno.BrAPIMethodSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -60,7 +60,7 @@ public class MethodsAPIUnitTests {
     @SneakyThrows
     void createMethodsEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<MethodListResponse> brApiMethod = methodsAPI.methodsPost(Arrays.asList(new Method()));
+        ApiResponse<BrAPIMethodListResponse> brApiMethod = methodsAPI.methodsPost(Arrays.asList(new BrAPIMethod()));
 
         assertNotNull(brApiMethod, "Empty optional was not returned.");
     }
@@ -70,9 +70,9 @@ public class MethodsAPIUnitTests {
     void updateMethodsEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
 
-        Method method = new Method().methodDbId("test");
+        BrAPIMethod method = new BrAPIMethod().methodDbId("test");
 
-        ApiResponse<MethodSingleResponse> brApiMethod = methodsAPI.methodsMethodDbIdPut("test", method);
+        ApiResponse<BrAPIMethodSingleResponse> brApiMethod = methodsAPI.methodsMethodDbIdPut("test", method);
 
         assertNotNull(brApiMethod, "Empty optional was not returned.");
     }
@@ -81,7 +81,7 @@ public class MethodsAPIUnitTests {
     @SneakyThrows
     void getMethodsEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<MethodListResponse> brApiMethods = methodsAPI.methodsGet(new MethodQueryParams());
+        ApiResponse<BrAPIMethodListResponse> brApiMethods = methodsAPI.methodsGet(new MethodQueryParams());
 
         assertEquals(0, brApiMethods.getBody().getResult().getData().size(), "List size is greater than 0");
     }
@@ -90,7 +90,7 @@ public class MethodsAPIUnitTests {
     @SneakyThrows
     void getMethodsByIdEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<MethodSingleResponse> brApiMethod = methodsAPI.methodsMethodDbIdGet("test");
+        ApiResponse<BrAPIMethodSingleResponse> brApiMethod = methodsAPI.methodsMethodDbIdGet("test");
 
         assertNotNull(brApiMethod, "Empty optional was not returned.");
     }

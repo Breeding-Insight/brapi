@@ -24,7 +24,7 @@ import org.brapi.client.v2.MockedBrAPIClient;
 import org.brapi.client.v2.model.exceptions.*;
 import org.brapi.client.v2.model.queryParams.core.ProgramQueryParams;
 import org.brapi.client.v2.modules.core.ProgramsApi;
-import org.brapi.v2.model.core.ProgramListResponse;
+import org.brapi.v2.model.core.BrAPIProgramListResponse;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -46,7 +46,7 @@ public class BrAPIClientUnitTests {
 
         mockedBrAPIClient.mockHttpClientResponse(404, "");
         HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
-            ApiResponse<ProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
+            ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
         });
     }
 
@@ -56,7 +56,7 @@ public class BrAPIClientUnitTests {
 
         mockedBrAPIClient.mockHttpClientResponse(400, "");
         HttpBadRequestException exception = assertThrows(HttpBadRequestException.class, () -> {
-            ApiResponse<ProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
+            ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
         });
     }
 
@@ -66,7 +66,7 @@ public class BrAPIClientUnitTests {
 
         mockedBrAPIClient.mockHttpClientResponse(401, "");
         HttpUnauthorizedException exception = assertThrows(HttpUnauthorizedException.class, () -> {
-            ApiResponse<ProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
+            ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
         });
     }
 
@@ -76,7 +76,7 @@ public class BrAPIClientUnitTests {
 
         mockedBrAPIClient.mockHttpClientResponse(403, "");
         HttpForbiddenException exception = assertThrows(HttpForbiddenException.class, () -> {
-            ApiResponse<ProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
+            ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
         });
     }
 
@@ -86,7 +86,7 @@ public class BrAPIClientUnitTests {
 
         mockedBrAPIClient.mockHttpClientResponse(500, "");
         HttpInternalServerError exception = assertThrows(HttpInternalServerError.class, () -> {
-            ApiResponse<ProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
+            ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
         });
     }
 

@@ -22,7 +22,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.OntologyQueryParams;
-import org.brapi.v2.model.pheno.OntologyListResponse;
+import org.brapi.v2.model.pheno.BrAPIOntologyListResponse;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -97,9 +97,9 @@ public class OntologiesApi {
      * @return ApiResponse&lt;OntologyListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<OntologyListResponse> ontologiesGet(OntologyQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIOntologyListResponse> ontologiesGet(OntologyQueryParams queryParams) throws ApiException {
         Call call = ontologiesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<OntologyListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIOntologyListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -111,9 +111,9 @@ public class OntologiesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call ontologiesGetAsync(OntologyQueryParams queryParams, final ApiCallback<OntologyListResponse> callback) throws ApiException {
+    public Call ontologiesGetAsync(OntologyQueryParams queryParams, final ApiCallback<BrAPIOntologyListResponse> callback) throws ApiException {
         Call call = ontologiesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<OntologyListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIOntologyListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

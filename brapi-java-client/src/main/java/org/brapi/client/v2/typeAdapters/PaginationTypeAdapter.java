@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.brapi.v2.model.IndexPagination;
-import org.brapi.v2.model.Pagination;
-import org.brapi.v2.model.TokenPagination;
+import org.brapi.v2.model.BrAPIIndexPagination;
+import org.brapi.v2.model.BrAPIPagination;
+import org.brapi.v2.model.BrAPITokenPagination;
 
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapter;
@@ -18,15 +18,15 @@ import com.google.gson.stream.JsonWriter;
  * Gson TypeAdapter for java.util.Date type
  * If the dateFormat is null, ISO8601Utils will be used.
  */
-public class PaginationTypeAdapter extends TypeAdapter<Pagination> {
+public class PaginationTypeAdapter extends TypeAdapter<BrAPIPagination> {
 
     @Override
-    public void write(JsonWriter out, Pagination pagination) throws IOException {
+    public void write(JsonWriter out, BrAPIPagination pagination) throws IOException {
     	//Pagination object is never serialized from BrAPI client
     }
 
     @Override
-    public Pagination read(JsonReader in) throws IOException {
+    public BrAPIPagination read(JsonReader in) throws IOException {
         try {
             if(in.peek() == JsonToken.NULL) {
                 in.nextNull();
@@ -40,14 +40,14 @@ public class PaginationTypeAdapter extends TypeAdapter<Pagination> {
             in.endObject();
             
             if(fields.containsKey("currentPage")) {
-            	IndexPagination pagination = (IndexPagination) new IndexPagination()
+            	BrAPIIndexPagination pagination = (BrAPIIndexPagination) new BrAPIIndexPagination()
             			.currentPage(Integer.decode(fields.get("currentPage")))
             			.pageSize(Integer.decode(fields.get("pageSize")))
             			.totalCount(Integer.decode(fields.get("totalCount")))
             			.totalPages(Integer.decode(fields.get("totalPages")));
             	return pagination;
             }else if(fields.containsKey("currentPageToken")) {
-            	TokenPagination pagination = (TokenPagination) new TokenPagination()
+            	BrAPITokenPagination pagination = (BrAPITokenPagination) new BrAPITokenPagination()
             			.currentPageToken(fields.get("currentPage"))
             			.nextPageToken(fields.get("nextPageToken"))
             			.prevPageToken(fields.get("prevPageToken"))

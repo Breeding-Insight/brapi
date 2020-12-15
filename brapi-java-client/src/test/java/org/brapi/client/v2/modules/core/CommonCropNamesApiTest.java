@@ -14,7 +14,7 @@ package org.brapi.client.v2.modules.core;
 
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.v2.model.core.CommonCropNamesResponse;
+import org.brapi.v2.model.core.BrAPICommonCropNamesResponse;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -37,7 +37,7 @@ public class CommonCropNamesApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<CommonCropNamesResponse> response = api.commoncropnamesGet(page, pageSize);
+        ApiResponse<BrAPICommonCropNamesResponse> response = api.commoncropnamesGet(page, pageSize);
 
         // TODO: test validations
     }

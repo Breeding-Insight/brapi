@@ -24,16 +24,16 @@ import org.brapi.client.v2.ApiClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.v2.model.geno.VendorOrderListResponse;
-import org.brapi.v2.model.geno.VendorOrderStatusResponse;
-import org.brapi.v2.model.geno.VendorOrderSubmissionRequest;
-import org.brapi.v2.model.geno.VendorOrderSubmissionSingleResponse;
-import org.brapi.v2.model.geno.VendorPlateListResponse;
-import org.brapi.v2.model.geno.VendorPlateSubmissionIdSingleResponse;
-import org.brapi.v2.model.geno.VendorPlateSubmissionRequest;
-import org.brapi.v2.model.geno.VendorPlateSubmissionSingleResponse;
-import org.brapi.v2.model.geno.VendorResultFileListResponse;
-import org.brapi.v2.model.geno.VendorSpecificationSingleResponse;
+import org.brapi.v2.model.geno.BrAPIVendorOrderListResponse;
+import org.brapi.v2.model.geno.BrAPIVendorOrderStatusResponse;
+import org.brapi.v2.model.geno.BrAPIVendorOrderSubmissionRequest;
+import org.brapi.v2.model.geno.BrAPIVendorOrderSubmissionSingleResponse;
+import org.brapi.v2.model.geno.BrAPIVendorPlateListResponse;
+import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionIdSingleResponse;
+import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionRequest;
+import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionSingleResponse;
+import org.brapi.v2.model.geno.BrAPIVendorResultFileListResponse;
+import org.brapi.v2.model.geno.BrAPIVendorSpecificationSingleResponse;
 
 public class VendorApi {
     private ApiClient apiClient;
@@ -113,9 +113,9 @@ public class VendorApi {
      * @return ApiResponse&lt;VendorOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VendorOrderListResponse> vendorOrdersGet(String orderId, String submissionId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIVendorOrderListResponse> vendorOrdersGet(String orderId, String submissionId, Integer page, Integer pageSize) throws ApiException {
         Call call = vendorOrdersGetCall(orderId, submissionId, page, pageSize);
-        Type localVarReturnType = new TypeToken<VendorOrderListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorOrderListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -131,9 +131,9 @@ public class VendorApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call vendorOrdersGetAsync(String orderId, String submissionId, Integer page, Integer pageSize, final ApiCallback<VendorOrderListResponse> callback) throws ApiException {
+    public Call vendorOrdersGetAsync(String orderId, String submissionId, Integer page, Integer pageSize, final ApiCallback<BrAPIVendorOrderListResponse> callback) throws ApiException {
         Call call = vendorOrdersGetCall(orderId, submissionId, page, pageSize);
-        Type localVarReturnType = new TypeToken<VendorOrderListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorOrderListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -194,9 +194,9 @@ public class VendorApi {
      * @return ApiResponse&lt;VendorPlateListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VendorPlateListResponse> vendorOrdersOrderIdPlatesGet(String orderId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIVendorPlateListResponse> vendorOrdersOrderIdPlatesGet(String orderId, Integer page, Integer pageSize) throws ApiException {
         Call call = vendorOrdersOrderIdPlatesGetCall(orderId, page, pageSize);
-        Type localVarReturnType = new TypeToken<VendorPlateListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorPlateListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -211,9 +211,9 @@ public class VendorApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call vendorOrdersOrderIdPlatesGetAsync(String orderId, Integer page, Integer pageSize, final ApiCallback<VendorPlateListResponse> callback) throws ApiException {
+    public Call vendorOrdersOrderIdPlatesGetAsync(String orderId, Integer page, Integer pageSize, final ApiCallback<BrAPIVendorPlateListResponse> callback) throws ApiException {
         Call call = vendorOrdersOrderIdPlatesGetCall(orderId, page, pageSize);
-        Type localVarReturnType = new TypeToken<VendorPlateListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorPlateListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -274,9 +274,9 @@ public class VendorApi {
      * @return ApiResponse&lt;VendorResultFileListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VendorResultFileListResponse> vendorOrdersOrderIdResultsGet(String orderId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIVendorResultFileListResponse> vendorOrdersOrderIdResultsGet(String orderId, Integer page, Integer pageSize) throws ApiException {
         Call call = vendorOrdersOrderIdResultsGetCall(orderId, page, pageSize);
-        Type localVarReturnType = new TypeToken<VendorResultFileListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorResultFileListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -291,9 +291,9 @@ public class VendorApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call vendorOrdersOrderIdResultsGetAsync(String orderId, Integer page, Integer pageSize, final ApiCallback<VendorResultFileListResponse> callback) throws ApiException {
+    public Call vendorOrdersOrderIdResultsGetAsync(String orderId, Integer page, Integer pageSize, final ApiCallback<BrAPIVendorResultFileListResponse> callback) throws ApiException {
         Call call = vendorOrdersOrderIdResultsGetCall(orderId, page, pageSize);
-        Type localVarReturnType = new TypeToken<VendorResultFileListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorResultFileListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -346,9 +346,9 @@ public class VendorApi {
      * @return ApiResponse&lt;VendorOrderStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VendorOrderStatusResponse> vendorOrdersOrderIdStatusGet(String orderId) throws ApiException {
+    public ApiResponse<BrAPIVendorOrderStatusResponse> vendorOrdersOrderIdStatusGet(String orderId) throws ApiException {
         Call call = vendorOrdersOrderIdStatusGetCall(orderId);
-        Type localVarReturnType = new TypeToken<VendorOrderStatusResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorOrderStatusResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -361,9 +361,9 @@ public class VendorApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call vendorOrdersOrderIdStatusGetAsync(String orderId, final ApiCallback<VendorOrderStatusResponse> callback) throws ApiException {
+    public Call vendorOrdersOrderIdStatusGetAsync(String orderId, final ApiCallback<BrAPIVendorOrderStatusResponse> callback) throws ApiException {
         Call call = vendorOrdersOrderIdStatusGetCall(orderId);
-        Type localVarReturnType = new TypeToken<VendorOrderStatusResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorOrderStatusResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -376,7 +376,7 @@ public class VendorApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call vendorOrdersPostCall(VendorOrderSubmissionRequest body) throws ApiException {
+    private Call vendorOrdersPostCall(BrAPIVendorOrderSubmissionRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -415,9 +415,9 @@ public class VendorApi {
      * @return ApiResponse&lt;VendorOrderSubmissionSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VendorOrderSubmissionSingleResponse> vendorOrdersPost(VendorOrderSubmissionRequest body) throws ApiException {
+    public ApiResponse<BrAPIVendorOrderSubmissionSingleResponse> vendorOrdersPost(BrAPIVendorOrderSubmissionRequest body) throws ApiException {
         Call call = vendorOrdersPostCall(body);
-        Type localVarReturnType = new TypeToken<VendorOrderSubmissionSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorOrderSubmissionSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -430,9 +430,9 @@ public class VendorApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call vendorOrdersPostAsync(VendorOrderSubmissionRequest body, final ApiCallback<VendorOrderSubmissionSingleResponse> callback) throws ApiException {
+    public Call vendorOrdersPostAsync(BrAPIVendorOrderSubmissionRequest body, final ApiCallback<BrAPIVendorOrderSubmissionSingleResponse> callback) throws ApiException {
         Call call = vendorOrdersPostCall(body);
-        Type localVarReturnType = new TypeToken<VendorOrderSubmissionSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorOrderSubmissionSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -445,7 +445,7 @@ public class VendorApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call vendorPlatesPostCall(VendorPlateSubmissionRequest body) throws ApiException {
+    private Call vendorPlatesPostCall(BrAPIVendorPlateSubmissionRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -484,9 +484,9 @@ public class VendorApi {
      * @return ApiResponse&lt;VendorPlateSubmissionIdSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VendorPlateSubmissionIdSingleResponse> vendorPlatesPost(VendorPlateSubmissionRequest body) throws ApiException {
+    public ApiResponse<BrAPIVendorPlateSubmissionIdSingleResponse> vendorPlatesPost(BrAPIVendorPlateSubmissionRequest body) throws ApiException {
         Call call = vendorPlatesPostCall(body);
-        Type localVarReturnType = new TypeToken<VendorPlateSubmissionIdSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorPlateSubmissionIdSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -499,9 +499,9 @@ public class VendorApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call vendorPlatesPostAsync(VendorPlateSubmissionRequest body, final ApiCallback<VendorPlateSubmissionIdSingleResponse> callback) throws ApiException {
+    public Call vendorPlatesPostAsync(BrAPIVendorPlateSubmissionRequest body, final ApiCallback<BrAPIVendorPlateSubmissionIdSingleResponse> callback) throws ApiException {
         Call call = vendorPlatesPostCall(body);
-        Type localVarReturnType = new TypeToken<VendorPlateSubmissionIdSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorPlateSubmissionIdSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -554,9 +554,9 @@ public class VendorApi {
      * @return ApiResponse&lt;VendorPlateSubmissionSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VendorPlateSubmissionSingleResponse> vendorPlatesSubmissionIdGet(String submissionId) throws ApiException {
+    public ApiResponse<BrAPIVendorPlateSubmissionSingleResponse> vendorPlatesSubmissionIdGet(String submissionId) throws ApiException {
         Call call = vendorPlatesSubmissionIdGetCall(submissionId);
-        Type localVarReturnType = new TypeToken<VendorPlateSubmissionSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorPlateSubmissionSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -569,9 +569,9 @@ public class VendorApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call vendorPlatesSubmissionIdGetAsync(String submissionId, final ApiCallback<VendorPlateSubmissionSingleResponse> callback) throws ApiException {
+    public Call vendorPlatesSubmissionIdGetAsync(String submissionId, final ApiCallback<BrAPIVendorPlateSubmissionSingleResponse> callback) throws ApiException {
         Call call = vendorPlatesSubmissionIdGetCall(submissionId);
-        Type localVarReturnType = new TypeToken<VendorPlateSubmissionSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorPlateSubmissionSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -621,9 +621,9 @@ public class VendorApi {
      * @return ApiResponse&lt;VendorSpecificationSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VendorSpecificationSingleResponse> vendorSpecificationsGet() throws ApiException {
+    public ApiResponse<BrAPIVendorSpecificationSingleResponse> vendorSpecificationsGet() throws ApiException {
         Call call = vendorSpecificationsGetCall();
-        Type localVarReturnType = new TypeToken<VendorSpecificationSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorSpecificationSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -635,9 +635,9 @@ public class VendorApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call vendorSpecificationsGetAsync(final ApiCallback<VendorSpecificationSingleResponse> callback) throws ApiException {
+    public Call vendorSpecificationsGetAsync(final ApiCallback<BrAPIVendorSpecificationSingleResponse> callback) throws ApiException {
         Call call = vendorSpecificationsGetCall();
-        Type localVarReturnType = new TypeToken<VendorSpecificationSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVendorSpecificationSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

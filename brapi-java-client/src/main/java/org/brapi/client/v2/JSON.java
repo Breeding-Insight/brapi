@@ -33,7 +33,7 @@ import org.brapi.client.v2.typeAdapters.LocalDateTypeAdapter;
 import org.brapi.client.v2.typeAdapters.OffsetDateTimeTypeAdapter;
 import org.brapi.client.v2.typeAdapters.PaginationTypeAdapter;
 import org.brapi.client.v2.typeAdapters.SqlDateTypeAdapter;
-import org.brapi.v2.model.Pagination;
+import org.brapi.v2.model.BrAPIPagination;
 
 public class JSON {
     private Gson gson;
@@ -49,7 +49,7 @@ public class JSON {
             .registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter)
             .registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter)
             .registerTypeAdapter(LocalDate.class, localDateTypeAdapter)
-            .registerTypeAdapter(Pagination.class, new PaginationTypeAdapter())
+            .registerTypeAdapter(BrAPIPagination.class, new PaginationTypeAdapter())
 //            .registerTypeAdapter(GeoJSONGeometry.class, new GeoJSONGeometryTypeAdapter())
             .registerTypeAdapterFactory(new BrApiEnumTypeAdapterFactory())
             .registerTypeAdapterFactory(new GeometryAdapterFactory())

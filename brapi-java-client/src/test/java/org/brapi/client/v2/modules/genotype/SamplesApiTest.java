@@ -15,10 +15,10 @@ package org.brapi.client.v2.modules.genotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.SampleQueryParams;
-import org.brapi.v2.model.geno.SampleListResponse;
-import org.brapi.v2.model.geno.SampleNewRequest;
-import org.brapi.v2.model.geno.SampleSearchRequest;
-import org.brapi.v2.model.geno.SampleSingleResponse;
+import org.brapi.v2.model.geno.BrAPISampleListResponse;
+import org.brapi.v2.model.geno.BrAPISampleNewRequest;
+import org.brapi.v2.model.geno.BrAPISampleSearchRequest;
+import org.brapi.v2.model.geno.BrAPISampleSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class SamplesApiTest {
         Integer pageSize = null;
         
         SampleQueryParams queryParams = new SampleQueryParams();
-        ApiResponse<SampleListResponse> response = api.samplesGet(queryParams);
+        ApiResponse<BrAPISampleListResponse> response = api.samplesGet(queryParams);
 
         // TODO: test validations
     }
@@ -68,9 +68,9 @@ public class SamplesApiTest {
      */
     @Test
     public void samplesPostTest() throws ApiException {
-        List<SampleNewRequest> body = null;
+        List<BrAPISampleNewRequest> body = null;
         
-        ApiResponse<SampleListResponse> response = api.samplesPost(body);
+        ApiResponse<BrAPISampleListResponse> response = api.samplesPost(body);
 
         // TODO: test validations
     }
@@ -86,7 +86,7 @@ public class SamplesApiTest {
     public void samplesSampleDbIdGetTest() throws ApiException {
         String sampleDbId = null;
         
-        ApiResponse<SampleSingleResponse> response = api.samplesSampleDbIdGet(sampleDbId);
+        ApiResponse<BrAPISampleSingleResponse> response = api.samplesSampleDbIdGet(sampleDbId);
 
         // TODO: test validations
     }
@@ -101,9 +101,9 @@ public class SamplesApiTest {
     @Test
     public void samplesSampleDbIdPutTest() throws ApiException {
         String sampleDbId = null;
-        SampleNewRequest body = null;
+        BrAPISampleNewRequest body = null;
         
-        ApiResponse<SampleSingleResponse> response = api.samplesSampleDbIdPut(sampleDbId, body);
+        ApiResponse<BrAPISampleSingleResponse> response = api.samplesSampleDbIdPut(sampleDbId, body);
 
         // TODO: test validations
     }
@@ -117,9 +117,9 @@ public class SamplesApiTest {
      */
     @Test
     public void searchSamplesPostTest() throws ApiException {
-        SampleSearchRequest body = null;
+        BrAPISampleSearchRequest body = null;
         
-        ApiResponse<SampleListResponse> response = api.searchSamplesPost(body);
+        ApiResponse<BrAPISampleListResponse> response = api.searchSamplesPost(body);
 
         // TODO: test validations
     }
@@ -137,7 +137,7 @@ public class SamplesApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<SampleListResponse> response = api.searchSamplesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPISampleListResponse> response = api.searchSamplesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

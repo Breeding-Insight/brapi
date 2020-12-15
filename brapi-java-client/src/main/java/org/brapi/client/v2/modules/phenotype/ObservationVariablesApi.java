@@ -23,10 +23,10 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.VariableQueryParams;
-import org.brapi.v2.model.pheno.ObservationVariableListResponse;
-import org.brapi.v2.model.pheno.ObservationVariableNewRequest;
-import org.brapi.v2.model.pheno.ObservationVariableSearchRequest;
-import org.brapi.v2.model.pheno.ObservationVariableSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIObservationVariableListResponse;
+import org.brapi.v2.model.pheno.BrAPIObservationVariableNewRequest;
+import org.brapi.v2.model.pheno.BrAPIObservationVariableSearchRequest;
+import org.brapi.v2.model.pheno.BrAPIObservationVariableSingleResponse;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -60,7 +60,7 @@ public class ObservationVariablesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call searchVariablesPostCall(ObservationVariableSearchRequest body) throws ApiException {
+    private Call searchVariablesPostCall(BrAPIObservationVariableSearchRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -99,9 +99,9 @@ public class ObservationVariablesApi {
      * @return ApiResponse&lt;ObservationVariableListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ObservationVariableListResponse> searchVariablesPost(ObservationVariableSearchRequest body) throws ApiException {
+    public ApiResponse<BrAPIObservationVariableListResponse> searchVariablesPost(BrAPIObservationVariableSearchRequest body) throws ApiException {
         Call call = searchVariablesPostCall(body);
-        Type localVarReturnType = new TypeToken<ObservationVariableListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -114,9 +114,9 @@ public class ObservationVariablesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchVariablesPostAsync(ObservationVariableSearchRequest body, final ApiCallback<ObservationVariableListResponse> callback) throws ApiException {
+    public Call searchVariablesPostAsync(BrAPIObservationVariableSearchRequest body, final ApiCallback<BrAPIObservationVariableListResponse> callback) throws ApiException {
         Call call = searchVariablesPostCall(body);
-        Type localVarReturnType = new TypeToken<ObservationVariableListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -177,9 +177,9 @@ public class ObservationVariablesApi {
      * @return ApiResponse&lt;ObservationVariableListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ObservationVariableListResponse> searchVariablesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIObservationVariableListResponse> searchVariablesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchVariablesSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<ObservationVariableListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -194,9 +194,9 @@ public class ObservationVariablesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchVariablesSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<ObservationVariableListResponse> callback) throws ApiException {
+    public Call searchVariablesSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<BrAPIObservationVariableListResponse> callback) throws ApiException {
         Call call = searchVariablesSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<ObservationVariableListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -258,9 +258,9 @@ public class ObservationVariablesApi {
      * @return ApiResponse&lt;ObservationVariableListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ObservationVariableListResponse> variablesGet(VariableQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIObservationVariableListResponse> variablesGet(VariableQueryParams queryParams) throws ApiException {
         Call call = variablesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<ObservationVariableListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -272,9 +272,9 @@ public class ObservationVariablesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call variablesGetAsync(VariableQueryParams queryParams, final ApiCallback<ObservationVariableListResponse> callback) throws ApiException {
+    public Call variablesGetAsync(VariableQueryParams queryParams, final ApiCallback<BrAPIObservationVariableListResponse> callback) throws ApiException {
         Call call = variablesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<ObservationVariableListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -327,9 +327,9 @@ public class ObservationVariablesApi {
      * @return ApiResponse&lt;ObservationVariableSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ObservationVariableSingleResponse> variablesObservationVariableDbIdGet(String observationVariableDbId) throws ApiException {
+    public ApiResponse<BrAPIObservationVariableSingleResponse> variablesObservationVariableDbIdGet(String observationVariableDbId) throws ApiException {
         Call call = variablesObservationVariableDbIdGetCall(observationVariableDbId);
-        Type localVarReturnType = new TypeToken<ObservationVariableSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -342,9 +342,9 @@ public class ObservationVariablesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call variablesObservationVariableDbIdGetAsync(String observationVariableDbId, final ApiCallback<ObservationVariableSingleResponse> callback) throws ApiException {
+    public Call variablesObservationVariableDbIdGetAsync(String observationVariableDbId, final ApiCallback<BrAPIObservationVariableSingleResponse> callback) throws ApiException {
         Call call = variablesObservationVariableDbIdGetCall(observationVariableDbId);
-        Type localVarReturnType = new TypeToken<ObservationVariableSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -358,7 +358,7 @@ public class ObservationVariablesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call variablesObservationVariableDbIdPutCall(String observationVariableDbId, ObservationVariableNewRequest body) throws ApiException {
+    private Call variablesObservationVariableDbIdPutCall(String observationVariableDbId, BrAPIObservationVariableNewRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -399,9 +399,9 @@ public class ObservationVariablesApi {
      * @return ApiResponse&lt;ObservationVariableSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ObservationVariableSingleResponse> variablesObservationVariableDbIdPut(String observationVariableDbId, ObservationVariableNewRequest body) throws ApiException {
+    public ApiResponse<BrAPIObservationVariableSingleResponse> variablesObservationVariableDbIdPut(String observationVariableDbId, BrAPIObservationVariableNewRequest body) throws ApiException {
         Call call = variablesObservationVariableDbIdPutCall(observationVariableDbId, body);
-        Type localVarReturnType = new TypeToken<ObservationVariableSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -415,9 +415,9 @@ public class ObservationVariablesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call variablesObservationVariableDbIdPutAsync(String observationVariableDbId, ObservationVariableNewRequest body, final ApiCallback<ObservationVariableSingleResponse> callback) throws ApiException {
+    public Call variablesObservationVariableDbIdPutAsync(String observationVariableDbId, BrAPIObservationVariableNewRequest body, final ApiCallback<BrAPIObservationVariableSingleResponse> callback) throws ApiException {
         Call call = variablesObservationVariableDbIdPutCall(observationVariableDbId, body);
-        Type localVarReturnType = new TypeToken<ObservationVariableSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -430,7 +430,7 @@ public class ObservationVariablesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call variablesPostCall(List<ObservationVariableNewRequest> body) throws ApiException {
+    private Call variablesPostCall(List<BrAPIObservationVariableNewRequest> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -469,9 +469,9 @@ public class ObservationVariablesApi {
      * @return ApiResponse&lt;ObservationVariableListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ObservationVariableListResponse> variablesPost(List<ObservationVariableNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPIObservationVariableListResponse> variablesPost(List<BrAPIObservationVariableNewRequest> body) throws ApiException {
         Call call = variablesPostCall(body);
-        Type localVarReturnType = new TypeToken<ObservationVariableListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -484,9 +484,9 @@ public class ObservationVariablesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call variablesPostAsync(List<ObservationVariableNewRequest> body, final ApiCallback<ObservationVariableListResponse> callback) throws ApiException {
+    public Call variablesPostAsync(List<BrAPIObservationVariableNewRequest> body, final ApiCallback<BrAPIObservationVariableListResponse> callback) throws ApiException {
         Call call = variablesPostCall(body);
-        Type localVarReturnType = new TypeToken<ObservationVariableListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIObservationVariableListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

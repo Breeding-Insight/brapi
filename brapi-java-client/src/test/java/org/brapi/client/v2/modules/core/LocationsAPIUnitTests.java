@@ -23,10 +23,10 @@ import okhttp3.Call;
 import org.brapi.client.v2.ApiClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.BrAPIRequest;
-import org.brapi.v2.model.core.Location;
-import org.brapi.v2.model.core.LocationListResponse;
-import org.brapi.v2.model.core.LocationNewRequest;
-import org.brapi.v2.model.core.LocationSingleResponse;
+import org.brapi.v2.model.core.BrAPILocation;
+import org.brapi.v2.model.core.BrAPILocationListResponse;
+import org.brapi.v2.model.core.BrAPILocationNewRequest;
+import org.brapi.v2.model.core.BrAPILocationSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -60,7 +60,7 @@ public class LocationsAPIUnitTests {
     @SneakyThrows
     void createLocationsEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<LocationListResponse> brApiLocation = locationsAPI.locationsPost(Arrays.asList(new Location()));
+        ApiResponse<BrAPILocationListResponse> brApiLocation = locationsAPI.locationsPost(Arrays.asList(new BrAPILocation()));
         assertNotNull(brApiLocation, "Empty optional was not returned.");
     }
 
@@ -69,9 +69,9 @@ public class LocationsAPIUnitTests {
     void updateLocationsEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
 
-        LocationNewRequest location = new Location().locationName("test");
+        BrAPILocationNewRequest location = new BrAPILocation().locationName("test");
 
-        ApiResponse<LocationSingleResponse> brApiLocation = locationsAPI.locationsLocationDbIdPut("test", location);
+        ApiResponse<BrAPILocationSingleResponse> brApiLocation = locationsAPI.locationsLocationDbIdPut("test", location);
 
         assertNotNull(brApiLocation, "Empty optional was not returned.");
     }
@@ -80,7 +80,7 @@ public class LocationsAPIUnitTests {
     @SneakyThrows
     void getLocationsEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<LocationListResponse> brApiLocations = locationsAPI.locationsGet(null);
+        ApiResponse<BrAPILocationListResponse> brApiLocations = locationsAPI.locationsGet(null);
 
         assertNotNull(brApiLocations, "Empty optional was not returned.");
     }
@@ -89,7 +89,7 @@ public class LocationsAPIUnitTests {
     @SneakyThrows
     void getLocationsByIdEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<LocationSingleResponse> brApiLocation = locationsAPI.locationsLocationDbIdGet("test");
+        ApiResponse<BrAPILocationSingleResponse> brApiLocation = locationsAPI.locationsLocationDbIdGet("test");
 
         assertNotNull(brApiLocation, "Empty optional was not returned.");
     }

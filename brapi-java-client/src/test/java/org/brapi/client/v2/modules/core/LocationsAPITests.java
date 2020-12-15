@@ -29,12 +29,12 @@ import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.core.LocationQueryParams;
 import org.brapi.v2.model.BrApiGeoJSON;
-import org.brapi.v2.model.ExternalReferences;
-import org.brapi.v2.model.ExternalReferencesInner;
-import org.brapi.v2.model.core.Location;
-import org.brapi.v2.model.core.LocationListResponse;
-import org.brapi.v2.model.core.LocationNewRequest;
-import org.brapi.v2.model.core.LocationSingleResponse;
+import org.brapi.v2.model.BrAPIExternalReferenceList;
+import org.brapi.v2.model.BrAPIExternalReference;
+import org.brapi.v2.model.core.BrAPILocation;
+import org.brapi.v2.model.core.BrAPILocationListResponse;
+import org.brapi.v2.model.core.BrAPILocationNewRequest;
+import org.brapi.v2.model.core.BrAPILocationSingleResponse;
 import org.junit.jupiter.api.*;
 import java.util.*;
 
@@ -48,49 +48,49 @@ public class LocationsAPITests extends BrAPIClientTest {
     private LocationsApi locationsAPI = new LocationsApi(this.apiClient);
     private String externalReferenceID = "testId";
     private String externalReferenceSource = "testSource";
-    private Location createdLocation;
+    private BrAPILocation createdLocation;
 
     @Test
     public void createLocationIdPresent() {
-    	Location brApiLocation = new Location().locationDbId("test");
+    	BrAPILocation brApiLocation = new BrAPILocation().locationDbId("test");
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<LocationListResponse> location = locationsAPI.locationsPost(Arrays.asList(brApiLocation));
+            ApiResponse<BrAPILocationListResponse> location = locationsAPI.locationsPost(Arrays.asList(brApiLocation));
         });
     }
 
     @Test
     public void createLocationNull() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<LocationListResponse> location = locationsAPI.locationsPost(null);
+            ApiResponse<BrAPILocationListResponse> location = locationsAPI.locationsPost(null);
         });
     }
 
     @Test
     public void createLocationMultipleIdPresent() {
-    	Location brApiLocation = new Location().locationDbId("test");
-    	Location brApiLocation1 = new Location();
-        List<LocationNewRequest> brApiLocations = new ArrayList<>();
+    	BrAPILocation brApiLocation = new BrAPILocation().locationDbId("test");
+    	BrAPILocation brApiLocation1 = new BrAPILocation();
+        List<BrAPILocationNewRequest> brApiLocations = new ArrayList<>();
         brApiLocations.add(brApiLocation);
         brApiLocations.add(brApiLocation1);
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<LocationListResponse> location = locationsAPI.locationsPost(brApiLocations);
+            ApiResponse<BrAPILocationListResponse> location = locationsAPI.locationsPost(brApiLocations);
         });
     }
 
     @Test
     public void createLocationMultipleEmptyList() {
-        List<LocationNewRequest> brApiLocations = new ArrayList<>();
+        List<BrAPILocationNewRequest> brApiLocations = new ArrayList<>();
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<LocationListResponse> location = locationsAPI.locationsPost(brApiLocations);
+            ApiResponse<BrAPILocationListResponse> location = locationsAPI.locationsPost(brApiLocations);
         });
     }
 
     @Test
     public void createLocationMultipleNull() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<LocationListResponse> location = locationsAPI.locationsPost(null);
+            ApiResponse<BrAPILocationListResponse> location = locationsAPI.locationsPost(null);
         });
     }
 
@@ -98,26 +98,26 @@ public class LocationsAPITests extends BrAPIClientTest {
     @Order(1)
     @SneakyThrows
     public void createLocationSuccess() {
-    	LocationNewRequest brApiLocation = buildTestLocation();
-        ApiResponse<LocationListResponse> locationBody = locationsAPI.locationsPost(Arrays.asList(brApiLocation));
-        Location location = locationBody.getBody().getResult().getData().get(0);
+    	BrAPILocationNewRequest brApiLocation = buildTestLocation();
+        ApiResponse<BrAPILocationListResponse> locationBody = locationsAPI.locationsPost(Arrays.asList(brApiLocation));
+        BrAPILocation location = locationBody.getBody().getResult().getData().get(0);
         assertFalse(location.getLocationDbId() == null, "Location id missing");
         locationAssertEquals(brApiLocation, location);
 
         this.createdLocation = location;
     }
 
-    private LocationNewRequest buildTestLocation() {
-        ExternalReferences externalReferences = new ExternalReferences();
+    private BrAPILocationNewRequest buildTestLocation() {
+        BrAPIExternalReferenceList externalReferences = new BrAPIExternalReferenceList();
         externalReferences.add(
-				new ExternalReferencesInner()
+				new BrAPIExternalReference()
 				.referenceID(externalReferenceID)
 				.referenceSource(externalReferenceSource));
 
         Map<String, String> additionalInfo = new HashMap<>();
         additionalInfo.put("test", "test");
 
-        LocationNewRequest brApiLocation = new Location()
+        BrAPILocationNewRequest brApiLocation = new BrAPILocation()
                 .locationName("Test location")
                 .locationType("Storage location")
                 .abbreviation("TL")
@@ -144,7 +144,7 @@ public class LocationsAPITests extends BrAPIClientTest {
         return brApiLocation;
     }
 
-    private void locationAssertEquals(LocationNewRequest expected, LocationNewRequest actual) {
+    private void locationAssertEquals(BrAPILocationNewRequest expected, BrAPILocationNewRequest actual) {
         assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Location additionalInfo mismatch");
         assertEquals(expected.getAbbreviation(), actual.getAbbreviation(), "Location abbreviation mismatch");
         assertEquals(expected.getCoordinateDescription(), actual.getCoordinateDescription(), "Location coordinateDescription mismatch");
@@ -170,16 +170,16 @@ public class LocationsAPITests extends BrAPIClientTest {
     @Order(1)
     @SneakyThrows
     public void createLocationsMultipleSuccess() {
-        LocationNewRequest brApiLocation1 = new Location().locationName("new test location1");
-        LocationNewRequest brApiLocation2 = new Location().locationName("new test location2");
+        BrAPILocationNewRequest brApiLocation1 = new BrAPILocation().locationName("new test location1");
+        BrAPILocationNewRequest brApiLocation2 = new BrAPILocation().locationName("new test location2");
         
-        List<LocationNewRequest> locations = new ArrayList<>();
+        List<BrAPILocationNewRequest> locations = new ArrayList<>();
         locations.add(brApiLocation1);
         locations.add(brApiLocation2);
 
-        ApiResponse<LocationListResponse> locationsBody = locationsAPI.locationsPost(locations);
+        ApiResponse<BrAPILocationListResponse> locationsBody = locationsAPI.locationsPost(locations);
 
-        List<Location> createdLocations = locationsBody.getBody().getResult().getData();
+        List<BrAPILocation> createdLocations = locationsBody.getBody().getResult().getData();
         assertEquals(true, createdLocations.size() == 2);
         assertEquals(true, createdLocations.get(0).getLocationDbId() != null, "Location id missing");
         assertEquals(true, createdLocations.get(1).getLocationDbId() != null, "Location id missing");
@@ -192,7 +192,7 @@ public class LocationsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     void getLocationsSuccess() {
-        ApiResponse<LocationListResponse> locations = locationsAPI.locationsGet(new LocationQueryParams());
+        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(new LocationQueryParams());
 
         assertEquals(true, !locations.getBody().getResult().getData().isEmpty(), "List of locations was empty");
     }
@@ -207,7 +207,7 @@ public class LocationsAPITests extends BrAPIClientTest {
                 .pageSize(1)
                 .build();
 
-        ApiResponse<LocationListResponse> locations = locationsAPI.locationsGet(baseRequest);
+        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(baseRequest);
 
         assertEquals(true, locations.getBody().getResult().getData().size() == 1, "More than one location was returned");
     }
@@ -220,7 +220,7 @@ public class LocationsAPITests extends BrAPIClientTest {
                 .externalReferenceID(externalReferenceID)
                 .build();
 
-        ApiResponse<LocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
+        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
 
         assertEquals(true, locations.getBody().getResult().getData().size() > 0, "List of locations was empty");
     }
@@ -233,7 +233,7 @@ public class LocationsAPITests extends BrAPIClientTest {
                 .externalReferenceSource(externalReferenceSource)
                 .build();
 
-        ApiResponse<LocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
+        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
 
         assertEquals(true, locations.getBody().getResult().getData().size() > 0, "List of locations was empty");
     }
@@ -246,7 +246,7 @@ public class LocationsAPITests extends BrAPIClientTest {
                 .locationType(createdLocation.getLocationType())
                 .build();
 
-        ApiResponse<LocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
+        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
 
         assertEquals(true, locations.getBody().getResult().getData().size() > 0, "List of locations was empty");
     }
@@ -259,7 +259,7 @@ public class LocationsAPITests extends BrAPIClientTest {
                 .locationDbId(createdLocation.getLocationDbId())
                 .build();
 
-        ApiResponse<LocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
+        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
 
         assertEquals(true, locations.getBody().getResult().getData().size() > 0, "List of locations was empty");
     }
@@ -267,7 +267,7 @@ public class LocationsAPITests extends BrAPIClientTest {
     @Test
     public void getLocationByIdMissingId() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<LocationSingleResponse> location = locationsAPI.locationsLocationDbIdGet(null);
+            ApiResponse<BrAPILocationSingleResponse> location = locationsAPI.locationsLocationDbIdGet(null);
         });
     }
 
@@ -275,9 +275,9 @@ public class LocationsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     void getLocationByIdSuccess() {
-        ApiResponse<LocationSingleResponse> optionalLocation = locationsAPI.locationsLocationDbIdGet(createdLocation.getLocationDbId());
+        ApiResponse<BrAPILocationSingleResponse> optionalLocation = locationsAPI.locationsLocationDbIdGet(createdLocation.getLocationDbId());
 
-        Location location = optionalLocation.getBody().getResult();
+        BrAPILocation location = optionalLocation.getBody().getResult();
         assertEquals(true, location.getLocationDbId() != null, "locationDbId was not parsed properly.");
         locationAssertEquals(createdLocation, location);
     }
@@ -286,7 +286,7 @@ public class LocationsAPITests extends BrAPIClientTest {
     @SneakyThrows
     void getLocationByIdInvalid() {
         HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
-            ApiResponse<LocationSingleResponse> location = locationsAPI.locationsLocationDbIdGet("badLocationId");
+            ApiResponse<BrAPILocationSingleResponse> location = locationsAPI.locationsLocationDbIdGet("badLocationId");
         });
     }
 
@@ -294,13 +294,13 @@ public class LocationsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     public void updateLocationSuccess() {
-        Location location = this.createdLocation;
+        BrAPILocation location = this.createdLocation;
         location.setLocationName("updated_name");
 
         // Check that it is a success and all data matches
-        ApiResponse<LocationSingleResponse> updatedLocationResult = this.locationsAPI.locationsLocationDbIdPut(createdLocation.getLocationDbId(), location);
+        ApiResponse<BrAPILocationSingleResponse> updatedLocationResult = this.locationsAPI.locationsLocationDbIdPut(createdLocation.getLocationDbId(), location);
 
-        Location updatedLocation = updatedLocationResult.getBody().getResult();
+        BrAPILocation updatedLocation = updatedLocationResult.getBody().getResult();
         locationAssertEquals(location, updatedLocation);
     }
 
@@ -308,17 +308,17 @@ public class LocationsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateLocationMissingId() {
         // Check that it throws an ApiException
-        LocationNewRequest brApiLocation = new Location().locationName("new test location");
+        BrAPILocationNewRequest brApiLocation = new BrAPILocation().locationName("new test location");
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<LocationSingleResponse> updatedLocationResult = this.locationsAPI.locationsLocationDbIdPut(null, brApiLocation);
+            ApiResponse<BrAPILocationSingleResponse> updatedLocationResult = this.locationsAPI.locationsLocationDbIdPut(null, brApiLocation);
         });
     }
 
     @Test
     public void updateLocationNull() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<LocationSingleResponse> updatedLocationResult = this.locationsAPI.locationsLocationDbIdPut(null, null);
+            ApiResponse<BrAPILocationSingleResponse> updatedLocationResult = this.locationsAPI.locationsLocationDbIdPut(null, null);
         });
     }
 

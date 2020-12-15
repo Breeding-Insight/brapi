@@ -16,10 +16,10 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.ReferenceQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.ReferenceSetQueryParams;
-import org.brapi.v2.model.geno.ReferenceBasesResponse;
-import org.brapi.v2.model.geno.ReferenceSingleResponse;
-import org.brapi.v2.model.geno.ReferencesListResponse;
-import org.brapi.v2.model.geno.ReferencesSearchRequest;
+import org.brapi.v2.model.geno.BrAPIReferenceBasesResponse;
+import org.brapi.v2.model.geno.BrAPIReferenceSingleResponse;
+import org.brapi.v2.model.geno.BrAPIReferencesListResponse;
+import org.brapi.v2.model.geno.BrAPIReferencesSearchRequest;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class ReferencesApiTest {
         Integer pageSize = null;
         
         ReferenceQueryParams queryParams = new ReferenceQueryParams();
-        ApiResponse<ReferencesListResponse> response = api.referencesGet(queryParams);
+        ApiResponse<BrAPIReferencesListResponse> response = api.referencesGet(queryParams);
 
         // TODO: test validations
     }
@@ -74,7 +74,7 @@ public class ReferencesApiTest {
         Integer end = null;
         String pageToken = null;
         
-        ApiResponse<ReferenceBasesResponse> response = api.referencesReferenceDbIdBasesGet(referenceDbId, start, end, pageToken);
+        ApiResponse<BrAPIReferenceBasesResponse> response = api.referencesReferenceDbIdBasesGet(referenceDbId, start, end, pageToken);
 
         // TODO: test validations
     }
@@ -90,7 +90,7 @@ public class ReferencesApiTest {
     public void referencesReferenceDbIdGetTest() throws ApiException {
         String referenceDbId = null;
         
-        ApiResponse<ReferenceSingleResponse> response = api.referencesReferenceDbIdGet(referenceDbId);
+        ApiResponse<BrAPIReferenceSingleResponse> response = api.referencesReferenceDbIdGet(referenceDbId);
 
         // TODO: test validations
     }
@@ -104,9 +104,9 @@ public class ReferencesApiTest {
      */
     @Test
     public void searchReferencesPostTest() throws ApiException {
-        ReferencesSearchRequest body = null;
+        BrAPIReferencesSearchRequest body = null;
         
-        ApiResponse<ReferencesListResponse> response = api.searchReferencesPost(body);
+        ApiResponse<BrAPIReferencesListResponse> response = api.searchReferencesPost(body);
 
         // TODO: test validations
     }
@@ -124,7 +124,7 @@ public class ReferencesApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<ReferencesListResponse> response = api.searchReferencesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIReferencesListResponse> response = api.searchReferencesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

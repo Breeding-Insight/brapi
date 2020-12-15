@@ -23,9 +23,9 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.TraitQueryParams;
-import org.brapi.v2.model.pheno.TraitBaseClass;
-import org.brapi.v2.model.pheno.TraitListResponse;
-import org.brapi.v2.model.pheno.TraitSingleResponse;
+import org.brapi.v2.model.pheno.BrAPITraitBaseClass;
+import org.brapi.v2.model.pheno.BrAPITraitListResponse;
+import org.brapi.v2.model.pheno.BrAPITraitSingleResponse;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -106,9 +106,9 @@ public class TraitsApi {
      * @return ApiResponse&lt;TraitListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TraitListResponse> traitsGet(TraitQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPITraitListResponse> traitsGet(TraitQueryParams queryParams) throws ApiException {
         Call call = traitsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<TraitListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITraitListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -120,9 +120,9 @@ public class TraitsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call traitsGetAsync(TraitQueryParams queryParams, final ApiCallback<TraitListResponse> callback) throws ApiException {
+    public Call traitsGetAsync(TraitQueryParams queryParams, final ApiCallback<BrAPITraitListResponse> callback) throws ApiException {
         Call call = traitsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<TraitListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITraitListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -135,7 +135,7 @@ public class TraitsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call traitsPostCall(List<TraitBaseClass> body) throws ApiException {
+    private Call traitsPostCall(List<BrAPITraitBaseClass> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -174,9 +174,9 @@ public class TraitsApi {
      * @return ApiResponse&lt;TraitListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TraitListResponse> traitsPost(List<TraitBaseClass> body) throws ApiException {
+    public ApiResponse<BrAPITraitListResponse> traitsPost(List<BrAPITraitBaseClass> body) throws ApiException {
         Call call = traitsPostCall(body);
-        Type localVarReturnType = new TypeToken<TraitListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITraitListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -189,9 +189,9 @@ public class TraitsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call traitsPostAsync(List<TraitBaseClass> body, final ApiCallback<TraitListResponse> callback) throws ApiException {
+    public Call traitsPostAsync(List<BrAPITraitBaseClass> body, final ApiCallback<BrAPITraitListResponse> callback) throws ApiException {
         Call call = traitsPostCall(body);
-        Type localVarReturnType = new TypeToken<TraitListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITraitListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -244,9 +244,9 @@ public class TraitsApi {
      * @return ApiResponse&lt;TraitSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TraitSingleResponse> traitsTraitDbIdGet(String traitDbId) throws ApiException {
+    public ApiResponse<BrAPITraitSingleResponse> traitsTraitDbIdGet(String traitDbId) throws ApiException {
         Call call = traitsTraitDbIdGetCall(traitDbId);
-        Type localVarReturnType = new TypeToken<TraitSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITraitSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -259,9 +259,9 @@ public class TraitsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call traitsTraitDbIdGetAsync(String traitDbId, final ApiCallback<TraitSingleResponse> callback) throws ApiException {
+    public Call traitsTraitDbIdGetAsync(String traitDbId, final ApiCallback<BrAPITraitSingleResponse> callback) throws ApiException {
         Call call = traitsTraitDbIdGetCall(traitDbId);
-        Type localVarReturnType = new TypeToken<TraitSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITraitSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -275,7 +275,7 @@ public class TraitsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call traitsTraitDbIdPutCall(String traitDbId, TraitBaseClass body) throws ApiException {
+    private Call traitsTraitDbIdPutCall(String traitDbId, BrAPITraitBaseClass body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -316,9 +316,9 @@ public class TraitsApi {
      * @return ApiResponse&lt;TraitSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TraitSingleResponse> traitsTraitDbIdPut(String traitDbId, TraitBaseClass body) throws ApiException {
+    public ApiResponse<BrAPITraitSingleResponse> traitsTraitDbIdPut(String traitDbId, BrAPITraitBaseClass body) throws ApiException {
         Call call = traitsTraitDbIdPutCall(traitDbId, body);
-        Type localVarReturnType = new TypeToken<TraitSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITraitSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -332,9 +332,9 @@ public class TraitsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call traitsTraitDbIdPutAsync(String traitDbId, TraitBaseClass body, final ApiCallback<TraitSingleResponse> callback) throws ApiException {
+    public Call traitsTraitDbIdPutAsync(String traitDbId, BrAPITraitBaseClass body, final ApiCallback<BrAPITraitSingleResponse> callback) throws ApiException {
         Call call = traitsTraitDbIdPutCall(traitDbId, body);
-        Type localVarReturnType = new TypeToken<TraitSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITraitSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

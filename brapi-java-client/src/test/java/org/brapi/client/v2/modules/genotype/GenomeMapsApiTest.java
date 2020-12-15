@@ -16,11 +16,11 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenomeMapQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.MarkerPositionQueryParams;
-import org.brapi.v2.model.geno.GenomeMapListResponse;
-import org.brapi.v2.model.geno.GenomeMapSingleResponse;
-import org.brapi.v2.model.geno.LinkageGroupListResponse;
-import org.brapi.v2.model.geno.MarkerPositionListResponse;
-import org.brapi.v2.model.geno.MarkerPositionSearchRequest;
+import org.brapi.v2.model.geno.BrAPIGenomeMapListResponse;
+import org.brapi.v2.model.geno.BrAPIGenomeMapSingleResponse;
+import org.brapi.v2.model.geno.BrAPILinkageGroupListResponse;
+import org.brapi.v2.model.geno.BrAPIMarkerPositionListResponse;
+import org.brapi.v2.model.geno.BrAPIMarkerPositionSearchRequest;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class GenomeMapsApiTest {
         Integer pageSize = null;
         
         GenomeMapQueryParams queryParams = new GenomeMapQueryParams();
-        ApiResponse<GenomeMapListResponse> response = api.mapsGet(queryParams);
+        ApiResponse<BrAPIGenomeMapListResponse> response = api.mapsGet(queryParams);
 
         // TODO: test validations
     }
@@ -73,7 +73,7 @@ public class GenomeMapsApiTest {
     public void mapsMapDbIdGetTest() throws ApiException {
         String mapDbId = null;
         
-        ApiResponse<GenomeMapSingleResponse> response = api.mapsMapDbIdGet(mapDbId);
+        ApiResponse<BrAPIGenomeMapSingleResponse> response = api.mapsMapDbIdGet(mapDbId);
 
         // TODO: test validations
     }
@@ -91,7 +91,7 @@ public class GenomeMapsApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<LinkageGroupListResponse> response = api.mapsMapDbIdLinkagegroupsGet(mapDbId, page, pageSize);
+        ApiResponse<BrAPILinkageGroupListResponse> response = api.mapsMapDbIdLinkagegroupsGet(mapDbId, page, pageSize);
 
         // TODO: test validations
     }
@@ -114,7 +114,7 @@ public class GenomeMapsApiTest {
         Integer pageSize = null;
         
         MarkerPositionQueryParams queryParams = new MarkerPositionQueryParams();
-        ApiResponse<MarkerPositionListResponse> response = api.markerpositionsGet(queryParams);
+        ApiResponse<BrAPIMarkerPositionListResponse> response = api.markerpositionsGet(queryParams);
 
         // TODO: test validations
     }
@@ -128,9 +128,9 @@ public class GenomeMapsApiTest {
      */
     @Test
     public void searchMarkerpositionsPostTest() throws ApiException {
-        MarkerPositionSearchRequest body = null;
+        BrAPIMarkerPositionSearchRequest body = null;
         
-        ApiResponse<MarkerPositionListResponse> response = api.searchMarkerpositionsPost(body);
+        ApiResponse<BrAPIMarkerPositionListResponse> response = api.searchMarkerpositionsPost(body);
 
         // TODO: test validations
     }
@@ -148,7 +148,7 @@ public class GenomeMapsApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<MarkerPositionListResponse> response = api.searchMarkerpositionsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIMarkerPositionListResponse> response = api.searchMarkerpositionsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

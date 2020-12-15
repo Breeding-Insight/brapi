@@ -15,11 +15,11 @@ package org.brapi.client.v2.modules.core;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.StudyQueryParams;
-import org.brapi.v2.model.core.StudyListResponse;
-import org.brapi.v2.model.core.StudyNewRequest;
-import org.brapi.v2.model.core.StudySearchRequest;
-import org.brapi.v2.model.core.StudySingleResponse;
-import org.brapi.v2.model.core.StudyTypesResponse;
+import org.brapi.v2.model.core.BrAPIStudyListResponse;
+import org.brapi.v2.model.core.BrAPIStudyNewRequest;
+import org.brapi.v2.model.core.BrAPIStudySearchRequest;
+import org.brapi.v2.model.core.BrAPIStudySingleResponse;
+import org.brapi.v2.model.core.BrAPIStudyTypesResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -44,9 +44,9 @@ public class StudiesApiTest {
      */
     @Test
     public void searchStudiesPostTest() throws ApiException {
-        StudySearchRequest body = null;
+        BrAPIStudySearchRequest body = null;
         
-        ApiResponse<StudyListResponse> response = api.searchStudiesPost(body);
+        ApiResponse<BrAPIStudyListResponse> response = api.searchStudiesPost(body);
 
         // TODO: test validations
     }
@@ -63,7 +63,7 @@ public class StudiesApiTest {
         String searchResultsDbId = null;
         Integer page = null;
         Integer pageSize = null;
-        ApiResponse<StudyListResponse> response = api.searchStudiesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIStudyListResponse> response = api.searchStudiesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }
@@ -98,7 +98,7 @@ public class StudiesApiTest {
         Integer pageSize = null;
         
         StudyQueryParams queryParams = new StudyQueryParams();
-        ApiResponse<StudyListResponse> response = api.studiesGet(queryParams);
+        ApiResponse<BrAPIStudyListResponse> response = api.studiesGet(queryParams);
 
         // TODO: test validations
     }
@@ -112,9 +112,9 @@ public class StudiesApiTest {
      */
     @Test
     public void studiesPostTest() throws ApiException {
-        List<StudyNewRequest> body = null;
+        List<BrAPIStudyNewRequest> body = null;
         
-        ApiResponse<StudyListResponse> response = api.studiesPost(body);
+        ApiResponse<BrAPIStudyListResponse> response = api.studiesPost(body);
 
         // TODO: test validations
     }
@@ -130,7 +130,7 @@ public class StudiesApiTest {
     public void studiesStudyDbIdGetTest() throws ApiException {
         String studyDbId = null;
         
-        ApiResponse<StudySingleResponse> response = api.studiesStudyDbIdGet(studyDbId);
+        ApiResponse<BrAPIStudySingleResponse> response = api.studiesStudyDbIdGet(studyDbId);
 
         // TODO: test validations
     }
@@ -145,9 +145,9 @@ public class StudiesApiTest {
     @Test
     public void studiesStudyDbIdPutTest() throws ApiException {
         String studyDbId = null;
-        StudyNewRequest body = null;
+        BrAPIStudyNewRequest body = null;
         
-        ApiResponse<StudySingleResponse> response = api.studiesStudyDbIdPut(studyDbId, body);
+        ApiResponse<BrAPIStudySingleResponse> response = api.studiesStudyDbIdPut(studyDbId, body);
 
         // TODO: test validations
     }
@@ -164,7 +164,7 @@ public class StudiesApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<StudyTypesResponse> response = api.studytypesGet(page, pageSize);
+        ApiResponse<BrAPIStudyTypesResponse> response = api.studytypesGet(page, pageSize);
 
         // TODO: test validations
     }

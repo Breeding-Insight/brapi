@@ -23,10 +23,10 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ImageQueryParams;
-import org.brapi.v2.model.pheno.ImageListResponse;
-import org.brapi.v2.model.pheno.ImageNewRequest;
-import org.brapi.v2.model.pheno.ImageSearchRequest;
-import org.brapi.v2.model.pheno.ImageSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIImageListResponse;
+import org.brapi.v2.model.pheno.BrAPIImageNewRequest;
+import org.brapi.v2.model.pheno.BrAPIImageSearchRequest;
+import org.brapi.v2.model.pheno.BrAPIImageSingleResponse;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -113,9 +113,9 @@ public class ImagesApi {
      * @return ApiResponse&lt;ImageListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ImageListResponse> imagesGet(ImageQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIImageListResponse> imagesGet(ImageQueryParams queryParams) throws ApiException {
         Call call = imagesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<ImageListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -127,9 +127,9 @@ public class ImagesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call imagesGetAsync(ImageQueryParams queryParams, final ApiCallback<ImageListResponse> callback) throws ApiException {
+    public Call imagesGetAsync(ImageQueryParams queryParams, final ApiCallback<BrAPIImageListResponse> callback) throws ApiException {
         Call call = imagesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<ImageListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -182,9 +182,9 @@ public class ImagesApi {
      * @return ApiResponse&lt;ImageSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ImageSingleResponse> imagesImageDbIdGet(String imageDbId) throws ApiException {
+    public ApiResponse<BrAPIImageSingleResponse> imagesImageDbIdGet(String imageDbId) throws ApiException {
         Call call = imagesImageDbIdGetCall(imageDbId);
-        Type localVarReturnType = new TypeToken<ImageSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -197,9 +197,9 @@ public class ImagesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call imagesImageDbIdGetAsync(String imageDbId, final ApiCallback<ImageSingleResponse> callback) throws ApiException {
+    public Call imagesImageDbIdGetAsync(String imageDbId, final ApiCallback<BrAPIImageSingleResponse> callback) throws ApiException {
         Call call = imagesImageDbIdGetCall(imageDbId);
-        Type localVarReturnType = new TypeToken<ImageSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -254,9 +254,9 @@ public class ImagesApi {
      * @return ApiResponse&lt;ImageSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ImageSingleResponse> imagesImageDbIdImagecontentPut(String imageDbId, Object body) throws ApiException {
+    public ApiResponse<BrAPIImageSingleResponse> imagesImageDbIdImagecontentPut(String imageDbId, Object body) throws ApiException {
         Call call = imagesImageDbIdImagecontentPutCall(imageDbId, body);
-        Type localVarReturnType = new TypeToken<ImageSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -270,9 +270,9 @@ public class ImagesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call imagesImageDbIdImagecontentPutAsync(String imageDbId, Object body, final ApiCallback<ImageSingleResponse> callback) throws ApiException {
+    public Call imagesImageDbIdImagecontentPutAsync(String imageDbId, Object body, final ApiCallback<BrAPIImageSingleResponse> callback) throws ApiException {
         Call call = imagesImageDbIdImagecontentPutCall(imageDbId, body);
-        Type localVarReturnType = new TypeToken<ImageSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -286,7 +286,7 @@ public class ImagesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call imagesImageDbIdPutCall(String imageDbId, ImageNewRequest body) throws ApiException {
+    private Call imagesImageDbIdPutCall(String imageDbId, BrAPIImageNewRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -327,9 +327,9 @@ public class ImagesApi {
      * @return ApiResponse&lt;ImageSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ImageSingleResponse> imagesImageDbIdPut(String imageDbId, ImageNewRequest body) throws ApiException {
+    public ApiResponse<BrAPIImageSingleResponse> imagesImageDbIdPut(String imageDbId, BrAPIImageNewRequest body) throws ApiException {
         Call call = imagesImageDbIdPutCall(imageDbId, body);
-        Type localVarReturnType = new TypeToken<ImageSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -343,9 +343,9 @@ public class ImagesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call imagesImageDbIdPutAsync(String imageDbId, ImageNewRequest body, final ApiCallback<ImageSingleResponse> callback) throws ApiException {
+    public Call imagesImageDbIdPutAsync(String imageDbId, BrAPIImageNewRequest body, final ApiCallback<BrAPIImageSingleResponse> callback) throws ApiException {
         Call call = imagesImageDbIdPutCall(imageDbId, body);
-        Type localVarReturnType = new TypeToken<ImageSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -358,7 +358,7 @@ public class ImagesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call imagesPostCall(List<ImageNewRequest> body) throws ApiException {
+    private Call imagesPostCall(List<BrAPIImageNewRequest> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -397,9 +397,9 @@ public class ImagesApi {
      * @return ApiResponse&lt;ImageListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ImageListResponse> imagesPost(List<ImageNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPIImageListResponse> imagesPost(List<BrAPIImageNewRequest> body) throws ApiException {
         Call call = imagesPostCall(body);
-        Type localVarReturnType = new TypeToken<ImageListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -412,9 +412,9 @@ public class ImagesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call imagesPostAsync(List<ImageNewRequest> body, final ApiCallback<ImageListResponse> callback) throws ApiException {
+    public Call imagesPostAsync(List<BrAPIImageNewRequest> body, final ApiCallback<BrAPIImageListResponse> callback) throws ApiException {
         Call call = imagesPostCall(body);
-        Type localVarReturnType = new TypeToken<ImageListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -427,7 +427,7 @@ public class ImagesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call searchImagesPostCall(ImageSearchRequest body) throws ApiException {
+    private Call searchImagesPostCall(BrAPIImageSearchRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -466,9 +466,9 @@ public class ImagesApi {
      * @return ApiResponse&lt;ImageListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ImageListResponse> searchImagesPost(ImageSearchRequest body) throws ApiException {
+    public ApiResponse<BrAPIImageListResponse> searchImagesPost(BrAPIImageSearchRequest body) throws ApiException {
         Call call = searchImagesPostCall(body);
-        Type localVarReturnType = new TypeToken<ImageListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -481,9 +481,9 @@ public class ImagesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchImagesPostAsync(ImageSearchRequest body, final ApiCallback<ImageListResponse> callback) throws ApiException {
+    public Call searchImagesPostAsync(BrAPIImageSearchRequest body, final ApiCallback<BrAPIImageListResponse> callback) throws ApiException {
         Call call = searchImagesPostCall(body);
-        Type localVarReturnType = new TypeToken<ImageListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -544,9 +544,9 @@ public class ImagesApi {
      * @return ApiResponse&lt;ImageListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ImageListResponse> searchImagesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIImageListResponse> searchImagesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchImagesSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<ImageListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -561,9 +561,9 @@ public class ImagesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchImagesSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<ImageListResponse> callback) throws ApiException {
+    public Call searchImagesSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<BrAPIImageListResponse> callback) throws ApiException {
         Call call = searchImagesSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<ImageListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIImageListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

@@ -26,10 +26,10 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.TrialQueryParams;
-import org.brapi.v2.model.core.TrialListResponse;
-import org.brapi.v2.model.core.TrialNewRequest;
-import org.brapi.v2.model.core.TrialSearchRequest;
-import org.brapi.v2.model.core.TrialSingleResponse;
+import org.brapi.v2.model.core.BrAPITrialListResponse;
+import org.brapi.v2.model.core.BrAPITrialNewRequest;
+import org.brapi.v2.model.core.BrAPITrialSearchRequest;
+import org.brapi.v2.model.core.BrAPITrialSingleResponse;
 
 public class TrialsApi {
     private ApiClient apiClient;
@@ -59,7 +59,7 @@ public class TrialsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call searchTrialsPostCall(TrialSearchRequest body) throws ApiException {
+    private Call searchTrialsPostCall(BrAPITrialSearchRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -98,9 +98,9 @@ public class TrialsApi {
      * @return ApiResponse&lt;TrialListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TrialListResponse> searchTrialsPost(TrialSearchRequest body) throws ApiException {
+    public ApiResponse<BrAPITrialListResponse> searchTrialsPost(BrAPITrialSearchRequest body) throws ApiException {
         Call call = searchTrialsPostCall(body);
-        Type localVarReturnType = new TypeToken<TrialListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -113,9 +113,9 @@ public class TrialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchTrialsPostAsync(TrialSearchRequest body, final ApiCallback<TrialListResponse> callback) throws ApiException {
+    public Call searchTrialsPostAsync(BrAPITrialSearchRequest body, final ApiCallback<BrAPITrialListResponse> callback) throws ApiException {
         Call call = searchTrialsPostCall(body);
-        Type localVarReturnType = new TypeToken<TrialListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -176,9 +176,9 @@ public class TrialsApi {
      * @return ApiResponse&lt;TrialListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TrialListResponse> searchTrialsSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPITrialListResponse> searchTrialsSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchTrialsSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<TrialListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -193,9 +193,9 @@ public class TrialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchTrialsSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<TrialListResponse> callback) throws ApiException {
+    public Call searchTrialsSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<BrAPITrialListResponse> callback) throws ApiException {
         Call call = searchTrialsSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<TrialListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -277,9 +277,9 @@ public class TrialsApi {
      * @return ApiResponse&lt;TrialListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TrialListResponse> trialsGet(TrialQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPITrialListResponse> trialsGet(TrialQueryParams queryParams) throws ApiException {
         Call call = trialsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<TrialListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -291,9 +291,9 @@ public class TrialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call trialsGetAsync(TrialQueryParams queryParams, final ApiCallback<TrialListResponse> callback) throws ApiException {
+    public Call trialsGetAsync(TrialQueryParams queryParams, final ApiCallback<BrAPITrialListResponse> callback) throws ApiException {
         Call call = trialsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<TrialListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -306,7 +306,7 @@ public class TrialsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call trialsPostCall(List<TrialNewRequest> body) throws ApiException {
+    private Call trialsPostCall(List<BrAPITrialNewRequest> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -345,9 +345,9 @@ public class TrialsApi {
      * @return ApiResponse&lt;TrialListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TrialListResponse> trialsPost(List<TrialNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPITrialListResponse> trialsPost(List<BrAPITrialNewRequest> body) throws ApiException {
         Call call = trialsPostCall(body);
-        Type localVarReturnType = new TypeToken<TrialListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -360,9 +360,9 @@ public class TrialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call trialsPostAsync(List<TrialNewRequest> body, final ApiCallback<TrialListResponse> callback) throws ApiException {
+    public Call trialsPostAsync(List<BrAPITrialNewRequest> body, final ApiCallback<BrAPITrialListResponse> callback) throws ApiException {
         Call call = trialsPostCall(body);
-        Type localVarReturnType = new TypeToken<TrialListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -415,9 +415,9 @@ public class TrialsApi {
      * @return ApiResponse&lt;TrialSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TrialSingleResponse> trialsTrialDbIdGet(String trialDbId) throws ApiException {
+    public ApiResponse<BrAPITrialSingleResponse> trialsTrialDbIdGet(String trialDbId) throws ApiException {
         Call call = trialsTrialDbIdGetCall(trialDbId);
-        Type localVarReturnType = new TypeToken<TrialSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -430,9 +430,9 @@ public class TrialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call trialsTrialDbIdGetAsync(String trialDbId, final ApiCallback<TrialSingleResponse> callback) throws ApiException {
+    public Call trialsTrialDbIdGetAsync(String trialDbId, final ApiCallback<BrAPITrialSingleResponse> callback) throws ApiException {
         Call call = trialsTrialDbIdGetCall(trialDbId);
-        Type localVarReturnType = new TypeToken<TrialSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -446,7 +446,7 @@ public class TrialsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call trialsTrialDbIdPutCall(String trialDbId, TrialNewRequest body) throws ApiException {
+    private Call trialsTrialDbIdPutCall(String trialDbId, BrAPITrialNewRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -487,9 +487,9 @@ public class TrialsApi {
      * @return ApiResponse&lt;TrialSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TrialSingleResponse> trialsTrialDbIdPut(String trialDbId, TrialNewRequest body) throws ApiException {
+    public ApiResponse<BrAPITrialSingleResponse> trialsTrialDbIdPut(String trialDbId, BrAPITrialNewRequest body) throws ApiException {
         Call call = trialsTrialDbIdPutCall(trialDbId, body);
-        Type localVarReturnType = new TypeToken<TrialSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -503,9 +503,9 @@ public class TrialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call trialsTrialDbIdPutAsync(String trialDbId, TrialNewRequest body, final ApiCallback<TrialSingleResponse> callback) throws ApiException {
+    public Call trialsTrialDbIdPutAsync(String trialDbId, BrAPITrialNewRequest body, final ApiCallback<BrAPITrialSingleResponse> callback) throws ApiException {
         Call call = trialsTrialDbIdPutCall(trialDbId, body);
-        Type localVarReturnType = new TypeToken<TrialSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPITrialSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

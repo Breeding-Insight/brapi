@@ -17,13 +17,13 @@ import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.CallSetQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantSetQueryParams;
-import org.brapi.v2.model.geno.CallSetsListResponse;
-import org.brapi.v2.model.geno.CallsListResponse;
-import org.brapi.v2.model.geno.VariantSetResponse;
-import org.brapi.v2.model.geno.VariantSetsExtractRequest;
-import org.brapi.v2.model.geno.VariantSetsListResponse;
-import org.brapi.v2.model.geno.VariantSetsSearchRequest;
-import org.brapi.v2.model.geno.VariantsListResponse;
+import org.brapi.v2.model.geno.BrAPICallSetsListResponse;
+import org.brapi.v2.model.geno.BrAPICallsListResponse;
+import org.brapi.v2.model.geno.BrAPIVariantSetResponse;
+import org.brapi.v2.model.geno.BrAPIVariantSetsExtractRequest;
+import org.brapi.v2.model.geno.BrAPIVariantSetsListResponse;
+import org.brapi.v2.model.geno.BrAPIVariantSetsSearchRequest;
+import org.brapi.v2.model.geno.BrAPIVariantsListResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -48,9 +48,9 @@ public class VariantSetsApiTest {
      */
     @Test
     public void searchVariantsetsPostTest() throws ApiException {
-        VariantSetsSearchRequest body = null;
+        BrAPIVariantSetsSearchRequest body = null;
         
-        ApiResponse<VariantSetsListResponse> response = api.searchVariantsetsPost(body);
+        ApiResponse<BrAPIVariantSetsListResponse> response = api.searchVariantsetsPost(body);
 
         // TODO: test validations
     }
@@ -68,7 +68,7 @@ public class VariantSetsApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<VariantSetsListResponse> response = api.searchVariantsetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIVariantSetsListResponse> response = api.searchVariantsetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }
@@ -82,9 +82,9 @@ public class VariantSetsApiTest {
      */
     @Test
     public void variantsetsExtractPostTest() throws ApiException {
-        VariantSetsExtractRequest body = null;
+        BrAPIVariantSetsExtractRequest body = null;
         
-        ApiResponse<VariantSetResponse> response = api.variantsetsExtractPost(body);
+        ApiResponse<BrAPIVariantSetResponse> response = api.variantsetsExtractPost(body);
 
         // TODO: test validations
     }
@@ -107,7 +107,7 @@ public class VariantSetsApiTest {
         Integer pageSize = null;
         
         VariantSetQueryParams queryParams = new VariantSetQueryParams();
-        ApiResponse<VariantSetsListResponse> response = api.variantsetsGet(queryParams);
+        ApiResponse<BrAPIVariantSetsListResponse> response = api.variantsetsGet(queryParams);
 
         // TODO: test validations
     }
@@ -130,7 +130,7 @@ public class VariantSetsApiTest {
         Integer pageSize = null;
         
         CallQueryParams queryParams = new CallQueryParams();
-        ApiResponse<CallsListResponse> response = api.variantsetsVariantSetDbIdCallsGet(variantSetDbId, queryParams);
+        ApiResponse<BrAPICallsListResponse> response = api.variantsetsVariantSetDbIdCallsGet(variantSetDbId, queryParams);
 
         // TODO: test validations
     }
@@ -150,7 +150,7 @@ public class VariantSetsApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<CallSetsListResponse> response = api.variantsetsVariantSetDbIdCallsetsGet(variantSetDbId, callSetDbId, callSetName, page, pageSize);
+        ApiResponse<BrAPICallSetsListResponse> response = api.variantsetsVariantSetDbIdCallsetsGet(variantSetDbId, callSetDbId, callSetName, page, pageSize);
 
         // TODO: test validations
     }
@@ -166,7 +166,7 @@ public class VariantSetsApiTest {
     public void variantsetsVariantSetDbIdGetTest() throws ApiException {
         String variantSetDbId = null;
         
-        ApiResponse<VariantSetResponse> response = api.variantsetsVariantSetDbIdGet(variantSetDbId);
+        ApiResponse<BrAPIVariantSetResponse> response = api.variantsetsVariantSetDbIdGet(variantSetDbId);
 
         // TODO: test validations
     }
@@ -185,7 +185,7 @@ public class VariantSetsApiTest {
         String pageToken = null;
         Integer pageSize = null;
         
-        ApiResponse<VariantsListResponse> response = api.variantsetsVariantSetDbIdVariantsGet(variantSetDbId, variantDbId, pageToken, pageSize);
+        ApiResponse<BrAPIVariantsListResponse> response = api.variantsetsVariantSetDbIdVariantsGet(variantSetDbId, variantDbId, pageToken, pageSize);
 
         // TODO: test validations
     }

@@ -26,11 +26,11 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenomeMapQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.MarkerPositionQueryParams;
-import org.brapi.v2.model.geno.GenomeMapListResponse;
-import org.brapi.v2.model.geno.GenomeMapSingleResponse;
-import org.brapi.v2.model.geno.LinkageGroupListResponse;
-import org.brapi.v2.model.geno.MarkerPositionListResponse;
-import org.brapi.v2.model.geno.MarkerPositionSearchRequest;
+import org.brapi.v2.model.geno.BrAPIGenomeMapListResponse;
+import org.brapi.v2.model.geno.BrAPIGenomeMapSingleResponse;
+import org.brapi.v2.model.geno.BrAPILinkageGroupListResponse;
+import org.brapi.v2.model.geno.BrAPIMarkerPositionListResponse;
+import org.brapi.v2.model.geno.BrAPIMarkerPositionSearchRequest;
 
 public class GenomeMapsApi {
     private ApiClient apiClient;
@@ -115,9 +115,9 @@ public class GenomeMapsApi {
      * @return ApiResponse&lt;GenomeMapListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GenomeMapListResponse> mapsGet(GenomeMapQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIGenomeMapListResponse> mapsGet(GenomeMapQueryParams queryParams) throws ApiException {
         Call call = mapsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<GenomeMapListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGenomeMapListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -129,9 +129,9 @@ public class GenomeMapsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call mapsGetAsync(GenomeMapQueryParams queryParams, final ApiCallback<GenomeMapListResponse> callback) throws ApiException {
+    public Call mapsGetAsync(GenomeMapQueryParams queryParams, final ApiCallback<BrAPIGenomeMapListResponse> callback) throws ApiException {
         Call call = mapsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<GenomeMapListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGenomeMapListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -184,9 +184,9 @@ public class GenomeMapsApi {
      * @return ApiResponse&lt;GenomeMapSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GenomeMapSingleResponse> mapsMapDbIdGet(String mapDbId) throws ApiException {
+    public ApiResponse<BrAPIGenomeMapSingleResponse> mapsMapDbIdGet(String mapDbId) throws ApiException {
         Call call = mapsMapDbIdGetCall(mapDbId);
-        Type localVarReturnType = new TypeToken<GenomeMapSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGenomeMapSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -199,9 +199,9 @@ public class GenomeMapsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call mapsMapDbIdGetAsync(String mapDbId, final ApiCallback<GenomeMapSingleResponse> callback) throws ApiException {
+    public Call mapsMapDbIdGetAsync(String mapDbId, final ApiCallback<BrAPIGenomeMapSingleResponse> callback) throws ApiException {
         Call call = mapsMapDbIdGetCall(mapDbId);
-        Type localVarReturnType = new TypeToken<GenomeMapSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGenomeMapSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -260,9 +260,9 @@ public class GenomeMapsApi {
      * @return ApiResponse&lt;LinkageGroupListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<LinkageGroupListResponse> mapsMapDbIdLinkagegroupsGet(String mapDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPILinkageGroupListResponse> mapsMapDbIdLinkagegroupsGet(String mapDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = mapsMapDbIdLinkagegroupsGetCall(mapDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<LinkageGroupListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPILinkageGroupListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -277,9 +277,9 @@ public class GenomeMapsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call mapsMapDbIdLinkagegroupsGetAsync(String mapDbId, Integer page, Integer pageSize, final ApiCallback<LinkageGroupListResponse> callback) throws ApiException {
+    public Call mapsMapDbIdLinkagegroupsGetAsync(String mapDbId, Integer page, Integer pageSize, final ApiCallback<BrAPILinkageGroupListResponse> callback) throws ApiException {
         Call call = mapsMapDbIdLinkagegroupsGetCall(mapDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<LinkageGroupListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPILinkageGroupListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -341,9 +341,9 @@ public class GenomeMapsApi {
      * @return ApiResponse&lt;MarkerPositionListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<MarkerPositionListResponse> markerpositionsGet(MarkerPositionQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIMarkerPositionListResponse> markerpositionsGet(MarkerPositionQueryParams queryParams) throws ApiException {
         Call call = markerpositionsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<MarkerPositionListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIMarkerPositionListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -355,9 +355,9 @@ public class GenomeMapsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call markerpositionsGetAsync(MarkerPositionQueryParams queryParams, final ApiCallback<MarkerPositionListResponse> callback) throws ApiException {
+    public Call markerpositionsGetAsync(MarkerPositionQueryParams queryParams, final ApiCallback<BrAPIMarkerPositionListResponse> callback) throws ApiException {
         Call call = markerpositionsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<MarkerPositionListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIMarkerPositionListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -367,7 +367,7 @@ public class GenomeMapsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call searchMarkerpositionsPostCall(MarkerPositionSearchRequest body) throws ApiException {
+    private Call searchMarkerpositionsPostCall(BrAPIMarkerPositionSearchRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -404,9 +404,9 @@ public class GenomeMapsApi {
      * @return ApiResponse&lt;MarkerPositionListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<MarkerPositionListResponse> searchMarkerpositionsPost(MarkerPositionSearchRequest body) throws ApiException {
+    public ApiResponse<BrAPIMarkerPositionListResponse> searchMarkerpositionsPost(BrAPIMarkerPositionSearchRequest body) throws ApiException {
         Call call = searchMarkerpositionsPostCall(body);
-        Type localVarReturnType = new TypeToken<MarkerPositionListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIMarkerPositionListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -419,9 +419,9 @@ public class GenomeMapsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchMarkerpositionsPostAsync(MarkerPositionSearchRequest body, final ApiCallback<MarkerPositionListResponse> callback) throws ApiException {
+    public Call searchMarkerpositionsPostAsync(BrAPIMarkerPositionSearchRequest body, final ApiCallback<BrAPIMarkerPositionListResponse> callback) throws ApiException {
         Call call = searchMarkerpositionsPostCall(body);
-        Type localVarReturnType = new TypeToken<MarkerPositionListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIMarkerPositionListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -480,9 +480,9 @@ public class GenomeMapsApi {
      * @return ApiResponse&lt;MarkerPositionListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<MarkerPositionListResponse> searchMarkerpositionsSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIMarkerPositionListResponse> searchMarkerpositionsSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchMarkerpositionsSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<MarkerPositionListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIMarkerPositionListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -497,9 +497,9 @@ public class GenomeMapsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchMarkerpositionsSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<MarkerPositionListResponse> callback) throws ApiException {
+    public Call searchMarkerpositionsSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<BrAPIMarkerPositionListResponse> callback) throws ApiException {
         Call call = searchMarkerpositionsSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<MarkerPositionListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIMarkerPositionListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

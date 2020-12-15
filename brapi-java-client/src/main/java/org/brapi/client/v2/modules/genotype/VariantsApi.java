@@ -26,10 +26,10 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenotypeQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantQueryParams;
-import org.brapi.v2.model.geno.CallsListResponse;
-import org.brapi.v2.model.geno.VariantSingleResponse;
-import org.brapi.v2.model.geno.VariantsListResponse;
-import org.brapi.v2.model.geno.VariantsSearchRequest;
+import org.brapi.v2.model.geno.BrAPICallsListResponse;
+import org.brapi.v2.model.geno.BrAPIVariantSingleResponse;
+import org.brapi.v2.model.geno.BrAPIVariantsListResponse;
+import org.brapi.v2.model.geno.BrAPIVariantsSearchRequest;
 
 public class VariantsApi {
     private ApiClient apiClient;
@@ -59,7 +59,7 @@ public class VariantsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call searchVariantsPostCall(VariantsSearchRequest body) throws ApiException {
+    private Call searchVariantsPostCall(BrAPIVariantsSearchRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -98,9 +98,9 @@ public class VariantsApi {
      * @return ApiResponse&lt;VariantsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VariantsListResponse> searchVariantsPost(VariantsSearchRequest body) throws ApiException {
+    public ApiResponse<BrAPIVariantsListResponse> searchVariantsPost(BrAPIVariantsSearchRequest body) throws ApiException {
         Call call = searchVariantsPostCall(body);
-        Type localVarReturnType = new TypeToken<VariantsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVariantsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -113,9 +113,9 @@ public class VariantsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchVariantsPostAsync(VariantsSearchRequest body, final ApiCallback<VariantsListResponse> callback) throws ApiException {
+    public Call searchVariantsPostAsync(BrAPIVariantsSearchRequest body, final ApiCallback<BrAPIVariantsListResponse> callback) throws ApiException {
         Call call = searchVariantsPostCall(body);
-        Type localVarReturnType = new TypeToken<VariantsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVariantsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -174,9 +174,9 @@ public class VariantsApi {
      * @return ApiResponse&lt;VariantsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VariantsListResponse> searchVariantsSearchResultsDbIdGet(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIVariantsListResponse> searchVariantsSearchResultsDbIdGet(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
         Call call = searchVariantsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, pageSize);
-        Type localVarReturnType = new TypeToken<VariantsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVariantsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -191,9 +191,9 @@ public class VariantsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchVariantsSearchResultsDbIdGetAsync(String searchResultsDbId, String pageToken, Integer pageSize, final ApiCallback<VariantsListResponse> callback) throws ApiException {
+    public Call searchVariantsSearchResultsDbIdGetAsync(String searchResultsDbId, String pageToken, Integer pageSize, final ApiCallback<BrAPIVariantsListResponse> callback) throws ApiException {
         Call call = searchVariantsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, pageSize);
-        Type localVarReturnType = new TypeToken<VariantsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVariantsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -247,9 +247,9 @@ public class VariantsApi {
      * @return ApiResponse&lt;VariantsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VariantsListResponse> variantsGet(VariantQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIVariantsListResponse> variantsGet(VariantQueryParams queryParams) throws ApiException {
         Call call = variantsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<VariantsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVariantsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -261,9 +261,9 @@ public class VariantsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call variantsGetAsync(VariantQueryParams queryParams, final ApiCallback<VariantsListResponse> callback) throws ApiException {
+    public Call variantsGetAsync(VariantQueryParams queryParams, final ApiCallback<BrAPIVariantsListResponse> callback) throws ApiException {
         Call call = variantsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<VariantsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVariantsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -326,9 +326,9 @@ public class VariantsApi {
      * @return ApiResponse&lt;CallsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CallsListResponse> variantsVariantDbIdCallsGet(String variantDbId, GenotypeQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPICallsListResponse> variantsVariantDbIdCallsGet(String variantDbId, GenotypeQueryParams queryParams) throws ApiException {
         Call call = variantsVariantDbIdCallsGetCall(variantDbId, queryParams);
-        Type localVarReturnType = new TypeToken<CallsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -341,9 +341,9 @@ public class VariantsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call variantsVariantDbIdCallsGetAsync(String variantDbId, GenotypeQueryParams queryParams, final ApiCallback<CallsListResponse> callback) throws ApiException {
+    public Call variantsVariantDbIdCallsGetAsync(String variantDbId, GenotypeQueryParams queryParams, final ApiCallback<BrAPICallsListResponse> callback) throws ApiException {
         Call call = variantsVariantDbIdCallsGetCall(variantDbId, queryParams);
-        Type localVarReturnType = new TypeToken<CallsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -393,9 +393,9 @@ public class VariantsApi {
      * @return ApiResponse&lt;VariantSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<VariantSingleResponse> variantsVariantDbIdGet(String variantDbId) throws ApiException {
+    public ApiResponse<BrAPIVariantSingleResponse> variantsVariantDbIdGet(String variantDbId) throws ApiException {
         Call call = variantsVariantDbIdGetCall(variantDbId);
-        Type localVarReturnType = new TypeToken<VariantSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVariantSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -408,9 +408,9 @@ public class VariantsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call variantsVariantDbIdGetAsync(String variantDbId, final ApiCallback<VariantSingleResponse> callback) throws ApiException {
+    public Call variantsVariantDbIdGetAsync(String variantDbId, final ApiCallback<BrAPIVariantSingleResponse> callback) throws ApiException {
         Call call = variantsVariantDbIdGetCall(variantDbId);
-        Type localVarReturnType = new TypeToken<VariantSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIVariantSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

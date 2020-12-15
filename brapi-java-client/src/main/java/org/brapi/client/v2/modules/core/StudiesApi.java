@@ -26,11 +26,11 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.StudyQueryParams;
-import org.brapi.v2.model.core.StudyListResponse;
-import org.brapi.v2.model.core.StudyNewRequest;
-import org.brapi.v2.model.core.StudySearchRequest;
-import org.brapi.v2.model.core.StudySingleResponse;
-import org.brapi.v2.model.core.StudyTypesResponse;
+import org.brapi.v2.model.core.BrAPIStudyListResponse;
+import org.brapi.v2.model.core.BrAPIStudyNewRequest;
+import org.brapi.v2.model.core.BrAPIStudySearchRequest;
+import org.brapi.v2.model.core.BrAPIStudySingleResponse;
+import org.brapi.v2.model.core.BrAPIStudyTypesResponse;
 
 public class StudiesApi {
     private ApiClient apiClient;
@@ -60,7 +60,7 @@ public class StudiesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call searchStudiesPostCall(StudySearchRequest body) throws ApiException {
+    private Call searchStudiesPostCall(BrAPIStudySearchRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -99,9 +99,9 @@ public class StudiesApi {
      * @return ApiResponse&lt;StudyListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<StudyListResponse> searchStudiesPost(StudySearchRequest body) throws ApiException {
+    public ApiResponse<BrAPIStudyListResponse> searchStudiesPost(BrAPIStudySearchRequest body) throws ApiException {
         Call call = searchStudiesPostCall(body);
-        Type localVarReturnType = new TypeToken<StudyListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudyListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -114,9 +114,9 @@ public class StudiesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchStudiesPostAsync(StudySearchRequest body, final ApiCallback<StudyListResponse> callback) throws ApiException {
+    public Call searchStudiesPostAsync(BrAPIStudySearchRequest body, final ApiCallback<BrAPIStudyListResponse> callback) throws ApiException {
         Call call = searchStudiesPostCall(body);
-        Type localVarReturnType = new TypeToken<StudyListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudyListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -177,9 +177,9 @@ public class StudiesApi {
      * @return ApiResponse&lt;StudyListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<StudyListResponse> searchStudiesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIStudyListResponse> searchStudiesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchStudiesSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<StudyListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudyListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -194,9 +194,9 @@ public class StudiesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchStudiesSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<StudyListResponse> callback) throws ApiException {
+    public Call searchStudiesSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<BrAPIStudyListResponse> callback) throws ApiException {
         Call call = searchStudiesSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<StudyListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudyListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -282,9 +282,9 @@ public class StudiesApi {
      * @return ApiResponse&lt;StudyListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<StudyListResponse> studiesGet(StudyQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIStudyListResponse> studiesGet(StudyQueryParams queryParams) throws ApiException {
         Call call = studiesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<StudyListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudyListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -296,9 +296,9 @@ public class StudiesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call studiesGetAsync(StudyQueryParams queryParams, final ApiCallback<StudyListResponse> callback) throws ApiException {
+    public Call studiesGetAsync(StudyQueryParams queryParams, final ApiCallback<BrAPIStudyListResponse> callback) throws ApiException {
         Call call = studiesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<StudyListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudyListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -311,7 +311,7 @@ public class StudiesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call studiesPostCall(List<StudyNewRequest> body) throws ApiException {
+    private Call studiesPostCall(List<BrAPIStudyNewRequest> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -350,9 +350,9 @@ public class StudiesApi {
      * @return ApiResponse&lt;StudyListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<StudyListResponse> studiesPost(List<StudyNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPIStudyListResponse> studiesPost(List<BrAPIStudyNewRequest> body) throws ApiException {
         Call call = studiesPostCall(body);
-        Type localVarReturnType = new TypeToken<StudyListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudyListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -365,9 +365,9 @@ public class StudiesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call studiesPostAsync(List<StudyNewRequest> body, final ApiCallback<StudyListResponse> callback) throws ApiException {
+    public Call studiesPostAsync(List<BrAPIStudyNewRequest> body, final ApiCallback<BrAPIStudyListResponse> callback) throws ApiException {
         Call call = studiesPostCall(body);
-        Type localVarReturnType = new TypeToken<StudyListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudyListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -420,9 +420,9 @@ public class StudiesApi {
      * @return ApiResponse&lt;StudySingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<StudySingleResponse> studiesStudyDbIdGet(String studyDbId) throws ApiException {
+    public ApiResponse<BrAPIStudySingleResponse> studiesStudyDbIdGet(String studyDbId) throws ApiException {
         Call call = studiesStudyDbIdGetCall(studyDbId);
-        Type localVarReturnType = new TypeToken<StudySingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudySingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -435,9 +435,9 @@ public class StudiesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call studiesStudyDbIdGetAsync(String studyDbId, final ApiCallback<StudySingleResponse> callback) throws ApiException {
+    public Call studiesStudyDbIdGetAsync(String studyDbId, final ApiCallback<BrAPIStudySingleResponse> callback) throws ApiException {
         Call call = studiesStudyDbIdGetCall(studyDbId);
-        Type localVarReturnType = new TypeToken<StudySingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudySingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -451,7 +451,7 @@ public class StudiesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call studiesStudyDbIdPutCall(String studyDbId, StudyNewRequest body) throws ApiException {
+    private Call studiesStudyDbIdPutCall(String studyDbId, BrAPIStudyNewRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -492,9 +492,9 @@ public class StudiesApi {
      * @return ApiResponse&lt;StudySingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<StudySingleResponse> studiesStudyDbIdPut(String studyDbId, StudyNewRequest body) throws ApiException {
+    public ApiResponse<BrAPIStudySingleResponse> studiesStudyDbIdPut(String studyDbId, BrAPIStudyNewRequest body) throws ApiException {
         Call call = studiesStudyDbIdPutCall(studyDbId, body);
-        Type localVarReturnType = new TypeToken<StudySingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudySingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -508,9 +508,9 @@ public class StudiesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call studiesStudyDbIdPutAsync(String studyDbId, StudyNewRequest body, final ApiCallback<StudySingleResponse> callback) throws ApiException {
+    public Call studiesStudyDbIdPutAsync(String studyDbId, BrAPIStudyNewRequest body, final ApiCallback<BrAPIStudySingleResponse> callback) throws ApiException {
         Call call = studiesStudyDbIdPutCall(studyDbId, body);
-        Type localVarReturnType = new TypeToken<StudySingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudySingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -568,9 +568,9 @@ public class StudiesApi {
      * @return ApiResponse&lt;StudyTypesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<StudyTypesResponse> studytypesGet(Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIStudyTypesResponse> studytypesGet(Integer page, Integer pageSize) throws ApiException {
         Call call = studytypesGetCall(page, pageSize);
-        Type localVarReturnType = new TypeToken<StudyTypesResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudyTypesResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -584,9 +584,9 @@ public class StudiesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call studytypesGetAsync(Integer page, Integer pageSize, final ApiCallback<StudyTypesResponse> callback) throws ApiException {
+    public Call studytypesGetAsync(Integer page, Integer pageSize, final ApiCallback<BrAPIStudyTypesResponse> callback) throws ApiException {
         Call call = studytypesGetCall(page, pageSize);
-        Type localVarReturnType = new TypeToken<StudyTypesResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIStudyTypesResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

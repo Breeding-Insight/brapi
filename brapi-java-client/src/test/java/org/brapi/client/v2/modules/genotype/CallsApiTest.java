@@ -17,8 +17,8 @@ import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.CallSetQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.GenotypeQueryParams;
-import org.brapi.v2.model.geno.CallsListResponse;
-import org.brapi.v2.model.geno.CallsSearchRequest;
+import org.brapi.v2.model.geno.BrAPICallsListResponse;
+import org.brapi.v2.model.geno.BrAPICallsSearchRequest;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class CallsApiTest {
         Integer pageSize = null;
         
         CallQueryParams queryParams = new CallQueryParams();
-        ApiResponse<CallsListResponse> response = api.callsGet(queryParams);
+        ApiResponse<BrAPICallsListResponse> response = api.callsGet(queryParams);
 
         // TODO: test validations
     }
@@ -68,9 +68,9 @@ public class CallsApiTest {
      */
     @Test
     public void searchCallsPostTest() throws ApiException {
-        CallsSearchRequest body = null;
+        BrAPICallsSearchRequest body = null;
         
-        ApiResponse<CallsListResponse> response = api.searchCallsPost(body);
+        ApiResponse<BrAPICallsListResponse> response = api.searchCallsPost(body);
 
         // TODO: test validations
     }
@@ -88,7 +88,7 @@ public class CallsApiTest {
         String pageToken = null;
         Integer pageSize = null;
         
-        ApiResponse<CallsListResponse> response = api.searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
+        ApiResponse<BrAPICallsListResponse> response = api.searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
 
         // TODO: test validations
     }

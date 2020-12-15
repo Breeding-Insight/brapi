@@ -15,9 +15,9 @@ package org.brapi.client.v2.modules.germplasm;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.CrossingProjectQueryParams;
-import org.brapi.v2.model.germ.CrossingProjectNewRequest;
-import org.brapi.v2.model.germ.CrossingProjectsListResponse;
-import org.brapi.v2.model.germ.CrossingProjectsSingleResponse;
+import org.brapi.v2.model.germ.BrAPICrossingProjectNewRequest;
+import org.brapi.v2.model.germ.BrAPICrossingProjectsListResponse;
+import org.brapi.v2.model.germ.BrAPICrossingProjectsSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class CrossingProjectsApiTest {
     public void crossingprojectsCrossingProjectDbIdGetTest() throws ApiException {
         String crossingProjectDbId = null;
         
-        ApiResponse<CrossingProjectsSingleResponse> response = api.crossingprojectsCrossingProjectDbIdGet(crossingProjectDbId);
+        ApiResponse<BrAPICrossingProjectsSingleResponse> response = api.crossingprojectsCrossingProjectDbIdGet(crossingProjectDbId);
 
         // TODO: test validations
     }
@@ -59,9 +59,9 @@ public class CrossingProjectsApiTest {
     @Test
     public void crossingprojectsCrossingProjectDbIdPutTest() throws ApiException {
         String crossingProjectDbId = null;
-        CrossingProjectNewRequest body = null;
+        BrAPICrossingProjectNewRequest body = null;
         
-        ApiResponse<CrossingProjectsSingleResponse> response = api.crossingprojectsCrossingProjectDbIdPut(crossingProjectDbId, body);
+        ApiResponse<BrAPICrossingProjectsSingleResponse> response = api.crossingprojectsCrossingProjectDbIdPut(crossingProjectDbId, body);
 
         // TODO: test validations
     }
@@ -82,7 +82,7 @@ public class CrossingProjectsApiTest {
         Integer pageSize = null;
         
         CrossingProjectQueryParams queryParams = new CrossingProjectQueryParams();
-        ApiResponse<CrossingProjectsListResponse> response = api.crossingprojectsGet(queryParams);
+        ApiResponse<BrAPICrossingProjectsListResponse> response = api.crossingprojectsGet(queryParams);
 
         // TODO: test validations
     }
@@ -96,9 +96,9 @@ public class CrossingProjectsApiTest {
      */
     @Test
     public void crossingprojectsPostTest() throws ApiException {
-        List<CrossingProjectNewRequest> body = null;
+        List<BrAPICrossingProjectNewRequest> body = null;
         
-        ApiResponse<CrossingProjectsListResponse> response = api.crossingprojectsPost(body);
+        ApiResponse<BrAPICrossingProjectsListResponse> response = api.crossingprojectsPost(body);
 
         // TODO: test validations
     }

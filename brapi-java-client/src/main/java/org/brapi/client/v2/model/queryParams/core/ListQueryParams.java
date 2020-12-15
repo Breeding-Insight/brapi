@@ -17,7 +17,7 @@
 
 package org.brapi.client.v2.model.queryParams.core;
 
-import org.brapi.v2.model.core.ListTypes;
+import org.brapi.v2.model.core.BrAPIListTypes;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,7 +34,7 @@ import lombok.experimental.SuperBuilder;
 @Accessors(fluent=true)
 public class ListQueryParams extends BrAPIQueryParams {
 
-    private ListTypes listType;
+    private BrAPIListTypes listType;
     private String listName;
     private String listDbId;
     private String listSource;

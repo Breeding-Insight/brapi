@@ -15,9 +15,9 @@ package org.brapi.client.v2.modules.core;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.SeasonQueryParams;
-import org.brapi.v2.model.core.Season;
-import org.brapi.v2.model.core.SeasonListResponse;
-import org.brapi.v2.model.core.SeasonSingleResponse;
+import org.brapi.v2.model.core.BrAPISeason;
+import org.brapi.v2.model.core.BrAPISeasonListResponse;
+import org.brapi.v2.model.core.BrAPISeasonSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class SeasonsApiTest {
         Integer pageSize = null;
         
         SeasonQueryParams queryParams = new SeasonQueryParams();
-        ApiResponse<SeasonListResponse> response = api.seasonsGet(queryParams);
+        ApiResponse<BrAPISeasonListResponse> response = api.seasonsGet(queryParams);
 
         // TODO: test validations
     }
@@ -63,9 +63,9 @@ public class SeasonsApiTest {
      */
     @Test
     public void seasonsPostTest() throws ApiException {
-        List<Season> body = null;
+        List<BrAPISeason> body = null;
         
-        ApiResponse<SeasonListResponse> response = api.seasonsPost(body);
+        ApiResponse<BrAPISeasonListResponse> response = api.seasonsPost(body);
 
         // TODO: test validations
     }
@@ -81,7 +81,7 @@ public class SeasonsApiTest {
     public void seasonsSeasonDbIdGetTest() throws ApiException {
         String seasonDbId = null;
         
-        ApiResponse<SeasonSingleResponse> response = api.seasonsSeasonDbIdGet(seasonDbId);
+        ApiResponse<BrAPISeasonSingleResponse> response = api.seasonsSeasonDbIdGet(seasonDbId);
 
         // TODO: test validations
     }
@@ -96,9 +96,9 @@ public class SeasonsApiTest {
     @Test
     public void seasonsSeasonDbIdPutTest() throws ApiException {
         String seasonDbId = null;
-        Season body = null;
+        BrAPISeason body = null;
         
-        ApiResponse<SeasonSingleResponse> response = api.seasonsSeasonDbIdPut(seasonDbId, body);
+        ApiResponse<BrAPISeasonSingleResponse> response = api.seasonsSeasonDbIdPut(seasonDbId, body);
 
         // TODO: test validations
     }

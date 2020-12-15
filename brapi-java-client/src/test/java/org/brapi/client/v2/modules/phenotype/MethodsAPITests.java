@@ -24,13 +24,13 @@ import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.phenotype.MethodQueryParams;
-import org.brapi.v2.model.ExternalReferences;
-import org.brapi.v2.model.ExternalReferencesInner;
-import org.brapi.v2.model.OntologyReference;
-import org.brapi.v2.model.pheno.Method;
-import org.brapi.v2.model.pheno.MethodBaseClass;
-import org.brapi.v2.model.pheno.MethodListResponse;
-import org.brapi.v2.model.pheno.MethodSingleResponse;
+import org.brapi.v2.model.BrAPIExternalReferenceList;
+import org.brapi.v2.model.BrAPIExternalReference;
+import org.brapi.v2.model.BrAPIOntologyReference;
+import org.brapi.v2.model.pheno.BrAPIMethod;
+import org.brapi.v2.model.pheno.BrAPIMethodBaseClass;
+import org.brapi.v2.model.pheno.BrAPIMethodListResponse;
+import org.brapi.v2.model.pheno.BrAPIMethodSingleResponse;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
@@ -44,7 +44,7 @@ public class MethodsAPITests extends BrAPIClientTest {
     private MethodsApi methodsAPI = new MethodsApi(this.apiClient);
     private String externalReferenceID = "testId";
     private String externalReferenceSource = "testSource";
-    private Method createdMethod;
+    private BrAPIMethod createdMethod;
 
     // depends on this existing in test db until we can create our own
     // don't have GET /ontologies yet either
@@ -52,39 +52,39 @@ public class MethodsAPITests extends BrAPIClientTest {
 
     @Test
     public void createMethodIdPresent() {
-        Method brApiMethod = new Method().methodDbId("test");
+        BrAPIMethod brApiMethod = new BrAPIMethod().methodDbId("test");
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<MethodListResponse> method = methodsAPI.methodsPost(Arrays.asList(brApiMethod));
+            ApiResponse<BrAPIMethodListResponse> method = methodsAPI.methodsPost(Arrays.asList(brApiMethod));
         });
     }
 
     @Test
     public void createMethodNull() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<MethodListResponse> method = methodsAPI.methodsPost(null);
+            ApiResponse<BrAPIMethodListResponse> method = methodsAPI.methodsPost(null);
         });
     }
 
     @Test
     public void createMethodMultipleIdPresent() {
-        Method brApiMethod = new Method().methodDbId("test");
-        Method brApiMethod1 = new Method();
-        List<MethodBaseClass> brApiMethods = new ArrayList<>();
+        BrAPIMethod brApiMethod = new BrAPIMethod().methodDbId("test");
+        BrAPIMethod brApiMethod1 = new BrAPIMethod();
+        List<BrAPIMethodBaseClass> brApiMethods = new ArrayList<>();
         brApiMethods.add(brApiMethod);
         brApiMethods.add(brApiMethod1);
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<MethodListResponse> method = methodsAPI.methodsPost(brApiMethods);
+            ApiResponse<BrAPIMethodListResponse> method = methodsAPI.methodsPost(brApiMethods);
         });
     }
 
     @Test
     public void createMethodMultipleEmptyList() {
 
-        List<MethodBaseClass> brApiMethods = new ArrayList<>();
+        List<BrAPIMethodBaseClass> brApiMethods = new ArrayList<>();
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<MethodListResponse> method = methodsAPI.methodsPost(brApiMethods);
+            ApiResponse<BrAPIMethodListResponse> method = methodsAPI.methodsPost(brApiMethods);
         });
     }
 
@@ -92,7 +92,7 @@ public class MethodsAPITests extends BrAPIClientTest {
     public void createMethodMultipleNull() {
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<MethodListResponse> method = methodsAPI.methodsPost(null);
+            ApiResponse<BrAPIMethodListResponse> method = methodsAPI.methodsPost(null);
         });
     }
 
@@ -100,20 +100,20 @@ public class MethodsAPITests extends BrAPIClientTest {
     @Order(1)
     @SneakyThrows
     public void createMethodSuccess() {
-        ExternalReferencesInner brApiExternalReference = new ExternalReferencesInner()
+        BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference()
                 .referenceID(externalReferenceID)
                 .referenceSource(externalReferenceSource);
-        ExternalReferences externalReferences = new ExternalReferences();
+        BrAPIExternalReferenceList externalReferences = new BrAPIExternalReferenceList();
         externalReferences.add(brApiExternalReference);
 
-        OntologyReference brApiOntologyReference = new OntologyReference()
+        BrAPIOntologyReference brApiOntologyReference = new BrAPIOntologyReference()
                 .ontologyDbId(validOntologyDbId)
                 .ontologyName("Ontology.org")
                 .version("17");
 
         Map<String, String> additionalInfo = new HashMap<>();
         additionalInfo.put("test", "test");
-        MethodBaseClass brApiMethod = new Method()
+        BrAPIMethodBaseClass brApiMethod = new BrAPIMethod()
                 .additionalInfo(additionalInfo)
                 .externalReferences(externalReferences)
                 .ontologyReference(brApiOntologyReference)
@@ -123,10 +123,10 @@ public class MethodsAPITests extends BrAPIClientTest {
                 .methodClass("test class")
                 .methodName("new test method");
 
-        ApiResponse<MethodListResponse> createdMethod = methodsAPI.methodsPost(Arrays.asList(brApiMethod));
+        ApiResponse<BrAPIMethodListResponse> createdMethod = methodsAPI.methodsPost(Arrays.asList(brApiMethod));
 
         assertNotNull(createdMethod);
-        Method method = createdMethod.getBody().getResult().getData().get(0);
+        BrAPIMethod method = createdMethod.getBody().getResult().getData().get(0);
 
         assertFalse(method.getMethodDbId() == null, "Method id missing");
         methodAssertEquals(brApiMethod, method);
@@ -134,7 +134,7 @@ public class MethodsAPITests extends BrAPIClientTest {
         this.createdMethod = method;
     }
 
-    private void methodAssertEquals(MethodBaseClass expected, Method actual) {
+    private void methodAssertEquals(BrAPIMethodBaseClass expected, BrAPIMethod actual) {
         assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Method additionalInfo mismatch");
         assertEquals(expected.getMethodName(), actual.getMethodName(), "Method name mismatch");
         assertEquals(expected.getBibliographicalReference(), actual.getBibliographicalReference(), "Method bibliographical mismatch");
@@ -151,15 +151,15 @@ public class MethodsAPITests extends BrAPIClientTest {
     @Order(1)
     @SneakyThrows
     public void createMethodsMultipleSuccess() {
-        MethodBaseClass brApiMethod = new MethodBaseClass().methodName("new test method1");
-        MethodBaseClass brApiMethod2 = new MethodBaseClass().methodName("new test method2");
-        List<MethodBaseClass> methods = new ArrayList<>();
+        BrAPIMethodBaseClass brApiMethod = new BrAPIMethodBaseClass().methodName("new test method1");
+        BrAPIMethodBaseClass brApiMethod2 = new BrAPIMethodBaseClass().methodName("new test method2");
+        List<BrAPIMethodBaseClass> methods = new ArrayList<>();
         methods.add(brApiMethod);
         methods.add(brApiMethod2);
 
-        ApiResponse<MethodListResponse> createdMethodsRes = methodsAPI.methodsPost(methods);
+        ApiResponse<BrAPIMethodListResponse> createdMethodsRes = methodsAPI.methodsPost(methods);
 
-        List<Method>  createdMethods = createdMethodsRes.getBody().getResult().getData();
+        List<BrAPIMethod>  createdMethods = createdMethodsRes.getBody().getResult().getData();
         assertEquals(true, createdMethods.size() == 2);
         assertEquals(true, createdMethods.get(0).getMethodDbId() != null, "Method id missing");
         assertEquals(true, createdMethods.get(1).getMethodDbId() != null, "Method id missing");
@@ -171,7 +171,7 @@ public class MethodsAPITests extends BrAPIClientTest {
     @Test
     public void getMethodsNull() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<MethodListResponse> methods = this.methodsAPI.methodsGet(null);
+            ApiResponse<BrAPIMethodListResponse> methods = this.methodsAPI.methodsGet(null);
         });
     }
 
@@ -179,7 +179,7 @@ public class MethodsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     void getMethodsSuccess() {
-        ApiResponse<MethodListResponse> methods = methodsAPI.methodsGet(new MethodQueryParams());
+        ApiResponse<BrAPIMethodListResponse> methods = methodsAPI.methodsGet(new MethodQueryParams());
 
         assertNotNull(methods, "List of methods was empty");
     }
@@ -193,7 +193,7 @@ public class MethodsAPITests extends BrAPIClientTest {
                 .pageSize(1)
                 .build();
 
-        ApiResponse<MethodListResponse> methods = methodsAPI.methodsGet(baseRequest);
+        ApiResponse<BrAPIMethodListResponse> methods = methodsAPI.methodsGet(baseRequest);
 
         assertEquals(true, methods.getBody().getResult().getData().size() == 1, "More than one method was returned");
     }
@@ -206,7 +206,7 @@ public class MethodsAPITests extends BrAPIClientTest {
                 .externalReferenceID(externalReferenceID)
                 .build();
 
-        ApiResponse<MethodListResponse> methods = methodsAPI.methodsGet(methodsRequest);
+        ApiResponse<BrAPIMethodListResponse> methods = methodsAPI.methodsGet(methodsRequest);
 
         assertEquals(true, methods.getBody().getResult().getData().size() > 0, "List of methods was empty");
     }
@@ -219,7 +219,7 @@ public class MethodsAPITests extends BrAPIClientTest {
                 .externalReferenceSource(externalReferenceSource)
                 .build();
 
-        ApiResponse<MethodListResponse> methods = methodsAPI.methodsGet(methodsRequest);
+        ApiResponse<BrAPIMethodListResponse> methods = methodsAPI.methodsGet(methodsRequest);
 
         assertEquals(true, methods.getBody().getResult().getData().size() > 0, "List of methods was empty");
     }
@@ -231,14 +231,14 @@ public class MethodsAPITests extends BrAPIClientTest {
                 .externalReferenceSource("badExternalReferenceId")
                 .build();
 
-        ApiResponse<MethodListResponse> methods = methodsAPI.methodsGet(methodsRequest);
+        ApiResponse<BrAPIMethodListResponse> methods = methodsAPI.methodsGet(methodsRequest);
         assertEquals(true, methods.getBody().getResult().getData().isEmpty(), "A method was found that shouldn't have been");
     }
 
     @Test
     public void getMethodByIdMissingId() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<MethodSingleResponse> method = methodsAPI.methodsMethodDbIdGet(null);
+            ApiResponse<BrAPIMethodSingleResponse> method = methodsAPI.methodsMethodDbIdGet(null);
         });
     }
 
@@ -246,10 +246,10 @@ public class MethodsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     void getMethodByIdSuccess() {
-        ApiResponse<MethodSingleResponse> optionalMethod = methodsAPI.methodsMethodDbIdGet(createdMethod.getMethodDbId());
+        ApiResponse<BrAPIMethodSingleResponse> optionalMethod = methodsAPI.methodsMethodDbIdGet(createdMethod.getMethodDbId());
 
         assertNotNull(optionalMethod, "An empty optional was returned");
-        Method method = optionalMethod.getBody().getResult();
+        BrAPIMethod method = optionalMethod.getBody().getResult();
         assertEquals(true, method.getMethodDbId() != null, "MethodDbId was not parsed properly.");
         methodAssertEquals(createdMethod, method);
     }
@@ -258,7 +258,7 @@ public class MethodsAPITests extends BrAPIClientTest {
     @SneakyThrows
     void getMethodByIdInvalid() {
         HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
-            ApiResponse<MethodSingleResponse> method = methodsAPI.methodsMethodDbIdGet("badMethodId");
+            ApiResponse<BrAPIMethodSingleResponse> method = methodsAPI.methodsMethodDbIdGet("badMethodId");
         });
     }
 
@@ -266,15 +266,15 @@ public class MethodsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     public void updateMethodSuccess() {
-        Method method = this.createdMethod;
+        BrAPIMethod method = this.createdMethod;
         method.setMethodName("updated_name");
         method.setDescription("updated_description");
 
         // Check that it is a success and all data matches
-        ApiResponse<MethodSingleResponse> updatedMethodResult = this.methodsAPI.methodsMethodDbIdPut(this.createdMethod.getMethodDbId(), method);
+        ApiResponse<BrAPIMethodSingleResponse> updatedMethodResult = this.methodsAPI.methodsMethodDbIdPut(this.createdMethod.getMethodDbId(), method);
 
         assertNotNull(updatedMethodResult, "Method was not returned");
-        Method updatedMethod = updatedMethodResult.getBody().getResult();
+        BrAPIMethod updatedMethod = updatedMethodResult.getBody().getResult();
         methodAssertEquals(method, updatedMethod);
     }
 
@@ -282,17 +282,17 @@ public class MethodsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateMethodMissingId() {
         // Check that it throws an APIException
-        MethodBaseClass brApiMethod = new Method().methodName("new test method");
+        BrAPIMethodBaseClass brApiMethod = new BrAPIMethod().methodName("new test method");
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<MethodSingleResponse> updatedMethodResult = this.methodsAPI.methodsMethodDbIdPut(null, brApiMethod);
+            ApiResponse<BrAPIMethodSingleResponse> updatedMethodResult = this.methodsAPI.methodsMethodDbIdPut(null, brApiMethod);
         });
     }
 
     @Test
     public void updateMethodNull() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<MethodSingleResponse> method = this.methodsAPI.methodsMethodDbIdPut("fake dbid", null);
+            ApiResponse<BrAPIMethodSingleResponse> method = this.methodsAPI.methodsMethodDbIdPut("fake dbid", null);
         });
     }
 

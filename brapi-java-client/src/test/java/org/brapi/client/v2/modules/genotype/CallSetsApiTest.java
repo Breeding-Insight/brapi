@@ -17,10 +17,10 @@ import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.CallSetQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.GenotypeQueryParams;
-import org.brapi.v2.model.geno.CallSetResponse;
-import org.brapi.v2.model.geno.CallSetsListResponse;
-import org.brapi.v2.model.geno.CallSetsSearchRequest;
-import org.brapi.v2.model.geno.CallsListResponse;
+import org.brapi.v2.model.geno.BrAPICallSetResponse;
+import org.brapi.v2.model.geno.BrAPICallSetsListResponse;
+import org.brapi.v2.model.geno.BrAPICallSetsSearchRequest;
+import org.brapi.v2.model.geno.BrAPICallsListResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class CallSetsApiTest {
         Integer pageSize = null;
         
         GenotypeQueryParams queryParams = new GenotypeQueryParams();
-        ApiResponse<CallsListResponse> response = api.callsetsCallSetDbIdCallsGet(callSetDbId, queryParams);
+        ApiResponse<BrAPICallsListResponse> response = api.callsetsCallSetDbIdCallsGet(callSetDbId, queryParams);
 
         // TODO: test validations
     }
@@ -70,7 +70,7 @@ public class CallSetsApiTest {
     public void callsetsCallSetDbIdGetTest() throws ApiException {
         String callSetDbId = null;
         
-        ApiResponse<CallSetResponse> response = api.callsetsCallSetDbIdGet(callSetDbId);
+        ApiResponse<BrAPICallSetResponse> response = api.callsetsCallSetDbIdGet(callSetDbId);
 
         // TODO: test validations
     }
@@ -93,7 +93,7 @@ public class CallSetsApiTest {
         Integer pageSize = null;
         
         CallSetQueryParams queryParams = new CallSetQueryParams();
-        ApiResponse<CallSetsListResponse> response = api.callsetsGet(queryParams);
+        ApiResponse<BrAPICallSetsListResponse> response = api.callsetsGet(queryParams);
 
         // TODO: test validations
     }
@@ -107,9 +107,9 @@ public class CallSetsApiTest {
      */
     @Test
     public void searchCallsetsPostTest() throws ApiException {
-        CallSetsSearchRequest body = null;
+        BrAPICallSetsSearchRequest body = null;
         
-        ApiResponse<CallSetsListResponse> response = api.searchCallsetsPost(body);
+        ApiResponse<BrAPICallSetsListResponse> response = api.searchCallsetsPost(body);
 
         // TODO: test validations
     }
@@ -127,7 +127,7 @@ public class CallSetsApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<CallSetsListResponse> response = api.searchCallsetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPICallSetsListResponse> response = api.searchCallsetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

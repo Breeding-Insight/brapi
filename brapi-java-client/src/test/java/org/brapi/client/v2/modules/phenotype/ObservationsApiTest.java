@@ -16,12 +16,12 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationQueryParams;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationTableQueryParams;
-import org.brapi.v2.model.WSMIMEDataTypes;
-import org.brapi.v2.model.pheno.ObservationListResponse;
-import org.brapi.v2.model.pheno.ObservationNewRequest;
-import org.brapi.v2.model.pheno.ObservationSearchRequest;
-import org.brapi.v2.model.pheno.ObservationSingleResponse;
-import org.brapi.v2.model.pheno.ObservationTableResponse;
+import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
+import org.brapi.v2.model.pheno.BrAPIObservationListResponse;
+import org.brapi.v2.model.pheno.BrAPIObservationNewRequest;
+import org.brapi.v2.model.pheno.BrAPIObservationSearchRequest;
+import org.brapi.v2.model.pheno.BrAPIObservationSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIObservationTableResponse;
 import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
@@ -67,7 +67,7 @@ public class ObservationsApiTest {
         Integer pageSize = null;
         
         ObservationQueryParams queryParams = new ObservationQueryParams();
-        ApiResponse<ObservationListResponse> response = api.observationsGet(queryParams);
+        ApiResponse<BrAPIObservationListResponse> response = api.observationsGet(queryParams);
 
         // TODO: test validations
     }
@@ -83,7 +83,7 @@ public class ObservationsApiTest {
     public void observationsObservationDbIdGetTest() throws ApiException {
         String observationDbId = null;
         
-        ApiResponse<ObservationSingleResponse> response = api.observationsObservationDbIdGet(observationDbId);
+        ApiResponse<BrAPIObservationSingleResponse> response = api.observationsObservationDbIdGet(observationDbId);
 
         // TODO: test validations
     }
@@ -98,9 +98,9 @@ public class ObservationsApiTest {
     @Test
     public void observationsObservationDbIdPutTest() throws ApiException {
         String observationDbId = null;
-        ObservationNewRequest body = null;
+        BrAPIObservationNewRequest body = null;
         
-        ApiResponse<ObservationSingleResponse> response = api.observationsObservationDbIdPut(observationDbId, body);
+        ApiResponse<BrAPIObservationSingleResponse> response = api.observationsObservationDbIdPut(observationDbId, body);
 
         // TODO: test validations
     }
@@ -114,9 +114,9 @@ public class ObservationsApiTest {
      */
     @Test
     public void observationsPostTest() throws ApiException {
-        List<ObservationNewRequest> body = null;
+        List<BrAPIObservationNewRequest> body = null;
         
-        ApiResponse<ObservationListResponse> response = api.observationsPost(body);
+        ApiResponse<BrAPIObservationListResponse> response = api.observationsPost(body);
 
         // TODO: test validations
     }
@@ -130,9 +130,9 @@ public class ObservationsApiTest {
      */
     @Test
     public void observationsPutTest() throws ApiException {
-        Map<String, ObservationNewRequest> body = null;
+        Map<String, BrAPIObservationNewRequest> body = null;
         
-        ApiResponse<ObservationListResponse> response = api.observationsPut(body);
+        ApiResponse<BrAPIObservationListResponse> response = api.observationsPut(body);
 
         // TODO: test validations
     }
@@ -146,7 +146,7 @@ public class ObservationsApiTest {
      */
     @Test
     public void observationsTableGetTest() throws ApiException {
-        WSMIMEDataTypes accept = null;
+        BrAPIWSMIMEDataTypes accept = null;
         String observationUnitDbId = null;
         String germplasmDbId = null;
         String observationVariableDbId = null;
@@ -161,7 +161,7 @@ public class ObservationsApiTest {
         OffsetDateTime observationTimeStampRangeEnd = null;
 
         ObservationTableQueryParams queryParams = new ObservationTableQueryParams();
-        ApiResponse<ObservationTableResponse> response = api.observationsTableGet(accept, queryParams);
+        ApiResponse<BrAPIObservationTableResponse> response = api.observationsTableGet(accept, queryParams);
 
         // TODO: test validations
     }
@@ -175,9 +175,9 @@ public class ObservationsApiTest {
      */
     @Test
     public void searchObservationsPostTest() throws ApiException {
-        ObservationSearchRequest body = null;
+        BrAPIObservationSearchRequest body = null;
         
-        ApiResponse<ObservationListResponse> response = api.searchObservationsPost(body);
+        ApiResponse<BrAPIObservationListResponse> response = api.searchObservationsPost(body);
 
         // TODO: test validations
     }
@@ -191,12 +191,12 @@ public class ObservationsApiTest {
      */
     @Test
     public void searchObservationsSearchResultsDbIdGetTest() throws ApiException {
-        WSMIMEDataTypes accept = null;
+        BrAPIWSMIMEDataTypes accept = null;
         String searchResultsDbId = null;
         
         Integer page = null;
         Integer pageSize = null;
-        ApiResponse<ObservationListResponse> response = api.searchObservationsSearchResultsDbIdGet(accept, searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIObservationListResponse> response = api.searchObservationsSearchResultsDbIdGet(accept, searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

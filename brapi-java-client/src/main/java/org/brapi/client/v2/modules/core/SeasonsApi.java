@@ -26,9 +26,9 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.SeasonQueryParams;
-import org.brapi.v2.model.core.Season;
-import org.brapi.v2.model.core.SeasonListResponse;
-import org.brapi.v2.model.core.SeasonSingleResponse;
+import org.brapi.v2.model.core.BrAPISeason;
+import org.brapi.v2.model.core.BrAPISeasonListResponse;
+import org.brapi.v2.model.core.BrAPISeasonSingleResponse;
 
 public class SeasonsApi {
     private ApiClient apiClient;
@@ -103,9 +103,9 @@ public class SeasonsApi {
      * @return ApiResponse&lt;SeasonListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SeasonListResponse> seasonsGet(SeasonQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPISeasonListResponse> seasonsGet(SeasonQueryParams queryParams) throws ApiException {
         Call call = seasonsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<SeasonListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPISeasonListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -117,9 +117,9 @@ public class SeasonsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call seasonsGetAsync(SeasonQueryParams queryParams, final ApiCallback<SeasonListResponse> callback) throws ApiException {
+    public Call seasonsGetAsync(SeasonQueryParams queryParams, final ApiCallback<BrAPISeasonListResponse> callback) throws ApiException {
         Call call = seasonsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<SeasonListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPISeasonListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -132,7 +132,7 @@ public class SeasonsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call seasonsPostCall(List<Season> body) throws ApiException {
+    private Call seasonsPostCall(List<BrAPISeason> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -171,9 +171,9 @@ public class SeasonsApi {
      * @return ApiResponse&lt;SeasonListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SeasonListResponse> seasonsPost(List<Season> body) throws ApiException {
+    public ApiResponse<BrAPISeasonListResponse> seasonsPost(List<BrAPISeason> body) throws ApiException {
         Call call = seasonsPostCall(body);
-        Type localVarReturnType = new TypeToken<SeasonListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPISeasonListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -186,9 +186,9 @@ public class SeasonsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call seasonsPostAsync(List<Season> body, final ApiCallback<SeasonListResponse> callback) throws ApiException {
+    public Call seasonsPostAsync(List<BrAPISeason> body, final ApiCallback<BrAPISeasonListResponse> callback) throws ApiException {
         Call call = seasonsPostCall(body);
-        Type localVarReturnType = new TypeToken<SeasonListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPISeasonListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -241,9 +241,9 @@ public class SeasonsApi {
      * @return ApiResponse&lt;SeasonSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SeasonSingleResponse> seasonsSeasonDbIdGet(String seasonDbId) throws ApiException {
+    public ApiResponse<BrAPISeasonSingleResponse> seasonsSeasonDbIdGet(String seasonDbId) throws ApiException {
         Call call = seasonsSeasonDbIdGetCall(seasonDbId);
-        Type localVarReturnType = new TypeToken<SeasonSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPISeasonSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -256,9 +256,9 @@ public class SeasonsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call seasonsSeasonDbIdGetAsync(String seasonDbId, final ApiCallback<SeasonSingleResponse> callback) throws ApiException {
+    public Call seasonsSeasonDbIdGetAsync(String seasonDbId, final ApiCallback<BrAPISeasonSingleResponse> callback) throws ApiException {
         Call call = seasonsSeasonDbIdGetCall(seasonDbId);
-        Type localVarReturnType = new TypeToken<SeasonSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPISeasonSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -272,7 +272,7 @@ public class SeasonsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call seasonsSeasonDbIdPutCall(String seasonDbId, Season body) throws ApiException {
+    private Call seasonsSeasonDbIdPutCall(String seasonDbId, BrAPISeason body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -313,9 +313,9 @@ public class SeasonsApi {
      * @return ApiResponse&lt;SeasonSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SeasonSingleResponse> seasonsSeasonDbIdPut(String seasonDbId, Season body) throws ApiException {
+    public ApiResponse<BrAPISeasonSingleResponse> seasonsSeasonDbIdPut(String seasonDbId, BrAPISeason body) throws ApiException {
         Call call = seasonsSeasonDbIdPutCall(seasonDbId, body);
-        Type localVarReturnType = new TypeToken<SeasonSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPISeasonSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -329,9 +329,9 @@ public class SeasonsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call seasonsSeasonDbIdPutAsync(String seasonDbId, Season body, final ApiCallback<SeasonSingleResponse> callback) throws ApiException {
+    public Call seasonsSeasonDbIdPutAsync(String seasonDbId, BrAPISeason body, final ApiCallback<BrAPISeasonSingleResponse> callback) throws ApiException {
         Call call = seasonsSeasonDbIdPutCall(seasonDbId, body);
-        Type localVarReturnType = new TypeToken<SeasonSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPISeasonSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

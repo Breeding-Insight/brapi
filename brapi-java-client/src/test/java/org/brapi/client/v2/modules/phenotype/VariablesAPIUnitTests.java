@@ -24,10 +24,10 @@ import org.brapi.client.v2.ApiClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.BrAPIRequest;
 import org.brapi.client.v2.model.queryParams.phenotype.VariableQueryParams;
-import org.brapi.v2.model.pheno.ObservationVariable;
-import org.brapi.v2.model.pheno.ObservationVariableListResponse;
-import org.brapi.v2.model.pheno.ObservationVariableNewRequest;
-import org.brapi.v2.model.pheno.ObservationVariableSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIObservationVariable;
+import org.brapi.v2.model.pheno.BrAPIObservationVariableListResponse;
+import org.brapi.v2.model.pheno.BrAPIObservationVariableNewRequest;
+import org.brapi.v2.model.pheno.BrAPIObservationVariableSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -62,7 +62,7 @@ public class VariablesAPIUnitTests {
     @SneakyThrows
     void createVariablesEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<ObservationVariableListResponse> brApiVariable = variablesAPI.variablesPost(Arrays.asList(new ObservationVariableNewRequest()));
+        ApiResponse<BrAPIObservationVariableListResponse> brApiVariable = variablesAPI.variablesPost(Arrays.asList(new BrAPIObservationVariableNewRequest()));
 
         assertNotNull(brApiVariable, "Empty optional was not returned.");
     }
@@ -72,7 +72,7 @@ public class VariablesAPIUnitTests {
     void updateVariablesEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
 
-        ApiResponse<ObservationVariableSingleResponse> brApiVariable = variablesAPI.variablesObservationVariableDbIdPut("test", new ObservationVariableNewRequest());
+        ApiResponse<BrAPIObservationVariableSingleResponse> brApiVariable = variablesAPI.variablesObservationVariableDbIdPut("test", new BrAPIObservationVariableNewRequest());
 
         assertNotNull(brApiVariable, "Empty optional was not returned.");
     }
@@ -81,7 +81,7 @@ public class VariablesAPIUnitTests {
     @SneakyThrows
     void getVariablesEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<ObservationVariableListResponse> brApiVariables = variablesAPI.variablesGet(new VariableQueryParams());
+        ApiResponse<BrAPIObservationVariableListResponse> brApiVariables = variablesAPI.variablesGet(new VariableQueryParams());
 
         assertEquals(0, brApiVariables.getBody().getResult().getData().size(), "List size is greater than 0");
     }
@@ -90,7 +90,7 @@ public class VariablesAPIUnitTests {
     @SneakyThrows
     void getVariablesByIdEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<ObservationVariableSingleResponse> brApiVariable = variablesAPI.variablesObservationVariableDbIdGet("test");
+        ApiResponse<BrAPIObservationVariableSingleResponse> brApiVariable = variablesAPI.variablesObservationVariableDbIdGet("test");
 
         assertNotNull(brApiVariable, "Empty optional was not returned.");
     }

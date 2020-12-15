@@ -14,16 +14,16 @@ package org.brapi.client.v2.modules.genotype;
 
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.v2.model.geno.VendorOrderListResponse;
-import org.brapi.v2.model.geno.VendorOrderStatusResponse;
-import org.brapi.v2.model.geno.VendorOrderSubmissionRequest;
-import org.brapi.v2.model.geno.VendorOrderSubmissionSingleResponse;
-import org.brapi.v2.model.geno.VendorPlateListResponse;
-import org.brapi.v2.model.geno.VendorPlateSubmissionIdSingleResponse;
-import org.brapi.v2.model.geno.VendorPlateSubmissionRequest;
-import org.brapi.v2.model.geno.VendorPlateSubmissionSingleResponse;
-import org.brapi.v2.model.geno.VendorResultFileListResponse;
-import org.brapi.v2.model.geno.VendorSpecificationSingleResponse;
+import org.brapi.v2.model.geno.BrAPIVendorOrderListResponse;
+import org.brapi.v2.model.geno.BrAPIVendorOrderStatusResponse;
+import org.brapi.v2.model.geno.BrAPIVendorOrderSubmissionRequest;
+import org.brapi.v2.model.geno.BrAPIVendorOrderSubmissionSingleResponse;
+import org.brapi.v2.model.geno.BrAPIVendorPlateListResponse;
+import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionIdSingleResponse;
+import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionRequest;
+import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionSingleResponse;
+import org.brapi.v2.model.geno.BrAPIVendorResultFileListResponse;
+import org.brapi.v2.model.geno.BrAPIVendorSpecificationSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class VendorApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<VendorOrderListResponse> response = api.vendorOrdersGet(orderId, submissionId, page, pageSize);
+        ApiResponse<BrAPIVendorOrderListResponse> response = api.vendorOrdersGet(orderId, submissionId, page, pageSize);
 
         // TODO: test validations
     }
@@ -71,7 +71,7 @@ public class VendorApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<VendorPlateListResponse> response = api.vendorOrdersOrderIdPlatesGet(orderId, page, pageSize);
+        ApiResponse<BrAPIVendorPlateListResponse> response = api.vendorOrdersOrderIdPlatesGet(orderId, page, pageSize);
 
         // TODO: test validations
     }
@@ -89,7 +89,7 @@ public class VendorApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<VendorResultFileListResponse> response = api.vendorOrdersOrderIdResultsGet(orderId, page, pageSize);
+        ApiResponse<BrAPIVendorResultFileListResponse> response = api.vendorOrdersOrderIdResultsGet(orderId, page, pageSize);
 
         // TODO: test validations
     }
@@ -105,7 +105,7 @@ public class VendorApiTest {
     public void vendorOrdersOrderIdStatusGetTest() throws ApiException {
         String orderId = null;
         
-        ApiResponse<VendorOrderStatusResponse> response = api.vendorOrdersOrderIdStatusGet(orderId);
+        ApiResponse<BrAPIVendorOrderStatusResponse> response = api.vendorOrdersOrderIdStatusGet(orderId);
 
         // TODO: test validations
     }
@@ -119,9 +119,9 @@ public class VendorApiTest {
      */
     @Test
     public void vendorOrdersPostTest() throws ApiException {
-        VendorOrderSubmissionRequest body = null;
+        BrAPIVendorOrderSubmissionRequest body = null;
         
-        ApiResponse<VendorOrderSubmissionSingleResponse> response = api.vendorOrdersPost(body);
+        ApiResponse<BrAPIVendorOrderSubmissionSingleResponse> response = api.vendorOrdersPost(body);
 
         // TODO: test validations
     }
@@ -135,9 +135,9 @@ public class VendorApiTest {
      */
     @Test
     public void vendorPlatesPostTest() throws ApiException {
-        VendorPlateSubmissionRequest body = null;
+        BrAPIVendorPlateSubmissionRequest body = null;
         
-        ApiResponse<VendorPlateSubmissionIdSingleResponse> response = api.vendorPlatesPost(body);
+        ApiResponse<BrAPIVendorPlateSubmissionIdSingleResponse> response = api.vendorPlatesPost(body);
 
         // TODO: test validations
     }
@@ -153,7 +153,7 @@ public class VendorApiTest {
     public void vendorPlatesSubmissionIdGetTest() throws ApiException {
         String submissionId = null;
         
-        ApiResponse<VendorPlateSubmissionSingleResponse> response = api.vendorPlatesSubmissionIdGet(submissionId);
+        ApiResponse<BrAPIVendorPlateSubmissionSingleResponse> response = api.vendorPlatesSubmissionIdGet(submissionId);
 
         // TODO: test validations
     }
@@ -168,7 +168,7 @@ public class VendorApiTest {
     @Test
     public void vendorSpecificationsGetTest() throws ApiException {
         
-        ApiResponse<VendorSpecificationSingleResponse> response = api.vendorSpecificationsGet();
+        ApiResponse<BrAPIVendorSpecificationSingleResponse> response = api.vendorSpecificationsGet();
 
         // TODO: test validations
     }

@@ -15,12 +15,12 @@ package org.brapi.client.v2.modules.core;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.ListQueryParams;
-import org.brapi.v2.model.core.ListNewRequest;
-import org.brapi.v2.model.core.ListResponse;
-import org.brapi.v2.model.core.ListSearchRequest;
-import org.brapi.v2.model.core.ListTypes;
-import org.brapi.v2.model.core.ListsListResponse;
-import org.brapi.v2.model.core.ListsSingleResponse;
+import org.brapi.v2.model.core.BrAPIListNewRequest;
+import org.brapi.v2.model.core.BrAPIListResponse;
+import org.brapi.v2.model.core.BrAPIListSearchRequest;
+import org.brapi.v2.model.core.BrAPIListTypes;
+import org.brapi.v2.model.core.BrAPIListsListResponse;
+import org.brapi.v2.model.core.BrAPIListsSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class ListsApiTest {
     @Test
     public void listsGetTest() throws ApiException {        
         ListQueryParams queryParams = new ListQueryParams();
-        ApiResponse<ListsListResponse> response = api.listsGet(queryParams);
+        ApiResponse<BrAPIListsListResponse> response = api.listsGet(queryParams);
 
         // TODO: test validations
     }
@@ -62,7 +62,7 @@ public class ListsApiTest {
     public void listsListDbIdGetTest() throws ApiException {
         String listDbId = null;
         
-        ApiResponse<ListsSingleResponse> response = api.listsListDbIdGet(listDbId);
+        ApiResponse<BrAPIListsSingleResponse> response = api.listsListDbIdGet(listDbId);
 
         // TODO: test validations
     }
@@ -79,7 +79,7 @@ public class ListsApiTest {
         String listDbId = null;
         List<String> body = null;
         
-        ApiResponse<ListResponse> response = api.listsListDbIdItemsPost(listDbId, body);
+        ApiResponse<BrAPIListResponse> response = api.listsListDbIdItemsPost(listDbId, body);
 
         // TODO: test validations
     }
@@ -94,9 +94,9 @@ public class ListsApiTest {
     @Test
     public void listsListDbIdPutTest() throws ApiException {
         String listDbId = null;
-        ListNewRequest body = null;
+        BrAPIListNewRequest body = null;
         
-        ApiResponse<ListsSingleResponse> response = api.listsListDbIdPut(listDbId, body);
+        ApiResponse<BrAPIListsSingleResponse> response = api.listsListDbIdPut(listDbId, body);
 
         // TODO: test validations
     }
@@ -110,9 +110,9 @@ public class ListsApiTest {
      */
     @Test
     public void listsPostTest() throws ApiException {
-        List<ListNewRequest> body = null;
+        List<BrAPIListNewRequest> body = null;
         
-        ApiResponse<ListsListResponse> response = api.listsPost(body);
+        ApiResponse<BrAPIListsListResponse> response = api.listsPost(body);
 
         // TODO: test validations
     }
@@ -126,9 +126,9 @@ public class ListsApiTest {
      */
     @Test
     public void searchListsPostTest() throws ApiException {
-        ListSearchRequest body = null;
+        BrAPIListSearchRequest body = null;
         
-        ApiResponse<ListsListResponse> response = api.searchListsPost(body);
+        ApiResponse<BrAPIListsListResponse> response = api.searchListsPost(body);
 
         // TODO: test validations
     }
@@ -146,7 +146,7 @@ public class ListsApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<ListsListResponse> response = api.searchListsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIListsListResponse> response = api.searchListsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

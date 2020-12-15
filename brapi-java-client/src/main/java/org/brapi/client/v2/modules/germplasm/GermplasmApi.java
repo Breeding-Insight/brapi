@@ -23,15 +23,15 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmQueryParams;
-import org.brapi.v2.model.germ.BreedingMethodListResponse;
-import org.brapi.v2.model.germ.BreedingMethodSingleResponse;
-import org.brapi.v2.model.germ.GermplasmListResponse;
-import org.brapi.v2.model.germ.GermplasmMCPDResponse;
-import org.brapi.v2.model.germ.GermplasmNewRequest;
-import org.brapi.v2.model.germ.GermplasmPedigreeResponse;
-import org.brapi.v2.model.germ.GermplasmProgenyResponse;
-import org.brapi.v2.model.germ.GermplasmSearchRequest;
-import org.brapi.v2.model.germ.GermplasmSingleResponse;
+import org.brapi.v2.model.germ.BrAPIBreedingMethodListResponse;
+import org.brapi.v2.model.germ.BrAPIBreedingMethodSingleResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmListResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmMCPDResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmNewRequest;
+import org.brapi.v2.model.germ.BrAPIGermplasmPedigreeResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmProgenyResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmSearchRequest;
+import org.brapi.v2.model.germ.BrAPIGermplasmSingleResponse;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -105,9 +105,9 @@ public class GermplasmApi {
      * @return ApiResponse&lt;BreedingMethodSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BreedingMethodSingleResponse> breedingmethodsBreedingMethodDbIdGet(String breedingMethodDbId) throws ApiException {
+    public ApiResponse<BrAPIBreedingMethodSingleResponse> breedingmethodsBreedingMethodDbIdGet(String breedingMethodDbId) throws ApiException {
         Call call = breedingmethodsBreedingMethodDbIdGetCall(breedingMethodDbId);
-        Type localVarReturnType = new TypeToken<BreedingMethodSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIBreedingMethodSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -120,9 +120,9 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call breedingmethodsBreedingMethodDbIdGetAsync(String breedingMethodDbId, final ApiCallback<BreedingMethodSingleResponse> callback) throws ApiException {
+    public Call breedingmethodsBreedingMethodDbIdGetAsync(String breedingMethodDbId, final ApiCallback<BrAPIBreedingMethodSingleResponse> callback) throws ApiException {
         Call call = breedingmethodsBreedingMethodDbIdGetCall(breedingMethodDbId);
-        Type localVarReturnType = new TypeToken<BreedingMethodSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIBreedingMethodSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -180,9 +180,9 @@ public class GermplasmApi {
      * @return ApiResponse&lt;BreedingMethodListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BreedingMethodListResponse> breedingmethodsGet(Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIBreedingMethodListResponse> breedingmethodsGet(Integer page, Integer pageSize) throws ApiException {
         Call call = breedingmethodsGetCall(page, pageSize);
-        Type localVarReturnType = new TypeToken<BreedingMethodListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIBreedingMethodListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -196,9 +196,9 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call breedingmethodsGetAsync(Integer page, Integer pageSize, final ApiCallback<BreedingMethodListResponse> callback) throws ApiException {
+    public Call breedingmethodsGetAsync(Integer page, Integer pageSize, final ApiCallback<BrAPIBreedingMethodListResponse> callback) throws ApiException {
         Call call = breedingmethodsGetCall(page, pageSize);
-        Type localVarReturnType = new TypeToken<BreedingMethodListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIBreedingMethodListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -251,9 +251,9 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GermplasmSingleResponse> germplasmGermplasmDbIdGet(String germplasmDbId) throws ApiException {
+    public ApiResponse<BrAPIGermplasmSingleResponse> germplasmGermplasmDbIdGet(String germplasmDbId) throws ApiException {
         Call call = germplasmGermplasmDbIdGetCall(germplasmDbId);
-        Type localVarReturnType = new TypeToken<GermplasmSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -266,9 +266,9 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call germplasmGermplasmDbIdGetAsync(String germplasmDbId, final ApiCallback<GermplasmSingleResponse> callback) throws ApiException {
+    public Call germplasmGermplasmDbIdGetAsync(String germplasmDbId, final ApiCallback<BrAPIGermplasmSingleResponse> callback) throws ApiException {
         Call call = germplasmGermplasmDbIdGetCall(germplasmDbId);
-        Type localVarReturnType = new TypeToken<GermplasmSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -321,9 +321,9 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmMCPDResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GermplasmMCPDResponse> germplasmGermplasmDbIdMcpdGet(String germplasmDbId) throws ApiException {
+    public ApiResponse<BrAPIGermplasmMCPDResponse> germplasmGermplasmDbIdMcpdGet(String germplasmDbId) throws ApiException {
         Call call = germplasmGermplasmDbIdMcpdGetCall(germplasmDbId);
-        Type localVarReturnType = new TypeToken<GermplasmMCPDResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmMCPDResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -336,9 +336,9 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call germplasmGermplasmDbIdMcpdGetAsync(String germplasmDbId, final ApiCallback<GermplasmMCPDResponse> callback) throws ApiException {
+    public Call germplasmGermplasmDbIdMcpdGetAsync(String germplasmDbId, final ApiCallback<BrAPIGermplasmMCPDResponse> callback) throws ApiException {
         Call call = germplasmGermplasmDbIdMcpdGetCall(germplasmDbId);
-        Type localVarReturnType = new TypeToken<GermplasmMCPDResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmMCPDResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -399,9 +399,9 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmPedigreeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GermplasmPedigreeResponse> germplasmGermplasmDbIdPedigreeGet(String germplasmDbId, String notation, Boolean includeSiblings) throws ApiException {
+    public ApiResponse<BrAPIGermplasmPedigreeResponse> germplasmGermplasmDbIdPedigreeGet(String germplasmDbId, String notation, Boolean includeSiblings) throws ApiException {
         Call call = germplasmGermplasmDbIdPedigreeGetCall(germplasmDbId, notation, includeSiblings);
-        Type localVarReturnType = new TypeToken<GermplasmPedigreeResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmPedigreeResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -416,9 +416,9 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call germplasmGermplasmDbIdPedigreeGetAsync(String germplasmDbId, String notation, Boolean includeSiblings, final ApiCallback<GermplasmPedigreeResponse> callback) throws ApiException {
+    public Call germplasmGermplasmDbIdPedigreeGetAsync(String germplasmDbId, String notation, Boolean includeSiblings, final ApiCallback<BrAPIGermplasmPedigreeResponse> callback) throws ApiException {
         Call call = germplasmGermplasmDbIdPedigreeGetCall(germplasmDbId, notation, includeSiblings);
-        Type localVarReturnType = new TypeToken<GermplasmPedigreeResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmPedigreeResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -471,9 +471,9 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmProgenyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GermplasmProgenyResponse> germplasmGermplasmDbIdProgenyGet(String germplasmDbId) throws ApiException {
+    public ApiResponse<BrAPIGermplasmProgenyResponse> germplasmGermplasmDbIdProgenyGet(String germplasmDbId) throws ApiException {
         Call call = germplasmGermplasmDbIdProgenyGetCall(germplasmDbId);
-        Type localVarReturnType = new TypeToken<GermplasmProgenyResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmProgenyResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -486,9 +486,9 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call germplasmGermplasmDbIdProgenyGetAsync(String germplasmDbId, final ApiCallback<GermplasmProgenyResponse> callback) throws ApiException {
+    public Call germplasmGermplasmDbIdProgenyGetAsync(String germplasmDbId, final ApiCallback<BrAPIGermplasmProgenyResponse> callback) throws ApiException {
         Call call = germplasmGermplasmDbIdProgenyGetCall(germplasmDbId);
-        Type localVarReturnType = new TypeToken<GermplasmProgenyResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmProgenyResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -502,7 +502,7 @@ public class GermplasmApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call germplasmGermplasmDbIdPutCall(String germplasmDbId, GermplasmNewRequest body) throws ApiException {
+    private Call germplasmGermplasmDbIdPutCall(String germplasmDbId, BrAPIGermplasmNewRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -543,9 +543,9 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GermplasmSingleResponse> germplasmGermplasmDbIdPut(String germplasmDbId, GermplasmNewRequest body) throws ApiException {
+    public ApiResponse<BrAPIGermplasmSingleResponse> germplasmGermplasmDbIdPut(String germplasmDbId, BrAPIGermplasmNewRequest body) throws ApiException {
         Call call = germplasmGermplasmDbIdPutCall(germplasmDbId, body);
-        Type localVarReturnType = new TypeToken<GermplasmSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -559,9 +559,9 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call germplasmGermplasmDbIdPutAsync(String germplasmDbId, GermplasmNewRequest body, final ApiCallback<GermplasmSingleResponse> callback) throws ApiException {
+    public Call germplasmGermplasmDbIdPutAsync(String germplasmDbId, BrAPIGermplasmNewRequest body, final ApiCallback<BrAPIGermplasmSingleResponse> callback) throws ApiException {
         Call call = germplasmGermplasmDbIdPutCall(germplasmDbId, body);
-        Type localVarReturnType = new TypeToken<GermplasmSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -641,9 +641,9 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GermplasmListResponse> germplasmGet(GermplasmQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIGermplasmListResponse> germplasmGet(GermplasmQueryParams queryParams) throws ApiException {
         Call call = germplasmGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<GermplasmListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -655,9 +655,9 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call germplasmGetAsync(GermplasmQueryParams queryParams, final ApiCallback<GermplasmListResponse> callback) throws ApiException {
+    public Call germplasmGetAsync(GermplasmQueryParams queryParams, final ApiCallback<BrAPIGermplasmListResponse> callback) throws ApiException {
         Call call = germplasmGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<GermplasmListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -670,7 +670,7 @@ public class GermplasmApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call germplasmPostCall(List<GermplasmNewRequest> body) throws ApiException {
+    private Call germplasmPostCall(List<BrAPIGermplasmNewRequest> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -709,9 +709,9 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GermplasmListResponse> germplasmPost(List<GermplasmNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPIGermplasmListResponse> germplasmPost(List<BrAPIGermplasmNewRequest> body) throws ApiException {
         Call call = germplasmPostCall(body);
-        Type localVarReturnType = new TypeToken<GermplasmListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -724,9 +724,9 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call germplasmPostAsync(List<GermplasmNewRequest> body, final ApiCallback<GermplasmListResponse> callback) throws ApiException {
+    public Call germplasmPostAsync(List<BrAPIGermplasmNewRequest> body, final ApiCallback<BrAPIGermplasmListResponse> callback) throws ApiException {
         Call call = germplasmPostCall(body);
-        Type localVarReturnType = new TypeToken<GermplasmListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -739,7 +739,7 @@ public class GermplasmApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call searchGermplasmPostCall(GermplasmSearchRequest body) throws ApiException {
+    private Call searchGermplasmPostCall(BrAPIGermplasmSearchRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -778,9 +778,9 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GermplasmListResponse> searchGermplasmPost(GermplasmSearchRequest body) throws ApiException {
+    public ApiResponse<BrAPIGermplasmListResponse> searchGermplasmPost(BrAPIGermplasmSearchRequest body) throws ApiException {
         Call call = searchGermplasmPostCall(body);
-        Type localVarReturnType = new TypeToken<GermplasmListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -793,9 +793,9 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchGermplasmPostAsync(GermplasmSearchRequest body, final ApiCallback<GermplasmListResponse> callback) throws ApiException {
+    public Call searchGermplasmPostAsync(BrAPIGermplasmSearchRequest body, final ApiCallback<BrAPIGermplasmListResponse> callback) throws ApiException {
         Call call = searchGermplasmPostCall(body);
-        Type localVarReturnType = new TypeToken<GermplasmListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -856,9 +856,9 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GermplasmListResponse> searchGermplasmSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPIGermplasmListResponse> searchGermplasmSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchGermplasmSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<GermplasmListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -873,9 +873,9 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchGermplasmSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<GermplasmListResponse> callback) throws ApiException {
+    public Call searchGermplasmSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<BrAPIGermplasmListResponse> callback) throws ApiException {
         Call call = searchGermplasmSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
-        Type localVarReturnType = new TypeToken<GermplasmListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

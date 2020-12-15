@@ -15,11 +15,11 @@ package org.brapi.client.v2.modules.germplasm;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmAttributeQueryParams;
-import org.brapi.v2.model.germ.GermplasmAttributeCategoryListResponse;
-import org.brapi.v2.model.germ.GermplasmAttributeListResponse;
-import org.brapi.v2.model.germ.GermplasmAttributeNewRequest;
-import org.brapi.v2.model.germ.GermplasmAttributeSearchRequest;
-import org.brapi.v2.model.germ.GermplasmAttributeSingleResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttributeCategoryListResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttributeListResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttributeNewRequest;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttributeSearchRequest;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttributeSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class GermplasmAttributesApiTest {
     public void attributesAttributeDbIdGetTest() throws ApiException {
         String attributeDbId = null;
         
-        ApiResponse<GermplasmAttributeSingleResponse> response = api.attributesAttributeDbIdGet(attributeDbId);
+        ApiResponse<BrAPIGermplasmAttributeSingleResponse> response = api.attributesAttributeDbIdGet(attributeDbId);
 
         // TODO: test validations
     }
@@ -61,9 +61,9 @@ public class GermplasmAttributesApiTest {
     @Test
     public void attributesAttributeDbIdPutTest() throws ApiException {
         String attributeDbId = null;
-        GermplasmAttributeNewRequest body = null;
+        BrAPIGermplasmAttributeNewRequest body = null;
         
-        ApiResponse<GermplasmAttributeSingleResponse> response = api.attributesAttributeDbIdPut(attributeDbId, body);
+        ApiResponse<BrAPIGermplasmAttributeSingleResponse> response = api.attributesAttributeDbIdPut(attributeDbId, body);
 
         // TODO: test validations
     }
@@ -80,7 +80,7 @@ public class GermplasmAttributesApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<GermplasmAttributeCategoryListResponse> response = api.attributesCategoriesGet(page, pageSize);
+        ApiResponse<BrAPIGermplasmAttributeCategoryListResponse> response = api.attributesCategoriesGet(page, pageSize);
 
         // TODO: test validations
     }
@@ -104,7 +104,7 @@ public class GermplasmAttributesApiTest {
         Integer pageSize = null;
         
         GermplasmAttributeQueryParams queryParams = new GermplasmAttributeQueryParams();
-        ApiResponse<GermplasmAttributeListResponse> response = api.attributesGet(queryParams);
+        ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.attributesGet(queryParams);
 
         // TODO: test validations
     }
@@ -118,9 +118,9 @@ public class GermplasmAttributesApiTest {
      */
     @Test
     public void attributesPostTest() throws ApiException {
-        List<GermplasmAttributeNewRequest> body = null;
+        List<BrAPIGermplasmAttributeNewRequest> body = null;
         
-        ApiResponse<GermplasmAttributeListResponse> response = api.attributesPost(body);
+        ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.attributesPost(body);
 
         // TODO: test validations
     }
@@ -134,9 +134,9 @@ public class GermplasmAttributesApiTest {
      */
     @Test
     public void searchAttributesPostTest() throws ApiException {
-        GermplasmAttributeSearchRequest body = null;
+        BrAPIGermplasmAttributeSearchRequest body = null;
         
-        ApiResponse<GermplasmAttributeListResponse> response = api.searchAttributesPost(body);
+        ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.searchAttributesPost(body);
 
         // TODO: test validations
     }
@@ -154,7 +154,7 @@ public class GermplasmAttributesApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<GermplasmAttributeListResponse> response = api.searchAttributesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.searchAttributesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

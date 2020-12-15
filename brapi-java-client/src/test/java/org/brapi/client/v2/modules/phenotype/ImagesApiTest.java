@@ -15,10 +15,10 @@ package org.brapi.client.v2.modules.phenotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ImageQueryParams;
-import org.brapi.v2.model.pheno.ImageListResponse;
-import org.brapi.v2.model.pheno.ImageNewRequest;
-import org.brapi.v2.model.pheno.ImageSearchRequest;
-import org.brapi.v2.model.pheno.ImageSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIImageListResponse;
+import org.brapi.v2.model.pheno.BrAPIImageNewRequest;
+import org.brapi.v2.model.pheno.BrAPIImageSearchRequest;
+import org.brapi.v2.model.pheno.BrAPIImageSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -60,7 +60,7 @@ public class ImagesApiTest {
         Integer pageSize = null;
         
         ImageQueryParams queryParams = new ImageQueryParams();
-        ApiResponse<ImageListResponse> response = api.imagesGet(queryParams);
+        ApiResponse<BrAPIImageListResponse> response = api.imagesGet(queryParams);
 
         // TODO: test validations
     }
@@ -76,7 +76,7 @@ public class ImagesApiTest {
     public void imagesImageDbIdGetTest() throws ApiException {
         String imageDbId = null;
         
-        ApiResponse<ImageSingleResponse> response = api.imagesImageDbIdGet(imageDbId);
+        ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdGet(imageDbId);
 
         // TODO: test validations
     }
@@ -93,7 +93,7 @@ public class ImagesApiTest {
         String imageDbId = null;
         Object body = null;
         
-        ApiResponse<ImageSingleResponse> response = api.imagesImageDbIdImagecontentPut(imageDbId, body);
+        ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdImagecontentPut(imageDbId, body);
 
         // TODO: test validations
     }
@@ -108,9 +108,9 @@ public class ImagesApiTest {
     @Test
     public void imagesImageDbIdPutTest() throws ApiException {
         String imageDbId = null;
-        ImageNewRequest body = null;
+        BrAPIImageNewRequest body = null;
         
-        ApiResponse<ImageSingleResponse> response = api.imagesImageDbIdPut(imageDbId, body);
+        ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdPut(imageDbId, body);
 
         // TODO: test validations
     }
@@ -124,9 +124,9 @@ public class ImagesApiTest {
      */
     @Test
     public void imagesPostTest() throws ApiException {
-        List<ImageNewRequest> body = null;
+        List<BrAPIImageNewRequest> body = null;
         
-        ApiResponse<ImageListResponse> response = api.imagesPost(body);
+        ApiResponse<BrAPIImageListResponse> response = api.imagesPost(body);
 
         // TODO: test validations
     }
@@ -140,9 +140,9 @@ public class ImagesApiTest {
      */
     @Test
     public void searchImagesPostTest() throws ApiException {
-        ImageSearchRequest body = null;
+        BrAPIImageSearchRequest body = null;
         
-        ApiResponse<ImageListResponse> response = api.searchImagesPost(body);
+        ApiResponse<BrAPIImageListResponse> response = api.searchImagesPost(body);
 
         // TODO: test validations
     }
@@ -160,7 +160,7 @@ public class ImagesApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<ImageListResponse> response = api.searchImagesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIImageListResponse> response = api.searchImagesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

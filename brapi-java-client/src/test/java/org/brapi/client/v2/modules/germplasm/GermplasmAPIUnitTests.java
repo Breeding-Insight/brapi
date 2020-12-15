@@ -23,7 +23,7 @@ import okhttp3.Call;
 import org.brapi.client.v2.ApiClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmQueryParams;
-import org.brapi.v2.model.germ.GermplasmListResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmListResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -52,7 +52,7 @@ public class GermplasmAPIUnitTests {
     @SneakyThrows
     public void getGermplasmEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<GermplasmListResponse> brApiGermplasm = germplasmAPI.germplasmGet(new GermplasmQueryParams());
+        ApiResponse<BrAPIGermplasmListResponse> brApiGermplasm = germplasmAPI.germplasmGet(new GermplasmQueryParams());
 
         assertEquals(0, brApiGermplasm.getBody().getResult().getData().size(), "List size is greater than 0");
     }

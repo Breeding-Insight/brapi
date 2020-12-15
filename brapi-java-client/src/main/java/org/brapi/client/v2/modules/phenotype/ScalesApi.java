@@ -23,9 +23,9 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ScaleQueryParams;
-import org.brapi.v2.model.pheno.ScaleBaseClass;
-import org.brapi.v2.model.pheno.ScaleListResponse;
-import org.brapi.v2.model.pheno.ScaleSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIScaleBaseClass;
+import org.brapi.v2.model.pheno.BrAPIScaleListResponse;
+import org.brapi.v2.model.pheno.BrAPIScaleSingleResponse;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -104,9 +104,9 @@ public class ScalesApi {
      * @return ApiResponse&lt;ScaleListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ScaleListResponse> scalesGet(ScaleQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIScaleListResponse> scalesGet(ScaleQueryParams queryParams) throws ApiException {
         Call call = scalesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<ScaleListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIScaleListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -118,9 +118,9 @@ public class ScalesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call scalesGetAsync(ScaleQueryParams queryParams, final ApiCallback<ScaleListResponse> callback) throws ApiException {
+    public Call scalesGetAsync(ScaleQueryParams queryParams, final ApiCallback<BrAPIScaleListResponse> callback) throws ApiException {
         Call call = scalesGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<ScaleListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIScaleListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -133,7 +133,7 @@ public class ScalesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call scalesPostCall(List<ScaleBaseClass> body) throws ApiException {
+    private Call scalesPostCall(List<BrAPIScaleBaseClass> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -172,9 +172,9 @@ public class ScalesApi {
      * @return ApiResponse&lt;ScaleListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ScaleListResponse> scalesPost(List<ScaleBaseClass> body) throws ApiException {
+    public ApiResponse<BrAPIScaleListResponse> scalesPost(List<BrAPIScaleBaseClass> body) throws ApiException {
         Call call = scalesPostCall(body);
-        Type localVarReturnType = new TypeToken<ScaleListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIScaleListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -187,9 +187,9 @@ public class ScalesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call scalesPostAsync(List<ScaleBaseClass> body, final ApiCallback<ScaleListResponse> callback) throws ApiException {
+    public Call scalesPostAsync(List<BrAPIScaleBaseClass> body, final ApiCallback<BrAPIScaleListResponse> callback) throws ApiException {
         Call call = scalesPostCall(body);
-        Type localVarReturnType = new TypeToken<ScaleListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIScaleListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -242,9 +242,9 @@ public class ScalesApi {
      * @return ApiResponse&lt;ScaleSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ScaleSingleResponse> scalesScaleDbIdGet(String scaleDbId) throws ApiException {
+    public ApiResponse<BrAPIScaleSingleResponse> scalesScaleDbIdGet(String scaleDbId) throws ApiException {
         Call call = scalesScaleDbIdGetCall(scaleDbId);
-        Type localVarReturnType = new TypeToken<ScaleSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIScaleSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -257,9 +257,9 @@ public class ScalesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call scalesScaleDbIdGetAsync(String scaleDbId, final ApiCallback<ScaleSingleResponse> callback) throws ApiException {
+    public Call scalesScaleDbIdGetAsync(String scaleDbId, final ApiCallback<BrAPIScaleSingleResponse> callback) throws ApiException {
         Call call = scalesScaleDbIdGetCall(scaleDbId);
-        Type localVarReturnType = new TypeToken<ScaleSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIScaleSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -273,7 +273,7 @@ public class ScalesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call scalesScaleDbIdPutCall(String scaleDbId, ScaleBaseClass body) throws ApiException {
+    private Call scalesScaleDbIdPutCall(String scaleDbId, BrAPIScaleBaseClass body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -314,9 +314,9 @@ public class ScalesApi {
      * @return ApiResponse&lt;ScaleSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ScaleSingleResponse> scalesScaleDbIdPut(String scaleDbId, ScaleBaseClass body) throws ApiException {
+    public ApiResponse<BrAPIScaleSingleResponse> scalesScaleDbIdPut(String scaleDbId, BrAPIScaleBaseClass body) throws ApiException {
         Call call = scalesScaleDbIdPutCall(scaleDbId, body);
-        Type localVarReturnType = new TypeToken<ScaleSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIScaleSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -330,9 +330,9 @@ public class ScalesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call scalesScaleDbIdPutAsync(String scaleDbId, ScaleBaseClass body, final ApiCallback<ScaleSingleResponse> callback) throws ApiException {
+    public Call scalesScaleDbIdPutAsync(String scaleDbId, BrAPIScaleBaseClass body, final ApiCallback<BrAPIScaleSingleResponse> callback) throws ApiException {
         Call call = scalesScaleDbIdPutCall(scaleDbId, body);
-        Type localVarReturnType = new TypeToken<ScaleSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIScaleSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

@@ -23,12 +23,12 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.TraitQueryParams;
-import org.brapi.v2.model.ExternalReferences;
-import org.brapi.v2.model.ExternalReferencesInner;
-import org.brapi.v2.model.pheno.Trait;
-import org.brapi.v2.model.pheno.TraitBaseClass;
-import org.brapi.v2.model.pheno.TraitListResponse;
-import org.brapi.v2.model.pheno.TraitSingleResponse;
+import org.brapi.v2.model.BrAPIExternalReferenceList;
+import org.brapi.v2.model.BrAPIExternalReference;
+import org.brapi.v2.model.pheno.BrAPITrait;
+import org.brapi.v2.model.pheno.BrAPITraitBaseClass;
+import org.brapi.v2.model.pheno.BrAPITraitListResponse;
+import org.brapi.v2.model.pheno.BrAPITraitSingleResponse;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
@@ -43,26 +43,26 @@ public class TraitsAPITests extends BrAPIClientTest {
 
     private TraitsApi traitsAPI = new TraitsApi(this.apiClient);
     private String externalReferenceID = "test";
-    private Trait createdTrait;
+    private BrAPITrait createdTrait;
 
     @Test
     @SneakyThrows
     public void createTraitIdPresent(){
-        Trait brApiTrait = new Trait().traitDbId("test");
+        BrAPITrait brApiTrait = new BrAPITrait().traitDbId("test");
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<TraitListResponse> traits = this.traitsAPI.traitsPost(Arrays.asList(brApiTrait));
+            ApiResponse<BrAPITraitListResponse> traits = this.traitsAPI.traitsPost(Arrays.asList(brApiTrait));
         });
     }
 
     @Test
     @SneakyThrows
     public void createTraitsMultipleIdPresent(){
-        Trait brApiTrait = new Trait().traitDbId("test");
-        Trait brApiTrait1 = new Trait();
-        List<TraitBaseClass> brApiTraits = Arrays.asList(brApiTrait, brApiTrait1);
+        BrAPITrait brApiTrait = new BrAPITrait().traitDbId("test");
+        BrAPITrait brApiTrait1 = new BrAPITrait();
+        List<BrAPITraitBaseClass> brApiTraits = Arrays.asList(brApiTrait, brApiTrait1);
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<TraitListResponse> traits = this.traitsAPI.traitsPost(brApiTraits);
+            ApiResponse<BrAPITraitListResponse> traits = this.traitsAPI.traitsPost(brApiTraits);
         });
     }
 
@@ -70,14 +70,14 @@ public class TraitsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(1)
     public void createTraitSuccess() {
-        ExternalReferencesInner brApiExternalReference = new ExternalReferencesInner().referenceID(externalReferenceID);
-        ExternalReferences externalReferences = new ExternalReferences();
+        BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID);
+        BrAPIExternalReferenceList externalReferences = new BrAPIExternalReferenceList();
         externalReferences.add(brApiExternalReference);
         List<String> alternativeAbbreviations = new ArrayList<>();
         alternativeAbbreviations.add("test abbrev");
         Map<String, String> additionalInfo = new HashMap<>();
         additionalInfo.put("test", "test");
-        TraitBaseClass brApiTrait = new TraitBaseClass()
+        BrAPITraitBaseClass brApiTrait = new BrAPITraitBaseClass()
                 .alternativeAbbreviations(alternativeAbbreviations)
                 .attribute("test")
                 .additionalInfo(additionalInfo)
@@ -90,10 +90,10 @@ public class TraitsAPITests extends BrAPIClientTest {
                 .traitDescription("a trait for things")
                 .traitName("new test trait");
 
-        ApiResponse<TraitListResponse> createdTrait = this.traitsAPI.traitsPost(Arrays.asList(brApiTrait));
+        ApiResponse<BrAPITraitListResponse> createdTrait = this.traitsAPI.traitsPost(Arrays.asList(brApiTrait));
 
         assertNotNull(createdTrait);
-        Trait trait = createdTrait.getBody().getResult().getData().get(0);
+        BrAPITrait trait = createdTrait.getBody().getResult().getData().get(0);
         assertEquals("new test trait", trait.getTraitName(), "Program Name was not parsed properly");
         this.createdTrait = trait;
     }
@@ -101,7 +101,7 @@ public class TraitsAPITests extends BrAPIClientTest {
     @Test
     @SneakyThrows
     void getTraitsSuccess() {
-        ApiResponse<TraitListResponse> traits = this.traitsAPI.traitsGet(new TraitQueryParams());
+        ApiResponse<BrAPITraitListResponse> traits = this.traitsAPI.traitsGet(new TraitQueryParams());
 
         assertEquals(false, traits.getBody().getResult().getData().isEmpty(), "List of programs was empty");
     }
@@ -114,7 +114,7 @@ public class TraitsAPITests extends BrAPIClientTest {
                 .pageSize(1)
                 .build();
 
-        ApiResponse<TraitListResponse> traits = this.traitsAPI.traitsGet(baseRequest);
+        ApiResponse<BrAPITraitListResponse> traits = this.traitsAPI.traitsGet(baseRequest);
 
         assertEquals(true, traits.getBody().getResult().getData().size() == 1, "More than one trait was returned");
     }
@@ -127,7 +127,7 @@ public class TraitsAPITests extends BrAPIClientTest {
                 .externalReferenceID(this.externalReferenceID)
                 .build();
 
-        ApiResponse<TraitListResponse> traits = this.traitsAPI.traitsGet(traitsRequest);
+        ApiResponse<BrAPITraitListResponse> traits = this.traitsAPI.traitsGet(traitsRequest);
 
         assertEquals(true, traits.getBody().getResult().getData().size() > 0, "List of programs was empty");
     }
@@ -136,10 +136,10 @@ public class TraitsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(3)
     void getTraitByIdSuccess() {
-        ApiResponse<TraitSingleResponse> optionalTrait = this.traitsAPI.traitsTraitDbIdGet(createdTrait.getTraitDbId());
+        ApiResponse<BrAPITraitSingleResponse> optionalTrait = this.traitsAPI.traitsTraitDbIdGet(createdTrait.getTraitDbId());
 
         assertNotNull(optionalTrait, "An empty optional was returned");
-        Trait trait = optionalTrait.getBody().getResult();
+        BrAPITrait trait = optionalTrait.getBody().getResult();
         assertEquals(true, trait.getTraitDbId() != null, "TraitDbId was not parsed properly.");
         assertEquals(true, trait.getAlternativeAbbreviations() != null, "Alternative Abbreviations was not parsed properly.");
         assertEquals(true, trait.getAlternativeAbbreviations().size() > 0, "Alternative abbreviations was not parsed properly.");
@@ -163,20 +163,20 @@ public class TraitsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void getTraitByIdMissingID() {
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<TraitSingleResponse> traits = this.traitsAPI.traitsTraitDbIdGet(null);
+            ApiResponse<BrAPITraitSingleResponse> traits = this.traitsAPI.traitsTraitDbIdGet(null);
         });
     }
 
     @Test
     @SneakyThrows
     public void createTraitsMultipleSuccess() {
-        TraitBaseClass brApiTrait = new TraitBaseClass().traitName("new test trait1");
-        TraitBaseClass brApiTrait2 = new TraitBaseClass().traitName("new test trait2");
-        List<TraitBaseClass> traits = Arrays.asList(brApiTrait, brApiTrait2);
+        BrAPITraitBaseClass brApiTrait = new BrAPITraitBaseClass().traitName("new test trait1");
+        BrAPITraitBaseClass brApiTrait2 = new BrAPITraitBaseClass().traitName("new test trait2");
+        List<BrAPITraitBaseClass> traits = Arrays.asList(brApiTrait, brApiTrait2);
 
-        ApiResponse<TraitListResponse> createdTraitsRes = this.traitsAPI.traitsPost(traits);
+        ApiResponse<BrAPITraitListResponse> createdTraitsRes = this.traitsAPI.traitsPost(traits);
 
-        List<Trait> createdTraits = createdTraitsRes.getBody().getResult().getData();
+        List<BrAPITrait> createdTraits = createdTraitsRes.getBody().getResult().getData();
         assertEquals(true, createdTraits.size() == 2);
         assertEquals(true, createdTraits.get(0).getTraitDbId() != null, "Program Id was not parsed properly");
 
@@ -188,16 +188,16 @@ public class TraitsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(4)
     public void updateTraitSuccess() {
-        Trait trait = this.createdTrait;
+        BrAPITrait trait = this.createdTrait;
         trait.setTraitName("updated_name");
         trait.setTraitDescription("recording stuff");
         trait.setOntologyReference(null);
 
         // Check that it is a success and all data matches
-        ApiResponse<TraitSingleResponse> updatedTraitResult = this.traitsAPI.traitsTraitDbIdPut(this.createdTrait.getTraitDbId(), trait);
+        ApiResponse<BrAPITraitSingleResponse> updatedTraitResult = this.traitsAPI.traitsTraitDbIdPut(this.createdTrait.getTraitDbId(), trait);
 
         assertNotNull(updatedTraitResult, "Program was not returned");
-        Trait updatedTrait = updatedTraitResult.getBody().getResult();
+        BrAPITrait updatedTrait = updatedTraitResult.getBody().getResult();
         assertEquals(trait.getTraitName(), updatedTrait.getTraitName(), "Program name was not parsed correctly");
         assertEquals(trait.getTraitDescription(), updatedTrait.getTraitDescription(), "Program objective was not parsed correctly");
 
@@ -207,10 +207,10 @@ public class TraitsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateTraitMissingId() {
         // Check that it throws an APIException
-        TraitBaseClass brApiTrait = new Trait().traitName("new test trait");
+        BrAPITraitBaseClass brApiTrait = new BrAPITrait().traitName("new test trait");
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<TraitSingleResponse> updatedTraitResult = this.traitsAPI.traitsTraitDbIdPut(null, brApiTrait);
+            ApiResponse<BrAPITraitSingleResponse> updatedTraitResult = this.traitsAPI.traitsTraitDbIdPut(null, brApiTrait);
         });
     }
 }

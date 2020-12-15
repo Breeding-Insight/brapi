@@ -24,10 +24,10 @@ import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.core.ProgramQueryParams;
-import org.brapi.v2.model.core.Program;
-import org.brapi.v2.model.core.ProgramListResponse;
-import org.brapi.v2.model.core.ProgramNewRequest;
-import org.brapi.v2.model.core.ProgramSingleResponse;
+import org.brapi.v2.model.core.BrAPIProgram;
+import org.brapi.v2.model.core.BrAPIProgramListResponse;
+import org.brapi.v2.model.core.BrAPIProgramNewRequest;
+import org.brapi.v2.model.core.BrAPIProgramSingleResponse;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
     //TODO: Maybe query these before tests instead of hard coding.
     private String programId = "program3";
     private String externalReferenceID = "https://brapi.org/specification";
-    private Program createdProgram;
+    private BrAPIProgram createdProgram;
 
     private ProgramsApi programsAPI = new ProgramsApi(apiClient);
 
@@ -54,7 +54,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void getProgramsSuccess() {
 
-        ApiResponse<ProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
+        ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
 
         assertEquals(true, !programs.getBody().getResult().getData().isEmpty(), "List of programs was empty");
     }
@@ -67,7 +67,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
                 .pageSize(1)
                 .build();
 
-        ApiResponse<ProgramListResponse> programs = this.programsAPI.programsGet(baseRequest);
+        ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(baseRequest);
 
         assertEquals(true, programs.getBody().getResult().getData().size() == 1, "More than one program was returned");
     }
@@ -75,12 +75,12 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @Test
     @SneakyThrows
     public void getProgramByIDSuccess() {
-        ApiResponse<ProgramSingleResponse> program = this.programsAPI.programsProgramDbIdGet(programId);
+        ApiResponse<BrAPIProgramSingleResponse> program = this.programsAPI.programsProgramDbIdGet(programId);
 
         assertEquals(true, program != null, "Program was not returned");
 
         // Check the response was parsed correctly.
-        Program brApiProgram = program.getBody().getResult();
+        BrAPIProgram brApiProgram = program.getBody().getResult();
         assertEquals(true, brApiProgram.getAbbreviation() != null, "Abbreviation was not populated");
         assertEquals(true, brApiProgram.getAdditionalInfo() != null, "Additional Info was not populated");
         assertEquals(true, brApiProgram.getAdditionalInfo().size() > 0, "Additional Info had no entries");
@@ -101,7 +101,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
     public void getProgramByIdMissingID() {
 
         HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
-        	ApiResponse<ProgramSingleResponse> program = this.programsAPI.programsProgramDbIdGet("fake_id");
+        	ApiResponse<BrAPIProgramSingleResponse> program = this.programsAPI.programsProgramDbIdGet("fake_id");
         });
 
         // Check out return message is returned
@@ -116,7 +116,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
                 .externalReferenceID(this.externalReferenceID)
                 .build();
 
-        ApiResponse<ProgramListResponse> programs = this.programsAPI.programsGet(programsRequest);
+        ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(programsRequest);
 
         assertEquals(true, programs.getBody().getResult().getData().size() > 0, "List of programs was empty");
     }
@@ -128,7 +128,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
                 .externalReferenceID("will not exist")
                 .build();
 
-        ApiResponse<ProgramListResponse> programs = this.programsAPI.programsGet(programsRequest);
+        ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(programsRequest);
 
         assertEquals(true, programs.getBody().getResult().getData().size() == 0, "List of programs was not empty");
     }
@@ -137,13 +137,13 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void createProgramSuccess() {
 
-        ProgramNewRequest brApiProgram = new ProgramNewRequest()
+        BrAPIProgramNewRequest brApiProgram = new BrAPIProgramNewRequest()
                 .programName("new test program");
 
-        ApiResponse<ProgramListResponse> createdProgram = this.programsAPI.programsPost(Arrays.asList(brApiProgram));
+        ApiResponse<BrAPIProgramListResponse> createdProgram = this.programsAPI.programsPost(Arrays.asList(brApiProgram));
 
         assertEquals(true, createdProgram != null);
-        Program program = createdProgram.getBody().getResult().getData().get(0);
+        BrAPIProgram program = createdProgram.getBody().getResult().getData().get(0);
         assertEquals(true, program.getProgramDbId() != null, "Program Id was not parsed properly");
         assertEquals("new test program", program.getProgramName(), "Program Name was not parsed properly");
     }
@@ -152,17 +152,17 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void createMultipleProgramsSuccess() {
 
-    	ProgramNewRequest brApiProgram1 = new ProgramNewRequest()
+    	BrAPIProgramNewRequest brApiProgram1 = new BrAPIProgramNewRequest()
                 .programName("test1");
-    	ProgramNewRequest brApiProgram2 = new ProgramNewRequest()
+    	BrAPIProgramNewRequest brApiProgram2 = new BrAPIProgramNewRequest()
                 .programName("test2");
-        List<ProgramNewRequest> brApiPrograms = new ArrayList<>();
+        List<BrAPIProgramNewRequest> brApiPrograms = new ArrayList<>();
         brApiPrograms.add(brApiProgram1);
         brApiPrograms.add(brApiProgram2);
 
-        ApiResponse<ProgramListResponse> response = this.programsAPI.programsPost(brApiPrograms);
+        ApiResponse<BrAPIProgramListResponse> response = this.programsAPI.programsPost(brApiPrograms);
 
-        List<Program> createdPrograms = response.getBody().getResult().getData();
+        List<BrAPIProgram> createdPrograms = response.getBody().getResult().getData();
         assertEquals(true, createdPrograms.size() == 2);
         assertEquals("test1", createdPrograms.get(0).getProgramName(), "Sent name and returned program name does not match");
         assertEquals(true, createdPrograms.get(0).getProgramDbId() != null, "Program Id was not parsed properly");
@@ -174,11 +174,11 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(1)
     public void createProgramEmptyProgramSuccess() {
-    	ProgramNewRequest brApiProgram = new ProgramNewRequest();
-        ApiResponse<ProgramListResponse> response = this.programsAPI.programsPost(Arrays.asList(brApiProgram));
+    	BrAPIProgramNewRequest brApiProgram = new BrAPIProgramNewRequest();
+        ApiResponse<BrAPIProgramListResponse> response = this.programsAPI.programsPost(Arrays.asList(brApiProgram));
 
         assertEquals(true, response != null);
-        Program program = response.getBody().getResult().getData().get(0);
+        BrAPIProgram program = response.getBody().getResult().getData().get(0);
         this.createdProgram = program;
         assertEquals(true, program.getProgramDbId() != null, "Program Id was not parsed properly");
     }
@@ -187,15 +187,15 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     public void updateProgramSuccess() {
-        Program program = this.createdProgram;
+        BrAPIProgram program = this.createdProgram;
         program.setProgramName("updated_name");
         program.setObjective("planting stuff");
 
         // Check that it is a success and all data matches
-        ApiResponse<ProgramSingleResponse> updatedProgramResult = this.programsAPI.programsProgramDbIdPut(createdProgram.getProgramDbId(), program);
+        ApiResponse<BrAPIProgramSingleResponse> updatedProgramResult = this.programsAPI.programsProgramDbIdPut(createdProgram.getProgramDbId(), program);
 
         assertNotNull(updatedProgramResult, "Program was not returned");
-        Program updatedProgram = updatedProgramResult.getBody().getResult();
+        BrAPIProgram updatedProgram = updatedProgramResult.getBody().getResult();
         assertEquals("updated_name", updatedProgram.getProgramName(), "Program name was not parsed correctly");
         assertEquals("planting stuff", updatedProgram.getObjective(), "Program objective was not parsed correctly");
 
@@ -205,11 +205,11 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateProgramMissingId() {
         // Check that it throws an APIException
-        ProgramNewRequest brApiProgram = new ProgramNewRequest()
+        BrAPIProgramNewRequest brApiProgram = new BrAPIProgramNewRequest()
                 .programName("new test program");
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<ProgramSingleResponse> updatedProgramResult = this.programsAPI.programsProgramDbIdPut("fake_id", brApiProgram);
+            ApiResponse<BrAPIProgramSingleResponse> updatedProgramResult = this.programsAPI.programsProgramDbIdPut("fake_id", brApiProgram);
         });
     }
 }

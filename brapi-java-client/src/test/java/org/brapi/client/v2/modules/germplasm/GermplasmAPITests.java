@@ -29,19 +29,19 @@ import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmQueryParams;
 import org.brapi.v2.model.BrApiGeoJSON;
-import org.brapi.v2.model.ExternalReferences;
-import org.brapi.v2.model.ExternalReferencesInner;
-import org.brapi.v2.model.germ.BiologicalStatusOfAccessionCode;
-import org.brapi.v2.model.germ.Germplasm;
-import org.brapi.v2.model.germ.GermplasmListResponse;
-import org.brapi.v2.model.germ.GermplasmNewRequest;
-import org.brapi.v2.model.germ.GermplasmNewRequestDonors;
-import org.brapi.v2.model.germ.GermplasmNewRequestSynonyms;
-import org.brapi.v2.model.germ.GermplasmOrigin;
-import org.brapi.v2.model.germ.GermplasmSingleResponse;
-import org.brapi.v2.model.germ.GermplasmStorageTypes;
-import org.brapi.v2.model.germ.GermplasmStorageTypesEnum;
-import org.brapi.v2.model.germ.TaxonID;
+import org.brapi.v2.model.BrAPIExternalReferenceList;
+import org.brapi.v2.model.BrAPIExternalReference;
+import org.brapi.v2.model.germ.BrAPIBiologicalStatusOfAccessionCode;
+import org.brapi.v2.model.germ.BrAPIGermplasm;
+import org.brapi.v2.model.germ.BrAPIGermplasmListResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmNewRequest;
+import org.brapi.v2.model.germ.BrAPIGermplasmNewRequestDonors;
+import org.brapi.v2.model.germ.BrAPIGermplasmNewRequestSynonyms;
+import org.brapi.v2.model.germ.BrAPIGermplasmOrigin;
+import org.brapi.v2.model.germ.BrAPIGermplasmSingleResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmStorageTypes;
+import org.brapi.v2.model.germ.BrAPIGermplasmStorageTypesEnum;
+import org.brapi.v2.model.germ.BrAPITaxonID;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
@@ -56,13 +56,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class GermplasmAPITests extends BrAPIClientTest {
 
     private GermplasmApi germplasmAPI = new GermplasmApi(this.apiClient);
-    private Germplasm germplasm;
+    private BrAPIGermplasm germplasm;
 
     @Test
     @SneakyThrows
     public void getGermplasmSuccess() {
 
-        ApiResponse<GermplasmListResponse> germplasm = this.germplasmAPI.germplasmGet(null);
+        ApiResponse<BrAPIGermplasmListResponse> germplasm = this.germplasmAPI.germplasmGet(null);
 
         assertEquals(false, germplasm.getBody().getResult().getData().isEmpty(), "List of germplasm was empty");
     }
@@ -75,7 +75,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
                 .pageSize(1)
                 .build();
 
-        ApiResponse<GermplasmListResponse> germplasm = this.germplasmAPI.germplasmGet(baseRequest);
+        ApiResponse<BrAPIGermplasmListResponse> germplasm = this.germplasmAPI.germplasmGet(baseRequest);
 
         assertEquals(true, germplasm.getBody().getResult().getData().size() == 1, "More than one germplasm was returned");
     }
@@ -87,19 +87,19 @@ public class GermplasmAPITests extends BrAPIClientTest {
 
         Map<String, String> additionalInfo = new HashMap<>();
         additionalInfo.put("test_key", "test_value");
-        List<GermplasmNewRequestDonors> donors = new ArrayList<>();
-        donors.add(new GermplasmNewRequestDonors()
+        List<BrAPIGermplasmNewRequestDonors> donors = new ArrayList<>();
+        donors.add(new BrAPIGermplasmNewRequestDonors()
                 .donorInstituteCode("001")
                 .donorAccessionNumber("A0002")
                 .germplasmPUI("0000000009")
         );
-        ExternalReferences externalReferences = new ExternalReferences();
-        externalReferences.add(new ExternalReferencesInner()
+        BrAPIExternalReferenceList externalReferences = new BrAPIExternalReferenceList();
+        externalReferences.add(new BrAPIExternalReference()
                 .referenceID(UUID.randomUUID().toString())
                 .referenceSource("http://brapi.org")
         );
-        List<GermplasmOrigin> germplasmOrigins = new ArrayList<>();
-        germplasmOrigins.add(new GermplasmOrigin()
+        List<BrAPIGermplasmOrigin> germplasmOrigins = new ArrayList<>();
+        germplasmOrigins.add(new BrAPIGermplasmOrigin()
             .coordinateUncertainty("20")
             .coordinates(BrApiGeoJSON.builder()
                 .type("Feature")
@@ -107,25 +107,25 @@ public class GermplasmAPITests extends BrAPIClientTest {
                 .build()
             )
         );
-        List<GermplasmStorageTypes> storageTypes = new ArrayList<>();
-        storageTypes.add(new GermplasmStorageTypes(GermplasmStorageTypesEnum._10));
-        List<GermplasmNewRequestSynonyms> synonyms = new ArrayList<>();
-        synonyms.add(new GermplasmNewRequestSynonyms()
+        List<BrAPIGermplasmStorageTypes> storageTypes = new ArrayList<>();
+        storageTypes.add(new BrAPIGermplasmStorageTypes(BrAPIGermplasmStorageTypesEnum._10));
+        List<BrAPIGermplasmNewRequestSynonyms> synonyms = new ArrayList<>();
+        synonyms.add(new BrAPIGermplasmNewRequestSynonyms()
                 .type("PRE-Code")
                 .synonym("Res. Tomatillo")
         );
-        List<TaxonID> taxons = new ArrayList<>();
-        taxons.add(new TaxonID()
+        List<BrAPITaxonID> taxons = new ArrayList<>();
+        taxons.add(new BrAPITaxonID()
                 .sourceName("BrAPI")
                 .taxonId("00002")
         );
 
-        GermplasmNewRequest brApiGermplasm = new GermplasmNewRequest()
+        BrAPIGermplasmNewRequest brApiGermplasm = new BrAPIGermplasmNewRequest()
                 .accessionNumber("A000002")
                 .acquisitionDate(LocalDate.now())
                 .additionalInfo(additionalInfo)
-                .biologicalStatusOfAccessionCode(BiologicalStatusOfAccessionCode._100)
-                .biologicalStatusOfAccessionDescription(BiologicalStatusOfAccessionCode._100.getDescription())
+                .biologicalStatusOfAccessionCode(BrAPIBiologicalStatusOfAccessionCode._100)
+                .biologicalStatusOfAccessionDescription(BrAPIBiologicalStatusOfAccessionCode._100.getDescription())
                 .collection("resistance population")
                 .commonCropName("Tomatillo")
                 .countryOfOriginCode("United States")
@@ -151,10 +151,10 @@ public class GermplasmAPITests extends BrAPIClientTest {
                 .synonyms(synonyms)
                 .taxonIds(taxons);
 
-        ApiResponse<GermplasmListResponse> createdGermplasm = this.germplasmAPI.germplasmPost(Arrays.asList(brApiGermplasm));
+        ApiResponse<BrAPIGermplasmListResponse> createdGermplasm = this.germplasmAPI.germplasmPost(Arrays.asList(brApiGermplasm));
 
         assertNotNull(createdGermplasm);
-        Germplasm germplasm = createdGermplasm.getBody().getResult().getData().get(0);
+        BrAPIGermplasm germplasm = createdGermplasm.getBody().getResult().getData().get(0);
         assertEquals(true, germplasm.getGermplasmDbId() != null, "Germplasm Id was not parsed properly");
         assertEquals(brApiGermplasm.getGermplasmName(), germplasm.getGermplasmName(), "Germplasm Name was not parsed properly");
 
@@ -165,15 +165,15 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void createMultipleGermplasmSuccess() {
 
-        GermplasmNewRequest brApiGermplasm1 = new GermplasmNewRequest().germplasmName("test1");
-        GermplasmNewRequest brApiGermplasm2 = new GermplasmNewRequest().germplasmName("test2");
-        List<GermplasmNewRequest> brApiGermplasmList = new ArrayList<>();
+        BrAPIGermplasmNewRequest brApiGermplasm1 = new BrAPIGermplasmNewRequest().germplasmName("test1");
+        BrAPIGermplasmNewRequest brApiGermplasm2 = new BrAPIGermplasmNewRequest().germplasmName("test2");
+        List<BrAPIGermplasmNewRequest> brApiGermplasmList = new ArrayList<>();
         brApiGermplasmList.add(brApiGermplasm1);
         brApiGermplasmList.add(brApiGermplasm2);
 
-        ApiResponse<GermplasmListResponse> createdGermplasmRes = this.germplasmAPI.germplasmPost(brApiGermplasmList);
+        ApiResponse<BrAPIGermplasmListResponse> createdGermplasmRes = this.germplasmAPI.germplasmPost(brApiGermplasmList);
 
-        List<Germplasm> createdGermplasm = createdGermplasmRes.getBody().getResult().getData();
+        List<BrAPIGermplasm> createdGermplasm = createdGermplasmRes.getBody().getResult().getData();
         assertEquals(true, createdGermplasm.size() == 2);
         assertEquals(brApiGermplasm1.getGermplasmName(), createdGermplasm.get(0).getGermplasmName(), "Sent name and returned germplasm name does not match");
         assertEquals(true, createdGermplasm.get(0).getGermplasmDbId() != null, "Germplasm Id was not parsed properly");
@@ -186,11 +186,11 @@ public class GermplasmAPITests extends BrAPIClientTest {
     public void createGermplasmIdPresentFailure() {
 
         String createGermplasmIdPresentError = "BrAPI germplasm must not have an existing germplasmDbId.";
-        GermplasmNewRequest brApiGermplasm = new GermplasmNewRequest()
+        BrAPIGermplasmNewRequest brApiGermplasm = new BrAPIGermplasmNewRequest()
                 .germplasmName("new test germplasm");
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<GermplasmListResponse> createdGermplasm = this.germplasmAPI.germplasmPost(Arrays.asList(brApiGermplasm));
+            ApiResponse<BrAPIGermplasmListResponse> createdGermplasm = this.germplasmAPI.germplasmPost(Arrays.asList(brApiGermplasm));
         });
 
         assertEquals(createGermplasmIdPresentError, exception.getMessage(), "Wrong error message returned");
@@ -199,11 +199,11 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @Test
     @SneakyThrows
     public void createGermplasmEmptySuccess() {
-        Germplasm brApiGermplasm = new Germplasm();
-        ApiResponse<GermplasmListResponse> createdGermplasm = this.germplasmAPI.germplasmPost(Arrays.asList(brApiGermplasm));
+        BrAPIGermplasm brApiGermplasm = new BrAPIGermplasm();
+        ApiResponse<BrAPIGermplasmListResponse> createdGermplasm = this.germplasmAPI.germplasmPost(Arrays.asList(brApiGermplasm));
 
         assertNotNull(createdGermplasm);
-        Germplasm germplasm = createdGermplasm.getBody().getResult().getData().get(0);
+        BrAPIGermplasm germplasm = createdGermplasm.getBody().getResult().getData().get(0);
         assertEquals(true, germplasm.getGermplasmDbId() != null, "Germplasm Id was not parsed properly");
     }
 
@@ -211,12 +211,12 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     public void getGermplasmByIDSuccess() {
-        ApiResponse<GermplasmSingleResponse> germplasmRes = this.germplasmAPI.germplasmGermplasmDbIdGet(this.germplasm.getGermplasmDbId());
+        ApiResponse<BrAPIGermplasmSingleResponse> germplasmRes = this.germplasmAPI.germplasmGermplasmDbIdGet(this.germplasm.getGermplasmDbId());
 
         assertNotNull(germplasmRes, "Germplasm was not returned");
 
         // Check the response was parsed correctly.
-        Germplasm brApiGermplasm = germplasmRes.getBody().getResult();
+        BrAPIGermplasm brApiGermplasm = germplasmRes.getBody().getResult();
         assertEquals(this.germplasm.getAccessionNumber(), brApiGermplasm.getAccessionNumber(), "Wrong Accession number");
         assertEquals(this.germplasm.getAcquisitionDate(), brApiGermplasm.getAcquisitionDate(), "Wrong Aquisition date");
         // Check deep
@@ -233,7 +233,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
         assertEquals(this.germplasm.getDefaultDisplayName(), brApiGermplasm.getDefaultDisplayName(), "Wrong default display name");
         assertEquals(this.germplasm.getDocumentationURL(), brApiGermplasm.getDocumentationURL(), "Wrong documentation url");
         // Check deep
-        List<GermplasmNewRequestDonors> donors = brApiGermplasm.getDonors();
+        List<BrAPIGermplasmNewRequestDonors> donors = brApiGermplasm.getDonors();
         assertEquals(true, donors != null, "Donors was not populated");
         assertEquals(true, donors.size() > 0, "Donors list was not populated");
         assertEquals(this.germplasm.getDonors().get(0).getDonorAccessionNumber(), donors.get(0).getDonorAccessionNumber(), "Wrong donor accession number");
@@ -241,7 +241,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
         assertEquals(this.germplasm.getDonors().get(0).getGermplasmPUI(), donors.get(0).getGermplasmPUI(), "Wrong Donor Germplasm PUI");
 
         // Check deeper
-        ExternalReferences externalReferences = brApiGermplasm.getExternalReferences();
+        BrAPIExternalReferenceList externalReferences = brApiGermplasm.getExternalReferences();
         assertEquals(true, externalReferences != null, "External references was not populated");
         assertEquals(true, externalReferences.size() > 0, "External references list was not populated");
         assertEquals(this.germplasm.getExternalReferences().get(0).getReferenceID(), externalReferences.get(0).getReferenceID(), "Wrong External reference id");
@@ -263,7 +263,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
         assertEquals(this.germplasm.getSpecies(), brApiGermplasm.getSpecies(), "Wrong species");
         assertEquals(this.germplasm.getSpeciesAuthority(), brApiGermplasm.getSpeciesAuthority(), "Wrong species authority");
         // Check deeper
-        List<GermplasmStorageTypes> storageTypes = brApiGermplasm.getStorageTypes();
+        List<BrAPIGermplasmStorageTypes> storageTypes = brApiGermplasm.getStorageTypes();
         assertEquals(true, storageTypes != null, "Storage types was not populated");
         assertEquals(true, storageTypes.size() > 0, "Storage types list was not populated");
         assertEquals(this.germplasm.getStorageTypes().get(0).getDescription(), storageTypes.get(0).getDescription(), "Wrong Storage type description");
@@ -272,14 +272,14 @@ public class GermplasmAPITests extends BrAPIClientTest {
         assertEquals(this.germplasm.getSubtaxa(), brApiGermplasm.getSubtaxa(), "Wrong subtaxa");
         assertEquals(this.germplasm.getSubtaxaAuthority(), brApiGermplasm.getSubtaxaAuthority(), "Wrong subtaxa authority");
         // Check deeper
-        List<GermplasmNewRequestSynonyms> synonyms = brApiGermplasm.getSynonyms();
+        List<BrAPIGermplasmNewRequestSynonyms> synonyms = brApiGermplasm.getSynonyms();
         assertEquals(true, synonyms != null, "Synonyms was not populated");
         assertEquals(true, synonyms.size() > 0, "Synonyms list was not populated");
         assertEquals(this.germplasm.getSynonyms().get(0).getSynonym(), synonyms.get(0).getSynonym(), "Wrong synonym");
         assertEquals(this.germplasm.getSynonyms().get(0).getType(), synonyms.get(0).getType(), "Wrong type");
 
         // Check deeper
-        List<TaxonID> taxons = brApiGermplasm.getTaxonIds();
+        List<BrAPITaxonID> taxons = brApiGermplasm.getTaxonIds();
         assertEquals(true, taxons != null, "Taxons was not populated");
         assertEquals(true, taxons.size() > 0, "Taxons list was not populated");
         assertEquals(this.germplasm.getTaxonIds().get(0).getSourceName(), taxons.get(0).getSourceName(), "Wrong Taxon source name");
@@ -294,7 +294,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
                 .externalReferenceID(this.germplasm.getExternalReferences().get(0).getReferenceID())
                 .build();
 
-        ApiResponse<GermplasmListResponse> germplasm = this.germplasmAPI.germplasmGet(germplasmRequest);
+        ApiResponse<BrAPIGermplasmListResponse> germplasm = this.germplasmAPI.germplasmGet(germplasmRequest);
 
         assertEquals(true, germplasm.getBody().getResult().getData().size() == 1, "Wrong number of germplasm returned");
     }
@@ -306,7 +306,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
                 .externalReferenceID("will not exist")
                 .build();
 
-        ApiResponse<GermplasmListResponse> germplasm = this.germplasmAPI.germplasmGet(germplasmRequest);
+        ApiResponse<BrAPIGermplasmListResponse> germplasm = this.germplasmAPI.germplasmGet(germplasmRequest);
 
         assertEquals(true, germplasm.getBody().getResult().getData().size() == 0, "List of germplasm was not empty");
     }
@@ -316,7 +316,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     public void getGermplasmByIdNotExist() {
 
         HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
-            ApiResponse<GermplasmSingleResponse> germplasm = this.germplasmAPI.germplasmGermplasmDbIdGet("fake dbid");
+            ApiResponse<BrAPIGermplasmSingleResponse> germplasm = this.germplasmAPI.germplasmGermplasmDbIdGet("fake dbid");
         });
 
         // Check out return message is returned
@@ -332,10 +332,10 @@ public class GermplasmAPITests extends BrAPIClientTest {
         germplasm.setAccessionNumber("A000004");
 
         // Check that it is a success and all data matches
-        ApiResponse<GermplasmSingleResponse> updatedGermplasmResult = this.germplasmAPI.germplasmGermplasmDbIdPut(germplasm.getGermplasmDbId(), germplasm);
+        ApiResponse<BrAPIGermplasmSingleResponse> updatedGermplasmResult = this.germplasmAPI.germplasmGermplasmDbIdPut(germplasm.getGermplasmDbId(), germplasm);
 
         assertNotNull(updatedGermplasmResult, "Germplasm was not returned");
-        Germplasm updatedGermplasm = updatedGermplasmResult.getBody().getResult();
+        BrAPIGermplasm updatedGermplasm = updatedGermplasmResult.getBody().getResult();
         assertEquals(germplasm.getGermplasmName(), updatedGermplasm.getGermplasmName(), "Wrong germplasm name");
         assertEquals(germplasm.getAccessionNumber(), updatedGermplasm.getAccessionNumber(), "Wrong germplasm accession number");
     }
@@ -344,11 +344,11 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateGermplasmBadId() {
         // Check that it throws a 404
-        Germplasm germplasm = this.germplasm;
+        BrAPIGermplasm germplasm = this.germplasm;
         germplasm.setGermplasmDbId("i_do_not_exist");
 
         HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
-            ApiResponse<GermplasmSingleResponse> updatedGermplasmResult =  this.germplasmAPI.germplasmGermplasmDbIdPut("i_do_not_exist", germplasm);
+            ApiResponse<BrAPIGermplasmSingleResponse> updatedGermplasmResult =  this.germplasmAPI.germplasmGermplasmDbIdPut("i_do_not_exist", germplasm);
         });
     }
 
@@ -357,10 +357,10 @@ public class GermplasmAPITests extends BrAPIClientTest {
     public void updateGermplasmMissingId() {
         String updateGermplasmIdMissingError = "BrAPI germplasm must have an existing germplasmDbId.";
         // Check that it throws an APIException
-        GermplasmNewRequest brApiGermplasm = new GermplasmNewRequest().germplasmName("new test germplasm");
+        BrAPIGermplasmNewRequest brApiGermplasm = new BrAPIGermplasmNewRequest().germplasmName("new test germplasm");
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<GermplasmSingleResponse> updateGermplasm =  this.germplasmAPI.germplasmGermplasmDbIdPut(null, germplasm);
+            ApiResponse<BrAPIGermplasmSingleResponse> updateGermplasm =  this.germplasmAPI.germplasmGermplasmDbIdPut(null, germplasm);
         });
 
         assertEquals(updateGermplasmIdMissingError, exception.getMessage(), "Wrong error message");

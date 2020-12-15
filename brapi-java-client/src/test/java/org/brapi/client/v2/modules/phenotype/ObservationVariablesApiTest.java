@@ -15,10 +15,10 @@ package org.brapi.client.v2.modules.phenotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.VariableQueryParams;
-import org.brapi.v2.model.pheno.ObservationVariableListResponse;
-import org.brapi.v2.model.pheno.ObservationVariableNewRequest;
-import org.brapi.v2.model.pheno.ObservationVariableSearchRequest;
-import org.brapi.v2.model.pheno.ObservationVariableSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIObservationVariableListResponse;
+import org.brapi.v2.model.pheno.BrAPIObservationVariableNewRequest;
+import org.brapi.v2.model.pheno.BrAPIObservationVariableSearchRequest;
+import org.brapi.v2.model.pheno.BrAPIObservationVariableSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -43,9 +43,9 @@ public class ObservationVariablesApiTest {
      */
     @Test
     public void searchVariablesPostTest() throws ApiException {
-        ObservationVariableSearchRequest body = null;
+        BrAPIObservationVariableSearchRequest body = null;
         
-        ApiResponse<ObservationVariableListResponse> response = api.searchVariablesPost(body);
+        ApiResponse<BrAPIObservationVariableListResponse> response = api.searchVariablesPost(body);
 
         // TODO: test validations
     }
@@ -63,7 +63,7 @@ public class ObservationVariablesApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<ObservationVariableListResponse> response = api.searchVariablesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIObservationVariableListResponse> response = api.searchVariablesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }
@@ -86,7 +86,7 @@ public class ObservationVariablesApiTest {
         Integer pageSize = null;
         
         VariableQueryParams queryParams = new VariableQueryParams();
-        ApiResponse<ObservationVariableListResponse> response = api.variablesGet(queryParams);
+        ApiResponse<BrAPIObservationVariableListResponse> response = api.variablesGet(queryParams);
 
         // TODO: test validations
     }
@@ -102,7 +102,7 @@ public class ObservationVariablesApiTest {
     public void variablesObservationVariableDbIdGetTest() throws ApiException {
         String observationVariableDbId = null;
         
-        ApiResponse<ObservationVariableSingleResponse> response = api.variablesObservationVariableDbIdGet(observationVariableDbId);
+        ApiResponse<BrAPIObservationVariableSingleResponse> response = api.variablesObservationVariableDbIdGet(observationVariableDbId);
 
         // TODO: test validations
     }
@@ -117,9 +117,9 @@ public class ObservationVariablesApiTest {
     @Test
     public void variablesObservationVariableDbIdPutTest() throws ApiException {
         String observationVariableDbId = null;
-        ObservationVariableNewRequest body = null;
+        BrAPIObservationVariableNewRequest body = null;
         
-        ApiResponse<ObservationVariableSingleResponse> response = api.variablesObservationVariableDbIdPut(observationVariableDbId, body);
+        ApiResponse<BrAPIObservationVariableSingleResponse> response = api.variablesObservationVariableDbIdPut(observationVariableDbId, body);
 
         // TODO: test validations
     }
@@ -133,9 +133,9 @@ public class ObservationVariablesApiTest {
      */
     @Test
     public void variablesPostTest() throws ApiException {
-        List<ObservationVariableNewRequest> body = null;
+        List<BrAPIObservationVariableNewRequest> body = null;
         
-        ApiResponse<ObservationVariableListResponse> response = api.variablesPost(body);
+        ApiResponse<BrAPIObservationVariableListResponse> response = api.variablesPost(body);
 
         // TODO: test validations
     }

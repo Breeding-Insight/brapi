@@ -15,9 +15,9 @@ package org.brapi.client.v2.modules.genotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.ReferenceSetQueryParams;
-import org.brapi.v2.model.geno.ReferenceSetsListResponse;
-import org.brapi.v2.model.geno.ReferenceSetsSearchRequest;
-import org.brapi.v2.model.geno.ReferenceSetsSingleResponse;
+import org.brapi.v2.model.geno.BrAPIReferenceSetsListResponse;
+import org.brapi.v2.model.geno.BrAPIReferenceSetsSearchRequest;
+import org.brapi.v2.model.geno.BrAPIReferenceSetsSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class ReferenceSetsApiTest {
         Integer pageSize = null;
         
         ReferenceSetQueryParams queryParams = new ReferenceSetQueryParams();
-        ApiResponse<ReferenceSetsListResponse> response = api.referencesetsGet(queryParams);
+        ApiResponse<BrAPIReferenceSetsListResponse> response = api.referencesetsGet(queryParams);
 
         // TODO: test validations
     }
@@ -66,7 +66,7 @@ public class ReferenceSetsApiTest {
     public void referencesetsReferenceSetDbIdGetTest() throws ApiException {
         String referenceSetDbId = null;
         
-        ApiResponse<ReferenceSetsSingleResponse> response = api.referencesetsReferenceSetDbIdGet(referenceSetDbId);
+        ApiResponse<BrAPIReferenceSetsSingleResponse> response = api.referencesetsReferenceSetDbIdGet(referenceSetDbId);
 
         // TODO: test validations
     }
@@ -80,9 +80,9 @@ public class ReferenceSetsApiTest {
      */
     @Test
     public void searchReferencesetsPostTest() throws ApiException {
-        ReferenceSetsSearchRequest body = null;
+        BrAPIReferenceSetsSearchRequest body = null;
         
-        ApiResponse<ReferenceSetsListResponse> response = api.searchReferencesetsPost(body);
+        ApiResponse<BrAPIReferenceSetsListResponse> response = api.searchReferencesetsPost(body);
 
         // TODO: test validations
     }
@@ -100,7 +100,7 @@ public class ReferenceSetsApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<ReferenceSetsListResponse> response = api.searchReferencesetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIReferenceSetsListResponse> response = api.searchReferencesetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

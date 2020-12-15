@@ -15,7 +15,7 @@ package org.brapi.client.v2.modules.phenotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.EventQueryParams;
-import org.brapi.v2.model.pheno.EventsResponse;
+import org.brapi.v2.model.pheno.BrAPIEventsResponse;
 import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
@@ -51,7 +51,7 @@ public class EventsApiTest {
         Integer pageSize = null;
         
         EventQueryParams queryParams = new EventQueryParams();
-        ApiResponse<EventsResponse> response = api.eventsGet(queryParams);
+        ApiResponse<BrAPIEventsResponse> response = api.eventsGet(queryParams);
 
         // TODO: test validations
     }

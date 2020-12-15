@@ -24,16 +24,16 @@ import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.phenotype.ScaleQueryParams;
-import org.brapi.v2.model.ExternalReferences;
-import org.brapi.v2.model.ExternalReferencesInner;
-import org.brapi.v2.model.OntologyReference;
-import org.brapi.v2.model.pheno.Scale;
-import org.brapi.v2.model.pheno.ScaleBaseClass;
-import org.brapi.v2.model.pheno.ScaleBaseClassValidValues;
-import org.brapi.v2.model.pheno.ScaleBaseClassValidValuesCategories;
-import org.brapi.v2.model.pheno.ScaleListResponse;
-import org.brapi.v2.model.pheno.ScaleSingleResponse;
-import org.brapi.v2.model.pheno.TraitDataType;
+import org.brapi.v2.model.BrAPIExternalReferenceList;
+import org.brapi.v2.model.BrAPIExternalReference;
+import org.brapi.v2.model.BrAPIOntologyReference;
+import org.brapi.v2.model.pheno.BrAPIScale;
+import org.brapi.v2.model.pheno.BrAPIScaleBaseClass;
+import org.brapi.v2.model.pheno.BrAPIScaleBaseClassValidValues;
+import org.brapi.v2.model.pheno.BrAPIScaleBaseClassValidValuesCategories;
+import org.brapi.v2.model.pheno.BrAPIScaleListResponse;
+import org.brapi.v2.model.pheno.BrAPIScaleSingleResponse;
+import org.brapi.v2.model.pheno.BrAPITraitDataType;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
@@ -48,7 +48,7 @@ public class ScalesAPITests extends BrAPIClientTest {
     private ScalesApi scalesAPI = new ScalesApi(this.apiClient);
     private String externalReferenceID = "testId";
     private String externalReferenceSource = "testSource";
-    private Scale createdScale;
+    private BrAPIScale createdScale;
 
     // depends on this existing in test db until we can create our own
     // don't have GET /ontologies yet either
@@ -56,41 +56,41 @@ public class ScalesAPITests extends BrAPIClientTest {
 
     @Test
     public void scalesPostIdPresent() {
-        Scale brApiScale = new Scale().scaleDbId("test");
+        BrAPIScale brApiScale = new BrAPIScale().scaleDbId("test");
                 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<ScaleListResponse> scale = scalesAPI.scalesPost(Arrays.asList(brApiScale));
+            ApiResponse<BrAPIScaleListResponse> scale = scalesAPI.scalesPost(Arrays.asList(brApiScale));
         });
     }
 
     @Test
     public void scalesPostNull() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<ScaleListResponse> scale = scalesAPI.scalesPost(null);
+            ApiResponse<BrAPIScaleListResponse> scale = scalesAPI.scalesPost(null);
         });
     }
 
     @Test
     public void scalesPostMultipleIdPresent() {
-        Scale brApiScale = new Scale().scaleDbId("test");
+        BrAPIScale brApiScale = new BrAPIScale().scaleDbId("test");
                 
-        Scale brApiScale1 = new Scale();
-        List<ScaleBaseClass> brApiScales = new ArrayList<>();
+        BrAPIScale brApiScale1 = new BrAPIScale();
+        List<BrAPIScaleBaseClass> brApiScales = new ArrayList<>();
         brApiScales.add(brApiScale);
         brApiScales.add(brApiScale1);
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<ScaleListResponse> scales = scalesAPI.scalesPost(brApiScales);
+            ApiResponse<BrAPIScaleListResponse> scales = scalesAPI.scalesPost(brApiScales);
         });
     }
 
     @Test
     public void scalesPostMultipleEmptyList() {
 
-        List<ScaleBaseClass> brApiScales = new ArrayList<>();
+        List<BrAPIScaleBaseClass> brApiScales = new ArrayList<>();
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<ScaleListResponse> scales = scalesAPI.scalesPost(brApiScales);
+            ApiResponse<BrAPIScaleListResponse> scales = scalesAPI.scalesPost(brApiScales);
         });
     }
 
@@ -98,7 +98,7 @@ public class ScalesAPITests extends BrAPIClientTest {
     public void scalesPostMultipleNull() {
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<ScaleListResponse> scales = scalesAPI.scalesPost(null);
+            ApiResponse<BrAPIScaleListResponse> scales = scalesAPI.scalesPost(null);
         });
     }
 
@@ -106,31 +106,31 @@ public class ScalesAPITests extends BrAPIClientTest {
     @Order(1)
     @SneakyThrows
     public void scalesPostSuccess() {
-        ExternalReferencesInner brApiExternalReference = new ExternalReferencesInner()
+        BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference()
                 .referenceID(externalReferenceID)
                 .referenceSource(externalReferenceSource);
                 
-        ExternalReferences externalReferences = new ExternalReferences();
+        BrAPIExternalReferenceList externalReferences = new BrAPIExternalReferenceList();
         externalReferences.add(brApiExternalReference);
 
-        OntologyReference brApiOntologyReference = new OntologyReference()
+        BrAPIOntologyReference brApiOntologyReference = new BrAPIOntologyReference()
                 .ontologyDbId(validOntologyDbId)
                 .ontologyName("Ontology.org")
                 .version("17");                
 
-        ScaleBaseClassValidValuesCategories low = new ScaleBaseClassValidValuesCategories().label("low").value("0");
-        ScaleBaseClassValidValuesCategories high = new ScaleBaseClassValidValuesCategories().label("high").value("5");
+        BrAPIScaleBaseClassValidValuesCategories low = new BrAPIScaleBaseClassValidValuesCategories().label("low").value("0");
+        BrAPIScaleBaseClassValidValuesCategories high = new BrAPIScaleBaseClassValidValuesCategories().label("high").value("5");
                         
-        List<ScaleBaseClassValidValuesCategories> categories = Arrays.asList(low, high);
+        List<BrAPIScaleBaseClassValidValuesCategories> categories = Arrays.asList(low, high);
 
-        TraitDataType dataType = TraitDataType.TEXT;
-        ScaleBaseClassValidValues validValues = new ScaleBaseClassValidValues()
+        BrAPITraitDataType dataType = BrAPITraitDataType.TEXT;
+        BrAPIScaleBaseClassValidValues validValues = new BrAPIScaleBaseClassValidValues()
         		.min(0).max(5)
                 .categories(categories);
                 
         Map<String, String> additionalInfo = new HashMap<>();
         additionalInfo.put("test", "test");
-        ScaleBaseClass brApiScale = new Scale()
+        BrAPIScaleBaseClass brApiScale = new BrAPIScale()
                 .additionalInfo(additionalInfo)
                 .externalReferences(externalReferences)
                 .ontologyReference(brApiOntologyReference)
@@ -139,10 +139,10 @@ public class ScalesAPITests extends BrAPIClientTest {
                 .scaleName("test scale")
                 .validValues(validValues);
                 
-        ApiResponse<ScaleListResponse> createdScale = scalesAPI.scalesPost(Arrays.asList(brApiScale));
+        ApiResponse<BrAPIScaleListResponse> createdScale = scalesAPI.scalesPost(Arrays.asList(brApiScale));
 
         assertNotNull(createdScale);
-        Scale scale = createdScale.getBody().getResult().getData().get(0);
+        BrAPIScale scale = createdScale.getBody().getResult().getData().get(0);
 
         assertFalse(scale.getScaleDbId() == null, "Scale id missing");
         scaleAssertEquals(brApiScale, scale);
@@ -150,7 +150,7 @@ public class ScalesAPITests extends BrAPIClientTest {
         this.createdScale = scale;
     }
 
-    private void scaleAssertEquals(ScaleBaseClass expected, Scale actual) {
+    private void scaleAssertEquals(BrAPIScaleBaseClass expected, BrAPIScale actual) {
         assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Scale additionalInfo mismatch");
         assertEquals(expected.getScaleName(), actual.getScaleName(), "Scale name mismatch");
         assertEquals(expected.getOntologyReference().getOntologyDbId(), actual.getOntologyReference().getOntologyDbId(), "Scale ontology dbId mismatch");
@@ -166,14 +166,14 @@ public class ScalesAPITests extends BrAPIClientTest {
     @Order(1)
     @SneakyThrows
     public void scalesPostsMultipleSuccess() {
-        ScaleBaseClass brApiScale = new Scale().scaleName("new test scale1");
-        ScaleBaseClass brApiScale2 = new Scale().scaleName("new test scale2");
+        BrAPIScaleBaseClass brApiScale = new BrAPIScale().scaleName("new test scale1");
+        BrAPIScaleBaseClass brApiScale2 = new BrAPIScale().scaleName("new test scale2");
                 
-        List<ScaleBaseClass> scales = Arrays.asList(brApiScale, brApiScale2);
+        List<BrAPIScaleBaseClass> scales = Arrays.asList(brApiScale, brApiScale2);
 
-        ApiResponse<ScaleListResponse> createdScalesRes = scalesAPI.scalesPost(scales);
+        ApiResponse<BrAPIScaleListResponse> createdScalesRes = scalesAPI.scalesPost(scales);
 
-        List<Scale> createdScales = createdScalesRes.getBody().getResult().getData();
+        List<BrAPIScale> createdScales = createdScalesRes.getBody().getResult().getData();
         assertEquals(true, createdScales.size() == 2);
         assertEquals(true, createdScales.get(0).getScaleDbId() != null, "Scale id missing");
         assertEquals(true, createdScales.get(1).getScaleDbId() != null, "Scale id missing");
@@ -186,7 +186,7 @@ public class ScalesAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     void getScalesSuccess() {
-        ApiResponse<ScaleListResponse> scales = scalesAPI.scalesGet(new ScaleQueryParams());
+        ApiResponse<BrAPIScaleListResponse> scales = scalesAPI.scalesGet(new ScaleQueryParams());
 
         assertEquals(false, scales.getBody().getResult().getData().isEmpty(), "List of scales was empty");
     }
@@ -200,7 +200,7 @@ public class ScalesAPITests extends BrAPIClientTest {
                 .pageSize(1)
                 .build();
 
-        ApiResponse<ScaleListResponse> scales = scalesAPI.scalesGet(baseRequest);
+        ApiResponse<BrAPIScaleListResponse> scales = scalesAPI.scalesGet(baseRequest);
 
         assertEquals(true, scales.getBody().getResult().getData().size() == 1, "More than one scale was returned");
     }
@@ -213,7 +213,7 @@ public class ScalesAPITests extends BrAPIClientTest {
                 .externalReferenceID(externalReferenceID)
                 .build();
 
-        ApiResponse<ScaleListResponse> scales = scalesAPI.scalesGet(scalesRequest);
+        ApiResponse<BrAPIScaleListResponse> scales = scalesAPI.scalesGet(scalesRequest);
 
         assertEquals(true, scales.getBody().getResult().getData().size() > 0, "List of scales was empty");
     }
@@ -226,7 +226,7 @@ public class ScalesAPITests extends BrAPIClientTest {
                 .externalReferenceSource(externalReferenceSource)
                 .build();
 
-        ApiResponse<ScaleListResponse> scales = scalesAPI.scalesGet(scalesRequest);
+        ApiResponse<BrAPIScaleListResponse> scales = scalesAPI.scalesGet(scalesRequest);
 
         assertEquals(true, scales.getBody().getResult().getData().size() > 0, "List of scales was empty");
     }
@@ -234,7 +234,7 @@ public class ScalesAPITests extends BrAPIClientTest {
     @Test
     public void getScaleByIdMissingId() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<ScaleSingleResponse> scale = scalesAPI.scalesScaleDbIdGet(null);
+            ApiResponse<BrAPIScaleSingleResponse> scale = scalesAPI.scalesScaleDbIdGet(null);
         });
     }
 
@@ -242,10 +242,10 @@ public class ScalesAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     void getScaleByIdSuccess() {
-        ApiResponse<ScaleSingleResponse> optionalScale = scalesAPI.scalesScaleDbIdGet(createdScale.getScaleDbId());
+        ApiResponse<BrAPIScaleSingleResponse> optionalScale = scalesAPI.scalesScaleDbIdGet(createdScale.getScaleDbId());
 
         assertNotNull(optionalScale, "An empty optional was returned");
-        Scale scale = optionalScale.getBody().getResult();
+        BrAPIScale scale = optionalScale.getBody().getResult();
         assertEquals(true, scale.getScaleDbId() != null, "ScaleDbId was not parsed properly.");
         scaleAssertEquals(createdScale, scale);
     }
@@ -254,7 +254,7 @@ public class ScalesAPITests extends BrAPIClientTest {
     @SneakyThrows
     void getScaleByIdInvalid() {
         HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
-            ApiResponse<ScaleSingleResponse> scale = scalesAPI.scalesScaleDbIdGet("badScaleId");
+            ApiResponse<BrAPIScaleSingleResponse> scale = scalesAPI.scalesScaleDbIdGet("badScaleId");
         });
     }
 
@@ -262,14 +262,14 @@ public class ScalesAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     public void updateScaleSuccess() {
-        Scale scale = this.createdScale;
+        BrAPIScale scale = this.createdScale;
         scale.setScaleName("updated_name");
 
         // Check that it is a success and all data matches
-        ApiResponse<ScaleSingleResponse> updatedScaleResult = this.scalesAPI.scalesScaleDbIdPut(this.createdScale.getScaleDbId(), scale);
+        ApiResponse<BrAPIScaleSingleResponse> updatedScaleResult = this.scalesAPI.scalesScaleDbIdPut(this.createdScale.getScaleDbId(), scale);
 
         assertNotNull(updatedScaleResult, "Scale was not returned");
-        Scale updatedScale = updatedScaleResult.getBody().getResult();
+        BrAPIScale updatedScale = updatedScaleResult.getBody().getResult();
         scaleAssertEquals(scale, updatedScale);
     }
 
@@ -277,17 +277,17 @@ public class ScalesAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateScaleMissingId() {
         // Check that it throws an ApiException
-        ScaleBaseClass brApiScale = new Scale().scaleName("new test scale");
+        BrAPIScaleBaseClass brApiScale = new BrAPIScale().scaleName("new test scale");
                 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<ScaleSingleResponse> updatedScaleResult = this.scalesAPI.scalesScaleDbIdPut(null, brApiScale);
+            ApiResponse<BrAPIScaleSingleResponse> updatedScaleResult = this.scalesAPI.scalesScaleDbIdPut(null, brApiScale);
         });
     }
 
     @Test
     public void updateScaleNull() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<ScaleSingleResponse> scale = this.scalesAPI.scalesScaleDbIdPut("fake dbid", null);
+            ApiResponse<BrAPIScaleSingleResponse> scale = this.scalesAPI.scalesScaleDbIdPut("fake dbid", null);
         });
     }
 

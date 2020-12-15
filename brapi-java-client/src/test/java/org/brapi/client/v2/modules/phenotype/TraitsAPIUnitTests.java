@@ -24,9 +24,9 @@ import org.brapi.client.v2.ApiClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.BrAPIRequest;
 import org.brapi.client.v2.model.queryParams.phenotype.TraitQueryParams;
-import org.brapi.v2.model.pheno.Trait;
-import org.brapi.v2.model.pheno.TraitListResponse;
-import org.brapi.v2.model.pheno.TraitSingleResponse;
+import org.brapi.v2.model.pheno.BrAPITrait;
+import org.brapi.v2.model.pheno.BrAPITraitListResponse;
+import org.brapi.v2.model.pheno.BrAPITraitSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -60,7 +60,7 @@ public class TraitsAPIUnitTests {
     @SneakyThrows
     void getTraitsEmtpyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<TraitListResponse> brApiTraits = traitsAPI.traitsGet(new TraitQueryParams());
+        ApiResponse<BrAPITraitListResponse> brApiTraits = traitsAPI.traitsGet(new TraitQueryParams());
 
         assertEquals(0, brApiTraits.getBody().getResult().getData().size(), "List size is greater than 0");
     }
@@ -69,7 +69,7 @@ public class TraitsAPIUnitTests {
     @SneakyThrows
     void getTraitsByIdEmtpyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<TraitSingleResponse> brApiTrait = traitsAPI.traitsTraitDbIdGet("test");
+        ApiResponse<BrAPITraitSingleResponse> brApiTrait = traitsAPI.traitsTraitDbIdGet("test");
 
         assertNotNull(brApiTrait, "Empty optional was not returned.");
     }
@@ -78,7 +78,7 @@ public class TraitsAPIUnitTests {
     @SneakyThrows
     void createTraitsEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<TraitListResponse> brApiTrait = traitsAPI.traitsPost(Arrays.asList(new Trait()));
+        ApiResponse<BrAPITraitListResponse> brApiTrait = traitsAPI.traitsPost(Arrays.asList(new BrAPITrait()));
 
         assertNotNull(brApiTrait, "Empty optional was not returned.");
     }

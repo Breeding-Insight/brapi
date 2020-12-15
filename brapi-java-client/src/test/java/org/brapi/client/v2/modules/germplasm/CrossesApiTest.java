@@ -16,10 +16,10 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.CrossQueryParams;
 import org.brapi.client.v2.model.queryParams.germplasm.PlannedCrossQueryParams;
-import org.brapi.v2.model.germ.CrossNewRequest;
-import org.brapi.v2.model.germ.CrossesListResponse;
-import org.brapi.v2.model.germ.PlannedCrossNewRequest;
-import org.brapi.v2.model.germ.PlannedCrossesListResponse;
+import org.brapi.v2.model.germ.BrAPICrossNewRequest;
+import org.brapi.v2.model.germ.BrAPICrossesListResponse;
+import org.brapi.v2.model.germ.BrAPIPlannedCrossNewRequest;
+import org.brapi.v2.model.germ.BrAPIPlannedCrossesListResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class CrossesApiTest {
         Integer pageSize = null;
         
         CrossQueryParams queryParams = new CrossQueryParams();
-        ApiResponse<CrossesListResponse> response = api.crossesGet(queryParams);
+        ApiResponse<BrAPICrossesListResponse> response = api.crossesGet(queryParams);
 
         // TODO: test validations
     }
@@ -63,9 +63,9 @@ public class CrossesApiTest {
      */
     @Test
     public void crossesPostTest() throws ApiException {
-        List<CrossNewRequest> body = null;
+        List<BrAPICrossNewRequest> body = null;
         
-        ApiResponse<CrossesListResponse> response = api.crossesPost(body);
+        ApiResponse<BrAPICrossesListResponse> response = api.crossesPost(body);
 
         // TODO: test validations
     }
@@ -79,9 +79,9 @@ public class CrossesApiTest {
      */
     @Test
     public void crossesPutTest() throws ApiException {
-        Map<String, CrossNewRequest> body = null;
+        Map<String, BrAPICrossNewRequest> body = null;
         
-        ApiResponse<CrossesListResponse> response = api.crossesPut(body);
+        ApiResponse<BrAPICrossesListResponse> response = api.crossesPut(body);
 
         // TODO: test validations
     }
@@ -103,7 +103,7 @@ public class CrossesApiTest {
         Integer pageSize = null;
         
         PlannedCrossQueryParams queryParams = new PlannedCrossQueryParams();
-        ApiResponse<PlannedCrossesListResponse> response = api.plannedcrossesGet(queryParams);
+        ApiResponse<BrAPIPlannedCrossesListResponse> response = api.plannedcrossesGet(queryParams);
 
         // TODO: test validations
     }
@@ -117,9 +117,9 @@ public class CrossesApiTest {
      */
     @Test
     public void plannedcrossesPostTest() throws ApiException {
-        List<PlannedCrossNewRequest> body = null;
+        List<BrAPIPlannedCrossNewRequest> body = null;
         
-        ApiResponse<PlannedCrossesListResponse> response = api.plannedcrossesPost(body);
+        ApiResponse<BrAPIPlannedCrossesListResponse> response = api.plannedcrossesPost(body);
 
         // TODO: test validations
     }
@@ -133,9 +133,9 @@ public class CrossesApiTest {
      */
     @Test
     public void plannedcrossesPutTest() throws ApiException {
-        Map<String, PlannedCrossNewRequest> body = null;
+        Map<String, BrAPIPlannedCrossNewRequest> body = null;
         
-        ApiResponse<PlannedCrossesListResponse> response = api.plannedcrossesPut(body);
+        ApiResponse<BrAPIPlannedCrossesListResponse> response = api.plannedcrossesPut(body);
 
         // TODO: test validations
     }

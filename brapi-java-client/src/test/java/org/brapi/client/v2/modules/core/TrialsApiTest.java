@@ -15,10 +15,10 @@ package org.brapi.client.v2.modules.core;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.TrialQueryParams;
-import org.brapi.v2.model.core.TrialListResponse;
-import org.brapi.v2.model.core.TrialNewRequest;
-import org.brapi.v2.model.core.TrialSearchRequest;
-import org.brapi.v2.model.core.TrialSingleResponse;
+import org.brapi.v2.model.core.BrAPITrialListResponse;
+import org.brapi.v2.model.core.BrAPITrialNewRequest;
+import org.brapi.v2.model.core.BrAPITrialSearchRequest;
+import org.brapi.v2.model.core.BrAPITrialSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -44,9 +44,9 @@ public class TrialsApiTest {
      */
     @Test
     public void searchTrialsPostTest() throws ApiException {
-        TrialSearchRequest body = null;
+        BrAPITrialSearchRequest body = null;
         
-        ApiResponse<TrialListResponse> response = api.searchTrialsPost(body);
+        ApiResponse<BrAPITrialListResponse> response = api.searchTrialsPost(body);
 
         // TODO: test validations
     }
@@ -64,7 +64,7 @@ public class TrialsApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<TrialListResponse> response = api.searchTrialsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPITrialListResponse> response = api.searchTrialsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }
@@ -97,7 +97,7 @@ public class TrialsApiTest {
         Integer pageSize = null;
         
         TrialQueryParams queryParams = new TrialQueryParams();
-        ApiResponse<TrialListResponse> response = api.trialsGet(queryParams);
+        ApiResponse<BrAPITrialListResponse> response = api.trialsGet(queryParams);
 
         // TODO: test validations
     }
@@ -111,9 +111,9 @@ public class TrialsApiTest {
      */
     @Test
     public void trialsPostTest() throws ApiException {
-        List<TrialNewRequest> body = null;
+        List<BrAPITrialNewRequest> body = null;
         
-        ApiResponse<TrialListResponse> response = api.trialsPost(body);
+        ApiResponse<BrAPITrialListResponse> response = api.trialsPost(body);
 
         // TODO: test validations
     }
@@ -129,7 +129,7 @@ public class TrialsApiTest {
     public void trialsTrialDbIdGetTest() throws ApiException {
         String trialDbId = null;
         
-        ApiResponse<TrialSingleResponse> response = api.trialsTrialDbIdGet(trialDbId);
+        ApiResponse<BrAPITrialSingleResponse> response = api.trialsTrialDbIdGet(trialDbId);
 
         // TODO: test validations
     }
@@ -144,9 +144,9 @@ public class TrialsApiTest {
     @Test
     public void trialsTrialDbIdPutTest() throws ApiException {
         String trialDbId = null;
-        TrialNewRequest body = null;
+        BrAPITrialNewRequest body = null;
         
-        ApiResponse<TrialSingleResponse> response = api.trialsTrialDbIdPut(trialDbId, body);
+        ApiResponse<BrAPITrialSingleResponse> response = api.trialsTrialDbIdPut(trialDbId, body);
 
         // TODO: test validations
     }

@@ -15,10 +15,10 @@ package org.brapi.client.v2.modules.germplasm;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmAttributeValueQueryParams;
-import org.brapi.v2.model.germ.GermplasmAttributeValueListResponse;
-import org.brapi.v2.model.germ.GermplasmAttributeValueNewRequest;
-import org.brapi.v2.model.germ.GermplasmAttributeValueSearchRequest;
-import org.brapi.v2.model.germ.GermplasmAttributeValueSingleResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValueListResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValueNewRequest;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValueSearchRequest;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValueSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class GermplasmAttributeValuesApiTest {
     public void attributevaluesAttributeValueDbIdGetTest() throws ApiException {
         String attributeValueDbId = null;
         
-        ApiResponse<GermplasmAttributeValueSingleResponse> response = api.attributevaluesAttributeValueDbIdGet(attributeValueDbId);
+        ApiResponse<BrAPIGermplasmAttributeValueSingleResponse> response = api.attributevaluesAttributeValueDbIdGet(attributeValueDbId);
 
         // TODO: test validations
     }
@@ -60,9 +60,9 @@ public class GermplasmAttributeValuesApiTest {
     @Test
     public void attributevaluesAttributeValueDbIdPutTest() throws ApiException {
         String attributeValueDbId = null;
-        GermplasmAttributeValueNewRequest body = null;
+        BrAPIGermplasmAttributeValueNewRequest body = null;
         
-        ApiResponse<GermplasmAttributeValueSingleResponse> response = api.attributevaluesAttributeValueDbIdPut(attributeValueDbId, body);
+        ApiResponse<BrAPIGermplasmAttributeValueSingleResponse> response = api.attributevaluesAttributeValueDbIdPut(attributeValueDbId, body);
 
         // TODO: test validations
     }
@@ -86,7 +86,7 @@ public class GermplasmAttributeValuesApiTest {
         Integer pageSize = null;
         
         GermplasmAttributeValueQueryParams queryParams = new GermplasmAttributeValueQueryParams();
-        ApiResponse<GermplasmAttributeValueListResponse> response = api.attributevaluesGet(queryParams);
+        ApiResponse<BrAPIGermplasmAttributeValueListResponse> response = api.attributevaluesGet(queryParams);
 
         // TODO: test validations
     }
@@ -100,9 +100,9 @@ public class GermplasmAttributeValuesApiTest {
      */
     @Test
     public void attributevaluesPostTest() throws ApiException {
-        List<GermplasmAttributeValueNewRequest> body = null;
+        List<BrAPIGermplasmAttributeValueNewRequest> body = null;
         
-        ApiResponse<GermplasmAttributeValueListResponse> response = api.attributevaluesPost(body);
+        ApiResponse<BrAPIGermplasmAttributeValueListResponse> response = api.attributevaluesPost(body);
 
         // TODO: test validations
     }
@@ -116,9 +116,9 @@ public class GermplasmAttributeValuesApiTest {
      */
     @Test
     public void searchAttributevaluesPostTest() throws ApiException {
-        GermplasmAttributeValueSearchRequest body = null;
+        BrAPIGermplasmAttributeValueSearchRequest body = null;
         
-        ApiResponse<GermplasmAttributeValueListResponse> response = api.searchAttributevaluesPost(body);
+        ApiResponse<BrAPIGermplasmAttributeValueListResponse> response = api.searchAttributevaluesPost(body);
 
         // TODO: test validations
     }
@@ -136,7 +136,7 @@ public class GermplasmAttributeValuesApiTest {
         Integer page = null;
         Integer pageSize = null;
         
-        ApiResponse<GermplasmAttributeValueListResponse> response = api.searchAttributevaluesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        ApiResponse<BrAPIGermplasmAttributeValueListResponse> response = api.searchAttributevaluesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

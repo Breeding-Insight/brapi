@@ -22,7 +22,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.EventQueryParams;
-import org.brapi.v2.model.pheno.EventsResponse;
+import org.brapi.v2.model.pheno.BrAPIEventsResponse;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -107,9 +107,9 @@ public class EventsApi {
      * @return ApiResponse&lt;EventsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<EventsResponse> eventsGet(EventQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPIEventsResponse> eventsGet(EventQueryParams queryParams) throws ApiException {
         Call call = eventsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<EventsResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIEventsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -121,9 +121,9 @@ public class EventsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call eventsGetAsync(EventQueryParams queryParams, final ApiCallback<EventsResponse> callback) throws ApiException {
+    public Call eventsGetAsync(EventQueryParams queryParams, final ApiCallback<BrAPIEventsResponse> callback) throws ApiException {
         Call call = eventsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<EventsResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIEventsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

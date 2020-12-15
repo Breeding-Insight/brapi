@@ -24,8 +24,8 @@ import org.brapi.client.v2.ApiClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.v2.model.WSMIMEDataTypes;
-import org.brapi.v2.model.core.ServerInfoResponse;
+import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
+import org.brapi.v2.model.core.BrAPIServerInfoResponse;
 
 public class ServerInfoApi {
     private ApiClient apiClient;
@@ -55,7 +55,7 @@ public class ServerInfoApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call serverinfoGetCall(WSMIMEDataTypes dataType) throws ApiException {
+    private Call serverinfoGetCall(BrAPIWSMIMEDataTypes dataType) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -96,9 +96,9 @@ public class ServerInfoApi {
      * @return ApiResponse&lt;ServerInfoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ServerInfoResponse> serverinfoGet(WSMIMEDataTypes dataType) throws ApiException {
+    public ApiResponse<BrAPIServerInfoResponse> serverinfoGet(BrAPIWSMIMEDataTypes dataType) throws ApiException {
         Call call = serverinfoGetCall(dataType);
-        Type localVarReturnType = new TypeToken<ServerInfoResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIServerInfoResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -111,9 +111,9 @@ public class ServerInfoApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call serverinfoGetAsync(WSMIMEDataTypes dataType, final ApiCallback<ServerInfoResponse> callback) throws ApiException {
+    public Call serverinfoGetAsync(BrAPIWSMIMEDataTypes dataType, final ApiCallback<BrAPIServerInfoResponse> callback) throws ApiException {
         Call call = serverinfoGetCall(dataType);
-        Type localVarReturnType = new TypeToken<ServerInfoResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIServerInfoResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

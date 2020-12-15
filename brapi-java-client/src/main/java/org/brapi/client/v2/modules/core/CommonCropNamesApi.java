@@ -21,7 +21,7 @@ import org.brapi.client.v2.ApiClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.v2.model.core.CommonCropNamesResponse;
+import org.brapi.v2.model.core.BrAPICommonCropNamesResponse;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -94,9 +94,9 @@ public class CommonCropNamesApi {
      * @return ApiResponse&lt;CommonCropNamesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CommonCropNamesResponse> commoncropnamesGet(Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<BrAPICommonCropNamesResponse> commoncropnamesGet(Integer page, Integer pageSize) throws ApiException {
         Call call = commoncropnamesGetCall(page, pageSize);
-        Type localVarReturnType = new TypeToken<CommonCropNamesResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICommonCropNamesResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -108,9 +108,9 @@ public class CommonCropNamesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call commoncropnamesGetAsync(Integer page, Integer pageSize, final ApiCallback<CommonCropNamesResponse> callback) throws ApiException {
+    public Call commoncropnamesGetAsync(Integer page, Integer pageSize, final ApiCallback<BrAPICommonCropNamesResponse> callback) throws ApiException {
         Call call = commoncropnamesGetCall(page, pageSize);
-        Type localVarReturnType = new TypeToken<CommonCropNamesResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICommonCropNamesResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

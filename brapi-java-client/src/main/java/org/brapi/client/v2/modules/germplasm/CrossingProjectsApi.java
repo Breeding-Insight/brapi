@@ -23,9 +23,9 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.CrossingProjectQueryParams;
-import org.brapi.v2.model.germ.CrossingProjectNewRequest;
-import org.brapi.v2.model.germ.CrossingProjectsListResponse;
-import org.brapi.v2.model.germ.CrossingProjectsSingleResponse;
+import org.brapi.v2.model.germ.BrAPICrossingProjectNewRequest;
+import org.brapi.v2.model.germ.BrAPICrossingProjectsListResponse;
+import org.brapi.v2.model.germ.BrAPICrossingProjectsSingleResponse;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -99,9 +99,9 @@ public class CrossingProjectsApi {
      * @return ApiResponse&lt;CrossingProjectsSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CrossingProjectsSingleResponse> crossingprojectsCrossingProjectDbIdGet(String crossingProjectDbId) throws ApiException {
+    public ApiResponse<BrAPICrossingProjectsSingleResponse> crossingprojectsCrossingProjectDbIdGet(String crossingProjectDbId) throws ApiException {
         Call call = crossingprojectsCrossingProjectDbIdGetCall(crossingProjectDbId);
-        Type localVarReturnType = new TypeToken<CrossingProjectsSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossingProjectsSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -114,9 +114,9 @@ public class CrossingProjectsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call crossingprojectsCrossingProjectDbIdGetAsync(String crossingProjectDbId, final ApiCallback<CrossingProjectsSingleResponse> callback) throws ApiException {
+    public Call crossingprojectsCrossingProjectDbIdGetAsync(String crossingProjectDbId, final ApiCallback<BrAPICrossingProjectsSingleResponse> callback) throws ApiException {
         Call call = crossingprojectsCrossingProjectDbIdGetCall(crossingProjectDbId);
-        Type localVarReturnType = new TypeToken<CrossingProjectsSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossingProjectsSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -130,7 +130,7 @@ public class CrossingProjectsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call crossingprojectsCrossingProjectDbIdPutCall(String crossingProjectDbId, CrossingProjectNewRequest body) throws ApiException {
+    private Call crossingprojectsCrossingProjectDbIdPutCall(String crossingProjectDbId, BrAPICrossingProjectNewRequest body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -171,9 +171,9 @@ public class CrossingProjectsApi {
      * @return ApiResponse&lt;CrossingProjectsSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CrossingProjectsSingleResponse> crossingprojectsCrossingProjectDbIdPut(String crossingProjectDbId, CrossingProjectNewRequest body) throws ApiException {
+    public ApiResponse<BrAPICrossingProjectsSingleResponse> crossingprojectsCrossingProjectDbIdPut(String crossingProjectDbId, BrAPICrossingProjectNewRequest body) throws ApiException {
         Call call = crossingprojectsCrossingProjectDbIdPutCall(crossingProjectDbId, body);
-        Type localVarReturnType = new TypeToken<CrossingProjectsSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossingProjectsSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -187,9 +187,9 @@ public class CrossingProjectsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call crossingprojectsCrossingProjectDbIdPutAsync(String crossingProjectDbId, CrossingProjectNewRequest body, final ApiCallback<CrossingProjectsSingleResponse> callback) throws ApiException {
+    public Call crossingprojectsCrossingProjectDbIdPutAsync(String crossingProjectDbId, BrAPICrossingProjectNewRequest body, final ApiCallback<BrAPICrossingProjectsSingleResponse> callback) throws ApiException {
         Call call = crossingprojectsCrossingProjectDbIdPutCall(crossingProjectDbId, body);
-        Type localVarReturnType = new TypeToken<CrossingProjectsSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossingProjectsSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -247,9 +247,9 @@ public class CrossingProjectsApi {
      * @return ApiResponse&lt;CrossingProjectsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CrossingProjectsListResponse> crossingprojectsGet(CrossingProjectQueryParams queryParams) throws ApiException {
+    public ApiResponse<BrAPICrossingProjectsListResponse> crossingprojectsGet(CrossingProjectQueryParams queryParams) throws ApiException {
         Call call = crossingprojectsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<CrossingProjectsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossingProjectsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -261,9 +261,9 @@ public class CrossingProjectsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call crossingprojectsGetAsync(CrossingProjectQueryParams queryParams, final ApiCallback<CrossingProjectsListResponse> callback) throws ApiException {
+    public Call crossingprojectsGetAsync(CrossingProjectQueryParams queryParams, final ApiCallback<BrAPICrossingProjectsListResponse> callback) throws ApiException {
         Call call = crossingprojectsGetCall(queryParams);
-        Type localVarReturnType = new TypeToken<CrossingProjectsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossingProjectsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -276,7 +276,7 @@ public class CrossingProjectsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call crossingprojectsPostCall(List<CrossingProjectNewRequest> body) throws ApiException {
+    private Call crossingprojectsPostCall(List<BrAPICrossingProjectNewRequest> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -315,9 +315,9 @@ public class CrossingProjectsApi {
      * @return ApiResponse&lt;CrossingProjectsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CrossingProjectsListResponse> crossingprojectsPost(List<CrossingProjectNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPICrossingProjectsListResponse> crossingprojectsPost(List<BrAPICrossingProjectNewRequest> body) throws ApiException {
         Call call = crossingprojectsPostCall(body);
-        Type localVarReturnType = new TypeToken<CrossingProjectsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossingProjectsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -330,9 +330,9 @@ public class CrossingProjectsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call crossingprojectsPostAsync(List<CrossingProjectNewRequest> body, final ApiCallback<CrossingProjectsListResponse> callback) throws ApiException {
+    public Call crossingprojectsPostAsync(List<BrAPICrossingProjectNewRequest> body, final ApiCallback<BrAPICrossingProjectsListResponse> callback) throws ApiException {
         Call call = crossingprojectsPostCall(body);
-        Type localVarReturnType = new TypeToken<CrossingProjectsListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPICrossingProjectsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

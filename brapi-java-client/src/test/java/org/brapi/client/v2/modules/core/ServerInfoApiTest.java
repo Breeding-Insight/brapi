@@ -14,8 +14,8 @@ package org.brapi.client.v2.modules.core;
 
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.v2.model.WSMIMEDataTypes;
-import org.brapi.v2.model.core.ServerInfoResponse;
+import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
+import org.brapi.v2.model.core.BrAPIServerInfoResponse;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -35,9 +35,9 @@ public class ServerInfoApiTest {
      */
     @Test
     public void serverinfoGetTest() throws ApiException {
-        WSMIMEDataTypes dataType = null;
+        BrAPIWSMIMEDataTypes dataType = null;
         
-        ApiResponse<ServerInfoResponse> response = api.serverinfoGet(dataType);
+        ApiResponse<BrAPIServerInfoResponse> response = api.serverinfoGet(dataType);
 
         // TODO: test validations
     }
