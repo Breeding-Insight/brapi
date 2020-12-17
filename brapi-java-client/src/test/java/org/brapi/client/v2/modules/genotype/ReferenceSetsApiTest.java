@@ -15,15 +15,10 @@ package org.brapi.client.v2.modules.genotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.ReferenceSetQueryParams;
-import org.brapi.v2.model.geno.BrAPIReferenceSetsListResponse;
-import org.brapi.v2.model.geno.BrAPIReferenceSetsSearchRequest;
-import org.brapi.v2.model.geno.BrAPIReferenceSetsSingleResponse;
+import org.brapi.v2.model.geno.response.BrAPIReferenceSetsListResponse;
+import org.brapi.v2.model.geno.request.BrAPIReferenceSetsSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPIReferenceSetsSingleResponse;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for ReferenceSetsApi

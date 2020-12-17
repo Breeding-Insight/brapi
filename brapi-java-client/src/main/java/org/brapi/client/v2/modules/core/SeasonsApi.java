@@ -21,31 +21,31 @@ import java.util.List;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.SeasonQueryParams;
 import org.brapi.v2.model.core.BrAPISeason;
-import org.brapi.v2.model.core.BrAPISeasonListResponse;
-import org.brapi.v2.model.core.BrAPISeasonSingleResponse;
+import org.brapi.v2.model.core.response.BrAPISeasonListResponse;
+import org.brapi.v2.model.core.response.BrAPISeasonSingleResponse;
 
 public class SeasonsApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public SeasonsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public SeasonsApi(ApiClient apiClient) {
+    public SeasonsApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 

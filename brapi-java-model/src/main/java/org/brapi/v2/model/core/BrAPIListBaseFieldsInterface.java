@@ -1,8 +1,9 @@
 package org.brapi.v2.model.core;
 
-import java.util.Map;
+import org.brapi.v2.model.BrAPIExternalReference;
 
-import org.brapi.v2.model.BrAPIExternalReferenceList;
+import java.util.List;
+import java.util.Map;
 
 import java.time.OffsetDateTime;
 
@@ -28,11 +29,11 @@ public interface BrAPIListBaseFieldsInterface {
 
 	public void setDateModified(OffsetDateTime dateModified);
 
-	public BrAPIListBaseFieldsInterface externalReferences(BrAPIExternalReferenceList externalReferences);
+	public BrAPIListBaseFieldsInterface externalReferences(List<BrAPIExternalReference> externalReferences);
 
-	public BrAPIExternalReferenceList getExternalReferences();
+	public List<BrAPIExternalReference> getExternalReferences();
 
-	public void setExternalReferences(BrAPIExternalReferenceList externalReferences);
+	public void setExternalReferences(List<BrAPIExternalReference> externalReferences);
 
 	public BrAPIListBaseFieldsInterface listDescription(String listDescription);
 

@@ -16,14 +16,11 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.SeasonQueryParams;
 import org.brapi.v2.model.core.BrAPISeason;
-import org.brapi.v2.model.core.BrAPISeasonListResponse;
-import org.brapi.v2.model.core.BrAPISeasonSingleResponse;
+import org.brapi.v2.model.core.response.BrAPISeasonListResponse;
+import org.brapi.v2.model.core.response.BrAPISeasonSingleResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for SeasonsApi

@@ -16,17 +16,14 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.SeedLotQueryParams;
 import org.brapi.client.v2.model.queryParams.germplasm.SeedLotTransactionQueryParams;
-import org.brapi.v2.model.germ.BrAPISeedLotListResponse;
-import org.brapi.v2.model.germ.BrAPISeedLotNewRequest;
-import org.brapi.v2.model.germ.BrAPISeedLotNewTransactionRequest;
-import org.brapi.v2.model.germ.BrAPISeedLotSingleResponse;
-import org.brapi.v2.model.germ.BrAPISeedLotTransactionListResponse;
+import org.brapi.v2.model.germ.BrAPISeedLot;
+import org.brapi.v2.model.germ.BrAPISeedLotTransaction;
+import org.brapi.v2.model.germ.response.BrAPISeedLotListResponse;
+import org.brapi.v2.model.germ.response.BrAPISeedLotSingleResponse;
+import org.brapi.v2.model.germ.response.BrAPISeedLotTransactionListResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for SeedLotsApi
@@ -67,7 +64,7 @@ public class SeedLotsApiTest {
      */
     @Test
     public void seedlotsPostTest() throws ApiException {
-        List<BrAPISeedLotNewRequest> body = null;
+        List<BrAPISeedLot> body = null;
         
         ApiResponse<BrAPISeedLotListResponse> response = api.seedlotsPost(body);
 
@@ -100,7 +97,7 @@ public class SeedLotsApiTest {
     @Test
     public void seedlotsSeedLotDbIdPutTest() throws ApiException {
         String seedLotDbId = null;
-        BrAPISeedLotNewRequest body = null;
+        BrAPISeedLot body = null;
         
         ApiResponse<BrAPISeedLotSingleResponse> response = api.seedlotsSeedLotDbIdPut(seedLotDbId, body);
 
@@ -159,7 +156,7 @@ public class SeedLotsApiTest {
      */
     @Test
     public void seedlotsTransactionsPostTest() throws ApiException {
-        List<BrAPISeedLotNewTransactionRequest> body = null;
+        List<BrAPISeedLotTransaction> body = null;
         
         ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsTransactionsPost(body);
 

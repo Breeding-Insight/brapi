@@ -21,31 +21,31 @@ import java.util.List;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.MethodQueryParams;
-import org.brapi.v2.model.pheno.BrAPIMethodBaseClass;
-import org.brapi.v2.model.pheno.BrAPIMethodListResponse;
-import org.brapi.v2.model.pheno.BrAPIMethodSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIMethod;
+import org.brapi.v2.model.pheno.response.BrAPIMethodListResponse;
+import org.brapi.v2.model.pheno.response.BrAPIMethodSingleResponse;
 
 public class MethodsApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public MethodsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public MethodsApi(ApiClient apiClient) {
+    public MethodsApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -205,7 +205,7 @@ public class MethodsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call methodsMethodDbIdPutCall(String methodDbId, BrAPIMethodBaseClass body) throws ApiException {
+    private Call methodsMethodDbIdPutCall(String methodDbId, BrAPIMethod body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -246,7 +246,7 @@ public class MethodsApi {
      * @return ApiResponse&lt;MethodSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIMethodSingleResponse> methodsMethodDbIdPut(String methodDbId, BrAPIMethodBaseClass body) throws ApiException {
+    public ApiResponse<BrAPIMethodSingleResponse> methodsMethodDbIdPut(String methodDbId, BrAPIMethod body) throws ApiException {
         Call call = methodsMethodDbIdPutCall(methodDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIMethodSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -262,7 +262,7 @@ public class MethodsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call methodsMethodDbIdPutAsync(String methodDbId, BrAPIMethodBaseClass body, final ApiCallback<BrAPIMethodSingleResponse> callback) throws ApiException {
+    public Call methodsMethodDbIdPutAsync(String methodDbId, BrAPIMethod body, final ApiCallback<BrAPIMethodSingleResponse> callback) throws ApiException {
         Call call = methodsMethodDbIdPutCall(methodDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIMethodSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
@@ -277,7 +277,7 @@ public class MethodsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call methodsPostCall(List<BrAPIMethodBaseClass> body) throws ApiException {
+    private Call methodsPostCall(List<BrAPIMethod> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -316,7 +316,7 @@ public class MethodsApi {
      * @return ApiResponse&lt;MethodListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIMethodListResponse> methodsPost(List<BrAPIMethodBaseClass> body) throws ApiException {
+    public ApiResponse<BrAPIMethodListResponse> methodsPost(List<BrAPIMethod> body) throws ApiException {
         Call call = methodsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIMethodListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -331,7 +331,7 @@ public class MethodsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call methodsPostAsync(List<BrAPIMethodBaseClass> body, final ApiCallback<BrAPIMethodListResponse> callback) throws ApiException {
+    public Call methodsPostAsync(List<BrAPIMethod> body, final ApiCallback<BrAPIMethodListResponse> callback) throws ApiException {
         Call call = methodsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIMethodListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);

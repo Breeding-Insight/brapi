@@ -14,19 +14,13 @@ package org.brapi.client.v2.modules.genotype;
 
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.CallSetQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.GenotypeQueryParams;
-import org.brapi.v2.model.geno.BrAPICallSetResponse;
-import org.brapi.v2.model.geno.BrAPICallSetsListResponse;
-import org.brapi.v2.model.geno.BrAPICallSetsSearchRequest;
-import org.brapi.v2.model.geno.BrAPICallsListResponse;
+import org.brapi.v2.model.geno.response.BrAPICallSetResponse;
+import org.brapi.v2.model.geno.response.BrAPICallSetsListResponse;
+import org.brapi.v2.model.geno.request.BrAPICallSetsSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for CallSetsApi

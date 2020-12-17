@@ -21,32 +21,32 @@ import java.util.List;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.SampleQueryParams;
-import org.brapi.v2.model.geno.BrAPISampleListResponse;
-import org.brapi.v2.model.geno.BrAPISampleNewRequest;
-import org.brapi.v2.model.geno.BrAPISampleSearchRequest;
-import org.brapi.v2.model.geno.BrAPISampleSingleResponse;
+import org.brapi.v2.model.geno.BrAPISample;
+import org.brapi.v2.model.geno.response.BrAPISampleListResponse;
+import org.brapi.v2.model.geno.request.BrAPISampleSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPISampleSingleResponse;
 
 public class SamplesApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public SamplesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public SamplesApi(ApiClient apiClient) {
+    public SamplesApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -141,7 +141,7 @@ public class SamplesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call samplesPostCall(List<BrAPISampleNewRequest> body) throws ApiException {
+    private Call samplesPostCall(List<BrAPISample> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -180,7 +180,7 @@ public class SamplesApi {
      * @return ApiResponse&lt;SampleListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPISampleListResponse> samplesPost(List<BrAPISampleNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPISampleListResponse> samplesPost(List<BrAPISample> body) throws ApiException {
         Call call = samplesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPISampleListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -195,7 +195,7 @@ public class SamplesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call samplesPostAsync(List<BrAPISampleNewRequest> body, final ApiCallback<BrAPISampleListResponse> callback) throws ApiException {
+    public Call samplesPostAsync(List<BrAPISample> body, final ApiCallback<BrAPISampleListResponse> callback) throws ApiException {
         Call call = samplesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPISampleListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
@@ -281,7 +281,7 @@ public class SamplesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call samplesSampleDbIdPutCall(String sampleDbId, BrAPISampleNewRequest body) throws ApiException {
+    private Call samplesSampleDbIdPutCall(String sampleDbId, BrAPISample body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -322,7 +322,7 @@ public class SamplesApi {
      * @return ApiResponse&lt;SampleSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPISampleSingleResponse> samplesSampleDbIdPut(String sampleDbId, BrAPISampleNewRequest body) throws ApiException {
+    public ApiResponse<BrAPISampleSingleResponse> samplesSampleDbIdPut(String sampleDbId, BrAPISample body) throws ApiException {
         Call call = samplesSampleDbIdPutCall(sampleDbId, body);
         Type localVarReturnType = new TypeToken<BrAPISampleSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -338,7 +338,7 @@ public class SamplesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call samplesSampleDbIdPutAsync(String sampleDbId, BrAPISampleNewRequest body, final ApiCallback<BrAPISampleSingleResponse> callback) throws ApiException {
+    public Call samplesSampleDbIdPutAsync(String sampleDbId, BrAPISample body, final ApiCallback<BrAPISampleSingleResponse> callback) throws ApiException {
         Call call = samplesSampleDbIdPutCall(sampleDbId, body);
         Type localVarReturnType = new TypeToken<BrAPISampleSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);

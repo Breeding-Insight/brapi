@@ -15,7 +15,7 @@ package org.brapi.client.v2.modules.phenotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.OntologyQueryParams;
-import org.brapi.v2.model.pheno.BrAPIOntologyListResponse;
+import org.brapi.v2.model.pheno.response.BrAPIOntologyListResponse;
 import org.junit.jupiter.api.Test;
 
 /**

@@ -20,13 +20,11 @@ package org.brapi.client.v2.modules.core;
 import lombok.SneakyThrows;
 import okhttp3.Call;
 
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
-import org.brapi.client.v2.model.BrAPIRequest;
 import org.brapi.v2.model.core.BrAPIProgram;
-import org.brapi.v2.model.core.BrAPIProgramListResponse;
-import org.brapi.v2.model.core.BrAPIProgramNewRequest;
-import org.brapi.v2.model.core.BrAPIProgramSingleResponse;
+import org.brapi.v2.model.core.response.BrAPIProgramListResponse;
+import org.brapi.v2.model.core.response.BrAPIProgramSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -37,7 +35,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -49,7 +46,7 @@ public class ProgramAPIUnitTests {
 
     ProgramsApi programsAPI;
     @Mock
-    ApiClient brAPIClient;
+    BrAPIClient brAPIClient;
 
     @BeforeAll
     public void setUp() {
@@ -79,8 +76,8 @@ public class ProgramAPIUnitTests {
     @SneakyThrows
     public void createProgramsEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        List<BrAPIProgramNewRequest> brApiPrograms = new ArrayList<>();
-        BrAPIProgramNewRequest brApiProgram = new BrAPIProgramNewRequest().programName("test");
+        List<BrAPIProgram> brApiPrograms = new ArrayList<>();
+        BrAPIProgram brApiProgram = new BrAPIProgram().programName("test");
         brApiPrograms.add(brApiProgram);
         ApiResponse<BrAPIProgramListResponse> createdBrAPIPrograms = programsAPI.programsPost(brApiPrograms);
 
@@ -91,7 +88,7 @@ public class ProgramAPIUnitTests {
     @SneakyThrows
     public void createProgramEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        BrAPIProgramNewRequest brApiProgram = new BrAPIProgramNewRequest().programName("test");
+        BrAPIProgram brApiProgram = new BrAPIProgram().programName("test");
         ApiResponse<BrAPIProgramListResponse> brApiPrograms = programsAPI.programsPost(Arrays.asList(brApiProgram));
 
         assertNotNull(brApiPrograms, "BrAPI program was not empty");

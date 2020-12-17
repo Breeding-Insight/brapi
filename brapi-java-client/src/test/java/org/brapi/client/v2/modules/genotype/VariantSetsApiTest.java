@@ -15,21 +15,15 @@ package org.brapi.client.v2.modules.genotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
-import org.brapi.client.v2.model.queryParams.genotype.CallSetQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantSetQueryParams;
-import org.brapi.v2.model.geno.BrAPICallSetsListResponse;
-import org.brapi.v2.model.geno.BrAPICallsListResponse;
-import org.brapi.v2.model.geno.BrAPIVariantSetResponse;
-import org.brapi.v2.model.geno.BrAPIVariantSetsExtractRequest;
-import org.brapi.v2.model.geno.BrAPIVariantSetsListResponse;
-import org.brapi.v2.model.geno.BrAPIVariantSetsSearchRequest;
-import org.brapi.v2.model.geno.BrAPIVariantsListResponse;
+import org.brapi.v2.model.geno.response.BrAPICallSetsListResponse;
+import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
+import org.brapi.v2.model.geno.response.BrAPIVariantSetResponse;
+import org.brapi.v2.model.geno.request.BrAPIVariantSetsExtractRequest;
+import org.brapi.v2.model.geno.response.BrAPIVariantSetsListResponse;
+import org.brapi.v2.model.geno.request.BrAPIVariantSetsSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPIVariantsListResponse;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for VariantSetsApi

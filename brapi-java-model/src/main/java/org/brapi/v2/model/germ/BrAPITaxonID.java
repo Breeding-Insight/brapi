@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * TaxonID
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-03-20T16:33:36.513Z[GMT]")
+
 public class BrAPITaxonID   {
   @JsonProperty("sourceName")
   private String sourceName = null;

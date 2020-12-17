@@ -34,7 +34,7 @@ public class MockedBrAPIClient {
 
     @Mock
     @Getter
-    ApiClient brAPIClient;
+    BrAPIClient brAPIClient;
     @Mock
     OkHttpClient okHttpClient;
     @Mock

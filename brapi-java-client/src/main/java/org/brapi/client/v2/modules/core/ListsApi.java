@@ -21,33 +21,33 @@ import java.util.List;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.ListQueryParams;
-import org.brapi.v2.model.core.BrAPIListNewRequest;
-import org.brapi.v2.model.core.BrAPIListResponse;
-import org.brapi.v2.model.core.BrAPIListSearchRequest;
-import org.brapi.v2.model.core.BrAPIListsListResponse;
-import org.brapi.v2.model.core.BrAPIListsSingleResponse;
+import org.brapi.v2.model.core.request.BrAPIListNewRequest;
+import org.brapi.v2.model.core.response.BrAPIListResponse;
+import org.brapi.v2.model.core.request.BrAPIListSearchRequest;
+import org.brapi.v2.model.core.response.BrAPIListsListResponse;
+import org.brapi.v2.model.core.response.BrAPIListsSingleResponse;
 
 public class ListsApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public ListsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public ListsApi(ApiClient apiClient) {
+    public ListsApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 

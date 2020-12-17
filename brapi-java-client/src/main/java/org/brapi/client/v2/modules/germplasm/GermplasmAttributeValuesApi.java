@@ -18,36 +18,36 @@ import java.util.List;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmAttributeValueQueryParams;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValueListResponse;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValueNewRequest;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValueSearchRequest;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValueSingleResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValue;
+import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeValueListResponse;
+import org.brapi.v2.model.germ.request.BrAPIGermplasmAttributeValueSearchRequest;
+import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeValueSingleResponse;
 
 import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
 
 public class GermplasmAttributeValuesApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public GermplasmAttributeValuesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public GermplasmAttributeValuesApi(ApiClient apiClient) {
+    public GermplasmAttributeValuesApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -131,7 +131,7 @@ public class GermplasmAttributeValuesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call attributevaluesAttributeValueDbIdPutCall(String attributeValueDbId, BrAPIGermplasmAttributeValueNewRequest body) throws ApiException {
+    private Call attributevaluesAttributeValueDbIdPutCall(String attributeValueDbId, BrAPIGermplasmAttributeValue body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -172,7 +172,7 @@ public class GermplasmAttributeValuesApi {
      * @return ApiResponse&lt;GermplasmAttributeValueSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIGermplasmAttributeValueSingleResponse> attributevaluesAttributeValueDbIdPut(String attributeValueDbId, BrAPIGermplasmAttributeValueNewRequest body) throws ApiException {
+    public ApiResponse<BrAPIGermplasmAttributeValueSingleResponse> attributevaluesAttributeValueDbIdPut(String attributeValueDbId, BrAPIGermplasmAttributeValue body) throws ApiException {
         Call call = attributevaluesAttributeValueDbIdPutCall(attributeValueDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmAttributeValueSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -188,7 +188,7 @@ public class GermplasmAttributeValuesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call attributevaluesAttributeValueDbIdPutAsync(String attributeValueDbId, BrAPIGermplasmAttributeValueNewRequest body, final ApiCallback<BrAPIGermplasmAttributeValueSingleResponse> callback) throws ApiException {
+    public Call attributevaluesAttributeValueDbIdPutAsync(String attributeValueDbId, BrAPIGermplasmAttributeValue body, final ApiCallback<BrAPIGermplasmAttributeValueSingleResponse> callback) throws ApiException {
         Call call = attributevaluesAttributeValueDbIdPutCall(attributeValueDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmAttributeValueSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
@@ -283,7 +283,7 @@ public class GermplasmAttributeValuesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call attributevaluesPostCall(List<BrAPIGermplasmAttributeValueNewRequest> body) throws ApiException {
+    private Call attributevaluesPostCall(List<BrAPIGermplasmAttributeValue> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -322,7 +322,7 @@ public class GermplasmAttributeValuesApi {
      * @return ApiResponse&lt;GermplasmAttributeValueListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIGermplasmAttributeValueListResponse> attributevaluesPost(List<BrAPIGermplasmAttributeValueNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPIGermplasmAttributeValueListResponse> attributevaluesPost(List<BrAPIGermplasmAttributeValue> body) throws ApiException {
         Call call = attributevaluesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmAttributeValueListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -337,7 +337,7 @@ public class GermplasmAttributeValuesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call attributevaluesPostAsync(List<BrAPIGermplasmAttributeValueNewRequest> body, final ApiCallback<BrAPIGermplasmAttributeValueListResponse> callback) throws ApiException {
+    public Call attributevaluesPostAsync(List<BrAPIGermplasmAttributeValue> body, final ApiCallback<BrAPIGermplasmAttributeValueListResponse> callback) throws ApiException {
         Call call = attributevaluesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmAttributeValueListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);

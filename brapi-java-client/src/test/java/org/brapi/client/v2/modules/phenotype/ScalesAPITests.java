@@ -24,15 +24,13 @@ import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.phenotype.ScaleQueryParams;
-import org.brapi.v2.model.BrAPIExternalReferenceList;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
 import org.brapi.v2.model.pheno.BrAPIScale;
-import org.brapi.v2.model.pheno.BrAPIScaleBaseClass;
-import org.brapi.v2.model.pheno.BrAPIScaleBaseClassValidValues;
-import org.brapi.v2.model.pheno.BrAPIScaleBaseClassValidValuesCategories;
-import org.brapi.v2.model.pheno.BrAPIScaleListResponse;
-import org.brapi.v2.model.pheno.BrAPIScaleSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIScaleValidValues;
+import org.brapi.v2.model.pheno.BrAPIScaleValidValuesCategories;
+import org.brapi.v2.model.pheno.response.BrAPIScaleListResponse;
+import org.brapi.v2.model.pheno.response.BrAPIScaleSingleResponse;
 import org.brapi.v2.model.pheno.BrAPITraitDataType;
 import org.junit.jupiter.api.*;
 
@@ -75,7 +73,7 @@ public class ScalesAPITests extends BrAPIClientTest {
         BrAPIScale brApiScale = new BrAPIScale().scaleDbId("test");
                 
         BrAPIScale brApiScale1 = new BrAPIScale();
-        List<BrAPIScaleBaseClass> brApiScales = new ArrayList<>();
+        List<BrAPIScale> brApiScales = new ArrayList<>();
         brApiScales.add(brApiScale);
         brApiScales.add(brApiScale1);
 
@@ -87,7 +85,7 @@ public class ScalesAPITests extends BrAPIClientTest {
     @Test
     public void scalesPostMultipleEmptyList() {
 
-        List<BrAPIScaleBaseClass> brApiScales = new ArrayList<>();
+        List<BrAPIScale> brApiScales = new ArrayList<>();
 
         ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIScaleListResponse> scales = scalesAPI.scalesPost(brApiScales);
@@ -110,7 +108,7 @@ public class ScalesAPITests extends BrAPIClientTest {
                 .referenceID(externalReferenceID)
                 .referenceSource(externalReferenceSource);
                 
-        BrAPIExternalReferenceList externalReferences = new BrAPIExternalReferenceList();
+        List<BrAPIExternalReference> externalReferences = new ArrayList<>();
         externalReferences.add(brApiExternalReference);
 
         BrAPIOntologyReference brApiOntologyReference = new BrAPIOntologyReference()
@@ -118,19 +116,19 @@ public class ScalesAPITests extends BrAPIClientTest {
                 .ontologyName("Ontology.org")
                 .version("17");                
 
-        BrAPIScaleBaseClassValidValuesCategories low = new BrAPIScaleBaseClassValidValuesCategories().label("low").value("0");
-        BrAPIScaleBaseClassValidValuesCategories high = new BrAPIScaleBaseClassValidValuesCategories().label("high").value("5");
+        BrAPIScaleValidValuesCategories low = new BrAPIScaleValidValuesCategories().label("low").value("0");
+        BrAPIScaleValidValuesCategories high = new BrAPIScaleValidValuesCategories().label("high").value("5");
                         
-        List<BrAPIScaleBaseClassValidValuesCategories> categories = Arrays.asList(low, high);
+        List<BrAPIScaleValidValuesCategories> categories = Arrays.asList(low, high);
 
         BrAPITraitDataType dataType = BrAPITraitDataType.TEXT;
-        BrAPIScaleBaseClassValidValues validValues = new BrAPIScaleBaseClassValidValues()
+        BrAPIScaleValidValues validValues = new BrAPIScaleValidValues()
         		.min(0).max(5)
                 .categories(categories);
                 
         Map<String, String> additionalInfo = new HashMap<>();
         additionalInfo.put("test", "test");
-        BrAPIScaleBaseClass brApiScale = new BrAPIScale()
+        BrAPIScale brApiScale = new BrAPIScale()
                 .additionalInfo(additionalInfo)
                 .externalReferences(externalReferences)
                 .ontologyReference(brApiOntologyReference)
@@ -150,7 +148,7 @@ public class ScalesAPITests extends BrAPIClientTest {
         this.createdScale = scale;
     }
 
-    private void scaleAssertEquals(BrAPIScaleBaseClass expected, BrAPIScale actual) {
+    private void scaleAssertEquals(BrAPIScale expected, BrAPIScale actual) {
         assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Scale additionalInfo mismatch");
         assertEquals(expected.getScaleName(), actual.getScaleName(), "Scale name mismatch");
         assertEquals(expected.getOntologyReference().getOntologyDbId(), actual.getOntologyReference().getOntologyDbId(), "Scale ontology dbId mismatch");
@@ -166,10 +164,10 @@ public class ScalesAPITests extends BrAPIClientTest {
     @Order(1)
     @SneakyThrows
     public void scalesPostsMultipleSuccess() {
-        BrAPIScaleBaseClass brApiScale = new BrAPIScale().scaleName("new test scale1");
-        BrAPIScaleBaseClass brApiScale2 = new BrAPIScale().scaleName("new test scale2");
+        BrAPIScale brApiScale = new BrAPIScale().scaleName("new test scale1");
+        BrAPIScale brApiScale2 = new BrAPIScale().scaleName("new test scale2");
                 
-        List<BrAPIScaleBaseClass> scales = Arrays.asList(brApiScale, brApiScale2);
+        List<BrAPIScale> scales = Arrays.asList(brApiScale, brApiScale2);
 
         ApiResponse<BrAPIScaleListResponse> createdScalesRes = scalesAPI.scalesPost(scales);
 
@@ -277,7 +275,7 @@ public class ScalesAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateScaleMissingId() {
         // Check that it throws an ApiException
-        BrAPIScaleBaseClass brApiScale = new BrAPIScale().scaleName("new test scale");
+        BrAPIScale brApiScale = new BrAPIScale().scaleName("new test scale");
                 
         ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIScaleSingleResponse> updatedScaleResult = this.scalesAPI.scalesScaleDbIdPut(null, brApiScale);

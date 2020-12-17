@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * VendorContact
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-03-20T16:32:53.794Z[GMT]")
+
 public class BrAPIVendorContact   {
   @JsonProperty("vendorAddress")
   private String vendorAddress = null;

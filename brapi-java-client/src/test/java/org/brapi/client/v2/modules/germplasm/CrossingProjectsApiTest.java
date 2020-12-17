@@ -15,15 +15,12 @@ package org.brapi.client.v2.modules.germplasm;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.CrossingProjectQueryParams;
-import org.brapi.v2.model.germ.BrAPICrossingProjectNewRequest;
-import org.brapi.v2.model.germ.BrAPICrossingProjectsListResponse;
-import org.brapi.v2.model.germ.BrAPICrossingProjectsSingleResponse;
+import org.brapi.v2.model.germ.BrAPICrossingProject;
+import org.brapi.v2.model.germ.response.BrAPICrossingProjectsListResponse;
+import org.brapi.v2.model.germ.response.BrAPICrossingProjectsSingleResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for CrossingProjectsApi
@@ -59,7 +56,7 @@ public class CrossingProjectsApiTest {
     @Test
     public void crossingprojectsCrossingProjectDbIdPutTest() throws ApiException {
         String crossingProjectDbId = null;
-        BrAPICrossingProjectNewRequest body = null;
+        BrAPICrossingProject body = null;
         
         ApiResponse<BrAPICrossingProjectsSingleResponse> response = api.crossingprojectsCrossingProjectDbIdPut(crossingProjectDbId, body);
 
@@ -96,7 +93,7 @@ public class CrossingProjectsApiTest {
      */
     @Test
     public void crossingprojectsPostTest() throws ApiException {
-        List<BrAPICrossingProjectNewRequest> body = null;
+        List<BrAPICrossingProject> body = null;
         
         ApiResponse<BrAPICrossingProjectsListResponse> response = api.crossingprojectsPost(body);
 

@@ -18,36 +18,36 @@ import java.util.List;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ImageQueryParams;
-import org.brapi.v2.model.pheno.BrAPIImageListResponse;
-import org.brapi.v2.model.pheno.BrAPIImageNewRequest;
-import org.brapi.v2.model.pheno.BrAPIImageSearchRequest;
-import org.brapi.v2.model.pheno.BrAPIImageSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIImage;
+import org.brapi.v2.model.pheno.response.BrAPIImageListResponse;
+import org.brapi.v2.model.pheno.request.BrAPIImageSearchRequest;
+import org.brapi.v2.model.pheno.response.BrAPIImageSingleResponse;
 
 import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
 
 public class ImagesApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public ImagesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public ImagesApi(ApiClient apiClient) {
+    public ImagesApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -286,7 +286,7 @@ public class ImagesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call imagesImageDbIdPutCall(String imageDbId, BrAPIImageNewRequest body) throws ApiException {
+    private Call imagesImageDbIdPutCall(String imageDbId, BrAPIImage body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -327,7 +327,7 @@ public class ImagesApi {
      * @return ApiResponse&lt;ImageSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIImageSingleResponse> imagesImageDbIdPut(String imageDbId, BrAPIImageNewRequest body) throws ApiException {
+    public ApiResponse<BrAPIImageSingleResponse> imagesImageDbIdPut(String imageDbId, BrAPIImage body) throws ApiException {
         Call call = imagesImageDbIdPutCall(imageDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIImageSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -343,7 +343,7 @@ public class ImagesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call imagesImageDbIdPutAsync(String imageDbId, BrAPIImageNewRequest body, final ApiCallback<BrAPIImageSingleResponse> callback) throws ApiException {
+    public Call imagesImageDbIdPutAsync(String imageDbId, BrAPIImage body, final ApiCallback<BrAPIImageSingleResponse> callback) throws ApiException {
         Call call = imagesImageDbIdPutCall(imageDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIImageSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
@@ -358,7 +358,7 @@ public class ImagesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call imagesPostCall(List<BrAPIImageNewRequest> body) throws ApiException {
+    private Call imagesPostCall(List<BrAPIImage> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -397,7 +397,7 @@ public class ImagesApi {
      * @return ApiResponse&lt;ImageListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIImageListResponse> imagesPost(List<BrAPIImageNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPIImageListResponse> imagesPost(List<BrAPIImage> body) throws ApiException {
         Call call = imagesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIImageListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -412,7 +412,7 @@ public class ImagesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call imagesPostAsync(List<BrAPIImageNewRequest> body, final ApiCallback<BrAPIImageListResponse> callback) throws ApiException {
+    public Call imagesPostAsync(List<BrAPIImage> body, final ApiCallback<BrAPIImageListResponse> callback) throws ApiException {
         Call call = imagesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIImageListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);

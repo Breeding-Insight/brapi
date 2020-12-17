@@ -15,7 +15,7 @@ package org.brapi.client.v2.modules.core;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
-import org.brapi.v2.model.core.BrAPIServerInfoResponse;
+import org.brapi.v2.model.core.response.BrAPIServerInfoResponse;
 import org.junit.jupiter.api.Test;
 
 /**

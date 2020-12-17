@@ -15,16 +15,13 @@ package org.brapi.client.v2.modules.phenotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.VariableQueryParams;
-import org.brapi.v2.model.pheno.BrAPIObservationVariableListResponse;
-import org.brapi.v2.model.pheno.BrAPIObservationVariableNewRequest;
-import org.brapi.v2.model.pheno.BrAPIObservationVariableSearchRequest;
-import org.brapi.v2.model.pheno.BrAPIObservationVariableSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIObservationVariable;
+import org.brapi.v2.model.pheno.response.BrAPIObservationVariableListResponse;
+import org.brapi.v2.model.pheno.request.BrAPIObservationVariableSearchRequest;
+import org.brapi.v2.model.pheno.response.BrAPIObservationVariableSingleResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for ObservationVariablesApi
@@ -117,7 +114,7 @@ public class ObservationVariablesApiTest {
     @Test
     public void variablesObservationVariableDbIdPutTest() throws ApiException {
         String observationVariableDbId = null;
-        BrAPIObservationVariableNewRequest body = null;
+        BrAPIObservationVariable body = null;
         
         ApiResponse<BrAPIObservationVariableSingleResponse> response = api.variablesObservationVariableDbIdPut(observationVariableDbId, body);
 
@@ -133,7 +130,7 @@ public class ObservationVariablesApiTest {
      */
     @Test
     public void variablesPostTest() throws ApiException {
-        List<BrAPIObservationVariableNewRequest> body = null;
+        List<BrAPIObservationVariable> body = null;
         
         ApiResponse<BrAPIObservationVariableListResponse> response = api.variablesPost(body);
 

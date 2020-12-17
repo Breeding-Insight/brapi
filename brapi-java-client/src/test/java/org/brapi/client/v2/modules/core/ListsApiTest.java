@@ -15,18 +15,14 @@ package org.brapi.client.v2.modules.core;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.ListQueryParams;
-import org.brapi.v2.model.core.BrAPIListNewRequest;
-import org.brapi.v2.model.core.BrAPIListResponse;
-import org.brapi.v2.model.core.BrAPIListSearchRequest;
-import org.brapi.v2.model.core.BrAPIListTypes;
-import org.brapi.v2.model.core.BrAPIListsListResponse;
-import org.brapi.v2.model.core.BrAPIListsSingleResponse;
+import org.brapi.v2.model.core.request.BrAPIListNewRequest;
+import org.brapi.v2.model.core.response.BrAPIListResponse;
+import org.brapi.v2.model.core.request.BrAPIListSearchRequest;
+import org.brapi.v2.model.core.response.BrAPIListsListResponse;
+import org.brapi.v2.model.core.response.BrAPIListsSingleResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for ListsApi

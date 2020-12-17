@@ -20,36 +20,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenotypeQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantSetQueryParams;
-import org.brapi.v2.model.geno.BrAPICallSetsListResponse;
-import org.brapi.v2.model.geno.BrAPICallsListResponse;
-import org.brapi.v2.model.geno.BrAPIVariantSetResponse;
-import org.brapi.v2.model.geno.BrAPIVariantSetsExtractRequest;
-import org.brapi.v2.model.geno.BrAPIVariantSetsListResponse;
-import org.brapi.v2.model.geno.BrAPIVariantSetsSearchRequest;
-import org.brapi.v2.model.geno.BrAPIVariantsListResponse;
+import org.brapi.v2.model.geno.response.BrAPICallSetsListResponse;
+import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
+import org.brapi.v2.model.geno.response.BrAPIVariantSetResponse;
+import org.brapi.v2.model.geno.request.BrAPIVariantSetsExtractRequest;
+import org.brapi.v2.model.geno.response.BrAPIVariantSetsListResponse;
+import org.brapi.v2.model.geno.request.BrAPIVariantSetsSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPIVariantsListResponse;
 
 public class VariantSetsApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public VariantSetsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public VariantSetsApi(ApiClient apiClient) {
+    public VariantSetsApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 

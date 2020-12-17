@@ -24,7 +24,7 @@ import org.brapi.client.v2.MockedBrAPIClient;
 import org.brapi.client.v2.model.exceptions.*;
 import org.brapi.client.v2.model.queryParams.core.ProgramQueryParams;
 import org.brapi.client.v2.modules.core.ProgramsApi;
-import org.brapi.v2.model.core.BrAPIProgramListResponse;
+import org.brapi.v2.model.core.response.BrAPIProgramListResponse;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

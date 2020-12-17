@@ -15,14 +15,10 @@ package org.brapi.client.v2.modules.phenotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.EventQueryParams;
-import org.brapi.v2.model.pheno.BrAPIEventsResponse;
+import org.brapi.v2.model.pheno.response.BrAPIEventsResponse;
 import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for EventsApi

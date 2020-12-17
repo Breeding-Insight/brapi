@@ -17,16 +17,14 @@ import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationUnitQueryParams;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationUnitTableQueryParams;
 import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
-import org.brapi.v2.model.pheno.BrAPIObservationLevelListResponse;
-import org.brapi.v2.model.pheno.BrAPIObservationUnitListResponse;
-import org.brapi.v2.model.pheno.BrAPIObservationUnitNewRequest;
-import org.brapi.v2.model.pheno.BrAPIObservationUnitSearchRequest;
-import org.brapi.v2.model.pheno.BrAPIObservationUnitSingleResponse;
-import org.brapi.v2.model.pheno.BrAPIObservationUnitTableResponse;
+import org.brapi.v2.model.pheno.BrAPIObservationUnit;
+import org.brapi.v2.model.pheno.response.BrAPIObservationLevelListResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
+import org.brapi.v2.model.pheno.request.BrAPIObservationUnitSearchRequest;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitTableResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -115,7 +113,7 @@ public class ObservationUnitsApiTest {
     @Test
     public void observationunitsObservationUnitDbIdPutTest() throws ApiException {
         String observationUnitDbId = null;
-        BrAPIObservationUnitNewRequest body = null;
+        BrAPIObservationUnit body = null;
         
         ApiResponse<BrAPIObservationUnitSingleResponse> response = api.observationunitsObservationUnitDbIdPut(observationUnitDbId, body);
 
@@ -131,7 +129,7 @@ public class ObservationUnitsApiTest {
      */
     @Test
     public void observationunitsPostTest() throws ApiException {
-        List<BrAPIObservationUnitNewRequest> body = null;
+        List<BrAPIObservationUnit> body = null;
         
         ApiResponse<BrAPIObservationUnitListResponse> response = api.observationunitsPost(body);
 
@@ -147,7 +145,7 @@ public class ObservationUnitsApiTest {
      */
     @Test
     public void observationunitsPutTest() throws ApiException {
-        Map<String, BrAPIObservationUnitNewRequest> body = null;
+        Map<String, BrAPIObservationUnit> body = null;
         
         ApiResponse<BrAPIObservationUnitListResponse> response = api.observationunitsPut(body);
 

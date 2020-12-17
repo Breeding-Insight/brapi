@@ -20,11 +20,11 @@ package org.brapi.client.v2;
 public class BrAPIClientTest {
 
     protected String brapiTestServer;
-    protected ApiClient apiClient;
+    protected BrAPIClient apiClient;
 
     public BrAPIClientTest() {
         brapiTestServer = "https://test-server.brapi.org/brapi/v2";
-        apiClient = new ApiClient(brapiTestServer);
+        apiClient = new BrAPIClient(brapiTestServer);
     }
 
 }
