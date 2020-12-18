@@ -75,7 +75,7 @@ public class BrAPIClient {
 
 	public BrAPIClient(String basePath) {
 		httpClient = new OkHttpClient();
-		this.basePath = basePath;
+		setBasePath(basePath);
 
 		verifyingSsl = true;
 
@@ -94,7 +94,7 @@ public class BrAPIClient {
 	/**
 	 * Get base path
 	 *
-	 * @return Baes path
+	 * @return Base path
 	 */
 	public String getBasePath() {
 		return basePath;
@@ -105,10 +105,22 @@ public class BrAPIClient {
 	 *
 	 * @param basePath Base path of the URL (e.g
 	 *                 https://test-server.brapi.org/brapi/v2
-	 * @return An instance of OkHttpClient
+	 * @return An instance of BrAPIClient
 	 */
 	public BrAPIClient setBasePath(String basePath) {
+
+		if(basePath.endsWith("/")) {
+			basePath = basePath.substring(0, basePath.length()-1);
+		}
+
+		if(!basePath.endsWith("/brapi/v2")) {
+			basePath += "/brapi/v2";
+		} else if(basePath.endsWith("/brapi")) {
+			basePath += "/v2";
+		}
+
 		this.basePath = basePath;
+
 		return this;
 	}
 
