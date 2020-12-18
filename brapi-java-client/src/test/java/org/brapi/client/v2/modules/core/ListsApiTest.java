@@ -21,9 +21,11 @@ import org.brapi.v2.model.core.BrAPIListSearchRequest;
 import org.brapi.v2.model.core.BrAPIListTypes;
 import org.brapi.v2.model.core.BrAPIListsListResponse;
 import org.brapi.v2.model.core.BrAPIListsSingleResponse;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,15 +36,8 @@ import java.util.Map;
 public class ListsApiTest {
 
     private final ListsApi api = new ListsApi();
+    private String listDbId = "list1";
 
-    /**
-     * Get filtered set of generic lists
-     *
-     * Get filtered set of generic lists
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
     @Test
     public void listsGetTest() throws ApiException {        
         ListQueryParams queryParams = new ListQueryParams();
@@ -50,99 +45,60 @@ public class ListsApiTest {
 
         // TODO: test validations
     }
-    /**
-     * Get the details of a specific List
-     *
-     * Get a specific generic lists
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
+
+    @Test
+    public void listsPostTest() throws ApiException {
+        List<BrAPIListNewRequest> body = Arrays.asList(new BrAPIListNewRequest());
+        
+        ApiResponse<BrAPIListsListResponse> response = api.listsPost(body);
+
+        this.listDbId = response.getBody().getResult().getData().get(0).getListDbId();
+        // TODO: test validations
+    }
+
     @Test
     public void listsListDbIdGetTest() throws ApiException {
-        String listDbId = null;
+        String listDbId = this.listDbId;
         
         ApiResponse<BrAPIListsSingleResponse> response = api.listsListDbIdGet(listDbId);
 
         // TODO: test validations
     }
-    /**
-     * Add Items to a specific List
-     *
-     * Add new data to a specific generic lists
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
+
     @Test
     public void listsListDbIdItemsPostTest() throws ApiException {
-        String listDbId = null;
-        List<String> body = null;
+        String listDbId = this.listDbId;
+        List<String> body = Arrays.asList("one", "two", "three");
         
         ApiResponse<BrAPIListResponse> response = api.listsListDbIdItemsPost(listDbId, body);
 
         // TODO: test validations
     }
-    /**
-     * Update an existing generic list
-     *
-     * Update an existing generic list
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
+
     @Test
     public void listsListDbIdPutTest() throws ApiException {
-        String listDbId = null;
-        BrAPIListNewRequest body = null;
+        String listDbId = this.listDbId;
+        BrAPIListNewRequest body = new BrAPIListNewRequest();
+        body.setListName("JUnit test");
         
         ApiResponse<BrAPIListsSingleResponse> response = api.listsListDbIdPut(listDbId, body);
 
         // TODO: test validations
     }
-    /**
-     * Create New List Objects
-     *
-     * Create new list objects in the database
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void listsPostTest() throws ApiException {
-        List<BrAPIListNewRequest> body = null;
-        
-        ApiResponse<BrAPIListsListResponse> response = api.listsPost(body);
 
-        // TODO: test validations
-    }
-    /**
-     * Submit a search request for Lists
-     *
-     * Advanced searching for the list resource. See Search Services for additional implementation details.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
     @Test
     public void searchListsPostTest() throws ApiException {
-        BrAPIListSearchRequest body = null;
+        BrAPIListSearchRequest body = new BrAPIListSearchRequest();
         
         ApiResponse<BrAPIListsListResponse> response = api.searchListsPost(body);
 
         // TODO: test validations
     }
-    /**
-     * Get the results of a List search request
-     *
-     * Advanced searching for the list resource. See Search Services for additional implementation details.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
+
+    //@Test
+    //This test is currently unsupported by the BrAPI Test Server
     public void searchListsSearchResultsDbIdGetTest() throws ApiException {
-        String searchResultsDbId = null;
+        String searchResultsDbId = "test";
         Integer page = null;
         Integer pageSize = null;
         
