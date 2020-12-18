@@ -16,14 +16,12 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.CrossQueryParams;
 import org.brapi.client.v2.model.queryParams.germplasm.PlannedCrossQueryParams;
-import org.brapi.v2.model.germ.BrAPICrossNewRequest;
-import org.brapi.v2.model.germ.BrAPICrossesListResponse;
-import org.brapi.v2.model.germ.BrAPIPlannedCrossNewRequest;
-import org.brapi.v2.model.germ.BrAPIPlannedCrossesListResponse;
+import org.brapi.v2.model.germ.BrAPICross;
+import org.brapi.v2.model.germ.BrAPIPlannedCross;
+import org.brapi.v2.model.germ.response.BrAPICrossesListResponse;
+import org.brapi.v2.model.germ.response.BrAPIPlannedCrossesListResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +61,7 @@ public class CrossesApiTest {
      */
     @Test
     public void crossesPostTest() throws ApiException {
-        List<BrAPICrossNewRequest> body = null;
+        List<BrAPICross> body = null;
         
         ApiResponse<BrAPICrossesListResponse> response = api.crossesPost(body);
 
@@ -79,7 +77,7 @@ public class CrossesApiTest {
      */
     @Test
     public void crossesPutTest() throws ApiException {
-        Map<String, BrAPICrossNewRequest> body = null;
+        Map<String, BrAPICross> body = null;
         
         ApiResponse<BrAPICrossesListResponse> response = api.crossesPut(body);
 
@@ -117,7 +115,7 @@ public class CrossesApiTest {
      */
     @Test
     public void plannedcrossesPostTest() throws ApiException {
-        List<BrAPIPlannedCrossNewRequest> body = null;
+        List<BrAPIPlannedCross> body = null;
         
         ApiResponse<BrAPIPlannedCrossesListResponse> response = api.plannedcrossesPost(body);
 
@@ -133,7 +131,7 @@ public class CrossesApiTest {
      */
     @Test
     public void plannedcrossesPutTest() throws ApiException {
-        Map<String, BrAPIPlannedCrossNewRequest> body = null;
+        Map<String, BrAPIPlannedCross> body = null;
         
         ApiResponse<BrAPIPlannedCrossesListResponse> response = api.plannedcrossesPut(body);
 

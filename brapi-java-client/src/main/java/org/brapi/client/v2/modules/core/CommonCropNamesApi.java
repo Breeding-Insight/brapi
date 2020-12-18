@@ -17,32 +17,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.v2.model.core.BrAPICommonCropNamesResponse;
+import org.brapi.v2.model.core.response.BrAPICommonCropNamesResponse;
 
 import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
 
 public class CommonCropNamesApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public CommonCropNamesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public CommonCropNamesApi(ApiClient apiClient) {
+    public CommonCropNamesApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 

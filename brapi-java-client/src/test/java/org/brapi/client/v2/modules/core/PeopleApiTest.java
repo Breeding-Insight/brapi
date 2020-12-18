@@ -15,16 +15,13 @@ package org.brapi.client.v2.modules.core;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.PeopleQueryParams;
-import org.brapi.v2.model.core.BrAPIPersonListResponse;
-import org.brapi.v2.model.core.BrAPIPersonNewRequest;
-import org.brapi.v2.model.core.BrAPIPersonSearchRequest;
-import org.brapi.v2.model.core.BrAPIPersonSingleResponse;
+import org.brapi.v2.model.core.BrAPIPerson;
+import org.brapi.v2.model.core.response.BrAPIPersonListResponse;
+import org.brapi.v2.model.core.request.BrAPIPersonSearchRequest;
+import org.brapi.v2.model.core.response.BrAPIPersonSingleResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for PeopleApi
@@ -84,7 +81,7 @@ public class PeopleApiTest {
     @Test
     public void peoplePersonDbIdPutTest() throws ApiException {
         String personDbId = null;
-        BrAPIPersonNewRequest body = null;
+        BrAPIPerson body = null;
         
         ApiResponse<BrAPIPersonSingleResponse> response = api.peoplePersonDbIdPut(personDbId, body);
 
@@ -100,7 +97,7 @@ public class PeopleApiTest {
      */
     @Test
     public void peoplePostTest() throws ApiException {
-        List<BrAPIPersonNewRequest> body = null;
+        List<BrAPIPerson> body = null;
         
         ApiResponse<BrAPIPersonListResponse> response = api.peoplePost(body);
 

@@ -14,7 +14,7 @@ import javax.validation.Valid;
  */
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-03-20T16:31:52.030Z[GMT]")
+
 public class BrAPIStudyLastUpdate   {
   @JsonProperty("timestamp")
   private OffsetDateTime timestamp = null;
@@ -70,9 +70,9 @@ public class BrAPIStudyLastUpdate   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BrAPIStudyLastUpdate studyNewRequestLastUpdate = (BrAPIStudyLastUpdate) o;
-    return Objects.equals(this.timestamp, studyNewRequestLastUpdate.timestamp) &&
-        Objects.equals(this.version, studyNewRequestLastUpdate.version);
+    BrAPIStudyLastUpdate studyLastUpdate = (BrAPIStudyLastUpdate) o;
+    return Objects.equals(this.timestamp, studyLastUpdate.timestamp) &&
+        Objects.equals(this.version, studyLastUpdate.version);
   }
 
   @Override
@@ -83,7 +83,7 @@ public class BrAPIStudyLastUpdate   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class StudyNewRequestLastUpdate {\n");
+    sb.append("class StudyLastUpdate {\n");
     
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");

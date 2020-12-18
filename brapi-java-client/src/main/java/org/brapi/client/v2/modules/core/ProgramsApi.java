@@ -21,32 +21,32 @@ import java.util.List;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.ProgramQueryParams;
-import org.brapi.v2.model.core.BrAPIProgramListResponse;
-import org.brapi.v2.model.core.BrAPIProgramNewRequest;
-import org.brapi.v2.model.core.BrAPIProgramSearchRequest;
-import org.brapi.v2.model.core.BrAPIProgramSingleResponse;
+import org.brapi.v2.model.core.BrAPIProgram;
+import org.brapi.v2.model.core.response.BrAPIProgramListResponse;
+import org.brapi.v2.model.core.request.BrAPIProgramSearchRequest;
+import org.brapi.v2.model.core.response.BrAPIProgramSingleResponse;
 
 public class ProgramsApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public ProgramsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public ProgramsApi(ApiClient apiClient) {
+    public ProgramsApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -139,7 +139,7 @@ public class ProgramsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call programsPostCall(List<BrAPIProgramNewRequest> body) throws ApiException {
+    private Call programsPostCall(List<BrAPIProgram> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -178,7 +178,7 @@ public class ProgramsApi {
      * @return ApiResponse&lt;ProgramListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIProgramListResponse> programsPost(List<BrAPIProgramNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPIProgramListResponse> programsPost(List<BrAPIProgram> body) throws ApiException {
         Call call = programsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIProgramListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -193,7 +193,7 @@ public class ProgramsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call programsPostAsync(List<BrAPIProgramNewRequest> body, final ApiCallback<BrAPIProgramListResponse> callback) throws ApiException {
+    public Call programsPostAsync(List<BrAPIProgram> body, final ApiCallback<BrAPIProgramListResponse> callback) throws ApiException {
         Call call = programsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIProgramListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
@@ -279,7 +279,7 @@ public class ProgramsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call programsProgramDbIdPutCall(String programDbId, BrAPIProgramNewRequest body) throws ApiException {
+    private Call programsProgramDbIdPutCall(String programDbId, BrAPIProgram body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -320,7 +320,7 @@ public class ProgramsApi {
      * @return ApiResponse&lt;ProgramSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIProgramSingleResponse> programsProgramDbIdPut(String programDbId, BrAPIProgramNewRequest body) throws ApiException {
+    public ApiResponse<BrAPIProgramSingleResponse> programsProgramDbIdPut(String programDbId, BrAPIProgram body) throws ApiException {
         Call call = programsProgramDbIdPutCall(programDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIProgramSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -336,7 +336,7 @@ public class ProgramsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call programsProgramDbIdPutAsync(String programDbId, BrAPIProgramNewRequest body, final ApiCallback<BrAPIProgramSingleResponse> callback) throws ApiException {
+    public Call programsProgramDbIdPutAsync(String programDbId, BrAPIProgram body, final ApiCallback<BrAPIProgramSingleResponse> callback) throws ApiException {
         Call call = programsProgramDbIdPutCall(programDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIProgramSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);

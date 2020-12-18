@@ -24,20 +24,14 @@ import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.phenotype.VariableQueryParams;
-import org.brapi.v2.model.BrAPIExternalReferenceList;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
 import org.brapi.v2.model.pheno.BrAPIMethod;
-import org.brapi.v2.model.pheno.BrAPIMethodBaseClass;
 import org.brapi.v2.model.pheno.BrAPIObservationVariable;
-import org.brapi.v2.model.pheno.BrAPIObservationVariableListResponse;
-import org.brapi.v2.model.pheno.BrAPIObservationVariableNewRequest;
-import org.brapi.v2.model.pheno.BrAPIObservationVariableSingleResponse;
 import org.brapi.v2.model.pheno.BrAPIScale;
-import org.brapi.v2.model.pheno.BrAPIScaleBaseClass;
 import org.brapi.v2.model.pheno.BrAPITrait;
-import org.brapi.v2.model.pheno.BrAPITraitBaseClass;
-import org.brapi.v2.model.pheno.BrAPIVariableBaseClass;
+import org.brapi.v2.model.pheno.response.BrAPIObservationVariableListResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationVariableSingleResponse;
 import org.junit.jupiter.api.*;
 
 import java.time.OffsetDateTime;
@@ -63,7 +57,7 @@ public class VariablesAPITests extends BrAPIClientTest {
     @Test
     public void createVariableIdPresent() {               
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<BrAPIObservationVariableListResponse> variable = variablesAPI.variablesPost(Arrays.asList(new BrAPIObservationVariableNewRequest()));
+            ApiResponse<BrAPIObservationVariableListResponse> variable = variablesAPI.variablesPost(Arrays.asList(new BrAPIObservationVariable()));
         });
     }
 
@@ -76,10 +70,10 @@ public class VariablesAPITests extends BrAPIClientTest {
 
     @Test
     public void createVariableMultipleIdPresent() {
-    	BrAPIObservationVariableNewRequest brApiVariable = new BrAPIObservationVariableNewRequest()
+    	BrAPIObservationVariable brApiVariable = new BrAPIObservationVariable()
                 .observationVariableName("test");
-    	BrAPIObservationVariableNewRequest brApiVariable1 = new BrAPIObservationVariableNewRequest();
-        List<BrAPIObservationVariableNewRequest> brApiVariables = new ArrayList<>();
+    	BrAPIObservationVariable brApiVariable1 = new BrAPIObservationVariable();
+        List<BrAPIObservationVariable> brApiVariables = new ArrayList<>();
         brApiVariables.add(brApiVariable);
         brApiVariables.add(brApiVariable1);
 
@@ -91,7 +85,7 @@ public class VariablesAPITests extends BrAPIClientTest {
     @Test
     public void createVariableMultipleEmptyList() {
 
-        List<BrAPIObservationVariableNewRequest> brApiVariables = new ArrayList<>();
+        List<BrAPIObservationVariable> brApiVariables = new ArrayList<>();
 
         ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesPost(brApiVariables);
@@ -111,8 +105,8 @@ public class VariablesAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void createVariableSuccess() {
 
-    	BrAPIObservationVariableNewRequest brApiVariable = buildTestVariable();
-        List<BrAPIObservationVariableNewRequest> brApiVariableList = new ArrayList<>();
+    	BrAPIObservationVariable brApiVariable = buildTestVariable();
+        List<BrAPIObservationVariable> brApiVariableList = new ArrayList<>();
         brApiVariableList.add(brApiVariable);
 
         ApiResponse<BrAPIObservationVariableListResponse> createdVariable = variablesAPI.variablesPost(brApiVariableList);
@@ -126,13 +120,13 @@ public class VariablesAPITests extends BrAPIClientTest {
         this.createdVariable = variable;
     }
 
-    private BrAPIObservationVariableNewRequest buildTestVariable() {
+    private BrAPIObservationVariable buildTestVariable() {
 
         BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference()
                 .referenceID(externalReferenceID)
                 .referenceSource(externalReferenceSource);
                
-        BrAPIExternalReferenceList externalReferences = new BrAPIExternalReferenceList();
+        List<BrAPIExternalReference> externalReferences = new ArrayList<>();
         externalReferences.add(brApiExternalReference);
 
         BrAPIOntologyReference brApiOntologyReference = new BrAPIOntologyReference()
@@ -162,7 +156,7 @@ public class VariablesAPITests extends BrAPIClientTest {
 
         OffsetDateTime timestamp = OffsetDateTime.parse("2020-05-26T20:45:10Z", DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 
-        BrAPIObservationVariableNewRequest brApiVariable = (BrAPIObservationVariableNewRequest) new BrAPIObservationVariable()
+        BrAPIObservationVariable brApiVariable = (BrAPIObservationVariable) new BrAPIObservationVariable()
                 .observationVariableName("test variable")
                 .additionalInfo(additionalInfo)
                 .commonCropName(validCrop)
@@ -187,7 +181,7 @@ public class VariablesAPITests extends BrAPIClientTest {
 
     }
 
-    private void variableAssertEquals(BrAPIObservationVariableNewRequest expected, BrAPIObservationVariable actual) {
+    private void variableAssertEquals(BrAPIObservationVariable expected, BrAPIObservationVariable actual) {
         assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Variable additionalInfo mismatch");
         assertEquals(expected.getCommonCropName(), actual.getCommonCropName(), "Variable commonCropName mismatch");
         assertEquals(expected.getContextOfUse(), actual.getContextOfUse(), "Variable contextOfUse mismatch");
@@ -214,13 +208,13 @@ public class VariablesAPITests extends BrAPIClientTest {
     @Order(1)
     @SneakyThrows
     public void createVariablesMultipleSuccess() {
-    	BrAPIObservationVariableNewRequest brApiVariable = new BrAPIObservationVariableNewRequest()
+    	BrAPIObservationVariable brApiVariable = new BrAPIObservationVariable()
                 .observationVariableName("new test variable1");
                
-        BrAPIObservationVariableNewRequest brApiVariable2 = new BrAPIObservationVariableNewRequest()
+        BrAPIObservationVariable brApiVariable2 = new BrAPIObservationVariable()
                 .observationVariableName("new test variable2");
                
-        List<BrAPIObservationVariableNewRequest> variables = new ArrayList<>();
+        List<BrAPIObservationVariable> variables = new ArrayList<>();
         variables.add(brApiVariable);
         variables.add(brApiVariable2);
 
@@ -290,7 +284,7 @@ public class VariablesAPITests extends BrAPIClientTest {
         assertNotNull(optionalObservationVariable, "An empty optional was returned");
         BrAPIObservationVariable variable = optionalObservationVariable.getBody().getResult();
         assertEquals(true, variable.getObservationVariableDbId() != null, "VariableDbId was not parsed properly.");
-        variableAssertEquals((BrAPIObservationVariableNewRequest) createdVariable, variable);
+        variableAssertEquals((BrAPIObservationVariable) createdVariable, variable);
     }
 
     @Test
@@ -320,7 +314,7 @@ public class VariablesAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateVariableMissingId() {
         // Check that it throws an ApiException
-        BrAPIObservationVariableNewRequest brApiVariable = new BrAPIObservationVariable().observationVariableName("new test variable");
+        BrAPIObservationVariable brApiVariable = new BrAPIObservationVariable().observationVariableName("new test variable");
 
         ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIObservationVariableSingleResponse> updatedVariableResult = this.variablesAPI.variablesObservationVariableDbIdPut(null, brApiVariable);

@@ -20,37 +20,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.v2.model.geno.BrAPIVendorOrderListResponse;
-import org.brapi.v2.model.geno.BrAPIVendorOrderStatusResponse;
-import org.brapi.v2.model.geno.BrAPIVendorOrderSubmissionRequest;
-import org.brapi.v2.model.geno.BrAPIVendorOrderSubmissionSingleResponse;
-import org.brapi.v2.model.geno.BrAPIVendorPlateListResponse;
-import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionIdSingleResponse;
-import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionRequest;
-import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionSingleResponse;
-import org.brapi.v2.model.geno.BrAPIVendorResultFileListResponse;
-import org.brapi.v2.model.geno.BrAPIVendorSpecificationSingleResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorOrderListResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorOrderStatusResponse;
+import org.brapi.v2.model.geno.request.BrAPIVendorOrderSubmissionRequest;
+import org.brapi.v2.model.geno.response.BrAPIVendorOrderSubmissionSingleResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorPlateListResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorPlateSubmissionIdSingleResponse;
+import org.brapi.v2.model.geno.request.BrAPIVendorPlateSubmissionRequest;
+import org.brapi.v2.model.geno.response.BrAPIVendorPlateSubmissionSingleResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorResultFileListResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorSpecificationSingleResponse;
 
 public class VendorApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public VendorApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public VendorApi(ApiClient apiClient) {
+    public VendorApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 

@@ -22,7 +22,7 @@ import org.brapi.v2.model.germ.BrAPIGermplasmMCPDSafetyDuplicateInstitutes;
  * GermplasmMCPD
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-03-20T16:33:36.513Z[GMT]")
+
 public class BrAPIGermplasmMCPD   {
   @JsonProperty("accessionNames")
   @Valid

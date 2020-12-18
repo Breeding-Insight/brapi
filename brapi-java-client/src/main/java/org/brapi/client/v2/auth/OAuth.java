@@ -14,7 +14,7 @@ package org.brapi.client.v2.auth;
 
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2020-12-02T18:03:43.981Z[GMT]")public class OAuth implements Authentication {
+public class OAuth implements Authentication {
   private String accessToken;
 
   public String getAccessToken() {

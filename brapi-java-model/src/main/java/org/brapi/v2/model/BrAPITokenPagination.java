@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * TokenPagination
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-03-20T16:31:52.030Z[GMT]")
+
 public class BrAPITokenPagination extends BrAPIPagination {
 	@JsonProperty("currentPageToken")
 	private String currentPageToken = null;

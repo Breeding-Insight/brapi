@@ -14,22 +14,17 @@ package org.brapi.client.v2.modules.genotype;
 
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.v2.model.geno.BrAPIVendorOrderListResponse;
-import org.brapi.v2.model.geno.BrAPIVendorOrderStatusResponse;
-import org.brapi.v2.model.geno.BrAPIVendorOrderSubmissionRequest;
-import org.brapi.v2.model.geno.BrAPIVendorOrderSubmissionSingleResponse;
-import org.brapi.v2.model.geno.BrAPIVendorPlateListResponse;
-import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionIdSingleResponse;
-import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionRequest;
-import org.brapi.v2.model.geno.BrAPIVendorPlateSubmissionSingleResponse;
-import org.brapi.v2.model.geno.BrAPIVendorResultFileListResponse;
-import org.brapi.v2.model.geno.BrAPIVendorSpecificationSingleResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorOrderListResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorOrderStatusResponse;
+import org.brapi.v2.model.geno.request.BrAPIVendorOrderSubmissionRequest;
+import org.brapi.v2.model.geno.response.BrAPIVendorOrderSubmissionSingleResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorPlateListResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorPlateSubmissionIdSingleResponse;
+import org.brapi.v2.model.geno.request.BrAPIVendorPlateSubmissionRequest;
+import org.brapi.v2.model.geno.response.BrAPIVendorPlateSubmissionSingleResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorResultFileListResponse;
+import org.brapi.v2.model.geno.response.BrAPIVendorSpecificationSingleResponse;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for VendorApi

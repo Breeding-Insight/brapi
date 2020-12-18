@@ -18,37 +18,37 @@ import java.util.List;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmAttributeQueryParams;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeCategoryListResponse;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeListResponse;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeNewRequest;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeSearchRequest;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeSingleResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttribute;
+import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeCategoryListResponse;
+import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeListResponse;
+import org.brapi.v2.model.germ.request.BrAPIGermplasmAttributeSearchRequest;
+import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeSingleResponse;
 
 import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
 
 public class GermplasmAttributesApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public GermplasmAttributesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public GermplasmAttributesApi(ApiClient apiClient) {
+    public GermplasmAttributesApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -132,7 +132,7 @@ public class GermplasmAttributesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call attributesAttributeDbIdPutCall(String attributeDbId, BrAPIGermplasmAttributeNewRequest body) throws ApiException {
+    private Call attributesAttributeDbIdPutCall(String attributeDbId, BrAPIGermplasmAttribute body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -173,7 +173,7 @@ public class GermplasmAttributesApi {
      * @return ApiResponse&lt;GermplasmAttributeSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIGermplasmAttributeSingleResponse> attributesAttributeDbIdPut(String attributeDbId, BrAPIGermplasmAttributeNewRequest body) throws ApiException {
+    public ApiResponse<BrAPIGermplasmAttributeSingleResponse> attributesAttributeDbIdPut(String attributeDbId, BrAPIGermplasmAttribute body) throws ApiException {
         Call call = attributesAttributeDbIdPutCall(attributeDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmAttributeSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -189,7 +189,7 @@ public class GermplasmAttributesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call attributesAttributeDbIdPutAsync(String attributeDbId, BrAPIGermplasmAttributeNewRequest body, final ApiCallback<BrAPIGermplasmAttributeSingleResponse> callback) throws ApiException {
+    public Call attributesAttributeDbIdPutAsync(String attributeDbId, BrAPIGermplasmAttribute body, final ApiCallback<BrAPIGermplasmAttributeSingleResponse> callback) throws ApiException {
         Call call = attributesAttributeDbIdPutCall(attributeDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmAttributeSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
@@ -360,7 +360,7 @@ public class GermplasmAttributesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call attributesPostCall(List<BrAPIGermplasmAttributeNewRequest> body) throws ApiException {
+    private Call attributesPostCall(List<BrAPIGermplasmAttribute> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -399,7 +399,7 @@ public class GermplasmAttributesApi {
      * @return ApiResponse&lt;GermplasmAttributeListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIGermplasmAttributeListResponse> attributesPost(List<BrAPIGermplasmAttributeNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPIGermplasmAttributeListResponse> attributesPost(List<BrAPIGermplasmAttribute> body) throws ApiException {
         Call call = attributesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmAttributeListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -414,7 +414,7 @@ public class GermplasmAttributesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call attributesPostAsync(List<BrAPIGermplasmAttributeNewRequest> body, final ApiCallback<BrAPIGermplasmAttributeListResponse> callback) throws ApiException {
+    public Call attributesPostAsync(List<BrAPIGermplasmAttribute> body, final ApiCallback<BrAPIGermplasmAttributeListResponse> callback) throws ApiException {
         Call call = attributesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmAttributeListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);

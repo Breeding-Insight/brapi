@@ -16,16 +16,11 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantQueryParams;
-import org.brapi.v2.model.geno.BrAPICallsListResponse;
-import org.brapi.v2.model.geno.BrAPIVariantSingleResponse;
-import org.brapi.v2.model.geno.BrAPIVariantsListResponse;
-import org.brapi.v2.model.geno.BrAPIVariantsSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
+import org.brapi.v2.model.geno.response.BrAPIVariantSingleResponse;
+import org.brapi.v2.model.geno.response.BrAPIVariantsListResponse;
+import org.brapi.v2.model.geno.request.BrAPIVariantsSearchRequest;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for VariantsApi

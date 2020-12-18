@@ -16,17 +16,12 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenomeMapQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.MarkerPositionQueryParams;
-import org.brapi.v2.model.geno.BrAPIGenomeMapListResponse;
-import org.brapi.v2.model.geno.BrAPIGenomeMapSingleResponse;
-import org.brapi.v2.model.geno.BrAPILinkageGroupListResponse;
-import org.brapi.v2.model.geno.BrAPIMarkerPositionListResponse;
-import org.brapi.v2.model.geno.BrAPIMarkerPositionSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPIGenomeMapListResponse;
+import org.brapi.v2.model.geno.response.BrAPIGenomeMapSingleResponse;
+import org.brapi.v2.model.geno.response.BrAPILinkageGroupListResponse;
+import org.brapi.v2.model.geno.response.BrAPIMarkerPositionListResponse;
+import org.brapi.v2.model.geno.request.BrAPIMarkerPositionSearchRequest;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for GenomeMapsApi

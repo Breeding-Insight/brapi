@@ -15,17 +15,14 @@ package org.brapi.client.v2.modules.core;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.StudyQueryParams;
-import org.brapi.v2.model.core.BrAPIStudyListResponse;
-import org.brapi.v2.model.core.BrAPIStudyNewRequest;
-import org.brapi.v2.model.core.BrAPIStudySearchRequest;
-import org.brapi.v2.model.core.BrAPIStudySingleResponse;
-import org.brapi.v2.model.core.BrAPIStudyTypesResponse;
+import org.brapi.v2.model.core.BrAPIStudy;
+import org.brapi.v2.model.core.response.BrAPIStudyListResponse;
+import org.brapi.v2.model.core.request.BrAPIStudySearchRequest;
+import org.brapi.v2.model.core.response.BrAPIStudySingleResponse;
+import org.brapi.v2.model.core.response.BrAPIStudyTypesResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for StudiesApi
@@ -112,7 +109,7 @@ public class StudiesApiTest {
      */
     @Test
     public void studiesPostTest() throws ApiException {
-        List<BrAPIStudyNewRequest> body = null;
+        List<BrAPIStudy> body = null;
         
         ApiResponse<BrAPIStudyListResponse> response = api.studiesPost(body);
 
@@ -145,7 +142,7 @@ public class StudiesApiTest {
     @Test
     public void studiesStudyDbIdPutTest() throws ApiException {
         String studyDbId = null;
-        BrAPIStudyNewRequest body = null;
+        BrAPIStudy body = null;
         
         ApiResponse<BrAPIStudySingleResponse> response = api.studiesStudyDbIdPut(studyDbId, body);
 

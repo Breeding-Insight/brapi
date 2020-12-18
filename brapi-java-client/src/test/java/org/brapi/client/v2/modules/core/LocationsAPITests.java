@@ -29,12 +29,10 @@ import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.core.LocationQueryParams;
 import org.brapi.v2.model.BrApiGeoJSON;
-import org.brapi.v2.model.BrAPIExternalReferenceList;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.core.BrAPILocation;
-import org.brapi.v2.model.core.BrAPILocationListResponse;
-import org.brapi.v2.model.core.BrAPILocationNewRequest;
-import org.brapi.v2.model.core.BrAPILocationSingleResponse;
+import org.brapi.v2.model.core.response.BrAPILocationListResponse;
+import org.brapi.v2.model.core.response.BrAPILocationSingleResponse;
 import org.junit.jupiter.api.*;
 import java.util.*;
 
@@ -69,7 +67,7 @@ public class LocationsAPITests extends BrAPIClientTest {
     public void createLocationMultipleIdPresent() throws ApiException {
     	BrAPILocation brApiLocation = new BrAPILocation().locationDbId("test");
     	BrAPILocation brApiLocation1 = new BrAPILocation();
-        List<BrAPILocationNewRequest> brApiLocations = new ArrayList<>();
+        List<BrAPILocation> brApiLocations = new ArrayList<>();
         brApiLocations.add(brApiLocation);
         brApiLocations.add(brApiLocation1);
 
@@ -82,7 +80,7 @@ public class LocationsAPITests extends BrAPIClientTest {
 
     @Test
     public void createLocationMultipleEmptyList() throws ApiException {
-        List<BrAPILocationNewRequest> brApiLocations = new ArrayList<>();
+        List<BrAPILocation> brApiLocations = new ArrayList<>();
 
         ApiResponse<BrAPILocationListResponse> location = locationsAPI.locationsPost(brApiLocations);
         
@@ -101,7 +99,7 @@ public class LocationsAPITests extends BrAPIClientTest {
     @Order(1)
     @SneakyThrows
     public void createLocationSuccess() {
-    	BrAPILocationNewRequest brApiLocation = buildTestLocation();
+        BrAPILocation brApiLocation = buildTestLocation();
         ApiResponse<BrAPILocationListResponse> locationBody = locationsAPI.locationsPost(Arrays.asList(brApiLocation));
         BrAPILocation location = locationBody.getBody().getResult().getData().get(0);
         assertFalse(location.getLocationDbId() == null, "Location id missing");
@@ -110,8 +108,8 @@ public class LocationsAPITests extends BrAPIClientTest {
         this.createdLocation = location;
     }
 
-    private BrAPILocationNewRequest buildTestLocation() {
-        BrAPIExternalReferenceList externalReferences = new BrAPIExternalReferenceList();
+    private BrAPILocation buildTestLocation() {
+        List<BrAPIExternalReference> externalReferences = new ArrayList<>();
         externalReferences.add(
 				new BrAPIExternalReference()
 				.referenceID(externalReferenceID)
@@ -120,7 +118,7 @@ public class LocationsAPITests extends BrAPIClientTest {
         Map<String, String> additionalInfo = new HashMap<>();
         additionalInfo.put("test", "test");
 
-        BrAPILocationNewRequest brApiLocation = new BrAPILocation()
+        BrAPILocation brApiLocation = new BrAPILocation()
                 .locationName("Test location")
                 .locationType("Storage location")
                 .abbreviation("TL")
@@ -147,7 +145,7 @@ public class LocationsAPITests extends BrAPIClientTest {
         return brApiLocation;
     }
 
-    private void locationAssertEquals(BrAPILocationNewRequest expected, BrAPILocationNewRequest actual) {
+    private void locationAssertEquals(BrAPILocation expected, BrAPILocation actual) {
         assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Location additionalInfo mismatch");
         assertEquals(expected.getAbbreviation(), actual.getAbbreviation(), "Location abbreviation mismatch");
         assertEquals(expected.getCoordinateDescription(), actual.getCoordinateDescription(), "Location coordinateDescription mismatch");
@@ -173,10 +171,10 @@ public class LocationsAPITests extends BrAPIClientTest {
     @Order(1)
     @SneakyThrows
     public void createLocationsMultipleSuccess() {
-        BrAPILocationNewRequest brApiLocation1 = new BrAPILocation().locationName("new test location1");
-        BrAPILocationNewRequest brApiLocation2 = new BrAPILocation().locationName("new test location2");
+        BrAPILocation brApiLocation1 = new BrAPILocation().locationName("new test location1");
+        BrAPILocation brApiLocation2 = new BrAPILocation().locationName("new test location2");
         
-        List<BrAPILocationNewRequest> locations = new ArrayList<>();
+        List<BrAPILocation> locations = new ArrayList<>();
         locations.add(brApiLocation1);
         locations.add(brApiLocation2);
 
@@ -311,7 +309,7 @@ public class LocationsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateLocationMissingId() {
         // Check that it throws an ApiException
-        BrAPILocationNewRequest brApiLocation = new BrAPILocation().locationName("new test location");
+        BrAPILocation brApiLocation = new BrAPILocation().locationName("new test location");
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             ApiResponse<BrAPILocationSingleResponse> updatedLocationResult = this.locationsAPI.locationsLocationDbIdPut(null, brApiLocation);

@@ -14,7 +14,7 @@ package org.brapi.client.v2;
 
 
 public class Configuration {
-    private static ApiClient defaultApiClient = new ApiClient("https://test-server.brapi.org/brapi/v2");
+    private static BrAPIClient defaultApiClient = new BrAPIClient("https://test-server.brapi.org/brapi/v2");
 
     /**
      * Get the default API client, which would be used when creating API
@@ -22,7 +22,7 @@ public class Configuration {
      *
      * @return Default API client
      */
-    public static ApiClient getDefaultApiClient() {
+    public static BrAPIClient getDefaultApiClient() {
         return defaultApiClient;
     }
 
@@ -32,7 +32,7 @@ public class Configuration {
      *
      * @param apiClient API client
      */
-    public static void setDefaultApiClient(ApiClient apiClient) {
+    public static void setDefaultApiClient(BrAPIClient apiClient) {
         defaultApiClient = apiClient;
     }
 }

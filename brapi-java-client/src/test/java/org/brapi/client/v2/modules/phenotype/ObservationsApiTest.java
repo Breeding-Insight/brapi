@@ -17,16 +17,14 @@ import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationQueryParams;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationTableQueryParams;
 import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
-import org.brapi.v2.model.pheno.BrAPIObservationListResponse;
-import org.brapi.v2.model.pheno.BrAPIObservationNewRequest;
-import org.brapi.v2.model.pheno.BrAPIObservationSearchRequest;
-import org.brapi.v2.model.pheno.BrAPIObservationSingleResponse;
-import org.brapi.v2.model.pheno.BrAPIObservationTableResponse;
+import org.brapi.v2.model.pheno.BrAPIObservation;
+import org.brapi.v2.model.pheno.response.BrAPIObservationListResponse;
+import org.brapi.v2.model.pheno.request.BrAPIObservationSearchRequest;
+import org.brapi.v2.model.pheno.response.BrAPIObservationSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationTableResponse;
 import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -98,7 +96,7 @@ public class ObservationsApiTest {
     @Test
     public void observationsObservationDbIdPutTest() throws ApiException {
         String observationDbId = null;
-        BrAPIObservationNewRequest body = null;
+        BrAPIObservation body = null;
         
         ApiResponse<BrAPIObservationSingleResponse> response = api.observationsObservationDbIdPut(observationDbId, body);
 
@@ -114,7 +112,7 @@ public class ObservationsApiTest {
      */
     @Test
     public void observationsPostTest() throws ApiException {
-        List<BrAPIObservationNewRequest> body = null;
+        List<BrAPIObservation> body = null;
         
         ApiResponse<BrAPIObservationListResponse> response = api.observationsPost(body);
 
@@ -130,7 +128,7 @@ public class ObservationsApiTest {
      */
     @Test
     public void observationsPutTest() throws ApiException {
-        Map<String, BrAPIObservationNewRequest> body = null;
+        Map<String, BrAPIObservation> body = null;
         
         ApiResponse<BrAPIObservationListResponse> response = api.observationsPut(body);
 

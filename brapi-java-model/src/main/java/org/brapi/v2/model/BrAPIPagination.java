@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * BasePagination
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-03-20T16:31:52.030Z[GMT]")
+
 public abstract class BrAPIPagination {
 	@JsonProperty("pageSize")
 	private Integer pageSize = 1000;

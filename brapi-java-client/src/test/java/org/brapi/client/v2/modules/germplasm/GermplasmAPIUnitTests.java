@@ -20,10 +20,10 @@ package org.brapi.client.v2.modules.germplasm;
 import lombok.SneakyThrows;
 import okhttp3.Call;
 
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmQueryParams;
-import org.brapi.v2.model.germ.BrAPIGermplasmListResponse;
+import org.brapi.v2.model.germ.response.BrAPIGermplasmListResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -40,7 +40,7 @@ public class GermplasmAPIUnitTests {
 
     GermplasmApi germplasmAPI;
     @Mock
-    ApiClient brAPIClient;
+    BrAPIClient brAPIClient;
 
     @BeforeAll
     public void setUp() {

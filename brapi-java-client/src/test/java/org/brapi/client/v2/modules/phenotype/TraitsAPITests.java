@@ -23,12 +23,10 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.TraitQueryParams;
-import org.brapi.v2.model.BrAPIExternalReferenceList;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.pheno.BrAPITrait;
-import org.brapi.v2.model.pheno.BrAPITraitBaseClass;
-import org.brapi.v2.model.pheno.BrAPITraitListResponse;
-import org.brapi.v2.model.pheno.BrAPITraitSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPITraitListResponse;
+import org.brapi.v2.model.pheno.response.BrAPITraitSingleResponse;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
@@ -59,7 +57,7 @@ public class TraitsAPITests extends BrAPIClientTest {
     public void createTraitsMultipleIdPresent(){
         BrAPITrait brApiTrait = new BrAPITrait().traitDbId("test");
         BrAPITrait brApiTrait1 = new BrAPITrait();
-        List<BrAPITraitBaseClass> brApiTraits = Arrays.asList(brApiTrait, brApiTrait1);
+        List<BrAPITrait> brApiTraits = Arrays.asList(brApiTrait, brApiTrait1);
 
         ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPITraitListResponse> traits = this.traitsAPI.traitsPost(brApiTraits);
@@ -71,13 +69,13 @@ public class TraitsAPITests extends BrAPIClientTest {
     @Order(1)
     public void createTraitSuccess() {
         BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID);
-        BrAPIExternalReferenceList externalReferences = new BrAPIExternalReferenceList();
+        List<BrAPIExternalReference> externalReferences = new ArrayList<>();
         externalReferences.add(brApiExternalReference);
         List<String> alternativeAbbreviations = new ArrayList<>();
         alternativeAbbreviations.add("test abbrev");
         Map<String, String> additionalInfo = new HashMap<>();
         additionalInfo.put("test", "test");
-        BrAPITraitBaseClass brApiTrait = new BrAPITraitBaseClass()
+        BrAPITrait brApiTrait = new BrAPITrait()
                 .alternativeAbbreviations(alternativeAbbreviations)
                 .attribute("test")
                 .additionalInfo(additionalInfo)
@@ -170,9 +168,9 @@ public class TraitsAPITests extends BrAPIClientTest {
     @Test
     @SneakyThrows
     public void createTraitsMultipleSuccess() {
-        BrAPITraitBaseClass brApiTrait = new BrAPITraitBaseClass().traitName("new test trait1");
-        BrAPITraitBaseClass brApiTrait2 = new BrAPITraitBaseClass().traitName("new test trait2");
-        List<BrAPITraitBaseClass> traits = Arrays.asList(brApiTrait, brApiTrait2);
+        BrAPITrait brApiTrait = new BrAPITrait().traitName("new test trait1");
+        BrAPITrait brApiTrait2 = new BrAPITrait().traitName("new test trait2");
+        List<BrAPITrait> traits = Arrays.asList(brApiTrait, brApiTrait2);
 
         ApiResponse<BrAPITraitListResponse> createdTraitsRes = this.traitsAPI.traitsPost(traits);
 
@@ -207,7 +205,7 @@ public class TraitsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateTraitMissingId() {
         // Check that it throws an APIException
-        BrAPITraitBaseClass brApiTrait = new BrAPITrait().traitName("new test trait");
+        BrAPITrait brApiTrait = new BrAPITrait().traitName("new test trait");
 
         ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPITraitSingleResponse> updatedTraitResult = this.traitsAPI.traitsTraitDbIdPut(null, brApiTrait);

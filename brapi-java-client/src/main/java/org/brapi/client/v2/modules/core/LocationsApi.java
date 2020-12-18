@@ -21,32 +21,32 @@ import java.util.List;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.LocationQueryParams;
-import org.brapi.v2.model.core.BrAPILocationListResponse;
-import org.brapi.v2.model.core.BrAPILocationNewRequest;
-import org.brapi.v2.model.core.BrAPILocationSearchRequest;
-import org.brapi.v2.model.core.BrAPILocationSingleResponse;
+import org.brapi.v2.model.core.BrAPILocation;
+import org.brapi.v2.model.core.response.BrAPILocationListResponse;
+import org.brapi.v2.model.core.request.BrAPILocationSearchRequest;
+import org.brapi.v2.model.core.response.BrAPILocationSingleResponse;
 
 public class LocationsApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public LocationsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public LocationsApi(ApiClient apiClient) {
+    public LocationsApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -198,7 +198,7 @@ public class LocationsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call locationsLocationDbIdPutCall(String locationDbId, BrAPILocationNewRequest body) throws ApiException {
+    private Call locationsLocationDbIdPutCall(String locationDbId, BrAPILocation body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -238,7 +238,7 @@ public class LocationsApi {
      * @return ApiResponse&lt;LocationSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPILocationSingleResponse> locationsLocationDbIdPut(String locationDbId, BrAPILocationNewRequest body) throws ApiException {
+    public ApiResponse<BrAPILocationSingleResponse> locationsLocationDbIdPut(String locationDbId, BrAPILocation body) throws ApiException {
         Call call = locationsLocationDbIdPutCall(locationDbId, body);
         Type localVarReturnType = new TypeToken<BrAPILocationSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -253,7 +253,7 @@ public class LocationsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call locationsLocationDbIdPutAsync(String locationDbId, BrAPILocationNewRequest body, final ApiCallback<BrAPILocationSingleResponse> callback) throws ApiException {
+    public Call locationsLocationDbIdPutAsync(String locationDbId, BrAPILocation body, final ApiCallback<BrAPILocationSingleResponse> callback) throws ApiException {
         Call call = locationsLocationDbIdPutCall(locationDbId, body);
         Type localVarReturnType = new TypeToken<BrAPILocationSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
@@ -265,7 +265,7 @@ public class LocationsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call locationsPostCall(List<BrAPILocationNewRequest> body) throws ApiException {
+    private Call locationsPostCall(List<BrAPILocation> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -303,7 +303,7 @@ public class LocationsApi {
      * @return ApiResponse&lt;LocationListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPILocationListResponse> locationsPost(List<BrAPILocationNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPILocationListResponse> locationsPost(List<BrAPILocation> body) throws ApiException {
         Call call = locationsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPILocationListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -317,7 +317,7 @@ public class LocationsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call locationsPostAsync(List<BrAPILocationNewRequest> body, final ApiCallback<BrAPILocationListResponse> callback) throws ApiException {
+    public Call locationsPostAsync(List<BrAPILocation> body, final ApiCallback<BrAPILocationListResponse> callback) throws ApiException {
         Call call = locationsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPILocationListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);

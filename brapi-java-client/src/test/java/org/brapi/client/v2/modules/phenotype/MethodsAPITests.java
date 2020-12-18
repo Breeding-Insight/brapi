@@ -24,13 +24,11 @@ import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.phenotype.MethodQueryParams;
-import org.brapi.v2.model.BrAPIExternalReferenceList;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
 import org.brapi.v2.model.pheno.BrAPIMethod;
-import org.brapi.v2.model.pheno.BrAPIMethodBaseClass;
-import org.brapi.v2.model.pheno.BrAPIMethodListResponse;
-import org.brapi.v2.model.pheno.BrAPIMethodSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIMethodListResponse;
+import org.brapi.v2.model.pheno.response.BrAPIMethodSingleResponse;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
@@ -69,7 +67,7 @@ public class MethodsAPITests extends BrAPIClientTest {
     public void createMethodMultipleIdPresent() {
         BrAPIMethod brApiMethod = new BrAPIMethod().methodDbId("test");
         BrAPIMethod brApiMethod1 = new BrAPIMethod();
-        List<BrAPIMethodBaseClass> brApiMethods = new ArrayList<>();
+        List<BrAPIMethod> brApiMethods = new ArrayList<>();
         brApiMethods.add(brApiMethod);
         brApiMethods.add(brApiMethod1);
 
@@ -81,7 +79,7 @@ public class MethodsAPITests extends BrAPIClientTest {
     @Test
     public void createMethodMultipleEmptyList() {
 
-        List<BrAPIMethodBaseClass> brApiMethods = new ArrayList<>();
+        List<BrAPIMethod> brApiMethods = new ArrayList<>();
 
         ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIMethodListResponse> method = methodsAPI.methodsPost(brApiMethods);
@@ -103,7 +101,7 @@ public class MethodsAPITests extends BrAPIClientTest {
         BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference()
                 .referenceID(externalReferenceID)
                 .referenceSource(externalReferenceSource);
-        BrAPIExternalReferenceList externalReferences = new BrAPIExternalReferenceList();
+        List<BrAPIExternalReference> externalReferences = new ArrayList<>();
         externalReferences.add(brApiExternalReference);
 
         BrAPIOntologyReference brApiOntologyReference = new BrAPIOntologyReference()
@@ -113,7 +111,7 @@ public class MethodsAPITests extends BrAPIClientTest {
 
         Map<String, String> additionalInfo = new HashMap<>();
         additionalInfo.put("test", "test");
-        BrAPIMethodBaseClass brApiMethod = new BrAPIMethod()
+        BrAPIMethod brApiMethod = new BrAPIMethod()
                 .additionalInfo(additionalInfo)
                 .externalReferences(externalReferences)
                 .ontologyReference(brApiOntologyReference)
@@ -134,7 +132,7 @@ public class MethodsAPITests extends BrAPIClientTest {
         this.createdMethod = method;
     }
 
-    private void methodAssertEquals(BrAPIMethodBaseClass expected, BrAPIMethod actual) {
+    private void methodAssertEquals(BrAPIMethod expected, BrAPIMethod actual) {
         assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Method additionalInfo mismatch");
         assertEquals(expected.getMethodName(), actual.getMethodName(), "Method name mismatch");
         assertEquals(expected.getBibliographicalReference(), actual.getBibliographicalReference(), "Method bibliographical mismatch");
@@ -151,9 +149,9 @@ public class MethodsAPITests extends BrAPIClientTest {
     @Order(1)
     @SneakyThrows
     public void createMethodsMultipleSuccess() {
-        BrAPIMethodBaseClass brApiMethod = new BrAPIMethodBaseClass().methodName("new test method1");
-        BrAPIMethodBaseClass brApiMethod2 = new BrAPIMethodBaseClass().methodName("new test method2");
-        List<BrAPIMethodBaseClass> methods = new ArrayList<>();
+        BrAPIMethod brApiMethod = new BrAPIMethod().methodName("new test method1");
+        BrAPIMethod brApiMethod2 = new BrAPIMethod().methodName("new test method2");
+        List<BrAPIMethod> methods = new ArrayList<>();
         methods.add(brApiMethod);
         methods.add(brApiMethod2);
 
@@ -282,7 +280,7 @@ public class MethodsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateMethodMissingId() {
         // Check that it throws an APIException
-        BrAPIMethodBaseClass brApiMethod = new BrAPIMethod().methodName("new test method");
+        BrAPIMethod brApiMethod = new BrAPIMethod().methodName("new test method");
 
         ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIMethodSingleResponse> updatedMethodResult = this.methodsAPI.methodsMethodDbIdPut(null, brApiMethod);

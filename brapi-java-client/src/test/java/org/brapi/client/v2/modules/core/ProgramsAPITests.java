@@ -25,15 +25,13 @@ import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.core.ProgramQueryParams;
 import org.brapi.v2.model.core.BrAPIProgram;
-import org.brapi.v2.model.core.BrAPIProgramListResponse;
-import org.brapi.v2.model.core.BrAPIProgramNewRequest;
-import org.brapi.v2.model.core.BrAPIProgramSingleResponse;
+import org.brapi.v2.model.core.response.BrAPIProgramListResponse;
+import org.brapi.v2.model.core.response.BrAPIProgramSingleResponse;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -137,7 +135,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void createProgramSuccess() {
 
-        BrAPIProgramNewRequest brApiProgram = new BrAPIProgramNewRequest()
+        BrAPIProgram brApiProgram = new BrAPIProgram()
                 .programName("new test program");
 
         ApiResponse<BrAPIProgramListResponse> createdProgram = this.programsAPI.programsPost(Arrays.asList(brApiProgram));
@@ -152,11 +150,11 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void createMultipleProgramsSuccess() {
 
-    	BrAPIProgramNewRequest brApiProgram1 = new BrAPIProgramNewRequest()
+        BrAPIProgram brApiProgram1 = new BrAPIProgram()
                 .programName("test1");
-    	BrAPIProgramNewRequest brApiProgram2 = new BrAPIProgramNewRequest()
+        BrAPIProgram brApiProgram2 = new BrAPIProgram()
                 .programName("test2");
-        List<BrAPIProgramNewRequest> brApiPrograms = new ArrayList<>();
+        List<BrAPIProgram> brApiPrograms = new ArrayList<>();
         brApiPrograms.add(brApiProgram1);
         brApiPrograms.add(brApiProgram2);
 
@@ -174,7 +172,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(1)
     public void createProgramEmptyProgramSuccess() {
-    	BrAPIProgramNewRequest brApiProgram = new BrAPIProgramNewRequest();
+        BrAPIProgram brApiProgram = new BrAPIProgram();
         ApiResponse<BrAPIProgramListResponse> response = this.programsAPI.programsPost(Arrays.asList(brApiProgram));
 
         assertEquals(true, response != null);
@@ -205,7 +203,7 @@ public class ProgramsAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void updateProgramMissingId() {
         // Check that it throws an APIException
-        BrAPIProgramNewRequest brApiProgram = new BrAPIProgramNewRequest()
+        BrAPIProgram brApiProgram = new BrAPIProgram()
                 .programName("new test program");
 
         ApiException exception = assertThrows(ApiException.class, () -> {

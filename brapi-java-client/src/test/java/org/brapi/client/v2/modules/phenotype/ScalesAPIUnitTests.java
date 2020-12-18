@@ -20,13 +20,12 @@ package org.brapi.client.v2.modules.phenotype;
 import lombok.SneakyThrows;
 import okhttp3.Call;
 
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
-import org.brapi.client.v2.model.BrAPIRequest;
 import org.brapi.client.v2.model.queryParams.phenotype.ScaleQueryParams;
 import org.brapi.v2.model.pheno.BrAPIScale;
-import org.brapi.v2.model.pheno.BrAPIScaleListResponse;
-import org.brapi.v2.model.pheno.BrAPIScaleSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIScaleListResponse;
+import org.brapi.v2.model.pheno.response.BrAPIScaleSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -35,8 +34,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.lang.reflect.Type;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -48,7 +45,7 @@ public class ScalesAPIUnitTests {
 
     ScalesApi scalesAPI;
     @Mock
-    ApiClient brAPIClient;
+    BrAPIClient brAPIClient;
 
     @BeforeAll
     public void setUp() {

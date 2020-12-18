@@ -15,10 +15,10 @@ package org.brapi.client.v2.modules.phenotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ImageQueryParams;
-import org.brapi.v2.model.pheno.BrAPIImageListResponse;
-import org.brapi.v2.model.pheno.BrAPIImageNewRequest;
-import org.brapi.v2.model.pheno.BrAPIImageSearchRequest;
-import org.brapi.v2.model.pheno.BrAPIImageSingleResponse;
+import org.brapi.v2.model.pheno.BrAPIImage;
+import org.brapi.v2.model.pheno.response.BrAPIImageListResponse;
+import org.brapi.v2.model.pheno.request.BrAPIImageSearchRequest;
+import org.brapi.v2.model.pheno.response.BrAPIImageSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -108,7 +108,7 @@ public class ImagesApiTest {
     @Test
     public void imagesImageDbIdPutTest() throws ApiException {
         String imageDbId = null;
-        BrAPIImageNewRequest body = null;
+        BrAPIImage body = null;
         
         ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdPut(imageDbId, body);
 
@@ -124,7 +124,7 @@ public class ImagesApiTest {
      */
     @Test
     public void imagesPostTest() throws ApiException {
-        List<BrAPIImageNewRequest> body = null;
+        List<BrAPIImage> body = null;
         
         ApiResponse<BrAPIImageListResponse> response = api.imagesPost(body);
 

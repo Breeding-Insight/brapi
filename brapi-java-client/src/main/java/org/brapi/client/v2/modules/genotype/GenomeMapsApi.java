@@ -20,34 +20,34 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenomeMapQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.MarkerPositionQueryParams;
-import org.brapi.v2.model.geno.BrAPIGenomeMapListResponse;
-import org.brapi.v2.model.geno.BrAPIGenomeMapSingleResponse;
-import org.brapi.v2.model.geno.BrAPILinkageGroupListResponse;
-import org.brapi.v2.model.geno.BrAPIMarkerPositionListResponse;
-import org.brapi.v2.model.geno.BrAPIMarkerPositionSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPIGenomeMapListResponse;
+import org.brapi.v2.model.geno.response.BrAPIGenomeMapSingleResponse;
+import org.brapi.v2.model.geno.response.BrAPILinkageGroupListResponse;
+import org.brapi.v2.model.geno.response.BrAPIMarkerPositionListResponse;
+import org.brapi.v2.model.geno.request.BrAPIMarkerPositionSearchRequest;
 
 public class GenomeMapsApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public GenomeMapsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public GenomeMapsApi(ApiClient apiClient) {
+    public GenomeMapsApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 

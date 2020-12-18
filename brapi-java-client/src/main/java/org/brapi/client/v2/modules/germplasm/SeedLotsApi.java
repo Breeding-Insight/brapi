@@ -18,38 +18,38 @@ import java.util.List;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.SeedLotQueryParams;
 import org.brapi.client.v2.model.queryParams.germplasm.SeedLotTransactionQueryParams;
-import org.brapi.v2.model.germ.BrAPISeedLotListResponse;
-import org.brapi.v2.model.germ.BrAPISeedLotNewRequest;
-import org.brapi.v2.model.germ.BrAPISeedLotNewTransactionRequest;
-import org.brapi.v2.model.germ.BrAPISeedLotSingleResponse;
-import org.brapi.v2.model.germ.BrAPISeedLotTransactionListResponse;
+import org.brapi.v2.model.germ.BrAPISeedLot;
+import org.brapi.v2.model.germ.BrAPISeedLotTransaction;
+import org.brapi.v2.model.germ.response.BrAPISeedLotListResponse;
+import org.brapi.v2.model.germ.response.BrAPISeedLotSingleResponse;
+import org.brapi.v2.model.germ.response.BrAPISeedLotTransactionListResponse;
 
 import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
 
 public class SeedLotsApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public SeedLotsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public SeedLotsApi(ApiClient apiClient) {
+    public SeedLotsApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -138,7 +138,7 @@ public class SeedLotsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call seedlotsPostCall(List<BrAPISeedLotNewRequest> body) throws ApiException {
+    private Call seedlotsPostCall(List<BrAPISeedLot> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -177,7 +177,7 @@ public class SeedLotsApi {
      * @return ApiResponse&lt;SeedLotListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPISeedLotListResponse> seedlotsPost(List<BrAPISeedLotNewRequest> body) throws ApiException {
+    public ApiResponse<BrAPISeedLotListResponse> seedlotsPost(List<BrAPISeedLot> body) throws ApiException {
         Call call = seedlotsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPISeedLotListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -192,7 +192,7 @@ public class SeedLotsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call seedlotsPostAsync(List<BrAPISeedLotNewRequest> body, final ApiCallback<BrAPISeedLotListResponse> callback) throws ApiException {
+    public Call seedlotsPostAsync(List<BrAPISeedLot> body, final ApiCallback<BrAPISeedLotListResponse> callback) throws ApiException {
         Call call = seedlotsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPISeedLotListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
@@ -278,7 +278,7 @@ public class SeedLotsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call seedlotsSeedLotDbIdPutCall(String seedLotDbId, BrAPISeedLotNewRequest body) throws ApiException {
+    private Call seedlotsSeedLotDbIdPutCall(String seedLotDbId, BrAPISeedLot body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -319,7 +319,7 @@ public class SeedLotsApi {
      * @return ApiResponse&lt;SeedLotSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPISeedLotSingleResponse> seedlotsSeedLotDbIdPut(String seedLotDbId, BrAPISeedLotNewRequest body) throws ApiException {
+    public ApiResponse<BrAPISeedLotSingleResponse> seedlotsSeedLotDbIdPut(String seedLotDbId, BrAPISeedLot body) throws ApiException {
         Call call = seedlotsSeedLotDbIdPutCall(seedLotDbId, body);
         Type localVarReturnType = new TypeToken<BrAPISeedLotSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -335,7 +335,7 @@ public class SeedLotsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call seedlotsSeedLotDbIdPutAsync(String seedLotDbId, BrAPISeedLotNewRequest body, final ApiCallback<BrAPISeedLotSingleResponse> callback) throws ApiException {
+    public Call seedlotsSeedLotDbIdPutAsync(String seedLotDbId, BrAPISeedLot body, final ApiCallback<BrAPISeedLotSingleResponse> callback) throws ApiException {
         Call call = seedlotsSeedLotDbIdPutCall(seedLotDbId, body);
         Type localVarReturnType = new TypeToken<BrAPISeedLotSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
@@ -518,7 +518,7 @@ public class SeedLotsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call seedlotsTransactionsPostCall(List<BrAPISeedLotNewTransactionRequest> body) throws ApiException {
+    private Call seedlotsTransactionsPostCall(List<BrAPISeedLotTransaction> body) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -557,7 +557,7 @@ public class SeedLotsApi {
      * @return ApiResponse&lt;SeedLotTransactionListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPISeedLotTransactionListResponse> seedlotsTransactionsPost(List<BrAPISeedLotNewTransactionRequest> body) throws ApiException {
+    public ApiResponse<BrAPISeedLotTransactionListResponse> seedlotsTransactionsPost(List<BrAPISeedLotTransaction> body) throws ApiException {
         Call call = seedlotsTransactionsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPISeedLotTransactionListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -572,7 +572,7 @@ public class SeedLotsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call seedlotsTransactionsPostAsync(List<BrAPISeedLotNewTransactionRequest> body, final ApiCallback<BrAPISeedLotTransactionListResponse> callback) throws ApiException {
+    public Call seedlotsTransactionsPostAsync(List<BrAPISeedLotTransaction> body, final ApiCallback<BrAPISeedLotTransactionListResponse> callback) throws ApiException {
         Call call = seedlotsTransactionsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPISeedLotTransactionListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);

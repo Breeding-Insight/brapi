@@ -14,7 +14,7 @@ package org.brapi.client.v2.modules.core;
 
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.v2.model.core.BrAPICommonCropNamesResponse;
+import org.brapi.v2.model.core.response.BrAPICommonCropNamesResponse;
 import org.junit.jupiter.api.Test;
 
 /**

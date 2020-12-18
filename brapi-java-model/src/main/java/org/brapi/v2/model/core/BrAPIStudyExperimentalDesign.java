@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-03-20T16:31:52.030Z[GMT]")
+
 public class BrAPIStudyExperimentalDesign   {
   @JsonProperty("PUI")
   private String PUI = null;
@@ -67,9 +67,9 @@ public class BrAPIStudyExperimentalDesign   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BrAPIStudyExperimentalDesign studyNewRequestExperimentalDesign = (BrAPIStudyExperimentalDesign) o;
-    return Objects.equals(this.PUI, studyNewRequestExperimentalDesign.PUI) &&
-        Objects.equals(this.description, studyNewRequestExperimentalDesign.description);
+    BrAPIStudyExperimentalDesign studyExperimentalDesign = (BrAPIStudyExperimentalDesign) o;
+    return Objects.equals(this.PUI, studyExperimentalDesign.PUI) &&
+        Objects.equals(this.description, studyExperimentalDesign.description);
   }
 
   @Override
@@ -80,7 +80,7 @@ public class BrAPIStudyExperimentalDesign   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class StudyNewRequestExperimentalDesign {\n");
+    sb.append("class StudyExperimentalDesign {\n");
     
     sb.append("    PUI: ").append(toIndentedString(PUI)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");

@@ -1,7 +1,9 @@
 package org.brapi.v2.model.core;
 
+import java.util.List;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.brapi.v2.model.BrAPIExternalReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,13 +11,11 @@ import java.time.OffsetDateTime;
 
 import javax.validation.Valid;
 
-import org.brapi.v2.model.BrAPIExternalReferenceList;
-
 /**
  * ListBaseFields
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-03-20T16:31:52.030Z[GMT]")
+
 public class BrAPIListBaseFields implements BrAPIListBaseFieldsInterface  {
   @JsonProperty("additionalInfo")
   @Valid
@@ -28,7 +28,7 @@ public class BrAPIListBaseFields implements BrAPIListBaseFieldsInterface  {
   private OffsetDateTime dateModified = null;
 
   @JsonProperty("externalReferences")
-  private BrAPIExternalReferenceList externalReferences = null;
+  private List<BrAPIExternalReference> externalReferences = null;
 
   @JsonProperty("listDescription")
   private String listDescription = null;
@@ -118,7 +118,7 @@ public class BrAPIListBaseFields implements BrAPIListBaseFieldsInterface  {
     this.dateModified = dateModified;
   }
 
-  public BrAPIListBaseFields externalReferences(BrAPIExternalReferenceList externalReferences) {
+  public BrAPIListBaseFields externalReferences(List<BrAPIExternalReference> externalReferences) {
     this.externalReferences = externalReferences;
     return this;
   }
@@ -130,11 +130,11 @@ public class BrAPIListBaseFields implements BrAPIListBaseFieldsInterface  {
   
   
     @Valid
-    public BrAPIExternalReferenceList getExternalReferences() {
+    public List<BrAPIExternalReference> getExternalReferences() {
     return externalReferences;
   }
 
-  public void setExternalReferences(BrAPIExternalReferenceList externalReferences) {
+  public void setExternalReferences(List<BrAPIExternalReference> externalReferences) {
     this.externalReferences = externalReferences;
   }
 

@@ -20,14 +20,13 @@ package org.brapi.client.v2.modules.core;
 import lombok.SneakyThrows;
 import okhttp3.Call;
 
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.BrAPIRequest;
 import org.brapi.client.v2.model.queryParams.core.LocationQueryParams;
 import org.brapi.v2.model.core.BrAPILocation;
-import org.brapi.v2.model.core.BrAPILocationListResponse;
-import org.brapi.v2.model.core.BrAPILocationNewRequest;
-import org.brapi.v2.model.core.BrAPILocationSingleResponse;
+import org.brapi.v2.model.core.response.BrAPILocationListResponse;
+import org.brapi.v2.model.core.response.BrAPILocationSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -37,8 +36,6 @@ import org.mockito.Spy;
 
 import java.lang.reflect.Type;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -50,7 +47,7 @@ public class LocationsAPIUnitTests {
 
     LocationsApi locationsAPI;
     @Spy
-    ApiClient brAPIClient;
+    BrAPIClient brAPIClient;
 
     @BeforeAll
     public void setUp() {
@@ -71,7 +68,7 @@ public class LocationsAPIUnitTests {
     void updateLocationsEmptyBody() {
         when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null, new BrAPILocationListResponse()));
 
-        BrAPILocationNewRequest location = new BrAPILocation().locationName("test");
+        BrAPILocation location = new BrAPILocation().locationName("test");
 
         ApiResponse<BrAPILocationSingleResponse> brApiLocation = locationsAPI.locationsLocationDbIdPut("test", location);
 

@@ -20,33 +20,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.brapi.client.v2.ApiCallback;
-import org.brapi.client.v2.ApiClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallSetQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.GenotypeQueryParams;
-import org.brapi.v2.model.geno.BrAPICallSetResponse;
-import org.brapi.v2.model.geno.BrAPICallSetsListResponse;
-import org.brapi.v2.model.geno.BrAPICallSetsSearchRequest;
-import org.brapi.v2.model.geno.BrAPICallsListResponse;
+import org.brapi.v2.model.geno.response.BrAPICallSetResponse;
+import org.brapi.v2.model.geno.response.BrAPICallSetsListResponse;
+import org.brapi.v2.model.geno.request.BrAPICallSetsSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 
 public class CallSetsApi {
-    private ApiClient apiClient;
+    private BrAPIClient apiClient;
 
     public CallSetsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public CallSetsApi(ApiClient apiClient) {
+    public CallSetsApi(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 
-    public ApiClient getApiClient() {
+    public BrAPIClient getApiClient() {
         return apiClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
+    public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
     }
 

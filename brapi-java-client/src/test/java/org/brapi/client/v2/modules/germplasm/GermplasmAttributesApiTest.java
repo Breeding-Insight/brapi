@@ -15,17 +15,14 @@ package org.brapi.client.v2.modules.germplasm;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmAttributeQueryParams;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeCategoryListResponse;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeListResponse;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeNewRequest;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeSearchRequest;
-import org.brapi.v2.model.germ.BrAPIGermplasmAttributeSingleResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasmAttribute;
+import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeCategoryListResponse;
+import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeListResponse;
+import org.brapi.v2.model.germ.request.BrAPIGermplasmAttributeSearchRequest;
+import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeSingleResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for GermplasmAttributesApi
@@ -61,7 +58,7 @@ public class GermplasmAttributesApiTest {
     @Test
     public void attributesAttributeDbIdPutTest() throws ApiException {
         String attributeDbId = null;
-        BrAPIGermplasmAttributeNewRequest body = null;
+        BrAPIGermplasmAttribute body = null;
         
         ApiResponse<BrAPIGermplasmAttributeSingleResponse> response = api.attributesAttributeDbIdPut(attributeDbId, body);
 
@@ -118,7 +115,7 @@ public class GermplasmAttributesApiTest {
      */
     @Test
     public void attributesPostTest() throws ApiException {
-        List<BrAPIGermplasmAttributeNewRequest> body = null;
+        List<BrAPIGermplasmAttribute> body = null;
         
         ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.attributesPost(body);
 

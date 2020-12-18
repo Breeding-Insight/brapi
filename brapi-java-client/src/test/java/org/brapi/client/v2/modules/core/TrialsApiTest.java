@@ -15,17 +15,14 @@ package org.brapi.client.v2.modules.core;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.TrialQueryParams;
-import org.brapi.v2.model.core.BrAPITrialListResponse;
-import org.brapi.v2.model.core.BrAPITrialNewRequest;
-import org.brapi.v2.model.core.BrAPITrialSearchRequest;
-import org.brapi.v2.model.core.BrAPITrialSingleResponse;
+import org.brapi.v2.model.core.BrAPITrial;
+import org.brapi.v2.model.core.response.BrAPITrialListResponse;
+import org.brapi.v2.model.core.request.BrAPITrialSearchRequest;
+import org.brapi.v2.model.core.response.BrAPITrialSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for TrialsApi
@@ -111,7 +108,7 @@ public class TrialsApiTest {
      */
     @Test
     public void trialsPostTest() throws ApiException {
-        List<BrAPITrialNewRequest> body = null;
+        List<BrAPITrial> body = null;
         
         ApiResponse<BrAPITrialListResponse> response = api.trialsPost(body);
 
@@ -144,7 +141,7 @@ public class TrialsApiTest {
     @Test
     public void trialsTrialDbIdPutTest() throws ApiException {
         String trialDbId = null;
-        BrAPITrialNewRequest body = null;
+        BrAPITrial body = null;
         
         ApiResponse<BrAPITrialSingleResponse> response = api.trialsTrialDbIdPut(trialDbId, body);
 

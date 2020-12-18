@@ -15,16 +15,13 @@ package org.brapi.client.v2.modules.genotype;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.SampleQueryParams;
-import org.brapi.v2.model.geno.BrAPISampleListResponse;
-import org.brapi.v2.model.geno.BrAPISampleNewRequest;
-import org.brapi.v2.model.geno.BrAPISampleSearchRequest;
-import org.brapi.v2.model.geno.BrAPISampleSingleResponse;
+import org.brapi.v2.model.geno.BrAPISample;
+import org.brapi.v2.model.geno.response.BrAPISampleListResponse;
+import org.brapi.v2.model.geno.request.BrAPISampleSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPISampleSingleResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for SamplesApi
@@ -68,7 +65,7 @@ public class SamplesApiTest {
      */
     @Test
     public void samplesPostTest() throws ApiException {
-        List<BrAPISampleNewRequest> body = null;
+        List<BrAPISample> body = null;
         
         ApiResponse<BrAPISampleListResponse> response = api.samplesPost(body);
 
@@ -101,7 +98,7 @@ public class SamplesApiTest {
     @Test
     public void samplesSampleDbIdPutTest() throws ApiException {
         String sampleDbId = null;
-        BrAPISampleNewRequest body = null;
+        BrAPISample body = null;
         
         ApiResponse<BrAPISampleSingleResponse> response = api.samplesSampleDbIdPut(sampleDbId, body);
 
