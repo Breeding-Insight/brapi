@@ -56,6 +56,9 @@ public class ReferencesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call referencesGetCall(ReferenceQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -144,6 +147,9 @@ public class ReferencesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call referencesReferenceDbIdBasesGetCall(String referenceDbId, Integer start, Integer end, String pageToken) throws ApiException {
+        if(referenceDbId == null) {
+            throw new IllegalArgumentException("referenceDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -224,6 +230,9 @@ public class ReferencesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call referencesReferenceDbIdGetCall(String referenceDbId) throws ApiException {
+        if(referenceDbId == null) {
+            throw new IllegalArgumentException("referenceDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -294,6 +303,9 @@ public class ReferencesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchReferencesPostCall(BrAPIReferencesSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -365,6 +377,9 @@ public class ReferencesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchReferencesSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

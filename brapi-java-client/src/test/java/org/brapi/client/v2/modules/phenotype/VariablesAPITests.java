@@ -44,289 +44,283 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class VariablesAPITests extends BrAPIClientTest {
 
-    private ObservationVariablesApi variablesAPI = new ObservationVariablesApi(this.apiClient);
-    private String externalReferenceID = "testId";
-    private String externalReferenceSource = "testSource";
-    private BrAPIObservationVariable createdVariable;
+	private ObservationVariablesApi variablesAPI = new ObservationVariablesApi(this.apiClient);
+	private String externalReferenceID = "testId";
+	private String externalReferenceSource = "testSource";
+	private BrAPIObservationVariable createdVariable;
 
-    // depends on this existing in test db until we can create our own
-    // don't have GET /ontologies yet either
-    private String validOntologyDbId = "ontology_attribute1";
-    private String validCrop = "Tomatillo";
+	// depends on this existing in test db until we can create our own
+	// don't have GET /ontologies yet either
+	private String validOntologyDbId = "ontology_attribute1";
+	private String validCrop = "Tomatillo";
 
-    @Test
-    public void createVariableIdPresent() {               
-        ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<BrAPIObservationVariableListResponse> variable = variablesAPI.variablesPost(Arrays.asList(new BrAPIObservationVariable()));
-        });
-    }
+	@Test
+	public void createVariableIdPresent() throws ApiException {
+		ApiResponse<BrAPIObservationVariableListResponse> variable = variablesAPI
+				.variablesPost(Arrays.asList(new BrAPIObservationVariable()));
 
-    @Test
-    public void createVariableNull() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<BrAPIObservationVariableListResponse> variable = variablesAPI.variablesPost(null);
-        });
-    }
+	}
 
-    @Test
-    public void createVariableMultipleIdPresent() {
-    	BrAPIObservationVariable brApiVariable = new BrAPIObservationVariable()
-                .observationVariableName("test");
-    	BrAPIObservationVariable brApiVariable1 = new BrAPIObservationVariable();
-        List<BrAPIObservationVariable> brApiVariables = new ArrayList<>();
-        brApiVariables.add(brApiVariable);
-        brApiVariables.add(brApiVariable1);
+	@Test
+	public void createVariableNull() {
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationVariableListResponse> variable = variablesAPI.variablesPost(null);
+		});
+	}
 
-        ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesPost(brApiVariables);
-        });
-    }
+	@Test
+	public void createVariableMultipleIdPresent() throws ApiException {
+		BrAPIObservationVariable brApiVariable = new BrAPIObservationVariable().observationVariableName("test");
+		BrAPIObservationVariable brApiVariable1 = new BrAPIObservationVariable();
+		List<BrAPIObservationVariable> brApiVariables = new ArrayList<>();
+		brApiVariables.add(brApiVariable);
+		brApiVariables.add(brApiVariable1);
 
-    @Test
-    public void createVariableMultipleEmptyList() {
+		ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesPost(brApiVariables);
 
-        List<BrAPIObservationVariable> brApiVariables = new ArrayList<>();
+	}
 
-        ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesPost(brApiVariables);
-        });
-    }
+	@Test
+	public void createVariableMultipleEmptyList() throws ApiException {
 
-    @Test
-    public void createVariableMultipleNull() {
+		List<BrAPIObservationVariable> brApiVariables = new ArrayList<>();
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesPost(null);
-        });
-    }
+		ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesPost(brApiVariables);
 
-    @Test
-    @Order(1)
-    @SneakyThrows
-    public void createVariableSuccess() {
+	}
 
-    	BrAPIObservationVariable brApiVariable = buildTestVariable();
-        List<BrAPIObservationVariable> brApiVariableList = new ArrayList<>();
-        brApiVariableList.add(brApiVariable);
+	@Test
+	public void createVariableMultipleNull() {
 
-        ApiResponse<BrAPIObservationVariableListResponse> createdVariable = variablesAPI.variablesPost(brApiVariableList);
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesPost(null);
+		});
+	}
 
-        assertNotNull(createdVariable);
-        BrAPIObservationVariable variable = createdVariable.getBody().getResult().getData().get(0);
+	@Test
+	@Order(1)
+	@SneakyThrows
+	public void createVariableSuccess() {
 
-        assertFalse(variable.getObservationVariableDbId() == null, "Variable id missing");
-        variableAssertEquals(brApiVariable, variable);
+		BrAPIObservationVariable brApiVariable = buildTestVariable();
+		List<BrAPIObservationVariable> brApiVariableList = new ArrayList<>();
+		brApiVariableList.add(brApiVariable);
 
-        this.createdVariable = variable;
-    }
+		ApiResponse<BrAPIObservationVariableListResponse> createdVariable = variablesAPI
+				.variablesPost(brApiVariableList);
 
-    private BrAPIObservationVariable buildTestVariable() {
+		assertNotNull(createdVariable);
+		BrAPIObservationVariable variable = createdVariable.getBody().getResult().getData().get(0);
 
-        BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference()
-                .referenceID(externalReferenceID)
-                .referenceSource(externalReferenceSource);
-               
-        List<BrAPIExternalReference> externalReferences = new ArrayList<>();
-        externalReferences.add(brApiExternalReference);
+		assertFalse(variable.getObservationVariableDbId() == null, "Variable id missing");
+		variableAssertEquals(brApiVariable, variable);
 
-        BrAPIOntologyReference brApiOntologyReference = new BrAPIOntologyReference()
-                .ontologyDbId(validOntologyDbId)
-                .ontologyName("Ontology.org")
-                .version("17");
+		this.createdVariable = variable;
+	}
 
-        Map<String, String> additionalInfo = new HashMap<>();
-        additionalInfo.put("test", "test");
+	private BrAPIObservationVariable buildTestVariable() {
 
-        List<String> contextOfUse = new ArrayList<>();
-        contextOfUse.add("test context 1");
-        contextOfUse.add("test context 2");
+		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID)
+				.referenceSource(externalReferenceSource);
 
-        List<String> synonyms = new ArrayList<>();
-        contextOfUse.add("test synonym 1");
-        contextOfUse.add("test synonym 2");
+		List<BrAPIExternalReference> externalReferences = new ArrayList<>();
+		externalReferences.add(brApiExternalReference);
 
-        BrAPITrait trait = new BrAPITrait();
-        trait.setTraitName("test trait");
+		BrAPIOntologyReference brApiOntologyReference = new BrAPIOntologyReference().ontologyDbId(validOntologyDbId)
+				.ontologyName("Ontology.org").version("17");
 
-        BrAPIMethod method = new BrAPIMethod();
-        method.setMethodName("test method");
+		Map<String, String> additionalInfo = new HashMap<>();
+		additionalInfo.put("test", "test");
 
-        BrAPIScale scale = new BrAPIScale();
-        scale.setScaleName("scale scale");
+		List<String> contextOfUse = new ArrayList<>();
+		contextOfUse.add("test context 1");
+		contextOfUse.add("test context 2");
 
-        OffsetDateTime timestamp = OffsetDateTime.parse("2020-05-26T20:45:10Z", DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+		List<String> synonyms = new ArrayList<>();
+		contextOfUse.add("test synonym 1");
+		contextOfUse.add("test synonym 2");
 
-        BrAPIObservationVariable brApiVariable = (BrAPIObservationVariable) new BrAPIObservationVariable()
-                .observationVariableName("test variable")
-                .additionalInfo(additionalInfo)
-                .commonCropName(validCrop)
-                .contextOfUse(contextOfUse)
-                .defaultValue("test default")
-                .documentationURL("http://www.test.com")
-                .externalReferences(externalReferences)
-                .growthStage("test stage")
-                .institution("test institution")
-                .language("test language")
-                .ontologyReference(brApiOntologyReference)
-                .scientist("test scientist")
-                .status("test status")
-                .submissionTimestamp(timestamp)
-                .synonyms(synonyms)
-                .trait(trait)
-                .scale(scale)
-                .method(method);
-               
+		BrAPITrait trait = new BrAPITrait();
+		trait.setTraitName("test trait");
 
-        return brApiVariable;
+		BrAPIMethod method = new BrAPIMethod();
+		method.setMethodName("test method");
 
-    }
+		BrAPIScale scale = new BrAPIScale();
+		scale.setScaleName("scale scale");
 
-    private void variableAssertEquals(BrAPIObservationVariable expected, BrAPIObservationVariable actual) {
-        assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Variable additionalInfo mismatch");
-        assertEquals(expected.getCommonCropName(), actual.getCommonCropName(), "Variable commonCropName mismatch");
-        assertEquals(expected.getContextOfUse(), actual.getContextOfUse(), "Variable contextOfUse mismatch");
-        assertEquals(expected.getDefaultValue(), actual.getDefaultValue(), "Variable defaultValue mismatch");
-        assertEquals(expected.getDocumentationURL(), actual.getDocumentationURL(), "Variable documentationUrl mismatch");
-        assertEquals(expected.getOntologyReference().getOntologyDbId(), actual.getOntologyReference().getOntologyDbId(), "Variable ontology dbId mismatch");
-        assertEquals(expected.getOntologyReference().getOntologyName(), actual.getOntologyReference().getOntologyName(), "Variable ontology name mismatch");
-        assertEquals(expected.getOntologyReference().getVersion(), actual.getOntologyReference().getVersion(), "Variable ontology version mismatch");
-        assertEquals(expected.getExternalReferences(), actual.getExternalReferences(), "Variable external reference mismatch");
-        assertEquals(expected.getGrowthStage(), actual.getGrowthStage(), "Variable growthStage mismatch");
-        assertEquals(expected.getInstitution(), actual.getInstitution(), "Variable institution mismatch");
-        assertEquals(expected.getLanguage(), actual.getLanguage(), "Variable language mismatch");
-        assertEquals(expected.getScientist(), actual.getScientist(), "Variable scientist mismatch");
-        assertEquals(expected.getStatus(), actual.getStatus(), "Variable status mismatch");
-        assertEquals(expected.getSubmissionTimestamp(), actual.getSubmissionTimestamp(), "Variable submissionTimestamp mismatch");
-        assertEquals(expected.getSynonyms(), actual.getSynonyms(), "Variable synonyms mismatch");
-        assertEquals(expected.getObservationVariableName(), actual.getObservationVariableName(), "Variable name mismatch");
-        assertEquals(expected.getTrait().getTraitName(), actual.getTrait().getTraitName(), "Variable trait mismatch");
-        assertEquals(expected.getScale().getScaleName(), actual.getScale().getScaleName(), "Variable scale mismatch");
-        assertEquals(expected.getMethod().getMethodName(), actual.getMethod().getMethodName(), "Variable method mismatch");
-    }
+		OffsetDateTime timestamp = OffsetDateTime.parse("2020-05-26T20:45:10Z", DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 
-    @Test
-    @Order(1)
-    @SneakyThrows
-    public void createVariablesMultipleSuccess() {
-    	BrAPIObservationVariable brApiVariable = new BrAPIObservationVariable()
-                .observationVariableName("new test variable1");
-               
-        BrAPIObservationVariable brApiVariable2 = new BrAPIObservationVariable()
-                .observationVariableName("new test variable2");
-               
-        List<BrAPIObservationVariable> variables = new ArrayList<>();
-        variables.add(brApiVariable);
-        variables.add(brApiVariable2);
+		BrAPIObservationVariable brApiVariable = (BrAPIObservationVariable) new BrAPIObservationVariable()
+				.observationVariableName("test variable").additionalInfo(additionalInfo).commonCropName(validCrop)
+				.contextOfUse(contextOfUse).defaultValue("test default").documentationURL("http://www.test.com")
+				.externalReferences(externalReferences).growthStage("test stage").institution("test institution")
+				.language("test language").ontologyReference(brApiOntologyReference).scientist("test scientist")
+				.status("test status").submissionTimestamp(timestamp).synonyms(synonyms).trait(trait).scale(scale)
+				.method(method);
 
-        ApiResponse<BrAPIObservationVariableListResponse> createdVariablesRes = variablesAPI.variablesPost(variables);
-        
-        List<BrAPIObservationVariable> createdVariables = createdVariablesRes.getBody().getResult().getData();
+		return brApiVariable;
 
-        assertEquals(true, createdVariables.size() == 2);
-        assertEquals(true, createdVariables.get(0).getObservationVariableDbId() != null, "Variable id missing");
-        assertEquals(true, createdVariables.get(1).getObservationVariableDbId() != null, "Variable id missing");
+	}
 
-        assertEquals(brApiVariable.getObservationVariableName(), createdVariables.get(0).getObservationVariableName(), "Variable name mismatch");
-        assertEquals(brApiVariable2.getObservationVariableName(), createdVariables.get(1).getObservationVariableName(), "Variable name mismatch");
-    }
+	private void variableAssertEquals(BrAPIObservationVariable expected, BrAPIObservationVariable actual) {
+		assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Variable additionalInfo mismatch");
+		assertEquals(expected.getCommonCropName(), actual.getCommonCropName(), "Variable commonCropName mismatch");
+		assertEquals(expected.getContextOfUse(), actual.getContextOfUse(), "Variable contextOfUse mismatch");
+		assertEquals(expected.getDefaultValue(), actual.getDefaultValue(), "Variable defaultValue mismatch");
+		assertEquals(expected.getDocumentationURL(), actual.getDocumentationURL(),
+				"Variable documentationUrl mismatch");
+		assertEquals(expected.getOntologyReference().getOntologyDbId(), actual.getOntologyReference().getOntologyDbId(),
+				"Variable ontology dbId mismatch");
+		assertEquals(expected.getOntologyReference().getOntologyName(), actual.getOntologyReference().getOntologyName(),
+				"Variable ontology name mismatch");
+		assertEquals(expected.getOntologyReference().getVersion(), actual.getOntologyReference().getVersion(),
+				"Variable ontology version mismatch");
+		assertEquals(expected.getExternalReferences(), actual.getExternalReferences(),
+				"Variable external reference mismatch");
+		assertEquals(expected.getGrowthStage(), actual.getGrowthStage(), "Variable growthStage mismatch");
+		assertEquals(expected.getInstitution(), actual.getInstitution(), "Variable institution mismatch");
+		assertEquals(expected.getLanguage(), actual.getLanguage(), "Variable language mismatch");
+		assertEquals(expected.getScientist(), actual.getScientist(), "Variable scientist mismatch");
+		assertEquals(expected.getStatus(), actual.getStatus(), "Variable status mismatch");
+		assertEquals(expected.getSubmissionTimestamp(), actual.getSubmissionTimestamp(),
+				"Variable submissionTimestamp mismatch");
+		assertEquals(expected.getSynonyms(), actual.getSynonyms(), "Variable synonyms mismatch");
+		assertEquals(expected.getObservationVariableName(), actual.getObservationVariableName(),
+				"Variable name mismatch");
+		assertEquals(expected.getTrait().getTraitName(), actual.getTrait().getTraitName(), "Variable trait mismatch");
+		assertEquals(expected.getScale().getScaleName(), actual.getScale().getScaleName(), "Variable scale mismatch");
+		assertEquals(expected.getMethod().getMethodName(), actual.getMethod().getMethodName(),
+				"Variable method mismatch");
+	}
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getVariablesSuccess() {
-        ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesGet(new VariableQueryParams());
+	@Test
+	@Order(1)
+	@SneakyThrows
+	public void createVariablesMultipleSuccess() {
+		BrAPIObservationVariable brApiVariable = new BrAPIObservationVariable()
+				.observationVariableName("new test variable1");
 
-        assertEquals(false, variables.getBody().getResult().getData().isEmpty(), "List of variables was empty");
-    }
+		BrAPIObservationVariable brApiVariable2 = new BrAPIObservationVariable()
+				.observationVariableName("new test variable2");
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getVariablesPageFilter() {
-    	VariableQueryParams baseRequest = VariableQueryParams.builder()
-                .page(0)
-                .pageSize(1)
-                .build();
-               
+		List<BrAPIObservationVariable> variables = new ArrayList<>();
+		variables.add(brApiVariable);
+		variables.add(brApiVariable2);
 
-        ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesGet(baseRequest);
+		ApiResponse<BrAPIObservationVariableListResponse> createdVariablesRes = variablesAPI.variablesPost(variables);
 
-        assertEquals(true, variables.getBody().getResult().getData().size() == 1, "More than one variable was returned");
-    }
+		List<BrAPIObservationVariable> createdVariables = createdVariablesRes.getBody().getResult().getData();
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getVariablesByExternalReferenceIdSuccess() {
-    	VariableQueryParams variablesRequest = VariableQueryParams.builder()
-                .externalReferenceID(externalReferenceID)
-                .build();
-               
+		assertEquals(true, createdVariables.size() == 2);
+		assertEquals(true, createdVariables.get(0).getObservationVariableDbId() != null, "Variable id missing");
+		assertEquals(true, createdVariables.get(1).getObservationVariableDbId() != null, "Variable id missing");
 
-        ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesGet(variablesRequest);
+		assertEquals(brApiVariable.getObservationVariableName(), createdVariables.get(0).getObservationVariableName(),
+				"Variable name mismatch");
+		assertEquals(brApiVariable2.getObservationVariableName(), createdVariables.get(1).getObservationVariableName(),
+				"Variable name mismatch");
+	}
 
-        assertEquals(true, variables.getBody().getResult().getData().size() > 0, "List of variables was empty");
-    }
+	@Test
+	@SneakyThrows
+	@Order(2)
+	void getVariablesSuccess() {
+		ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI
+				.variablesGet(new VariableQueryParams());
 
-    @Test
-    public void getVariableByIdMissingId() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<BrAPIObservationVariableSingleResponse> variable = variablesAPI.variablesObservationVariableDbIdGet(null);
-        });
-    }
+		assertEquals(false, variables.getBody().getResult().getData().isEmpty(), "List of variables was empty");
+	}
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getVariableByIdSuccess() {
-        ApiResponse<BrAPIObservationVariableSingleResponse> optionalObservationVariable = variablesAPI.variablesObservationVariableDbIdGet(createdVariable.getObservationVariableDbId());
+	@Test
+	@SneakyThrows
+	@Order(2)
+	void getVariablesPageFilter() {
+		VariableQueryParams baseRequest = VariableQueryParams.builder().page(0).pageSize(1).build();
 
-        assertNotNull(optionalObservationVariable, "An empty optional was returned");
-        BrAPIObservationVariable variable = optionalObservationVariable.getBody().getResult();
-        assertEquals(true, variable.getObservationVariableDbId() != null, "VariableDbId was not parsed properly.");
-        variableAssertEquals((BrAPIObservationVariable) createdVariable, variable);
-    }
+		ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesGet(baseRequest);
 
-    @Test
-    @SneakyThrows
-    void getVariableByIdInvalid() {
-        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
-            ApiResponse<BrAPIObservationVariableSingleResponse> variable = variablesAPI.variablesObservationVariableDbIdGet("badVariableId");
-        });
-    }
+		assertEquals(true, variables.getBody().getResult().getData().size() == 1,
+				"More than one variable was returned");
+	}
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    public void updateVariableSuccess() {
-        BrAPIObservationVariable variable = this.createdVariable;
-        variable.setObservationVariableName("updated_name");
+	@Test
+	@SneakyThrows
+	@Order(2)
+	void getVariablesByExternalReferenceIdSuccess() {
+		VariableQueryParams variablesRequest = VariableQueryParams.builder().externalReferenceID(externalReferenceID)
+				.build();
 
-        // Check that it is a success and all data matches
-        ApiResponse<BrAPIObservationVariableSingleResponse> updatedVaribleResult = this.variablesAPI.variablesObservationVariableDbIdPut(this.createdVariable.getObservationVariableDbId(), variable);
+		ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesGet(variablesRequest);
 
-        assertNotNull(updatedVaribleResult, "Variable was not returned");
-        BrAPIObservationVariable updatedVariable = updatedVaribleResult.getBody().getResult();
-        variableAssertEquals(variable, updatedVariable);
-    }
+		assertEquals(true, variables.getBody().getResult().getData().size() > 0, "List of variables was empty");
+	}
 
-    @Test
-    @SneakyThrows
-    public void updateVariableMissingId() {
-        // Check that it throws an ApiException
-        BrAPIObservationVariable brApiVariable = new BrAPIObservationVariable().observationVariableName("new test variable");
+	@Test
+	public void getVariableByIdMissingId() {
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationVariableSingleResponse> variable = variablesAPI
+					.variablesObservationVariableDbIdGet(null);
+		});
+	}
 
-        ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<BrAPIObservationVariableSingleResponse> updatedVariableResult = this.variablesAPI.variablesObservationVariableDbIdPut(null, brApiVariable);
-        });
-    }
+	@Test
+	@SneakyThrows
+	@Order(2)
+	void getVariableByIdSuccess() {
+		ApiResponse<BrAPIObservationVariableSingleResponse> optionalObservationVariable = variablesAPI
+				.variablesObservationVariableDbIdGet(createdVariable.getObservationVariableDbId());
 
-    @Test
-    public void updateVariableNull() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<BrAPIObservationVariableSingleResponse> variable = this.variablesAPI.variablesObservationVariableDbIdPut("fake id", null);
-        });
-    }
-    
+		assertNotNull(optionalObservationVariable, "An empty optional was returned");
+		BrAPIObservationVariable variable = optionalObservationVariable.getBody().getResult();
+		assertEquals(true, variable.getObservationVariableDbId() != null, "VariableDbId was not parsed properly.");
+		variableAssertEquals((BrAPIObservationVariable) createdVariable, variable);
+	}
+
+	@Test
+	@SneakyThrows
+	void getVariableByIdInvalid() {
+		HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+			ApiResponse<BrAPIObservationVariableSingleResponse> variable = variablesAPI
+					.variablesObservationVariableDbIdGet("badVariableId");
+		});
+	}
+
+	@Test
+	@SneakyThrows
+	@Order(2)
+	public void updateVariableSuccess() {
+		BrAPIObservationVariable variable = this.createdVariable;
+		variable.setObservationVariableName("updated_name");
+
+		// Check that it is a success and all data matches
+		ApiResponse<BrAPIObservationVariableSingleResponse> updatedVaribleResult = this.variablesAPI
+				.variablesObservationVariableDbIdPut(this.createdVariable.getObservationVariableDbId(), variable);
+
+		assertNotNull(updatedVaribleResult, "Variable was not returned");
+		BrAPIObservationVariable updatedVariable = updatedVaribleResult.getBody().getResult();
+		variableAssertEquals(variable, updatedVariable);
+	}
+
+	@Test
+	@SneakyThrows
+	public void updateVariableMissingId() {
+		// Check that it throws an ApiException
+		BrAPIObservationVariable brApiVariable = new BrAPIObservationVariable()
+				.observationVariableName("new test variable");
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationVariableSingleResponse> updatedVariableResult = this.variablesAPI
+					.variablesObservationVariableDbIdPut(null, brApiVariable);
+		});
+	}
+
+	@Test
+	public void updateVariableNull() {
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationVariableSingleResponse> variable = this.variablesAPI
+					.variablesObservationVariableDbIdPut("fake id", null);
+		});
+	}
 
 }

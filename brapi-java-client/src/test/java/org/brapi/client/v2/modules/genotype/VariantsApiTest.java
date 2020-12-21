@@ -12,6 +12,8 @@
 
 package org.brapi.client.v2.modules.genotype;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
@@ -40,8 +42,10 @@ public class VariantsApiTest {
     @Test
     public void searchVariantsPostTest() throws ApiException {
         BrAPIVariantsSearchRequest body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVariantsListResponse> response = api.searchVariantsPost(body);
+		});
 
         // TODO: test validations
     }
@@ -58,8 +62,10 @@ public class VariantsApiTest {
         String searchResultsDbId = null;
         String pageToken = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVariantsListResponse> response = api.searchVariantsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
+		});
 
         // TODO: test validations
     }
@@ -102,7 +108,9 @@ public class VariantsApiTest {
         Integer pageSize = null;
         
         CallQueryParams queryParams = new CallQueryParams();
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICallsListResponse> response = api.variantsVariantDbIdCallsGet(variantDbId, queryParams);
+		});
 
         // TODO: test validations
     }
@@ -117,8 +125,10 @@ public class VariantsApiTest {
     @Test
     public void variantsVariantDbIdGetTest() throws ApiException {
         String variantDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVariantSingleResponse> response = api.variantsVariantDbIdGet(variantDbId);
+		});
 
         // TODO: test validations
     }

@@ -22,6 +22,9 @@ import org.brapi.v2.model.core.response.BrAPIStudySingleResponse;
 import org.brapi.v2.model.core.response.BrAPIStudyTypesResponse;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -41,7 +44,7 @@ public class StudiesApiTest {
      */
     @Test
     public void searchStudiesPostTest() throws ApiException {
-        BrAPIStudySearchRequest body = null;
+        BrAPIStudySearchRequest body = new BrAPIStudySearchRequest();
         
         ApiResponse<BrAPIStudyListResponse> response = api.searchStudiesPost(body);
 
@@ -60,7 +63,9 @@ public class StudiesApiTest {
         String searchResultsDbId = null;
         Integer page = null;
         Integer pageSize = null;
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIStudyListResponse> response = api.searchStudiesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+		});
 
         // TODO: test validations
     }
@@ -109,7 +114,7 @@ public class StudiesApiTest {
      */
     @Test
     public void studiesPostTest() throws ApiException {
-        List<BrAPIStudy> body = null;
+        List<BrAPIStudy> body = Arrays.asList(new BrAPIStudy());
         
         ApiResponse<BrAPIStudyListResponse> response = api.studiesPost(body);
 
@@ -126,8 +131,10 @@ public class StudiesApiTest {
     @Test
     public void studiesStudyDbIdGetTest() throws ApiException {
         String studyDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIStudySingleResponse> response = api.studiesStudyDbIdGet(studyDbId);
+		});
 
         // TODO: test validations
     }
@@ -143,8 +150,10 @@ public class StudiesApiTest {
     public void studiesStudyDbIdPutTest() throws ApiException {
         String studyDbId = null;
         BrAPIStudy body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIStudySingleResponse> response = api.studiesStudyDbIdPut(studyDbId, body);
+		});
 
         // TODO: test validations
     }

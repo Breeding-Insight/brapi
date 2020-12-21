@@ -57,6 +57,9 @@ public class LocationsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call locationsGetCall(LocationQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -133,6 +136,9 @@ public class LocationsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call locationsLocationDbIdGetCall(String locationDbId) throws ApiException {
+        if(locationDbId == null) {
+            throw new IllegalArgumentException("locationDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -199,6 +205,12 @@ public class LocationsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call locationsLocationDbIdPutCall(String locationDbId, BrAPILocation body) throws ApiException {
+        if(locationDbId == null) {
+            throw new IllegalArgumentException("locationDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -266,6 +278,9 @@ public class LocationsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call locationsPostCall(List<BrAPILocation> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -330,6 +345,9 @@ public class LocationsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchLocationsPostCall(BrAPILocationSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -396,6 +414,9 @@ public class LocationsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchLocationsSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

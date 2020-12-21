@@ -22,6 +22,8 @@ import org.brapi.v2.model.germ.request.BrAPIGermplasmAttributeSearchRequest;
 import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeSingleResponse;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.List;
 
 /**
@@ -42,8 +44,10 @@ public class GermplasmAttributesApiTest {
     @Test
     public void attributesAttributeDbIdGetTest() throws ApiException {
         String attributeDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIGermplasmAttributeSingleResponse> response = api.attributesAttributeDbIdGet(attributeDbId);
+		});
 
         // TODO: test validations
     }
@@ -59,8 +63,10 @@ public class GermplasmAttributesApiTest {
     public void attributesAttributeDbIdPutTest() throws ApiException {
         String attributeDbId = null;
         BrAPIGermplasmAttribute body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIGermplasmAttributeSingleResponse> response = api.attributesAttributeDbIdPut(attributeDbId, body);
+		});
 
         // TODO: test validations
     }
@@ -116,8 +122,10 @@ public class GermplasmAttributesApiTest {
     @Test
     public void attributesPostTest() throws ApiException {
         List<BrAPIGermplasmAttribute> body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.attributesPost(body);
+		});
 
         // TODO: test validations
     }
@@ -132,8 +140,10 @@ public class GermplasmAttributesApiTest {
     @Test
     public void searchAttributesPostTest() throws ApiException {
         BrAPIGermplasmAttributeSearchRequest body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.searchAttributesPost(body);
+		});
 
         // TODO: test validations
     }
@@ -150,8 +160,10 @@ public class GermplasmAttributesApiTest {
         String searchResultsDbId = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.searchAttributesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+		});
 
         // TODO: test validations
     }

@@ -57,6 +57,9 @@ public class TraitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call traitsGetCall(TraitQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+        	throw new IllegalArgumentException("queryParams cannot be null");
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -136,6 +139,9 @@ public class TraitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call traitsPostCall(List<BrAPITrait> body) throws ApiException {
+        if(body == null) {
+        	throw new IllegalArgumentException("body cannot be null");
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -205,6 +211,9 @@ public class TraitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call traitsTraitDbIdGetCall(String traitDbId) throws ApiException {
+        if(traitDbId == null) {
+        	throw new IllegalArgumentException("traitDbId cannot be null");
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -276,6 +285,12 @@ public class TraitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call traitsTraitDbIdPutCall(String traitDbId, BrAPITrait body) throws ApiException {
+        if(traitDbId == null) {
+        	throw new IllegalArgumentException("traitDbId cannot be null");
+        }
+        if(body == null) {
+        	throw new IllegalArgumentException("body cannot be null");
+        }
         Object localVarPostBody = body;
         
         // create path and map variables

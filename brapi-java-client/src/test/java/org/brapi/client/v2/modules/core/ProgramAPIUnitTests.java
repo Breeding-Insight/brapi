@@ -21,20 +21,26 @@ import lombok.SneakyThrows;
 import okhttp3.Call;
 
 import org.brapi.client.v2.BrAPIClient;
+import org.brapi.client.v2.model.exceptions.ApiException;
+import org.brapi.client.v2.model.queryParams.core.ProgramQueryParams;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.v2.model.core.BrAPIProgram;
+import org.brapi.v2.model.core.response.BrAPILocationListResponse;
 import org.brapi.v2.model.core.response.BrAPIProgramListResponse;
 import org.brapi.v2.model.core.response.BrAPIProgramSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -45,28 +51,30 @@ import static org.mockito.Mockito.when;
 public class ProgramAPIUnitTests {
 
     ProgramsApi programsAPI;
-    @Mock
-    BrAPIClient brAPIClient;
 
     @BeforeAll
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-        programsAPI = new ProgramsApi(brAPIClient);
+    public void setUp() throws ApiException {
+        BrAPIClient mockClient = Mockito.mock(BrAPIClient.class);
+    	BrAPIClient realClient = new BrAPIClient("http://test");
+    	Call dummyCall = realClient.buildCall("/test", "GET", new HashMap<>(), new HashMap<>(), null, new HashMap<>(), new HashMap<>(), new String[] {});
+    	when(mockClient.escapeString(any(String.class))).thenReturn("http://test");
+    	when(mockClient.buildCall(any(String.class), any(String.class), any(Map.class), any(Map.class), any(), any(Map.class), any(Map.class), any(String[].class))).thenReturn(dummyCall);
+        when(mockClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null, new BrAPIProgramListResponse()));
+
+        programsAPI = new ProgramsApi(mockClient);
     }
 
     @Test
     @SneakyThrows
     public void getProgramsEmptyBody() {
-        when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-        ApiResponse<BrAPIProgramListResponse> brApiPrograms = programsAPI.programsGet(null);
+        ApiResponse<BrAPIProgramListResponse> brApiPrograms = programsAPI.programsGet(new ProgramQueryParams());
 
-        assertEquals(0, brApiPrograms.getBody().getResult().getData().size(), "List size is greater than 0");
+        assertNotNull(brApiPrograms, "BrAPI program was not empty");
     }
 
     @Test
     @SneakyThrows
     public void getProgramByIdEmptyBody() {
-        when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
         ApiResponse<BrAPIProgramSingleResponse> brApiProgram = programsAPI.programsProgramDbIdGet("test");
 
         assertNotNull(brApiProgram, "BrAPI program was not empty");
@@ -75,19 +83,17 @@ public class ProgramAPIUnitTests {
     @Test
     @SneakyThrows
     public void createProgramsEmptyBody() {
-        when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
         List<BrAPIProgram> brApiPrograms = new ArrayList<>();
         BrAPIProgram brApiProgram = new BrAPIProgram().programName("test");
         brApiPrograms.add(brApiProgram);
         ApiResponse<BrAPIProgramListResponse> createdBrAPIPrograms = programsAPI.programsPost(brApiPrograms);
 
-        assertEquals(0, createdBrAPIPrograms.getBody().getResult().getData().size(), "List size is greater than 0");
+        assertNotNull(createdBrAPIPrograms, "BrAPI program was not empty");
     }
 
     @Test
     @SneakyThrows
     public void createProgramEmptyBody() {
-        when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
         BrAPIProgram brApiProgram = new BrAPIProgram().programName("test");
         ApiResponse<BrAPIProgramListResponse> brApiPrograms = programsAPI.programsPost(Arrays.asList(brApiProgram));
 
@@ -97,9 +103,7 @@ public class ProgramAPIUnitTests {
     @Test
     @SneakyThrows
     public void updateProgramEmptyBody() {
-        when(brAPIClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(200, null));
-
-        ApiResponse<BrAPIProgramSingleResponse> brApiPrograms = programsAPI.programsProgramDbIdPut("fake DbId", null);
+        ApiResponse<BrAPIProgramSingleResponse> brApiPrograms = programsAPI.programsProgramDbIdPut("fake DbId", new BrAPIProgram());
 
         assertNotNull(brApiPrograms, "BrAPI program was not empty");
     }

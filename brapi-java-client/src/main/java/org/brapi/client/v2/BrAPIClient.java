@@ -73,17 +73,22 @@ public class BrAPIClient {
 	private OkHttpClient httpClient;
 	private JSON json;
 
+	public BrAPIClient() {
+		setBasePath("");
+		init();
+	}
+
 	public BrAPIClient(String basePath) {
-		httpClient = new OkHttpClient();
 		setBasePath(basePath);
-
+		init();
+	}
+	
+	private void init() {
+		httpClient = new OkHttpClient();
 		verifyingSsl = true;
-
 		json = new JSON();
-
 		// Set default User-Agent.
 		setUserAgent("brapi-java-client/2.0");
-
 		// Setup authentications (key: authentication name, value: authentication).
 		authentications = new HashMap<String, Authentication>();
 		authentications.put("AuthorizationToken", new OAuth());

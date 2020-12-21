@@ -60,6 +60,9 @@ public class VariantsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchVariantsPostCall(BrAPIVariantsSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -131,6 +134,9 @@ public class VariantsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchVariantsSearchResultsDbIdGetCall(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -204,6 +210,9 @@ public class VariantsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call variantsGetCall(VariantQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -275,6 +284,12 @@ public class VariantsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call variantsVariantDbIdCallsGetCall(String variantDbId, GenotypeQueryParams queryParams) throws ApiException {
+        if(variantDbId == null) {
+            throw new IllegalArgumentException("variantDbId cannot be null"); 
+        }
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -354,6 +369,9 @@ public class VariantsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call variantsVariantDbIdGetCall(String variantDbId) throws ApiException {
+        if(variantDbId == null) {
+            throw new IllegalArgumentException("variantDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

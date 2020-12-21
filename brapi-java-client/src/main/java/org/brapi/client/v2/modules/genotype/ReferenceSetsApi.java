@@ -55,6 +55,9 @@ public class ReferenceSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call referencesetsGetCall(ReferenceSetQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -134,6 +137,9 @@ public class ReferenceSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call referencesetsReferenceSetDbIdGetCall(String referenceSetDbId) throws ApiException {
+        if(referenceSetDbId == null) {
+            throw new IllegalArgumentException("referenceSetDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -204,6 +210,9 @@ public class ReferenceSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchReferencesetsPostCall(BrAPIReferenceSetsSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -275,6 +284,9 @@ public class ReferenceSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchReferencesetsSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

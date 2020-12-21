@@ -12,6 +12,8 @@
 
 package org.brapi.client.v2.modules.genotype;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenomeMapQueryParams;
@@ -67,8 +69,10 @@ public class GenomeMapsApiTest {
     @Test
     public void mapsMapDbIdGetTest() throws ApiException {
         String mapDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIGenomeMapSingleResponse> response = api.mapsMapDbIdGet(mapDbId);
+		});
 
         // TODO: test validations
     }
@@ -85,8 +89,10 @@ public class GenomeMapsApiTest {
         String mapDbId = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPILinkageGroupListResponse> response = api.mapsMapDbIdLinkagegroupsGet(mapDbId, page, pageSize);
+		});
 
         // TODO: test validations
     }
@@ -124,8 +130,10 @@ public class GenomeMapsApiTest {
     @Test
     public void searchMarkerpositionsPostTest() throws ApiException {
         BrAPIMarkerPositionSearchRequest body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIMarkerPositionListResponse> response = api.searchMarkerpositionsPost(body);
+		});
 
         // TODO: test validations
     }
@@ -142,8 +150,10 @@ public class GenomeMapsApiTest {
         String searchResultsDbId = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIMarkerPositionListResponse> response = api.searchMarkerpositionsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+		});
 
         // TODO: test validations
     }

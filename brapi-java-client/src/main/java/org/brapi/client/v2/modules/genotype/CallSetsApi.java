@@ -58,6 +58,12 @@ public class CallSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call callsetsCallSetDbIdCallsGetCall(String callSetDbId, GenotypeQueryParams queryParams) throws ApiException {
+        if(callSetDbId == null) {
+            throw new IllegalArgumentException("callSetDbId cannot be null"); 
+        }
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -138,6 +144,9 @@ public class CallSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call callsetsCallSetDbIdGetCall(String callSetDbId) throws ApiException {
+        if(callSetDbId == null) {
+            throw new IllegalArgumentException("callSetDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -205,6 +214,9 @@ public class CallSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call callsetsGetCall(CallSetQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -284,6 +296,9 @@ public class CallSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchCallsetsPostCall(BrAPICallSetsSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -355,6 +370,9 @@ public class CallSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchCallsetsSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

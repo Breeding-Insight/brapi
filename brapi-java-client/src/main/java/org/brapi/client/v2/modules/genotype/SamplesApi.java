@@ -57,6 +57,9 @@ public class SamplesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call samplesGetCall(SampleQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -142,6 +145,9 @@ public class SamplesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call samplesPostCall(List<BrAPISample> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -211,6 +217,9 @@ public class SamplesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call samplesSampleDbIdGetCall(String sampleDbId) throws ApiException {
+        if(sampleDbId == null) {
+            throw new IllegalArgumentException("sampleDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -282,6 +291,12 @@ public class SamplesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call samplesSampleDbIdPutCall(String sampleDbId, BrAPISample body) throws ApiException {
+        if(sampleDbId == null) {
+            throw new IllegalArgumentException("sampleDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -354,6 +369,9 @@ public class SamplesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchSamplesPostCall(BrAPISampleSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -425,6 +443,9 @@ public class SamplesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchSamplesSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

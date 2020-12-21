@@ -12,6 +12,8 @@
 
 package org.brapi.client.v2.modules.genotype;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
@@ -61,7 +63,7 @@ public class CallsApiTest {
      */
     @Test
     public void searchCallsPostTest() throws ApiException {
-        BrAPICallsSearchRequest body = null;
+        BrAPICallsSearchRequest body = new BrAPICallsSearchRequest();
         
         ApiResponse<BrAPICallsListResponse> response = api.searchCallsPost(body);
 
@@ -80,8 +82,10 @@ public class CallsApiTest {
         String searchResultsDbId = null;
         String pageToken = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICallsListResponse> response = api.searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
+		});
 
         // TODO: test validations
     }

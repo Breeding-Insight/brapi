@@ -21,6 +21,9 @@ import org.brapi.v2.model.core.request.BrAPIPersonSearchRequest;
 import org.brapi.v2.model.core.response.BrAPIPersonSingleResponse;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -65,8 +68,10 @@ public class PeopleApiTest {
     @Test
     public void peoplePersonDbIdGetTest() throws ApiException {
         String personDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIPersonSingleResponse> response = api.peoplePersonDbIdGet(personDbId);
+		});
 
         // TODO: test validations
     }
@@ -82,8 +87,10 @@ public class PeopleApiTest {
     public void peoplePersonDbIdPutTest() throws ApiException {
         String personDbId = null;
         BrAPIPerson body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIPersonSingleResponse> response = api.peoplePersonDbIdPut(personDbId, body);
+		});
 
         // TODO: test validations
     }
@@ -97,7 +104,7 @@ public class PeopleApiTest {
      */
     @Test
     public void peoplePostTest() throws ApiException {
-        List<BrAPIPerson> body = null;
+        List<BrAPIPerson> body = Arrays.asList(new BrAPIPerson());
         
         ApiResponse<BrAPIPersonListResponse> response = api.peoplePost(body);
 
@@ -113,7 +120,7 @@ public class PeopleApiTest {
      */
     @Test
     public void searchPeoplePostTest() throws ApiException {
-        BrAPIPersonSearchRequest body = null;
+        BrAPIPersonSearchRequest body = new BrAPIPersonSearchRequest();
         
         ApiResponse<BrAPIPersonListResponse> response = api.searchPeoplePost(body);
 
@@ -132,8 +139,10 @@ public class PeopleApiTest {
         String searchResultsDbId = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIPersonListResponse> response = api.searchPeopleSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+		});
 
         // TODO: test validations
     }

@@ -149,6 +149,9 @@ public class VendorApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call vendorOrdersOrderIdPlatesGetCall(String orderId, Integer page, Integer pageSize) throws ApiException {
+        if(orderId == null) {
+            throw new IllegalArgumentException("orderId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -229,6 +232,9 @@ public class VendorApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call vendorOrdersOrderIdResultsGetCall(String orderId, Integer page, Integer pageSize) throws ApiException {
+        if(orderId == null) {
+            throw new IllegalArgumentException("orderId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -307,6 +313,9 @@ public class VendorApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call vendorOrdersOrderIdStatusGetCall(String orderId) throws ApiException {
+        if(orderId == null) {
+            throw new IllegalArgumentException("orderId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -377,6 +386,9 @@ public class VendorApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call vendorOrdersPostCall(BrAPIVendorOrderSubmissionRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -446,6 +458,9 @@ public class VendorApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call vendorPlatesPostCall(BrAPIVendorPlateSubmissionRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -515,6 +530,9 @@ public class VendorApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call vendorPlatesSubmissionIdGetCall(String submissionId) throws ApiException {
+        if(submissionId == null) {
+            throw new IllegalArgumentException("submissionId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

@@ -23,6 +23,7 @@ import org.brapi.v2.model.core.response.BrAPIListsListResponse;
 import org.brapi.v2.model.core.response.BrAPIListsSingleResponse;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**

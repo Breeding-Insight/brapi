@@ -60,6 +60,9 @@ public class CrossingProjectsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call crossingprojectsCrossingProjectDbIdGetCall(String crossingProjectDbId) throws ApiException {
+        if(crossingProjectDbId == null) {
+            throw new IllegalArgumentException("crossingProjectDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -131,6 +134,12 @@ public class CrossingProjectsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call crossingprojectsCrossingProjectDbIdPutCall(String crossingProjectDbId, BrAPICrossingProject body) throws ApiException {
+        if(crossingProjectDbId == null) {
+            throw new IllegalArgumentException("crossingProjectDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -200,6 +209,9 @@ public class CrossingProjectsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call crossingprojectsGetCall(CrossingProjectQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -277,6 +289,9 @@ public class CrossingProjectsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call crossingprojectsPostCall(List<BrAPICrossingProject> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables

@@ -54,6 +54,9 @@ public class CallsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call callsGetCall(CallQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -139,6 +142,9 @@ public class CallsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchCallsPostCall(BrAPICallsSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -210,6 +216,9 @@ public class CallsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchCallsSearchResultsDbIdGetCall(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

@@ -21,6 +21,8 @@ import org.brapi.v2.model.geno.request.BrAPISampleSearchRequest;
 import org.brapi.v2.model.geno.response.BrAPISampleSingleResponse;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.List;
 
 /**
@@ -66,8 +68,10 @@ public class SamplesApiTest {
     @Test
     public void samplesPostTest() throws ApiException {
         List<BrAPISample> body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISampleListResponse> response = api.samplesPost(body);
+		});
 
         // TODO: test validations
     }
@@ -82,8 +86,10 @@ public class SamplesApiTest {
     @Test
     public void samplesSampleDbIdGetTest() throws ApiException {
         String sampleDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISampleSingleResponse> response = api.samplesSampleDbIdGet(sampleDbId);
+		});
 
         // TODO: test validations
     }
@@ -99,8 +105,10 @@ public class SamplesApiTest {
     public void samplesSampleDbIdPutTest() throws ApiException {
         String sampleDbId = null;
         BrAPISample body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISampleSingleResponse> response = api.samplesSampleDbIdPut(sampleDbId, body);
+		});
 
         // TODO: test validations
     }
@@ -115,8 +123,10 @@ public class SamplesApiTest {
     @Test
     public void searchSamplesPostTest() throws ApiException {
         BrAPISampleSearchRequest body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISampleListResponse> response = api.searchSamplesPost(body);
+		});
 
         // TODO: test validations
     }
@@ -133,8 +143,10 @@ public class SamplesApiTest {
         String searchResultsDbId = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISampleListResponse> response = api.searchSamplesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+		});
 
         // TODO: test validations
     }

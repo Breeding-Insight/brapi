@@ -56,6 +56,9 @@ public class SeasonsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call seasonsGetCall(SeasonQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -133,6 +136,9 @@ public class SeasonsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call seasonsPostCall(List<BrAPISeason> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -202,6 +208,9 @@ public class SeasonsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call seasonsSeasonDbIdGetCall(String seasonDbId) throws ApiException {
+        if(seasonDbId == null) {
+            throw new IllegalArgumentException("seasonDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -273,6 +282,12 @@ public class SeasonsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call seasonsSeasonDbIdPutCall(String seasonDbId, BrAPISeason body) throws ApiException {
+        if(seasonDbId == null) {
+            throw new IllegalArgumentException("seasonDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables

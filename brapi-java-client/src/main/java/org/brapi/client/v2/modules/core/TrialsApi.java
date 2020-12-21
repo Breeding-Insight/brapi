@@ -60,6 +60,9 @@ public class TrialsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchTrialsPostCall(BrAPITrialSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -131,6 +134,9 @@ public class TrialsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchTrialsSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -206,6 +212,9 @@ public class TrialsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call trialsGetCall(TrialQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -307,6 +316,9 @@ public class TrialsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call trialsPostCall(List<BrAPITrial> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -376,6 +388,9 @@ public class TrialsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call trialsTrialDbIdGetCall(String trialDbId) throws ApiException {
+        if(trialDbId == null) {
+            throw new IllegalArgumentException("trialDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -447,6 +462,12 @@ public class TrialsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call trialsTrialDbIdPutCall(String trialDbId, BrAPITrial body) throws ApiException {
+        if(trialDbId == null) {
+            throw new IllegalArgumentException("trialDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables

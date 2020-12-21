@@ -22,6 +22,8 @@ import org.brapi.v2.model.pheno.response.BrAPIImageSingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.List;
 
 /**
@@ -29,139 +31,209 @@ import java.util.List;
  */
 public class ImagesApiTest {
 
-    private static ImagesApi api;
-    
-    @BeforeAll
-    public static void setup() throws ApiException {
-    	api = new ImagesApi();
-    	api.getApiClient().authenticate((v) -> {
-    		return "XXXX";
-    	});
-    }
+	private static ImagesApi api;
 
-    /**
-     * Get the image meta data summaries
-     *
-     * Get filtered set of image meta data  Implementation Notes  - &#x27;&#x27;imageURL&#x27;&#x27; should be a complete URL describing the location of the image. There is no BrAPI call for retrieving the image content, so it could be on a different path, or a different host.  - &#x27;&#x27;descriptiveOntologyTerm&#x27;&#x27; can be thought of as Tags for the image. These could be simple descriptive words, or ontology references, or full ontology URI&#x27;&#x27;s.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void imagesGetTest() throws ApiException {
-        String imageDbId = null;
-        String imageName = null;
-        String observationUnitDbId = null;
-        String observationDbId = null;
-        String descriptiveOntologyTerm = null;
-        String externalReferenceID = null;
-        String externalReferenceSource = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        ImageQueryParams queryParams = new ImageQueryParams();
-        ApiResponse<BrAPIImageListResponse> response = api.imagesGet(queryParams);
+	@BeforeAll
+	public static void setup() throws ApiException {
+		api = new ImagesApi();
+		api.getApiClient().authenticate((v) -> {
+			return "XXXX";
+		});
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Get the an image meta data summary
-     *
-     * Get one image meta data object  Implementation Notes  - &#x27;&#x27;imageURL&#x27;&#x27; should be a complete URL describing the location of the image. There is no BrAPI call for retrieving the image content, so it could be on a different path, or a different host.  - &#x27;&#x27;descriptiveOntologyTerm&#x27;&#x27; can be thought of as Tags for the image. These could be simple descriptive words, or ontology references, or full ontology URI&#x27;&#x27;s.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void imagesImageDbIdGetTest() throws ApiException {
-        String imageDbId = null;
-        
-        ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdGet(imageDbId);
+	/**
+	 * Get the image meta data summaries
+	 *
+	 * Get filtered set of image meta data Implementation Notes -
+	 * &#x27;&#x27;imageURL&#x27;&#x27; should be a complete URL describing the
+	 * location of the image. There is no BrAPI call for retrieving the image
+	 * content, so it could be on a different path, or a different host. -
+	 * &#x27;&#x27;descriptiveOntologyTerm&#x27;&#x27; can be thought of as Tags for
+	 * the image. These could be simple descriptive words, or ontology references,
+	 * or full ontology URI&#x27;&#x27;s.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void imagesGetTest() throws ApiException {
+		String imageDbId = null;
+		String imageName = null;
+		String observationUnitDbId = null;
+		String observationDbId = null;
+		String descriptiveOntologyTerm = null;
+		String externalReferenceID = null;
+		String externalReferenceSource = null;
+		Integer page = null;
+		Integer pageSize = null;
 
-        // TODO: test validations
-    }
-    /**
-     * Update an image with the image file content
-     *
-     * Update an image with the image file content  Implementation Notes  - This call should be paired with &#x27;PUT /images/{imageDbId}&#x27; for full capability  - A server may choose to modify the image meta data object based on the actually image which has been uploaded.   - Image data may be stored in a database or file system. Servers should generate and provide the \&quot;imageURL\&quot; for retrieving the image, wherever it happens to live.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void imagesImageDbIdImagecontentPutTest() throws ApiException {
-        String imageDbId = null;
-        Object body = null;
-        
-        ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdImagecontentPut(imageDbId, body);
+		ImageQueryParams queryParams = new ImageQueryParams();
+		ApiResponse<BrAPIImageListResponse> response = api.imagesGet(queryParams);
 
-        // TODO: test validations
-    }
-    /**
-     * Update an image meta data
-     *
-     * Update an image meta data object  Implementation Notes  - This call should be paired with &#x27;PUT /images/{imageDbId}/imagecontent&#x27; for full capability  - A server may choose to modify the image meta data object based on the actually image which has been uploaded.   - Image data may be stored in a database or file system. Servers should generate and provide the \&quot;imageURL\&quot; as an absolute path for retrieving the image, wherever it happens to live.   - &#x27;descriptiveOntologyTerm&#x27; can be thought of as Tags for the image. These could be simple descriptive words, or ontology references, or full ontology URI&#x27;s.   - The &#x27;/images&#x27; calls support a GeoJSON object structure for describing their location. The BrAPI spec for GeoJSON only supports two of the possible geometries: Points and Polygons.   - With most images, the Point geometry should be used, and it should indicate the longitude and latitude of the camera.   - For top down images (ie from drones, cranes, etc), the Point geometry may be used to indicate the longitude and latitude of the centroid of the image content, and the Polygon geometry may be used to indicate the border of the image content.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void imagesImageDbIdPutTest() throws ApiException {
-        String imageDbId = null;
-        BrAPIImage body = null;
-        
-        ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdPut(imageDbId, body);
+		// TODO: test validations
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Create new image meta data objects
-     *
-     * Create new image meta data objects  Implementation Notes  - &#x27;&#x27;imageURL&#x27;&#x27; should be a complete URL describing the location of the image. There is no BrAPI call for retrieving the image content, so it could be on a different path, or a different host.  - &#x27;&#x27;descriptiveOntologyTerm&#x27;&#x27; can be thought of as Tags for the image. These could be simple descriptive words, or ontology references, or full ontology URI&#x27;&#x27;s.  - The &#x27;/images&#x27; calls support a GeoJSON object structure for describing their location. The BrAPI spec for GeoJSON only supports two of the possible geometries: Points and Polygons.  - With most images, the Point geometry should be used, and it should indicate the longitude and latitude of the camera.  - For top down images (ie from drones, cranes, etc), the Point geometry may be used to indicate the longitude and latitude of the centroid of the image content, and the Polygon geometry may be used to indicate the border of the image content. &#x27;
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void imagesPostTest() throws ApiException {
-        List<BrAPIImage> body = null;
-        
-        ApiResponse<BrAPIImageListResponse> response = api.imagesPost(body);
+	/**
+	 * Get the an image meta data summary
+	 *
+	 * Get one image meta data object Implementation Notes -
+	 * &#x27;&#x27;imageURL&#x27;&#x27; should be a complete URL describing the
+	 * location of the image. There is no BrAPI call for retrieving the image
+	 * content, so it could be on a different path, or a different host. -
+	 * &#x27;&#x27;descriptiveOntologyTerm&#x27;&#x27; can be thought of as Tags for
+	 * the image. These could be simple descriptive words, or ontology references,
+	 * or full ontology URI&#x27;&#x27;s.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void imagesImageDbIdGetTest() throws ApiException {
+		String imageDbId = null;
 
-        // TODO: test validations
-    }
-    /**
-     * Submit a search request for Images
-     *
-     * Get filtered set of image meta data  Implementation Notes  - &#x27;&#x27;imageURL&#x27;&#x27; should be a complete URL describing the location of the image. There is no BrAPI call for retrieving the image content, so it could be on a different path, or a different host.  - &#x27;descriptiveOntologyTerm&#x27; can be thought of as Tags for the image. These could be simple descriptive words, or ontology references, or full ontology URI&#x27;s.  See Search Services for additional implementation details.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchImagesPostTest() throws ApiException {
-        BrAPIImageSearchRequest body = null;
-        
-        ApiResponse<BrAPIImageListResponse> response = api.searchImagesPost(body);
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdGet(imageDbId);
+		});
 
-        // TODO: test validations
-    }
-    /**
-     * Get the results of an Images search request
-     *
-     * Get filtered set of image meta data  Implementation Notes  - &#x27;&#x27;imageURL&#x27;&#x27; should be a complete URL describing the location of the image. There is no BrAPI call for retrieving the image content, so it could be on a different path, or a different host.  - &#x27;&#x27;descriptiveOntologyTerm&#x27;&#x27; can be thought of as Tags for the image. These could be simple descriptive words, or ontology references, or full ontology URI&#x27;&#x27;s.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchImagesSearchResultsDbIdGetTest() throws ApiException {
-        String searchResultsDbId = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        ApiResponse<BrAPIImageListResponse> response = api.searchImagesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+		// TODO: test validations
+	}
 
-        // TODO: test validations
-    }
+	/**
+	 * Update an image with the image file content
+	 *
+	 * Update an image with the image file content Implementation Notes - This call
+	 * should be paired with &#x27;PUT /images/{imageDbId}&#x27; for full capability
+	 * - A server may choose to modify the image meta data object based on the
+	 * actually image which has been uploaded. - Image data may be stored in a
+	 * database or file system. Servers should generate and provide the
+	 * \&quot;imageURL\&quot; for retrieving the image, wherever it happens to live.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void imagesImageDbIdImagecontentPutTest() throws ApiException {
+		String imageDbId = null;
+		Object body = null;
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdImagecontentPut(imageDbId, body);
+		});
+
+		// TODO: test validations
+	}
+
+	/**
+	 * Update an image meta data
+	 *
+	 * Update an image meta data object Implementation Notes - This call should be
+	 * paired with &#x27;PUT /images/{imageDbId}/imagecontent&#x27; for full
+	 * capability - A server may choose to modify the image meta data object based
+	 * on the actually image which has been uploaded. - Image data may be stored in
+	 * a database or file system. Servers should generate and provide the
+	 * \&quot;imageURL\&quot; as an absolute path for retrieving the image, wherever
+	 * it happens to live. - &#x27;descriptiveOntologyTerm&#x27; can be thought of
+	 * as Tags for the image. These could be simple descriptive words, or ontology
+	 * references, or full ontology URI&#x27;s. - The &#x27;/images&#x27; calls
+	 * support a GeoJSON object structure for describing their location. The BrAPI
+	 * spec for GeoJSON only supports two of the possible geometries: Points and
+	 * Polygons. - With most images, the Point geometry should be used, and it
+	 * should indicate the longitude and latitude of the camera. - For top down
+	 * images (ie from drones, cranes, etc), the Point geometry may be used to
+	 * indicate the longitude and latitude of the centroid of the image content, and
+	 * the Polygon geometry may be used to indicate the border of the image content.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void imagesImageDbIdPutTest() throws ApiException {
+		String imageDbId = null;
+		BrAPIImage body = null;
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdPut(imageDbId, body);
+		});
+
+		// TODO: test validations
+	}
+
+	/**
+	 * Create new image meta data objects
+	 *
+	 * Create new image meta data objects Implementation Notes -
+	 * &#x27;&#x27;imageURL&#x27;&#x27; should be a complete URL describing the
+	 * location of the image. There is no BrAPI call for retrieving the image
+	 * content, so it could be on a different path, or a different host. -
+	 * &#x27;&#x27;descriptiveOntologyTerm&#x27;&#x27; can be thought of as Tags for
+	 * the image. These could be simple descriptive words, or ontology references,
+	 * or full ontology URI&#x27;&#x27;s. - The &#x27;/images&#x27; calls support a
+	 * GeoJSON object structure for describing their location. The BrAPI spec for
+	 * GeoJSON only supports two of the possible geometries: Points and Polygons. -
+	 * With most images, the Point geometry should be used, and it should indicate
+	 * the longitude and latitude of the camera. - For top down images (ie from
+	 * drones, cranes, etc), the Point geometry may be used to indicate the
+	 * longitude and latitude of the centroid of the image content, and the Polygon
+	 * geometry may be used to indicate the border of the image content. &#x27;
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void imagesPostTest() throws ApiException {
+		List<BrAPIImage> body = null;
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIImageListResponse> response = api.imagesPost(body);
+		});
+
+		// TODO: test validations
+	}
+
+	/**
+	 * Submit a search request for Images
+	 *
+	 * Get filtered set of image meta data Implementation Notes -
+	 * &#x27;&#x27;imageURL&#x27;&#x27; should be a complete URL describing the
+	 * location of the image. There is no BrAPI call for retrieving the image
+	 * content, so it could be on a different path, or a different host. -
+	 * &#x27;descriptiveOntologyTerm&#x27; can be thought of as Tags for the image.
+	 * These could be simple descriptive words, or ontology references, or full
+	 * ontology URI&#x27;s. See Search Services for additional implementation
+	 * details.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void searchImagesPostTest() throws ApiException {
+		BrAPIImageSearchRequest body = null;
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIImageListResponse> response = api.searchImagesPost(body);
+		});
+
+		// TODO: test validations
+	}
+
+	/**
+	 * Get the results of an Images search request
+	 *
+	 * Get filtered set of image meta data Implementation Notes -
+	 * &#x27;&#x27;imageURL&#x27;&#x27; should be a complete URL describing the
+	 * location of the image. There is no BrAPI call for retrieving the image
+	 * content, so it could be on a different path, or a different host. -
+	 * &#x27;&#x27;descriptiveOntologyTerm&#x27;&#x27; can be thought of as Tags for
+	 * the image. These could be simple descriptive words, or ontology references,
+	 * or full ontology URI&#x27;&#x27;s.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void searchImagesSearchResultsDbIdGetTest() throws ApiException {
+		String searchResultsDbId = null;
+		Integer page = null;
+		Integer pageSize = null;
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIImageListResponse> response = api.searchImagesSearchResultsDbIdGet(searchResultsDbId, page,
+					pageSize);
+		});
+
+		// TODO: test validations
+	}
 }

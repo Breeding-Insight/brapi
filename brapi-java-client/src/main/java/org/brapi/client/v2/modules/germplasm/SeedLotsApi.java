@@ -60,6 +60,9 @@ public class SeedLotsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call seedlotsGetCall(SeedLotQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -139,6 +142,9 @@ public class SeedLotsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call seedlotsPostCall(List<BrAPISeedLot> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -208,6 +214,9 @@ public class SeedLotsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call seedlotsSeedLotDbIdGetCall(String seedLotDbId) throws ApiException {
+        if(seedLotDbId == null) {
+            throw new IllegalArgumentException("seedLotDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -279,6 +288,12 @@ public class SeedLotsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call seedlotsSeedLotDbIdPutCall(String seedLotDbId, BrAPISeedLot body) throws ApiException {
+        if(seedLotDbId == null) {
+            throw new IllegalArgumentException("seedLotDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -355,6 +370,9 @@ public class SeedLotsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call seedlotsSeedLotDbIdTransactionsGetCall(String seedLotDbId, String transactionDbId, String transactionDirection, Integer page, Integer pageSize) throws ApiException {
+        if(seedLotDbId == null) {
+            throw new IllegalArgumentException("seedLotDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -438,6 +456,9 @@ public class SeedLotsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call seedlotsTransactionsGetCall(SeedLotTransactionQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -519,6 +540,9 @@ public class SeedLotsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call seedlotsTransactionsPostCall(List<BrAPISeedLotTransaction> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables

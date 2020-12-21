@@ -66,6 +66,9 @@ public class GermplasmApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call breedingmethodsBreedingMethodDbIdGetCall(String breedingMethodDbId) throws ApiException {
+        if(breedingMethodDbId == null) {
+            throw new IllegalArgumentException("breedingMethodDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -212,6 +215,9 @@ public class GermplasmApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call germplasmGermplasmDbIdGetCall(String germplasmDbId) throws ApiException {
+        if(germplasmDbId == null) {
+            throw new IllegalArgumentException("germplasmDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -282,6 +288,9 @@ public class GermplasmApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call germplasmGermplasmDbIdMcpdGetCall(String germplasmDbId) throws ApiException {
+        if(germplasmDbId == null) {
+            throw new IllegalArgumentException("germplasmDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -354,6 +363,9 @@ public class GermplasmApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call germplasmGermplasmDbIdPedigreeGetCall(String germplasmDbId, String notation, Boolean includeSiblings) throws ApiException {
+        if(germplasmDbId == null) {
+            throw new IllegalArgumentException("germplasmDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -432,6 +444,9 @@ public class GermplasmApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call germplasmGermplasmDbIdProgenyGetCall(String germplasmDbId) throws ApiException {
+        if(germplasmDbId == null) {
+            throw new IllegalArgumentException("germplasmDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -503,6 +518,12 @@ public class GermplasmApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call germplasmGermplasmDbIdPutCall(String germplasmDbId, BrAPIGermplasm body) throws ApiException {
+        if(germplasmDbId == null) {
+            throw new IllegalArgumentException("germplasmDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -572,6 +593,9 @@ public class GermplasmApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call germplasmGetCall(GermplasmQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -671,6 +695,9 @@ public class GermplasmApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call germplasmPostCall(List<BrAPIGermplasm> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -740,6 +767,9 @@ public class GermplasmApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchGermplasmPostCall(BrAPIGermplasmSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -811,6 +841,9 @@ public class GermplasmApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchGermplasmSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

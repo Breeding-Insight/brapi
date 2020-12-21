@@ -23,6 +23,8 @@ import org.brapi.v2.model.germ.response.BrAPISeedLotSingleResponse;
 import org.brapi.v2.model.germ.response.BrAPISeedLotTransactionListResponse;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.List;
 
 /**
@@ -65,8 +67,10 @@ public class SeedLotsApiTest {
     @Test
     public void seedlotsPostTest() throws ApiException {
         List<BrAPISeedLot> body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISeedLotListResponse> response = api.seedlotsPost(body);
+		});
 
         // TODO: test validations
     }
@@ -81,8 +85,10 @@ public class SeedLotsApiTest {
     @Test
     public void seedlotsSeedLotDbIdGetTest() throws ApiException {
         String seedLotDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISeedLotSingleResponse> response = api.seedlotsSeedLotDbIdGet(seedLotDbId);
+		});
 
         // TODO: test validations
     }
@@ -98,8 +104,10 @@ public class SeedLotsApiTest {
     public void seedlotsSeedLotDbIdPutTest() throws ApiException {
         String seedLotDbId = null;
         BrAPISeedLot body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISeedLotSingleResponse> response = api.seedlotsSeedLotDbIdPut(seedLotDbId, body);
+		});
 
         // TODO: test validations
     }
@@ -118,8 +126,10 @@ public class SeedLotsApiTest {
         String transactionDirection = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsSeedLotDbIdTransactionsGet(seedLotDbId, transactionDbId, transactionDirection, page, pageSize);
+		});
 
         // TODO: test validations
     }
@@ -157,8 +167,10 @@ public class SeedLotsApiTest {
     @Test
     public void seedlotsTransactionsPostTest() throws ApiException {
         List<BrAPISeedLotTransaction> body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsTransactionsPost(body);
+		});
 
         // TODO: test validations
     }

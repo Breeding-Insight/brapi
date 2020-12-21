@@ -58,6 +58,9 @@ public class CrossesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call crossesGetCall(CrossQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -137,6 +140,9 @@ public class CrossesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call crossesPostCall(List<BrAPICross> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -206,6 +212,9 @@ public class CrossesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call crossesPutCall(Map<String, BrAPICross> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -272,6 +281,9 @@ public class CrossesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call plannedcrossesGetCall(PlannedCrossQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -351,6 +363,9 @@ public class CrossesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call plannedcrossesPostCall(List<BrAPIPlannedCross> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -420,6 +435,9 @@ public class CrossesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call plannedcrossesPutCall(Map<String, BrAPIPlannedCross> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables

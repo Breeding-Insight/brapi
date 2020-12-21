@@ -12,6 +12,8 @@
 
 package org.brapi.client.v2.modules.genotype;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallSetQueryParams;
@@ -48,7 +50,9 @@ public class CallSetsApiTest {
         Integer pageSize = null;
         
         GenotypeQueryParams queryParams = new GenotypeQueryParams();
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICallsListResponse> response = api.callsetsCallSetDbIdCallsGet(callSetDbId, queryParams);
+		});
 
         // TODO: test validations
     }
@@ -63,8 +67,10 @@ public class CallSetsApiTest {
     @Test
     public void callsetsCallSetDbIdGetTest() throws ApiException {
         String callSetDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICallSetResponse> response = api.callsetsCallSetDbIdGet(callSetDbId);
+		});
 
         // TODO: test validations
     }
@@ -101,7 +107,7 @@ public class CallSetsApiTest {
      */
     @Test
     public void searchCallsetsPostTest() throws ApiException {
-        BrAPICallSetsSearchRequest body = null;
+        BrAPICallSetsSearchRequest body = new BrAPICallSetsSearchRequest();
         
         ApiResponse<BrAPICallSetsListResponse> response = api.searchCallsetsPost(body);
 
@@ -120,8 +126,10 @@ public class CallSetsApiTest {
         String searchResultsDbId = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICallSetsListResponse> response = api.searchCallsetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+		});
 
         // TODO: test validations
     }

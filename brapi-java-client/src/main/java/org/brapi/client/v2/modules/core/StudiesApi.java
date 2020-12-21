@@ -61,6 +61,9 @@ public class StudiesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchStudiesPostCall(BrAPIStudySearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -132,6 +135,9 @@ public class StudiesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchStudiesSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -207,6 +213,9 @@ public class StudiesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call studiesGetCall(StudyQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -312,6 +321,9 @@ public class StudiesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call studiesPostCall(List<BrAPIStudy> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -381,6 +393,9 @@ public class StudiesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call studiesStudyDbIdGetCall(String studyDbId) throws ApiException {
+        if(studyDbId == null) {
+            throw new IllegalArgumentException("studyDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -452,6 +467,12 @@ public class StudiesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call studiesStudyDbIdPutCall(String studyDbId, BrAPIStudy body) throws ApiException {
+        if(studyDbId == null) {
+            throw new IllegalArgumentException("studyDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables

@@ -21,6 +21,8 @@ import org.brapi.v2.model.pheno.request.BrAPIObservationVariableSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIObservationVariableSingleResponse;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.List;
 
 /**
@@ -41,8 +43,10 @@ public class ObservationVariablesApiTest {
     @Test
     public void searchVariablesPostTest() throws ApiException {
         BrAPIObservationVariableSearchRequest body = null;
-        
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIObservationVariableListResponse> response = api.searchVariablesPost(body);
+        });
 
         // TODO: test validations
     }
@@ -59,8 +63,10 @@ public class ObservationVariablesApiTest {
         String searchResultsDbId = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIObservationVariableListResponse> response = api.searchVariablesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        });
 
         // TODO: test validations
     }
@@ -98,8 +104,10 @@ public class ObservationVariablesApiTest {
     @Test
     public void variablesObservationVariableDbIdGetTest() throws ApiException {
         String observationVariableDbId = null;
-        
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIObservationVariableSingleResponse> response = api.variablesObservationVariableDbIdGet(observationVariableDbId);
+        });
 
         // TODO: test validations
     }
@@ -115,8 +123,10 @@ public class ObservationVariablesApiTest {
     public void variablesObservationVariableDbIdPutTest() throws ApiException {
         String observationVariableDbId = null;
         BrAPIObservationVariable body = null;
-        
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIObservationVariableSingleResponse> response = api.variablesObservationVariableDbIdPut(observationVariableDbId, body);
+        });
 
         // TODO: test validations
     }
@@ -131,8 +141,10 @@ public class ObservationVariablesApiTest {
     @Test
     public void variablesPostTest() throws ApiException {
         List<BrAPIObservationVariable> body = null;
-        
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIObservationVariableListResponse> response = api.variablesPost(body);
+        });
 
         // TODO: test validations
     }

@@ -25,6 +25,8 @@ import org.brapi.v2.model.pheno.response.BrAPIObservationUnitSingleResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationUnitTableResponse;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.List;
 import java.util.Map;
 
@@ -33,182 +35,232 @@ import java.util.Map;
  */
 public class ObservationUnitsApiTest {
 
-    private final ObservationUnitsApi api = new ObservationUnitsApi();
+	private final ObservationUnitsApi api = new ObservationUnitsApi();
 
-    /**
-     * Get the Observation Levels
-     *
-     * Call to retrieve the list of supported observation levels.   Observation levels indicate the granularity level at which the measurements are taken. &#x60;levelName&#x60; defines the level, &#x60;levelOrder&#x60; defines where that level exists in the hierarchy of levels. &#x60;levelOrder&#x60;s lower numbers are at the top of the hierarchy (ie field &gt; 0) and higher numbers are at the bottom of the hierarchy (ie plant &gt; 6).   The values are used to supply the &#x60;observationLevel&#x60; parameter in the observation unit details call.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void observationlevelsGetTest() throws ApiException {
-        String studyDbId = null;
-        String trialDbId = null;
-        String programDbId = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        ApiResponse<BrAPIObservationLevelListResponse> response = api.observationlevelsGet(studyDbId, trialDbId, programDbId, page, pageSize);
+	@Test
+	public void observationlevelsGetTest() throws ApiException {
+		String studyDbId = null;
+		String trialDbId = null;
+		String programDbId = null;
+		Integer page = null;
+		Integer pageSize = null;
 
-        // TODO: test validations
-    }
-    /**
-     * Get a filtered set of Observation Units
-     *
-     * Get a filtered set of Observation Units
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void observationunitsGetTest() throws ApiException {
-        String observationUnitDbId = null;
-        String germplasmDbId = null;
-        String studyDbId = null;
-        String locationDbId = null;
-        String trialDbId = null;
-        String programDbId = null;
-        String seasonDbId = null;
-        String observationUnitLevelName = null;
-        String observationUnitLevelOrder = null;
-        String observationUnitLevelCode = null;
-        Boolean includeObservations = null;
-        String externalReferenceID = null;
-        String externalReferenceSource = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        ObservationUnitQueryParams queryParams = new ObservationUnitQueryParams();
-        ApiResponse<BrAPIObservationUnitListResponse> response = api.observationunitsGet(queryParams);
+		ApiResponse<BrAPIObservationLevelListResponse> response = api.observationlevelsGet(studyDbId, trialDbId,
+				programDbId, page, pageSize);
 
-        // TODO: test validations
-    }
-    /**
-     * Get the details of a specific Observation Unit
-     *
-     * Get the details of a specific Observation Unit
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void observationunitsObservationUnitDbIdGetTest() throws ApiException {
-        String observationUnitDbId = null;
-        
-        ApiResponse<BrAPIObservationUnitSingleResponse> response = api.observationunitsObservationUnitDbIdGet(observationUnitDbId);
+		// TODO: test validations
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Update an existing Observation Units
-     *
-     * Update an existing Observation Units
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void observationunitsObservationUnitDbIdPutTest() throws ApiException {
-        String observationUnitDbId = null;
-        BrAPIObservationUnit body = null;
-        
-        ApiResponse<BrAPIObservationUnitSingleResponse> response = api.observationunitsObservationUnitDbIdPut(observationUnitDbId, body);
+	/**
+	 * Get a filtered set of Observation Units
+	 *
+	 * Get a filtered set of Observation Units
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void observationunitsGetTest() throws ApiException {
+		String observationUnitDbId = null;
+		String germplasmDbId = null;
+		String studyDbId = null;
+		String locationDbId = null;
+		String trialDbId = null;
+		String programDbId = null;
+		String seasonDbId = null;
+		String observationUnitLevelName = null;
+		String observationUnitLevelOrder = null;
+		String observationUnitLevelCode = null;
+		Boolean includeObservations = null;
+		String externalReferenceID = null;
+		String externalReferenceSource = null;
+		Integer page = null;
+		Integer pageSize = null;
 
-        // TODO: test validations
-    }
-    /**
-     * Add new Observation Units
-     *
-     * Add new Observation Units
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void observationunitsPostTest() throws ApiException {
-        List<BrAPIObservationUnit> body = null;
-        
-        ApiResponse<BrAPIObservationUnitListResponse> response = api.observationunitsPost(body);
+		ObservationUnitQueryParams queryParams = new ObservationUnitQueryParams();
+		ApiResponse<BrAPIObservationUnitListResponse> response = api.observationunitsGet(queryParams);
 
-        // TODO: test validations
-    }
-    /**
-     * Update a set of Observation Units
-     *
-     * Update a set of Observation Units  Note - In strictly typed languages, this structure can be represented as a Map or Dictionary of objects and parsed directly to JSON.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void observationunitsPutTest() throws ApiException {
-        Map<String, BrAPIObservationUnit> body = null;
-        
-        ApiResponse<BrAPIObservationUnitListResponse> response = api.observationunitsPut(body);
+		// TODO: test validations
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Get a list of Observations in a table format
-     *
-     * &lt;p&gt;This service is designed to retrieve a table for observation values as a matrix of Observation Units and Observation Variables.&lt;/p&gt; &lt;p&gt;The table may be represented by JSON, CSV, or TSV. The \&quot;Accept\&quot; HTTP header is used for the client to request different return formats.  By default, if the \&quot;Accept\&quot; header is not included in the request, the server should return JSON as described below.&lt;/p&gt; &lt;p&gt;The table is REQUIRED to have the following columns&lt;/p&gt; &lt;ul&gt;   &lt;li&gt;observationUnitDbId - Each row is related to one Observation Unit&lt;/li&gt;   &lt;li&gt;At least one column with an observationVariableDbId&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The table may have any or all of the following OPTIONAL columns. Included columns are decided by the server developer&lt;/p&gt; &lt;ul&gt;   &lt;li&gt;observationUnitName&lt;/li&gt;   &lt;li&gt;studyDbId&lt;/li&gt;   &lt;li&gt;studyName&lt;/li&gt;   &lt;li&gt;germplasmDbId&lt;/li&gt;   &lt;li&gt;germplasmName&lt;/li&gt;   &lt;li&gt;positionCoordinateX&lt;/li&gt;   &lt;li&gt;positionCoordinateY&lt;/li&gt;   &lt;li&gt;year&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The table also may have any number of Observation Unit Hierarchy Level columns. For example:&lt;/p&gt; &lt;ul&gt;   &lt;li&gt;field&lt;/li&gt;   &lt;li&gt;plot&lt;/li&gt;   &lt;li&gt;sub-plot&lt;/li&gt;   &lt;li&gt;plant&lt;/li&gt;   &lt;li&gt;pot&lt;/li&gt;   &lt;li&gt;block&lt;/li&gt;   &lt;li&gt;entry&lt;/li&gt;   &lt;li&gt;rep&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The JSON representation provides a pair of extra arrays for defining the headers of the table.  The first array \&quot;headerRow\&quot; will always contain \&quot;observationUnitDbId\&quot; and any or all of the OPTIONAL column header names.  The second array \&quot;observationVariables\&quot; contains the names and DbIds for the Observation Variables represented in the table.  By appending the two arrays, you can construct the complete header row of the table. &lt;/p&gt; &lt;p&gt;For CSV and TSV representations of the table, an extra header row is needed to describe both the Observation Variable DbId and the Observation Variable Name for each data column.  See the example responses below&lt;/p&gt; 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void observationunitsTableGetTest() throws ApiException {
-        BrAPIWSMIMEDataTypes accept = null;
-        String observationUnitDbId = null;
-        String germplasmDbId = null;
-        String observationVariableDbId = null;
-        String studyDbId = null;
-        String locationDbId = null;
-        String trialDbId = null;
-        String programDbId = null;
-        String seasonDbId = null;
-        String observationLevel = null;
+	/**
+	 * Get the details of a specific Observation Unit
+	 *
+	 * Get the details of a specific Observation Unit
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void observationunitsObservationUnitDbIdGetTest() throws ApiException {
+		String observationUnitDbId = null;
 
-        ObservationUnitTableQueryParams queryParams = new ObservationUnitTableQueryParams();
-        ApiResponse<BrAPIObservationUnitTableResponse> response = api.observationunitsTableGet(accept, queryParams);
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationUnitSingleResponse> response = api
+					.observationunitsObservationUnitDbIdGet(observationUnitDbId);
+		});
 
-        // TODO: test validations
-    }
-    /**
-     * Submit a search request for Observation Units
-     *
-     * Returns a list of observationUnit with the observed Phenotypes.  See Search Services for additional implementation details.  Use case - this section allows to get a dataset from multiple studies. It allows to integrate data from several databases.  Example Use cases   - Study a panel of germplasm across multiple studies  - Get all data for a specific study   - Get simple atomic phenotyping values   - Study Locations for adaptation to climate change  - Find phenotypes that are from after a certain timestamp  observationTimeStampRangeStart and observationTimeStampRangeEnd use Iso Standard 8601.  observationValue data type inferred from the ontology
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchObservationunitsPostTest() throws ApiException {
-        BrAPIObservationUnitSearchRequest body = null;
-        
-        ApiResponse<BrAPIObservationUnitListResponse> response = api.searchObservationunitsPost(body);
+		// TODO: test validations
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Observation Unit Search
-     *
-     * Returns a list of observationUnit with the observed Phenotypes.  See Search Services for additional implementation details.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchObservationunitsSearchResultsDbIdGetTest() throws ApiException {
-        String searchResultsDbId = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        ApiResponse<BrAPIObservationUnitListResponse> response = api.searchObservationunitsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+	/**
+	 * Update an existing Observation Units
+	 *
+	 * Update an existing Observation Units
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void observationunitsObservationUnitDbIdPutTest() throws ApiException {
+		String observationUnitDbId = null;
+		BrAPIObservationUnit body = null;
 
-        // TODO: test validations
-    }
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationUnitSingleResponse> response = api
+					.observationunitsObservationUnitDbIdPut(observationUnitDbId, body);
+		});
+
+		// TODO: test validations
+	}
+
+	/**
+	 * Add new Observation Units
+	 *
+	 * Add new Observation Units
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void observationunitsPostTest() throws ApiException {
+		List<BrAPIObservationUnit> body = null;
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationUnitListResponse> response = api.observationunitsPost(body);
+		});
+
+		// TODO: test validations
+	}
+
+	/**
+	 * Update a set of Observation Units
+	 *
+	 * Update a set of Observation Units Note - In strictly typed languages, this
+	 * structure can be represented as a Map or Dictionary of objects and parsed
+	 * directly to JSON.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void observationunitsPutTest() throws ApiException {
+		Map<String, BrAPIObservationUnit> body = null;
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationUnitListResponse> response = api.observationunitsPut(body);
+		});
+
+		// TODO: test validations
+	}
+
+	/**
+	 * Get a list of Observations in a table format
+	 *
+	 * &lt;p&gt;This service is designed to retrieve a table for observation values
+	 * as a matrix of Observation Units and Observation Variables.&lt;/p&gt;
+	 * &lt;p&gt;The table may be represented by JSON, CSV, or TSV. The
+	 * \&quot;Accept\&quot; HTTP header is used for the client to request different
+	 * return formats. By default, if the \&quot;Accept\&quot; header is not
+	 * included in the request, the server should return JSON as described
+	 * below.&lt;/p&gt; &lt;p&gt;The table is REQUIRED to have the following
+	 * columns&lt;/p&gt; &lt;ul&gt; &lt;li&gt;observationUnitDbId - Each row is
+	 * related to one Observation Unit&lt;/li&gt; &lt;li&gt;At least one column with
+	 * an observationVariableDbId&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The table may have
+	 * any or all of the following OPTIONAL columns. Included columns are decided by
+	 * the server developer&lt;/p&gt; &lt;ul&gt;
+	 * &lt;li&gt;observationUnitName&lt;/li&gt; &lt;li&gt;studyDbId&lt;/li&gt;
+	 * &lt;li&gt;studyName&lt;/li&gt; &lt;li&gt;germplasmDbId&lt;/li&gt;
+	 * &lt;li&gt;germplasmName&lt;/li&gt; &lt;li&gt;positionCoordinateX&lt;/li&gt;
+	 * &lt;li&gt;positionCoordinateY&lt;/li&gt; &lt;li&gt;year&lt;/li&gt;
+	 * &lt;/ul&gt; &lt;p&gt;The table also may have any number of Observation Unit
+	 * Hierarchy Level columns. For example:&lt;/p&gt; &lt;ul&gt;
+	 * &lt;li&gt;field&lt;/li&gt; &lt;li&gt;plot&lt;/li&gt;
+	 * &lt;li&gt;sub-plot&lt;/li&gt; &lt;li&gt;plant&lt;/li&gt;
+	 * &lt;li&gt;pot&lt;/li&gt; &lt;li&gt;block&lt;/li&gt;
+	 * &lt;li&gt;entry&lt;/li&gt; &lt;li&gt;rep&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The
+	 * JSON representation provides a pair of extra arrays for defining the headers
+	 * of the table. The first array \&quot;headerRow\&quot; will always contain
+	 * \&quot;observationUnitDbId\&quot; and any or all of the OPTIONAL column
+	 * header names. The second array \&quot;observationVariables\&quot; contains
+	 * the names and DbIds for the Observation Variables represented in the table.
+	 * By appending the two arrays, you can construct the complete header row of the
+	 * table. &lt;/p&gt; &lt;p&gt;For CSV and TSV representations of the table, an
+	 * extra header row is needed to describe both the Observation Variable DbId and
+	 * the Observation Variable Name for each data column. See the example responses
+	 * below&lt;/p&gt;
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void observationunitsTableGetTest() throws ApiException {
+		BrAPIWSMIMEDataTypes accept = null;
+		String observationUnitDbId = null;
+		String germplasmDbId = null;
+		String observationVariableDbId = null;
+		String studyDbId = null;
+		String locationDbId = null;
+		String trialDbId = null;
+		String programDbId = null;
+		String seasonDbId = null;
+		String observationLevel = null;
+
+		ObservationUnitTableQueryParams queryParams = new ObservationUnitTableQueryParams();
+		ApiResponse<BrAPIObservationUnitTableResponse> response = api.observationunitsTableGet(accept, queryParams);
+
+		// TODO: test validations
+	}
+
+	/**
+	 * Submit a search request for Observation Units
+	 *
+	 * Returns a list of observationUnit with the observed Phenotypes. See Search
+	 * Services for additional implementation details. Use case - this section
+	 * allows to get a dataset from multiple studies. It allows to integrate data
+	 * from several databases. Example Use cases - Study a panel of germplasm across
+	 * multiple studies - Get all data for a specific study - Get simple atomic
+	 * phenotyping values - Study Locations for adaptation to climate change - Find
+	 * phenotypes that are from after a certain timestamp
+	 * observationTimeStampRangeStart and observationTimeStampRangeEnd use Iso
+	 * Standard 8601. observationValue data type inferred from the ontology
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void searchObservationunitsPostTest() throws ApiException {
+		BrAPIObservationUnitSearchRequest body = null;
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationUnitListResponse> response = api.searchObservationunitsPost(body);
+		});
+
+		// TODO: test validations
+	}
+
+	/**
+	 * Observation Unit Search
+	 *
+	 * Returns a list of observationUnit with the observed Phenotypes. See Search
+	 * Services for additional implementation details.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void searchObservationunitsSearchResultsDbIdGetTest() throws ApiException {
+		String searchResultsDbId = null;
+		Integer page = null;
+		Integer pageSize = null;
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationUnitListResponse> response = api
+					.searchObservationunitsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+		});
+
+		// TODO: test validations
+	}
 }

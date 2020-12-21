@@ -22,6 +22,8 @@ import org.brapi.v2.model.germ.response.BrAPICrossesListResponse;
 import org.brapi.v2.model.germ.response.BrAPIPlannedCrossesListResponse;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.List;
 import java.util.Map;
 
@@ -62,8 +64,10 @@ public class CrossesApiTest {
     @Test
     public void crossesPostTest() throws ApiException {
         List<BrAPICross> body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICrossesListResponse> response = api.crossesPost(body);
+		});
 
         // TODO: test validations
     }
@@ -78,8 +82,10 @@ public class CrossesApiTest {
     @Test
     public void crossesPutTest() throws ApiException {
         Map<String, BrAPICross> body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICrossesListResponse> response = api.crossesPut(body);
+		});
 
         // TODO: test validations
     }
@@ -116,8 +122,10 @@ public class CrossesApiTest {
     @Test
     public void plannedcrossesPostTest() throws ApiException {
         List<BrAPIPlannedCross> body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIPlannedCrossesListResponse> response = api.plannedcrossesPost(body);
+		});
 
         // TODO: test validations
     }
@@ -132,8 +140,10 @@ public class CrossesApiTest {
     @Test
     public void plannedcrossesPutTest() throws ApiException {
         Map<String, BrAPIPlannedCross> body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIPlannedCrossesListResponse> response = api.plannedcrossesPut(body);
+		});
 
         // TODO: test validations
     }

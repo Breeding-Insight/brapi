@@ -21,7 +21,10 @@ import org.brapi.v2.model.core.request.BrAPITrialSearchRequest;
 import org.brapi.v2.model.core.response.BrAPITrialSingleResponse;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -41,7 +44,7 @@ public class TrialsApiTest {
      */
     @Test
     public void searchTrialsPostTest() throws ApiException {
-        BrAPITrialSearchRequest body = null;
+        BrAPITrialSearchRequest body = new BrAPITrialSearchRequest();
         
         ApiResponse<BrAPITrialListResponse> response = api.searchTrialsPost(body);
 
@@ -60,8 +63,10 @@ public class TrialsApiTest {
         String searchResultsDbId = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPITrialListResponse> response = api.searchTrialsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+		});
 
         // TODO: test validations
     }
@@ -108,7 +113,7 @@ public class TrialsApiTest {
      */
     @Test
     public void trialsPostTest() throws ApiException {
-        List<BrAPITrial> body = null;
+        List<BrAPITrial> body = Arrays.asList(new BrAPITrial());
         
         ApiResponse<BrAPITrialListResponse> response = api.trialsPost(body);
 
@@ -125,8 +130,10 @@ public class TrialsApiTest {
     @Test
     public void trialsTrialDbIdGetTest() throws ApiException {
         String trialDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPITrialSingleResponse> response = api.trialsTrialDbIdGet(trialDbId);
+		});
 
         // TODO: test validations
     }
@@ -142,8 +149,10 @@ public class TrialsApiTest {
     public void trialsTrialDbIdPutTest() throws ApiException {
         String trialDbId = null;
         BrAPITrial body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPITrialSingleResponse> response = api.trialsTrialDbIdPut(trialDbId, body);
+		});
 
         // TODO: test validations
     }

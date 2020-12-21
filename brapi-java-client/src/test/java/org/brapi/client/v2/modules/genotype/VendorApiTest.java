@@ -12,6 +12,8 @@
 
 package org.brapi.client.v2.modules.genotype;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.v2.model.geno.response.BrAPIVendorOrderListResponse;
@@ -65,8 +67,10 @@ public class VendorApiTest {
         String orderId = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVendorPlateListResponse> response = api.vendorOrdersOrderIdPlatesGet(orderId, page, pageSize);
+		});
 
         // TODO: test validations
     }
@@ -83,8 +87,10 @@ public class VendorApiTest {
         String orderId = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVendorResultFileListResponse> response = api.vendorOrdersOrderIdResultsGet(orderId, page, pageSize);
+		});
 
         // TODO: test validations
     }
@@ -99,8 +105,10 @@ public class VendorApiTest {
     @Test
     public void vendorOrdersOrderIdStatusGetTest() throws ApiException {
         String orderId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVendorOrderStatusResponse> response = api.vendorOrdersOrderIdStatusGet(orderId);
+		});
 
         // TODO: test validations
     }
@@ -115,8 +123,10 @@ public class VendorApiTest {
     @Test
     public void vendorOrdersPostTest() throws ApiException {
         BrAPIVendorOrderSubmissionRequest body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVendorOrderSubmissionSingleResponse> response = api.vendorOrdersPost(body);
+		});
 
         // TODO: test validations
     }
@@ -131,8 +141,10 @@ public class VendorApiTest {
     @Test
     public void vendorPlatesPostTest() throws ApiException {
         BrAPIVendorPlateSubmissionRequest body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVendorPlateSubmissionIdSingleResponse> response = api.vendorPlatesPost(body);
+		});
 
         // TODO: test validations
     }
@@ -147,8 +159,10 @@ public class VendorApiTest {
     @Test
     public void vendorPlatesSubmissionIdGetTest() throws ApiException {
         String submissionId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVendorPlateSubmissionSingleResponse> response = api.vendorPlatesSubmissionIdGet(submissionId);
+		});
 
         // TODO: test validations
     }

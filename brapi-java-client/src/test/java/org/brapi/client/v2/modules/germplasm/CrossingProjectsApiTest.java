@@ -20,6 +20,8 @@ import org.brapi.v2.model.germ.response.BrAPICrossingProjectsListResponse;
 import org.brapi.v2.model.germ.response.BrAPICrossingProjectsSingleResponse;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.List;
 
 /**
@@ -40,8 +42,10 @@ public class CrossingProjectsApiTest {
     @Test
     public void crossingprojectsCrossingProjectDbIdGetTest() throws ApiException {
         String crossingProjectDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICrossingProjectsSingleResponse> response = api.crossingprojectsCrossingProjectDbIdGet(crossingProjectDbId);
+		});
 
         // TODO: test validations
     }
@@ -57,8 +61,10 @@ public class CrossingProjectsApiTest {
     public void crossingprojectsCrossingProjectDbIdPutTest() throws ApiException {
         String crossingProjectDbId = null;
         BrAPICrossingProject body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICrossingProjectsSingleResponse> response = api.crossingprojectsCrossingProjectDbIdPut(crossingProjectDbId, body);
+		});
 
         // TODO: test validations
     }
@@ -94,8 +100,10 @@ public class CrossingProjectsApiTest {
     @Test
     public void crossingprojectsPostTest() throws ApiException {
         List<BrAPICrossingProject> body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICrossingProjectsListResponse> response = api.crossingprojectsPost(body);
+		});
 
         // TODO: test validations
     }

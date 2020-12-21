@@ -20,6 +20,9 @@ import org.brapi.v2.model.core.response.BrAPISeasonListResponse;
 import org.brapi.v2.model.core.response.BrAPISeasonSingleResponse;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -60,7 +63,7 @@ public class SeasonsApiTest {
      */
     @Test
     public void seasonsPostTest() throws ApiException {
-        List<BrAPISeason> body = null;
+        List<BrAPISeason> body = Arrays.asList(new BrAPISeason());
         
         ApiResponse<BrAPISeasonListResponse> response = api.seasonsPost(body);
 
@@ -77,8 +80,10 @@ public class SeasonsApiTest {
     @Test
     public void seasonsSeasonDbIdGetTest() throws ApiException {
         String seasonDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISeasonSingleResponse> response = api.seasonsSeasonDbIdGet(seasonDbId);
+		});
 
         // TODO: test validations
     }
@@ -94,8 +99,10 @@ public class SeasonsApiTest {
     public void seasonsSeasonDbIdPutTest() throws ApiException {
         String seasonDbId = null;
         BrAPISeason body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISeasonSingleResponse> response = api.seasonsSeasonDbIdPut(seasonDbId, body);
+		});
 
         // TODO: test validations
     }

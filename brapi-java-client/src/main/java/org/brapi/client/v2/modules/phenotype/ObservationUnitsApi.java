@@ -153,6 +153,9 @@ public class ObservationUnitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call observationunitsGetCall(ObservationUnitQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+        	throw new IllegalArgumentException("queryParams cannot be null");
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -247,6 +250,9 @@ public class ObservationUnitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call observationunitsObservationUnitDbIdGetCall(String observationUnitDbId) throws ApiException {
+        if(observationUnitDbId == null) {
+        	throw new IllegalArgumentException("observationUnitDbId cannot be null");
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -318,6 +324,12 @@ public class ObservationUnitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call observationunitsObservationUnitDbIdPutCall(String observationUnitDbId, BrAPIObservationUnit body) throws ApiException {
+        if(observationUnitDbId == null) {
+        	throw new IllegalArgumentException("observationUnitDbId cannot be null");
+        }
+        if(body == null) {
+        	throw new IllegalArgumentException("body cannot be null");
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -390,6 +402,7 @@ public class ObservationUnitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call observationunitsPostCall(List<BrAPIObservationUnit> body) throws ApiException {
+        if(body == null) {throw new IllegalArgumentException("body cannot be null"); }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -459,6 +472,9 @@ public class ObservationUnitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call observationunitsPutCall(Map<String, BrAPIObservationUnit> body) throws ApiException {
+        if(body == null) {
+        	throw new IllegalArgumentException("body cannot be null");
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -525,6 +541,9 @@ public class ObservationUnitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call observationunitsTableGetCall(BrAPIWSMIMEDataTypes accept, ObservationUnitTableQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+        	throw new IllegalArgumentException("queryParams cannot be null");
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -612,6 +631,9 @@ public class ObservationUnitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchObservationunitsPostCall(BrAPIObservationUnitSearchRequest body) throws ApiException {
+        if(body == null) {
+        	throw new IllegalArgumentException("body cannot be null");
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -683,6 +705,9 @@ public class ObservationUnitsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchObservationunitsSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+        	throw new IllegalArgumentException("searchResultsDbId cannot be null");
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

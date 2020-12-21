@@ -56,6 +56,9 @@ public class MethodsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call methodsGetCall(MethodQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+        	throw new IllegalArgumentException("queryParams cannot be null");
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -135,6 +138,9 @@ public class MethodsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call methodsMethodDbIdGetCall(String methodDbId) throws ApiException {
+        if(methodDbId == null) {
+        	throw new IllegalArgumentException("methodDbId cannot be null");
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -206,6 +212,12 @@ public class MethodsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call methodsMethodDbIdPutCall(String methodDbId, BrAPIMethod body) throws ApiException {
+        if(methodDbId == null) {
+        	throw new IllegalArgumentException("methodDbId cannot be null");
+        }
+        if(body == null) {
+        	throw new IllegalArgumentException("body cannot be null");
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -278,6 +290,9 @@ public class MethodsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call methodsPostCall(List<BrAPIMethod> body) throws ApiException {
+        if(body == null) {
+        	throw new IllegalArgumentException("body cannot be null");
+        }
         Object localVarPostBody = body;
         
         // create path and map variables

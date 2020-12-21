@@ -58,6 +58,9 @@ public class GenomeMapsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call mapsGetCall(GenomeMapQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -145,6 +148,9 @@ public class GenomeMapsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call mapsMapDbIdGetCall(String mapDbId) throws ApiException {
+        if(mapDbId == null) {
+            throw new IllegalArgumentException("mapDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -217,6 +223,9 @@ public class GenomeMapsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call mapsMapDbIdLinkagegroupsGetCall(String mapDbId, Integer page, Integer pageSize) throws ApiException {
+        if(mapDbId == null) {
+            throw new IllegalArgumentException("mapDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -290,6 +299,9 @@ public class GenomeMapsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call markerpositionsGetCall(MarkerPositionQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -368,6 +380,9 @@ public class GenomeMapsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchMarkerpositionsPostCall(BrAPIMarkerPositionSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -437,6 +452,9 @@ public class GenomeMapsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchMarkerpositionsSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

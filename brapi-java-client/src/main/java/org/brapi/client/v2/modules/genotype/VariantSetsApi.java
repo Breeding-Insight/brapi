@@ -63,6 +63,9 @@ public class VariantSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchVariantsetsPostCall(BrAPIVariantSetsSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -134,6 +137,9 @@ public class VariantSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchVariantsetsSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -210,6 +216,9 @@ public class VariantSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call variantsetsExtractPostCall(BrAPIVariantSetsExtractRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -276,6 +285,9 @@ public class VariantSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call variantsetsGetCall(VariantSetQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -355,6 +367,12 @@ public class VariantSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call variantsetsVariantSetDbIdCallsGetCall(String variantSetDbId, GenotypeQueryParams queryParams) throws ApiException {
+        if(variantSetDbId == null) {
+            throw new IllegalArgumentException("variantSetDbId cannot be null"); 
+        }
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -441,6 +459,9 @@ public class VariantSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call variantsetsVariantSetDbIdCallsetsGetCall(String variantSetDbId, String callSetDbId, String callSetName, Integer page, Integer pageSize) throws ApiException {
+        if(variantSetDbId == null) {
+            throw new IllegalArgumentException("variantSetDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -527,6 +548,9 @@ public class VariantSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call variantsetsVariantSetDbIdGetCall(String variantSetDbId) throws ApiException {
+        if(variantSetDbId == null) {
+            throw new IllegalArgumentException("variantSetDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -600,6 +624,9 @@ public class VariantSetsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call variantsetsVariantSetDbIdVariantsGetCall(String variantSetDbId, String variantDbId, String pageToken, Integer pageSize) throws ApiException {
+        if(variantSetDbId == null) {
+            throw new IllegalArgumentException("variantSetDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

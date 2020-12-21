@@ -12,6 +12,8 @@
 
 package org.brapi.client.v2.modules.genotype;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
@@ -42,7 +44,7 @@ public class VariantSetsApiTest {
      */
     @Test
     public void searchVariantsetsPostTest() throws ApiException {
-        BrAPIVariantSetsSearchRequest body = null;
+        BrAPIVariantSetsSearchRequest body = new BrAPIVariantSetsSearchRequest();
         
         ApiResponse<BrAPIVariantSetsListResponse> response = api.searchVariantsetsPost(body);
 
@@ -61,8 +63,10 @@ public class VariantSetsApiTest {
         String searchResultsDbId = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVariantSetsListResponse> response = api.searchVariantsetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+		});
 
         // TODO: test validations
     }
@@ -77,8 +81,10 @@ public class VariantSetsApiTest {
     @Test
     public void variantsetsExtractPostTest() throws ApiException {
         BrAPIVariantSetsExtractRequest body = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVariantSetResponse> response = api.variantsetsExtractPost(body);
+		});
 
         // TODO: test validations
     }
@@ -124,7 +130,9 @@ public class VariantSetsApiTest {
         Integer pageSize = null;
         
         CallQueryParams queryParams = new CallQueryParams();
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICallsListResponse> response = api.variantsetsVariantSetDbIdCallsGet(variantSetDbId, queryParams);
+		});
 
         // TODO: test validations
     }
@@ -143,8 +151,10 @@ public class VariantSetsApiTest {
         String callSetName = null;
         Integer page = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICallSetsListResponse> response = api.variantsetsVariantSetDbIdCallsetsGet(variantSetDbId, callSetDbId, callSetName, page, pageSize);
+		});
 
         // TODO: test validations
     }
@@ -159,8 +169,10 @@ public class VariantSetsApiTest {
     @Test
     public void variantsetsVariantSetDbIdGetTest() throws ApiException {
         String variantSetDbId = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVariantSetResponse> response = api.variantsetsVariantSetDbIdGet(variantSetDbId);
+		});
 
         // TODO: test validations
     }
@@ -178,8 +190,10 @@ public class VariantSetsApiTest {
         String variantDbId = null;
         String pageToken = null;
         Integer pageSize = null;
-        
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIVariantsListResponse> response = api.variantsetsVariantSetDbIdVariantsGet(variantSetDbId, variantDbId, pageToken, pageSize);
+		});
 
         // TODO: test validations
     }

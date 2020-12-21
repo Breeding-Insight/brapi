@@ -58,6 +58,9 @@ public class ListsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call listsGetCall(ListQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -136,6 +139,9 @@ public class ListsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call listsListDbIdGetCall(String listDbId) throws ApiException {
+        if(listDbId == null) {
+            throw new IllegalArgumentException("listDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -202,6 +208,12 @@ public class ListsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call listsListDbIdItemsPostCall(String listDbId, List<String> body) throws ApiException {
+        if(listDbId == null) {
+            throw new IllegalArgumentException("listDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -270,6 +282,12 @@ public class ListsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call listsListDbIdPutCall(String listDbId, BrAPIListNewRequest body) throws ApiException {
+        if(listDbId == null) {
+            throw new IllegalArgumentException("listDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -336,6 +354,9 @@ public class ListsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call listsPostCall(List<BrAPIListNewRequest> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -400,6 +421,9 @@ public class ListsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchListsPostCall(BrAPIListSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -466,6 +490,9 @@ public class ListsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchListsSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

@@ -61,6 +61,9 @@ public class GermplasmAttributeValuesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call attributevaluesAttributeValueDbIdGetCall(String attributeValueDbId) throws ApiException {
+        if(attributeValueDbId == null) {
+            throw new IllegalArgumentException("attributeValueDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -132,6 +135,12 @@ public class GermplasmAttributeValuesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call attributevaluesAttributeValueDbIdPutCall(String attributeValueDbId, BrAPIGermplasmAttributeValue body) throws ApiException {
+        if(attributeValueDbId == null) {
+            throw new IllegalArgumentException("attributeValueDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -201,6 +210,9 @@ public class GermplasmAttributeValuesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call attributevaluesGetCall(GermplasmAttributeValueQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+            throw new IllegalArgumentException("queryParams cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -284,6 +296,9 @@ public class GermplasmAttributeValuesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call attributevaluesPostCall(List<BrAPIGermplasmAttributeValue> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -353,6 +368,9 @@ public class GermplasmAttributeValuesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchAttributevaluesPostCall(BrAPIGermplasmAttributeValueSearchRequest body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -424,6 +442,9 @@ public class GermplasmAttributeValuesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call searchAttributevaluesSearchResultsDbIdGetCall(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+        if(searchResultsDbId == null) {
+            throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
+        }
         Object localVarPostBody = null;
         
         // create path and map variables

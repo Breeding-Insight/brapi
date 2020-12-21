@@ -57,6 +57,9 @@ public class ScalesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call scalesGetCall(ScaleQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+        	throw new IllegalArgumentException("queryParams cannot be null");
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -134,6 +137,9 @@ public class ScalesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call scalesPostCall(List<BrAPIScale> body) throws ApiException {
+        if(body == null) {
+        	throw new IllegalArgumentException("body cannot be null");
+        }
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -203,6 +209,9 @@ public class ScalesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call scalesScaleDbIdGetCall(String scaleDbId) throws ApiException {
+        if(scaleDbId == null) {
+        	throw new IllegalArgumentException("scaleDbId cannot be null");
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -274,6 +283,12 @@ public class ScalesApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call scalesScaleDbIdPutCall(String scaleDbId, BrAPIScale body) throws ApiException {
+        if(scaleDbId == null) {
+        	throw new IllegalArgumentException("scaleDbId cannot be null");
+        }
+        if(body == null) {
+        	throw new IllegalArgumentException("body cannot be null");
+        }
         Object localVarPostBody = body;
         
         // create path and map variables

@@ -54,6 +54,9 @@ public class EventsApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private Call eventsGetCall(EventQueryParams queryParams) throws ApiException {
+        if(queryParams == null) {
+        	throw new IllegalArgumentException("queryParams cannot be null");
+        }
         Object localVarPostBody = null;
         
         // create path and map variables
