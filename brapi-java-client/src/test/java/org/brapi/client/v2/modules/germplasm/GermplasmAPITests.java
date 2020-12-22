@@ -289,8 +289,17 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     public void getGermplasmByExternalReferenceIDSuccess() {
+    	List<BrAPIExternalReference> externalReferences = new ArrayList<>();
+        externalReferences.add(new BrAPIExternalReference()
+                .referenceID(UUID.randomUUID().toString())
+                .referenceSource("http://test")
+        );
+        BrAPIGermplasm brApiGermplasm = new BrAPIGermplasm().externalReferences(externalReferences);
+        ApiResponse<BrAPIGermplasmListResponse> createdGermplasm = this.germplasmAPI.germplasmPost(Arrays.asList(brApiGermplasm));
+    	
         GermplasmQueryParams germplasmRequest = GermplasmQueryParams.builder()
-                .externalReferenceID("ex_ref_id")
+                .externalReferenceID(externalReferences.get(0).getReferenceID())
+                .externalReferenceSource(externalReferences.get(0).getReferenceSource())
                 .build();
 
         ApiResponse<BrAPIGermplasmListResponse> germplasm = this.germplasmAPI.germplasmGet(germplasmRequest);

@@ -229,7 +229,7 @@ public class ScalesAPITests extends BrAPIClientTest {
 		assertNotNull(optionalScale, "An empty optional was returned");
 		BrAPIScale scale = optionalScale.getBody().getResult();
 		assertEquals(true, scale.getScaleDbId() != null, "ScaleDbId was not parsed properly.");
-		scaleAssertEquals(createdScale, scale);
+		scaleAssertEquals(existingScale, scale);
 	}
 
 	@Test

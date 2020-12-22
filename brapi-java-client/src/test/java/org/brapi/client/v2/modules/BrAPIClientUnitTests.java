@@ -18,75 +18,65 @@
 package org.brapi.client.v2.modules;
 
 import lombok.SneakyThrows;
+import okhttp3.Headers;
+import okhttp3.MediaType;
+import okhttp3.Protocol;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
-import org.brapi.client.v2.ApiResponse;
-import org.brapi.client.v2.MockedBrAPIClient;
+import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.model.exceptions.*;
-import org.brapi.client.v2.model.queryParams.core.ProgramQueryParams;
-import org.brapi.client.v2.modules.core.ProgramsApi;
 import org.brapi.v2.model.core.response.BrAPIProgramListResponse;
 import org.junit.jupiter.api.*;
+import com.google.gson.reflect.TypeToken;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.HashMap;
+import java.util.Map;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BrAPIClientUnitTests {
 
-    private ProgramsApi programsAPI;
-    private MockedBrAPIClient mockedBrAPIClient = new MockedBrAPIClient();
+    private BrAPIClient brAPIClient;
 
     @BeforeAll
-    public void setUp() {
-        programsAPI = new ProgramsApi(mockedBrAPIClient.getBrAPIClient());
+    public void setUp() throws ApiException {
+    	brAPIClient = new BrAPIClient("http://brapi.org");
     }
 
     @Test
     @SneakyThrows
-    public void brapiClientNotFoundStatus() {
-
-        mockedBrAPIClient.mockHttpClientResponse(404, "");
-        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
-            ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
+    public void brapiClientHandleResponse() {
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put("Accept", "application/json");
+        headers.put("Content-Type", "application/json");
+        ResponseBody responseBody = ResponseBody.create("".getBytes(), MediaType.parse("application/json"));
+        Request dummyReq = brAPIClient.buildRequest("/programs", "GET", new HashMap<>(), new HashMap<>(), null, headers, new HashMap<>(), new String[] { "AuthorizationToken" });
+        
+        Response notFoundRes = new Response(dummyReq, Protocol.HTTP_1_1, "message", 404, null, Headers.of(headers), responseBody, null, null, null, 0, 0, null);
+        HttpNotFoundException notFound = assertThrows(HttpNotFoundException.class, () -> {
+            brAPIClient.handleResponse(notFoundRes, new TypeToken<BrAPIProgramListResponse>(){}.getType());
         });
-    }
-
-    @Test
-    @SneakyThrows
-    public void brapiClientBadRequestStatus() {
-
-        mockedBrAPIClient.mockHttpClientResponse(400, "");
-        HttpBadRequestException exception = assertThrows(HttpBadRequestException.class, () -> {
-            ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
+        
+        Response badRequestRes = new Response(dummyReq, Protocol.HTTP_1_1, "message", 400, null, Headers.of(headers), responseBody, null, null, null, 0, 0, null);
+        HttpBadRequestException badRequest = assertThrows(HttpBadRequestException.class, () -> {
+            brAPIClient.handleResponse(badRequestRes, new TypeToken<BrAPIProgramListResponse>(){}.getType());
         });
-    }
-
-    @Test
-    @SneakyThrows
-    public void brapiClientUnauthorizedStatus() {
-
-        mockedBrAPIClient.mockHttpClientResponse(401, "");
-        HttpUnauthorizedException exception = assertThrows(HttpUnauthorizedException.class, () -> {
-            ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
+        
+        Response unathorizedRes = new Response(dummyReq, Protocol.HTTP_1_1, "message", 401, null, Headers.of(headers), responseBody, null, null, null, 0, 0, null);
+        HttpUnauthorizedException unathorized = assertThrows(HttpUnauthorizedException.class, () -> {
+            brAPIClient.handleResponse(unathorizedRes, new TypeToken<BrAPIProgramListResponse>(){}.getType());
         });
-    }
-
-    @Test
-    @SneakyThrows
-    public void brapiClientForbiddenStatus() {
-
-        mockedBrAPIClient.mockHttpClientResponse(403, "");
-        HttpForbiddenException exception = assertThrows(HttpForbiddenException.class, () -> {
-            ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
+        
+        Response forbiddenRes = new Response(dummyReq, Protocol.HTTP_1_1, "message", 403, null, Headers.of(headers), responseBody, null, null, null, 0, 0, null);
+        HttpForbiddenException forbidden = assertThrows(HttpForbiddenException.class, () -> {
+            brAPIClient.handleResponse(forbiddenRes, new TypeToken<BrAPIProgramListResponse>(){}.getType());
         });
-    }
-
-    @Test
-    @SneakyThrows
-    public void brapiClientInternalServerErrorStatus() {
-
-        mockedBrAPIClient.mockHttpClientResponse(500, "");
-        HttpInternalServerError exception = assertThrows(HttpInternalServerError.class, () -> {
-            ApiResponse<BrAPIProgramListResponse> programs = this.programsAPI.programsGet(new ProgramQueryParams());
+        
+        Response internalRes = new Response(dummyReq, Protocol.HTTP_1_1, "message", 500, null, Headers.of(headers), responseBody, null, null, null, 0, 0, null);
+        HttpInternalServerError internal = assertThrows(HttpInternalServerError.class, () -> {
+            brAPIClient.handleResponse(internalRes, new TypeToken<BrAPIProgramListResponse>(){}.getType());
         });
     }
 
