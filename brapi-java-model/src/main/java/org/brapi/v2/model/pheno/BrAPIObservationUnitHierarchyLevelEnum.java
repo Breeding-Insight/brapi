@@ -1,9 +1,11 @@
 package org.brapi.v2.model.pheno;
 
+import org.brapi.v2.model.BrAPIEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPIObservationUnitHierarchyLevelEnum {
+public enum BrAPIObservationUnitHierarchyLevelEnum implements BrAPIEnum {
     STUDY("study"),
     FIELD("field"),
     ENTRY("entry"),
@@ -37,4 +39,9 @@ public enum BrAPIObservationUnitHierarchyLevelEnum {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

@@ -1,5 +1,7 @@
 package org.brapi.v2.model.core;
 
+import org.brapi.v2.model.BrAPIEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -8,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets ListTypes
  */
-public enum BrAPIListTypes {
+public enum BrAPIListTypes implements BrAPIEnum {
   GERMPLASM("germplasm"),
     MARKERS("markers"),
     PROGRAMS("programs"),
@@ -40,4 +42,9 @@ public enum BrAPIListTypes {
     }
     return null;
   }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

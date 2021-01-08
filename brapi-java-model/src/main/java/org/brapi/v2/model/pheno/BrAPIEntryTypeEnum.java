@@ -1,9 +1,11 @@
 package org.brapi.v2.model.pheno;
 
+import org.brapi.v2.model.BrAPIEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPIEntryTypeEnum {
+public enum BrAPIEntryTypeEnum implements BrAPIEnum {
     CHECK("CHECK"),
     TEST("TEST"),
     FILLER("FILLER");
@@ -29,4 +31,9 @@ public enum BrAPIEntryTypeEnum {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

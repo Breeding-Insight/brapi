@@ -1,9 +1,11 @@
 package org.brapi.v2.model.germ;
 
+import org.brapi.v2.model.BrAPIEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPICrossType {
+public enum BrAPICrossType implements BrAPIEnum {
     BIPARENTAL("BIPARENTAL"),
     
     SELF("SELF"),
@@ -39,4 +41,9 @@ public enum BrAPICrossType {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

@@ -143,7 +143,7 @@ public class ScalesAPITests extends BrAPIClientTest {
 				"Scale ontology version mismatch");
 		assertEquals(expected.getExternalReferences(), actual.getExternalReferences(),
 				"Scale external reference mismatch");
-//		assertEquals(expected.getDataType(), actual.getDataType(), "Scale data type mismatch");
+		assertEquals(expected.getDataType(), actual.getDataType(), "Scale data type mismatch");
 		assertEquals(expected.getDecimalPlaces(), actual.getDecimalPlaces(), "Scale decimal places mismatch");
 		assertEquals(expected.getValidValues(), actual.getValidValues(), "Scale valid values mismatch");
 	}

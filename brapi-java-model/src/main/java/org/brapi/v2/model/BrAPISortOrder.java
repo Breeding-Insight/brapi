@@ -3,7 +3,7 @@ package org.brapi.v2.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPISortOrder {
+public enum BrAPISortOrder implements BrAPIEnum {
     ASC("ASC"),
     
     DESC("DESC");
@@ -29,4 +29,9 @@ public enum BrAPISortOrder {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

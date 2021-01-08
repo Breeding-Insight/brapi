@@ -1,5 +1,7 @@
 package org.brapi.v2.model.geno;
 
+import org.brapi.v2.model.BrAPIEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -8,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Enum for plate formats, usually \"PLATE_96\" for a 96 well plate or \"TUBES\" for plateless format
  */
-public enum BrAPIPlateFormat {
+public enum BrAPIPlateFormat implements BrAPIEnum {
   PLATE_96("PLATE_96"),
     TUBES("TUBES");
 
@@ -33,4 +35,9 @@ public enum BrAPIPlateFormat {
     }
     return null;
   }
+
+@Override
+public String getBrapiValue() {
+	return value;
+}
 }

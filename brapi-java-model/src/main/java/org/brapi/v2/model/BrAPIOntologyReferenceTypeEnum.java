@@ -3,7 +3,7 @@ package org.brapi.v2.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPIOntologyReferenceTypeEnum {
+public enum BrAPIOntologyReferenceTypeEnum implements BrAPIEnum {
     OBO("OBO"),
     RDF("RDF"),
     WEBPAGE("WEBPAGE");
@@ -29,4 +29,9 @@ public enum BrAPIOntologyReferenceTypeEnum {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

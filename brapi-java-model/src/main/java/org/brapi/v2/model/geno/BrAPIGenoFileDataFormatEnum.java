@@ -1,9 +1,11 @@
 package org.brapi.v2.model.geno;
 
+import org.brapi.v2.model.BrAPIEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPIGenoFileDataFormatEnum {
+public enum BrAPIGenoFileDataFormatEnum implements BrAPIEnum {
     DARTSEQ("DartSeq"),
     VCF("VCF"),
     HAPMAP("Hapmap"),
@@ -31,4 +33,9 @@ public enum BrAPIGenoFileDataFormatEnum {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

@@ -1,9 +1,11 @@
 package org.brapi.v2.model.germ;
 
+import org.brapi.v2.model.BrAPIEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPIBiologicalStatusOfAccessionCode {
+public enum BrAPIBiologicalStatusOfAccessionCode implements BrAPIEnum {
     _100("100", "Wild"),
     _110("110", "Natural"),
     _120("120", "Semi-natural/wild"),
@@ -57,4 +59,9 @@ public enum BrAPIBiologicalStatusOfAccessionCode {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

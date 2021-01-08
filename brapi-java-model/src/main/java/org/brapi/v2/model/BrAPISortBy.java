@@ -3,7 +3,7 @@ package org.brapi.v2.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPISortBy {
+public enum BrAPISortBy implements BrAPIEnum {
 
     STUDYDBID("studyDbId"),
 
@@ -54,4 +54,9 @@ public enum BrAPISortBy {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

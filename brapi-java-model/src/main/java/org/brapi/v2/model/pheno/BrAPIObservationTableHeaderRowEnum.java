@@ -1,9 +1,11 @@
 package org.brapi.v2.model.pheno;
 
+import org.brapi.v2.model.BrAPIEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPIObservationTableHeaderRowEnum {
+public enum BrAPIObservationTableHeaderRowEnum implements BrAPIEnum{
     OBSERVATIONTIMESTAMP("observationTimeStamp"),
     OBSERVATIONUNITDBID("observationUnitDbId"),
     OBSERVATIONUNITNAME("observationUnitName"),
@@ -44,4 +46,9 @@ public enum BrAPIObservationTableHeaderRowEnum {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

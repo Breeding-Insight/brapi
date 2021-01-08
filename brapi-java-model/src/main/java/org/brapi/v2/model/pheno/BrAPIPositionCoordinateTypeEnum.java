@@ -1,9 +1,11 @@
 package org.brapi.v2.model.pheno;
 
+import org.brapi.v2.model.BrAPIEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPIPositionCoordinateTypeEnum {
+public enum BrAPIPositionCoordinateTypeEnum implements BrAPIEnum {
     LONGITUDE("LONGITUDE"),
     LATITUDE("LATITUDE"),
     PLANTED_ROW("PLANTED_ROW"),
@@ -34,4 +36,9 @@ public enum BrAPIPositionCoordinateTypeEnum {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

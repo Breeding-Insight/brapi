@@ -24,6 +24,7 @@ import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.TraitQueryParams;
 import org.brapi.v2.model.BrAPIExternalReference;
+import org.brapi.v2.model.BrAPIOntologyReference;
 import org.brapi.v2.model.pheno.BrAPITrait;
 import org.brapi.v2.model.pheno.response.BrAPITraitListResponse;
 import org.brapi.v2.model.pheno.response.BrAPITraitSingleResponse;
@@ -64,17 +65,7 @@ public class TraitsAPITests extends BrAPIClientTest {
 	@SneakyThrows
 	@Order(1)
 	public void createTraitSuccess() {
-		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID);
-		List<BrAPIExternalReference> externalReferences = new ArrayList<>();
-		externalReferences.add(brApiExternalReference);
-		List<String> alternativeAbbreviations = new ArrayList<>();
-		alternativeAbbreviations.add("test abbrev");
-		Map<String, String> additionalInfo = new HashMap<>();
-		additionalInfo.put("test", "test");
-		BrAPITrait brApiTrait = new BrAPITrait().alternativeAbbreviations(alternativeAbbreviations).attribute("test")
-				.additionalInfo(additionalInfo).entity("trait").externalReferences(externalReferences)
-				.mainAbbreviation("trait").status("trait").synonyms(alternativeAbbreviations).traitClass("test")
-				.traitDescription("a trait for things").traitName("new test trait");
+		BrAPITrait brApiTrait = buildDummy();
 
 		ApiResponse<BrAPITraitListResponse> createdTrait = this.traitsAPI.traitsPost(Arrays.asList(brApiTrait));
 
@@ -82,6 +73,29 @@ public class TraitsAPITests extends BrAPIClientTest {
 		BrAPITrait trait = createdTrait.getBody().getResult().getData().get(0);
 		assertEquals("new test trait", trait.getTraitName(), "Program Name was not parsed properly");
 		this.createdTrait = trait;
+	}
+	
+	private BrAPITrait buildDummy() {
+		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID);
+		List<BrAPIExternalReference> externalReferences = new ArrayList<>();
+		externalReferences.add(brApiExternalReference);
+		List<String> alternativeAbbreviations = new ArrayList<>();
+		alternativeAbbreviations.add("test abbrev");
+		Map<String, String> additionalInfo = new HashMap<>();
+		additionalInfo.put("test", "test");
+		return new BrAPITrait()
+				.alternativeAbbreviations(alternativeAbbreviations)
+				.attribute("test")
+				.additionalInfo(additionalInfo)
+				.entity("trait")
+				.externalReferences(externalReferences)
+				.mainAbbreviation("trait")
+				.ontologyReference(new BrAPIOntologyReference().ontologyDbId("ontology_attribute1"))
+				.status("trait")
+				.synonyms(alternativeAbbreviations)
+				.traitClass("test")
+				.traitDescription("a trait for things")
+				.traitName("new test trait");
 	}
 
 	@Test
@@ -118,26 +132,23 @@ public class TraitsAPITests extends BrAPIClientTest {
 	@SneakyThrows
 	@Order(3)
 	void getTraitByIdSuccess() {
-		ApiResponse<BrAPITraitSingleResponse> optionalTrait = this.traitsAPI
-				.traitsTraitDbIdGet(createdTrait.getTraitDbId());
+		BrAPITrait newTrait = buildDummy();
+		ApiResponse<BrAPITraitListResponse> createdTraitList = this.traitsAPI.traitsPost(Arrays.asList(newTrait));
+		BrAPITrait createdTrait = createdTraitList.getBody().getResult().getData().get(0);
+		ApiResponse<BrAPITraitSingleResponse> optionalTrait = this.traitsAPI.traitsTraitDbIdGet(createdTrait.getTraitDbId());
 
 		assertNotNull(optionalTrait, "An empty optional was returned");
 		BrAPITrait trait = optionalTrait.getBody().getResult();
 		assertEquals(true, trait.getTraitDbId() != null, "TraitDbId was not parsed properly.");
-		assertEquals(true, trait.getAlternativeAbbreviations() != null,
-				"Alternative Abbreviations was not parsed properly.");
-		assertEquals(true, trait.getAlternativeAbbreviations().size() > 0,
-				"Alternative abbreviations was not parsed properly.");
+		assertEquals(true, trait.getAlternativeAbbreviations() != null, "Alternative Abbreviations was not parsed properly.");
+		assertEquals(true, trait.getAlternativeAbbreviations().size() > 0, "Alternative abbreviations was not parsed properly.");
 		assertEquals(true, trait.getAttribute() != null, "Attribute was not parsed properly.");
 		assertEquals(true, trait.getAdditionalInfo() != null, "Additional Info was not parsed properly.");
-		assertEquals(true, trait.getAdditionalInfo().size() > 0, "Additional Info was not parsed properly.");
 		assertEquals(true, trait.getEntity() != null, "Entity was not parsed properly.");
 		assertEquals(true, trait.getExternalReferences() != null, "External References were not parsed properly.");
-		assertEquals(true, trait.getExternalReferences().get(0).getReferenceID() != null,
-				"External Reference was not parsed properly.");
+		assertEquals(true, trait.getExternalReferences().get(0).getReferenceID() != null, "External Reference was not parsed properly.");
 		assertEquals(true, trait.getMainAbbreviation() != null, "Main abbreviations were not parsed properly.");
-		// assertEquals(true, trait.getOntologyReference() != null, "Ontology reference
-		// was not parsed properly.");
+		assertEquals(true, trait.getOntologyReference() != null, "Ontology reference was not parsed properly.");
 		assertEquals(true, trait.getStatus() != null, "Status was not parsed properly.");
 		assertEquals(true, trait.getSynonyms() != null, "Synonyms were not parsed properly.");
 		assertEquals(true, trait.getSynonyms().size() > 0, "Synonyms were not parsed properly.");

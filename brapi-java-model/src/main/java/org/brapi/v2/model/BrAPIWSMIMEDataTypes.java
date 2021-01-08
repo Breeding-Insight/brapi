@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets WSMIMEDataTypes
  */
-public enum BrAPIWSMIMEDataTypes {
+public enum BrAPIWSMIMEDataTypes implements BrAPIEnum {
   APPLICATION_JSON("application/json"),
     TEXT_CSV("text/csv"),
     TEXT_TSV("text/tsv"),
@@ -37,4 +37,9 @@ public enum BrAPIWSMIMEDataTypes {
     }
     return null;
   }
+
+@Override
+public String getBrapiValue() {
+	return value;
+}
 }

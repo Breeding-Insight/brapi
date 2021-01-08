@@ -1,9 +1,11 @@
 package org.brapi.v2.model.geno;
 
+import org.brapi.v2.model.BrAPIEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPIVendorServicePlatformMarkerTypeEnum {
+public enum BrAPIVendorServicePlatformMarkerTypeEnum implements BrAPIEnum {
     FIXED("FIXED"),
     DISCOVERABLE("DISCOVERABLE");
 
@@ -28,4 +30,9 @@ public enum BrAPIVendorServicePlatformMarkerTypeEnum {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 }

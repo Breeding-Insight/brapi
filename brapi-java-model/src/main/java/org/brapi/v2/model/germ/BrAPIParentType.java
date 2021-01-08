@@ -1,9 +1,11 @@
 package org.brapi.v2.model.germ;
 
+import org.brapi.v2.model.BrAPIEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BrAPIParentType {
+public enum BrAPIParentType implements BrAPIEnum {
     MALE("MALE"),
     
     FEMALE("FEMALE"),
@@ -33,5 +35,10 @@ public enum BrAPIParentType {
       }
       return null;
     }
+
+	@Override
+	public String getBrapiValue() {
+		return value;
+	}
 
 }
