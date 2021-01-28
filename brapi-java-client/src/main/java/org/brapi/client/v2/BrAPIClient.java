@@ -48,6 +48,7 @@ import java.security.cert.X509Certificate;
 import java.text.DateFormat;
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,9 +63,7 @@ public class BrAPIClient {
 	private Map<String, Authentication> authentications;
 
 	private DateFormat dateFormat;
-	private DateFormat datetimeFormat;
-	private boolean lenientDatetimeFormat;
-	private int dateLength;
+	private static int DEFAULT_TIMEOUT=10000;
 
 	private InputStream sslCaCert;
 	private boolean verifyingSsl;
@@ -75,16 +74,25 @@ public class BrAPIClient {
 
 	public BrAPIClient() {
 		setBasePath("");
-		init();
+		init(DEFAULT_TIMEOUT);
 	}
 
 	public BrAPIClient(String basePath) {
 		setBasePath(basePath);
-		init();
+		init(DEFAULT_TIMEOUT);
+	}
+
+	public BrAPIClient(String basePath, int timeout) {
+		setBasePath(basePath);
+		init(timeout);
 	}
 	
-	private void init() {
-		httpClient = new OkHttpClient();
+	private void init(int timeout) {
+		httpClient = new OkHttpClient.Builder()
+				.connectTimeout(timeout, TimeUnit.MILLISECONDS)
+				.readTimeout(timeout, TimeUnit.MILLISECONDS)
+				.writeTimeout(timeout, TimeUnit.MILLISECONDS)
+				.build();
 		verifyingSsl = true;
 		json = new JSON();
 		// Set default User-Agent.
