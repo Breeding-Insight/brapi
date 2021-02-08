@@ -303,7 +303,7 @@ public class BrAPIImage  {
     this.imageTimeStamp = imageTimeStamp;
     return this;
   }
-
+  
   /**
    * The date and time the image was taken
    * @return imageTimeStamp
