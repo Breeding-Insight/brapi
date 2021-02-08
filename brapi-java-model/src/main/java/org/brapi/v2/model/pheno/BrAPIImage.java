@@ -5,7 +5,6 @@ import java.util.*;
 
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrApiGeoJSON;
-import org.brapi.v2.model.TimeAdapter;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -304,12 +303,7 @@ public class BrAPIImage  {
     this.imageTimeStamp = imageTimeStamp;
     return this;
   }
-
-  public BrAPIImage imageTimeStamp(org.threeten.bp.OffsetDateTime imageTimeStamp) {
-    this.imageTimeStamp = TimeAdapter.convertFrom(imageTimeStamp);
-    return this;
-  }
-
+  
   /**
    * The date and time the image was taken
    * @return imageTimeStamp
