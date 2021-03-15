@@ -47,7 +47,14 @@ public class OffsetDateTimeTypeAdapter extends TypeAdapter<OffsetDateTime> {
                 if (date.endsWith("+0000")) {
                     date = date.substring(0, date.length()-5) + "Z";
                 }
-                return OffsetDateTime.parse(date, formatter);
+                //catch any date parsing exception, set to null if exception occurs
+                OffsetDateTime parsedDate;
+                try {
+                    parsedDate = OffsetDateTime.parse(date, formatter);
+                } catch (java.time.format.DateTimeParseException e) {
+                    parsedDate = null;
+                }
+                return parsedDate;
         }
     }
 }
