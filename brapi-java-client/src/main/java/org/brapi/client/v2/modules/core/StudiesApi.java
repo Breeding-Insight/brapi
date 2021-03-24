@@ -19,18 +19,22 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.StudyQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.core.BrAPIStudy;
 import org.brapi.v2.model.core.response.BrAPIStudyListResponse;
 import org.brapi.v2.model.core.request.BrAPIStudySearchRequest;
 import org.brapi.v2.model.core.response.BrAPIStudySingleResponse;
 import org.brapi.v2.model.core.response.BrAPIStudyTypesResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class StudiesApi {
     private BrAPIClient apiClient;
@@ -102,10 +106,10 @@ public class StudiesApi {
      * @return ApiResponse&lt;StudyListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIStudyListResponse> searchStudiesPost(BrAPIStudySearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIStudyListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchStudiesPost(BrAPIStudySearchRequest body) throws ApiException {
         Call call = searchStudiesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIStudyListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**

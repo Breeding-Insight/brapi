@@ -18,15 +18,19 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.brapi.v2.model.geno.request.BrAPICallsSearchRequest;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class CallsApi {
     private BrAPIClient apiClient;
@@ -183,10 +187,10 @@ public class CallsApi {
      * @return ApiResponse&lt;CallsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPICallsListResponse> searchCallsPost(BrAPICallsSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchCallsPost(BrAPICallsSearchRequest body) throws ApiException {
         Call call = searchCallsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**

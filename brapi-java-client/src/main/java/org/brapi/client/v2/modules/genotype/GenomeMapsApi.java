@@ -18,7 +18,9 @@ import okhttp3.Call;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
@@ -26,11 +28,13 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenomeMapQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.MarkerPositionQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.geno.response.BrAPIGenomeMapListResponse;
 import org.brapi.v2.model.geno.response.BrAPIGenomeMapSingleResponse;
 import org.brapi.v2.model.geno.response.BrAPILinkageGroupListResponse;
 import org.brapi.v2.model.geno.response.BrAPIMarkerPositionListResponse;
 import org.brapi.v2.model.geno.request.BrAPIMarkerPositionSearchRequest;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class GenomeMapsApi {
     private BrAPIClient apiClient;
@@ -419,10 +423,10 @@ public class GenomeMapsApi {
      * @return ApiResponse&lt;MarkerPositionListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIMarkerPositionListResponse> searchMarkerpositionsPost(BrAPIMarkerPositionSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIMarkerPositionListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchMarkerpositionsPost(BrAPIMarkerPositionSearchRequest body) throws ApiException {
         Call call = searchMarkerpositionsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIMarkerPositionListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**

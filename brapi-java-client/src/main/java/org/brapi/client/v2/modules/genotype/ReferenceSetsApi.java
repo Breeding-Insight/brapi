@@ -18,16 +18,20 @@ import okhttp3.Call;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.ReferenceSetQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.geno.response.BrAPIReferenceSetsListResponse;
 import org.brapi.v2.model.geno.request.BrAPIReferenceSetsSearchRequest;
 import org.brapi.v2.model.geno.response.BrAPIReferenceSetsSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class ReferenceSetsApi {
     private BrAPIClient apiClient;
@@ -251,10 +255,10 @@ public class ReferenceSetsApi {
      * @return ApiResponse&lt;ReferenceSetsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIReferenceSetsListResponse> searchReferencesetsPost(BrAPIReferenceSetsSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIReferenceSetsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchReferencesetsPost(BrAPIReferenceSetsSearchRequest body) throws ApiException {
         Call call = searchReferencesetsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIReferenceSetsListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**
