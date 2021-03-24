@@ -12,6 +12,10 @@
 
 package org.brapi.client.v2;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import okhttp3.*;
 import okhttp3.internal.http.HttpMethod;
 import okio.BufferedSink;
@@ -22,6 +26,8 @@ import java.time.format.DateTimeFormatter;
 
 import javax.net.ssl.*;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.auth.Authentication;
 import org.brapi.client.v2.auth.OAuth;
 import org.brapi.client.v2.model.exceptions.ApiException;
@@ -30,6 +36,7 @@ import org.brapi.client.v2.model.exceptions.HttpForbiddenException;
 import org.brapi.client.v2.model.exceptions.HttpInternalServerError;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.exceptions.HttpUnauthorizedException;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 
 import java.io.File;
 import java.io.IOException;
@@ -71,6 +78,7 @@ public class BrAPIClient {
 
 	private OkHttpClient httpClient;
 	private JSON json;
+	private Gson gson;
 
 	public BrAPIClient() {
 		setBasePath("");
@@ -95,6 +103,7 @@ public class BrAPIClient {
 				.build();
 		verifyingSsl = true;
 		json = new JSON();
+		gson = new Gson();
 		// Set default User-Agent.
 		setUserAgent("brapi-java-client/2.0");
 		// Setup authentications (key: authentication name, value: authentication).
@@ -480,8 +489,8 @@ public class BrAPIClient {
 	 * @param value            The value of the parameter.
 	 * @return A list of {@code Pair} objects.
 	 */
-	public List<Pair> parameterToPairs(String collectionFormat, String name, Collection value) {
-		List<Pair> params = new ArrayList<Pair>();
+	public List<Pair<String, String>> parameterToPairs(String collectionFormat, String name, Collection value) {
+		List<Pair<String, String>> params = new ArrayList<>();
 
 		// preconditions
 		if (name == null || name.isEmpty() || value == null || value.isEmpty()) {
@@ -491,7 +500,7 @@ public class BrAPIClient {
 		// create the params based on the collection format
 		if ("multi".equals(collectionFormat)) {
 			for (Object item : value) {
-				params.add(new Pair(name, escapeString(parameterToString(item))));
+				params.add(new ImmutablePair<>(name, escapeString(parameterToString(item))));
 			}
 			return params;
 		}
@@ -515,7 +524,7 @@ public class BrAPIClient {
 			sb.append(escapeString(parameterToString(item)));
 		}
 
-		params.add(new Pair(name, sb.substring(delimiter.length())));
+		params.add(new ImmutablePair<>(name, sb.substring(delimiter.length())));
 
 		return params;
 	}
@@ -781,6 +790,49 @@ public class BrAPIClient {
 		} catch (IOException e) {
 			throw new ApiException(e);
 		}
+	}
+
+	/**
+	 * Execute HTTP call and deserialize the HTTP response body into the given
+	 * return type.
+	 *
+	 * @param returnType The return type used to deserialize HTTP response body
+	 * @param <T>        The return type corresponding to (same with) returnType
+	 * @param call       Call
+	 * @return ApiResponse object containing response status, headers and data,
+	 *         which is a Java object deserialized from response body and would be
+	 *         null when returnType is null.
+	 * @throws ApiException If fail to execute the call
+	 */
+	public <T> ApiResponse<Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponseResult>>> executeSearch(Call call, Type returnType) throws ApiException {
+		// Do a normal call
+		Type jsonReturnType = new TypeToken<JsonObject>(){}.getType();
+		ApiResponse<JsonObject> searchResponse = execute(call, jsonReturnType);
+
+		// Check our response to construct the Pair
+		Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponseResult>> result;
+		if (searchResponse.getBody() != null) {
+			JsonObject searchBody = searchResponse.getBody();
+			Gson gson = new Gson();
+			try {
+				if (searchBody.get("searchResultDbId") != null) {
+					// Parse into a BrAPI Accepted Search Response
+					BrAPIAcceptedSearchResponseResult searchResult = gson.fromJson(searchBody, BrAPIAcceptedSearchResponseResult.class);
+					result = new ImmutablePair<>(Optional.empty(), Optional.of(searchResult));
+				} else {
+					// Parse into the actual response object
+					T listResponse = gson.fromJson(searchBody, returnType);
+					result = new ImmutablePair<>(Optional.of(listResponse), Optional.empty());
+				}
+			} catch (JsonSyntaxException e){
+				throw new ApiException("Unable to parse search result body");
+			}
+
+		} else {
+			throw new ApiException("Search body was not returned");
+		}
+
+		return new ApiResponse<>(searchResponse.getStatusCode(), searchResponse.getHeaders(), result);
 	}
 
 	/**
