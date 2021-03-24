@@ -61,6 +61,10 @@ public class BrAPIObservationUnitSearchRequest extends BrAPISearchRequestParamet
 	@Valid
 	private List<String> germplasmNames = null;
 
+	@JsonProperty("observationUnitNames")
+	@Valid
+	private List<String> observationUnitNames = null;
+
 	@JsonProperty("observationVariableDbIds")
 	@Valid
 	private List<String> observationVariableDbIds = null;
@@ -407,6 +411,34 @@ public class BrAPIObservationUnitSearchRequest extends BrAPISearchRequestParamet
 	}
 
 	/**
+	 * List of human readable names to identify observation unit to search for
+	 *
+	 * @return observationUnitNames
+	 **/
+
+	public BrAPIObservationUnitSearchRequest observationUnitNames(List<String> observationUnitNames) {
+		this.observationUnitNames = observationUnitNames;
+		return this;
+	}
+
+	public BrAPIObservationUnitSearchRequest addObservationUnitNamesItem(String observationUnitNamesItem) {
+		if (this.observationUnitNames == null) {
+			this.observationUnitNames = new ArrayList<String>();
+		}
+		this.observationUnitNames.add(observationUnitNamesItem);
+		return this;
+	}
+
+
+	public List<String> getObservationUnitNames() {
+		return observationUnitNames;
+	}
+
+	public void setObservationUnitNames(List<String> observationUnitNames) {
+		this.observationUnitNames = observationUnitNames;
+	}
+
+	/**
 	 * The DbIds of Variables to search for
 	 * 
 	 * @return observationVariableDbIds
@@ -636,6 +668,7 @@ public class BrAPIObservationUnitSearchRequest extends BrAPISearchRequestParamet
 				&& Objects.equals(this.locationNames, observationUnitSearchRequest.locationNames)
 				&& Objects.equals(this.germplasmDbIds, observationUnitSearchRequest.germplasmDbIds)
 				&& Objects.equals(this.germplasmNames, observationUnitSearchRequest.germplasmNames)
+				&& Objects.equals(this.observationUnitNames, observationUnitSearchRequest.observationUnitNames)
 				&& Objects.equals(this.observationVariableDbIds, observationUnitSearchRequest.observationVariableDbIds)
 				&& Objects.equals(this.observationVariableNames, observationUnitSearchRequest.observationVariableNames)
 				&& Objects.equals(this.externalReferenceIDs, observationUnitSearchRequest.externalReferenceIDs)
@@ -671,6 +704,7 @@ public class BrAPIObservationUnitSearchRequest extends BrAPISearchRequestParamet
 		sb.append("    locationNames: ").append(toIndentedString(locationNames)).append("\n");
 		sb.append("    germplasmDbIds: ").append(toIndentedString(germplasmDbIds)).append("\n");
 		sb.append("    germplasmNames: ").append(toIndentedString(germplasmNames)).append("\n");
+		sb.append("    observationUnitNames: ").append(toIndentedString(observationUnitNames)).append("\n");
 		sb.append("    observationVariableDbIds: ").append(toIndentedString(observationVariableDbIds)).append("\n");
 		sb.append("    observationVariableNames: ").append(toIndentedString(observationVariableNames)).append("\n");
 		sb.append("    externalReferenceIDs: ").append(toIndentedString(externalReferenceIDs)).append("\n");
