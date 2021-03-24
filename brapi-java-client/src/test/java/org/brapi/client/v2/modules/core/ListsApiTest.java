@@ -12,19 +12,23 @@
 
 package org.brapi.client.v2.modules.core;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.ListQueryParams;
 
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.core.request.BrAPIListNewRequest;
 import org.brapi.v2.model.core.response.BrAPIListResponse;
 import org.brapi.v2.model.core.request.BrAPIListSearchRequest;
 import org.brapi.v2.model.core.response.BrAPIListsListResponse;
 import org.brapi.v2.model.core.response.BrAPIListsSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * API tests for ListsApi
@@ -85,8 +89,8 @@ public class ListsApiTest {
     @Test
     public void searchListsPostTest() throws ApiException {
         BrAPIListSearchRequest body = new BrAPIListSearchRequest();
-        
-        ApiResponse<BrAPIListsListResponse> response = api.searchListsPost(body);
+
+        ApiResponse<Pair<Optional<BrAPIListsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchListsPost(body);
 
         // TODO: test validations
     }

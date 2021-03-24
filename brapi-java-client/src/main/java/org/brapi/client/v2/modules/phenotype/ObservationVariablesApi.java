@@ -107,7 +107,7 @@ public class ObservationVariablesApi {
      * @return ApiResponse&lt;ObservationVariableListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPIVariantsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchVariablesPost(BrAPIObservationVariableSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIObservationVariableListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchVariablesPost(BrAPIObservationVariableSearchRequest body) throws ApiException {
         Call call = searchVariablesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIObservationVariableListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

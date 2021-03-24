@@ -14,10 +14,12 @@ package org.brapi.client.v2.modules.genotype;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantSetQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.geno.response.BrAPICallSetsListResponse;
 import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.brapi.v2.model.geno.response.BrAPIVariantSetResponse;
@@ -25,7 +27,10 @@ import org.brapi.v2.model.geno.request.BrAPIVariantSetsExtractRequest;
 import org.brapi.v2.model.geno.response.BrAPIVariantSetsListResponse;
 import org.brapi.v2.model.geno.request.BrAPIVariantSetsSearchRequest;
 import org.brapi.v2.model.geno.response.BrAPIVariantsListResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
+
+import java.util.Optional;
 
 /**
  * API tests for VariantSetsApi
@@ -45,8 +50,8 @@ public class VariantSetsApiTest {
     @Test
     public void searchVariantsetsPostTest() throws ApiException {
         BrAPIVariantSetsSearchRequest body = new BrAPIVariantSetsSearchRequest();
-        
-        ApiResponse<BrAPIVariantSetsListResponse> response = api.searchVariantsetsPost(body);
+
+        ApiResponse<Pair<Optional<BrAPIVariantSetsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchVariantsetsPost(body);
 
         // TODO: test validations
     }

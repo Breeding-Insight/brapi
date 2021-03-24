@@ -12,20 +12,24 @@
 
 package org.brapi.client.v2.modules.core;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.StudyQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.core.BrAPIStudy;
 import org.brapi.v2.model.core.response.BrAPIStudyListResponse;
 import org.brapi.v2.model.core.request.BrAPIStudySearchRequest;
 import org.brapi.v2.model.core.response.BrAPIStudySingleResponse;
 import org.brapi.v2.model.core.response.BrAPIStudyTypesResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * API tests for StudiesApi
@@ -45,8 +49,8 @@ public class StudiesApiTest {
     @Test
     public void searchStudiesPostTest() throws ApiException {
         BrAPIStudySearchRequest body = new BrAPIStudySearchRequest();
-        
-        ApiResponse<BrAPIStudyListResponse> response = api.searchStudiesPost(body);
+
+        ApiResponse<Pair<Optional<BrAPIStudyListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchStudiesPost(body);
 
         // TODO: test validations
     }

@@ -14,16 +14,21 @@ package org.brapi.client.v2.modules.genotype;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenomeMapQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.MarkerPositionQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.geno.response.BrAPIGenomeMapListResponse;
 import org.brapi.v2.model.geno.response.BrAPIGenomeMapSingleResponse;
 import org.brapi.v2.model.geno.response.BrAPILinkageGroupListResponse;
 import org.brapi.v2.model.geno.response.BrAPIMarkerPositionListResponse;
 import org.brapi.v2.model.geno.request.BrAPIMarkerPositionSearchRequest;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
+
+import java.util.Optional;
 
 /**
  * API tests for GenomeMapsApi
@@ -132,7 +137,7 @@ public class GenomeMapsApiTest {
         BrAPIMarkerPositionSearchRequest body = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIMarkerPositionListResponse> response = api.searchMarkerpositionsPost(body);
+            ApiResponse<Pair<Optional<BrAPIMarkerPositionListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchMarkerpositionsPost(body);
 		});
 
         // TODO: test validations

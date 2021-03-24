@@ -12,16 +12,19 @@
 
 package org.brapi.client.v2.modules.phenotype;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationQueryParams;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationTableQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
 import org.brapi.v2.model.pheno.BrAPIObservation;
 import org.brapi.v2.model.pheno.response.BrAPIObservationListResponse;
 import org.brapi.v2.model.pheno.request.BrAPIObservationSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIObservationSingleResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationTableResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -29,6 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * API tests for ObservationsApi
@@ -228,7 +232,7 @@ public class ObservationsApiTest {
 		BrAPIObservationSearchRequest body = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIObservationListResponse> response = api.searchObservationsPost(body);
+			ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchObservationsPost(body);
 		});
 
 		// TODO: test validations
@@ -251,7 +255,7 @@ public class ObservationsApiTest {
 		Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIObservationListResponse> response = api.searchObservationsSearchResultsDbIdGet(accept,
+			ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchObservationsSearchResultsDbIdGet(accept,
 					searchResultsDbId, page, pageSize);
 		});
 

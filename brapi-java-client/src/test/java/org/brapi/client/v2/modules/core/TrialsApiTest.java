@@ -12,13 +12,16 @@
 
 package org.brapi.client.v2.modules.core;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.TrialQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.core.BrAPITrial;
 import org.brapi.v2.model.core.response.BrAPITrialListResponse;
 import org.brapi.v2.model.core.request.BrAPITrialSearchRequest;
 import org.brapi.v2.model.core.response.BrAPITrialSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -26,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * API tests for TrialsApi
@@ -45,8 +49,8 @@ public class TrialsApiTest {
     @Test
     public void searchTrialsPostTest() throws ApiException {
         BrAPITrialSearchRequest body = new BrAPITrialSearchRequest();
-        
-        ApiResponse<BrAPITrialListResponse> response = api.searchTrialsPost(body);
+
+        ApiResponse<Pair<Optional<BrAPITrialListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchTrialsPost(body);
 
         // TODO: test validations
     }

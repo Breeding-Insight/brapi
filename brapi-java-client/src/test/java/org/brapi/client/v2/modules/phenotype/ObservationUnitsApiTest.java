@@ -37,6 +37,7 @@ import java.util.Optional;
 public class ObservationUnitsApiTest {
 
 	private final ObservationUnitsApi api = new ObservationUnitsApi();
+	private String searchResultDbId;
 
 	@Test
 	public void observationlevelsGetTest() throws ApiException {
@@ -252,8 +253,8 @@ public class ObservationUnitsApiTest {
 			assertTrue(searchResponse.get() != null, "search body was null");
 			BrAPIAcceptedSearchResponseResult result = searchResponse.get();
 			assertTrue(result.getSearchResultsDbId() != null, "No search id was returned in body");
+			searchResultDbId = result.getSearchResultsDbId();
 		}
-
 	}
 
 	/**
@@ -266,14 +267,27 @@ public class ObservationUnitsApiTest {
 	 */
 	@Test
 	public void searchObservationunitsGetTest() throws ApiException {
-		String searchResultsDbId = null;
 		Integer page = null;
 		Integer pageSize = null;
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIObservationUnitListResponse> response = api
-					.searchObservationunitsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
-		});
+		if (searchResultDbId != null) {
+			ApiResponse<Pair<Optional<BrAPIObservationUnitListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api
+					.searchObservationunitsSearchResultsDbIdGet(searchResultDbId, page, pageSize);
+
+			Pair<Optional<BrAPIObservationUnitListResponse>, Optional<BrAPIAcceptedSearchResponseResult>> responseBody = response.getBody();
+			Optional<BrAPIObservationUnitListResponse> listResponse = responseBody.getLeft();
+			Optional<BrAPIAcceptedSearchResponseResult> searchResponse = responseBody.getRight();
+			if (listResponse.isPresent()) {
+				assertTrue(listResponse.get() != null, "data body was null");
+				BrAPIObservationUnitListResponseResult result = listResponse.get().getResult();
+				assertTrue(result.getData() != null, "No data object was returned in body");
+			} else {
+				// Check our searchResultDbId was passed
+				assertTrue(searchResponse.get() != null, "search body was null");
+				BrAPIAcceptedSearchResponseResult result = searchResponse.get();
+				assertTrue(result.getSearchResultsDbId() != null, "No search id was returned in body");
+			}
+		}
 
 		// TODO: test validations
 

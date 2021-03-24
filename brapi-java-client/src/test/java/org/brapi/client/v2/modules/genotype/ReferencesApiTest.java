@@ -14,14 +14,19 @@ package org.brapi.client.v2.modules.genotype;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.ReferenceQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.geno.response.BrAPIReferenceBasesResponse;
 import org.brapi.v2.model.geno.response.BrAPIReferenceSingleResponse;
 import org.brapi.v2.model.geno.response.BrAPIReferencesListResponse;
 import org.brapi.v2.model.geno.request.BrAPIReferencesSearchRequest;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
+
+import java.util.Optional;
 
 /**
  * API tests for ReferencesApi
@@ -105,8 +110,8 @@ public class ReferencesApiTest {
     @Test
     public void searchReferencesPostTest() throws ApiException {
         BrAPIReferencesSearchRequest body = new BrAPIReferencesSearchRequest();
-        
-        ApiResponse<BrAPIReferencesListResponse> response = api.searchReferencesPost(body);
+
+        ApiResponse<Pair<Optional<BrAPIReferencesListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchReferencesPost(body);
 
         // TODO: test validations
     }

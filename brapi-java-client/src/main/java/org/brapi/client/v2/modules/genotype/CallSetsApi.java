@@ -341,7 +341,7 @@ public class CallSetsApi {
      * @return ApiResponse&lt;CallSetsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchCallsetsPost(BrAPICallSetsSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPICallSetsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchCallsetsPost(BrAPICallSetsSearchRequest body) throws ApiException {
         Call call = searchCallsetsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPICallSetsListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);
