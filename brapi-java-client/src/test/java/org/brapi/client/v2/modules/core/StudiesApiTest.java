@@ -16,7 +16,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.StudyQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.core.BrAPIStudy;
 import org.brapi.v2.model.core.response.BrAPIStudyListResponse;
 import org.brapi.v2.model.core.request.BrAPIStudySearchRequest;
@@ -50,7 +50,7 @@ public class StudiesApiTest {
     public void searchStudiesPostTest() throws ApiException {
         BrAPIStudySearchRequest body = new BrAPIStudySearchRequest();
 
-        ApiResponse<Pair<Optional<BrAPIStudyListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchStudiesPost(body);
+        ApiResponse<Pair<Optional<BrAPIStudyListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchStudiesPost(body);
 
         // TODO: test validations
     }

@@ -36,7 +36,8 @@ import org.brapi.client.v2.model.exceptions.HttpForbiddenException;
 import org.brapi.client.v2.model.exceptions.HttpInternalServerError;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.exceptions.HttpUnauthorizedException;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 
 import java.io.File;
 import java.io.IOException;
@@ -804,21 +805,22 @@ public class BrAPIClient {
 	 *         null when returnType is null.
 	 * @throws ApiException If fail to execute the call
 	 */
-	public <T> ApiResponse<Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponseResult>>> executeSearch(Call call, Type returnType) throws ApiException {
+	public <T> ApiResponse<Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponse>>> executeSearch(Call call, Type returnType) throws ApiException {
 		// Do a normal call
 		Type jsonReturnType = new TypeToken<JsonObject>(){}.getType();
 		ApiResponse<JsonObject> searchResponse = execute(call, jsonReturnType);
 
 		// Check our response to construct the Pair
-		Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponseResult>> result;
+		Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponse>> result;
 		if (searchResponse.getBody() != null) {
 			JsonObject searchBody = searchResponse.getBody();
+			JsonObject searchResult = searchBody.getAsJsonObject("result");
 			Gson gson = new Gson();
 			try {
-				if (searchBody.get("searchResultDbId") != null) {
+				if (searchResult != null && searchResult.get("searchResultsDbId") != null) {
 					// Parse into a BrAPI Accepted Search Response
-					BrAPIAcceptedSearchResponseResult searchResult = gson.fromJson(searchBody, BrAPIAcceptedSearchResponseResult.class);
-					result = new ImmutablePair<>(Optional.empty(), Optional.of(searchResult));
+					BrAPIAcceptedSearchResponse searchResultObject = gson.fromJson(searchBody, BrAPIAcceptedSearchResponse.class);
+					result = new ImmutablePair<>(Optional.empty(), Optional.of(searchResultObject));
 				} else {
 					// Parse into the actual response object
 					T listResponse = gson.fromJson(searchBody, returnType);

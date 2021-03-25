@@ -27,7 +27,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.ReferenceSetQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.response.BrAPIReferenceSetsListResponse;
 import org.brapi.v2.model.geno.request.BrAPIReferenceSetsSearchRequest;
 import org.brapi.v2.model.geno.response.BrAPIReferenceSetsSingleResponse;
@@ -255,7 +255,7 @@ public class ReferenceSetsApi {
      * @return ApiResponse&lt;ReferenceSetsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPIReferenceSetsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchReferencesetsPost(BrAPIReferenceSetsSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIReferenceSetsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchReferencesetsPost(BrAPIReferenceSetsSearchRequest body) throws ApiException {
         Call call = searchReferencesetsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIReferenceSetsListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

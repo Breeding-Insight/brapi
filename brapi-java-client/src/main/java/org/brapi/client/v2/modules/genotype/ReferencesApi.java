@@ -27,7 +27,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.ReferenceQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.response.BrAPIReferenceBasesResponse;
 import org.brapi.v2.model.geno.response.BrAPIReferenceSingleResponse;
 import org.brapi.v2.model.geno.response.BrAPIReferencesListResponse;
@@ -348,7 +348,7 @@ public class ReferencesApi {
      * @return ApiResponse&lt;ReferencesListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPIReferencesListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchReferencesPost(BrAPIReferencesSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIReferencesListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchReferencesPost(BrAPIReferencesSearchRequest body) throws ApiException {
         Call call = searchReferencesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIReferencesListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

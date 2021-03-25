@@ -19,7 +19,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantSetQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.response.BrAPICallSetsListResponse;
 import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.brapi.v2.model.geno.response.BrAPIVariantSetResponse;
@@ -51,7 +51,7 @@ public class VariantSetsApiTest {
     public void searchVariantsetsPostTest() throws ApiException {
         BrAPIVariantSetsSearchRequest body = new BrAPIVariantSetsSearchRequest();
 
-        ApiResponse<Pair<Optional<BrAPIVariantSetsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchVariantsetsPost(body);
+        ApiResponse<Pair<Optional<BrAPIVariantSetsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchVariantsetsPost(body);
 
         // TODO: test validations
     }

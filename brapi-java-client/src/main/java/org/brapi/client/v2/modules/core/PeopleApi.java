@@ -28,7 +28,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.PeopleQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.core.BrAPIPerson;
 import org.brapi.v2.model.core.response.BrAPIPersonListResponse;
 import org.brapi.v2.model.core.request.BrAPIPersonSearchRequest;
@@ -393,7 +393,7 @@ public class PeopleApi {
      * @return ApiResponse&lt;PersonListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchPeoplePost(BrAPIPersonSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchPeoplePost(BrAPIPersonSearchRequest body) throws ApiException {
         Call call = searchPeoplePostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIPersonListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

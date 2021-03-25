@@ -16,7 +16,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.VariableQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.pheno.BrAPIObservationVariable;
 import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationVariableListResponse;
@@ -49,7 +49,7 @@ public class ObservationVariablesApiTest {
         BrAPIObservationVariableSearchRequest body = null;
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPIObservationVariableListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response =
+            ApiResponse<Pair<Optional<BrAPIObservationVariableListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
                     api.searchVariablesPost(body);
         });
 

@@ -16,7 +16,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.SampleQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.BrAPISample;
 import org.brapi.v2.model.geno.response.BrAPISampleListResponse;
 import org.brapi.v2.model.geno.request.BrAPISampleSearchRequest;
@@ -129,7 +129,7 @@ public class SamplesApiTest {
         BrAPISampleSearchRequest body = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPISampleListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchSamplesPost(body);
+            ApiResponse<Pair<Optional<BrAPISampleListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchSamplesPost(body);
 		});
 
         // TODO: test validations

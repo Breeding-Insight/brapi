@@ -17,7 +17,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationQueryParams;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationTableQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
 import org.brapi.v2.model.pheno.BrAPIObservation;
 import org.brapi.v2.model.pheno.response.BrAPIObservationListResponse;
@@ -232,7 +232,7 @@ public class ObservationsApiTest {
 		BrAPIObservationSearchRequest body = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchObservationsPost(body);
+			ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchObservationsPost(body);
 		});
 
 		// TODO: test validations
@@ -255,7 +255,7 @@ public class ObservationsApiTest {
 		Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchObservationsSearchResultsDbIdGet(accept,
+			ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchObservationsSearchResultsDbIdGet(accept,
 					searchResultsDbId, page, pageSize);
 		});
 

@@ -17,7 +17,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.ListQueryParams;
 
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.core.request.BrAPIListNewRequest;
 import org.brapi.v2.model.core.response.BrAPIListResponse;
 import org.brapi.v2.model.core.request.BrAPIListSearchRequest;
@@ -90,7 +90,7 @@ public class ListsApiTest {
     public void searchListsPostTest() throws ApiException {
         BrAPIListSearchRequest body = new BrAPIListSearchRequest();
 
-        ApiResponse<Pair<Optional<BrAPIListsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchListsPost(body);
+        ApiResponse<Pair<Optional<BrAPIListsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchListsPost(body);
 
         // TODO: test validations
     }

@@ -28,7 +28,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.SampleQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.BrAPISample;
 import org.brapi.v2.model.geno.response.BrAPISampleListResponse;
 import org.brapi.v2.model.geno.request.BrAPISampleSearchRequest;
@@ -414,7 +414,7 @@ public class SamplesApi {
      * @return ApiResponse&lt;SampleListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPISampleListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchSamplesPost(BrAPISampleSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPISampleListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchSamplesPost(BrAPISampleSearchRequest body) throws ApiException {
         Call call = searchSamplesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPISampleListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

@@ -25,7 +25,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.germ.BrAPIGermplasm;
 import org.brapi.v2.model.germ.response.BrAPIBreedingMethodListResponse;
 import org.brapi.v2.model.germ.response.BrAPIBreedingMethodSingleResponse;
@@ -812,7 +812,7 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPIGermplasmListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchGermplasmPost(BrAPIGermplasmSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIGermplasmListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchGermplasmPost(BrAPIGermplasmSearchRequest body) throws ApiException {
         Call call = searchGermplasmPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

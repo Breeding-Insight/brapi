@@ -28,7 +28,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.TrialQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.core.BrAPITrial;
 import org.brapi.v2.model.core.response.BrAPITrialListResponse;
 import org.brapi.v2.model.core.request.BrAPITrialSearchRequest;
@@ -105,7 +105,7 @@ public class TrialsApi {
      * @return ApiResponse&lt;TrialListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPITrialListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchTrialsPost(BrAPITrialSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPITrialListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchTrialsPost(BrAPITrialSearchRequest body) throws ApiException {
         Call call = searchTrialsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPITrialListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

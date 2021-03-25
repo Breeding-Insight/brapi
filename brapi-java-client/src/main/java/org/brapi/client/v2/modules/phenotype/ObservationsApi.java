@@ -29,7 +29,7 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationQueryParams;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationTableQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
 import org.brapi.v2.model.pheno.BrAPIObservation;
 import org.brapi.v2.model.pheno.response.BrAPIObservationListResponse;
@@ -597,7 +597,7 @@ public class ObservationsApi {
      * @return ApiResponse&lt;ObservationListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchObservationsPost(BrAPIObservationSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchObservationsPost(BrAPIObservationSearchRequest body) throws ApiException {
         Call call = searchObservationsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIObservationListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);
@@ -682,7 +682,7 @@ public class ObservationsApi {
      * @return ApiResponse&lt;ObservationListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchObservationsSearchResultsDbIdGet(BrAPIWSMIMEDataTypes accept, String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchObservationsSearchResultsDbIdGet(BrAPIWSMIMEDataTypes accept, String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchObservationsSearchResultsDbIdGetCall(accept, searchResultsDbId, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPIObservationListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

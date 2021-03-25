@@ -28,7 +28,7 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenomeMapQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.MarkerPositionQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.response.BrAPIGenomeMapListResponse;
 import org.brapi.v2.model.geno.response.BrAPIGenomeMapSingleResponse;
 import org.brapi.v2.model.geno.response.BrAPILinkageGroupListResponse;
@@ -423,7 +423,7 @@ public class GenomeMapsApi {
      * @return ApiResponse&lt;MarkerPositionListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPIMarkerPositionListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchMarkerpositionsPost(BrAPIMarkerPositionSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIMarkerPositionListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchMarkerpositionsPost(BrAPIMarkerPositionSearchRequest body) throws ApiException {
         Call call = searchMarkerpositionsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIMarkerPositionListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

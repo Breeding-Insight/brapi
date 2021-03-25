@@ -19,7 +19,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.brapi.v2.model.geno.response.BrAPIVariantSingleResponse;
 import org.brapi.v2.model.geno.response.BrAPIVariantsListResponse;
@@ -49,7 +49,7 @@ public class VariantsApiTest {
         BrAPIVariantsSearchRequest body = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPIVariantsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchVariantsPost(body);
+            ApiResponse<Pair<Optional<BrAPIVariantsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchVariantsPost(body);
 		});
 
         // TODO: test validations

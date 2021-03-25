@@ -28,7 +28,7 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallSetQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.GenotypeQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.response.BrAPICallSetResponse;
 import org.brapi.v2.model.geno.response.BrAPICallSetsListResponse;
 import org.brapi.v2.model.geno.request.BrAPICallSetsSearchRequest;
@@ -341,7 +341,7 @@ public class CallSetsApi {
      * @return ApiResponse&lt;CallSetsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPICallSetsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchCallsetsPost(BrAPICallSetsSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPICallSetsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchCallsetsPost(BrAPICallSetsSearchRequest body) throws ApiException {
         Call call = searchCallsetsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPICallSetsListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

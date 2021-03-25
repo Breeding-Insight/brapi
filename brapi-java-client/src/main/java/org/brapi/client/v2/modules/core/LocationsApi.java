@@ -28,7 +28,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.LocationQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.core.BrAPILocation;
 import org.brapi.v2.model.core.response.BrAPILocationListResponse;
 import org.brapi.v2.model.core.request.BrAPILocationSearchRequest;
@@ -389,7 +389,7 @@ public class LocationsApi {
      * @return ApiResponse&lt;LocationListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPILocationListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchLocationsPost(BrAPILocationSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPILocationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchLocationsPost(BrAPILocationSearchRequest body) throws ApiException {
         Call call = searchLocationsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPILocationListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

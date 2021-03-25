@@ -19,7 +19,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenomeMapQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.MarkerPositionQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.response.BrAPIGenomeMapListResponse;
 import org.brapi.v2.model.geno.response.BrAPIGenomeMapSingleResponse;
 import org.brapi.v2.model.geno.response.BrAPILinkageGroupListResponse;
@@ -137,7 +137,7 @@ public class GenomeMapsApiTest {
         BrAPIMarkerPositionSearchRequest body = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPIMarkerPositionListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchMarkerpositionsPost(body);
+            ApiResponse<Pair<Optional<BrAPIMarkerPositionListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchMarkerpositionsPost(body);
 		});
 
         // TODO: test validations

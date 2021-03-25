@@ -18,7 +18,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.brapi.v2.model.geno.request.BrAPICallsSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
@@ -70,7 +70,7 @@ public class CallsApiTest {
     public void searchCallsPostTest() throws ApiException {
         BrAPICallsSearchRequest body = new BrAPICallsSearchRequest();
 
-        ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchCallsPost(body);
+        ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchCallsPost(body);
 
         // TODO: test validations
     }

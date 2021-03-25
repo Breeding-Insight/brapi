@@ -16,7 +16,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ImageQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.pheno.BrAPIImage;
 import org.brapi.v2.model.pheno.response.BrAPIImageListResponse;
 import org.brapi.v2.model.pheno.request.BrAPIImageSearchRequest;
@@ -208,7 +208,7 @@ public class ImagesApiTest {
 		BrAPIImageSearchRequest body = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<Pair<Optional<BrAPIImageListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchImagesPost(body);
+			ApiResponse<Pair<Optional<BrAPIImageListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchImagesPost(body);
 		});
 
 		// TODO: test validations

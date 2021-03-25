@@ -16,7 +16,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.PeopleQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.core.BrAPIPerson;
 import org.brapi.v2.model.core.response.BrAPIPersonListResponse;
 import org.brapi.v2.model.core.request.BrAPIPersonSearchRequest;
@@ -126,7 +126,7 @@ public class PeopleApiTest {
     public void searchPeoplePostTest() throws ApiException {
         BrAPIPersonSearchRequest body = new BrAPIPersonSearchRequest();
 
-        ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response = api.searchPeoplePost(body);
+        ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchPeoplePost(body);
 
         // TODO: test validations
     }

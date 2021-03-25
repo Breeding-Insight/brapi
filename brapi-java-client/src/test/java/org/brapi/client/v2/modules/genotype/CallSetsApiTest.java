@@ -19,7 +19,7 @@ import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallSetQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.GenotypeQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.response.BrAPICallSetResponse;
 import org.brapi.v2.model.geno.response.BrAPICallSetsListResponse;
 import org.brapi.v2.model.geno.request.BrAPICallSetsSearchRequest;
@@ -114,7 +114,7 @@ public class CallSetsApiTest {
     public void searchCallsetsPostTest() throws ApiException {
         BrAPICallSetsSearchRequest body = new BrAPICallSetsSearchRequest();
 
-        ApiResponse<Pair<Optional<BrAPICallSetsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response =
+        ApiResponse<Pair<Optional<BrAPICallSetsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
                 api.searchCallsetsPost(body);
 
         // TODO: test validations

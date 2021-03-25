@@ -28,7 +28,7 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenotypeQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.brapi.v2.model.geno.response.BrAPIVariantSingleResponse;
 import org.brapi.v2.model.geno.response.BrAPIVariantsListResponse;
@@ -105,7 +105,7 @@ public class VariantsApi {
      * @return ApiResponse&lt;VariantsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Pair<Optional<BrAPIVariantsListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> searchVariantsPost(BrAPIVariantsSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIVariantsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchVariantsPost(BrAPIVariantsSearchRequest body) throws ApiException {
         Call call = searchVariantsPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIVariantsListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);

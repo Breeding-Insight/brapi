@@ -16,7 +16,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmAttributeValueQueryParams;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValue;
 import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeValueListResponse;
 import org.brapi.v2.model.germ.request.BrAPIGermplasmAttributeValueSearchRequest;
@@ -128,7 +128,7 @@ public class GermplasmAttributeValuesApiTest {
         BrAPIGermplasmAttributeValueSearchRequest body = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPIGermplasmAttributeValueListResponse>, Optional<BrAPIAcceptedSearchResponseResult>>> response =
+            ApiResponse<Pair<Optional<BrAPIGermplasmAttributeValueListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
                     api.searchAttributevaluesPost(body);
 		});
 
