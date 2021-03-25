@@ -69,7 +69,8 @@ public class VariantsApiTest {
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIVariantsListResponse> response = api.searchVariantsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
+            ApiResponse<Pair<Optional<BrAPIVariantsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchVariantsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
 		});
 
         // TODO: test validations

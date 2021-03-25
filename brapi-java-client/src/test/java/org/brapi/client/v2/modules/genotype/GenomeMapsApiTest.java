@@ -157,7 +157,8 @@ public class GenomeMapsApiTest {
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIMarkerPositionListResponse> response = api.searchMarkerpositionsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+            ApiResponse<Pair<Optional<BrAPIMarkerPositionListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchMarkerpositionsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 		});
 
         // TODO: test validations

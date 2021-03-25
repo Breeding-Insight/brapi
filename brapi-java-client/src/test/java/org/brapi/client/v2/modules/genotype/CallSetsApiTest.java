@@ -134,7 +134,8 @@ public class CallSetsApiTest {
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPICallSetsListResponse> response = api.searchCallsetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+            ApiResponse<Pair<Optional<BrAPICallSetsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchCallsetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 		});
 
         // TODO: test validations

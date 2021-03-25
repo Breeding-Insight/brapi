@@ -268,10 +268,10 @@ public class CallsApi {
      * @return ApiResponse&lt;CallsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPICallsListResponse> searchCallsSearchResultsDbIdGet(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchCallsSearchResultsDbIdGet(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
         Call call = searchCallsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, pageSize);
         Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**

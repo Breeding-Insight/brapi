@@ -70,7 +70,8 @@ public class ObservationVariablesApiTest {
         Integer pageSize = null;
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIObservationVariableListResponse> response = api.searchVariablesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+            ApiResponse<Pair<Optional<BrAPIObservationVariableListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchVariablesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
         });
 
         // TODO: test validations

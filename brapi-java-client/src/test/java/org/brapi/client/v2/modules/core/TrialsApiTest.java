@@ -69,7 +69,8 @@ public class TrialsApiTest {
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPITrialListResponse> response = api.searchTrialsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+            ApiResponse<Pair<Optional<BrAPITrialListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchTrialsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 		});
 
         // TODO: test validations

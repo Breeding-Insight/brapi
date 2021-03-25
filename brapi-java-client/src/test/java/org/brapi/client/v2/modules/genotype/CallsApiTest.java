@@ -89,7 +89,8 @@ public class CallsApiTest {
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPICallsListResponse> response = api.searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
+            ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
 		});
 
         // TODO: test validations

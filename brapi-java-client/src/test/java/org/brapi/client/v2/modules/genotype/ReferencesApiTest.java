@@ -130,7 +130,8 @@ public class ReferencesApiTest {
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIReferencesListResponse> response = api.searchReferencesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+            ApiResponse<Pair<Optional<BrAPIReferencesListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchReferencesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 		});
 
         // TODO: test validations

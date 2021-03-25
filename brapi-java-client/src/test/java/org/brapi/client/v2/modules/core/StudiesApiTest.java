@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,7 @@ public class StudiesApiTest {
      */
     @Test
     public void searchStudiesPostTest() throws ApiException {
+        OffsetDateTime offsetDateTime = OffsetDateTime.parse("2014-02-02T00:00:00Z");
         BrAPIStudySearchRequest body = new BrAPIStudySearchRequest();
 
         ApiResponse<Pair<Optional<BrAPIStudyListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchStudiesPost(body);
@@ -68,7 +70,8 @@ public class StudiesApiTest {
         Integer page = null;
         Integer pageSize = null;
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIStudyListResponse> response = api.searchStudiesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+            ApiResponse<Pair<Optional<BrAPIStudyListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchStudiesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 		});
 
         // TODO: test validations

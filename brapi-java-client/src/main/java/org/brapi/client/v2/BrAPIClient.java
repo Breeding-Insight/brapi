@@ -12,9 +12,7 @@
 
 package org.brapi.client.v2;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.*;
 import okhttp3.internal.http.HttpMethod;
@@ -36,7 +34,6 @@ import org.brapi.client.v2.model.exceptions.HttpForbiddenException;
 import org.brapi.client.v2.model.exceptions.HttpInternalServerError;
 import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.exceptions.HttpUnauthorizedException;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 
 import java.io.File;
@@ -104,7 +101,12 @@ public class BrAPIClient {
 				.build();
 		verifyingSsl = true;
 		json = new JSON();
-		gson = new Gson();
+		gson = new GsonBuilder()
+				.registerTypeAdapter(OffsetDateTime.class, (JsonDeserializer<OffsetDateTime>)
+						(json, type, context) -> OffsetDateTime.parse(json.getAsString()))
+				.registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>)
+						(json, type, context) -> LocalDate.parse(json.getAsString()))
+				.create();
 		// Set default User-Agent.
 		setUserAgent("brapi-java-client/2.0");
 		// Setup authentications (key: authentication name, value: authentication).
@@ -815,7 +817,6 @@ public class BrAPIClient {
 		if (searchResponse.getBody() != null) {
 			JsonObject searchBody = searchResponse.getBody();
 			JsonObject searchResult = searchBody.getAsJsonObject("result");
-			Gson gson = new Gson();
 			try {
 				if (searchResult != null && searchResult.get("searchResultsDbId") != null) {
 					// Parse into a BrAPI Accepted Search Response
@@ -827,11 +828,11 @@ public class BrAPIClient {
 					result = new ImmutablePair<>(Optional.of(listResponse), Optional.empty());
 				}
 			} catch (JsonSyntaxException e){
-				throw new ApiException("Unable to parse search result body");
+				throw new ApiException(e);
 			}
 
 		} else {
-			throw new ApiException("Search body was not returned");
+			throw new ApiException("Search body was not returned:" );
 		}
 
 		return new ApiResponse<>(searchResponse.getStatusCode(), searchResponse.getHeaders(), result);

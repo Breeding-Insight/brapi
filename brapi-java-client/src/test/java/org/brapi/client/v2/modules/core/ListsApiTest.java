@@ -101,8 +101,9 @@ public class ListsApiTest {
         String searchResultsDbId = "test";
         Integer page = null;
         Integer pageSize = null;
-        
-        ApiResponse<BrAPIListsListResponse> response = api.searchListsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+
+        ApiResponse<Pair<Optional<BrAPIListsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                api.searchListsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

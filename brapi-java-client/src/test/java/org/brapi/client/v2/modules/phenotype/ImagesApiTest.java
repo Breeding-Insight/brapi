@@ -234,8 +234,8 @@ public class ImagesApiTest {
 		Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIImageListResponse> response = api.searchImagesSearchResultsDbIdGet(searchResultsDbId, page,
-					pageSize);
+			ApiResponse<Pair<Optional<BrAPIImageListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+					api.searchImagesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 		});
 
 		// TODO: test validations
