@@ -31,6 +31,7 @@ import org.brapi.v2.model.core.response.BrAPIProgramListResponse;
 import org.junit.jupiter.api.*;
 import com.google.gson.reflect.TypeToken;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,29 +56,34 @@ public class BrAPIClientUnitTests {
         Request dummyReq = brAPIClient.buildRequest("/programs", "GET", new HashMap<>(), new HashMap<>(), null, headers, new HashMap<>(), new String[] { "AuthorizationToken" });
         
         Response notFoundRes = new Response(dummyReq, Protocol.HTTP_1_1, "message", 404, null, Headers.of(headers), responseBody, null, null, null, 0, 0, null);
-        HttpNotFoundException notFound = assertThrows(HttpNotFoundException.class, () -> {
+        ApiException notFound = assertThrows(ApiException.class, () -> {
             brAPIClient.handleResponse(notFoundRes, new TypeToken<BrAPIProgramListResponse>(){}.getType());
         });
+        assertEquals(404, notFound.getCode());
         
         Response badRequestRes = new Response(dummyReq, Protocol.HTTP_1_1, "message", 400, null, Headers.of(headers), responseBody, null, null, null, 0, 0, null);
-        HttpBadRequestException badRequest = assertThrows(HttpBadRequestException.class, () -> {
+        ApiException badRequest = assertThrows(ApiException.class, () -> {
             brAPIClient.handleResponse(badRequestRes, new TypeToken<BrAPIProgramListResponse>(){}.getType());
         });
+        assertEquals(400, badRequest.getCode());
         
         Response unathorizedRes = new Response(dummyReq, Protocol.HTTP_1_1, "message", 401, null, Headers.of(headers), responseBody, null, null, null, 0, 0, null);
-        HttpUnauthorizedException unathorized = assertThrows(HttpUnauthorizedException.class, () -> {
+        ApiException unathorized = assertThrows(ApiException.class, () -> {
             brAPIClient.handleResponse(unathorizedRes, new TypeToken<BrAPIProgramListResponse>(){}.getType());
         });
+        assertEquals(401, unathorized.getCode());
         
         Response forbiddenRes = new Response(dummyReq, Protocol.HTTP_1_1, "message", 403, null, Headers.of(headers), responseBody, null, null, null, 0, 0, null);
-        HttpForbiddenException forbidden = assertThrows(HttpForbiddenException.class, () -> {
+        ApiException forbidden = assertThrows(ApiException.class, () -> {
             brAPIClient.handleResponse(forbiddenRes, new TypeToken<BrAPIProgramListResponse>(){}.getType());
         });
+        assertEquals(403, forbidden.getCode());
         
         Response internalRes = new Response(dummyReq, Protocol.HTTP_1_1, "message", 500, null, Headers.of(headers), responseBody, null, null, null, 0, 0, null);
-        HttpInternalServerError internal = assertThrows(HttpInternalServerError.class, () -> {
+        ApiException internal = assertThrows(ApiException.class, () -> {
             brAPIClient.handleResponse(internalRes, new TypeToken<BrAPIProgramListResponse>(){}.getType());
         });
+        assertEquals(500, internal.getCode());
     }
 
 }

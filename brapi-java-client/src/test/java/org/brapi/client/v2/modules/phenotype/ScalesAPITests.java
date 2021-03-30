@@ -22,7 +22,6 @@ import lombok.SneakyThrows;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.phenotype.ScaleQueryParams;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
@@ -235,9 +234,10 @@ public class ScalesAPITests extends BrAPIClientTest {
 	@Test
 	@SneakyThrows
 	void getScaleByIdInvalid() {
-		HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+		ApiException exception = assertThrows(ApiException.class, () -> {
 			ApiResponse<BrAPIScaleSingleResponse> scale = scalesAPI.scalesScaleDbIdGet("badScaleId");
 		});
+        assertEquals(404, exception.getCode());
 	}
 
 	@Test

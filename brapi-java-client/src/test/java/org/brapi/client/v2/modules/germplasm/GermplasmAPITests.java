@@ -26,7 +26,6 @@ import lombok.SneakyThrows;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmQueryParams;
 import org.brapi.client.v2.model.queryParams.phenotype.ScaleQueryParams;
 import org.brapi.v2.model.BrApiGeoJSON;
@@ -323,12 +322,13 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @SneakyThrows
     public void getGermplasmByIdNotExist() {
 
-        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+    	ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIGermplasmSingleResponse> germplasm = this.germplasmAPI.germplasmGermplasmDbIdGet("fake dbid");
         });
+        assertEquals(404, exception.getCode());
 
         // Check out return message is returned
-        String errorMsg = exception.getMessage();
+        String errorMsg = exception.getResponseBody();
         assertEquals(true, errorMsg.length() > 0, "Error message was not returned");
     }
 
@@ -356,9 +356,10 @@ public class GermplasmAPITests extends BrAPIClientTest {
         BrAPIGermplasm germplasm = new BrAPIGermplasm();
         germplasm.setGermplasmDbId("i_do_not_exist");
 
-        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+        ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIGermplasmSingleResponse> updatedGermplasmResult =  this.germplasmAPI.germplasmGermplasmDbIdPut("i_do_not_exist", germplasm);
         });
+        assertEquals(404, exception.getCode());
     }
 
     @Test

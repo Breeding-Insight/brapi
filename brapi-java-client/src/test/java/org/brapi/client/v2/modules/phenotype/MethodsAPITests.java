@@ -22,7 +22,6 @@ import lombok.SneakyThrows;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.phenotype.MethodQueryParams;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
@@ -241,9 +240,10 @@ public class MethodsAPITests extends BrAPIClientTest {
 	@Test
 	@SneakyThrows
 	void getMethodByIdInvalid() {
-		HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+		ApiException exception = assertThrows(ApiException.class, () -> {
 			ApiResponse<BrAPIMethodSingleResponse> method = methodsAPI.methodsMethodDbIdGet("badMethodId");
 		});
+        assertEquals(404, exception.getCode());
 	}
 
 	@Test
