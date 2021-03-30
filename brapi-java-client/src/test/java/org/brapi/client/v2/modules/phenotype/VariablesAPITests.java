@@ -22,7 +22,6 @@ import lombok.SneakyThrows;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.phenotype.VariableQueryParams;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
@@ -280,7 +279,7 @@ public class VariablesAPITests extends BrAPIClientTest {
 	@Test
 	@SneakyThrows
 	void getVariableByIdInvalid() {
-		HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+		ApiException exception = assertThrows(ApiException.class, () -> {
 			ApiResponse<BrAPIObservationVariableSingleResponse> variable = variablesAPI
 					.variablesObservationVariableDbIdGet("badVariableId");
 		});

@@ -26,7 +26,6 @@ import lombok.SneakyThrows;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
 import org.brapi.client.v2.model.queryParams.core.LocationQueryParams;
 import org.brapi.v2.model.BrApiGeoJSON;
 import org.brapi.v2.model.BrAPIExternalReference;
@@ -286,7 +285,7 @@ public class LocationsAPITests extends BrAPIClientTest {
     @Test
     @SneakyThrows
     void getLocationByIdInvalid() {
-        HttpNotFoundException exception = assertThrows(HttpNotFoundException.class, () -> {
+    	ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPILocationSingleResponse> location = locationsAPI.locationsLocationDbIdGet("badLocationId");
         });
     }

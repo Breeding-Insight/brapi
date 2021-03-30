@@ -25,11 +25,6 @@ import javax.net.ssl.*;
 import org.brapi.client.v2.auth.Authentication;
 import org.brapi.client.v2.auth.OAuth;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.client.v2.model.exceptions.HttpBadRequestException;
-import org.brapi.client.v2.model.exceptions.HttpForbiddenException;
-import org.brapi.client.v2.model.exceptions.HttpInternalServerError;
-import org.brapi.client.v2.model.exceptions.HttpNotFoundException;
-import org.brapi.client.v2.model.exceptions.HttpUnauthorizedException;
 
 import java.io.File;
 import java.io.IOException;
@@ -851,16 +846,6 @@ public class BrAPIClient {
 			} else {
 				return deserialize(response, returnType);
 			}
-		} else if (response.code() == 400) {
-			throw new HttpBadRequestException(response.body().string());
-		} else if (response.code() == 401) {
-			throw new HttpUnauthorizedException(response.body().string());
-		} else if (response.code() == 403) {
-			throw new HttpForbiddenException(response.body().string());
-		} else if (response.code() == 404) {
-			throw new HttpNotFoundException(response.body().string());
-		} else if (response.code() == 500) {
-			throw new HttpInternalServerError(response.body().string());
 		} else {
 			String respBody = null;
 			if (response.body() != null) {
