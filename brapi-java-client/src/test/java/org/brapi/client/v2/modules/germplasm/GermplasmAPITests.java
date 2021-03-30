@@ -325,9 +325,10 @@ public class GermplasmAPITests extends BrAPIClientTest {
     	ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIGermplasmSingleResponse> germplasm = this.germplasmAPI.germplasmGermplasmDbIdGet("fake dbid");
         });
+        assertEquals(404, exception.getCode());
 
         // Check out return message is returned
-        String errorMsg = exception.getMessage();
+        String errorMsg = exception.getResponseBody();
         assertEquals(true, errorMsg.length() > 0, "Error message was not returned");
     }
 
@@ -358,6 +359,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
         ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIGermplasmSingleResponse> updatedGermplasmResult =  this.germplasmAPI.germplasmGermplasmDbIdPut("i_do_not_exist", germplasm);
         });
+        assertEquals(404, exception.getCode());
     }
 
     @Test

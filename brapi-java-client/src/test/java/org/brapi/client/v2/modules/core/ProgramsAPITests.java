@@ -100,9 +100,10 @@ public class ProgramsAPITests extends BrAPIClientTest {
     	ApiException exception = assertThrows(ApiException.class, () -> {
         	ApiResponse<BrAPIProgramSingleResponse> program = this.programsAPI.programsProgramDbIdGet("fake_id");
         });
+        assertEquals(404, exception.getCode());
 
         // Check out return message is returned
-        String errorMsg = exception.getMessage();
+        String errorMsg = exception.getResponseBody();
         assertEquals(true, errorMsg.length() > 0, "Error message was not returned");
     }
 
@@ -208,5 +209,6 @@ public class ProgramsAPITests extends BrAPIClientTest {
         ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIProgramSingleResponse> updatedProgramResult = this.programsAPI.programsProgramDbIdPut("fake_id", brApiProgram);
         });
+        assertEquals(404, exception.getCode());
     }
 }

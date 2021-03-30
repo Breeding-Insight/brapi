@@ -288,6 +288,7 @@ public class LocationsAPITests extends BrAPIClientTest {
     	ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPILocationSingleResponse> location = locationsAPI.locationsLocationDbIdGet("badLocationId");
         });
+        assertEquals(404, exception.getCode());
     }
 
     @Test
