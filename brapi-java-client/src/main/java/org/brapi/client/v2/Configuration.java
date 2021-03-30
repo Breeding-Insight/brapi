@@ -16,6 +16,7 @@ package org.brapi.client.v2;
 public class Configuration {
     private static BrAPIClient defaultApiClient = new BrAPIClient("https://test-server.brapi.org/brapi/v2");
 
+
     /**
      * Get the default API client, which would be used when creating API
      * instances without providing an API client.

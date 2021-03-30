@@ -12,19 +12,23 @@
 
 package org.brapi.client.v2.modules.core;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.PeopleQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.core.BrAPIPerson;
 import org.brapi.v2.model.core.response.BrAPIPersonListResponse;
 import org.brapi.v2.model.core.request.BrAPIPersonSearchRequest;
 import org.brapi.v2.model.core.response.BrAPIPersonSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * API tests for PeopleApi
@@ -121,8 +125,8 @@ public class PeopleApiTest {
     @Test
     public void searchPeoplePostTest() throws ApiException {
         BrAPIPersonSearchRequest body = new BrAPIPersonSearchRequest();
-        
-        ApiResponse<BrAPIPersonListResponse> response = api.searchPeoplePost(body);
+
+        ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchPeoplePost(body);
 
         // TODO: test validations
     }
@@ -141,7 +145,8 @@ public class PeopleApiTest {
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIPersonListResponse> response = api.searchPeopleSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+            ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchPeopleSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 		});
 
         // TODO: test validations

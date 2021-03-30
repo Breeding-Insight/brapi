@@ -12,10 +12,13 @@
 
 package org.brapi.client.v2.modules.phenotype;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.VariableQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.pheno.BrAPIObservationVariable;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationVariableListResponse;
 import org.brapi.v2.model.pheno.request.BrAPIObservationVariableSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIObservationVariableSingleResponse;
@@ -24,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * API tests for ObservationVariablesApi
@@ -45,7 +49,8 @@ public class ObservationVariablesApiTest {
         BrAPIObservationVariableSearchRequest body = null;
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIObservationVariableListResponse> response = api.searchVariablesPost(body);
+            ApiResponse<Pair<Optional<BrAPIObservationVariableListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchVariablesPost(body);
         });
 
         // TODO: test validations
@@ -65,7 +70,8 @@ public class ObservationVariablesApiTest {
         Integer pageSize = null;
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIObservationVariableListResponse> response = api.searchVariablesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+            ApiResponse<Pair<Optional<BrAPIObservationVariableListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchVariablesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
         });
 
         // TODO: test validations

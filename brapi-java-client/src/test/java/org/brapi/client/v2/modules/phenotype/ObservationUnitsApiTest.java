@@ -12,30 +12,36 @@
 
 package org.brapi.client.v2.modules.phenotype;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationUnitQueryParams;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationUnitTableQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
 import org.brapi.v2.model.pheno.BrAPIObservationUnit;
-import org.brapi.v2.model.pheno.response.BrAPIObservationLevelListResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
+import org.brapi.v2.model.pheno.response.*;
 import org.brapi.v2.model.pheno.request.BrAPIObservationUnitSearchRequest;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitSingleResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitTableResponse;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * API tests for ObservationUnitsApi
  */
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ObservationUnitsApiTest {
 
 	private final ObservationUnitsApi api = new ObservationUnitsApi();
+	private String searchResultDbId;
 
 	@Test
 	public void observationlevelsGetTest() throws ApiException {
@@ -232,14 +238,29 @@ public class ObservationUnitsApiTest {
 	 * @throws ApiException if the Api call fails
 	 */
 	@Test
+	@Order(1)
 	public void searchObservationunitsPostTest() throws ApiException {
-		BrAPIObservationUnitSearchRequest body = null;
+		// Likely isn't going to return anything. Just testing whether search result vs data result is parsed correctly.
+		BrAPIObservationUnitSearchRequest body = new BrAPIObservationUnitSearchRequest();
+		body.addProgramDbIdsItem("1");
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIObservationUnitListResponse> response = api.searchObservationunitsPost(body);
-		});
+		ApiResponse<Pair<Optional<BrAPIObservationUnitListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchObservationunitsPost(body);
 
-		// TODO: test validations
+		Pair<Optional<BrAPIObservationUnitListResponse>, Optional<BrAPIAcceptedSearchResponse>> responseBody = response.getBody();
+		Optional<BrAPIObservationUnitListResponse> listResponse = responseBody.getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchResponse = responseBody.getRight();
+		if (listResponse.isPresent()) {
+			assertTrue(listResponse.get() != null, "data body was null");
+			BrAPIObservationUnitListResponseResult result = listResponse.get().getResult();
+			assertTrue(result.getData() != null, "No data object was returned in body");
+		} else {
+			// Check our searchResultDbId was passed
+			assertTrue(searchResponse.get() != null, "search body was null");
+			BrAPIAcceptedSearchResponse resp = searchResponse.get();
+			BrAPIAcceptedSearchResponseResult result = resp.getResult();
+			assertTrue(result.getSearchResultsDbId() != null, "No search id was returned in body");
+			searchResultDbId = result.getSearchResultsDbId();
+		}
 	}
 
 	/**
@@ -251,16 +272,30 @@ public class ObservationUnitsApiTest {
 	 * @throws ApiException if the Api call fails
 	 */
 	@Test
-	public void searchObservationunitsSearchResultsDbIdGetTest() throws ApiException {
-		String searchResultsDbId = null;
+	@Order(2)
+	public void searchObservationunitsGetTest() throws ApiException {
 		Integer page = null;
 		Integer pageSize = null;
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIObservationUnitListResponse> response = api
-					.searchObservationunitsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
-		});
+		if (searchResultDbId != null) {
+			ApiResponse<Pair<Optional<BrAPIObservationUnitListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api
+					.searchObservationunitsSearchResultsDbIdGet(searchResultDbId, page, pageSize);
 
-		// TODO: test validations
+			Pair<Optional<BrAPIObservationUnitListResponse>, Optional<BrAPIAcceptedSearchResponse>> responseBody = response.getBody();
+			Optional<BrAPIObservationUnitListResponse> listResponse = responseBody.getLeft();
+			Optional<BrAPIAcceptedSearchResponse> searchResponse = responseBody.getRight();
+			if (listResponse.isPresent()) {
+				assertTrue(listResponse.get() != null, "data body was null");
+				BrAPIObservationUnitListResponseResult result = listResponse.get().getResult();
+				assertTrue(result.getData() != null, "No data object was returned in body");
+			} else {
+				// Check our searchResultDbId was passed
+				assertTrue(searchResponse.get() != null, "search body was null");
+				BrAPIAcceptedSearchResponse resp = searchResponse.get();
+				BrAPIAcceptedSearchResponseResult result = resp.getResult();
+				assertTrue(result.getSearchResultsDbId() != null, "No search id was returned in body");
+			}
+		}
+
 	}
 }

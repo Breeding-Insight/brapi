@@ -12,19 +12,23 @@
 
 package org.brapi.client.v2.modules.germplasm;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmAttributeQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.germ.BrAPIGermplasmAttribute;
 import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeCategoryListResponse;
 import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeListResponse;
 import org.brapi.v2.model.germ.request.BrAPIGermplasmAttributeSearchRequest;
 import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * API tests for GermplasmAttributesApi
@@ -142,7 +146,7 @@ public class GermplasmAttributesApiTest {
         BrAPIGermplasmAttributeSearchRequest body = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.searchAttributesPost(body);
+            ApiResponse<Pair<Optional<BrAPIGermplasmAttributeListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchAttributesPost(body);
 		});
 
         // TODO: test validations
@@ -162,7 +166,8 @@ public class GermplasmAttributesApiTest {
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.searchAttributesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+            ApiResponse<Pair<Optional<BrAPIGermplasmAttributeListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchAttributesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 		});
 
         // TODO: test validations

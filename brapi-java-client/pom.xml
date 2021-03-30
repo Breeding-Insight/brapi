@@ -62,6 +62,11 @@
             <artifactId>brapi-java-model</artifactId>
             <version>${parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache-commons-lang.version}</version>
+        </dependency>
     </dependencies>
 
 

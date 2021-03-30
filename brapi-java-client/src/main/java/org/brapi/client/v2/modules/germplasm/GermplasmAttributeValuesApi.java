@@ -16,13 +16,16 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmAttributeValueQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValue;
 import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeValueListResponse;
 import org.brapi.v2.model.germ.request.BrAPIGermplasmAttributeValueSearchRequest;
@@ -31,6 +34,7 @@ import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeValueSingleRespon
 import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class GermplasmAttributeValuesApi {
     private BrAPIClient apiClient;
@@ -409,10 +413,10 @@ public class GermplasmAttributeValuesApi {
      * @return ApiResponse&lt;GermplasmAttributeValueListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIGermplasmAttributeValueListResponse> searchAttributevaluesPost(BrAPIGermplasmAttributeValueSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIGermplasmAttributeValueListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchAttributevaluesPost(BrAPIGermplasmAttributeValueSearchRequest body) throws ApiException {
         Call call = searchAttributevaluesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmAttributeValueListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**
@@ -490,10 +494,10 @@ public class GermplasmAttributeValuesApi {
      * @return ApiResponse&lt;GermplasmAttributeValueListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIGermplasmAttributeValueListResponse> searchAttributevaluesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIGermplasmAttributeValueListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchAttributevaluesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchAttributevaluesSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmAttributeValueListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**
