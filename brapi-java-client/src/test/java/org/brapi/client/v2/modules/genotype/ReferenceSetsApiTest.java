@@ -14,13 +14,18 @@ package org.brapi.client.v2.modules.genotype;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.ReferenceSetQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.response.BrAPIReferenceSetsListResponse;
 import org.brapi.v2.model.geno.request.BrAPIReferenceSetsSearchRequest;
 import org.brapi.v2.model.geno.response.BrAPIReferenceSetsSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
+
+import java.util.Optional;
 
 /**
  * API tests for ReferenceSetsApi
@@ -81,7 +86,7 @@ public class ReferenceSetsApiTest {
         BrAPIReferenceSetsSearchRequest body = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIReferenceSetsListResponse> response = api.searchReferencesetsPost(body);
+            ApiResponse<Pair<Optional<BrAPIReferenceSetsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchReferencesetsPost(body);
 		});
 
         // TODO: test validations
@@ -101,7 +106,8 @@ public class ReferenceSetsApiTest {
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIReferenceSetsListResponse> response = api.searchReferencesetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+            ApiResponse<Pair<Optional<BrAPIReferenceSetsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+                    api.searchReferencesetsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 		});
 
         // TODO: test validations

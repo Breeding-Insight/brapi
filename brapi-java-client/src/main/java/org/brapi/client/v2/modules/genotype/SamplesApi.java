@@ -19,17 +19,21 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.SampleQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.BrAPISample;
 import org.brapi.v2.model.geno.response.BrAPISampleListResponse;
 import org.brapi.v2.model.geno.request.BrAPISampleSearchRequest;
 import org.brapi.v2.model.geno.response.BrAPISampleSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class SamplesApi {
     private BrAPIClient apiClient;
@@ -410,10 +414,10 @@ public class SamplesApi {
      * @return ApiResponse&lt;SampleListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPISampleListResponse> searchSamplesPost(BrAPISampleSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPISampleListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchSamplesPost(BrAPISampleSearchRequest body) throws ApiException {
         Call call = searchSamplesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPISampleListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**
@@ -491,10 +495,10 @@ public class SamplesApi {
      * @return ApiResponse&lt;SampleListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPISampleListResponse> searchSamplesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPISampleListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchSamplesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchSamplesSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPISampleListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**

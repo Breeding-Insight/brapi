@@ -12,19 +12,23 @@
 
 package org.brapi.client.v2.modules.phenotype;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ImageQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.pheno.BrAPIImage;
 import org.brapi.v2.model.pheno.response.BrAPIImageListResponse;
 import org.brapi.v2.model.pheno.request.BrAPIImageSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIImageSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * API tests for ImagesApi
@@ -204,7 +208,7 @@ public class ImagesApiTest {
 		BrAPIImageSearchRequest body = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIImageListResponse> response = api.searchImagesPost(body);
+			ApiResponse<Pair<Optional<BrAPIImageListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchImagesPost(body);
 		});
 
 		// TODO: test validations
@@ -230,8 +234,8 @@ public class ImagesApiTest {
 		Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIImageListResponse> response = api.searchImagesSearchResultsDbIdGet(searchResultsDbId, page,
-					pageSize);
+			ApiResponse<Pair<Optional<BrAPIImageListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
+					api.searchImagesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 		});
 
 		// TODO: test validations

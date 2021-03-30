@@ -19,17 +19,21 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.PeopleQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.core.BrAPIPerson;
 import org.brapi.v2.model.core.response.BrAPIPersonListResponse;
 import org.brapi.v2.model.core.request.BrAPIPersonSearchRequest;
 import org.brapi.v2.model.core.response.BrAPIPersonSingleResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class PeopleApi {
     private BrAPIClient apiClient;
@@ -389,10 +393,10 @@ public class PeopleApi {
      * @return ApiResponse&lt;PersonListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIPersonListResponse> searchPeoplePost(BrAPIPersonSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchPeoplePost(BrAPIPersonSearchRequest body) throws ApiException {
         Call call = searchPeoplePostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIPersonListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**
@@ -465,10 +469,10 @@ public class PeopleApi {
      * @return ApiResponse&lt;PersonListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIPersonListResponse> searchPeopleSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchPeopleSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchPeopleSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPIPersonListResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**

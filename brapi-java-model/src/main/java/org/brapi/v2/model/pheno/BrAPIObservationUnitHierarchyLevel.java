@@ -17,12 +17,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class BrAPIObservationUnitHierarchyLevel   {
 
   @JsonProperty("levelName")
-  private BrAPIObservationUnitHierarchyLevelEnum levelName = null;
+  private String levelName = null;
 
   @JsonProperty("levelOrder")
   private Integer levelOrder = null;
 
-  public BrAPIObservationUnitHierarchyLevel levelName(BrAPIObservationUnitHierarchyLevelEnum levelName) {
+  public BrAPIObservationUnitHierarchyLevel levelName(String levelName) {
     this.levelName = levelName;
     return this;
   }
@@ -33,11 +33,11 @@ public class BrAPIObservationUnitHierarchyLevel   {
   **/
   
   
-    public BrAPIObservationUnitHierarchyLevelEnum getLevelName() {
+  public String getLevelName() {
     return levelName;
   }
 
-  public void setLevelName(BrAPIObservationUnitHierarchyLevelEnum levelName) {
+  public void setLevelName(String levelName) {
     this.levelName = levelName;
   }
 
