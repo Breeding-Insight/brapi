@@ -134,12 +134,16 @@ public class ScalesAPITests extends BrAPIClientTest {
 	private void scaleAssertEquals(BrAPIScale expected, BrAPIScale actual) {
 		assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Scale additionalInfo mismatch");
 		assertEquals(expected.getScaleName(), actual.getScaleName(), "Scale name mismatch");
-		assertEquals(expected.getOntologyReference().getOntologyDbId(), actual.getOntologyReference().getOntologyDbId(),
-				"Scale ontology dbId mismatch");
-		assertEquals(expected.getOntologyReference().getOntologyName(), actual.getOntologyReference().getOntologyName(),
-				"Scale ontology name mismatch");
-		assertEquals(expected.getOntologyReference().getVersion(), actual.getOntologyReference().getVersion(),
-				"Scale ontology version mismatch");
+		if (expected.getOntologyReference() != null && actual.getOntologyReference() != null) {
+			assertEquals(expected.getOntologyReference().getOntologyDbId(), actual.getOntologyReference().getOntologyDbId(),
+					"Scale ontology dbId mismatch");
+			assertEquals(expected.getOntologyReference().getOntologyName(), actual.getOntologyReference().getOntologyName(),
+					"Scale ontology name mismatch");
+			assertEquals(expected.getOntologyReference().getVersion(), actual.getOntologyReference().getVersion(),
+					"Scale ontology version mismatch");
+		} else {
+			assertEquals(expected.getOntologyReference(), actual.getOntologyReference(), "Scale ontology reference mismatch");
+		}
 		assertEquals(expected.getExternalReferences(), actual.getExternalReferences(),
 				"Scale external reference mismatch");
 		assertEquals(expected.getDataType(), actual.getDataType(), "Scale data type mismatch");
