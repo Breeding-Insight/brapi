@@ -207,8 +207,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @SneakyThrows
     @Order(2)
     public void getGermplasmByIDSuccess() {
-		ApiResponse<BrAPIGermplasmListResponse> existingList = germplasmAPI.germplasmGet(new GermplasmQueryParams());
-		BrAPIGermplasm existingGermplasm = existingList.getBody().getResult().getData().get(0);
+		BrAPIGermplasm existingGermplasm = this.germplasm;
         ApiResponse<BrAPIGermplasmSingleResponse> germplasmRes = this.germplasmAPI.germplasmGermplasmDbIdGet(existingGermplasm.getGermplasmDbId());
 
         assertNotNull(germplasmRes, "Germplasm was not returned");
