@@ -19,6 +19,13 @@ public class OffsetDateTimeTypeAdapter extends TypeAdapter<OffsetDateTime> {
         this(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
     }
 
+    /**
+     * Member used to solve https://github.com/Breeding-Insight/brapi/pull/31
+     * This is the expected shortened date without a timestamp e.g 1992-01-08.
+     * Goal is to replace these dates with a default timestamp 1992-01-08T00:00:00Z
+     */
+    private static String shortDateFormat = "yyyy-MM-dd";
+
     public OffsetDateTimeTypeAdapter(DateTimeFormatter formatter) {
         this.formatter = formatter;
     }
@@ -46,6 +53,11 @@ public class OffsetDateTimeTypeAdapter extends TypeAdapter<OffsetDateTime> {
                 String date = in.nextString();
                 if (date.endsWith("+0000")) {
                     date = date.substring(0, date.length()-5) + "Z";
+                }
+                //using the shortDateFormat field, check if the new date is the same length,
+                //if it is then append a timestamp.
+                if (date.length() == shortDateFormat.length()) {
+                    date = date + "T00:00:00Z";
                 }
                 //catch any date parsing exception, set to null if exception occurs
                 OffsetDateTime parsedDate;
