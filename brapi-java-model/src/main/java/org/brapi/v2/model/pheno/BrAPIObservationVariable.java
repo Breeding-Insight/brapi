@@ -3,9 +3,15 @@ package org.brapi.v2.model.pheno;
 import java.time.OffsetDateTime;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.JsonAdapter;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
+import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
 import javax.validation.Valid;
 
@@ -24,7 +30,8 @@ public class BrAPIObservationVariable {
 
   @JsonProperty("additionalInfo")
   @Valid
-  private Map<String, String> additionalInfo = null;
+  @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+  private JsonObject additionalInfo = null;
 
   @JsonProperty("commonCropName")
   private String commonCropName = null;
@@ -76,6 +83,8 @@ public class BrAPIObservationVariable {
   @JsonProperty("trait")
   private BrAPITrait trait = null;
 
+  private transient Gson gson = new Gson();
+
   public BrAPIObservationVariable observationVariableName(String observationVariableName) {
     this.observationVariableName = observationVariableName;
     return this;
@@ -109,16 +118,17 @@ public class BrAPIObservationVariable {
     this.observationVariableDbId = observationVariableDbId;
   }
 
-  public BrAPIObservationVariable additionalInfo(Map<String, String> additionalInfo) {
+  public BrAPIObservationVariable additionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
     return this;
   }
 
-  public BrAPIObservationVariable putAdditionalInfoItem(String key, String additionalInfoItem) {
+  public BrAPIObservationVariable putAdditionalInfoItem(String key, Object additionalInfoItem) {
     if (this.additionalInfo == null) {
-      this.additionalInfo = new HashMap<String, String>();
+      this.additionalInfo = new JsonObject();
     }
-    this.additionalInfo.put(key, additionalInfoItem);
+    JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+    this.additionalInfo.add(key, newElement);
     return this;
   }
 
@@ -128,11 +138,11 @@ public class BrAPIObservationVariable {
    **/
 
 
-  public Map<String, String> getAdditionalInfo() {
+  public JsonObject getAdditionalInfo() {
     return additionalInfo;
   }
 
-  public void setAdditionalInfo(Map<String, String> additionalInfo) {
+  public void setAdditionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
   }
 
