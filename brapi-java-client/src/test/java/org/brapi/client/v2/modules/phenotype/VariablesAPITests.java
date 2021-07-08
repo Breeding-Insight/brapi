@@ -17,6 +17,8 @@
 
 package org.brapi.client.v2.modules.phenotype;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import lombok.SneakyThrows;
 
 import org.brapi.client.v2.ApiResponse;
@@ -128,8 +130,8 @@ public class VariablesAPITests extends BrAPIClientTest {
 		BrAPIOntologyReference brApiOntologyReference = new BrAPIOntologyReference().ontologyDbId(validOntologyDbId)
 				.ontologyName("Ontology.org").version("17");
 
-		Map<String, String> additionalInfo = new HashMap<>();
-		additionalInfo.put("test", "test");
+		JsonObject additionalInfo = new JsonObject();
+		additionalInfo.addProperty("test", "test");
 
 		List<String> contextOfUse = new ArrayList<>();
 		contextOfUse.add("test context 1");
@@ -321,6 +323,33 @@ public class VariablesAPITests extends BrAPIClientTest {
 			ApiResponse<BrAPIObservationVariableSingleResponse> variable = this.variablesAPI
 					.variablesObservationVariableDbIdPut("fake id", null);
 		});
+	}
+
+	@Test
+	@SneakyThrows
+	public void createVariableWithComplexAdditionalInfoSuccess() {
+
+		BrAPIObservationVariable brApiVariable = buildTestVariable();
+		brApiVariable.putAdditionalInfoItem("testObject", brApiVariable);
+		brApiVariable.putAdditionalInfoItem("testBool", true);
+		brApiVariable.putAdditionalInfoItem("testString", "test");
+		brApiVariable.putAdditionalInfoItem("testInt", 1);
+		List<String> additionalInfo = new ArrayList<>();
+		additionalInfo.add("test1");
+		additionalInfo.add("test2");
+		brApiVariable.putAdditionalInfoItem("testArray", additionalInfo);
+
+		List<BrAPIObservationVariable> brApiVariableList = new ArrayList<>();
+		brApiVariableList.add(brApiVariable);
+
+		ApiResponse<BrAPIObservationVariableListResponse> createdVariable = variablesAPI
+				.variablesPost(brApiVariableList);
+
+		assertNotNull(createdVariable);
+		BrAPIObservationVariable variable = createdVariable.getBody().getResult().getData().get(0);
+
+		assertFalse(variable.getObservationVariableDbId() == null, "Variable id missing");
+		variableAssertEquals(brApiVariable, variable);
 	}
 
 }
