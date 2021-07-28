@@ -5,9 +5,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.JsonAdapter;
 import org.brapi.v2.model.BrAPIExternalReference;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
 import javax.validation.Valid;
 
@@ -23,7 +28,8 @@ public class BrAPIPlannedCross {
 
   @JsonProperty("additionalInfo")
   @Valid
-  private Map<String, String> additionalInfo = null;
+  @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+  private JsonObject additionalInfo = null;
 
   @JsonProperty("crossType")
   private BrAPICrossType crossType = null;
@@ -46,6 +52,8 @@ public class BrAPIPlannedCross {
   @JsonProperty("plannedCrossName")
   private String plannedCrossName = null;
 
+  private final transient Gson gson = new Gson();
+
   public BrAPIPlannedCross plannedCrossDbId(String plannedCrossDbId) {
     this.plannedCrossDbId = plannedCrossDbId;
     return this;
@@ -65,16 +73,17 @@ public class BrAPIPlannedCross {
     this.plannedCrossDbId = plannedCrossDbId;
   }
 
-  public BrAPIPlannedCross additionalInfo(Map<String, String> additionalInfo) {
+  public BrAPIPlannedCross additionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
     return this;
   }
 
-  public BrAPIPlannedCross putAdditionalInfoItem(String key, String additionalInfoItem) {
+  public BrAPIPlannedCross putAdditionalInfoItem(String key, Object additionalInfoItem) {
     if (this.additionalInfo == null) {
-      this.additionalInfo = new HashMap<String, String>();
+      this.additionalInfo = new JsonObject();
     }
-    this.additionalInfo.put(key, additionalInfoItem);
+    JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+    this.additionalInfo.add(key, newElement);
     return this;
   }
 
@@ -84,11 +93,11 @@ public class BrAPIPlannedCross {
    **/
 
 
-  public Map<String, String> getAdditionalInfo() {
+  public JsonObject getAdditionalInfo() {
     return additionalInfo;
   }
 
-  public void setAdditionalInfo(Map<String, String> additionalInfo) {
+  public void setAdditionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
   }
 

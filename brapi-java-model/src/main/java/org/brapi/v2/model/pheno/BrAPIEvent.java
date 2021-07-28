@@ -11,6 +11,11 @@ import java.time.OffsetDateTime;
 
 import javax.validation.Valid;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.JsonAdapter;
+import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 import org.brapi.v2.model.pheno.BrAPIEventEventParameters;
 
 
@@ -22,7 +27,8 @@ import org.brapi.v2.model.pheno.BrAPIEventEventParameters;
 public class BrAPIEvent   {
   @JsonProperty("additionalInfo")
   @Valid
-  private Map<String, String> additionalInfo = null;
+  @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+  private JsonObject additionalInfo = null;
 
   @JsonProperty("date")
   @Valid
@@ -51,16 +57,19 @@ public class BrAPIEvent   {
   @JsonProperty("studyDbId")
   private String studyDbId = null;
 
-  public BrAPIEvent additionalInfo(Map<String, String> additionalInfo) {
+  private final transient Gson gson = new Gson();
+
+  public BrAPIEvent additionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
     return this;
   }
 
-  public BrAPIEvent putAdditionalInfoItem(String key, String additionalInfoItem) {
+  public BrAPIEvent putAdditionalInfoItem(String key, Object additionalInfoItem) {
     if (this.additionalInfo == null) {
-      this.additionalInfo = new HashMap<String, String>();
+      this.additionalInfo = new JsonObject();
     }
-    this.additionalInfo.put(key, additionalInfoItem);
+    JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+    this.additionalInfo.add(key, newElement);
     return this;
   }
 
@@ -70,11 +79,11 @@ public class BrAPIEvent   {
   **/
   
   
-    public Map<String, String> getAdditionalInfo() {
+    public JsonObject getAdditionalInfo() {
     return additionalInfo;
   }
 
-  public void setAdditionalInfo(Map<String, String> additionalInfo) {
+  public void setAdditionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
   }
 

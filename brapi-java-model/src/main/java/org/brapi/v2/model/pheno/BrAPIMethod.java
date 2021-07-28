@@ -6,10 +6,15 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.JsonAdapter;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
+import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
 import javax.validation.Valid;
 
@@ -25,7 +30,8 @@ public class BrAPIMethod {
 
   @JsonProperty("additionalInfo")
   @Valid
-  private Map<String, String> additionalInfo = null;
+  @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+  private JsonObject additionalInfo = null;
 
   @JsonProperty("bibliographicalReference")
   private String bibliographicalReference = null;
@@ -48,6 +54,8 @@ public class BrAPIMethod {
   @JsonProperty("ontologyReference")
   private BrAPIOntologyReference ontologyReference = null;
 
+  private final transient Gson gson = new Gson();
+
   public BrAPIMethod methodDbId(String methodDbId) {
     this.methodDbId = methodDbId;
     return this;
@@ -67,16 +75,17 @@ public class BrAPIMethod {
     this.methodDbId = methodDbId;
   }
 
-  public BrAPIMethod additionalInfo(Map<String, String> additionalInfo) {
+  public BrAPIMethod additionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
     return this;
   }
 
-  public BrAPIMethod putAdditionalInfoItem(String key, String additionalInfoItem) {
+  public BrAPIMethod putAdditionalInfoItem(String key, Object additionalInfoItem) {
     if (this.additionalInfo == null) {
-      this.additionalInfo = new HashMap<String, String>();
+      this.additionalInfo = new JsonObject();
     }
-    this.additionalInfo.put(key, additionalInfoItem);
+    JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+    this.additionalInfo.add(key, newElement);
     return this;
   }
 
@@ -87,11 +96,11 @@ public class BrAPIMethod {
    **/
 
 
-  public Map<String, String> getAdditionalInfo() {
+  public JsonObject getAdditionalInfo() {
     return additionalInfo;
   }
 
-  public void setAdditionalInfo(Map<String, String> additionalInfo) {
+  public void setAdditionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
   }
 

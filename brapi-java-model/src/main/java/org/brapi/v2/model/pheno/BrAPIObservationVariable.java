@@ -3,7 +3,6 @@ package org.brapi.v2.model.pheno;
 import java.time.OffsetDateTime;
 import java.util.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;

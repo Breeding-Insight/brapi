@@ -3,9 +3,14 @@ package org.brapi.v2.model.germ;
 import java.time.LocalDate;
 import java.util.*;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.JsonAdapter;
 import org.brapi.v2.model.BrAPIExternalReference;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
 import javax.validation.Valid;
 
@@ -26,8 +31,9 @@ public class BrAPIGermplasm {
 	private LocalDate acquisitionDate = null;
 
 	@JsonProperty("additionalInfo")
-	@Valid
-	private Map<String, String> additionalInfo = null;
+    @Valid
+    @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+	private JsonObject additionalInfo = null;
 
 	@JsonProperty("biologicalStatusOfAccessionCode")
 	private BrAPIBiologicalStatusOfAccessionCode biologicalStatusOfAccessionCode = null;
@@ -115,6 +121,8 @@ public class BrAPIGermplasm {
 	@Valid
 	private List<BrAPITaxonID> taxonIds = null;
 
+	private final transient Gson gson = new Gson();
+
 	public BrAPIGermplasm germplasmDbId(String germplasmDbId) {
 		this.germplasmDbId = germplasmDbId;
 		return this;
@@ -186,18 +194,19 @@ public class BrAPIGermplasm {
 		this.acquisitionDate = acquisitionDate;
 	}
 
-	public BrAPIGermplasm additionalInfo(Map<String, String> additionalInfo) {
+	public BrAPIGermplasm additionalInfo(JsonObject additionalInfo) {
 		this.additionalInfo = additionalInfo;
 		return this;
 	}
 
-	public BrAPIGermplasm putAdditionalInfoItem(String key, String additionalInfoItem) {
-		if (this.additionalInfo == null) {
-			this.additionalInfo = new HashMap<String, String>();
-		}
-		this.additionalInfo.put(key, additionalInfoItem);
-		return this;
-	}
+	public BrAPIGermplasm putAdditionalInfoItem(String key, Object additionalInfoItem) {
+        if (this.additionalInfo == null) {
+          this.additionalInfo = new JsonObject();
+        }
+        JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+        this.additionalInfo.add(key, newElement);
+        return this;
+  	}
 
 	/**
 	 * Additional arbitrary info
@@ -206,11 +215,11 @@ public class BrAPIGermplasm {
 	 **/
 
 
-	public Map<String, String> getAdditionalInfo() {
+	public JsonObject getAdditionalInfo() {
 		return additionalInfo;
 	}
 
-	public void setAdditionalInfo(Map<String, String> additionalInfo) {
+	public void setAdditionalInfo(JsonObject additionalInfo) {
 		this.additionalInfo = additionalInfo;
 	}
 

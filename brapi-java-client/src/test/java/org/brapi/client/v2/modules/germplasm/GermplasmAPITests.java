@@ -21,6 +21,7 @@ import com.github.filosganga.geogson.model.Coordinates;
 import com.github.filosganga.geogson.model.Point;
 import com.github.filosganga.geogson.model.positions.SinglePosition;
 
+import com.google.gson.JsonObject;
 import lombok.SneakyThrows;
 
 import org.brapi.client.v2.ApiResponse;
@@ -85,8 +86,8 @@ public class GermplasmAPITests extends BrAPIClientTest {
     @Order(1)
     public void createGermplasmSuccess() {
 
-        Map<String, String> additionalInfo = new HashMap<>();
-        additionalInfo.put("test_key", "test_value");
+        JsonObject additionalInfo = new JsonObject();
+        additionalInfo.addProperty("test_key", "test_value");
         List<BrAPIGermplasmDonors> donors = new ArrayList<>();
         donors.add(new BrAPIGermplasmDonors()
                 .donorInstituteCode("001")
@@ -218,7 +219,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
         assertEquals(existingGermplasm.getAcquisitionDate(), brApiGermplasm.getAcquisitionDate(), "Wrong Aquisition date");
         // Check deep
         assertEquals(true, brApiGermplasm.getAdditionalInfo() != null, "Additional info was not populated");
-        Map<String, String> additionalInfo = brApiGermplasm.getAdditionalInfo();
+        JsonObject additionalInfo = brApiGermplasm.getAdditionalInfo();
         assertEquals(true, additionalInfo.size() > 0, "Additional info was not parsed correctly");
 
         assertEquals(existingGermplasm.getBiologicalStatusOfAccessionCode(), brApiGermplasm.getBiologicalStatusOfAccessionCode(), "Wrong Biological status of accession code");

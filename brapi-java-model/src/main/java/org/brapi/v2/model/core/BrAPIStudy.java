@@ -4,8 +4,13 @@ import java.time.OffsetDateTime;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.JsonAdapter;
 import org.brapi.v2.model.BrAPIDataLink;
 import org.brapi.v2.model.BrAPIExternalReference;
+import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 import org.brapi.v2.model.pheno.BrAPIObservationUnitHierarchyLevel;
 
 import javax.validation.Valid;
@@ -25,7 +30,8 @@ public class BrAPIStudy {
 
   @JsonProperty("additionalInfo")
   @Valid
-  private Map<String, String> additionalInfo = null;
+  @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+  private JsonObject additionalInfo = null;
 
   @JsonProperty("commonCropName")
   private String commonCropName = null;
@@ -107,6 +113,8 @@ public class BrAPIStudy {
   @JsonProperty("trialName")
   private String trialName = null;
 
+  private final transient Gson gson = new Gson();
+
   /**
    * The ID which uniquely identifies a study within the given database server  MIAPPE V1.1 (DM-11) Study unique ID - Unique identifier comprising the name or identifier for the institution/database hosting the submission of the study data, and the identifier of the study in that institution.
    * @return studyDbId
@@ -144,16 +152,17 @@ public class BrAPIStudy {
     this.active = active;
   }
 
-  public BrAPIStudy additionalInfo(Map<String, String> additionalInfo) {
+  public BrAPIStudy additionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
     return this;
   }
 
-  public BrAPIStudy putAdditionalInfoItem(String key, String additionalInfoItem) {
+  public BrAPIStudy putAdditionalInfoItem(String key, Object additionalInfoItem) {
     if (this.additionalInfo == null) {
-      this.additionalInfo = new HashMap<String, String>();
+      this.additionalInfo = new JsonObject();
     }
-    this.additionalInfo.put(key, additionalInfoItem);
+    JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+    this.additionalInfo.add(key, newElement);
     return this;
   }
 
@@ -163,11 +172,11 @@ public class BrAPIStudy {
    **/
 
 
-  public Map<String, String> getAdditionalInfo() {
+  public JsonObject getAdditionalInfo() {
     return additionalInfo;
   }
 
-  public void setAdditionalInfo(Map<String, String> additionalInfo) {
+  public void setAdditionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
   }
 
