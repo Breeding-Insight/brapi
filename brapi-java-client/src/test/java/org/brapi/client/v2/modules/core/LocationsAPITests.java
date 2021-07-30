@@ -21,6 +21,7 @@ import com.github.filosganga.geogson.model.Coordinates;
 import com.github.filosganga.geogson.model.Point;
 import com.github.filosganga.geogson.model.positions.SinglePosition;
 
+import com.google.gson.JsonObject;
 import lombok.SneakyThrows;
 
 import org.brapi.client.v2.ApiResponse;
@@ -114,8 +115,8 @@ public class LocationsAPITests extends BrAPIClientTest {
 				.referenceID(externalReferenceID)
 				.referenceSource(externalReferenceSource));
 
-        Map<String, String> additionalInfo = new HashMap<>();
-        additionalInfo.put("test", "test");
+        JsonObject additionalInfo = new JsonObject();
+        additionalInfo.addProperty("test", "test");
 
         BrAPILocation brApiLocation = new BrAPILocation()
                 .locationName("Test location")

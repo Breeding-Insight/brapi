@@ -17,6 +17,7 @@
 
 package org.brapi.client.v2.modules.phenotype;
 
+import com.google.gson.JsonObject;
 import lombok.SneakyThrows;
 
 import org.brapi.client.v2.ApiResponse;
@@ -114,8 +115,8 @@ public class ScalesAPITests extends BrAPIClientTest {
 		BrAPITraitDataType dataType = BrAPITraitDataType.TEXT;
 		BrAPIScaleValidValues validValues = new BrAPIScaleValidValues().min(0).max(5).categories(categories);
 
-		Map<String, String> additionalInfo = new HashMap<>();
-		additionalInfo.put("test", "test");
+		JsonObject additionalInfo = new JsonObject();
+		additionalInfo.addProperty("test", "test");
 		BrAPIScale brApiScale = new BrAPIScale().additionalInfo(additionalInfo).externalReferences(externalReferences)
 				.ontologyReference(brApiOntologyReference).dataType(dataType).decimalPlaces(2).scaleName("test scale")
 				.validValues(validValues);

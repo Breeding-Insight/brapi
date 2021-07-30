@@ -17,6 +17,7 @@
 
 package org.brapi.client.v2.modules.phenotype;
 
+import com.google.gson.JsonObject;
 import lombok.SneakyThrows;
 
 import org.brapi.client.v2.ApiResponse;
@@ -81,8 +82,8 @@ public class TraitsAPITests extends BrAPIClientTest {
 		externalReferences.add(brApiExternalReference);
 		List<String> alternativeAbbreviations = new ArrayList<>();
 		alternativeAbbreviations.add("test abbrev");
-		Map<String, String> additionalInfo = new HashMap<>();
-		additionalInfo.put("test", "test");
+		JsonObject additionalInfo = new JsonObject();
+		additionalInfo.addProperty("test", "test");
 		return new BrAPITrait()
 				.alternativeAbbreviations(alternativeAbbreviations)
 				.attribute("test")

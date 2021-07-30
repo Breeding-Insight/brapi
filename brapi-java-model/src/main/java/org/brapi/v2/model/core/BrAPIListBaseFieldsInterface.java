@@ -1,5 +1,6 @@
 package org.brapi.v2.model.core;
 
+import com.google.gson.JsonObject;
 import org.brapi.v2.model.BrAPIExternalReference;
 
 import java.util.List;
@@ -9,13 +10,13 @@ import java.time.OffsetDateTime;
 
 public interface BrAPIListBaseFieldsInterface {
 
-	public BrAPIListBaseFieldsInterface additionalInfo(Map<String, String> additionalInfo);
+	public BrAPIListBaseFieldsInterface additionalInfo(JsonObject additionalInfo);
 
-	public BrAPIListBaseFieldsInterface putAdditionalInfoItem(String key, String additionalInfoItem);
+	public BrAPIListBaseFieldsInterface putAdditionalInfoItem(String key, Object additionalInfoItem);
 
-	public Map<String, String> getAdditionalInfo();
+	public JsonObject getAdditionalInfo();
 
-	public void setAdditionalInfo(Map<String, String> additionalInfo);
+	public void setAdditionalInfo(JsonObject additionalInfo);
 
 	public BrAPIListBaseFieldsInterface dateCreated(OffsetDateTime dateCreated);
 

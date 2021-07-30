@@ -2,7 +2,11 @@ package org.brapi.v2.model.geno;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.JsonAdapter;
+import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
 
 import java.util.HashMap;
@@ -19,7 +23,8 @@ import javax.validation.Valid;
 public class BrAPILinkageGroup   {
   @JsonProperty("additionalInfo")
   @Valid
-  private Map<String, String> additionalInfo = null;
+  @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+  private JsonObject additionalInfo = null;
 
   @JsonProperty("linkageGroupName")
   private String linkageGroupName = null;
@@ -30,16 +35,19 @@ public class BrAPILinkageGroup   {
   @JsonProperty("maxPosition")
   private Integer maxPosition = null;
 
-  public BrAPILinkageGroup additionalInfo(Map<String, String> additionalInfo) {
+  private final transient Gson gson = new Gson();
+
+  public BrAPILinkageGroup additionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
     return this;
   }
 
-  public BrAPILinkageGroup putAdditionalInfoItem(String key, String additionalInfoItem) {
+  public BrAPILinkageGroup putAdditionalInfoItem(String key, Object additionalInfoItem) {
     if (this.additionalInfo == null) {
-      this.additionalInfo = new HashMap<String, String>();
+      this.additionalInfo = new JsonObject();
     }
-    this.additionalInfo.put(key, additionalInfoItem);
+    JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+    this.additionalInfo.add(key, newElement);
     return this;
   }
 
@@ -49,11 +57,11 @@ public class BrAPILinkageGroup   {
   **/
   
   
-    public Map<String, String> getAdditionalInfo() {
+    public JsonObject getAdditionalInfo() {
     return additionalInfo;
   }
 
-  public void setAdditionalInfo(Map<String, String> additionalInfo) {
+  public void setAdditionalInfo(JsonObject additionalInfo) {
     this.additionalInfo = additionalInfo;
   }
 

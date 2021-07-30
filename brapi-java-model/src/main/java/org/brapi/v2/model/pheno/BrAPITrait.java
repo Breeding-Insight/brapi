@@ -1,6 +1,10 @@
 package org.brapi.v2.model.pheno;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.JsonAdapter;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +12,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
+import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
 import javax.validation.Valid;
 import java.util.*;
@@ -18,8 +23,9 @@ import java.util.*;
 
 public class BrAPITrait {
 	@JsonProperty("additionalInfo")
-	@Valid
-	private Map<String, String> additionalInfo = null;
+    @Valid
+    @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+	private JsonObject additionalInfo = null;
 	@JsonProperty("alternativeAbbreviations")
 	@Valid
 	private List<String> alternativeAbbreviations = null;
@@ -58,6 +64,8 @@ public class BrAPITrait {
 	@JsonProperty("traitDbId")
 	private String traitDbId = null;
 
+	private final transient Gson gson = new Gson();
+
 	public BrAPITrait traitDbId(String traitDbId) {
 		this.traitDbId = traitDbId;
 		return this;
@@ -77,18 +85,19 @@ public class BrAPITrait {
 		this.traitDbId = traitDbId;
 	}
 
-	public BrAPITrait additionalInfo(Map<String, String> additionalInfo) {
+	public BrAPITrait additionalInfo(JsonObject additionalInfo) {
 		this.additionalInfo = additionalInfo;
 		return this;
 	}
 
-	public BrAPITrait putAdditionalInfoItem(String key, String additionalInfoItem) {
-		if (this.additionalInfo == null) {
-			this.additionalInfo = new HashMap<String, String>();
-		}
-		this.additionalInfo.put(key, additionalInfoItem);
-		return this;
-	}
+	public BrAPITrait putAdditionalInfoItem(String key, Object additionalInfoItem) {
+        if (this.additionalInfo == null) {
+          this.additionalInfo = new JsonObject();
+        }
+        JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+        this.additionalInfo.add(key, newElement);
+        return this;
+  	}
 
 	/**
 	 * Additional arbitrary info
@@ -97,11 +106,11 @@ public class BrAPITrait {
 	 **/
 
 
-	public Map<String, String> getAdditionalInfo() {
+	public JsonObject getAdditionalInfo() {
 		return additionalInfo;
 	}
 
-	public void setAdditionalInfo(Map<String, String> additionalInfo) {
+	public void setAdditionalInfo(JsonObject additionalInfo) {
 		this.additionalInfo = additionalInfo;
 	}
 	public BrAPITrait alternativeAbbreviations(List<String> alternativeAbbreviations) {

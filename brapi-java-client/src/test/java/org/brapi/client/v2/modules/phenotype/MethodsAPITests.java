@@ -17,6 +17,7 @@
 
 package org.brapi.client.v2.modules.phenotype;
 
+import com.google.gson.JsonObject;
 import lombok.SneakyThrows;
 
 import org.brapi.client.v2.ApiResponse;
@@ -99,8 +100,8 @@ public class MethodsAPITests extends BrAPIClientTest {
 		BrAPIOntologyReference brApiOntologyReference = new BrAPIOntologyReference().ontologyDbId(validOntologyDbId)
 				.ontologyName("Ontology.org").version("17");
 
-		Map<String, String> additionalInfo = new HashMap<>();
-		additionalInfo.put("test", "test");
+		JsonObject additionalInfo = new JsonObject();
+		additionalInfo.addProperty("test", "test");
 		BrAPIMethod brApiMethod = new BrAPIMethod().additionalInfo(additionalInfo)
 				.externalReferences(externalReferences).ontologyReference(brApiOntologyReference)
 				.bibliographicalReference("test bib").description("test method description").formula("test = test + 1")
