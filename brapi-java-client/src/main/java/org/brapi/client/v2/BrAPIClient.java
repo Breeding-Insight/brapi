@@ -71,7 +71,6 @@ public class BrAPIClient {
 
 	private OkHttpClient httpClient;
 	private JSON json;
-	private Gson gson;
 
 	public BrAPIClient() {
 		setBasePath("");
@@ -96,12 +95,7 @@ public class BrAPIClient {
 				.build();
 		verifyingSsl = true;
 		json = new JSON();
-		gson = new GsonBuilder()
-				.registerTypeAdapter(OffsetDateTime.class, (JsonDeserializer<OffsetDateTime>)
-						(json, type, context) -> OffsetDateTime.parse(json.getAsString()))
-				.registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>)
-						(json, type, context) -> LocalDate.parse(json.getAsString()))
-				.create();
+
 		// Set default User-Agent.
 		setUserAgent("brapi-java-client/2.0");
 		// Setup authentications (key: authentication name, value: authentication).
@@ -815,11 +809,11 @@ public class BrAPIClient {
 			try {
 				if (searchResult != null && searchResult.get("searchResultsDbId") != null) {
 					// Parse into a BrAPI Accepted Search Response
-					BrAPIAcceptedSearchResponse searchResultObject = gson.fromJson(searchBody, BrAPIAcceptedSearchResponse.class);
+					BrAPIAcceptedSearchResponse searchResultObject = json.getGson().fromJson(searchBody, BrAPIAcceptedSearchResponse.class);
 					result = new ImmutablePair<>(Optional.empty(), Optional.of(searchResultObject));
 				} else {
 					// Parse into the actual response object
-					T listResponse = gson.fromJson(searchBody, returnType);
+					T listResponse = json.getGson().fromJson(searchBody, returnType);
 					result = new ImmutablePair<>(Optional.of(listResponse), Optional.empty());
 				}
 			} catch (JsonSyntaxException e){
