@@ -24,13 +24,16 @@ import com.github.filosganga.geogson.model.positions.SinglePosition;
 import com.google.gson.JsonObject;
 import lombok.SneakyThrows;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.LocationQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.BrApiGeoJSON;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.core.BrAPILocation;
+import org.brapi.v2.model.core.request.BrAPILocationSearchRequest;
 import org.brapi.v2.model.core.response.BrAPILocationListResponse;
 import org.brapi.v2.model.core.response.BrAPILocationSingleResponse;
 import org.junit.jupiter.api.*;
@@ -322,6 +325,21 @@ public class LocationsAPITests extends BrAPIClientTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             ApiResponse<BrAPILocationSingleResponse> updatedLocationResult = this.locationsAPI.locationsLocationDbIdPut(null, null);
         });
+    }
+
+    @Test
+    @Order(3)
+    @SneakyThrows
+    public void searchLocationByName() {
+        BrAPILocationSearchRequest locationSearchRequest = new BrAPILocationSearchRequest();
+        List<String> names = new ArrayList<>();
+        names.add("updated_name");
+        locationSearchRequest.setLocationNames(names);
+        ApiResponse<Pair<Optional<BrAPILocationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = locationsAPI.searchLocationsPost(locationSearchRequest);
+        BrAPILocationListResponse locationResponse = response.getBody().getLeft().get();
+
+        assertEquals(true, locationResponse.getResult().getData().size() > 0, "List of locations was empty");
+
     }
 
 }
