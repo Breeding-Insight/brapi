@@ -46,6 +46,8 @@ public class OffsetDateTimeTypeAdapter extends TypeAdapter<OffsetDateTime> {
                 String date = in.nextString();
                 if (date.endsWith("+0000")) {
                     date = date.substring(0, date.length()-5) + "Z";
+                } else if (date.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+                    date = date + "T00:00:00Z";
                 }
                 return OffsetDateTime.parse(date, formatter);
         }
