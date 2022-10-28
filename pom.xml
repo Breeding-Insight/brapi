@@ -42,6 +42,8 @@
   <modules>
     <module>brapi-java-model</module>
     <module>brapi-java-client</module>
+    <module>brapi-java-client-v21</module>
+    <module>brapi-java-model-v21</module>
   </modules>
 
   <dependencies>

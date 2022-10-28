@@ -145,7 +145,7 @@ public class MethodsApi {
         
         // create path and map variables
         String localVarPath = "/methods/{methodDbId}"
-            .replaceAll("\\{" + "methodDbId" + "\\}", apiClient.escapeString(methodDbId.toString()));
+            .replaceAll("\\{" + "methodDbId" + "\\}", apiClient.escapeString(methodDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -222,7 +222,7 @@ public class MethodsApi {
         
         // create path and map variables
         String localVarPath = "/methods/{methodDbId}"
-            .replaceAll("\\{" + "methodDbId" + "\\}", apiClient.escapeString(methodDbId.toString()));
+            .replaceAll("\\{" + "methodDbId" + "\\}", apiClient.escapeString(methodDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

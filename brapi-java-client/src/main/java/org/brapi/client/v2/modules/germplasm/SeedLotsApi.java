@@ -221,7 +221,7 @@ public class SeedLotsApi {
         
         // create path and map variables
         String localVarPath = "/seedlots/{seedLotDbId}"
-            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId.toString()));
+            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -298,7 +298,7 @@ public class SeedLotsApi {
         
         // create path and map variables
         String localVarPath = "/seedlots/{seedLotDbId}"
-            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId.toString()));
+            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -377,7 +377,7 @@ public class SeedLotsApi {
         
         // create path and map variables
         String localVarPath = "/seedlots/{seedLotDbId}/transactions"
-            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId.toString()));
+            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

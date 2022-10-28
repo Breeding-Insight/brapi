@@ -215,7 +215,7 @@ public class SeasonsApi {
         
         // create path and map variables
         String localVarPath = "/seasons/{seasonDbId}"
-            .replaceAll("\\{" + "seasonDbId" + "\\}", apiClient.escapeString(seasonDbId.toString()));
+            .replaceAll("\\{" + "seasonDbId" + "\\}", apiClient.escapeString(seasonDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -292,7 +292,7 @@ public class SeasonsApi {
         
         // create path and map variables
         String localVarPath = "/seasons/{seasonDbId}"
-            .replaceAll("\\{" + "seasonDbId" + "\\}", apiClient.escapeString(seasonDbId.toString()));
+            .replaceAll("\\{" + "seasonDbId" + "\\}", apiClient.escapeString(seasonDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

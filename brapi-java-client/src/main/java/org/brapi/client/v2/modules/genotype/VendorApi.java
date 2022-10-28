@@ -156,7 +156,7 @@ public class VendorApi {
         
         // create path and map variables
         String localVarPath = "/vendor/orders/{orderId}/plates"
-            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -239,7 +239,7 @@ public class VendorApi {
         
         // create path and map variables
         String localVarPath = "/vendor/orders/{orderId}/results"
-            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -320,7 +320,7 @@ public class VendorApi {
         
         // create path and map variables
         String localVarPath = "/vendor/orders/{orderId}/status"
-            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -537,7 +537,7 @@ public class VendorApi {
         
         // create path and map variables
         String localVarPath = "/vendor/plates/{submissionId}"
-            .replaceAll("\\{" + "submissionId" + "\\}", apiClient.escapeString(submissionId.toString()));
+            .replaceAll("\\{" + "submissionId" + "\\}", apiClient.escapeString(submissionId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

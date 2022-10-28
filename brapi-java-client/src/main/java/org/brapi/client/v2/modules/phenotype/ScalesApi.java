@@ -216,7 +216,7 @@ public class ScalesApi {
         
         // create path and map variables
         String localVarPath = "/scales/{scaleDbId}"
-            .replaceAll("\\{" + "scaleDbId" + "\\}", apiClient.escapeString(scaleDbId.toString()));
+            .replaceAll("\\{" + "scaleDbId" + "\\}", apiClient.escapeString(scaleDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -293,7 +293,7 @@ public class ScalesApi {
         
         // create path and map variables
         String localVarPath = "/scales/{scaleDbId}"
-            .replaceAll("\\{" + "scaleDbId" + "\\}", apiClient.escapeString(scaleDbId.toString()));
+            .replaceAll("\\{" + "scaleDbId" + "\\}", apiClient.escapeString(scaleDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

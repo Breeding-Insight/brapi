@@ -10,6 +10,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 /**
@@ -49,20 +50,18 @@ public class DateTypeAdapter extends TypeAdapter<Date> {
     @Override
     public Date read(JsonReader in) throws IOException {
         try {
-            switch (in.peek()) {
-                case NULL:
-                    in.nextNull();
-                    return null;
-                default:
-                    String date = in.nextString();
-                    try {
-                        if (dateFormat != null) {
-                            return dateFormat.parse(date);
-                        }
-                        return ISO8601Utils.parse(date, new ParsePosition(0));
-                    } catch (ParseException e) {
-                        throw new JsonParseException(e);
-                    }
+            if (in.peek() == JsonToken.NULL) {
+                in.nextNull();
+                return null;
+            }
+            String date = in.nextString();
+            try {
+                if (dateFormat != null) {
+                    return dateFormat.parse(date);
+                }
+                return ISO8601Utils.parse(date, new ParsePosition(0));
+            } catch (ParseException e) {
+                throw new JsonParseException(e);
             }
         } catch (IllegalArgumentException e) {
             throw new JsonParseException(e);

@@ -145,7 +145,7 @@ public class TrialsApi {
         
         // create path and map variables
         String localVarPath = "/search/trials/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -399,7 +399,7 @@ public class TrialsApi {
         
         // create path and map variables
         String localVarPath = "/trials/{trialDbId}"
-            .replaceAll("\\{" + "trialDbId" + "\\}", apiClient.escapeString(trialDbId.toString()));
+            .replaceAll("\\{" + "trialDbId" + "\\}", apiClient.escapeString(trialDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -476,7 +476,7 @@ public class TrialsApi {
         
         // create path and map variables
         String localVarPath = "/trials/{trialDbId}"
-            .replaceAll("\\{" + "trialDbId" + "\\}", apiClient.escapeString(trialDbId.toString()));
+            .replaceAll("\\{" + "trialDbId" + "\\}", apiClient.escapeString(trialDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

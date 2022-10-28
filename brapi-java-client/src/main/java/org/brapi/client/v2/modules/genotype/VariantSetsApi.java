@@ -148,7 +148,7 @@ public class VariantSetsApi {
         
         // create path and map variables
         String localVarPath = "/search/variantsets/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -381,7 +381,7 @@ public class VariantSetsApi {
         
         // create path and map variables
         String localVarPath = "/variantsets/{variantSetDbId}/calls"
-            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId.toString()));
+            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -470,7 +470,7 @@ public class VariantSetsApi {
         
         // create path and map variables
         String localVarPath = "/variantsets/{variantSetDbId}/callsets"
-            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId.toString()));
+            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -559,7 +559,7 @@ public class VariantSetsApi {
         
         // create path and map variables
         String localVarPath = "/variantsets/{variantSetDbId}"
-            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId.toString()));
+            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -635,7 +635,7 @@ public class VariantSetsApi {
         
         // create path and map variables
         String localVarPath = "/variantsets/{variantSetDbId}/variants"
-            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId.toString()));
+            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

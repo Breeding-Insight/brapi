@@ -218,7 +218,7 @@ public class TraitsApi {
         
         // create path and map variables
         String localVarPath = "/traits/{traitDbId}"
-            .replaceAll("\\{" + "traitDbId" + "\\}", apiClient.escapeString(traitDbId.toString()));
+            .replaceAll("\\{" + "traitDbId" + "\\}", apiClient.escapeString(traitDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -295,7 +295,7 @@ public class TraitsApi {
         
         // create path and map variables
         String localVarPath = "/traits/{traitDbId}"
-            .replaceAll("\\{" + "traitDbId" + "\\}", apiClient.escapeString(traitDbId.toString()));
+            .replaceAll("\\{" + "traitDbId" + "\\}", apiClient.escapeString(traitDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

@@ -67,7 +67,7 @@ public class CrossingProjectsApi {
         
         // create path and map variables
         String localVarPath = "/crossingprojects/{crossingProjectDbId}"
-            .replaceAll("\\{" + "crossingProjectDbId" + "\\}", apiClient.escapeString(crossingProjectDbId.toString()));
+            .replaceAll("\\{" + "crossingProjectDbId" + "\\}", apiClient.escapeString(crossingProjectDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -144,7 +144,7 @@ public class CrossingProjectsApi {
         
         // create path and map variables
         String localVarPath = "/crossingprojects/{crossingProjectDbId}"
-            .replaceAll("\\{" + "crossingProjectDbId" + "\\}", apiClient.escapeString(crossingProjectDbId.toString()));
+            .replaceAll("\\{" + "crossingProjectDbId" + "\\}", apiClient.escapeString(crossingProjectDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

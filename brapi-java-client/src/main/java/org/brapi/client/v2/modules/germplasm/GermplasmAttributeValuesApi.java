@@ -72,7 +72,7 @@ public class GermplasmAttributeValuesApi {
         
         // create path and map variables
         String localVarPath = "/attributevalues/{attributeValueDbId}"
-            .replaceAll("\\{" + "attributeValueDbId" + "\\}", apiClient.escapeString(attributeValueDbId.toString()));
+            .replaceAll("\\{" + "attributeValueDbId" + "\\}", apiClient.escapeString(attributeValueDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -149,7 +149,7 @@ public class GermplasmAttributeValuesApi {
         
         // create path and map variables
         String localVarPath = "/attributevalues/{attributeValueDbId}"
-            .replaceAll("\\{" + "attributeValueDbId" + "\\}", apiClient.escapeString(attributeValueDbId.toString()));
+            .replaceAll("\\{" + "attributeValueDbId" + "\\}", apiClient.escapeString(attributeValueDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -453,7 +453,7 @@ public class GermplasmAttributeValuesApi {
         
         // create path and map variables
         String localVarPath = "/search/attributevalues/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

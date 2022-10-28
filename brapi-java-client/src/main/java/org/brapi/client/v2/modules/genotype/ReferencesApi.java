@@ -158,7 +158,7 @@ public class ReferencesApi {
         
         // create path and map variables
         String localVarPath = "/references/{referenceDbId}/bases"
-            .replaceAll("\\{" + "referenceDbId" + "\\}", apiClient.escapeString(referenceDbId.toString()));
+            .replaceAll("\\{" + "referenceDbId" + "\\}", apiClient.escapeString(referenceDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -241,7 +241,7 @@ public class ReferencesApi {
         
         // create path and map variables
         String localVarPath = "/references/{referenceDbId}"
-            .replaceAll("\\{" + "referenceDbId" + "\\}", apiClient.escapeString(referenceDbId.toString()));
+            .replaceAll("\\{" + "referenceDbId" + "\\}", apiClient.escapeString(referenceDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -388,7 +388,7 @@ public class ReferencesApi {
         
         // create path and map variables
         String localVarPath = "/search/references/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
