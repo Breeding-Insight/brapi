@@ -8,8 +8,8 @@ To include this dependency in your project, add the following dependency:
 ```
 <dependency>
   <groupId>org.brapi</groupId>
-  <artifactId>brapi-core-model</artifactId>
-  <version>2.0-SNAPSHOT</version>
+  <artifactId>brapi-java-model</artifactId>
+  <version>2.0.2</version>
 </dependency>
 ```
 
@@ -20,7 +20,7 @@ Currently, this package IS NOT in Maven Central, but hosted in GitHub Packages, 
 <repository>
     <id>github</id>
     <name>GitHub Breeding Insight Apache Maven Packages</name>
-    <url>https://maven.pkg.github.com/Breeding-Insight/brapi-core-model</url>
+    <url>https://maven.pkg.github.com/Breeding-Insight/brapi</url>
 </repository>
 ```
 
