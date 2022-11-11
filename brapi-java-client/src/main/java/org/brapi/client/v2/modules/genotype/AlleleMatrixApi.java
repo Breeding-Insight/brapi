@@ -14,18 +14,21 @@ package org.brapi.client.v2.modules.genotype;
 
 import com.google.gson.reflect.TypeToken;
 import okhttp3.Call;
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.AlleleMatrixQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.request.BrAPIAlleleMatrixSearchRequest;
 import org.brapi.v2.model.geno.response.BrAPIAlleleMatrixResponse;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class AlleleMatrixApi {
     private BrAPIClient apiClient;
@@ -202,7 +205,7 @@ public class AlleleMatrixApi {
      * @return ApiResponse&lt;AlleleMatrixResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIAlleleMatrixResponse> searchAllelematrixPost(BrAPIAlleleMatrixSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIAlleleMatrixResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchAllelematrixPost(BrAPIAlleleMatrixSearchRequest body) throws ApiException {
         Call call = searchAllelematrixPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIAlleleMatrixResponse>() {}.getType();
         return apiClient.execute(call, localVarReturnType);

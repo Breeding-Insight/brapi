@@ -24,6 +24,7 @@ import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.brapi.v2.model.geno.request.BrAPICallsSearchRequest;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,7 +71,7 @@ public class CallsApiTest {
      */
     @Test
     public void callsPutTest() throws Exception {
-        List<BrAPICall> body = null;
+        List<BrAPICall> body = new ArrayList<>();
         ApiResponse<BrAPICallsListResponse> response = api.callsPut(body);
 
         // TODO: test validations

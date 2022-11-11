@@ -14,6 +14,8 @@ package org.brapi.client.v2.modules.genotype;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
+import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.PlatesQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.request.BrAPIPlateNewRequest;
@@ -22,18 +24,16 @@ import org.brapi.v2.model.geno.response.BrAPIPlateListResponse;
 import org.brapi.v2.model.geno.response.BrAPIPlateSingleResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * API tests for PlatesApi
  */
-public class PlatesApiTest {
+public class PlatesApiTest extends BrAPIClientTest {
 
-    private final PlatesApi api = new PlatesApi();
+    private final PlatesApi api = new PlatesApi(this.apiClient);
 
     /**
      * Get a filtered list of Plates.
@@ -77,8 +77,11 @@ public class PlatesApiTest {
      */
     @Test
     public void platesPlateDbIdGetTest() throws Exception {
-        String plateDbId = null;
-        ApiResponse<BrAPIPlateSingleResponse> response = api.platesPlateDbIdGet(plateDbId);
+        String plateDbId = UUID.randomUUID().toString();
+
+        ApiException exception = assertThrows(ApiException.class, () -> {
+            ApiResponse<BrAPIPlateSingleResponse> response = api.platesPlateDbIdGet(plateDbId);
+        });
 
         // TODO: test validations
     }
@@ -92,7 +95,7 @@ public class PlatesApiTest {
      */
     @Test
     public void platesPostTest() throws Exception {
-        List<BrAPIPlateNewRequest> body = null;
+        List<BrAPIPlateNewRequest> body = new ArrayList<>();
         ApiResponse<BrAPIPlateListResponse> response = api.platesPost(body);
 
         // TODO: test validations
@@ -107,7 +110,7 @@ public class PlatesApiTest {
      */
     @Test
     public void platesPutTest() throws Exception {
-        Map<String, BrAPIPlateNewRequest> body = null;
+        Map<String, BrAPIPlateNewRequest> body = new HashMap<>();
         ApiResponse<BrAPIPlateListResponse> response = api.platesPut(body);
 
         // TODO: test validations
@@ -122,7 +125,7 @@ public class PlatesApiTest {
      */
     @Test
     public void searchPlatesPostTest() throws Exception {
-        BrAPIPlateSearchRequest body = null;
+        BrAPIPlateSearchRequest body = new BrAPIPlateSearchRequest();
         ApiResponse<Pair<Optional<BrAPIPlateListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchPlatesPost(body);
 
         // TODO: test validations
@@ -137,10 +140,13 @@ public class PlatesApiTest {
      */
     @Test
     public void searchPlatesSearchResultsDbIdGetTest() throws Exception {
-        String searchResultsDbId = null;
+        String searchResultsDbId = UUID.randomUUID().toString();
         Integer page = null;
         Integer pageSize = null;
-        ApiResponse<BrAPIPlateListResponse> response = api.searchPlatesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+
+        ApiException exception = assertThrows(ApiException.class, () -> {
+            ApiResponse<BrAPIPlateListResponse> response = api.searchPlatesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+        });
 
         // TODO: test validations
     }

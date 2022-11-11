@@ -14,6 +14,8 @@ package org.brapi.client.v2.modules.genotype;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
+import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.AlleleMatrixQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.request.BrAPIAlleleMatrixSearchRequest;
@@ -21,15 +23,16 @@ import org.brapi.v2.model.geno.response.BrAPIAlleleMatrixResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * API tests for AlleleMatrixApi
  */
-public class AlleleMatrixApiTest {
+public class AlleleMatrixApiTest extends BrAPIClientTest {
 
-    private final AlleleMatrixApi api = new AlleleMatrixApi();
+    private final AlleleMatrixApi api = new AlleleMatrixApi(this.apiClient);
 
     /**
      * Use this endpoint to retrieve a two dimensional matrix of genotype data
@@ -76,7 +79,10 @@ public class AlleleMatrixApiTest {
     @Test
     public void searchAllelematrixPostTest() throws Exception {
         BrAPIAlleleMatrixSearchRequest body = null;
-        ApiResponse<Pair<Optional<BrAPIAlleleMatrixResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchAllelematrixPost(body);
+
+        ApiException exception = assertThrows(ApiException.class, () -> {
+            ApiResponse<Pair<Optional<BrAPIAlleleMatrixResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchAllelematrixPost(body);
+        });
 
         // TODO: test validations
     }
@@ -90,9 +96,11 @@ public class AlleleMatrixApiTest {
      */
     @Test
     public void searchAllelematrixSearchResultsDbIdGetTest() throws Exception {
-        String searchResultsDbId = null;
-        ApiResponse<BrAPIAlleleMatrixResponse> response = api.searchAllelematrixSearchResultsDbIdGet(searchResultsDbId);
+        String searchResultsDbId = UUID.randomUUID().toString();
 
+        ApiException exception = assertThrows(ApiException.class, () -> {
+            ApiResponse<BrAPIAlleleMatrixResponse> response = api.searchAllelematrixSearchResultsDbIdGet(searchResultsDbId);
+        });
         // TODO: test validations
     }
 }

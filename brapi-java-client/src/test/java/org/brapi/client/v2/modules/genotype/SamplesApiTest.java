@@ -14,6 +14,7 @@ package org.brapi.client.v2.modules.genotype;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.SampleQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
@@ -25,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -32,9 +34,9 @@ import java.util.Optional;
 /**
  * API tests for SamplesApi
  */
-public class SamplesApiTest {
+public class SamplesApiTest extends BrAPIClientTest {
 
-    private final SamplesApi api = new SamplesApi();
+    private final SamplesApi api = new SamplesApi(this.apiClient);
 
     /**
      * Get the Samples
@@ -96,7 +98,7 @@ public class SamplesApiTest {
      */
     @Test
     public void samplesPutTest() throws Exception {
-        Map<String, BrAPISample> body = null;
+        Map<String, BrAPISample> body = new HashMap<>();
         ApiResponse<BrAPISampleListResponse> response = api.samplesPut(body);
 
         // TODO: test validations
