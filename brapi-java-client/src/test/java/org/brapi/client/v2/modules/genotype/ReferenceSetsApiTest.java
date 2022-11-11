@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.ReferenceSetQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
@@ -30,9 +31,9 @@ import java.util.Optional;
 /**
  * API tests for ReferenceSetsApi
  */
-public class ReferenceSetsApiTest {
+public class ReferenceSetsApiTest extends BrAPIClientTest {
 
-    private final ReferenceSetsApi api = new ReferenceSetsApi();
+    private final ReferenceSetsApi api = new ReferenceSetsApi(this.apiClient);
 
     /**
      * Gets a list of &#x60;ReferenceSets&#x60;.

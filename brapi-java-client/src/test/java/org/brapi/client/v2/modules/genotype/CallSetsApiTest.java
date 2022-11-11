@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallSetQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.GenotypeQueryParams;
@@ -32,9 +33,9 @@ import java.util.Optional;
 /**
  * API tests for CallSetsApi
  */
-public class CallSetsApiTest {
+public class CallSetsApiTest extends BrAPIClientTest {
 
-    private final CallSetsApi api = new CallSetsApi();
+    private final CallSetsApi api = new CallSetsApi(this.apiClient);
 
     /**
      * Gets a list of &#x60;Calls&#x60; associated with a &#x60;CallSet&#x60;.

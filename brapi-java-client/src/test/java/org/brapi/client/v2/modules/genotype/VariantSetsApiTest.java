@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantSetQueryParams;
@@ -35,9 +36,9 @@ import java.util.Optional;
 /**
  * API tests for VariantSetsApi
  */
-public class VariantSetsApiTest {
+public class VariantSetsApiTest extends BrAPIClientTest {
 
-    private final VariantSetsApi api = new VariantSetsApi();
+    private final VariantSetsApi api = new VariantSetsApi(this.apiClient);
 
     /**
      * Gets a list of &#x60;VariantSet&#x60; matching the search criteria.
