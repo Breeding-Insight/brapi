@@ -107,8 +107,13 @@ public class VariantSetsApiTest {
         String variantSetDbId = null;
         String variantDbId = null;
         String callSetDbId = null;
+        String referenceSetDbId = null;
+        String commonCropName = null;
+        String programDbId = null;
         String studyDbId = null;
         String studyName = null;
+        String externalReferenceId = null;
+        String externalReferenceSource = null;
         Integer page = null;
         Integer pageSize = null;
         
@@ -133,6 +138,7 @@ public class VariantSetsApiTest {
         String sepPhased = null;
         String sepUnphased = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
         
         CallQueryParams queryParams = new CallQueryParams();

@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.model.exceptions.ApiException;
+import org.brapi.client.v2.model.queryParams.genotype.VendorQueryParams;
 import org.brapi.v2.model.geno.response.BrAPIVendorOrderListResponse;
 import org.brapi.v2.model.geno.response.BrAPIVendorOrderStatusResponse;
 import org.brapi.v2.model.geno.request.BrAPIVendorOrderSubmissionRequest;
@@ -49,8 +50,9 @@ public class VendorApiTest {
         String submissionId = null;
         Integer page = null;
         Integer pageSize = null;
-        
-        ApiResponse<BrAPIVendorOrderListResponse> response = api.vendorOrdersGet(orderId, submissionId, page, pageSize);
+
+        VendorQueryParams queryParams = new VendorQueryParams();
+        ApiResponse<BrAPIVendorOrderListResponse> response = api.vendorOrdersGet(queryParams);
 
         // TODO: test validations
     }
@@ -69,7 +71,8 @@ public class VendorApiTest {
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIVendorPlateListResponse> response = api.vendorOrdersOrderIdPlatesGet(orderId, page, pageSize);
+            VendorQueryParams queryParams = new VendorQueryParams();
+            ApiResponse<BrAPIVendorPlateListResponse> response = api.vendorOrdersOrderIdPlatesGet(queryParams);
 		});
 
         // TODO: test validations
@@ -89,7 +92,8 @@ public class VendorApiTest {
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIVendorResultFileListResponse> response = api.vendorOrdersOrderIdResultsGet(orderId, page, pageSize);
+            VendorQueryParams queryParams = new VendorQueryParams();
+            ApiResponse<BrAPIVendorResultFileListResponse> response = api.vendorOrdersOrderIdResultsGet(queryParams);
 		});
 
         // TODO: test validations

@@ -14,14 +14,17 @@ package org.brapi.client.v2.modules.genotype;
 
 import com.google.gson.reflect.TypeToken;
 import okhttp3.Call;
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.PlatesQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.geno.request.BrAPIPlateNewRequest;
 import org.brapi.v2.model.geno.request.BrAPIPlateSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPIAlleleMatrixResponse;
 import org.brapi.v2.model.geno.response.BrAPIPlateListResponse;
 import org.brapi.v2.model.geno.response.BrAPIPlateSingleResponse;
 
@@ -29,6 +32,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class PlatesApi {
     private BrAPIClient apiClient;
@@ -396,7 +400,7 @@ public class PlatesApi {
      * @return ApiResponse&lt;PlateListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIPlateListResponse> searchPlatesPost(BrAPIPlateSearchRequest body) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIPlateListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchPlatesPost(BrAPIPlateSearchRequest body) throws ApiException {
         Call call = searchPlatesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIPlateListResponse>() {}.getType();
         return apiClient.execute(call, localVarReturnType);

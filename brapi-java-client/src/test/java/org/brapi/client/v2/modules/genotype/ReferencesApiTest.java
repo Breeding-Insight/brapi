@@ -52,6 +52,12 @@ public class ReferencesApiTest {
         Boolean isDerived = null;
         Integer minLength = null;
         Integer maxLength = null;
+        String commonCropName = null;
+        String programDbId = null;
+        String trialDbId = null;
+        String studyDbId = null;
+        String externalReferenceId = null;
+        String externalReferenceSource = null;
         Integer page = null;
         Integer pageSize = null;
         

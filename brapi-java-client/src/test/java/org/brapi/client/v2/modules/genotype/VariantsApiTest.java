@@ -24,7 +24,6 @@ import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.brapi.v2.model.geno.response.BrAPIVariantSingleResponse;
 import org.brapi.v2.model.geno.response.BrAPIVariantsListResponse;
 import org.brapi.v2.model.geno.request.BrAPIVariantsSearchRequest;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -66,11 +65,12 @@ public class VariantsApiTest {
     public void searchVariantsSearchResultsDbIdGetTest() throws ApiException {
         String searchResultsDbId = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             ApiResponse<Pair<Optional<BrAPIVariantsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                    api.searchVariantsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
+                    api.searchVariantsSearchResultsDbIdGet(searchResultsDbId, pageToken, page, pageSize);
 		});
 
         // TODO: test validations
@@ -87,9 +87,14 @@ public class VariantsApiTest {
     public void variantsGetTest() throws ApiException {
         String variantDbId = null;
         String variantSetDbId = null;
+        String referenceDbId = null;
+        String referenceSetDbId = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
-        
+        String externalReferenceId = null;
+        String externalReferenceSource = null;
+
         VariantQueryParams queryParams = new VariantQueryParams();
         ApiResponse<BrAPIVariantsListResponse> response = api.variantsGet(queryParams);
 
@@ -111,6 +116,7 @@ public class VariantsApiTest {
         String sepPhased = null;
         String sepUnphased = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
         
         CallQueryParams queryParams = new CallQueryParams();

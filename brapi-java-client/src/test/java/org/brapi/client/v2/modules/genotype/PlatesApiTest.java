@@ -12,104 +12,135 @@
 
 package org.brapi.client.v2.modules.genotype;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
-import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
+import org.brapi.client.v2.model.queryParams.genotype.PlatesQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
-import org.brapi.v2.model.geno.BrAPICall;
-import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
-import org.brapi.v2.model.geno.request.BrAPICallsSearchRequest;
+import org.brapi.v2.model.geno.request.BrAPIPlateNewRequest;
+import org.brapi.v2.model.geno.request.BrAPIPlateSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPIPlateListResponse;
+import org.brapi.v2.model.geno.response.BrAPIPlateSingleResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 /**
- * API tests for CallsApi
+ * API tests for PlatesApi
  */
-public class CallsApiTest {
+public class PlatesApiTest {
 
-    private final CallsApi api = new CallsApi();
+    private final PlatesApi api = new PlatesApi();
 
     /**
-     * Gets a filtered list of &#x60;Calls&#x60;
+     * Get a filtered list of Plates.
      *
-     * Gets a filtered list of &#x60;Call&#x60; JSON objects.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void callsGetTest() throws ApiException {
-        String callSetDbId = null;
-        String variantDbId = null;
-        String variantSetDbId = null;
-        Boolean expandHomozygotes = null;
-        String unknownString = null;
-        String sepPhased = null;
-        String sepUnphased = null;
-        String pageToken = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        CallQueryParams queryParams = new CallQueryParams();
-        ApiResponse<BrAPICallsListResponse> response = api.callsGet(queryParams);
-
-        // TODO: test validations
-    }
-    /**
-     * Update existing &#x60;Calls&#x60; with new genotype value or metadata
-     *
-     * Update existing &#x60;Calls&#x60; with new genotype value or metadata &lt;br/&gt;Implementation Note -  &lt;br/&gt;A &#x60;Call&#x60; object does not have a DbId of its own. It is defined by the unique combination of  &#x60;callSetDbId&#x60;, &#x60;variantDbId&#x60;, and &#x60;variantSetDbId&#x60;. These three fields MUST be present for every  &#x60;call&#x60; update request. This endpoint should not allow these fields to be modified for a given  &#x60;call&#x60;. Modifying these fields in the database is effectively moving a cell to a different location in the genotype matrix. This action is dangerous and can cause data collisions.
+     * Get a filtered list of &#x60;Plates&#x60;. Each &#x60;Plate&#x60; is a collection of &#x60;Samples&#x60; that are physically grouped together.
      *
      * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void callsPutTest() throws Exception {
-        List<BrAPICall> body = null;
-        ApiResponse<BrAPICallsListResponse> response = api.callsPut(body);
-
-        // TODO: test validations
-    }
-    /**
-     * Submit a search request for &#x60;Calls&#x60;
-     *
-     * Submit a search request for &#x60;Calls&#x60;  ** THIS ENDPOINT USES TOKEN BASED PAGING **
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchCallsPostTest() throws ApiException {
-        BrAPICallsSearchRequest body = new BrAPICallsSearchRequest();
-
-        ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchCallsPost(body);
-
-        // TODO: test validations
-    }
-    /**
-     * Returns a filtered list of &#x60;Call&#x60; JSON objects.
-     *
-     * Returns a filtered list of &#x60;Call&#x60; JSON objects.  See Search Services for additional implementation details.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchCallsSearchResultsDbIdGetTest() throws ApiException {
-        String searchResultsDbId = null;
-        String pageToken = null;
+    public void platesGetTest() throws Exception {
+        String sampleDbId = null;
+        String sampleName = null;
+        String sampleGroupDbId = null;
+        String observationUnitDbId = null;
+        String plateDbId = null;
+        String plateName = null;
+        String commonCropName = null;
+        String programDbId = null;
+        String trialDbId = null;
+        String studyDbId = null;
+        String germplasmDbId = null;
+        String externalReferenceID = null;
+        String externalReferenceId = null;
+        String externalReferenceSource = null;
         Integer page = null;
         Integer pageSize = null;
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                    api.searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, page, pageSize);
-		});
+        PlatesQueryParams queryParams = new PlatesQueryParams();
+        ApiResponse<BrAPIPlateListResponse> response = api.platesGet(queryParams);
+
+        // TODO: test validations
+    }
+    /**
+     * Get the details of a specific Plate.
+     *
+     * Get the details of a specific &#x60;Plate&#x60;. Each &#x60;Plate&#x60; is a collection of &#x60;Samples&#x60; that are physically grouped together.
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void platesPlateDbIdGetTest() throws Exception {
+        String plateDbId = null;
+        ApiResponse<BrAPIPlateSingleResponse> response = api.platesPlateDbIdGet(plateDbId);
+
+        // TODO: test validations
+    }
+    /**
+     * Submit new Plate entities to the server
+     *
+     * Submit new Plate entities to the server
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void platesPostTest() throws Exception {
+        List<BrAPIPlateNewRequest> body = null;
+        ApiResponse<BrAPIPlateListResponse> response = api.platesPost(body);
+
+        // TODO: test validations
+    }
+    /**
+     * Update the details of existing Plates
+     *
+     * Update the details of existing Plates
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void platesPutTest() throws Exception {
+        Map<String, BrAPIPlateNewRequest> body = null;
+        ApiResponse<BrAPIPlateListResponse> response = api.platesPut(body);
+
+        // TODO: test validations
+    }
+    /**
+     * Submit a search request for &#x60;Plates&#x60;
+     *
+     * Submit a search request for &#x60;Plates&#x60;&lt;br/&gt; Search requests allow a client to send a complex query for data. However, the server may not respond with the search results immediately.  If a server needs more time to process the request, it might respond with a &#x60;searchResultsDbId&#x60;.  Use the corresponding &#x60;GET /search/plates/{searchResultsDbId}&#x60; to retrieve the results of the search. &lt;br/&gt;  Review the &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://wiki.brapi.org/index.php/Search_Services#POST_Search_Entity\&quot;&gt;Search Services documentation&lt;/a&gt; for additional implementation details.
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void searchPlatesPostTest() throws Exception {
+        BrAPIPlateSearchRequest body = null;
+        ApiResponse<Pair<Optional<BrAPIPlateListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchPlatesPost(body);
+
+        // TODO: test validations
+    }
+    /**
+     * Get the results of a &#x60;Plates&#x60; search request
+     *
+     * Get the results of a &#x60;Plates&#x60; search request &lt;br/&gt; Clients should submit a search request using the corresponding &#x60;POST /search/plates&#x60; endpoint. Search requests allow a client to send a complex query for data. However, the server may not respond with the search results immediately.  If a server needs more time to process the request, it might respond with a &#x60;searchResultsDbId&#x60;.  Use this endpoint to retrieve the results of the search. &lt;br/&gt;  Review the &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://wiki.brapi.org/index.php/Search_Services#POST_Search_Entity\&quot;&gt;Search Services documentation&lt;/a&gt; for additional implementation details.
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void searchPlatesSearchResultsDbIdGetTest() throws Exception {
+        String searchResultsDbId = null;
+        Integer page = null;
+        Integer pageSize = null;
+        ApiResponse<BrAPIPlateListResponse> response = api.searchPlatesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 
         // TODO: test validations
     }

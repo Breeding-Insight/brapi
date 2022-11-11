@@ -12,38 +12,46 @@
 
 package org.brapi.client.v2.modules.genotype;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
-import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
+import org.brapi.client.v2.model.queryParams.genotype.AlleleMatrixQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
-import org.brapi.v2.model.geno.BrAPICall;
-import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
-import org.brapi.v2.model.geno.request.BrAPICallsSearchRequest;
+import org.brapi.v2.model.geno.request.BrAPIAlleleMatrixSearchRequest;
+import org.brapi.v2.model.geno.response.BrAPIAlleleMatrixResponse;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Optional;
 
-/**
- * API tests for CallsApi
- */
-public class CallsApiTest {
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-    private final CallsApi api = new CallsApi();
+/**
+ * API tests for AlleleMatrixApi
+ */
+public class AlleleMatrixApiTest {
+
+    private final AlleleMatrixApi api = new AlleleMatrixApi();
 
     /**
-     * Gets a filtered list of &#x60;Calls&#x60;
+     * Use this endpoint to retrieve a two dimensional matrix of genotype data
      *
-     * Gets a filtered list of &#x60;Call&#x60; JSON objects.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
+     * Use this endpoint to retrieve a two dimensional matrix of genotype data. The response structure is based on the VCF file format,  but the search and filter parameters give the ability to slice and merge data sets. This allows the user to return the subset of data they are interested in,  without having to download the entire genotype file. &lt;br/&gt;Each row of data (outer array) corresponds to a variant definition, and each column (inner array) corresponds to a callSet.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void callsGetTest() throws ApiException {
+    public void allelematrixGetTest() throws Exception {
+        Integer dimensionVariantPage = null;
+        Integer dimensionVariantPageSize = null;
+        Integer dimensionCallSetPage = null;
+        Integer dimensionCallSetPageSize = null;
+        Boolean preview = null;
+        String dataMatrixNames = null;
+        String dataMatrixAbbreviations = null;
+        String positionRange = null;
+        String germplasmDbId = null;
+        String germplasmName = null;
+        String germplasmPUI = null;
         String callSetDbId = null;
         String variantDbId = null;
         String variantSetDbId = null;
@@ -51,65 +59,39 @@ public class CallsApiTest {
         String unknownString = null;
         String sepPhased = null;
         String sepUnphased = null;
-        String pageToken = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        CallQueryParams queryParams = new CallQueryParams();
-        ApiResponse<BrAPICallsListResponse> response = api.callsGet(queryParams);
+
+        AlleleMatrixQueryParams queryParams = new AlleleMatrixQueryParams();
+        ApiResponse<BrAPIAlleleMatrixResponse> response = api.allelematrixGet(queryParams);
 
         // TODO: test validations
     }
     /**
-     * Update existing &#x60;Calls&#x60; with new genotype value or metadata
+     * Submit a search request for a Allele Matrix
      *
-     * Update existing &#x60;Calls&#x60; with new genotype value or metadata &lt;br/&gt;Implementation Note -  &lt;br/&gt;A &#x60;Call&#x60; object does not have a DbId of its own. It is defined by the unique combination of  &#x60;callSetDbId&#x60;, &#x60;variantDbId&#x60;, and &#x60;variantSetDbId&#x60;. These three fields MUST be present for every  &#x60;call&#x60; update request. This endpoint should not allow these fields to be modified for a given  &#x60;call&#x60;. Modifying these fields in the database is effectively moving a cell to a different location in the genotype matrix. This action is dangerous and can cause data collisions.
+     * Use this endpoint to retrieve a two dimensional matrix of genotype data. The response structure is based on the VCF format, but the search and filter parameters give the ability to slice and merge data sets. This allows the user to return the subset of data they are interested in, without having to download the entire genotype file. &lt;br/&gt;Each row of data (outer array) corresponds to a variant definition, and each column (inner array) corresponds to a callSet.  &lt;br/&gt;Search requests allow a client to send a complex query for data. However, the server may not respond with the search results immediately. If a server needs more time to process the request, it might respond with a &#x60;searchResultsDbId&#x60;. Use the corresponding &#x60;GET /search/allelematrix/{searchResultsDbId}&#x60; to retrieve the results of the search.  &lt;br/&gt;Review the &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://wiki.brapi.org/index.php/Search_Services#POST_Search_Entity\&quot;&gt;Search Services documentation&lt;/a&gt; for additional implementation details.
      *
      * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void callsPutTest() throws Exception {
-        List<BrAPICall> body = null;
-        ApiResponse<BrAPICallsListResponse> response = api.callsPut(body);
+    public void searchAllelematrixPostTest() throws Exception {
+        BrAPIAlleleMatrixSearchRequest body = null;
+        ApiResponse<Pair<Optional<BrAPIAlleleMatrixResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchAllelematrixPost(body);
 
         // TODO: test validations
     }
     /**
-     * Submit a search request for &#x60;Calls&#x60;
+     * Get the results of a Allele Matrix search request
      *
-     * Submit a search request for &#x60;Calls&#x60;  ** THIS ENDPOINT USES TOKEN BASED PAGING **
+     * Use this endpoint to retrieve a two dimensional matrix of genotype data. The response structure is based on the VCF format, but the search and filter parameters give the ability to slice and merge data sets. This allows the user to return the subset of data they are interested in, without having to download the entire genotype file. &lt;br/&gt;Each row of data (outer array) corresponds to a variant definition, and each column (inner array) corresponds to a callSet.  &lt;br/&gt;Clients should submit a search request using the corresponding &#x60;POST /search/allelematrix&#x60; endpoint. Search requests allow a client to send a complex query for data. However, the server may not respond with the search results immediately. If a server needs more time to process the request, it might respond with a &#x60;searchResultsDbId&#x60;. Use this endpoint to retrieve the results of the search.  &lt;br/&gt;Review the &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://wiki.brapi.org/index.php/Search_Services#POST_Search_Entity\&quot;&gt;Search Services documentation&lt;/a&gt; for additional implementation details.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void searchCallsPostTest() throws ApiException {
-        BrAPICallsSearchRequest body = new BrAPICallsSearchRequest();
-
-        ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchCallsPost(body);
-
-        // TODO: test validations
-    }
-    /**
-     * Returns a filtered list of &#x60;Call&#x60; JSON objects.
-     *
-     * Returns a filtered list of &#x60;Call&#x60; JSON objects.  See Search Services for additional implementation details.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchCallsSearchResultsDbIdGetTest() throws ApiException {
+    public void searchAllelematrixSearchResultsDbIdGetTest() throws Exception {
         String searchResultsDbId = null;
-        String pageToken = null;
-        Integer page = null;
-        Integer pageSize = null;
-
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                    api.searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, page, pageSize);
-		});
+        ApiResponse<BrAPIAlleleMatrixResponse> response = api.searchAllelematrixSearchResultsDbIdGet(searchResultsDbId);
 
         // TODO: test validations
     }

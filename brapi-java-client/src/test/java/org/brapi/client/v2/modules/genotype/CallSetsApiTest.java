@@ -52,6 +52,7 @@ public class CallSetsApiTest {
         String sepPhased = null;
         String sepUnphased = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
         
         GenotypeQueryParams queryParams = new GenotypeQueryParams();
@@ -96,6 +97,8 @@ public class CallSetsApiTest {
         String germplasmDbId = null;
         Integer page = null;
         Integer pageSize = null;
+        String externalReferenceId = null;
+        String externalReferenceSource = null;
         
         CallSetQueryParams queryParams = new CallSetQueryParams();
         ApiResponse<BrAPICallSetsListResponse> response = api.callsetsGet(queryParams);

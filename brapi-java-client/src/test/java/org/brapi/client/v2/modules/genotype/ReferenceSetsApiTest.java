@@ -48,6 +48,12 @@ public class ReferenceSetsApiTest {
         String accession = null;
         String assemblyPUI = null;
         String md5checksum = null;
+        String commonCropName = null;
+        String programDbId = null;
+        String trialDbId = null;
+        String studyDbId = null;
+        String externalReferenceId = null;
+        String externalReferenceSource = null;
         Integer page = null;
         Integer pageSize = null;
         
