@@ -13,12 +13,14 @@
 package org.brapi.client.v2.modules.core;
 
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.SeasonQueryParams;
 import org.brapi.v2.model.core.BrAPISeason;
 import org.brapi.v2.model.core.response.BrAPISeasonListResponse;
 import org.brapi.v2.model.core.response.BrAPISeasonSingleResponse;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -28,9 +30,10 @@ import java.util.List;
 /**
  * API tests for SeasonsApi
  */
-public class SeasonsApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class SeasonsApiTest extends BrAPIClientTest {
 
-    private final SeasonsApi api = new SeasonsApi();
+    private final SeasonsApi api = new SeasonsApi(this.apiClient);
 
     /**
      * Get the Seasons

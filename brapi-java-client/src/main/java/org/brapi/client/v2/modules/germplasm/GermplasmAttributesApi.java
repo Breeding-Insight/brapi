@@ -309,8 +309,10 @@ public class GermplasmAttributesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "attributeName", queryParams.attributeName());
         if (queryParams.germplasmDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "germplasmDbId", queryParams.germplasmDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) {
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        }
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

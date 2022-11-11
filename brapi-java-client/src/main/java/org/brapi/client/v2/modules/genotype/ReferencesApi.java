@@ -88,6 +88,18 @@ public class ReferencesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
+        if (queryParams.commonCropName() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "commonCropName", queryParams.commonCropName());
+        if (queryParams.programDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "programDbId", queryParams.programDbId());
+        if (queryParams.trialDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "trialDbId", queryParams.trialDbId());
+        if (queryParams.studyDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "studyDbId", queryParams.studyDbId());
+        if (queryParams.externalReferenceId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
+        if (queryParams.externalReferenceSource() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         

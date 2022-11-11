@@ -14,28 +14,30 @@ package org.brapi.client.v2.modules.core;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.PeopleQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.core.BrAPIPerson;
-import org.brapi.v2.model.core.response.BrAPIPersonListResponse;
 import org.brapi.v2.model.core.request.BrAPIPersonSearchRequest;
+import org.brapi.v2.model.core.response.BrAPIPersonListResponse;
 import org.brapi.v2.model.core.response.BrAPIPersonSingleResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.TestInstance;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 /**
  * API tests for PeopleApi
  */
-public class PeopleApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class PeopleApiTest extends BrAPIClientTest {
 
-    private final PeopleApi api = new PeopleApi();
+    private final PeopleApi api = new PeopleApi(this.apiClient);
 
     /**
      * Get filtered list of People

@@ -16,9 +16,7 @@ import okhttp3.Call;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
@@ -28,6 +26,7 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
+import org.brapi.v2.model.geno.BrAPICall;
 import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.brapi.v2.model.geno.request.BrAPICallsSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
@@ -84,8 +83,6 @@ public class CallsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "sepUnphased", queryParams.sepUnphased());
         if (queryParams.pageToken() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageToken", queryParams.pageToken());
-        if (queryParams.pageSize() != null)
-            apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
@@ -136,6 +133,75 @@ public class CallsApi {
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
+    /**
+     * Build call for callsPut
+     *
+     * @param body                    (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private Call callsPutCall(List<BrAPICall> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null");
+        }
+
+        // create path and map variables
+        String localVarPath = "/calls";
+
+        Map<String, String> localVarQueryParams = new HashMap<>();
+        Map<String, String> localVarCollectionQueryParams = new HashMap<>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<>();
+
+        Map<String, Object> localVarFormParams = new HashMap<>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+                "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[]{"AuthorizationToken"};
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames);
+    }
+
+    /**
+     * Update existing &#x60;Calls&#x60; with new genotype value or metadata
+     * Update existing &#x60;Calls&#x60; with new genotype value or metadata &lt;br/&gt;Implementation Note -  &lt;br/&gt;A &#x60;Call&#x60; object does not have a DbId of its own. It is defined by the unique combination of  &#x60;callSetDbId&#x60;, &#x60;variantDbId&#x60;, and &#x60;variantSetDbId&#x60;. These three fields MUST be present for every  &#x60;call&#x60; update request. This endpoint should not allow these fields to be modified for a given  &#x60;call&#x60;. Modifying these fields in the database is effectively moving a cell to a different location in the genotype matrix. This action is dangerous and can cause data collisions.
+     *
+     * @param body          (optional)
+     * @return ApiResponse&lt;BrAPICallsListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BrAPICallsListResponse> callsPut(List<BrAPICall> body) throws ApiException {
+        Call call = callsPutCall(body);
+        Type localVarReturnType = new TypeToken<BrAPICallsListResponse>() {}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Update existing &#x60;Calls&#x60; with new genotype value or metadata (asynchronously)
+     * Update existing &#x60;Calls&#x60; with new genotype value or metadata &lt;br/&gt;Implementation Note -  &lt;br/&gt;A &#x60;Call&#x60; object does not have a DbId of its own. It is defined by the unique combination of  &#x60;callSetDbId&#x60;, &#x60;variantDbId&#x60;, and &#x60;variantSetDbId&#x60;. These three fields MUST be present for every  &#x60;call&#x60; update request. This endpoint should not allow these fields to be modified for a given  &#x60;call&#x60;. Modifying these fields in the database is effectively moving a cell to a different location in the genotype matrix. This action is dangerous and can cause data collisions.
+     *
+     * @param body          (optional)
+     * @param callback      The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public Call callsPutAsync(List<BrAPICall> body, final ApiCallback<BrAPICallsListResponse> callback) throws ApiException {
+        Call call = callsPutCall(body);
+        Type localVarReturnType = new TypeToken<BrAPICallsListResponse>() {}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+
     /**
      * Build call for searchCallsPost
      * @param body Study Search request (optional)
@@ -219,7 +285,7 @@ public class CallsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call searchCallsSearchResultsDbIdGetCall(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
+    private Call searchCallsSearchResultsDbIdGetCall(String searchResultsDbId, String pageToken, Integer page, Integer pageSize) throws ApiException {
         if(searchResultsDbId == null) {
             throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
         }
@@ -233,12 +299,12 @@ public class CallsApi {
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
         if (pageToken != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageToken", pageToken);
+        if (page != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", page);
         if (pageSize != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", pageSize);
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        
-        
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -259,8 +325,9 @@ public class CallsApi {
     }
 
     /**
-     * Returns a filtered list of &#x60;Call&#x60; JSON objects.
-     * Returns a filtered list of &#x60;Call&#x60; JSON objects.  See Search Services for additional implementation details.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
+     * **Deprecated in v2.1** Please use searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, page, pageSize)<br><br>
+     * Returns a filtered list of &#x60;Call&#x60; JSON objects.<br>
+     * See Search Services for additional implementation details.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
      * @param searchResultsDbId Unique identifier which references the search results (required)
      * @param pageToken Used to request a specific page of data to be returned.  Tokenized pages are for large data sets which can not be efficiently broken into indexed pages. Use the nextPageToken and prevPageToken from a prior response to construct a query and move to the next or previous page respectively.  (optional)
      * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
@@ -268,15 +335,32 @@ public class CallsApi {
      * @return ApiResponse&lt;CallsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchCallsSearchResultsDbIdGet(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
-        Call call = searchCallsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, pageSize);
+        return searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, 0, pageSize);
+    }
+
+    /**
+     * Returns a filtered list of &#x60;Call&#x60; JSON objects.<br>
+     * See Search Services for additional implementation details.
+     * @param searchResultsDbId Unique identifier which references the search results (required)
+     * @param pageToken **Deprecated in v2.1** - Please use page.<br>Used to request a specific page of data to be returned.  Tokenized pages are for large data sets which can not be efficiently broken into indexed pages. Use the nextPageToken and prevPageToken from a prior response to construct a query and move to the next or previous page respectively.  (optional)
+     * @param page Which result page is requested. The page indexing starts at 0 (the first page is 'page'= 0). Default is 0.
+     * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
+
+     * @return ApiResponse&lt;CallsListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchCallsSearchResultsDbIdGet(String searchResultsDbId, @Deprecated String pageToken, Integer page, Integer pageSize) throws ApiException {
+        Call call = searchCallsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**
-     * Returns a filtered list of &#x60;Call&#x60; JSON objects. (asynchronously)
-     * Returns a filtered list of &#x60;Call&#x60; JSON objects.  See Search Services for additional implementation details.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
+     * **Deprecated in v2.1** Please use searchCallsSearchResultsDbIdGetAsync(searchResultsDbId, pageToken, page, pageSize, callback)<br><br>
+     * Returns a filtered list of &#x60;Call&#x60; JSON objects. (asynchronously)<br>
+     * See Search Services for additional implementation details.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
      * @param searchResultsDbId Unique identifier which references the search results (required)
      * @param pageToken Used to request a specific page of data to be returned.  Tokenized pages are for large data sets which can not be efficiently broken into indexed pages. Use the nextPageToken and prevPageToken from a prior response to construct a query and move to the next or previous page respectively.  (optional)
      * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
@@ -285,8 +369,25 @@ public class CallsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call searchCallsSearchResultsDbIdGetAsync(String searchResultsDbId, String pageToken, Integer pageSize, final ApiCallback<BrAPICallsListResponse> callback) throws ApiException {
-        Call call = searchCallsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, pageSize);
+        return searchCallsSearchResultsDbIdGetAsync(searchResultsDbId, pageToken, 0, pageSize, callback);
+    }
+
+    /**
+     * Returns a filtered list of &#x60;Call&#x60; JSON objects. (asynchronously)<br>
+     * See Search Services for additional implementation details.
+     * @param searchResultsDbId Unique identifier which references the search results (required)
+     * @param pageToken **Deprecated in v2.1** Please use page.<br>Used to request a specific page of data to be returned.  Tokenized pages are for large data sets which can not be efficiently broken into indexed pages. Use the nextPageToken and prevPageToken from a prior response to construct a query and move to the next or previous page respectively.  (optional)
+     * @param page Which result page is requested. The page indexing starts at 0 (the first page is 'page'= 0). Default is 0.
+     * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
+
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public Call searchCallsSearchResultsDbIdGetAsync(String searchResultsDbId, @Deprecated String pageToken, Integer page, Integer pageSize, final ApiCallback<BrAPICallsListResponse> callback) throws ApiException {
+        Call call = searchCallsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPICallsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

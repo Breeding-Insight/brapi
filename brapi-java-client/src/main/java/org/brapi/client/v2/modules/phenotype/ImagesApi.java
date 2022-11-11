@@ -82,8 +82,10 @@ public class ImagesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "observationDbId", queryParams.observationDbId());
         if (queryParams.descriptiveOntologyTerm() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "descriptiveOntologyTerm", queryParams.descriptiveOntologyTerm());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) {
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        }
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

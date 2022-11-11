@@ -920,7 +920,6 @@ public class BrAPIClient {
 	 * @param headerParams            The header parameters
 	 * @param formParams              The form parameters
 	 * @param authNames               The authentications to apply
-	 * @param progressRequestListener Progress request listener
 	 * @return The HTTP call
 	 * @throws ApiException If fail to serialize the request body object
 	 */
@@ -944,7 +943,6 @@ public class BrAPIClient {
 	 * @param headerParams            The header parameters
 	 * @param formParams              The form parameters
 	 * @param authNames               The authentications to apply
-	 * @param progressRequestListener Progress request listener
 	 * @return The HTTP request
 	 * @throws ApiException If fail to serialize the request body object
 	 */

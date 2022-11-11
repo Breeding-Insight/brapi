@@ -79,8 +79,10 @@ public class PeopleApi {
             apiClient.prepQueryParameter(localVarQueryParams, "personDbId", queryParams.personDbId());
         if (queryParams.userID() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "userID", queryParams.userID());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) {
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        }
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

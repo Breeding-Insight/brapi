@@ -31,7 +31,7 @@ public class ApiException extends Exception {
     }
 
     public ApiException(String message, Throwable throwable, int code, Map<String, List<String>> responseHeaders, String responseBody) {
-        super(message, throwable);
+        super(new StringBuilder(message).append("\ncode: ").append(code).append("\nresponseBody: ").append(responseBody).toString(), throwable);
         this.code = code;
         this.responseHeaders = responseHeaders;
         this.responseBody = responseBody;
@@ -50,7 +50,7 @@ public class ApiException extends Exception {
     }
 
     public ApiException(int code, String message) {
-        super(message);
+        super(new StringBuilder(message).append("\ncode: ").append(code).toString());
         this.code = code;
     }
 

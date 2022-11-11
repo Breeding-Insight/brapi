@@ -96,8 +96,7 @@ public class ScalesAPITests extends BrAPIClientTest {
 
 	@Test
 	@Order(1)
-	@SneakyThrows
-	public void scalesPostSuccess() {
+	public void scalesPostSuccess() throws Exception {
 		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID)
 				.referenceSource(externalReferenceSource);
 
@@ -154,10 +153,9 @@ public class ScalesAPITests extends BrAPIClientTest {
 
 	@Test
 	@Order(1)
-	@SneakyThrows
-	public void scalesPostsMultipleSuccess() {
-		BrAPIScale brApiScale = new BrAPIScale().scaleName("new test scale1");
-		BrAPIScale brApiScale2 = new BrAPIScale().scaleName("new test scale2");
+	public void scalesPostsMultipleSuccess() throws Exception {
+		BrAPIScale brApiScale = new BrAPIScale().scaleName("new test scale1").validValues(new BrAPIScaleValidValues().min(0).max(100));
+		BrAPIScale brApiScale2 = new BrAPIScale().scaleName("new test scale2").validValues(new BrAPIScaleValidValues().min(0).max(100));
 
 		List<BrAPIScale> scales = Arrays.asList(brApiScale, brApiScale2);
 
@@ -173,18 +171,16 @@ public class ScalesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
 	@Order(2)
-	void getScalesSuccess() {
+	void getScalesSuccess() throws Exception {
 		ApiResponse<BrAPIScaleListResponse> scales = scalesAPI.scalesGet(new ScaleQueryParams());
 
 		assertEquals(false, scales.getBody().getResult().getData().isEmpty(), "List of scales was empty");
 	}
 
 	@Test
-	@SneakyThrows
 	@Order(2)
-	void getScalesPageFilter() {
+	void getScalesPageFilter() throws Exception {
 		ScaleQueryParams baseRequest = ScaleQueryParams.builder().page(0).pageSize(1).build();
 
 		ApiResponse<BrAPIScaleListResponse> scales = scalesAPI.scalesGet(baseRequest);
@@ -193,9 +189,8 @@ public class ScalesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
 	@Order(2)
-	void getScalesByExternalReferenceIdSuccess() {
+	void getScalesByExternalReferenceIdSuccess() throws Exception {
 		ScaleQueryParams scalesRequest = ScaleQueryParams.builder().externalReferenceID(externalReferenceID).build();
 
 		ApiResponse<BrAPIScaleListResponse> scales = scalesAPI.scalesGet(scalesRequest);
@@ -204,9 +199,8 @@ public class ScalesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
 	@Order(2)
-	void getScalesByExternalReferenceSourceSuccess() {
+	void getScalesByExternalReferenceSourceSuccess() throws Exception {
 		ScaleQueryParams scalesRequest = ScaleQueryParams.builder().externalReferenceSource(externalReferenceSource)
 				.build();
 
@@ -216,16 +210,15 @@ public class ScalesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	public void getScaleByIdMissingId() {
+	public void getScaleByIdMissingId() throws Exception {
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
 			ApiResponse<BrAPIScaleSingleResponse> scale = scalesAPI.scalesScaleDbIdGet(null);
 		});
 	}
 
 	@Test
-	@SneakyThrows
 	@Order(2)
-	void getScaleByIdSuccess() {
+	void getScaleByIdSuccess() throws Exception {
 		ApiResponse<BrAPIScaleListResponse> existingList = scalesAPI.scalesGet(new ScaleQueryParams());
 		BrAPIScale existingScale = existingList.getBody().getResult().getData().get(0);
 		ApiResponse<BrAPIScaleSingleResponse> optionalScale = scalesAPI.scalesScaleDbIdGet(existingScale.getScaleDbId());
@@ -237,21 +230,19 @@ public class ScalesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
-	void getScaleByIdInvalid() {
+	void getScaleByIdInvalid() throws Exception {
 		ApiException exception = assertThrows(ApiException.class, () -> {
 			ApiResponse<BrAPIScaleSingleResponse> scale = scalesAPI.scalesScaleDbIdGet("badScaleId");
 		});
-        assertEquals(404, exception.getCode());
+        assertEquals(400, exception.getCode());
 	}
 
 	@Test
-	@SneakyThrows
 	@Order(2)
-	public void updateScaleSuccess() {
+	public void updateScaleSuccess() throws Exception {
 		ApiResponse<BrAPIScaleListResponse> existingList = scalesAPI.scalesGet(new ScaleQueryParams());
 		BrAPIScale existingScale = existingList.getBody().getResult().getData().get(0);
-		existingScale.setScaleName("updated_name");
+		existingScale.scaleName("updated_name").validValues(new BrAPIScaleValidValues().min(0).max(100).categories(Collections.emptyList()));
 
 		// Check that it is a success and all data matches
 		ApiResponse<BrAPIScaleSingleResponse> updatedScaleResult = this.scalesAPI.scalesScaleDbIdPut(existingScale.getScaleDbId(), existingScale);
@@ -262,7 +253,6 @@ public class ScalesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
 	public void updateScaleMissingId() {
 		// Check that it throws an ApiException
 		BrAPIScale brApiScale = new BrAPIScale().scaleName("new test scale");

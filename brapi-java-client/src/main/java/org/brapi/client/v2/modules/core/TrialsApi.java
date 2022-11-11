@@ -252,8 +252,10 @@ public class TrialsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "sortBy", queryParams.sortBy());
         if (queryParams.sortOrder() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "sortOrder", queryParams.sortOrder());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) {
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        }
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

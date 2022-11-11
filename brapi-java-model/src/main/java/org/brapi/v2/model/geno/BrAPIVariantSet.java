@@ -6,13 +6,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.JsonAdapter;
+import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -38,6 +37,12 @@ public class BrAPIVariantSet   {
 
   @JsonProperty("callSetCount")
   private Integer callSetCount = null;
+
+  @JsonProperty("externalReferences")
+  private List<BrAPIExternalReference> externalReferences = null;
+
+  @JsonProperty("metadataFields")
+  private List<BrAPIVariantSetMetadataFields> metadataFields = null;
 
   @JsonProperty("referenceSetDbId")
   private String referenceSetDbId = null;
@@ -157,6 +162,52 @@ public class BrAPIVariantSet   {
     this.callSetCount = callSetCount;
   }
 
+  public BrAPIVariantSet externalReferences(List<BrAPIExternalReference> externalReferences) {
+    this.externalReferences = externalReferences;
+    return this;
+  }
+
+  /**
+   * Get externalReferences
+   * @return externalReferences
+   **/
+
+
+  @Valid
+  public List<BrAPIExternalReference> getExternalReferences() {
+    return externalReferences;
+  }
+
+  public void setExternalReferences(List<BrAPIExternalReference> externalReferences) {
+    this.externalReferences = externalReferences;
+  }
+
+  public BrAPIVariantSet metadataFields(List<BrAPIVariantSetMetadataFields> metadataFields) {
+    this.metadataFields = metadataFields;
+    return this;
+  }
+
+  public BrAPIVariantSet addMetadataFieldsItem(BrAPIVariantSetMetadataFields metadataFieldsItem) {
+    if (this.metadataFields == null) {
+      this.metadataFields = new ArrayList<BrAPIVariantSetMetadataFields>();
+    }
+    this.metadataFields.add(metadataFieldsItem);
+    return this;
+  }
+
+  /**
+   * The &#x27;metadataFields&#x27; array indicates which types of genotyping data and metadata are available in the VariantSet.  &lt;br&gt; When possible, these field names and abbreviations should follow the VCF standard
+   *
+   * @return metadataFields
+   **/
+  public List<BrAPIVariantSetMetadataFields> getMetadataFields() {
+    return metadataFields;
+  }
+
+  public void setMetadataFields(List<BrAPIVariantSetMetadataFields> metadataFields) {
+    this.metadataFields = metadataFields;
+  }
+
   public BrAPIVariantSet referenceSetDbId(String referenceSetDbId) {
     this.referenceSetDbId = referenceSetDbId;
     return this;
@@ -266,6 +317,8 @@ public class BrAPIVariantSet   {
         Objects.equals(this.analysis, variantSet.analysis) &&
         Objects.equals(this.availableFormats, variantSet.availableFormats) &&
         Objects.equals(this.callSetCount, variantSet.callSetCount) &&
+        Objects.equals(this.externalReferences, variantSet.externalReferences) &&
+        Objects.equals(this.metadataFields, variantSet.metadataFields) &&
         Objects.equals(this.referenceSetDbId, variantSet.referenceSetDbId) &&
         Objects.equals(this.studyDbId, variantSet.studyDbId) &&
         Objects.equals(this.variantCount, variantSet.variantCount) &&
@@ -275,7 +328,7 @@ public class BrAPIVariantSet   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(additionalInfo, analysis, availableFormats, callSetCount, referenceSetDbId, studyDbId, variantCount, variantSetDbId, variantSetName);
+      return Objects.hash(additionalInfo, analysis, availableFormats, callSetCount, externalReferences, metadataFields, referenceSetDbId, studyDbId, variantCount, variantSetDbId, variantSetName);
   }
 
   @Override
@@ -287,6 +340,8 @@ public class BrAPIVariantSet   {
     sb.append("    analysis: ").append(toIndentedString(analysis)).append("\n");
     sb.append("    availableFormats: ").append(toIndentedString(availableFormats)).append("\n");
     sb.append("    callSetCount: ").append(toIndentedString(callSetCount)).append("\n");
+    sb.append("    externalReferences: ").append(toIndentedString(externalReferences)).append("\n");
+    sb.append("    metadataFields: ").append(toIndentedString(metadataFields)).append("\n");
     sb.append("    referenceSetDbId: ").append(toIndentedString(referenceSetDbId)).append("\n");
     sb.append("    studyDbId: ").append(toIndentedString(studyDbId)).append("\n");
     sb.append("    variantCount: ").append(toIndentedString(variantCount)).append("\n");

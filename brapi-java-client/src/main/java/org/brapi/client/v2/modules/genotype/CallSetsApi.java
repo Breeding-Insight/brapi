@@ -86,6 +86,8 @@ public class CallSetsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "sepUnphased", queryParams.sepUnphased());
         if (queryParams.pageToken() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageToken", queryParams.pageToken());
+        if (queryParams.page() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
 
@@ -242,6 +244,10 @@ public class CallSetsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
+        if (queryParams.externalReferenceId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
+        if (queryParams.externalReferenceSource() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         

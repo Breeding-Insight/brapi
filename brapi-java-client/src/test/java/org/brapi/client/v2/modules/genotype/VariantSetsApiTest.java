@@ -195,10 +195,11 @@ public class VariantSetsApiTest {
         String variantSetDbId = null;
         String variantDbId = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIVariantsListResponse> response = api.variantsetsVariantSetDbIdVariantsGet(variantSetDbId, variantDbId, pageToken, pageSize);
+        ApiResponse<BrAPIVariantsListResponse> response = api.variantsetsVariantSetDbIdVariantsGet(variantSetDbId, variantDbId, pageToken, page, pageSize);
 		});
 
         // TODO: test validations

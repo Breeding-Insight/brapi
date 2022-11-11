@@ -74,8 +74,10 @@ public class SeedLotsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "seedLotDbId", queryParams.seedLotDbId());
         if (queryParams.germplasmDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "germplasmDbId", queryParams.germplasmDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) {
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        }
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
@@ -472,8 +474,10 @@ public class SeedLotsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "seedLotDbId", queryParams.seedLotDbId());
         if (queryParams.germplasmDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "germplasmDbId", queryParams.germplasmDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) {
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        }
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

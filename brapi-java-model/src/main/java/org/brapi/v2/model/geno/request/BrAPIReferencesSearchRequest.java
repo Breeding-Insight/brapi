@@ -1,14 +1,12 @@
 package org.brapi.v2.model.geno.request;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.brapi.v2.model.BrAPISearchRequestParametersPaging;
 
 import javax.validation.Valid;
-
-import org.brapi.v2.model.BrAPISearchRequestParametersPaging;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * ReferencesSearchRequest
@@ -19,6 +17,24 @@ public class BrAPIReferencesSearchRequest extends BrAPISearchRequestParametersPa
   @JsonProperty("accessions")
   @Valid
   private List<String> accessions = null;
+
+  @JsonProperty("commonCropNames")
+  private List<String> commonCropNames = null;
+
+  @JsonProperty("externalReferenceIDs")
+  private List<String> externalReferenceIDs = null;
+
+  @JsonProperty("externalReferenceIds")
+  private List<String> externalReferenceIds = null;
+
+  @JsonProperty("externalReferenceSources")
+  private List<String> externalReferenceSources = null;
+
+  @JsonProperty("germplasmDbIds")
+  private List<String> germplasmDbIds = null;
+
+  @JsonProperty("germplasmNames")
+  private List<String> germplasmNames = null;
 
   @JsonProperty("isDerived")
   private Boolean isDerived = null;
@@ -33,6 +49,12 @@ public class BrAPIReferencesSearchRequest extends BrAPISearchRequestParametersPa
   @JsonProperty("minLength")
   private Integer minLength = null;
 
+  @JsonProperty("programDbIds")
+  private List<String> programDbIds = null;
+
+  @JsonProperty("programNames")
+  private List<String> programNames = null;
+
   @JsonProperty("referenceDbIds")
   @Valid
   private List<String> referenceDbIds = null;
@@ -40,6 +62,18 @@ public class BrAPIReferencesSearchRequest extends BrAPISearchRequestParametersPa
   @JsonProperty("referenceSetDbIds")
   @Valid
   private List<String> referenceSetDbIds = null;
+
+  @JsonProperty("studyDbIds")
+  private List<String> studyDbIds = null;
+
+  @JsonProperty("studyNames")
+  private List<String> studyNames = null;
+
+  @JsonProperty("trialDbIds")
+  private List<String> trialDbIds = null;
+
+  @JsonProperty("trialNames")
+  private List<String> trialNames = null;
 
   public BrAPIReferencesSearchRequest accessions(List<String> accessions) {
     this.accessions = accessions;
@@ -66,6 +100,138 @@ public class BrAPIReferencesSearchRequest extends BrAPISearchRequestParametersPa
 
   public void setAccessions(List<String> accessions) {
     this.accessions = accessions;
+  }
+
+  public BrAPIReferencesSearchRequest commonCropNames(List<String> commonCropNames) {
+    this.commonCropNames = commonCropNames;
+    return this;
+  }
+
+  public BrAPIReferencesSearchRequest addCommonCropNamesItem(String commonCropNamesItem) {
+    if (this.commonCropNames == null) {
+      this.commonCropNames = new ArrayList<String>();
+    }
+    this.commonCropNames.add(commonCropNamesItem);
+    return this;
+  }
+
+  /**
+   * The BrAPI Common Crop Name is the simple, generalized, widely accepted name of the organism being researched. It is most often used in multi-crop systems where digital resources need to be divided at a high level. Things like &#x27;Maize&#x27;, &#x27;Wheat&#x27;, and &#x27;Rice&#x27; are examples of common crop names.  Use this parameter to only return results associated with the given crops.   Use &#x60;GET /commoncropnames&#x60; to find the list of available crops on a server.
+   *
+   * @return commonCropNames
+   **/
+  public List<String> getCommonCropNames() {
+    return commonCropNames;
+  }
+
+  public void setCommonCropNames(List<String> commonCropNames) {
+    this.commonCropNames = commonCropNames;
+  }
+
+  public BrAPIReferencesSearchRequest externalReferenceIDs(List<String> externalReferenceIDs) {
+    this.externalReferenceIDs = externalReferenceIDs;
+    return this;
+  }
+
+  public BrAPIReferencesSearchRequest addExternalReferenceIDsItem(String externalReferenceIDsItem) {
+    if (this.externalReferenceIDs == null) {
+      this.externalReferenceIDs = new ArrayList<String>();
+    }
+    this.externalReferenceIDs.add(externalReferenceIDsItem);
+    return this;
+  }
+
+  /**
+   * List of external references for the trait to search for
+   * @return externalReferenceIDs
+   **/
+
+
+  public List<String> getExternalReferenceIDs() {
+    return externalReferenceIDs;
+  }
+
+  public void setExternalReferenceIDs(List<String> externalReferenceIDs) {
+    this.externalReferenceIDs = externalReferenceIDs;
+  }
+
+  public BrAPIReferencesSearchRequest externalReferenceSources(List<String> externalReferenceSources) {
+    this.externalReferenceSources = externalReferenceSources;
+    return this;
+  }
+
+  public BrAPIReferencesSearchRequest addExternalReferenceSourcesItem(String externalReferenceSourcesItem) {
+    if (this.externalReferenceSources == null) {
+      this.externalReferenceSources = new ArrayList<String>();
+    }
+    this.externalReferenceSources.add(externalReferenceSourcesItem);
+    return this;
+  }
+
+  /**
+   * List of external references sources for the trait to search for
+   * @return externalReferenceSources
+   **/
+
+
+  public List<String> getExternalReferenceSources() {
+    return externalReferenceSources;
+  }
+
+  public void setExternalReferenceSources(List<String> externalReferenceSources) {
+    this.externalReferenceSources = externalReferenceSources;
+  }
+
+  public BrAPIReferencesSearchRequest germplasmDbIds(List<String> germplasmDbIds) {
+    this.germplasmDbIds = germplasmDbIds;
+    return this;
+  }
+
+  public BrAPIReferencesSearchRequest addGermplasmDbIdsItem(String germplasmDbIdsItem) {
+    if (this.germplasmDbIds == null) {
+      this.germplasmDbIds = new ArrayList<String>();
+    }
+    this.germplasmDbIds.add(germplasmDbIdsItem);
+    return this;
+  }
+
+  /**
+   * List of IDs which uniquely identify germplasm to search for
+   *
+   * @return germplasmDbIds
+   **/
+  public List<String> getGermplasmDbIds() {
+    return germplasmDbIds;
+  }
+
+  public void setGermplasmDbIds(List<String> germplasmDbIds) {
+    this.germplasmDbIds = germplasmDbIds;
+  }
+
+  public BrAPIReferencesSearchRequest germplasmNames(List<String> germplasmNames) {
+    this.germplasmNames = germplasmNames;
+    return this;
+  }
+
+  public BrAPIReferencesSearchRequest addGermplasmNamesItem(String germplasmNamesItem) {
+    if (this.germplasmNames == null) {
+      this.germplasmNames = new ArrayList<String>();
+    }
+    this.germplasmNames.add(germplasmNamesItem);
+    return this;
+  }
+
+  /**
+   * List of human readable names to identify germplasm to search for
+   *
+   * @return germplasmNames
+   **/
+  public List<String> getGermplasmNames() {
+    return germplasmNames;
+  }
+
+  public void setGermplasmNames(List<String> germplasmNames) {
+    this.germplasmNames = germplasmNames;
   }
 
   public BrAPIReferencesSearchRequest isDerived(Boolean isDerived) {
@@ -152,6 +318,58 @@ public class BrAPIReferencesSearchRequest extends BrAPISearchRequestParametersPa
     this.minLength = minLength;
   }
 
+  public BrAPIReferencesSearchRequest programDbIds(List<String> programDbIds) {
+    this.programDbIds = programDbIds;
+    return this;
+  }
+
+  public BrAPIReferencesSearchRequest addProgramDbIdsItem(String programDbIdsItem) {
+    if (this.programDbIds == null) {
+      this.programDbIds = new ArrayList<String>();
+    }
+    this.programDbIds.add(programDbIdsItem);
+    return this;
+  }
+
+  /**
+   * A BrAPI Program represents the high level organization or group who is responsible for conducting trials and studies. Things like Breeding Programs and Funded Projects are considered BrAPI Programs.   Use this parameter to only return results associated with the given programs.   Use &#x60;GET /programs&#x60; to find the list of available programs on a server.
+   *
+   * @return programDbIds
+   **/
+  public List<String> getProgramDbIds() {
+    return programDbIds;
+  }
+
+  public void setProgramDbIds(List<String> programDbIds) {
+    this.programDbIds = programDbIds;
+  }
+
+  public BrAPIReferencesSearchRequest programNames(List<String> programNames) {
+    this.programNames = programNames;
+    return this;
+  }
+
+  public BrAPIReferencesSearchRequest addProgramNamesItem(String programNamesItem) {
+    if (this.programNames == null) {
+      this.programNames = new ArrayList<String>();
+    }
+    this.programNames.add(programNamesItem);
+    return this;
+  }
+
+  /**
+   * Use this parameter to only return results associated with the given program names. Program names are not required to be unique.  Use &#x60;GET /programs&#x60; to find the list of available programs on a server.
+   *
+   * @return programNames
+   **/
+  public List<String> getProgramNames() {
+    return programNames;
+  }
+
+  public void setProgramNames(List<String> programNames) {
+    this.programNames = programNames;
+  }
+
   public BrAPIReferencesSearchRequest referenceDbIds(List<String> referenceDbIds) {
     this.referenceDbIds = referenceDbIds;
     return this;
@@ -206,6 +424,110 @@ public class BrAPIReferencesSearchRequest extends BrAPISearchRequestParametersPa
     this.referenceSetDbIds = referenceSetDbIds;
   }
 
+    public BrAPIReferencesSearchRequest studyDbIds(List<String> studyDbIds) {
+        this.studyDbIds = studyDbIds;
+        return this;
+    }
+
+    public BrAPIReferencesSearchRequest addStudyDbIdsItem(String studyDbIdsItem) {
+        if (this.studyDbIds == null) {
+            this.studyDbIds = new ArrayList<String>();
+        }
+        this.studyDbIds.add(studyDbIdsItem);
+        return this;
+    }
+
+    /**
+     * List of study identifiers to search for
+     *
+     * @return studyDbIds
+     **/
+    public List<String> getStudyDbIds() {
+        return studyDbIds;
+    }
+
+    public void setStudyDbIds(List<String> studyDbIds) {
+        this.studyDbIds = studyDbIds;
+    }
+
+    public BrAPIReferencesSearchRequest studyNames(List<String> studyNames) {
+        this.studyNames = studyNames;
+        return this;
+    }
+
+    public BrAPIReferencesSearchRequest addStudyNamesItem(String studyNamesItem) {
+        if (this.studyNames == null) {
+            this.studyNames = new ArrayList<String>();
+        }
+        this.studyNames.add(studyNamesItem);
+        return this;
+    }
+
+    /**
+     * List of study names to filter search results
+     *
+     * @return studyNames
+     **/
+    public List<String> getStudyNames() {
+        return studyNames;
+    }
+
+    public void setStudyNames(List<String> studyNames) {
+        this.studyNames = studyNames;
+    }
+
+    public BrAPIReferencesSearchRequest trialDbIds(List<String> trialDbIds) {
+        this.trialDbIds = trialDbIds;
+        return this;
+    }
+
+    public BrAPIReferencesSearchRequest addTrialDbIdsItem(String trialDbIdsItem) {
+        if (this.trialDbIds == null) {
+            this.trialDbIds = new ArrayList<String>();
+        }
+        this.trialDbIds.add(trialDbIdsItem);
+        return this;
+    }
+
+    /**
+     * The ID which uniquely identifies a trial to search for
+     *
+     * @return trialDbIds
+     **/
+    public List<String> getTrialDbIds() {
+        return trialDbIds;
+    }
+
+    public void setTrialDbIds(List<String> trialDbIds) {
+        this.trialDbIds = trialDbIds;
+    }
+
+    public BrAPIReferencesSearchRequest trialNames(List<String> trialNames) {
+        this.trialNames = trialNames;
+        return this;
+    }
+
+    public BrAPIReferencesSearchRequest addTrialNamesItem(String trialNamesItem) {
+        if (this.trialNames == null) {
+            this.trialNames = new ArrayList<String>();
+        }
+        this.trialNames.add(trialNamesItem);
+        return this;
+    }
+
+    /**
+     * The human readable name of a trial to search for
+     *
+     * @return trialNames
+     **/
+    public List<String> getTrialNames() {
+        return trialNames;
+    }
+
+    public void setTrialNames(List<String> trialNames) {
+        this.trialNames = trialNames;
+    }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -217,12 +539,24 @@ public class BrAPIReferencesSearchRequest extends BrAPISearchRequestParametersPa
     }
     BrAPIReferencesSearchRequest referencesSearchRequest = (BrAPIReferencesSearchRequest) o;
     return Objects.equals(this.accessions, referencesSearchRequest.accessions) &&
+        Objects.equals(this.commonCropNames, referencesSearchRequest.commonCropNames) &&
+        Objects.equals(this.externalReferenceIDs, referencesSearchRequest.externalReferenceIDs) &&
+        Objects.equals(this.externalReferenceIds, referencesSearchRequest.externalReferenceIds) &&
+        Objects.equals(this.externalReferenceSources, referencesSearchRequest.externalReferenceSources) &&
+        Objects.equals(this.germplasmDbIds, referencesSearchRequest.germplasmDbIds) &&
+        Objects.equals(this.germplasmNames, referencesSearchRequest.germplasmNames) &&
         Objects.equals(this.isDerived, referencesSearchRequest.isDerived) &&
         Objects.equals(this.maxLength, referencesSearchRequest.maxLength) &&
         Objects.equals(this.md5checksums, referencesSearchRequest.md5checksums) &&
         Objects.equals(this.minLength, referencesSearchRequest.minLength) &&
+        Objects.equals(this.programDbIds, referencesSearchRequest.programDbIds) &&
+        Objects.equals(this.programNames, referencesSearchRequest.programNames) &&
         Objects.equals(this.referenceDbIds, referencesSearchRequest.referenceDbIds) &&
         Objects.equals(this.referenceSetDbIds, referencesSearchRequest.referenceSetDbIds) &&
+        Objects.equals(this.studyDbIds, referencesSearchRequest.studyDbIds) &&
+        Objects.equals(this.studyNames, referencesSearchRequest.studyNames) &&
+        Objects.equals(this.trialDbIds, referencesSearchRequest.trialDbIds) &&
+        Objects.equals(this.trialNames, referencesSearchRequest.trialNames) &&
         super.equals(o);
   }
 
@@ -237,12 +571,24 @@ public class BrAPIReferencesSearchRequest extends BrAPISearchRequestParametersPa
     sb.append("class ReferencesSearchRequest {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    accessions: ").append(toIndentedString(accessions)).append("\n");
+    sb.append("    commonCropNames: ").append(toIndentedString(commonCropNames)).append("\n");
+    sb.append("    externalReferenceIDs: ").append(toIndentedString(externalReferenceIDs)).append("\n");
+    sb.append("    externalReferenceIds: ").append(toIndentedString(externalReferenceIds)).append("\n");
+    sb.append("    externalReferenceSources: ").append(toIndentedString(externalReferenceSources)).append("\n");
+    sb.append("    germplasmDbIds: ").append(toIndentedString(germplasmDbIds)).append("\n");
+    sb.append("    germplasmNames: ").append(toIndentedString(germplasmNames)).append("\n");
     sb.append("    isDerived: ").append(toIndentedString(isDerived)).append("\n");
     sb.append("    maxLength: ").append(toIndentedString(maxLength)).append("\n");
     sb.append("    md5checksums: ").append(toIndentedString(md5checksums)).append("\n");
     sb.append("    minLength: ").append(toIndentedString(minLength)).append("\n");
+    sb.append("    programDbIds: ").append(toIndentedString(programDbIds)).append("\n");
+    sb.append("    programNames: ").append(toIndentedString(programNames)).append("\n");
     sb.append("    referenceDbIds: ").append(toIndentedString(referenceDbIds)).append("\n");
     sb.append("    referenceSetDbIds: ").append(toIndentedString(referenceSetDbIds)).append("\n");
+    sb.append("    studyDbIds: ").append(toIndentedString(studyDbIds)).append("\n");
+    sb.append("    studyNames: ").append(toIndentedString(studyNames)).append("\n");
+    sb.append("    trialDbIds: ").append(toIndentedString(trialDbIds)).append("\n");
+    sb.append("    trialNames: ").append(toIndentedString(trialNames)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -188,8 +188,10 @@ public class ObservationUnitsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "observationUnitLevelCode", queryParams.observationUnitLevelCode());
         if (queryParams.includeObservations() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "includeObservations", queryParams.includeObservations());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) {
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        }
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

@@ -86,11 +86,12 @@ public class CallsApiTest {
     public void searchCallsSearchResultsDbIdGetTest() throws ApiException {
         String searchResultsDbId = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                    api.searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
+                    api.searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, page, pageSize);
 		});
 
         // TODO: test validations

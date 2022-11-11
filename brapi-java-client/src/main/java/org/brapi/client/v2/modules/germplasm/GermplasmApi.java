@@ -631,8 +631,10 @@ public class GermplasmApi {
             apiClient.prepQueryParameter(localVarQueryParams, "parentDbId", queryParams.parentDbId());
         if (queryParams.progenyDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "progenyDbId", queryParams.progenyDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) {
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        }
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

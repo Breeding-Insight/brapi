@@ -60,8 +60,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     private BrAPIGermplasm germplasm;
 
     @Test
-    @SneakyThrows
-    public void getGermplasmSuccess() {
+    public void getGermplasmSuccess() throws Exception {
 
         ApiResponse<BrAPIGermplasmListResponse> germplasm = this.germplasmAPI.germplasmGet(new GermplasmQueryParams());
 
@@ -69,8 +68,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void getsGermplasmPageFilter() {
+    public void getsGermplasmPageFilter() throws Exception {
         GermplasmQueryParams baseRequest = GermplasmQueryParams.builder()
                 .page(0)
                 .pageSize(1)
@@ -82,9 +80,8 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
     @Order(1)
-    public void createGermplasmSuccess() {
+    public void createGermplasmSuccess() throws Exception {
 
         JsonObject additionalInfo = new JsonObject();
         additionalInfo.addProperty("test_key", "test_value");
@@ -163,8 +160,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void createMultipleGermplasmSuccess() {
+    public void createMultipleGermplasmSuccess() throws Exception {
 
         BrAPIGermplasm brApiGermplasm1 = new BrAPIGermplasm().germplasmName("test1");
         BrAPIGermplasm brApiGermplasm2 = new BrAPIGermplasm().germplasmName("test2");
@@ -183,8 +179,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void createGermplasmIdPresentFailure() {
+    public void createGermplasmIdPresentFailure() throws Exception {
         BrAPIGermplasm brApiGermplasm = new BrAPIGermplasm()
                 .germplasmName("new test germplasm");
 
@@ -194,8 +189,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void createGermplasmEmptySuccess() {
+    public void createGermplasmEmptySuccess() throws Exception {
         BrAPIGermplasm brApiGermplasm = new BrAPIGermplasm();
         ApiResponse<BrAPIGermplasmListResponse> createdGermplasm = this.germplasmAPI.germplasmPost(Arrays.asList(brApiGermplasm));
 
@@ -205,9 +199,8 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
     @Order(2)
-    public void getGermplasmByIDSuccess() {
+    public void getGermplasmByIDSuccess() throws Exception {
 		BrAPIGermplasm existingGermplasm = this.germplasm;
         ApiResponse<BrAPIGermplasmSingleResponse> germplasmRes = this.germplasmAPI.germplasmGermplasmDbIdGet(existingGermplasm.getGermplasmDbId());
 
@@ -285,9 +278,8 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
     @Order(2)
-    public void getGermplasmByExternalReferenceIDSuccess() {
+    public void getGermplasmByExternalReferenceIDSuccess() throws Exception {
     	List<BrAPIExternalReference> externalReferences = new ArrayList<>();
         externalReferences.add(new BrAPIExternalReference()
                 .referenceID(UUID.randomUUID().toString())
@@ -307,8 +299,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void getGermplasmByExternalReferenceIDDoesNotExist() {
+    public void getGermplasmByExternalReferenceIDDoesNotExist() throws Exception {
         GermplasmQueryParams germplasmRequest = GermplasmQueryParams.builder()
                 .externalReferenceID("will not exist")
                 .build();
@@ -319,13 +310,12 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void getGermplasmByIdNotExist() {
+    public void getGermplasmByIdNotExist() throws Exception {
 
     	ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIGermplasmSingleResponse> germplasm = this.germplasmAPI.germplasmGermplasmDbIdGet("fake dbid");
         });
-        assertEquals(404, exception.getCode());
+        assertEquals(400, exception.getCode());
 
         // Check out return message is returned
         String errorMsg = exception.getResponseBody();
@@ -333,15 +323,14 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
     @Order(3)
-    public void updateGermplasmSuccess() {
-    	BrAPIGermplasm germplasm = new BrAPIGermplasm();
+    public void updateGermplasmSuccess() throws Exception {
+    	BrAPIGermplasm germplasm = this.germplasm;
         germplasm.setGermplasmName("updated_name");
         germplasm.setAccessionNumber("A000004");
 
         // Check that it is a success and all data matches
-        ApiResponse<BrAPIGermplasmSingleResponse> updatedGermplasmResult = this.germplasmAPI.germplasmGermplasmDbIdPut("germplasm1", germplasm);
+        ApiResponse<BrAPIGermplasmSingleResponse> updatedGermplasmResult = this.germplasmAPI.germplasmGermplasmDbIdPut(germplasm.getGermplasmDbId(), germplasm);
 
         assertNotNull(updatedGermplasmResult, "Germplasm was not returned");
         BrAPIGermplasm updatedGermplasm = updatedGermplasmResult.getBody().getResult();
@@ -350,8 +339,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void updateGermplasmBadId() {
+    public void updateGermplasmBadId() throws Exception {
         // Check that it throws a 404
         BrAPIGermplasm germplasm = new BrAPIGermplasm();
         germplasm.setGermplasmDbId("i_do_not_exist");
@@ -359,12 +347,11 @@ public class GermplasmAPITests extends BrAPIClientTest {
         ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIGermplasmSingleResponse> updatedGermplasmResult =  this.germplasmAPI.germplasmGermplasmDbIdPut("i_do_not_exist", germplasm);
         });
-        assertEquals(404, exception.getCode());
+        assertEquals(400, exception.getCode());
     }
 
     @Test
-    @SneakyThrows
-    public void updateGermplasmMissingId() {
+    public void updateGermplasmMissingId() throws Exception {
         String updateGermplasmIdMissingError = "germplasmDbId cannot be null";
         // Check that it throws an APIException
         BrAPIGermplasm brApiGermplasm = new BrAPIGermplasm().germplasmName("new test germplasm");

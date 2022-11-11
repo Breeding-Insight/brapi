@@ -17,6 +17,9 @@
 
 package org.brapi.client.v2;
 
+import org.brapi.client.v2.auth.Authentication;
+import org.brapi.client.v2.auth.OAuth;
+
 public class BrAPIClientTest {
 
     protected String brapiTestServer;
@@ -25,6 +28,11 @@ public class BrAPIClientTest {
     public BrAPIClientTest() {
         brapiTestServer = "https://test-server.brapi.org/brapi/v2";
         apiClient = new BrAPIClient(brapiTestServer);
+
+        Authentication authorizationToken = apiClient.getAuthentication("AuthorizationToken");
+        if(authorizationToken instanceof OAuth) {
+            ((OAuth)authorizationToken).setAccessToken("YYYY");
+        }
     }
 
 }
