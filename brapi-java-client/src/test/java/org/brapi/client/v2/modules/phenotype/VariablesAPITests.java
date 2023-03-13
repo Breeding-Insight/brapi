@@ -288,7 +288,7 @@ public class VariablesAPITests extends BrAPIClientTest {
 			ApiResponse<BrAPIObservationVariableSingleResponse> variable = variablesAPI
 					.variablesObservationVariableDbIdGet("badVariableId");
 		});
-        assertEquals(400, exception.getCode());
+        assertEquals(404, exception.getCode());
 	}
 
 	@Test

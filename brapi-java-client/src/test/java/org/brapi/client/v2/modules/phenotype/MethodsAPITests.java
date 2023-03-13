@@ -244,7 +244,7 @@ public class MethodsAPITests extends BrAPIClientTest {
 		ApiException exception = assertThrows(ApiException.class, () -> {
 			ApiResponse<BrAPIMethodSingleResponse> method = methodsAPI.methodsMethodDbIdGet("badMethodId");
 		});
-        assertEquals(400, exception.getCode());
+        assertEquals(404, exception.getCode());
 	}
 
 	@Test
