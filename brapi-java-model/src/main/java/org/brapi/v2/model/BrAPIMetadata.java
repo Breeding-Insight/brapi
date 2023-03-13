@@ -25,9 +25,9 @@ public class BrAPIMetadata {
 	private List<BrAPIStatus> status = null;
 
 	@JsonProperty("pagination")
-	private BrAPIPagination pagination = null;
+	private BrAPIIndexPagination pagination = null;
 
-	public BrAPIMetadata pagination(BrAPIPagination pagination) {
+	public BrAPIMetadata pagination(BrAPIIndexPagination pagination) {
 		this.pagination = pagination;
 		return this;
 	}
@@ -44,7 +44,7 @@ public class BrAPIMetadata {
 		return pagination;
 	}
 
-	public void setPagination(BrAPIPagination pagination) {
+	public void setPagination(BrAPIIndexPagination pagination) {
 		this.pagination = pagination;
 	}
 

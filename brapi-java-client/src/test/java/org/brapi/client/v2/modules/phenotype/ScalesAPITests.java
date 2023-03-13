@@ -234,7 +234,7 @@ public class ScalesAPITests extends BrAPIClientTest {
 		ApiException exception = assertThrows(ApiException.class, () -> {
 			ApiResponse<BrAPIScaleSingleResponse> scale = scalesAPI.scalesScaleDbIdGet("badScaleId");
 		});
-        assertEquals(404, exception.getCode());
+        assertEquals(400, exception.getCode());
 	}
 
 	@Test

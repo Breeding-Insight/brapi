@@ -38,28 +38,24 @@ public class PaginationTypeAdapter extends TypeAdapter<BrAPIPagination> {
             	fields.put(in.nextName(), in.nextString());
             }
             in.endObject();
-
-            if(fields.containsKey("currentPageToken")) {
-                BrAPITokenPagination pagination = (BrAPITokenPagination) new BrAPITokenPagination()
-                        .currentPageToken(fields.get("currentPage"))
-                        .nextPageToken(fields.get("nextPageToken"))
-                        .prevPageToken(fields.get("prevPageToken"))
-                        .pageSize(Integer.decode(fields.get("pageSize")));
-                if(fields.get("totalCount") != null) {
-                    pagination.totalCount(Integer.decode(fields.get("totalCount")));
-                }
-                if(fields.get("totalPages") != null) {
-                    pagination.totalPages(Integer.decode(fields.get("totalPages")));
-                }
-                return pagination;
-            } else if(fields.containsKey("currentPage")) {
+            
+            if(fields.containsKey("currentPage")) {
             	BrAPIIndexPagination pagination = (BrAPIIndexPagination) new BrAPIIndexPagination()
             			.currentPage(Integer.decode(fields.get("currentPage")))
             			.pageSize(Integer.decode(fields.get("pageSize")))
             			.totalCount(Integer.decode(fields.get("totalCount")))
             			.totalPages(Integer.decode(fields.get("totalPages")));
             	return pagination;
-            } else {
+            }else if(fields.containsKey("currentPageToken")) {
+            	BrAPITokenPagination pagination = (BrAPITokenPagination) new BrAPITokenPagination()
+            			.currentPageToken(fields.get("currentPage"))
+            			.nextPageToken(fields.get("nextPageToken"))
+            			.prevPageToken(fields.get("prevPageToken"))
+            			.pageSize(Integer.decode(fields.get("pageSize")))
+            			.totalCount(Integer.decode(fields.get("totalCount")))
+            			.totalPages(Integer.decode(fields.get("totalPages")));
+            	return pagination;
+            }else {
             	return null;
             }
             

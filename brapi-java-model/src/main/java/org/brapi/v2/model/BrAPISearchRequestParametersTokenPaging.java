@@ -12,12 +12,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 
 
-public class BrAPISearchRequestParametersTokenPaging extends BrAPISearchRequestParametersPaging {
+public class BrAPISearchRequestParametersTokenPaging   {
+  @JsonProperty("pageSize")
+  private Integer pageSize = null;
+
   @JsonProperty("pageToken")
   private String pageToken = null;
 
   public BrAPISearchRequestParametersTokenPaging pageSize(Integer pageSize) {
-    super.pageSize(pageSize);
+    this.pageSize = pageSize;
     return this;
   }
 
@@ -27,6 +30,14 @@ public class BrAPISearchRequestParametersTokenPaging extends BrAPISearchRequestP
   **/
   
   
+    public Integer getPageSize() {
+    return pageSize;
+  }
+
+  public void setPageSize(Integer pageSize) {
+    this.pageSize = pageSize;
+  }
+
   public BrAPISearchRequestParametersTokenPaging pageToken(String pageToken) {
     this.pageToken = pageToken;
     return this;
@@ -56,13 +67,13 @@ public class BrAPISearchRequestParametersTokenPaging extends BrAPISearchRequestP
       return false;
     }
     BrAPISearchRequestParametersTokenPaging searchRequestParametersTokenPaging = (BrAPISearchRequestParametersTokenPaging) o;
-    return Objects.equals(super.getPageSize(), searchRequestParametersTokenPaging.getPageSize()) &&
+    return Objects.equals(this.pageSize, searchRequestParametersTokenPaging.pageSize) &&
         Objects.equals(this.pageToken, searchRequestParametersTokenPaging.pageToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.getPageSize(), pageToken);
+    return Objects.hash(pageSize, pageToken);
   }
 
   @Override
@@ -70,7 +81,7 @@ public class BrAPISearchRequestParametersTokenPaging extends BrAPISearchRequestP
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchRequestParametersTokenPaging {\n");
     
-    sb.append("    pageSize: ").append(toIndentedString(super.getPageSize())).append("\n");
+    sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
     sb.append("    pageToken: ").append(toIndentedString(pageToken)).append("\n");
     sb.append("}");
     return sb.toString();
