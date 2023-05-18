@@ -10,12 +10,23 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public enum BrAPITraitDataType implements BrAPIEnum {
   CODE("Code"),
-    DATE("Date"),
-    DURATION("Duration"),
-    NOMINAL("Nominal"),
-    NUMERICAL("Numerical"),
-    ORDINAL("Ordinal"),
-    TEXT("Text");
+  DATE("Date"),
+  DURATION("Duration"),
+  NOMINAL("Nominal"),
+  NUMERICAL("Numerical"),
+  ORDINAL("Ordinal"),
+  TEXT("Text"),
+  NUMERIC("Numeric"),
+  CATEGORICAL("Categorical"),
+  MULTICAT("Multicat"),
+  PERCENT("Percent"),
+  BOOLEAN("Boolean"),
+  PHOTO("Photo"),
+  AUDIO("Audio"),
+  COUNTER("Counter"),
+  DISEASE_RATING("Disease Rating"),
+  LOCATION("Location"),
+  GNSS("GNSS");
 
   private String value;
 
