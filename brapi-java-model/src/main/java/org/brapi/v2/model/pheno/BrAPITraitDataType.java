@@ -16,6 +16,8 @@ public enum BrAPITraitDataType implements BrAPIEnum {
   NUMERICAL("Numerical"),
   ORDINAL("Ordinal"),
   TEXT("Text"),
+
+  //Field Book Trait Types
   NUMERIC("Numeric"),
   CATEGORICAL("Categorical"),
   MULTICAT("Multicat"),
@@ -26,7 +28,11 @@ public enum BrAPITraitDataType implements BrAPIEnum {
   COUNTER("Counter"),
   DISEASE_RATING("Disease Rating"),
   LOCATION("Location"),
-  GNSS("GNSS");
+  GNSS("GNSS"),
+  ZEBRA_PRINTER("Zebra Label Printer"),
+  USB_CAMERA("Usb Camera"),
+  BARCODE("Barcode");
+  //end - Field Book Trait Types
 
   private String value;
 
@@ -43,7 +49,7 @@ public enum BrAPITraitDataType implements BrAPIEnum {
   @JsonCreator
   public static BrAPITraitDataType fromValue(String text) {
     for (BrAPITraitDataType b : BrAPITraitDataType.values()) {
-      if (String.valueOf(b.value).equals(text)) {
+      if (String.valueOf(b.value).equalsIgnoreCase(text)) {
         return b;
       }
     }
