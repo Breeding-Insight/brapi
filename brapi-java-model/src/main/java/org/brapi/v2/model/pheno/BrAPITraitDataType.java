@@ -18,20 +18,21 @@ public enum BrAPITraitDataType implements BrAPIEnum {
   TEXT("Text"),
 
   //Field Book Trait Types
-  NUMERIC("Numeric"),
-  CATEGORICAL("Categorical"),
-  MULTICAT("Multicat"),
-  PERCENT("Percent"),
-  BOOLEAN("Boolean"),
-  PHOTO("Photo"),
-  AUDIO("Audio"),
-  COUNTER("Counter"),
-  DISEASE_RATING("Disease Rating"),
-  LOCATION("Location"),
-  GNSS("GNSS"),
-  ZEBRA_PRINTER("Zebra Label Printer"),
-  USB_CAMERA("Usb Camera"),
-  BARCODE("Barcode");
+  NUMERIC("numeric"),
+  CATEGORICAL("categorical"),
+  MULTICAT("multicat"),
+  PERCENT("percent"),
+  BOOLEAN("boolean"),
+  PHOTO("photo"),
+  AUDIO("audio"),
+  COUNTER("counter"),
+  RUST_RATING("rust rating"),
+  DISEASE_RATING("disease rating"),
+  LOCATION("location"),
+  GNSS("gnss"),
+  ZEBRA_PRINTER("zebra label printer"),
+  USB_CAMERA("usb camera"),
+  BARCODE("barcode");
   //end - Field Book Trait Types
 
   private String value;

@@ -27,7 +27,7 @@ public class BrAPIClientTest {
 
     public BrAPIClientTest() {
         brapiTestServer = "https://test-server.brapi.org/brapi/v2";
-        apiClient = new BrAPIClient(brapiTestServer);
+        apiClient = new BrAPIClient(brapiTestServer, 30000);
 
         Authentication authorizationToken = apiClient.getAuthentication("AuthorizationToken");
         if(authorizationToken instanceof OAuth) {
