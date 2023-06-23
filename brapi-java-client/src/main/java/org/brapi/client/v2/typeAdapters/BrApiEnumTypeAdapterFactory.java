@@ -60,7 +60,11 @@ public class BrApiEnumTypeAdapterFactory implements TypeAdapterFactory {
                     reader.nextNull();
                     return null;
                 } else {
-                    return valueToNameMap.get(reader.nextString());
+                    String nextString = reader.nextString();
+                    if (nextString != null) {
+                        return valueToNameMap.get(nextString.toUpperCase());
+                    }
+                    return valueToNameMap.get(nextString);
                 }
             }
         };
