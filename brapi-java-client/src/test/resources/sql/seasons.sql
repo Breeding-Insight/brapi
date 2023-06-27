@@ -1,0 +1,10 @@
+INSERT INTO season (auth_user_id, id, year, season) VALUES ('anonymousUser', 'fall_2011', '2011', 'fall');
+INSERT INTO season (auth_user_id, id, year, season) VALUES ('anonymousUser', 'winter_2012', '2012', 'winter');
+INSERT INTO season (auth_user_id, id, year, season) VALUES ('anonymousUser', 'spring_2012', '2012', 'spring');
+INSERT INTO season (auth_user_id, id, year, season) VALUES ('anonymousUser', 'summer_2012', '2012', 'summer');
+INSERT INTO season (auth_user_id, id, year, season) VALUES ('anonymousUser', 'fall_2012', '2012', 'fall');
+INSERT INTO season (auth_user_id, id, year, season) VALUES ('anonymousUser', 'winter_2013', '2013', 'winter');
+INSERT INTO season (auth_user_id, id, year, season) VALUES ('anonymousUser', 'spring_2013', '2013', 'spring');
+INSERT INTO season (auth_user_id, id, year, season) VALUES ('anonymousUser', 'summer_2013', '2013', 'summer');
+INSERT INTO season (auth_user_id, id, year, season) VALUES ('anonymousUser', 'fall_2013', '2013', 'fall');
+INSERT INTO season (auth_user_id, id, year, season) VALUES ('anonymousUser', 'winter_2014', '2014', 'winter');

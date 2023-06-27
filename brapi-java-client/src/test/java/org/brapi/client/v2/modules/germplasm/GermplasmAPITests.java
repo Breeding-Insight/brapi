@@ -328,6 +328,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     	BrAPIGermplasm germplasm = this.germplasm;
         germplasm.setGermplasmName("updated_name");
         germplasm.setAccessionNumber("A000004");
+        germplasm.setPedigree(null);
 
         // Check that it is a success and all data matches
         ApiResponse<BrAPIGermplasmSingleResponse> updatedGermplasmResult = this.germplasmAPI.germplasmGermplasmDbIdPut(germplasm.getGermplasmDbId(), germplasm);
