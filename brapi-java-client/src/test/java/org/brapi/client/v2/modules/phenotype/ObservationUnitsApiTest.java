@@ -14,12 +14,14 @@ package org.brapi.client.v2.modules.phenotype;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.JSON;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationUnitQueryParams;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationUnitTableQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponseResult;
 import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
+import org.brapi.v2.model.pheno.BrAPIEntryTypeEnum;
 import org.brapi.v2.model.pheno.BrAPIObservationUnit;
 import org.brapi.v2.model.pheno.response.*;
 import org.brapi.v2.model.pheno.request.BrAPIObservationUnitSearchRequest;
@@ -27,12 +29,11 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * API tests for ObservationUnitsApi
@@ -298,4 +299,25 @@ public class ObservationUnitsApiTest {
 		}
 
 	}
+
+	@Test
+	public void entryTypeCaseInsensitivity() {
+		BrAPIEntryTypeEnum entryType = BrAPIEntryTypeEnum.fromValue("check");
+		assertEquals("CHECK", entryType.getBrapiValue(), "Expected uppercase CHECK");
+		assertEquals(BrAPIEntryTypeEnum.CHECK, entryType, "Expected CHECK enum");
+
+		String json = "check";
+		JSON parser = new JSON();
+		BrAPIEntryTypeEnum deserializedEntryType = parser.deserialize(json, BrAPIEntryTypeEnum.class);
+		assertEquals(BrAPIEntryTypeEnum.CHECK, deserializedEntryType, "Expected deserialized CHECK enum");
+
+		String serialized = parser.serialize(deserializedEntryType);
+		assertEquals("\"CHECK\"", serialized, "Expected serialized CHECK");
+
+		json = null;
+		deserializedEntryType = parser.deserialize(json, BrAPIEntryTypeEnum.class);
+		assertEquals(null, deserializedEntryType, "Expected deserialized null");
+
+	}
+
 }
