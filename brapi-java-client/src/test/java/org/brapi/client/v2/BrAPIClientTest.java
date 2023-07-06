@@ -22,7 +22,6 @@ import lombok.SneakyThrows;
 import org.brapi.client.v2.auth.Authentication;
 import org.brapi.client.v2.auth.OAuth;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.testcontainers.containers.BindMode;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
@@ -36,18 +35,17 @@ public class BrAPIClientTest {
 
     private static final String dbName = "bitest";
     private static final String dbPassword = "postgres";
-    protected static String brapiTestServer;
+    protected String brapiTestServer;
     protected BrAPIClient apiClient;
 
     @Getter
-    private static Network network;
+    private Network network;
     @Getter
-    private static GenericContainer brapiContainer;
+    private GenericContainer brapiContainer;
     @Getter
-    private static GenericContainer dbContainer;
+    private GenericContainer dbContainer;
 
-    @BeforeAll
-    public static void setupContainers() {
+    public BrAPIClientTest() {
         network = Network.newNetwork();
         dbContainer = new GenericContainer<>("postgres:11.4")
                 .withNetwork(network)
@@ -63,9 +61,9 @@ public class BrAPIClientTest {
                 .withImagePullPolicy(PullPolicy.alwaysPull())
                 .withExposedPorts(8080)
                 .withEnv("BRAPI_DB_SERVER",
-                         String.format("%s:%s",
-                                       "testdb",
-                                       5432))
+                        String.format("%s:%s",
+                                "testdb",
+                                5432))
                 .withEnv("BRAPI_DB", "postgres")
                 .withEnv("BRAPI_DB_USER", "postgres")
                 .withEnv("BRAPI_DB_PASSWORD", "postgres")
@@ -80,10 +78,6 @@ public class BrAPIClientTest {
         Integer containerPort = brapiContainer.getMappedPort(8080);
         String containerIp = brapiContainer.getContainerIpAddress();
         brapiTestServer = String.format("http://%s:%s/", containerIp, containerPort);
-    }
-
-    public BrAPIClientTest() {
-
 
         apiClient = new BrAPIClient(brapiTestServer, 30000);
 
@@ -95,7 +89,7 @@ public class BrAPIClientTest {
 
     @SneakyThrows
     @AfterAll
-    public static void stopContainers() {
+    public void stopContainers() {
         dbContainer.stop();
         brapiContainer.stop();
         network.close();

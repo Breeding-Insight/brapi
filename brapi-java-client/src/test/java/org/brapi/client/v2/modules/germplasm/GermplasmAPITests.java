@@ -22,13 +22,11 @@ import com.github.filosganga.geogson.model.Point;
 import com.github.filosganga.geogson.model.positions.SinglePosition;
 
 import com.google.gson.JsonObject;
-import lombok.SneakyThrows;
 
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmQueryParams;
-import org.brapi.client.v2.model.queryParams.phenotype.ScaleQueryParams;
 import org.brapi.v2.model.BrApiGeoJSON;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.germ.BrAPIBiologicalStatusOfAccessionCode;
@@ -38,8 +36,6 @@ import org.brapi.v2.model.germ.BrAPIGermplasmDonors;
 import org.brapi.v2.model.germ.BrAPIGermplasmSynonyms;
 import org.brapi.v2.model.germ.BrAPIGermplasmOrigin;
 import org.brapi.v2.model.germ.response.BrAPIGermplasmSingleResponse;
-import org.brapi.v2.model.pheno.BrAPIScale;
-import org.brapi.v2.model.pheno.response.BrAPIScaleListResponse;
 import org.brapi.v2.model.germ.BrAPIGermplasmStorageTypes;
 import org.brapi.v2.model.germ.BrAPIGermplasmStorageTypesEnum;
 import org.brapi.v2.model.germ.BrAPITaxonID;
@@ -47,10 +43,9 @@ import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -328,13 +323,18 @@ public class GermplasmAPITests extends BrAPIClientTest {
     	BrAPIGermplasm germplasm = this.germplasm;
         germplasm.setGermplasmName("updated_name");
         germplasm.setAccessionNumber("A000004");
-//        germplasm.setPedigree(null);
+        germplasm.setPedigree(null);
 
         // Check that it is a success and all data matches
-        ApiResponse<BrAPIGermplasmSingleResponse> updatedGermplasmResult = this.germplasmAPI.germplasmGermplasmDbIdPut(germplasm.getGermplasmDbId(), germplasm);
+        AtomicReference<ApiResponse<BrAPIGermplasmSingleResponse>> updatedGermplasmResult = new AtomicReference<>();
+        assertDoesNotThrow(() -> {
+            updatedGermplasmResult.set(this.germplasmAPI.germplasmGermplasmDbIdPut(germplasm.getGermplasmDbId(), germplasm));
+        });
+
 
         assertNotNull(updatedGermplasmResult, "Germplasm was not returned");
-        BrAPIGermplasm updatedGermplasm = updatedGermplasmResult.getBody().getResult();
+        BrAPIGermplasm updatedGermplasm = updatedGermplasmResult.get()
+                                                                .getBody().getResult();
         assertEquals(germplasm.getGermplasmName(), updatedGermplasm.getGermplasmName(), "Wrong germplasm name");
         assertEquals(germplasm.getAccessionNumber(), updatedGermplasm.getAccessionNumber(), "Wrong germplasm accession number");
     }
