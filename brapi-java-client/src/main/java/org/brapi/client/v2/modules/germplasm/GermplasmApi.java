@@ -366,6 +366,7 @@ public class GermplasmApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
+    @Deprecated
     private Call germplasmGermplasmDbIdPedigreeGetCall(String germplasmDbId, String notation, Boolean includeSiblings) throws ApiException {
         if(germplasmDbId == null) {
             throw new IllegalArgumentException("germplasmDbId cannot be null"); 
@@ -415,6 +416,7 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmPedigreeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<BrAPIGermplasmPedigreeResponse> germplasmGermplasmDbIdPedigreeGet(String germplasmDbId, String notation, Boolean includeSiblings) throws ApiException {
         Call call = germplasmGermplasmDbIdPedigreeGetCall(germplasmDbId, notation, includeSiblings);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmPedigreeResponse>(){}.getType();
@@ -432,6 +434,7 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call germplasmGermplasmDbIdPedigreeGetAsync(String germplasmDbId, String notation, Boolean includeSiblings, final ApiCallback<BrAPIGermplasmPedigreeResponse> callback) throws ApiException {
         Call call = germplasmGermplasmDbIdPedigreeGetCall(germplasmDbId, notation, includeSiblings);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmPedigreeResponse>(){}.getType();
@@ -447,6 +450,7 @@ public class GermplasmApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
+    @Deprecated
     private Call germplasmGermplasmDbIdProgenyGetCall(String germplasmDbId) throws ApiException {
         if(germplasmDbId == null) {
             throw new IllegalArgumentException("germplasmDbId cannot be null"); 
@@ -490,6 +494,7 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmProgenyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<BrAPIGermplasmProgenyResponse> germplasmGermplasmDbIdProgenyGet(String germplasmDbId) throws ApiException {
         Call call = germplasmGermplasmDbIdProgenyGetCall(germplasmDbId);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmProgenyResponse>(){}.getType();
@@ -505,6 +510,7 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call germplasmGermplasmDbIdProgenyGetAsync(String germplasmDbId, final ApiCallback<BrAPIGermplasmProgenyResponse> callback) throws ApiException {
         Call call = germplasmGermplasmDbIdProgenyGetCall(germplasmDbId);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmProgenyResponse>(){}.getType();
