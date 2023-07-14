@@ -77,6 +77,16 @@ public class ListsApiTest extends BrAPIClientTest {
     }
 
     @Test
+    public void listsListDbIdDataPostTest() throws ApiException {
+        String listDbId = this.listDbId;
+        List<String> body = Arrays.asList("one", "two", "three");
+        
+        ApiResponse<BrAPIListResponse> response = api.listsListDbIdDataPost(listDbId, body);
+
+        // TODO: test validations
+    }
+
+    @Test
     public void listsListDbIdPutTest() throws ApiException {
         String listDbId = this.listDbId;
         BrAPIListNewRequest body = new BrAPIListNewRequest();
