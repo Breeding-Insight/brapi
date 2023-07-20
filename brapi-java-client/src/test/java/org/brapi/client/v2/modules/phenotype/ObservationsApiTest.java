@@ -20,13 +20,15 @@ import org.brapi.client.v2.model.queryParams.phenotype.ObservationTableQueryPara
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
 import org.brapi.v2.model.pheno.BrAPIObservation;
+import org.brapi.v2.model.pheno.response.BrAPIObservationDeleteResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationListResponse;
 import org.brapi.v2.model.pheno.request.BrAPIObservationSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIObservationSingleResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationTableResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.OffsetDateTime;
@@ -39,8 +41,15 @@ import java.util.Optional;
  */
 public class ObservationsApiTest {
 
-	private final ObservationsApi api = new ObservationsApi();
+	private static ObservationsApi api;
 
+	@BeforeAll
+	public static void setup() throws ApiException {
+		api = new ObservationsApi();
+		api.getApiClient().authenticate((v) -> {
+			return "XXXX";
+		});
+	}
 	/**
 	 * Get a filtered set of Observations
 	 *
@@ -259,6 +268,24 @@ public class ObservationsApiTest {
 					searchResultsDbId, page, pageSize);
 		});
 
+		// TODO: test validations
+	}	
+	
+	@Test
+	public void deleteObservationsPostTest() throws ApiException {
+		
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIObservationDeleteResponse> res = api.deleteObservationsPost(null);
+		});
+		
+		BrAPIObservationSearchRequest body = new BrAPIObservationSearchRequest();
+		ApiResponse<BrAPIObservationDeleteResponse> response = api.deleteObservationsPost(body);
+		
+		assertNotNull(response);
+		assertNotNull(response.getBody());
+		assertNotNull(response.getBody().getMetadata());
+		assertNotNull(response.getBody().getResult());
+		assertNotNull(response.getBody().getResult().getObservationDbIds());
 		// TODO: test validations
 	}
 }
