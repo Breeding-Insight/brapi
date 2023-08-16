@@ -56,8 +56,8 @@ public class BrAPIClientTest {
                 .withEnv("POSTGRES_PASSWORD", dbPassword)
                 .waitingFor(Wait.forLogMessage(".*LOG:  database system is ready to accept connections.*", 1).withStartupTimeout(Duration.of(2, ChronoUnit.MINUTES)));
 
-        brapiContainer = new GenericContainer<>("breedinginsight/brapi-java-server:develop")
-//          brapiContainer = new GenericContainer<>("brapicoordinatorselby/brapi-java-server:v2")
+//        brapiContainer = new GenericContainer<>("breedinginsight/brapi-java-server:develop")
+        brapiContainer = new GenericContainer<>("brapicoordinatorselby/brapi-java-server:v2")
                 .withNetwork(network)
                 .withImagePullPolicy(PullPolicy.alwaysPull())
                 .withExposedPorts(8080)

@@ -17,12 +17,15 @@
 
 package org.brapi.client.v2.modules.germplasm;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.PedigreeQueryParams;
+import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.germ.BrAPIPedigreeNode;
+import org.brapi.v2.model.germ.request.BrAPIPedigreeSearchRequest;
 import org.brapi.v2.model.germ.response.BrAPIPedigreeListResponse;
 import org.junit.jupiter.api.*;
 
@@ -56,6 +59,51 @@ public class PedigreeAPITests extends BrAPIClientTest {
         ApiResponse<BrAPIPedigreeListResponse> pedigree = this.pedigreeAPI.pedigreeGet(baseRequest);
 
         assertEquals(true, pedigree.getBody().getResult().getData().size() == 1, "More than one pedigree was returned");
+    }
+
+    @Test
+    public void searchPedigreePostResponse() throws Exception {
+        BrAPIPedigreeSearchRequest baseRequest = new BrAPIPedigreeSearchRequest()
+        		.addGermplasmDbIdsItem("germplasm1")
+        		.addGermplasmDbIdsItem("germplasm2")
+        		.addGermplasmDbIdsItem("germplasm3");
+
+        ApiResponse<Pair<Optional<BrAPIPedigreeListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = this.pedigreeAPI.searchPedigreePost(baseRequest);
+        Optional<BrAPIPedigreeListResponse> listResponse = response.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+        // only results are returned
+        assertTrue(listResponse.isPresent());
+        assertFalse(searchIdResponse.isPresent());
+        
+        assertEquals(3, listResponse.get().getResult().getData().size(), "unexpected number of pedigree nodes returned");
+    }
+
+    @Test
+    public void searchPedigreeGetResponse() throws Exception {
+        BrAPIPedigreeSearchRequest baseRequest = new BrAPIPedigreeSearchRequest()
+        		.addGermplasmDbIdsItem("germplasm1")
+        		.addGermplasmDbIdsItem("germplasm2")
+        		.addGermplasmDbIdsItem("germplasm3")
+        		.addGermplasmDbIdsItem("germplasm1")
+        		.addGermplasmDbIdsItem("germplasm2")
+        		.addGermplasmDbIdsItem("germplasm3");
+
+        ApiResponse<Pair<Optional<BrAPIPedigreeListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = this.pedigreeAPI.searchPedigreePost(baseRequest);
+        Optional<BrAPIPedigreeListResponse> listResponse = response.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+        // only search ID is returned
+        assertFalse(listResponse.isPresent());
+        assertTrue(searchIdResponse.isPresent());
+        
+        // Get results from search ID
+    	ApiResponse<Pair<Optional<BrAPIPedigreeListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchResponse = this.pedigreeAPI.searchPedigreeSearchResultsDbIdGet(searchIdResponse.get().getResult().getSearchResultsDbId(), 0, 10);
+        Optional<BrAPIPedigreeListResponse> listResponse2 = searchResponse.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse2 = searchResponse.getBody().getRight();
+        // only results are returned
+        assertTrue(listResponse2.isPresent());
+        assertFalse(searchIdResponse2.isPresent());
+        
+        assertEquals(3, listResponse2.get().getResult().getData().size(), "unexpected number of pedigree nodes returned");
     }
 
     @Test
