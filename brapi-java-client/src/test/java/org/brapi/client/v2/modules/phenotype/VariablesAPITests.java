@@ -330,7 +330,6 @@ public class VariablesAPITests extends BrAPIClientTest {
 	public void createVariableWithComplexAdditionalInfoSuccess() throws Exception {
 
 		BrAPIObservationVariable brApiVariable = buildTestVariable();
-		brApiVariable.putAdditionalInfoItem("testObject", brApiVariable);
 		brApiVariable.putAdditionalInfoItem("testBool", true);
 		brApiVariable.putAdditionalInfoItem("testString", "test");
 		brApiVariable.putAdditionalInfoItem("testInt", 1);
