@@ -102,10 +102,10 @@ public class ObservationsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "observationTimeStampRangeStart", queryParams.observationTimeStampRangeStart());
         if (queryParams.observationTimeStampRangeEnd() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "observationTimeStampRangeEnd", queryParams.observationTimeStampRangeEnd());
-        if (queryParams.externalReferenceID() != null) {
-            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
-        }
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
