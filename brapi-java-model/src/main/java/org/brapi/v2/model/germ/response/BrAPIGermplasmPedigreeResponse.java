@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import org.brapi.v2.model.BrAPIResponse;
 import org.brapi.v2.model.BrAPIContext;
 import org.brapi.v2.model.BrAPIMetadata;
-import org.brapi.v2.model.germ.BrAPIPedigreeNode;
+import org.brapi.v2.model.germ.BrAPIPedigreeNode_Deprecated;
 
 
 /**
@@ -16,7 +16,7 @@ import org.brapi.v2.model.germ.BrAPIPedigreeNode;
  */
 
 
-public class BrAPIGermplasmPedigreeResponse implements BrAPIResponse<BrAPIPedigreeNode>  {
+public class BrAPIGermplasmPedigreeResponse implements BrAPIResponse<BrAPIPedigreeNode_Deprecated>  {
   @JsonProperty("@context")
   private BrAPIContext _atContext = null;
 
@@ -24,7 +24,7 @@ public class BrAPIGermplasmPedigreeResponse implements BrAPIResponse<BrAPIPedigr
   private BrAPIMetadata metadata = null;
 
   @JsonProperty("result")
-  private BrAPIPedigreeNode result = null;
+  private BrAPIPedigreeNode_Deprecated result = null;
 
   public BrAPIGermplasmPedigreeResponse _atContext(BrAPIContext _atContext) {
     this._atContext = _atContext;
@@ -58,7 +58,7 @@ public class BrAPIGermplasmPedigreeResponse implements BrAPIResponse<BrAPIPedigr
     this.metadata = metadata;
   }
 
-  public BrAPIGermplasmPedigreeResponse result(BrAPIPedigreeNode result) {
+  public BrAPIGermplasmPedigreeResponse result(BrAPIPedigreeNode_Deprecated result) {
     this.result = result;
     return this;
   }
@@ -71,11 +71,11 @@ public class BrAPIGermplasmPedigreeResponse implements BrAPIResponse<BrAPIPedigr
       
 
     @Valid
-    public BrAPIPedigreeNode getResult() {
+    public BrAPIPedigreeNode_Deprecated getResult() {
     return result;
   }
 
-  public void setResult(BrAPIPedigreeNode result) {
+  public void setResult(BrAPIPedigreeNode_Deprecated result) {
     this.result = result;
   }
 
