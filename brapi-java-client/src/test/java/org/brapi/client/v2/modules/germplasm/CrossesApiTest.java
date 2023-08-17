@@ -13,6 +13,7 @@
 package org.brapi.client.v2.modules.germplasm;
 
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.CrossQueryParams;
 import org.brapi.client.v2.model.queryParams.germplasm.PlannedCrossQueryParams;
@@ -21,15 +22,21 @@ import org.brapi.v2.model.germ.BrAPIPlannedCross;
 import org.brapi.v2.model.germ.response.BrAPICrossesListResponse;
 import org.brapi.v2.model.germ.response.BrAPIPlannedCrossesListResponse;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CrossesApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class CrossesApiTest extends BrAPIClientTest{
 
-    private final CrossesApi api = new CrossesApi();
+    private final CrossesApi api = new CrossesApi(this.apiClient);
 
     /**
      * Get a filtered list of Cross entities
@@ -41,17 +48,13 @@ public class CrossesApiTest {
      */
     @Test
     public void crossesGetTest() throws ApiException {
-        String crossingProjectDbId = null;
-        String crossDbId = null;
-        String externalReferenceID = null;
-        String externalReferenceSource = null;
-        Integer page = null;
-        Integer pageSize = null;
+        String crossDbId = "cross1";
         
-        CrossQueryParams queryParams = new CrossQueryParams();
+        CrossQueryParams queryParams = new CrossQueryParams().crossDbId(crossDbId);
         ApiResponse<BrAPICrossesListResponse> response = api.crossesGet(queryParams);
-
-        // TODO: test validations
+        
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertEquals(crossDbId, response.getBody().getResult().getData().get(0).getCrossDbId());
     }
     /**
      * Create new Cross entities on this server
@@ -63,13 +66,17 @@ public class CrossesApiTest {
      */
     @Test
     public void crossesPostTest() throws ApiException {
-        List<BrAPICross> body = null;
+    	BrAPICross cross = new BrAPICross()
+    			.crossingProjectDbId("crossing_project2")
+    			.crossName("New Name");
+        List<BrAPICross> body = Arrays.asList(cross);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICrossesListResponse> response = api.crossesPost(body);
-		});
 
-        // TODO: test validations
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertNotNull(response.getBody().getResult().getData().get(0).getCrossDbId());
+        assertEquals(cross.getCrossName(), response.getBody().getResult().getData().get(0).getCrossName());
+        assertEquals(cross.getCrossingProjectDbId(), response.getBody().getResult().getData().get(0).getCrossingProjectDbId());
     }
     /**
      * Update existing Cross entities on this server
@@ -81,13 +88,19 @@ public class CrossesApiTest {
      */
     @Test
     public void crossesPutTest() throws ApiException {
-        Map<String, BrAPICross> body = null;
+    	BrAPICross cross = new BrAPICross()
+    			.crossingProjectDbId("crossing_project2")
+    			.crossName("New Name")
+    			.crossDbId("cross1");
+        Map<String, BrAPICross> body = new HashMap<String, BrAPICross>();
+        body.put("cross1", cross);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICrossesListResponse> response = api.crossesPut(body);
-		});
 
-        // TODO: test validations
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertEquals(cross.getCrossDbId(), response.getBody().getResult().getData().get(0).getCrossDbId());
+        assertEquals(cross.getCrossName(), response.getBody().getResult().getData().get(0).getCrossName());
+        assertEquals(cross.getCrossingProjectDbId(), response.getBody().getResult().getData().get(0).getCrossingProjectDbId());
     }
     /**
      * Get a filtered list of Planned Cross entities

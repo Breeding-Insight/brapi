@@ -31,22 +31,28 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Accessors(fluent=true)
+@Accessors(fluent = true)
 public class CrossQueryParams extends BrAPIQueryParams {
 
-    private String crossingProjectDbId;
-    private String crossDbId;
-    private String externalReferenceSource;
-    private String externalReferenceId;
-    @Deprecated
-    private String externalReferenceID;
-    
-    public String getExternalReferenceId() {
+	private String commonCropName;
+	private String crossingProjectDbId;
+	private String crossingProjectName;
+	private String crossDbId;
+	private String crossName;
+	private String externalReferenceSource;
+	private String externalReferenceId;
+	@Deprecated
+	private String externalReferenceID;
+	private String programDbId;
+
+	public String getExternalReferenceId() {
 		return externalReferenceId;
 	}
-    public String externalReferenceId() {
+
+	public String externalReferenceId() {
 		return externalReferenceId;
 	}
+
 	public void setExternalReferenceId(String externalReferenceId) {
 		this.externalReferenceId = externalReferenceId;
 	}
@@ -55,10 +61,12 @@ public class CrossQueryParams extends BrAPIQueryParams {
 	public String getExternalReferenceID() {
 		return externalReferenceID;
 	}
+
 	@Deprecated
 	public String externalReferenceID() {
 		return externalReferenceID;
 	}
+
 	@Deprecated
 	public void setExternalReferenceID(String externalReferenceID) {
 		this.externalReferenceID = externalReferenceID;
