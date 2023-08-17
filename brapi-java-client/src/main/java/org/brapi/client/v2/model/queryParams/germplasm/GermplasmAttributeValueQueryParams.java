@@ -26,30 +26,33 @@ import lombok.experimental.SuperBuilder;
 
 import org.brapi.client.v2.model.queryParams.core.BrAPIQueryParams;
 
-
 @Getter
 @Setter
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Accessors(fluent=true)
+@Accessors(fluent = true)
 public class GermplasmAttributeValueQueryParams extends BrAPIQueryParams {
 
-    private String attributeValueDbId;
-    private String attributeDbId;
-    private String attributeName;
-    private String germplasmDbId;
-    private String externalReferenceSource;
-    private String externalReferenceId;
-    @Deprecated
-    private String externalReferenceID;
-    
-    public String getExternalReferenceId() {
+	private String attributeValueDbId;
+	private String attributeDbId;
+	private String attributeName;
+	private String germplasmDbId;
+	private String externalReferenceSource;
+	private String externalReferenceId;
+	@Deprecated
+	private String externalReferenceID;
+	private String programDbId;
+	private String commonCropName;
+
+	public String getExternalReferenceId() {
 		return externalReferenceId;
 	}
-    public String externalReferenceId() {
+
+	public String externalReferenceId() {
 		return externalReferenceId;
 	}
+
 	public void setExternalReferenceId(String externalReferenceId) {
 		this.externalReferenceId = externalReferenceId;
 	}
@@ -58,10 +61,12 @@ public class GermplasmAttributeValueQueryParams extends BrAPIQueryParams {
 	public String getExternalReferenceID() {
 		return externalReferenceID;
 	}
+
 	@Deprecated
 	public String externalReferenceID() {
 		return externalReferenceID;
 	}
+
 	@Deprecated
 	public void setExternalReferenceID(String externalReferenceID) {
 		this.externalReferenceID = externalReferenceID;
