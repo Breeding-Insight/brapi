@@ -13,6 +13,7 @@
 package org.brapi.client.v2.modules.germplasm;
 
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.CrossQueryParams;
 import org.brapi.client.v2.model.queryParams.germplasm.PlannedCrossQueryParams;
@@ -21,15 +22,21 @@ import org.brapi.v2.model.germ.BrAPIPlannedCross;
 import org.brapi.v2.model.germ.response.BrAPICrossesListResponse;
 import org.brapi.v2.model.germ.response.BrAPIPlannedCrossesListResponse;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CrossesApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class CrossesApiTest  extends BrAPIClientTest{
 
-    private final CrossesApi api = new CrossesApi();
+    private final CrossesApi api = new CrossesApi(this.apiClient);
 
     /**
      * Get a filtered list of Cross entities
@@ -99,17 +106,13 @@ public class CrossesApiTest {
      */
     @Test
     public void plannedcrossesGetTest() throws ApiException {
-        String crossingProjectDbId = null;
-        String plannedCrossDbId = null;
-        String externalReferenceID = null;
-        String externalReferenceSource = null;
-        Integer page = null;
-        Integer pageSize = null;
+        String plannedCrossDbId = "cross4";
         
-        PlannedCrossQueryParams queryParams = new PlannedCrossQueryParams();
+        PlannedCrossQueryParams queryParams = new PlannedCrossQueryParams().plannedCrossDbId(plannedCrossDbId);
         ApiResponse<BrAPIPlannedCrossesListResponse> response = api.plannedcrossesGet(queryParams);
 
-        // TODO: test validations
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertEquals(plannedCrossDbId, response.getBody().getResult().getData().get(0).getPlannedCrossDbId());
     }
     /**
      * Create new Planned Cross entities on this server
@@ -121,13 +124,17 @@ public class CrossesApiTest {
      */
     @Test
     public void plannedcrossesPostTest() throws ApiException {
-        List<BrAPIPlannedCross> body = null;
+    	BrAPIPlannedCross pCross = new BrAPIPlannedCross()
+    			.crossingProjectDbId("crossing_project2")
+    			.plannedCrossName("New Name");
+        List<BrAPIPlannedCross> body = Arrays.asList(pCross);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIPlannedCrossesListResponse> response = api.plannedcrossesPost(body);
-		});
 
-        // TODO: test validations
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertNotNull(response.getBody().getResult().getData().get(0).getPlannedCrossDbId());
+        assertEquals(pCross.getPlannedCrossName(), response.getBody().getResult().getData().get(0).getPlannedCrossName());
+        assertEquals(pCross.getCrossingProjectDbId(), response.getBody().getResult().getData().get(0).getCrossingProjectDbId());
     }
     /**
      * Update existing Planned Cross entities on this server
@@ -139,12 +146,18 @@ public class CrossesApiTest {
      */
     @Test
     public void plannedcrossesPutTest() throws ApiException {
-        Map<String, BrAPIPlannedCross> body = null;
+    	BrAPIPlannedCross pCross = new BrAPIPlannedCross()
+    			.crossingProjectDbId("crossing_project2")
+    			.plannedCrossName("New Name")
+    			.plannedCrossDbId("cross2");
+        Map<String, BrAPIPlannedCross> body = new HashMap<String, BrAPIPlannedCross>();
+        body.put("cross2", pCross);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIPlannedCrossesListResponse> response = api.plannedcrossesPut(body);
-		});
 
-        // TODO: test validations
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertEquals(pCross.getPlannedCrossDbId(), response.getBody().getResult().getData().get(0).getPlannedCrossDbId());
+        assertEquals(pCross.getPlannedCrossName(), response.getBody().getResult().getData().get(0).getPlannedCrossName());
+        assertEquals(pCross.getCrossingProjectDbId(), response.getBody().getResult().getData().get(0).getCrossingProjectDbId());
     }
 }
