@@ -76,12 +76,13 @@ public class ListsApiTest extends BrAPIClientTest {
 		assertEquals(listDbId, response.getBody().getResult().getListDbId());
 	}
 
+
 	@Test
-	public void listsListDbIdItemsPostTest() throws ApiException {
+	public void listsListDbIdDataPostTest() throws ApiException {
 		String listDbId = "list1";
 		List<String> body = Arrays.asList("one", "two", "three");
 
-		ApiResponse<BrAPIListResponse> response = api.listsListDbIdItemsPost(listDbId, body);
+		ApiResponse<BrAPIListResponse> response = api.listsListDbIdDataPost(listDbId, body);
 		
 		// 3 add here, plus 3 from loaded SQL, expecting 6 items total
 		assertEquals(6, response.getBody().getResult().getData().size());
