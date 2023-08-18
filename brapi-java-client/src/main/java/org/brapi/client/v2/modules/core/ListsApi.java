@@ -213,6 +213,7 @@ public class ListsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
+    @Deprecated
     private Call listsListDbIdItemsPostCall(String listDbId, List<String> body) throws ApiException {
         if(listDbId == null) {
             throw new IllegalArgumentException("listDbId cannot be null"); 
@@ -259,6 +260,7 @@ public class ListsApi {
      * @return ApiResponse&lt;ListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<BrAPIListResponse> listsListDbIdItemsPost(String listDbId, List<String> body) throws ApiException {
         Call call = listsListDbIdItemsPostCall(listDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIListResponse>(){}.getType();
@@ -274,6 +276,7 @@ public class ListsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call listsListDbIdItemsPostAsync(String listDbId, List<String> body, final ApiCallback<BrAPIListResponse> callback) throws ApiException {
         Call call = listsListDbIdItemsPostCall(listDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIListResponse>(){}.getType();
