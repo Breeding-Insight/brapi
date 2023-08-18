@@ -35,6 +35,8 @@ import lombok.experimental.SuperBuilder;
 public class ListQueryParams extends BrAPIQueryParams {
 
     private BrAPIListTypes listType;
+    private String commonCropName;
+    private String programDbId;
     private String listName;
     private String listDbId;
     private String listSource;

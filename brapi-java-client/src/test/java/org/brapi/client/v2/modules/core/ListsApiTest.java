@@ -26,6 +26,11 @@ import org.brapi.v2.model.core.response.BrAPIListsSingleResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -36,76 +41,107 @@ import java.util.Optional;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ListsApiTest extends BrAPIClientTest {
 
-    private final ListsApi api = new ListsApi(this.apiClient);
-    private String listDbId = "list1";
+	private final ListsApi api = new ListsApi(this.apiClient);
 
-    @Test
-    public void listsGetTest() throws ApiException {        
-        ListQueryParams queryParams = new ListQueryParams();
-        ApiResponse<BrAPIListsListResponse> response = api.listsGet(queryParams);
+	@Test
+	public void listsGetTest() throws ApiException {
+		String listDbId = "list1";
+		ListQueryParams queryParams = new ListQueryParams()
+				.listDbId(listDbId);
+		ApiResponse<BrAPIListsListResponse> response = api.listsGet(queryParams);
 
-        // TODO: test validations
-    }
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(listDbId, response.getBody().getResult().getData().get(0).getListDbId());
+	}
 
-    @Test
-    public void listsPostTest() throws ApiException {
-        List<BrAPIListNewRequest> body = Arrays.asList(new BrAPIListNewRequest());
-        
-        ApiResponse<BrAPIListsListResponse> response = api.listsPost(body);
+	@Test
+	public void listsPostTest() throws ApiException {
+		BrAPIListNewRequest list = new BrAPIListNewRequest();
+		list.listName("new list name");
+		List<BrAPIListNewRequest> body = Arrays.asList(list);
 
-        this.listDbId = response.getBody().getResult().getData().get(0).getListDbId();
-        // TODO: test validations
-    }
+		ApiResponse<BrAPIListsListResponse> response = api.listsPost(body);
 
-    @Test
-    public void listsListDbIdGetTest() throws ApiException {
-        String listDbId = this.listDbId;
-        
-        ApiResponse<BrAPIListsSingleResponse> response = api.listsListDbIdGet(listDbId);
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(list.getListName(), response.getBody().getResult().getData().get(0).getListName());
+		assertNotNull(response.getBody().getResult().getData().get(0).getListDbId());
+	}
 
-        // TODO: test validations
-    }
+	@Test
+	public void listsListDbIdGetTest() throws ApiException {
+		String listDbId = "list1";
 
-    @Test
-    public void listsListDbIdItemsPostTest() throws ApiException {
-        String listDbId = this.listDbId;
-        List<String> body = Arrays.asList("one", "two", "three");
-        
-        ApiResponse<BrAPIListResponse> response = api.listsListDbIdItemsPost(listDbId, body);
+		ApiResponse<BrAPIListsSingleResponse> response = api.listsListDbIdGet(listDbId);
 
-        // TODO: test validations
-    }
+		assertEquals(listDbId, response.getBody().getResult().getListDbId());
+	}
 
-    @Test
-    public void listsListDbIdPutTest() throws ApiException {
-        String listDbId = this.listDbId;
-        BrAPIListNewRequest body = new BrAPIListNewRequest();
-        body.setListName("JUnit test");
-        
-        ApiResponse<BrAPIListsSingleResponse> response = api.listsListDbIdPut(listDbId, body);
+	@Test
+	public void listsListDbIdItemsPostTest() throws ApiException {
+		String listDbId = "list1";
+		List<String> body = Arrays.asList("one", "two", "three");
 
-        // TODO: test validations
-    }
+		ApiResponse<BrAPIListResponse> response = api.listsListDbIdItemsPost(listDbId, body);
+		
+		// 3 add here, plus 3 from loaded SQL, expecting 6 items total
+		assertEquals(6, response.getBody().getResult().getData().size());
+		assertEquals(6, response.getBody().getResult().getListSize());
+	}
 
-    @Test
-    public void searchListsPostTest() throws ApiException {
-        BrAPIListSearchRequest body = new BrAPIListSearchRequest();
+	@Test
+	public void listsListDbIdPutTest() throws ApiException {
+		String listDbId = "list1";
+		BrAPIListNewRequest body = new BrAPIListNewRequest();
+		body.setListName("JUnit test");
 
-        ApiResponse<Pair<Optional<BrAPIListsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchListsPost(body);
+		ApiResponse<BrAPIListsSingleResponse> response = api.listsListDbIdPut(listDbId, body);
 
-        // TODO: test validations
-    }
+		assertEquals(listDbId, response.getBody().getResult().getListDbId());
+		assertEquals(body.getListName(), response.getBody().getResult().getListName());
+	}
 
-    //@Test
-    //This test is currently unsupported by the BrAPI Test Server
-    public void searchListsSearchResultsDbIdGetTest() throws ApiException {
-        String searchResultsDbId = "test";
-        Integer page = null;
-        Integer pageSize = null;
+	@Test
+	public void searchListsPostTest() throws ApiException {
+		BrAPIListSearchRequest baseRequest = new BrAPIListSearchRequest()
+				.addListDbIdsItem("list1")
+				.addListDbIdsItem("list2");
 
-        ApiResponse<Pair<Optional<BrAPIListsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                api.searchListsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+		ApiResponse<Pair<Optional<BrAPIListsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = this.api
+				.searchListsPost(baseRequest);
+		Optional<BrAPIListsListResponse> listResponse = response.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+		// only results are returned
+		assertTrue(listResponse.isPresent());
+		assertFalse(searchIdResponse.isPresent());
 
-        // TODO: test validations
-    }
+		assertEquals(2, listResponse.get().getResult().getData().size(),
+				"unexpected number of pedigree nodes returned");
+	}
+
+	@Test
+	public void searchListsSearchResultsDbIdGetTest() throws ApiException {
+		BrAPIListSearchRequest baseRequest = new BrAPIListSearchRequest().addListDbIdsItem("list1")
+				.addListDbIdsItem("list1").addListDbIdsItem("list1").addListDbIdsItem("list2")
+				.addListDbIdsItem("list2");
+
+		ApiResponse<Pair<Optional<BrAPIListsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = this.api
+				.searchListsPost(baseRequest);
+		Optional<BrAPIListsListResponse> listResponse = response.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+		// only search ID is returned
+		assertFalse(listResponse.isPresent());
+		assertTrue(searchIdResponse.isPresent());
+
+		// Get results from search ID
+		ApiResponse<Pair<Optional<BrAPIListsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchResponse = this.api
+				.searchListsSearchResultsDbIdGet(searchIdResponse.get().getResult().getSearchResultsDbId(), 0, 10);
+		Optional<BrAPIListsListResponse> listResponse2 = searchResponse.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse2 = searchResponse.getBody().getRight();
+		// only results are returned
+		assertTrue(listResponse2.isPresent());
+		assertFalse(searchIdResponse2.isPresent());
+
+		assertEquals(2, listResponse2.get().getResult().getData().size(),
+				"unexpected number of pedigree nodes returned");
+	}
 }
