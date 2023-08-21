@@ -29,22 +29,29 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Accessors(fluent=true)
+@Accessors(fluent = true)
 public class LocationQueryParams extends BrAPIQueryParams {
 
-    private String locationType;
-    private String locationDbId;
-    private String externalReferenceSource;
-    private String externalReferenceId;
-    @Deprecated
-    private String externalReferenceID;
-    
-    public String getExternalReferenceId() {
+	private String locationType;
+	private String locationDbId;
+	private String externalReferenceSource;
+	private String externalReferenceId;
+	@Deprecated
+	private String externalReferenceID;
+	private String commonCropName;
+	private String parentLocationDbId;
+	private String locationName;
+	private String programDbId;
+	private String parentLocationName;
+
+	public String getExternalReferenceId() {
 		return externalReferenceId;
 	}
-    public String externalReferenceId() {
+
+	public String externalReferenceId() {
 		return externalReferenceId;
 	}
+
 	public void setExternalReferenceId(String externalReferenceId) {
 		this.externalReferenceId = externalReferenceId;
 	}
@@ -53,10 +60,12 @@ public class LocationQueryParams extends BrAPIQueryParams {
 	public String getExternalReferenceID() {
 		return externalReferenceID;
 	}
+
 	@Deprecated
 	public String externalReferenceID() {
 		return externalReferenceID;
 	}
+
 	@Deprecated
 	public void setExternalReferenceID(String externalReferenceID) {
 		this.externalReferenceID = externalReferenceID;
