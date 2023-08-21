@@ -12,18 +12,23 @@
 
 package org.brapi.client.v2.modules.phenotype;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.OntologyQueryParams;
 import org.brapi.v2.model.pheno.response.BrAPIOntologyListResponse;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 /**
  * API tests for OntologiesApi
  */
-public class OntologiesApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class OntologiesApiTest extends BrAPIClientTest {
 
-    private final OntologiesApi api = new OntologiesApi();
+    private final OntologiesApi api = new OntologiesApi(this.apiClient);
 
     /**
      * Get the Ontologies
@@ -35,13 +40,12 @@ public class OntologiesApiTest {
      */
     @Test
     public void ontologiesGetTest() throws ApiException {
-        String ontologyDbId = null;
-        Integer page = null;
-        Integer pageSize = null;
+        String ontologyDbId = "ontology_variable1";
         
-        OntologyQueryParams queryParams = new OntologyQueryParams();
+        OntologyQueryParams queryParams = new OntologyQueryParams().ontologyDbId(ontologyDbId);
         ApiResponse<BrAPIOntologyListResponse> response = api.ontologiesGet(queryParams);
 
-        // TODO: test validations
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertEquals(ontologyDbId, response.getBody().getResult().getData().get(0).getOntologyDbId());
     }
 }
