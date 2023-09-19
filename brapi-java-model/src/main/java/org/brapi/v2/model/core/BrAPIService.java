@@ -55,39 +55,6 @@ public class BrAPIService {
 		}
 	}
 
-	/**
-	 * Gets or Sets versions
-	 */
-	public enum VersionsEnum {
-		_0("2.0"),
-
-		_1("2.1"),
-
-		_2("2.2");
-
-		@JsonCreator
-		public static VersionsEnum fromValue(String text) {
-			for (VersionsEnum b : VersionsEnum.values()) {
-				if (String.valueOf(b.value).equals(text)) {
-					return b;
-				}
-			}
-			return null;
-		}
-
-		private String value;
-
-		VersionsEnum(String value) {
-			this.value = value;
-		}
-
-		@Override
-		@JsonValue
-		public String toString() {
-			return String.valueOf(value);
-		}
-	}
-
 	@JsonProperty("dataTypes")
 	@Valid
 	private List<BrAPIWSMIMEDataTypes> dataTypes = null;
@@ -100,7 +67,7 @@ public class BrAPIService {
 	private String service = null;
 	@JsonProperty("versions")
 	@Valid
-	private List<VersionsEnum> versions = new ArrayList<VersionsEnum>();
+	private List<String> versions = new ArrayList<String>();
 
 	public BrAPIService addDataTypesItem(BrAPIWSMIMEDataTypes dataTypesItem) {
 		if (this.dataTypes == null) {
@@ -115,7 +82,7 @@ public class BrAPIService {
 		return this;
 	}
 
-	public BrAPIService addVersionsItem(VersionsEnum versionsItem) {
+	public BrAPIService addVersionsItem(String versionsItem) {
 		this.versions.add(versionsItem);
 		return this;
 	}
@@ -181,7 +148,7 @@ public class BrAPIService {
 	
 	
 
-	public List<VersionsEnum> getVersions() {
+	public List<String> getVersions() {
 		return versions;
 	}
 
@@ -212,7 +179,7 @@ public class BrAPIService {
 		this.service = service;
 	}
 
-	public void setVersions(List<VersionsEnum> versions) {
+	public void setVersions(List<String> versions) {
 		this.versions = versions;
 	}
 
@@ -240,7 +207,7 @@ public class BrAPIService {
 		return sb.toString();
 	}
 
-	public BrAPIService versions(List<VersionsEnum> versions) {
+	public BrAPIService versions(List<String> versions) {
 		this.versions = versions;
 		return this;
 	}
