@@ -49,6 +49,13 @@ public class ObservationUnitQueryParams extends BrAPIQueryParams {
     private String externalReferenceId;
     @Deprecated
     private String externalReferenceID;
+    private String observationUnitName;
+    private String observationUnitLevelRelationshipDbId;
+    private String observationUnitLevelRelationshipCode;
+    private String commonCropName;
+    private String observationUnitLevelRelationshipOrder;
+    private String observationUnitLevelRelationshipName;
+
     
     public String getExternalReferenceId() {
 		return externalReferenceId;

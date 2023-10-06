@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.OntologyQueryParams;
 import org.brapi.v2.model.pheno.BrAPIOntology;
@@ -28,21 +29,15 @@ import org.brapi.v2.model.pheno.response.BrAPIOntologyListResponse;
 import org.brapi.v2.model.pheno.response.BrAPIOntologySingleResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 /**
  * API tests for OntologiesApi
  */
-public class OntologiesApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class OntologiesApiTest extends BrAPIClientTest {
 
-    private static OntologiesApi api;
-    
-	@BeforeAll
-	public static void setup() throws ApiException {
-		api = new OntologiesApi();
-		api.getApiClient().authenticate((v) -> {
-			return "XXXX";
-		});
-	}
+    private final OntologiesApi api = new OntologiesApi(this.apiClient);
 
     /**
      * Get the Ontologies
@@ -55,22 +50,12 @@ public class OntologiesApiTest {
     @Test
     public void ontologiesGetTest() throws ApiException {
         String ontologyDbId = "ontology_variable1";
-        Integer page = 0;
-        Integer pageSize = 2;
         
-        OntologyQueryParams queryParams = new OntologyQueryParams();
-        queryParams.pageSize(pageSize);
-        queryParams.page(page);
-        queryParams.ontologyDbId(ontologyDbId);
+        OntologyQueryParams queryParams = new OntologyQueryParams().ontologyDbId(ontologyDbId);
         ApiResponse<BrAPIOntologyListResponse> response = api.ontologiesGet(queryParams);
 
-        assertNotNull(response);
-        assertNotNull(response.getBody());
-        assertNotNull(response.getBody().getMetadata());
-        assertNotNull(response.getBody().getResult());
-        assertNotNull(response.getBody().getResult().getData());
-        assertEquals(response.getStatusCode(), 200);
-        assertTrue(response.getBody().getResult().getData().size() <= 2);
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertEquals(ontologyDbId, response.getBody().getResult().getData().get(0).getOntologyDbId());
     }
 
 	/**

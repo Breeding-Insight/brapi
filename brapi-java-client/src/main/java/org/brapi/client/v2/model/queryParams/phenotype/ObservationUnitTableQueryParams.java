@@ -43,5 +43,12 @@ public class ObservationUnitTableQueryParams extends BrAPIQueryParams {
     protected String seasonDbId;
     protected String observationLevel;
     protected String observationVariableDbId;
+    protected String observationUnitLevelRelationshipDbId;
+    protected String observationUnitLevelRelationshipCode;
+    protected String observationUnitLevelRelationshipOrder;
+    protected String observationUnitLevelOrder;
+    protected String observationUnitLevelCode;
+    protected String observationUnitLevelRelationshipName;
+    protected String observationUnitLevelName;
 
 }
