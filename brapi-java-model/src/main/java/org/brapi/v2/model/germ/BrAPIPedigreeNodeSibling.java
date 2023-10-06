@@ -1,34 +1,31 @@
 package org.brapi.v2.model.germ;
 
 import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 
 
+
 /**
- * PedigreeNodeParents
+ * PedigreeNodeSiblings
  */
 
 
-public class BrAPIPedigreeNodeParents   {
+public class BrAPIPedigreeNodeSibling {
   @JsonProperty("germplasmDbId")
   private String germplasmDbId = null;
 
   @JsonProperty("germplasmName")
   private String germplasmName = null;
 
-  @JsonProperty("parentType")
-  private BrAPIParentType parentType = null;
-
-  public BrAPIPedigreeNodeParents germplasmDbId(String germplasmDbId) {
+  public BrAPIPedigreeNodeSibling germplasmDbId(String germplasmDbId) {
     this.germplasmDbId = germplasmDbId;
     return this;
   }
 
   /**
-   * The germplasm DbId of the parent of this germplasm
+   * the germplasm DbId of the sibling
    * @return germplasmDbId
   **/
   
@@ -41,13 +38,13 @@ public class BrAPIPedigreeNodeParents   {
     this.germplasmDbId = germplasmDbId;
   }
 
-  public BrAPIPedigreeNodeParents germplasmName(String germplasmName) {
+  public BrAPIPedigreeNodeSibling germplasmName(String germplasmName) {
     this.germplasmName = germplasmName;
     return this;
   }
 
   /**
-   * the human readable name of the parent of this germplasm
+   * the germplasm name of the sibling
    * @return germplasmName
   **/
   
@@ -60,25 +57,6 @@ public class BrAPIPedigreeNodeParents   {
     this.germplasmName = germplasmName;
   }
 
-  public BrAPIPedigreeNodeParents parentType(BrAPIParentType parentType) {
-    this.parentType = parentType;
-    return this;
-  }
-
-  /**
-   * The type of parent the parent is. ex. 'MALE', 'FEMALE', 'SELF', 'POPULATION', etc.
-   * @return parentType
-  **/
-  
-  
-    public BrAPIParentType getParentType() {
-    return parentType;
-  }
-
-  public void setParentType(BrAPIParentType parentType) {
-    this.parentType = parentType;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -88,25 +66,23 @@ public class BrAPIPedigreeNodeParents   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BrAPIPedigreeNodeParents pedigreeNodeParents = (BrAPIPedigreeNodeParents) o;
-    return Objects.equals(this.germplasmDbId, pedigreeNodeParents.germplasmDbId) &&
-        Objects.equals(this.germplasmName, pedigreeNodeParents.germplasmName) &&
-        Objects.equals(this.parentType, pedigreeNodeParents.parentType);
+    BrAPIPedigreeNodeSibling pedigreeNodeSiblings = (BrAPIPedigreeNodeSibling) o;
+    return Objects.equals(this.germplasmDbId, pedigreeNodeSiblings.germplasmDbId) &&
+        Objects.equals(this.germplasmName, pedigreeNodeSiblings.germplasmName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(germplasmDbId, germplasmName, parentType);
+    return Objects.hash(germplasmDbId, germplasmName);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PedigreeNodeParents {\n");
+    sb.append("class PedigreeNodeSiblings {\n");
     
     sb.append("    germplasmDbId: ").append(toIndentedString(germplasmDbId)).append("\n");
     sb.append("    germplasmName: ").append(toIndentedString(germplasmName)).append("\n");
-    sb.append("    parentType: ").append(toIndentedString(parentType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
