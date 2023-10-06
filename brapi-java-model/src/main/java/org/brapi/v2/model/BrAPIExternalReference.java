@@ -4,7 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * ExternalReferencesInner
+ * BrAPIExternalReference
  */
 
 public class BrAPIExternalReference {
@@ -88,20 +88,22 @@ public class BrAPIExternalReference {
 		}
 		BrAPIExternalReference externalReferencesInner = (BrAPIExternalReference) o;
 		return Objects.equals(this.referenceID, externalReferencesInner.referenceID)
+				&& Objects.equals(this.referenceId, externalReferencesInner.referenceId)
 				&& Objects.equals(this.referenceSource, externalReferencesInner.referenceSource);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(referenceID, referenceSource);
+		return Objects.hash(referenceID, referenceId, referenceSource);
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("class ExternalReferencesInner {\n");
+		sb.append("class BrAPIExternalReference {\n");
 
 		sb.append("    referenceID: ").append(toIndentedString(referenceID)).append("\n");
+		sb.append("    referenceId: ").append(toIndentedString(referenceId)).append("\n");
 		sb.append("    referenceSource: ").append(toIndentedString(referenceSource)).append("\n");
 		sb.append("}");
 		return sb.toString();

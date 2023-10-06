@@ -43,303 +43,302 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class LocationsAPITests extends BrAPIClientTest {
 
-    private LocationsApi locationsAPI = new LocationsApi(this.apiClient);
-    private String externalReferenceID = "testId";
-    private String externalReferenceSource = "testSource";
-    private BrAPILocation createdLocation;
+	private LocationsApi api = new LocationsApi(this.apiClient);
 
-    @Test
-    public void createLocationIdPresent() throws ApiException {
-    	BrAPILocation brApiLocation = new BrAPILocation().locationDbId("test");
-        ApiResponse<BrAPILocationListResponse> location = locationsAPI.locationsPost(Arrays.asList(brApiLocation));
-        
-        assertNotEquals(brApiLocation.getLocationDbId(), location.getBody().getResult().getData().get(0).getLocationDbId());
-    }
+	@Test
+	public void createLocationIdPresent() throws ApiException {
+		BrAPILocation brApiLocation = new BrAPILocation().locationDbId("test");
+		ApiResponse<BrAPILocationListResponse> location = api.locationsPost(Arrays.asList(brApiLocation));
 
-    @Test
-    public void createLocationNull() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<BrAPILocationListResponse> location = locationsAPI.locationsPost(null);
-        });
-    }
+		assertNotEquals(brApiLocation.getLocationDbId(),
+				location.getBody().getResult().getData().get(0).getLocationDbId());
+	}
 
-    @Test
-    public void createLocationMultipleIdPresent() throws ApiException {
-    	BrAPILocation brApiLocation = new BrAPILocation().locationDbId("test");
-    	BrAPILocation brApiLocation1 = new BrAPILocation();
-        List<BrAPILocation> brApiLocations = new ArrayList<>();
-        brApiLocations.add(brApiLocation);
-        brApiLocations.add(brApiLocation1);
+	@Test
+	public void createLocationNull() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			api.locationsPost(null);
+		});
+	}
 
-        ApiResponse<BrAPILocationListResponse> location = locationsAPI.locationsPost(brApiLocations);
+	@Test
+	public void createLocationMultipleIdPresent() throws ApiException {
+		BrAPILocation loc1 = new BrAPILocation().locationName("test name 1");
+		BrAPILocation loc2 = new BrAPILocation().locationName("test name 2");
+		List<BrAPILocation> brApiLocations = Arrays.asList(loc1, loc2);
 
-        assertNotEquals(brApiLocation.getLocationDbId(), location.getBody().getResult().getData().get(0).getLocationDbId());
-        assertNotEquals(brApiLocation1.getLocationDbId(), location.getBody().getResult().getData().get(1).getLocationDbId());
+		ApiResponse<BrAPILocationListResponse> locations = api.locationsPost(brApiLocations);
 
-    }
+		assertNotNull(locations.getBody().getResult().getData().get(0).getLocationDbId());
+		assertNotNull(locations.getBody().getResult().getData().get(1).getLocationDbId());
+		assertEquals(loc1.getLocationName(), locations.getBody().getResult().getData().get(0).getLocationName());
+		assertEquals(loc2.getLocationName(), locations.getBody().getResult().getData().get(1).getLocationName());
 
-    @Test
-    public void createLocationMultipleEmptyList() throws ApiException {
-        List<BrAPILocation> brApiLocations = new ArrayList<>();
+	}
 
-        ApiResponse<BrAPILocationListResponse> location = locationsAPI.locationsPost(brApiLocations);
-        
-        assertTrue(location.getBody().getResult().getData().isEmpty());
+	@Test
+	public void createLocationMultipleEmptyList() throws ApiException {
+		List<BrAPILocation> brApiLocations = new ArrayList<>();
 
-    }
+		ApiResponse<BrAPILocationListResponse> location = api.locationsPost(brApiLocations);
 
-    @Test
-    public void createLocationMultipleNull() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<BrAPILocationListResponse> location = locationsAPI.locationsPost(null);
-        });
-    }
+		assertTrue(location.getBody().getResult().getData().isEmpty());
 
-    @Test
-    @Order(1)
-    @SneakyThrows
-    public void createLocationSuccess() {
-        BrAPILocation brApiLocation = buildTestLocation();
-        ApiResponse<BrAPILocationListResponse> locationBody = locationsAPI.locationsPost(Arrays.asList(brApiLocation));
-        BrAPILocation location = locationBody.getBody().getResult().getData().get(0);
-        assertFalse(location.getLocationDbId() == null, "Location id missing");
-        locationAssertEquals(brApiLocation, location);
+	}
 
-        this.createdLocation = location;
-    }
+	@Test
+	public void createLocationMultipleNull() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			api.locationsPost(null);
+		});
+	}
 
-    private BrAPILocation buildTestLocation() {
-        List<BrAPIExternalReference> externalReferences = new ArrayList<>();
-        externalReferences.add(
-				new BrAPIExternalReference()
-				.referenceID(externalReferenceID)
-				.referenceSource(externalReferenceSource));
+	@Test
+	@SneakyThrows
+	public void createLocationSuccess() {
+		BrAPILocation brApiLocation = buildTestLocation();
+		ApiResponse<BrAPILocationListResponse> locationBody = api.locationsPost(Arrays.asList(brApiLocation));
+		BrAPILocation location = locationBody.getBody().getResult().getData().get(0);
+		assertFalse(location.getLocationDbId() == null, "Location id missing");
+		locationAssertEquals(brApiLocation, location);
+	}
 
-        JsonObject additionalInfo = new JsonObject();
-        additionalInfo.addProperty("test", "test");
+	private BrAPILocation buildTestLocation() {
+		List<BrAPIExternalReference> externalReferences = new ArrayList<>();
+		externalReferences.add(new BrAPIExternalReference().referenceId("refID").referenceID("refID").referenceSource("refSource"));
 
-        BrAPILocation brApiLocation = new BrAPILocation()
-                .locationName("Test location")
-                .locationType("Storage location")
-                .abbreviation("TL")
-                .additionalInfo(additionalInfo)
-                .coordinateDescription("North East corner of greenhouse")
-                .coordinateUncertainty("20")
-                .coordinates(BrApiGeoJSON.builder()
-                        .type("Feature")
-                        .geometry(new Point(new SinglePosition(Coordinates.of(-76.501884, 42.443962, 125))))
-                        .build()
-                )
-                .countryName("United States")
-                .countryCode("USA")
-                .documentationURL("https://brapi.org")
-                .instituteName("Cornell University")
-                .instituteAddress("525 Tower Rd Ithaca, NY 14850")
-                .topography("Hill")
-                .slope("0")
-                .environmentType("Nursery")
-                .siteStatus("Private")
-                .externalReferences(externalReferences)
-                .exposure("Structure, no exposure");
+		JsonObject additionalInfo = new JsonObject();
+		additionalInfo.addProperty("test", "test");
 
-        return brApiLocation;
-    }
+		BrAPILocation brApiLocation = new BrAPILocation().locationName("Test location").locationType("Storage location")
+				.abbreviation("TL").additionalInfo(additionalInfo)
+				.coordinateDescription("North East corner of greenhouse").coordinateUncertainty("20")
+				.coordinates(BrApiGeoJSON.builder().type("Feature")
+						.geometry(new Point(new SinglePosition(Coordinates.of(-76.501884, 42.443962, 125)))).build())
+				.countryName("United States").countryCode("USA").documentationURL("https://brapi.org")
+				.instituteName("Cornell University").instituteAddress("525 Tower Rd Ithaca, NY 14850")
+				.topography("Hill").slope("0").environmentType("Nursery").siteStatus("Private")
+				.externalReferences(externalReferences).exposure("Structure, no exposure");
 
-    private void locationAssertEquals(BrAPILocation expected, BrAPILocation actual) {
-        assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Location additionalInfo mismatch");
-        assertEquals(expected.getAbbreviation(), actual.getAbbreviation(), "Location abbreviation mismatch");
-        assertEquals(expected.getCoordinateDescription(), actual.getCoordinateDescription(), "Location coordinateDescription mismatch");
-        assertEquals(expected.getCoordinates(), actual.getCoordinates(), "Location coordinates mismatch");
-        assertEquals(expected.getCoordinateUncertainty(), actual.getCoordinateUncertainty(), "Location coordinateUncertainty mismatch");
-        assertEquals(expected.getCountryCode(), actual.getCountryCode(), "Location countryCode mismatch");
-        assertEquals(expected.getCountryName(), actual.getCountryName(), "Location countryName mismatch");
-        assertEquals(expected.getLocationName(), actual.getLocationName(), "Location name mismatch");
-        assertEquals(expected.getLocationType(), actual.getLocationType(), "Location type mismatch");
-        assertEquals(expected.getCountryName(), actual.getCountryName(), "Location countryName mismatch");
-        assertEquals(expected.getEnvironmentType(), actual.getEnvironmentType(), "Location environmentType mismatch");
-        assertEquals(expected.getExposure(), actual.getExposure(), "Location exposure mistmatch");
-        assertEquals(expected.getInstituteName(), actual.getInstituteName(), "Location instituteName mismatch");
-        assertEquals(expected.getInstituteAddress(), actual.getInstituteAddress(), "Location instituteAddress mismatch");
-        assertEquals(expected.getSiteStatus(), actual.getSiteStatus(), "Location siteStatus mismatch");
-        assertEquals(expected.getSlope(), actual.getSlope(), "Location slope mismatch");
-        assertEquals(expected.getTopography(), actual.getTopography(), "Location topography mismatch");
-        assertEquals(expected.getDocumentationURL(), actual.getDocumentationURL(), "Location documentationUrl mismatch");
-        assertEquals(expected.getExternalReferences(), actual.getExternalReferences(), "Location external reference mismatch");
-    }
+		return brApiLocation;
+	}
 
-    @Test
-    @Order(1)
-    @SneakyThrows
-    public void createLocationsMultipleSuccess() {
-        BrAPILocation brApiLocation1 = new BrAPILocation().locationName("new test location1");
-        BrAPILocation brApiLocation2 = new BrAPILocation().locationName("new test location2");
-        
-        List<BrAPILocation> locations = new ArrayList<>();
-        locations.add(brApiLocation1);
-        locations.add(brApiLocation2);
+	private void locationAssertEquals(BrAPILocation expected, BrAPILocation actual) {
+		assertEquals(expected.getAdditionalInfo(), actual.getAdditionalInfo(), "Location additionalInfo mismatch");
+		assertEquals(expected.getAbbreviation(), actual.getAbbreviation(), "Location abbreviation mismatch");
+		assertEquals(expected.getCoordinateDescription(), actual.getCoordinateDescription(),
+				"Location coordinateDescription mismatch");
+		assertEquals(expected.getCoordinates(), actual.getCoordinates(), "Location coordinates mismatch");
+		assertEquals(expected.getCoordinateUncertainty(), actual.getCoordinateUncertainty(),
+				"Location coordinateUncertainty mismatch");
+		assertEquals(expected.getCountryCode(), actual.getCountryCode(), "Location countryCode mismatch");
+		assertEquals(expected.getCountryName(), actual.getCountryName(), "Location countryName mismatch");
+		assertEquals(expected.getLocationName(), actual.getLocationName(), "Location name mismatch");
+		assertEquals(expected.getLocationType(), actual.getLocationType(), "Location type mismatch");
+		assertEquals(expected.getCountryName(), actual.getCountryName(), "Location countryName mismatch");
+		assertEquals(expected.getEnvironmentType(), actual.getEnvironmentType(), "Location environmentType mismatch");
+		assertEquals(expected.getExposure(), actual.getExposure(), "Location exposure mistmatch");
+		assertEquals(expected.getInstituteName(), actual.getInstituteName(), "Location instituteName mismatch");
+		assertEquals(expected.getInstituteAddress(), actual.getInstituteAddress(),
+				"Location instituteAddress mismatch");
+		assertEquals(expected.getSiteStatus(), actual.getSiteStatus(), "Location siteStatus mismatch");
+		assertEquals(expected.getSlope(), actual.getSlope(), "Location slope mismatch");
+		assertEquals(expected.getTopography(), actual.getTopography(), "Location topography mismatch");
+		assertEquals(expected.getDocumentationURL(), actual.getDocumentationURL(),
+				"Location documentationUrl mismatch");
+		assertEquals(expected.getExternalReferences(), actual.getExternalReferences(),
+				"Location external reference mismatch");
+	}
 
-        ApiResponse<BrAPILocationListResponse> locationsBody = locationsAPI.locationsPost(locations);
+	@Test
+	@SneakyThrows
+	public void createLocationsMultipleSuccess() {
+		BrAPILocation brApiLocation1 = new BrAPILocation().locationName("new test location1");
+		BrAPILocation brApiLocation2 = new BrAPILocation().locationName("new test location2");
 
-        List<BrAPILocation> createdLocations = locationsBody.getBody().getResult().getData();
-        assertEquals(true, createdLocations.size() == 2);
-        assertEquals(true, createdLocations.get(0).getLocationDbId() != null, "Location id missing");
-        assertEquals(true, createdLocations.get(1).getLocationDbId() != null, "Location id missing");
+		List<BrAPILocation> locations = new ArrayList<>();
+		locations.add(brApiLocation1);
+		locations.add(brApiLocation2);
 
-        assertEquals(brApiLocation1.getLocationName(), createdLocations.get(0).getLocationName(), "Location name mismatch");
-        assertEquals(brApiLocation2.getLocationName(), createdLocations.get(1).getLocationName(), "Location name mismatch");
-    }
+		ApiResponse<BrAPILocationListResponse> locationsBody = api.locationsPost(locations);
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getLocationsSuccess() {
-        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(new LocationQueryParams());
+		List<BrAPILocation> createdLocations = locationsBody.getBody().getResult().getData();
+		assertEquals(true, createdLocations.size() == 2);
+		assertEquals(true, createdLocations.get(0).getLocationDbId() != null, "Location id missing");
+		assertEquals(true, createdLocations.get(1).getLocationDbId() != null, "Location id missing");
 
-        assertEquals(true, !locations.getBody().getResult().getData().isEmpty(), "List of locations was empty");
-    }
+		assertEquals(brApiLocation1.getLocationName(), createdLocations.get(0).getLocationName(),
+				"Location name mismatch");
+		assertEquals(brApiLocation2.getLocationName(), createdLocations.get(1).getLocationName(),
+				"Location name mismatch");
+	}
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getLocationsPageFilter() {
+	@Test
+	@SneakyThrows
+	void getLocationsSuccess() {
+		ApiResponse<BrAPILocationListResponse> locations = api.locationsGet(new LocationQueryParams());
 
-        LocationQueryParams baseRequest = LocationQueryParams.builder()
-                .page(0)
-                .pageSize(1)
-                .build();
+		assertFalse(locations.getBody().getResult().getData().isEmpty(), "List of locations was empty");
+	}
 
-        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(baseRequest);
+	@Test
+	@SneakyThrows
+	void getLocationsPageFilter() {
+		LocationQueryParams baseRequest = LocationQueryParams.builder().page(0).pageSize(1).build();
 
-        assertEquals(true, locations.getBody().getResult().getData().size() == 1, "More than one location was returned");
-    }
+		ApiResponse<BrAPILocationListResponse> locations = api.locationsGet(baseRequest);
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getLocationsByExternalReferenceIdSuccess() {
-        LocationQueryParams locationsRequest = LocationQueryParams.builder()
-                .externalReferenceID(externalReferenceID)
-                .build();
+		assertEquals(1, locations.getBody().getResult().getData().size(), "More than one location was returned");
+	}
 
-        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
+	@Test
+	@SneakyThrows
+	void getLocationsByExternalReferenceIdSuccess() {
+		LocationQueryParams locationsRequest = LocationQueryParams.builder()
+				.externalReferenceId("https://brapi.org/specification").build();
 
-        assertEquals(true, locations.getBody().getResult().getData().size() > 0, "List of locations was empty");
-    }
+		ApiResponse<BrAPILocationListResponse> locations = api.locationsGet(locationsRequest);
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getLocationsByExternalReferenceSourceSuccess() {
-        LocationQueryParams locationsRequest = LocationQueryParams.builder()
-                .externalReferenceSource(externalReferenceSource)
-                .build();
+		assertEquals(3, locations.getBody().getResult().getData().size(), "Unexpected number of results");
+	}
 
-        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
+	@Test
+	@SneakyThrows
+	void getLocationsByExternalReferenceSourceSuccess() {
+		LocationQueryParams locationsRequest = LocationQueryParams.builder().externalReferenceSource("BrAPI Doc")
+				.build();
 
-        assertEquals(true, locations.getBody().getResult().getData().size() > 0, "List of locations was empty");
-    }
+		ApiResponse<BrAPILocationListResponse> locations = api.locationsGet(locationsRequest);
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getLocationsByLocationType() {
-        LocationQueryParams locationsRequest = LocationQueryParams.builder()
-                .locationType(createdLocation.getLocationType())
-                .build();
+		assertEquals(3, locations.getBody().getResult().getData().size(), "Unexpected number of results");
+	}
 
-        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
+	@Test
+	@SneakyThrows
+	void getLocationsByLocationType() {
+		LocationQueryParams locationsRequest = LocationQueryParams.builder().locationType("Storage location").build();
 
-        assertEquals(true, locations.getBody().getResult().getData().size() > 0, "List of locations was empty");
-    }
+		ApiResponse<BrAPILocationListResponse> locations = api.locationsGet(locationsRequest);
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getLocationsByLocationId() {
-        LocationQueryParams locationsRequest = LocationQueryParams.builder()
-                .locationDbId(createdLocation.getLocationDbId())
-                .build();
+		assertEquals(1, locations.getBody().getResult().getData().size(), "Unexpected number of results");
+	}
 
-        ApiResponse<BrAPILocationListResponse> locations = locationsAPI.locationsGet(locationsRequest);
+	@Test
+	@SneakyThrows
+	void getLocationsByLocationId() {
+		String locationDbId = "location_01";
+		LocationQueryParams locationsRequest = LocationQueryParams.builder().locationDbId(locationDbId).build();
 
-        assertEquals(true, locations.getBody().getResult().getData().size() > 0, "List of locations was empty");
-    }
+		ApiResponse<BrAPILocationListResponse> locations = api.locationsGet(locationsRequest);
 
-    @Test
-    public void getLocationByIdMissingId() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<BrAPILocationSingleResponse> location = locationsAPI.locationsLocationDbIdGet(null);
-        });
-    }
+		assertEquals(true, locations.getBody().getResult().getData().size() > 0, "List of locations was empty");
+	}
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    void getLocationByIdSuccess() {
-        ApiResponse<BrAPILocationSingleResponse> optionalLocation = locationsAPI.locationsLocationDbIdGet(createdLocation.getLocationDbId());
+	@Test
+	public void getLocationByIdMissingId() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			api.locationsLocationDbIdGet(null);
+		});
+	}
 
-        BrAPILocation location = optionalLocation.getBody().getResult();
-        assertEquals(true, location.getLocationDbId() != null, "locationDbId was not parsed properly.");
-        locationAssertEquals(createdLocation, location);
-    }
+	@Test
+	@SneakyThrows
+	void getLocationByIdSuccess() {
+		String locationDbId = "location_01";
+		ApiResponse<BrAPILocationSingleResponse> optionalLocation = api.locationsLocationDbIdGet(locationDbId);
 
-    @Test
-    @SneakyThrows
-    void getLocationByIdInvalid() {
-    	ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<BrAPILocationSingleResponse> location = locationsAPI.locationsLocationDbIdGet("badLocationId");
-        });
-        assertEquals(404, exception.getCode());
-    }
+		BrAPILocation location = optionalLocation.getBody().getResult();
+		assertNotNull(location.getLocationDbId(), "locationDbId was not parsed properly.");
+		assertEquals(locationDbId, location.getLocationDbId());
+	}
 
-    @Test
-    @SneakyThrows
-    @Order(2)
-    public void updateLocationSuccess() {
-        BrAPILocation location = this.createdLocation;
-        location.setLocationName("updated_name");
+	@Test
+	@SneakyThrows
+	void getLocationByIdInvalid() {
+		ApiException exception = assertThrows(ApiException.class, () -> {
+			api.locationsLocationDbIdGet("badLocationId");
+		});
+		assertEquals(404, exception.getCode());
+	}
 
-        // Check that it is a success and all data matches
-        ApiResponse<BrAPILocationSingleResponse> updatedLocationResult = this.locationsAPI.locationsLocationDbIdPut(createdLocation.getLocationDbId(), location);
+	@Test
+	@SneakyThrows
+	public void updateLocationSuccess() {
+		String locationDbId = "location_01";
+		BrAPILocation location = new BrAPILocation().locationDbId(locationDbId).locationName("updated_name");
 
-        BrAPILocation updatedLocation = updatedLocationResult.getBody().getResult();
-        locationAssertEquals(location, updatedLocation);
-    }
+		// Check that it is a success and all data matches
+		ApiResponse<BrAPILocationSingleResponse> updatedLocationResult = this.api.locationsLocationDbIdPut(locationDbId,
+				location);
 
-    @Test
-    @SneakyThrows
-    public void updateLocationMissingId() {
-        // Check that it throws an ApiException
-        BrAPILocation brApiLocation = new BrAPILocation().locationName("new test location");
+		BrAPILocation updatedLocation = updatedLocationResult.getBody().getResult();
+		assertEquals(locationDbId, updatedLocation.getLocationDbId());
+		assertEquals(location.getLocationName(), updatedLocation.getLocationName());
+	}
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<BrAPILocationSingleResponse> updatedLocationResult = this.locationsAPI.locationsLocationDbIdPut(null, brApiLocation);
-        });
-    }
+	@Test
+	@SneakyThrows
+	public void updateLocationMissingId() {
+		// Check that it throws an ApiException
+		BrAPILocation brApiLocation = new BrAPILocation().locationName("new test location");
 
-    @Test
-    public void updateLocationNull() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<BrAPILocationSingleResponse> updatedLocationResult = this.locationsAPI.locationsLocationDbIdPut(null, null);
-        });
-    }
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.api.locationsLocationDbIdPut(null, brApiLocation);
+		});
+	}
 
-    @Test
-    @Order(3)
-    @SneakyThrows
-    public void searchLocationByName() {
-        BrAPILocationSearchRequest locationSearchRequest = new BrAPILocationSearchRequest();
-        List<String> names = new ArrayList<>();
-        names.add("updated_name");
-        locationSearchRequest.setLocationNames(names);
-        ApiResponse<Pair<Optional<BrAPILocationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = locationsAPI.searchLocationsPost(locationSearchRequest);
-        BrAPILocationListResponse locationResponse = response.getBody().getLeft().get();
+	@Test
+	public void updateLocationNull() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.api.locationsLocationDbIdPut(null, null);
+		});
+	}
 
-        assertEquals(true, locationResponse.getResult().getData().size() > 0, "List of locations was empty");
+	@Test
+	@SneakyThrows
+	public void searchLocationByName() {
+		BrAPILocationSearchRequest body = new BrAPILocationSearchRequest().addLocationDbIdsItem("location_01")
+				.addLocationDbIdsItem("location_02");
 
-    }
+		ApiResponse<Pair<Optional<BrAPILocationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api
+				.searchLocationsPost(body);
 
+		Optional<BrAPILocationListResponse> listResponse = response.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+		// only results are returned
+		assertTrue(listResponse.isPresent());
+		assertFalse(searchIdResponse.isPresent());
+
+		assertEquals(2, listResponse.get().getResult().getData().size(), "unexpected number of items returned");
+
+	}
+
+	@Test
+	public void searchAttributesSearchResultsDbIdGetTest() throws ApiException {
+		BrAPILocationSearchRequest baseRequest = new BrAPILocationSearchRequest().addLocationDbIdsItem("location_01")
+				.addLocationDbIdsItem("location_02").addLocationDbIdsItem("location_03")
+				.addLocationDbIdsItem("location_01").addLocationDbIdsItem("location_02")
+				.addLocationDbIdsItem("location_03");
+
+		ApiResponse<Pair<Optional<BrAPILocationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = this.api
+				.searchLocationsPost(baseRequest);
+		Optional<BrAPILocationListResponse> listResponse = response.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+		// only search ID is returned
+		assertFalse(listResponse.isPresent());
+		assertTrue(searchIdResponse.isPresent());
+
+		// Get results from search ID
+		ApiResponse<Pair<Optional<BrAPILocationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchResponse = this.api
+				.searchLocationsSearchResultsDbIdGet(searchIdResponse.get().getResult().getSearchResultsDbId(), 0, 10);
+		Optional<BrAPILocationListResponse> listResponse2 = searchResponse.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse2 = searchResponse.getBody().getRight();
+		// only results are returned
+		assertTrue(listResponse2.isPresent());
+		assertFalse(searchIdResponse2.isPresent());
+
+		assertEquals(3, listResponse2.get().getResult().getData().size(), "unexpected number of items returned");
+	}
 }
