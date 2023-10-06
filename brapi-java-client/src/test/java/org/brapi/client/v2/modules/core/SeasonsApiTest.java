@@ -22,8 +22,8 @@ import org.brapi.v2.model.core.response.BrAPISeasonSingleResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,78 +35,48 @@ public class SeasonsApiTest extends BrAPIClientTest {
 
     private final SeasonsApi api = new SeasonsApi(this.apiClient);
 
-    /**
-     * Get the Seasons
-     *
-     * Call to retrieve all seasons in the database.  A season is made of 2 parts; the primary year and a term which defines a segment of the year.  This could be a traditional season, like \&quot;Spring\&quot; or \&quot;Summer\&quot; or this could be a month, like  \&quot;May\&quot; or \&quot;June\&quot; or this could be an arbitrary season name which is meaningful to the breeding  program like \&quot;PlantingTime_3\&quot; or \&quot;Season E\&quot;
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void seasonsGetTest() throws ApiException {
-        String seasonDbId = null;
-        String season = null;
-        Integer year = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        SeasonQueryParams queryParams = new SeasonQueryParams();
-        ApiResponse<BrAPISeasonListResponse> response = api.seasonsGet(queryParams);
+	@Test
+	public void seasonsGetTest() throws ApiException {
+		String seasonDbId = "fall_2011";
+		SeasonQueryParams queryParams = new SeasonQueryParams()
+				.seasonDbId(seasonDbId);
+		ApiResponse<BrAPISeasonListResponse> response = api.seasonsGet(queryParams);
 
-        // TODO: test validations
-    }
-    /**
-     * POST new Seasons
-     *
-     * Add new season entries to the database
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void seasonsPostTest() throws ApiException {
-        List<BrAPISeason> body = Arrays.asList(new BrAPISeason());
-        
-        ApiResponse<BrAPISeasonListResponse> response = api.seasonsPost(body);
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(seasonDbId, response.getBody().getResult().getData().get(0).getSeasonDbId());
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Get the a single Season
-     *
-     * Get the a single Season
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void seasonsSeasonDbIdGetTest() throws ApiException {
-        String seasonDbId = null;
+	@Test
+	public void seasonsPostTest() throws ApiException {
+		BrAPISeason season = new BrAPISeason();
+		season.seasonName("new season name");
+		List<BrAPISeason> body = Arrays.asList(season);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPISeasonSingleResponse> response = api.seasonsSeasonDbIdGet(seasonDbId);
-		});
+		ApiResponse<BrAPISeasonListResponse> response = api.seasonsPost(body);
 
-        // TODO: test validations
-    }
-    /**
-     * Update existing Seasons
-     *
-     * Update existing Seasons
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void seasonsSeasonDbIdPutTest() throws ApiException {
-        String seasonDbId = null;
-        BrAPISeason body = null;
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(season.getSeasonName(), response.getBody().getResult().getData().get(0).getSeasonName());
+		assertNotNull(response.getBody().getResult().getData().get(0).getSeasonDbId());
+	}
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPISeasonSingleResponse> response = api.seasonsSeasonDbIdPut(seasonDbId, body);
-		});
+	@Test
+	public void seasonsSeasonDbIdGetTest() throws ApiException {
+		String seasonDbId = "fall_2011";
 
-        // TODO: test validations
-    }
+		ApiResponse<BrAPISeasonSingleResponse> response = api.seasonsSeasonDbIdGet(seasonDbId);
+
+		assertEquals(seasonDbId, response.getBody().getResult().getSeasonDbId());
+	}
+
+	@Test
+	public void seasonsSeasonDbIdPutTest() throws ApiException {
+		String seasonDbId = "fall_2011";
+		BrAPISeason body = new BrAPISeason();
+		body.setSeasonName("JUnit test");
+
+		ApiResponse<BrAPISeasonSingleResponse> response = api.seasonsSeasonDbIdPut(seasonDbId, body);
+
+		assertEquals(seasonDbId, response.getBody().getResult().getSeasonDbId());
+		assertEquals(body.getSeasonName(), response.getBody().getResult().getSeasonName());
+	}
 }
