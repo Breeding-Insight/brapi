@@ -34,6 +34,8 @@ import org.brapi.client.v2.model.queryParams.core.BrAPIQueryParams;
 @Accessors(fluent=true)
 public class ImageQueryParams extends BrAPIQueryParams {
 
+    protected String commonCropName;
+    protected String programDbId;
     protected String imageDbId;
     protected String imageName;
     protected String observationUnitDbId;

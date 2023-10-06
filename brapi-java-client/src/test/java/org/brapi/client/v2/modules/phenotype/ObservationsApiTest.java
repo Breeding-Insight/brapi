@@ -1,6 +1,6 @@
 /*
  * BrAPI-Phenotyping
- * The Breeding API (BrAPI) is a Standardized REST ful Web Service API Specification for communicating Plant Breeding Data. BrAPI allows for easy data sharing between databases and tools involved in plant breeding. <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">General Reference Documentation</h2> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/URL_Structure.md\">URL Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Response_Structure.md\">Response Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Date_Time_Encoding.md\">Date/Time Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Location_Encoding.md\">Location Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Error_Handling.md\">Error Handling</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Search_Services.md\">Search Services</a></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Core</h2> <div class=\"brapi-section-description\">The BrAPI Core module contains high level entities used for organization and management. This includes Programs, Trials, Studies, Locations, People, and Lists</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Core\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapicore.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"current-brapi-section brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Phenotyping</h2> <div class=\"brapi-section-description\">The BrAPI Phenotyping module contains entities related to phenotypic observations. This includes Observation Units, Observations, Observation Variables, Traits, Scales, Methods, and Images</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Phenotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapiphenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Genotyping</h2> <div class=\"brapi-section-description\">The BrAPI Genotyping module contains entities related to genotyping analysis. This includes Samples, Markers, Variant Sets, Variants, Call Sets, Calls, References, Reads, and Vendor Orders</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Genotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Germplasm</h2> <div class=\"brapi-section-description\">The BrAPI Germplasm module contains entities related to germplasm management. This includes Germplasm, Germplasm Attributes, Seed Lots, Crosses, Pedigree, and Progeny</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Germplasm\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigermplasm.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <style> .link-btn{ float: left;  margin: 2px 10px 0 0;  padding: 0 5px;  border-radius: 5px;  background-color: #ddd; } .stop-float{   clear: both; } .version-number{   float: left;    margin: 5px 10px 0 5px; } .brapi-section-title{   margin: 0 10px 0 0;   font-size: 20px; } .current-brapi-section{   font-weight: bolder;   border-radius: 5px;    background-color: #ddd; } .brapi-section{   padding: 5px 5px;  } .brapi-section-description{   margin: 5px 0 0 5px; } </style>
+ * The Breeding API (BrAPI) is a Standardized REST ful Web Service API Specification for communicating Plant Breeding Data. BrAPI allows for easy data sharing between databases and tools involved in plant breeding. <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">General Reference Documentation</h2> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/URL_Structure.md\">URL Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Response_Structure.md\">Response Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Date_Time_Encoding.md\">Date/Time Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Location_Encoding.md\">Location Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Error_Handling.md\">Error Handling</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Search_Services.md\">Search Services</a></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Core</h2> <div class=\"brapi-section-description\">The BrAPI Core module contains high level entities used for organization and management. This includes Programs, Trials, Studies, Locations, People, and Lists</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Core\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapicore.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"current-brapi-section brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Phenotyping</h2> <div class=\"brapi-section-description\">The BrAPI Phenotyping module contains entities related to phenotypic observations. This includes Observation Units, Observations, Observation Variables, Traits, Scales, Methods, and Observations</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Phenotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapiphenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Genotyping</h2> <div class=\"brapi-section-description\">The BrAPI Genotyping module contains entities related to genotyping analysis. This includes Samples, Markers, Variant Sets, Variants, Call Sets, Calls, References, Reads, and Vendor Orders</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Genotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Germplasm</h2> <div class=\"brapi-section-description\">The BrAPI Germplasm module contains entities related to germplasm management. This includes Germplasm, Germplasm Attributes, Seed Lots, Crosses, Pedigree, and Progeny</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Germplasm\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigermplasm.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <style> .link-btn{ float: left;  margin: 2px 10px 0 0;  padding: 0 5px;  border-radius: 5px;  background-color: #ddd; } .stop-float{   clear: both; } .version-number{   float: left;    margin: 5px 10px 0 5px; } .brapi-section-title{   margin: 0 10px 0 0;   font-size: 20px; } .current-brapi-section{   font-weight: bolder;   border-radius: 5px;    background-color: #ddd; } .brapi-section{   padding: 5px 5px;  } .brapi-section-description{   margin: 5px 0 0 5px; } </style>
  *
  * OpenAPI spec version: 2.0
  * 
@@ -14,6 +14,7 @@ package org.brapi.client.v2.modules.phenotype;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationQueryParams;
 import org.brapi.client.v2.model.queryParams.phenotype.ObservationTableQueryParams;
@@ -22,16 +23,22 @@ import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
 import org.brapi.v2.model.pheno.BrAPIObservation;
 import org.brapi.v2.model.pheno.response.BrAPIObservationDeleteResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationListResponse;
-import org.brapi.v2.model.pheno.request.BrAPIObservationSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIObservationSingleResponse;
+import org.brapi.v2.model.pheno.request.BrAPIObservationSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIObservationTableResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.OffsetDateTime;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -39,17 +46,10 @@ import java.util.Optional;
 /**
  * API tests for ObservationsApi
  */
-public class ObservationsApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class ObservationsApiTest extends BrAPIClientTest {
 
-	private static ObservationsApi api;
-
-	@BeforeAll
-	public static void setup() throws ApiException {
-		api = new ObservationsApi();
-		api.getApiClient().authenticate((v) -> {
-			return "XXXX";
-		});
-	}
+	private final ObservationsApi api = new ObservationsApi(this.apiClient);
 	/**
 	 * Get a filtered set of Observations
 	 *
@@ -61,29 +61,13 @@ public class ObservationsApiTest {
 	 */
 	@Test
 	public void observationsGetTest() throws ApiException {
-		String observationDbId = null;
-		String observationUnitDbId = null;
-		String germplasmDbId = null;
-		String observationVariableDbId = null;
-		String studyDbId = null;
-		String locationDbId = null;
-		String trialDbId = null;
-		String programDbId = null;
-		String seasonDbId = null;
-		String observationUnitLevelName = null;
-		String observationUnitLevelOrder = null;
-		String observationUnitLevelCode = null;
-		OffsetDateTime observationTimeStampRangeStart = null;
-		OffsetDateTime observationTimeStampRangeEnd = null;
-		String externalReferenceID = null;
-		String externalReferenceSource = null;
-		Integer page = null;
-		Integer pageSize = null;
+		String observationDbId = "observation1";
 
-		ObservationQueryParams queryParams = new ObservationQueryParams();
+		ObservationQueryParams queryParams = new ObservationQueryParams().observationDbId(observationDbId);
 		ApiResponse<BrAPIObservationListResponse> response = api.observationsGet(queryParams);
 
-		// TODO: test validations
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(observationDbId, response.getBody().getResult().getData().get(0).getObservationDbId());
 	}
 
 	/**
@@ -96,13 +80,11 @@ public class ObservationsApiTest {
 	 */
 	@Test
 	public void observationsObservationDbIdGetTest() throws ApiException {
-		String observationDbId = null;
+		String observationDbId = "observation1";
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIObservationSingleResponse> response = api.observationsObservationDbIdGet(observationDbId);
-		});
+		ApiResponse<BrAPIObservationSingleResponse> response = api.observationsObservationDbIdGet(observationDbId);
 
-		// TODO: test validations
+		assertEquals(observationDbId, response.getBody().getResult().getObservationDbId());
 	}
 
 	/**
@@ -114,15 +96,14 @@ public class ObservationsApiTest {
 	 */
 	@Test
 	public void observationsObservationDbIdPutTest() throws ApiException {
-		String observationDbId = null;
-		BrAPIObservation body = null;
+		String observationDbId = "observation1";
+		BrAPIObservation body = new BrAPIObservation().observationDbId(observationDbId).value("New value");
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIObservationSingleResponse> response = api.observationsObservationDbIdPut(observationDbId,
-					body);
-		});
+		ApiResponse<BrAPIObservationSingleResponse> response = api.observationsObservationDbIdPut(observationDbId,
+				body);
 
-		// TODO: test validations
+		assertEquals(observationDbId, response.getBody().getResult().getObservationDbId());
+		assertEquals(body.getValue(), response.getBody().getResult().getValue());
 	}
 
 	/**
@@ -134,13 +115,15 @@ public class ObservationsApiTest {
 	 */
 	@Test
 	public void observationsPostTest() throws ApiException {
-		List<BrAPIObservation> body = null;
+		BrAPIObservation obs = new BrAPIObservation().value("New value").observationUnitDbId("observation_unit1")
+				.observationVariableDbId("variable1");
+		List<BrAPIObservation> body = Arrays.asList(obs);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIObservationListResponse> response = api.observationsPost(body);
-		});
+		ApiResponse<BrAPIObservationListResponse> response = api.observationsPost(body);
 
-		// TODO: test validations
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertNotNull(response.getBody().getResult().getData().get(0).getObservationDbId());
+		assertEquals(obs.getValue(), response.getBody().getResult().getData().get(0).getValue());
 	}
 
 	/**
@@ -155,13 +138,16 @@ public class ObservationsApiTest {
 	 */
 	@Test
 	public void observationsPutTest() throws ApiException {
-		Map<String, BrAPIObservation> body = null;
+		String observationDbId = "observation1";
+		BrAPIObservation obs = new BrAPIObservation().observationDbId(observationDbId).value("New Name");
+		Map<String, BrAPIObservation> body = new HashMap<String, BrAPIObservation>();
+		body.put(observationDbId, obs);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIObservationListResponse> response = api.observationsPut(body);
-		});
+		ApiResponse<BrAPIObservationListResponse> response = api.observationsPut(body);
 
-		// TODO: test validations
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(observationDbId, response.getBody().getResult().getData().get(0).getObservationDbId());
+		assertEquals(obs.getValue(), response.getBody().getResult().getData().get(0).getValue());
 	}
 
 	/**
@@ -208,24 +194,14 @@ public class ObservationsApiTest {
 	 */
 	@Test
 	public void observationsTableGetTest() throws ApiException {
-		BrAPIWSMIMEDataTypes accept = null;
-		String observationUnitDbId = null;
-		String germplasmDbId = null;
-		String observationVariableDbId = null;
-		String studyDbId = null;
-		String locationDbId = null;
-		String trialDbId = null;
-		String programDbId = null;
-		String seasonDbId = null;
-		String observationLevel = null;
-		String searchResultsDbId = null;
-		OffsetDateTime observationTimeStampRangeStart = null;
-		OffsetDateTime observationTimeStampRangeEnd = null;
+		BrAPIWSMIMEDataTypes accept = BrAPIWSMIMEDataTypes.APPLICATION_JSON;
+		String observationUnitDbId = "observation_unit1";
 
-		ObservationTableQueryParams queryParams = new ObservationTableQueryParams();
+		ObservationTableQueryParams queryParams = new ObservationTableQueryParams()
+				.observationUnitDbId(observationUnitDbId);
 		ApiResponse<BrAPIObservationTableResponse> response = api.observationsTableGet(accept, queryParams);
 
-		// TODO: test validations
+		assertEquals(2, response.getBody().getResult().getData().size());
 	}
 
 	/**
@@ -238,13 +214,20 @@ public class ObservationsApiTest {
 	 */
 	@Test
 	public void searchObservationsPostTest() throws ApiException {
-		BrAPIObservationSearchRequest body = null;
+		BrAPIObservationSearchRequest body = new BrAPIObservationSearchRequest()
+				.addObservationDbIdsItem("observation1")
+				.addObservationDbIdsItem("observation2");
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchObservationsPost(body);
-		});
+		ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api
+				.searchObservationsPost(body);
 
-		// TODO: test validations
+		Optional<BrAPIObservationListResponse> listResponse = response.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+		// only results are returned
+		assertTrue(listResponse.isPresent());
+		assertFalse(searchIdResponse.isPresent());
+
+		assertEquals(2, listResponse.get().getResult().getData().size(), "unexpected number of element returned");
 	}
 
 	/**
@@ -257,18 +240,30 @@ public class ObservationsApiTest {
 	 */
 	@Test
 	public void searchObservationsSearchResultsDbIdGetTest() throws ApiException {
-		BrAPIWSMIMEDataTypes accept = null;
-		String searchResultsDbId = null;
+		BrAPIObservationSearchRequest baseRequest = new BrAPIObservationSearchRequest()
+				.addObservationDbIdsItem("observation1").addObservationDbIdsItem("observation2")
+				.addObservationDbIdsItem("observation3").addObservationDbIdsItem("observation4")
+				.addObservationDbIdsItem("observation1").addObservationDbIdsItem("observation2");
 
-		Integer page = null;
-		Integer pageSize = null;
+		ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = this.api
+				.searchObservationsPost(baseRequest);
+		Optional<BrAPIObservationListResponse> listResponse = response.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+		// only search ID is returned
+		assertFalse(listResponse.isPresent());
+		assertTrue(searchIdResponse.isPresent());
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchObservationsSearchResultsDbIdGet(accept,
-					searchResultsDbId, page, pageSize);
-		});
+		// Get results from search ID
+		ApiResponse<Pair<Optional<BrAPIObservationListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchResponse = this.api
+				.searchObservationsSearchResultsDbIdGet(BrAPIWSMIMEDataTypes.APPLICATION_JSON, searchIdResponse.get().getResult().getSearchResultsDbId(), 0,
+						10);
+		Optional<BrAPIObservationListResponse> listResponse2 = searchResponse.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse2 = searchResponse.getBody().getRight();
+		// only results are returned
+		assertTrue(listResponse2.isPresent());
+		assertFalse(searchIdResponse2.isPresent());
 
-		// TODO: test validations
+		assertEquals(4, listResponse2.get().getResult().getData().size(), "unexpected number of elements returned");
 	}	
 	
 	@Test
