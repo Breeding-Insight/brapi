@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CrossesApiTest  extends BrAPIClientTest{
+public class CrossesApiTest extends BrAPIClientTest{
 
     private final CrossesApi api = new CrossesApi(this.apiClient);
 
@@ -48,17 +48,13 @@ public class CrossesApiTest  extends BrAPIClientTest{
      */
     @Test
     public void crossesGetTest() throws ApiException {
-        String crossingProjectDbId = null;
-        String crossDbId = null;
-        String externalReferenceID = null;
-        String externalReferenceSource = null;
-        Integer page = null;
-        Integer pageSize = null;
+        String crossDbId = "cross1";
         
-        CrossQueryParams queryParams = new CrossQueryParams();
+        CrossQueryParams queryParams = new CrossQueryParams().crossDbId(crossDbId);
         ApiResponse<BrAPICrossesListResponse> response = api.crossesGet(queryParams);
-
-        // TODO: test validations
+        
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertEquals(crossDbId, response.getBody().getResult().getData().get(0).getCrossDbId());
     }
     /**
      * Create new Cross entities on this server
@@ -70,13 +66,17 @@ public class CrossesApiTest  extends BrAPIClientTest{
      */
     @Test
     public void crossesPostTest() throws ApiException {
-        List<BrAPICross> body = null;
+    	BrAPICross cross = new BrAPICross()
+    			.crossingProjectDbId("crossing_project2")
+    			.crossName("New Name");
+        List<BrAPICross> body = Arrays.asList(cross);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICrossesListResponse> response = api.crossesPost(body);
-		});
 
-        // TODO: test validations
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertNotNull(response.getBody().getResult().getData().get(0).getCrossDbId());
+        assertEquals(cross.getCrossName(), response.getBody().getResult().getData().get(0).getCrossName());
+        assertEquals(cross.getCrossingProjectDbId(), response.getBody().getResult().getData().get(0).getCrossingProjectDbId());
     }
     /**
      * Update existing Cross entities on this server
@@ -88,13 +88,19 @@ public class CrossesApiTest  extends BrAPIClientTest{
      */
     @Test
     public void crossesPutTest() throws ApiException {
-        Map<String, BrAPICross> body = null;
+    	BrAPICross cross = new BrAPICross()
+    			.crossingProjectDbId("crossing_project2")
+    			.crossName("New Name")
+    			.crossDbId("cross1");
+        Map<String, BrAPICross> body = new HashMap<String, BrAPICross>();
+        body.put("cross1", cross);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPICrossesListResponse> response = api.crossesPut(body);
-		});
 
-        // TODO: test validations
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertEquals(cross.getCrossDbId(), response.getBody().getResult().getData().get(0).getCrossDbId());
+        assertEquals(cross.getCrossName(), response.getBody().getResult().getData().get(0).getCrossName());
+        assertEquals(cross.getCrossingProjectDbId(), response.getBody().getResult().getData().get(0).getCrossingProjectDbId());
     }
     /**
      * Get a filtered list of Planned Cross entities
