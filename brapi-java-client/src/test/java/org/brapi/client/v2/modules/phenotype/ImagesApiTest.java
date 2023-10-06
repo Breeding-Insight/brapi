@@ -22,9 +22,11 @@ import org.brapi.v2.model.pheno.response.BrAPIImageListResponse;
 import org.brapi.v2.model.pheno.request.BrAPIImageSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIImageSingleResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
+import org.brapi.v2.model.pheno.response.BrAPIImageDeleteResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
@@ -238,6 +240,24 @@ public class ImagesApiTest {
 					api.searchImagesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
 		});
 
+		// TODO: test validations
+	}
+	
+	@Test
+	public void deleteImagesPostTest() throws ApiException {
+		
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIImageDeleteResponse> res = api.deleteImagesPost(null);
+		});
+		
+		BrAPIImageSearchRequest body = new BrAPIImageSearchRequest();
+		ApiResponse<BrAPIImageDeleteResponse> response = api.deleteImagesPost(body);
+		
+		assertNotNull(response);
+		assertNotNull(response.getBody());
+		assertNotNull(response.getBody().getMetadata());
+		assertNotNull(response.getBody().getResult());
+		assertNotNull(response.getBody().getResult().getImageDbIds());
 		// TODO: test validations
 	}
 }

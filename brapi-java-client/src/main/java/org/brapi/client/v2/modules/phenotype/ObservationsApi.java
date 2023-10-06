@@ -32,11 +32,11 @@ import org.brapi.client.v2.model.queryParams.phenotype.ObservationTableQueryPara
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
 import org.brapi.v2.model.pheno.BrAPIObservation;
+import org.brapi.v2.model.pheno.response.BrAPIObservationDeleteResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationListResponse;
 import org.brapi.v2.model.pheno.request.BrAPIObservationSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIObservationSingleResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationTableResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class ObservationsApi {
     private BrAPIClient apiClient;
@@ -705,6 +705,75 @@ public class ObservationsApi {
     public Call searchObservationsSearchResultsDbIdGetAsync(BrAPIWSMIMEDataTypes accept, String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<BrAPIObservationListResponse> callback) throws ApiException {
         Call call = searchObservationsSearchResultsDbIdGetCall(accept, searchResultsDbId, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPIObservationListResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    
+    /**
+     * Build call for deleteObservation
+     * @param body  (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private Call deleteObservationsPostCall(BrAPIObservationSearchRequest body) throws ApiException {
+        if(body == null) {
+        	throw new IllegalArgumentException("body cannot be null");
+        }
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/delete/observations";
+
+        Map<String, String> localVarQueryParams = new HashMap<>();
+        Map<String, String> localVarCollectionQueryParams = new HashMap<>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "AuthorizationToken" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames);
+    }
+
+    /**
+     * delete a set of Observations based on search criteria
+     * @param body  (optional)
+
+     * @return ApiResponse&lt;ObservationListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BrAPIObservationDeleteResponse> deleteObservationsPost(BrAPIObservationSearchRequest body) throws ApiException {
+        Call call = deleteObservationsPostCall(body);
+        Type localVarReturnType = new TypeToken<BrAPIObservationDeleteResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * 
+     * delete a set of Observations based on search criteria
+     * @param body  (optional)
+
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public Call deleteObservationsPostAsync(BrAPIObservationSearchRequest body, final ApiCallback<BrAPIObservationListResponse> callback) throws ApiException {
+        Call call = deleteObservationsPostCall(body);
+        Type localVarReturnType = new TypeToken<BrAPIObservationDeleteResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
