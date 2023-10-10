@@ -71,4 +71,9 @@ public class LocationQueryParams extends BrAPIQueryParams {
 		this.externalReferenceID = externalReferenceID;
 	}
 
+	@Deprecated
+	public LocationQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

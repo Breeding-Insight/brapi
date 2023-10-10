@@ -63,4 +63,9 @@ public class ProgramQueryParams extends BrAPIQueryParams {
 	public void setExternalReferenceID(String externalReferenceID) {
 		this.externalReferenceID = externalReferenceID;
 	}
+	@Deprecated
+	public ProgramQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

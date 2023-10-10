@@ -71,4 +71,9 @@ public class CrossQueryParams extends BrAPIQueryParams {
 	public void setExternalReferenceID(String externalReferenceID) {
 		this.externalReferenceID = externalReferenceID;
 	}
+	@Deprecated
+	public CrossQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

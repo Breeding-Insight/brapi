@@ -84,4 +84,9 @@ public class VariableQueryParams extends BrAPIQueryParams {
 		this.externalReferenceID = externalReferenceID;
 	}
 
+	@Deprecated
+	public VariableQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

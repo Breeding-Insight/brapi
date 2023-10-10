@@ -73,4 +73,9 @@ public class SeedLotQueryParams extends BrAPIQueryParams {
 		this.externalReferenceID = externalReferenceID;
 	}
 
+	@Deprecated
+	public SeedLotQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

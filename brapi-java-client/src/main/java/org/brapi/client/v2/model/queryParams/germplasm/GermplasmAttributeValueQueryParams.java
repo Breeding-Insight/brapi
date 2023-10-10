@@ -72,4 +72,9 @@ public class GermplasmAttributeValueQueryParams extends BrAPIQueryParams {
 		this.externalReferenceID = externalReferenceID;
 	}
 
+	@Deprecated
+	public GermplasmAttributeValueQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

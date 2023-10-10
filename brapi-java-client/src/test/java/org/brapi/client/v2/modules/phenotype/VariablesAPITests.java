@@ -117,7 +117,7 @@ public class VariablesAPITests extends BrAPIClientTest {
 
 	private BrAPIObservationVariable buildTestVariable() {
 
-		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID)
+		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID).referenceId(externalReferenceID)
 				.referenceSource(externalReferenceSource);
 
 		List<BrAPIExternalReference> externalReferences = new ArrayList<>();

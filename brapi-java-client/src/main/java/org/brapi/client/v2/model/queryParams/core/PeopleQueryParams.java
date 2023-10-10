@@ -69,4 +69,9 @@ public class PeopleQueryParams extends BrAPIQueryParams {
 	public void setExternalReferenceID(String externalReferenceID) {
 		this.externalReferenceID = externalReferenceID;
 	}
+	@Deprecated
+	public PeopleQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

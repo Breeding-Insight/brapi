@@ -71,4 +71,9 @@ public class TraitQueryParams extends BrAPIQueryParams {
 		this.externalReferenceID = externalReferenceID;
 	}
 
+	@Deprecated
+	public TraitQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

@@ -66,6 +66,10 @@ public class BrAPIPedigreeNode {
     @JsonProperty("pedigreeString")
     private String pedigreeString = null;
 
+    @JsonProperty("pedigree")
+    @Deprecated
+    private String pedigree = null;
+
     @JsonProperty("progeny")
     private List<BrAPIPedigreeNodeRelative> progeny = null;
 
@@ -278,8 +282,8 @@ public class BrAPIPedigreeNode {
         this.germplasmPUI = germplasmPUI;
     }
 
-    public BrAPIPedigreeNode parents(List<BrAPIPedigreeNodeRelative> parents) {
-        this.parents = parents;
+    public BrAPIPedigreeNode parents(List<? extends BrAPIPedigreeNodeRelative> parents) {
+        this.parents = new ArrayList<>(parents);
         return this;
     }
 
@@ -296,12 +300,12 @@ public class BrAPIPedigreeNode {
      *
      * @return parents
      **/
-    public List<BrAPIPedigreeNodeRelative> getParents() {
+    public List<? extends BrAPIPedigreeNodeRelative> getParents() {
         return parents;
     }
 
-    public void setParents(List<BrAPIPedigreeNodeRelative> parents) {
-        this.parents = parents;
+    public void setParents(List<? extends BrAPIPedigreeNodeRelative> parents) {
+        this.parents = new ArrayList<>(parents);
     }
 
     public BrAPIPedigreeNode pedigreeString(String pedigreeString) {
@@ -320,6 +324,28 @@ public class BrAPIPedigreeNode {
 
     public void setPedigreeString(String pedigreeString) {
         this.pedigreeString = pedigreeString;
+    }
+
+    @Deprecated
+    public BrAPIPedigreeNode pedigree(String pedigree) {
+        this.pedigree = pedigree;
+        return this;
+    }
+
+    /**
+     * The string representation of the pedigree.
+     *
+     * @return pedigree
+     **/
+
+    @Deprecated
+    public String getPedigree() {
+        return pedigree;
+    }
+
+    @Deprecated
+    public void setPedigree(String pedigree) {
+        this.pedigree = pedigree;
     }
 
     public BrAPIPedigreeNode progeny(List<BrAPIPedigreeNodeRelative> progeny) {
@@ -348,8 +374,8 @@ public class BrAPIPedigreeNode {
         this.progeny = progeny;
     }
 
-    public BrAPIPedigreeNode siblings(List<BrAPIPedigreeNodeSibling> siblings) {
-        this.siblings = siblings;
+    public BrAPIPedigreeNode siblings(List<? extends BrAPIPedigreeNodeSibling> siblings) {
+        this.siblings = new ArrayList<>(siblings);
         return this;
     }
 
@@ -366,14 +392,13 @@ public class BrAPIPedigreeNode {
      *
      * @return siblings
      **/
-    public List<BrAPIPedigreeNodeSibling> getSiblings() {
+    public List<? extends BrAPIPedigreeNodeSibling> getSiblings() {
         return siblings;
     }
 
-    public void setSiblings(List<BrAPIPedigreeNodeSibling> siblings) {
-        this.siblings = siblings;
+    public void setSiblings(List<? extends BrAPIPedigreeNodeSibling> siblings) {
+        this.siblings = new ArrayList<>(siblings);
     }
-
 
     @Override
     public boolean equals(Object o) {

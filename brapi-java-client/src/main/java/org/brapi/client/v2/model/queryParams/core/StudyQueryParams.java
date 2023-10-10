@@ -74,4 +74,9 @@ public class StudyQueryParams extends BrAPIQueryParams {
 	public void setExternalReferenceID(String externalReferenceID) {
 		this.externalReferenceID = externalReferenceID;
 	}
+    @Deprecated
+    public StudyQueryParams externalReferenceID(String externalReferenceID) {
+        this.externalReferenceID = externalReferenceID;
+        return this;
+    }
 }

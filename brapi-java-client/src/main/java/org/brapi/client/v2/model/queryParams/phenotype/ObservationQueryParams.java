@@ -82,4 +82,9 @@ public class ObservationQueryParams extends BrAPIQueryParams {
 		this.externalReferenceID = externalReferenceID;
 	}
 
+    @Deprecated
+    public ObservationQueryParams externalReferenceID(String externalReferenceID) {
+        this.externalReferenceID = externalReferenceID;
+        return this;
+    }
 }

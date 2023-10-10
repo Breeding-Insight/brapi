@@ -97,7 +97,7 @@ public class ScalesAPITests extends BrAPIClientTest {
 	@Test
 	@Order(1)
 	public void scalesPostSuccess() throws Exception {
-		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID)
+		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID).referenceId(externalReferenceID)
 				.referenceSource(externalReferenceSource);
 
 		List<BrAPIExternalReference> externalReferences = new ArrayList<>();
