@@ -34,7 +34,6 @@ import org.brapi.v2.model.core.response.BrAPIListResponse;
 import org.brapi.v2.model.core.request.BrAPIListSearchRequest;
 import org.brapi.v2.model.core.response.BrAPIListsListResponse;
 import org.brapi.v2.model.core.response.BrAPIListsSingleResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class ListsApi {
     private BrAPIClient apiClient;
