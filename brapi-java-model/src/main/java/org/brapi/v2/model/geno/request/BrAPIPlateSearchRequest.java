@@ -13,6 +13,7 @@
 package org.brapi.v2.model.geno.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.brapi.v2.model.BrAPISearchRequestParametersPaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.Objects;
  * PlateSearchRequest
  */
 
-public class BrAPIPlateSearchRequest {
+public class BrAPIPlateSearchRequest extends BrAPISearchRequestParametersPaging {
     @JsonProperty("commonCropNames")
     private List<String> commonCropNames = null;
 

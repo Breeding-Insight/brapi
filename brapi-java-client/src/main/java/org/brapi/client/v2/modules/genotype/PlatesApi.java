@@ -477,7 +477,7 @@ public class PlatesApi {
      * @return ApiResponse&lt;PlateListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BrAPIPlateListResponse> searchPlatesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
+    public ApiResponse<Pair<Optional<BrAPIPlateListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchPlatesSearchResultsDbIdGet(String searchResultsDbId, Integer page, Integer pageSize) throws ApiException {
         Call call = searchPlatesSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPIPlateListResponse>() {}.getType();
         return apiClient.execute(call, localVarReturnType);
