@@ -45,12 +45,6 @@ public class BrAPIPlateSearchRequest extends BrAPISearchRequestParametersPaging 
     @JsonProperty("observationUnitDbIds")
     private List<String> observationUnitDbIds = null;
 
-    @JsonProperty("page")
-    private Integer page = null;
-
-    @JsonProperty("pageSize")
-    private Integer pageSize = null;
-
     @JsonProperty("plateBarcodes")
     private List<String> plateBarcodes = null;
 
@@ -270,39 +264,13 @@ public class BrAPIPlateSearchRequest extends BrAPISearchRequestParametersPaging 
     }
 
     public BrAPIPlateSearchRequest page(Integer page) {
-        this.page = page;
+        super.setPage(page);
         return this;
-    }
-
-    /**
-     * Which result page is requested. The page indexing starts at 0 (the first page is &#x27;page&#x27;&#x3D; 0). Default is &#x60;0&#x60;.
-     *
-     * @return page
-     **/
-    public Integer getPage() {
-        return page;
-    }
-
-    public void setPage(Integer page) {
-        this.page = page;
     }
 
     public BrAPIPlateSearchRequest pageSize(Integer pageSize) {
-        this.pageSize = pageSize;
+        super.setPageSize(pageSize);
         return this;
-    }
-
-    /**
-     * The size of the pages to be returned. Default is &#x60;1000&#x60;.
-     *
-     * @return pageSize
-     **/
-    public Integer getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
     }
 
     public BrAPIPlateSearchRequest plateBarcodes(List<String> plateBarcodes) {
@@ -634,8 +602,8 @@ public class BrAPIPlateSearchRequest extends BrAPISearchRequestParametersPaging 
                 Objects.equals(this.germplasmDbIds, plateSearchRequest.germplasmDbIds) &&
                 Objects.equals(this.germplasmNames, plateSearchRequest.germplasmNames) &&
                 Objects.equals(this.observationUnitDbIds, plateSearchRequest.observationUnitDbIds) &&
-                Objects.equals(this.page, plateSearchRequest.page) &&
-                Objects.equals(this.pageSize, plateSearchRequest.pageSize) &&
+                Objects.equals(super.getPage(), plateSearchRequest.getPage()) &&
+                Objects.equals(this.getPageSize(), plateSearchRequest.getPageSize()) &&
                 Objects.equals(this.plateBarcodes, plateSearchRequest.plateBarcodes) &&
                 Objects.equals(this.plateDbIds, plateSearchRequest.plateDbIds) &&
                 Objects.equals(this.plateNames, plateSearchRequest.plateNames) &&
@@ -652,7 +620,7 @@ public class BrAPIPlateSearchRequest extends BrAPISearchRequestParametersPaging 
 
     @Override
     public int hashCode() {
-        return Objects.hash(commonCropNames, externalReferenceIDs, externalReferenceIds, externalReferenceSources, germplasmDbIds, germplasmNames, observationUnitDbIds, page, pageSize, plateBarcodes, plateDbIds, plateNames, programDbIds, programNames, sampleDbIds, sampleGroupDbIds, sampleNames, studyDbIds, studyNames, trialDbIds, trialNames);
+        return Objects.hash(commonCropNames, externalReferenceIDs, externalReferenceIds, externalReferenceSources, germplasmDbIds, germplasmNames, observationUnitDbIds, getPage(), getPageSize(), plateBarcodes, plateDbIds, plateNames, programDbIds, programNames, sampleDbIds, sampleGroupDbIds, sampleNames, studyDbIds, studyNames, trialDbIds, trialNames);
     }
 
 
@@ -668,8 +636,8 @@ public class BrAPIPlateSearchRequest extends BrAPISearchRequestParametersPaging 
         sb.append("    germplasmDbIds: ").append(toIndentedString(germplasmDbIds)).append("\n");
         sb.append("    germplasmNames: ").append(toIndentedString(germplasmNames)).append("\n");
         sb.append("    observationUnitDbIds: ").append(toIndentedString(observationUnitDbIds)).append("\n");
-        sb.append("    page: ").append(toIndentedString(page)).append("\n");
-        sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
+        sb.append("    page: ").append(toIndentedString(getPage())).append("\n");
+        sb.append("    pageSize: ").append(toIndentedString(getPageSize())).append("\n");
         sb.append("    plateBarcodes: ").append(toIndentedString(plateBarcodes)).append("\n");
         sb.append("    plateDbIds: ").append(toIndentedString(plateDbIds)).append("\n");
         sb.append("    plateNames: ").append(toIndentedString(plateNames)).append("\n");

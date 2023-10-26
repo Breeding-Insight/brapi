@@ -403,7 +403,7 @@ public class PlatesApi {
     public ApiResponse<Pair<Optional<BrAPIPlateListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchPlatesPost(BrAPIPlateSearchRequest body) throws ApiException {
         Call call = searchPlatesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIPlateListResponse>() {}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**
