@@ -15,14 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 8
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: 8
-
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
 
       - name: Set up Central Repository
         uses: actions/setup-java@v3

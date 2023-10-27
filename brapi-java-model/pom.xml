@@ -29,6 +29,11 @@
         <version>2.1-SNAPSHOT</version>
     </parent>
 
+    <name>${project.artifactId}</name>
+    <url>${parent.url}</url>
+    <description>BrAPI v2 Java Model Library</description>
+    <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
