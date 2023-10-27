@@ -117,7 +117,7 @@ public class VariablesAPITests extends BrAPIClientTest {
 
 	private BrAPIObservationVariable buildTestVariable() {
 
-		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID)
+		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID).referenceId(externalReferenceID)
 				.referenceSource(externalReferenceSource);
 
 		List<BrAPIExternalReference> externalReferences = new ArrayList<>();
@@ -330,7 +330,6 @@ public class VariablesAPITests extends BrAPIClientTest {
 	public void createVariableWithComplexAdditionalInfoSuccess() throws Exception {
 
 		BrAPIObservationVariable brApiVariable = buildTestVariable();
-		brApiVariable.putAdditionalInfoItem("testObject", brApiVariable);
 		brApiVariable.putAdditionalInfoItem("testBool", true);
 		brApiVariable.putAdditionalInfoItem("testString", "test");
 		brApiVariable.putAdditionalInfoItem("testInt", 1);

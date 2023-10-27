@@ -2,6 +2,7 @@ package org.brapi.v2.model.geno.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.brapi.v2.model.geno.BrAPISampleTypeEnum;
+import org.brapi.v2.model.geno.BrAPIVendorPlate;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class BrAPIVendorPlateSubmissionRequest   {
 
   @JsonProperty("plates")
   @Valid
-  private List<BrAPIVendorPlateSubmissionRequestPlates> plates = new ArrayList<BrAPIVendorPlateSubmissionRequestPlates>();
+  private List<BrAPIVendorPlate> plates = new ArrayList<>();
 
   @JsonProperty("sampleType")
   private BrAPISampleTypeEnum sampleType = null;
@@ -69,12 +70,12 @@ public class BrAPIVendorPlateSubmissionRequest   {
     this.numberOfSamples = numberOfSamples;
   }
 
-  public BrAPIVendorPlateSubmissionRequest plates(List<BrAPIVendorPlateSubmissionRequestPlates> plates) {
+  public BrAPIVendorPlateSubmissionRequest plates(List<BrAPIVendorPlate> plates) {
     this.plates = plates;
     return this;
   }
 
-  public BrAPIVendorPlateSubmissionRequest addPlatesItem(BrAPIVendorPlateSubmissionRequestPlates platesItem) {
+  public BrAPIVendorPlateSubmissionRequest addPlatesItem(BrAPIVendorPlate platesItem) {
     this.plates.add(platesItem);
     return this;
   }
@@ -86,11 +87,11 @@ public class BrAPIVendorPlateSubmissionRequest   {
   
       
     @Valid
-    public List<BrAPIVendorPlateSubmissionRequestPlates> getPlates() {
+    public List<BrAPIVendorPlate> getPlates() {
     return plates;
   }
 
-  public void setPlates(List<BrAPIVendorPlateSubmissionRequestPlates> plates) {
+  public void setPlates(List<BrAPIVendorPlate> plates) {
     this.plates = plates;
   }
 

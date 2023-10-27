@@ -29,14 +29,49 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Accessors(fluent=true)
+@Accessors(fluent = true)
 public class PeopleQueryParams extends BrAPIQueryParams {
 
-    private String firstName;
-    private String lastName;
-    private String personDbId;
-    private String userID;
-    private String externalReferenceID;
-    private String externalReferenceSource;
+	private String commonCropName;
+	private String externalReferenceId;
+	@Deprecated
+	private String externalReferenceID;
+	private String externalReferenceSource;
+	private String firstName;
+	private String lastName;
+	private String personDbId;
+	private String programDbId;
+	private String userID;
 
+	public String getExternalReferenceId() {
+		return externalReferenceId;
+	}
+
+	public String externalReferenceId() {
+		return externalReferenceId;
+	}
+
+	public void setExternalReferenceId(String externalReferenceId) {
+		this.externalReferenceId = externalReferenceId;
+	}
+
+	@Deprecated
+	public String getExternalReferenceID() {
+		return externalReferenceID;
+	}
+
+	@Deprecated
+	public String externalReferenceID() {
+		return externalReferenceID;
+	}
+
+	@Deprecated
+	public void setExternalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+	}
+	@Deprecated
+	public PeopleQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

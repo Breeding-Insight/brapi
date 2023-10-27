@@ -4,319 +4,361 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.time.OffsetDateTime;
-
-import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.JsonAdapter;
 import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
-import org.brapi.v2.model.pheno.BrAPIEventEventParameters;
-
 
 /**
  * Event
  */
 
+public class BrAPIEvent {
+	@JsonProperty("additionalInfo")
+	@JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+	private JsonObject additionalInfo = null;
 
-public class BrAPIEvent   {
-  @JsonProperty("additionalInfo")
-  @Valid
-  @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
-  private JsonObject additionalInfo = null;
+	@Deprecated
+	@JsonProperty("date")
+	private List<OffsetDateTime> date = null;
 
-  @JsonProperty("date")
-  @Valid
-  private List<OffsetDateTime> date = null;
+	@JsonProperty("eventDateRange")
+	private BrAPIEventDateRange eventDateRange = null;
 
-  @JsonProperty("eventDbId")
-  private String eventDbId = null;
+	@JsonProperty("eventDbId")
+	private String eventDbId = null;
 
-  @JsonProperty("eventDescription")
-  private String eventDescription = null;
+	@JsonProperty("eventDescription")
+	private String eventDescription = null;
 
-  @JsonProperty("eventParameters")
-  @Valid
-  private List<BrAPIEventEventParameters> eventParameters = null;
+	@JsonProperty("eventParameters")
+	private List<BrAPIEventParameters> eventParameters = null;
 
-  @JsonProperty("eventType")
-  private String eventType = null;
+	@JsonProperty("eventType")
+	private String eventType = null;
 
-  @JsonProperty("eventTypeDbId")
-  private String eventTypeDbId = null;
+	@JsonProperty("eventTypeDbId")
+	private String eventTypeDbId = null;
 
-  @JsonProperty("observationUnitDbIds")
-  @Valid
-  private List<String> observationUnitDbIds = null;
+	@JsonProperty("observationUnitDbIds")
+	private List<String> observationUnitDbIds = null;
 
-  @JsonProperty("studyDbId")
-  private String studyDbId = null;
+	@JsonProperty("studyDbId")
+	private String studyDbId = null;
 
-  private final transient Gson gson = new Gson();
+	@JsonProperty("studyName")
+	private String studyName = null;
 
-  public BrAPIEvent additionalInfo(JsonObject additionalInfo) {
-    this.additionalInfo = additionalInfo;
-    return this;
-  }
+	private final transient Gson gson = new Gson();
 
-  public BrAPIEvent putAdditionalInfoItem(String key, Object additionalInfoItem) {
-    if (this.additionalInfo == null) {
-      this.additionalInfo = new JsonObject();
-    }
-    JsonElement newElement = gson.toJsonTree(additionalInfoItem);
-    this.additionalInfo.add(key, newElement);
-    return this;
-  }
+	public BrAPIEvent additionalInfo(JsonObject additionalInfo) {
+		this.additionalInfo = additionalInfo;
+		return this;
+	}
 
-  /**
-   * Additional arbitrary info
-   * @return additionalInfo
-  **/
-  
-  
-    public JsonObject getAdditionalInfo() {
-    return additionalInfo;
-  }
+	public BrAPIEvent putAdditionalInfoItem(String key, Object additionalInfoItem) {
+		if (this.additionalInfo == null) {
+			this.additionalInfo = new JsonObject();
+		}
+		JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+		this.additionalInfo.add(key, newElement);
+		return this;
+	}
 
-  public void setAdditionalInfo(JsonObject additionalInfo) {
-    this.additionalInfo = additionalInfo;
-  }
+	/**
+	 * Additional arbitrary info
+	 * 
+	 * @return additionalInfo
+	 **/
 
-  public BrAPIEvent date(List<OffsetDateTime> date) {
-    this.date = date;
-    return this;
-  }
+	public JsonObject getAdditionalInfo() {
+		return additionalInfo;
+	}
 
-  public BrAPIEvent addDateItem(OffsetDateTime dateItem) {
-    if (this.date == null) {
-      this.date = new ArrayList<OffsetDateTime>();
-    }
-    this.date.add(dateItem);
-    return this;
-  }
+	public void setAdditionalInfo(JsonObject additionalInfo) {
+		this.additionalInfo = additionalInfo;
+	}
 
-  /**
-   * A list of dates when the event occured  MIAPPE V1.1 (DM-68) Event date - Date and time of the event.
-   * @return date
-  **/
-  
-      @Valid
-    public List<OffsetDateTime> getDate() {
-    return date;
-  }
+	@Deprecated
+	public BrAPIEvent date(List<OffsetDateTime> date) {
+		this.date = date;
+		return this;
+	}
 
-  public void setDate(List<OffsetDateTime> date) {
-    this.date = date;
-  }
+	@Deprecated
+	public BrAPIEvent addDateItem(OffsetDateTime dateItem) {
+		if (this.date == null) {
+			this.date = new ArrayList<OffsetDateTime>();
+		}
+		this.date.add(dateItem);
+		return this;
+	}
 
-  public BrAPIEvent eventDbId(String eventDbId) {
-    this.eventDbId = eventDbId;
-    return this;
-  }
+	/**
+	 * A list of dates when the event occured MIAPPE V1.1 (DM-68) Event date - Date
+	 * and time of the event.
+	 * 
+	 * @return date
+	 **/
 
-  /**
-   * Internal database identifier
-   * @return eventDbId
-  **/
-  
-      
+	@Deprecated
+	public List<OffsetDateTime> getDate() {
+		return date;
+	}
 
-    public String getEventDbId() {
-    return eventDbId;
-  }
+	@Deprecated
+	public void setDate(List<OffsetDateTime> date) {
+		this.date = date;
+	}
 
-  public void setEventDbId(String eventDbId) {
-    this.eventDbId = eventDbId;
-  }
+	public BrAPIEvent eventDateRange(BrAPIEventDateRange eventDateRange) {
+		this.eventDateRange = eventDateRange;
+		return this;
+	}
 
-  public BrAPIEvent eventDescription(String eventDescription) {
-    this.eventDescription = eventDescription;
-    return this;
-  }
+	/**
+	 * Get eventDateRange
+	 *
+	 * @return eventDateRange
+	 **/
+	public BrAPIEventDateRange getEventDateRange() {
+		return eventDateRange;
+	}
 
-  /**
-   * A detailed, human-readable description of this event  MIAPPE V1.1 (DM-67) Event description - Description of the event, including details such as amount applied and possibly duration of the event. 
-   * @return eventDescription
-  **/
-  
-  
-    public String getEventDescription() {
-    return eventDescription;
-  }
+	public void setEventDateRange(BrAPIEventDateRange eventDateRange) {
+		this.eventDateRange = eventDateRange;
+	}
 
-  public void setEventDescription(String eventDescription) {
-    this.eventDescription = eventDescription;
-  }
+	public BrAPIEvent eventDbId(String eventDbId) {
+		this.eventDbId = eventDbId;
+		return this;
+	}
 
-  public BrAPIEvent eventParameters(List<BrAPIEventEventParameters> eventParameters) {
-    this.eventParameters = eventParameters;
-    return this;
-  }
+	/**
+	 * Internal database identifier
+	 * 
+	 * @return eventDbId
+	 **/
 
-  public BrAPIEvent addEventParametersItem(BrAPIEventEventParameters eventParametersItem) {
-    if (this.eventParameters == null) {
-      this.eventParameters = new ArrayList<BrAPIEventEventParameters>();
-    }
-    this.eventParameters.add(eventParametersItem);
-    return this;
-  }
+	public String getEventDbId() {
+		return eventDbId;
+	}
 
-  /**
-   * A list of objects describing additional event parameters. Each of the following accepts a human-readable value or URI
-   * @return eventParameters
-  **/
-  
-      @Valid
-    public List<BrAPIEventEventParameters> getEventParameters() {
-    return eventParameters;
-  }
+	public void setEventDbId(String eventDbId) {
+		this.eventDbId = eventDbId;
+	}
 
-  public void setEventParameters(List<BrAPIEventEventParameters> eventParameters) {
-    this.eventParameters = eventParameters;
-  }
+	public BrAPIEvent eventDescription(String eventDescription) {
+		this.eventDescription = eventDescription;
+		return this;
+	}
 
-  public BrAPIEvent eventType(String eventType) {
-    this.eventType = eventType;
-    return this;
-  }
+	/**
+	 * A detailed, human-readable description of this event MIAPPE V1.1 (DM-67)
+	 * Event description - Description of the event, including details such as
+	 * amount applied and possibly duration of the event.
+	 * 
+	 * @return eventDescription
+	 **/
 
-  /**
-   * General category for this event (e.g. Sowing, Watering, Rain). Each eventType should correspond to exactly one eventTypeDbId, if provided.  MIAPPE V1.1 (DM-65) Event type - Short name of the event.
-   * @return eventType
-  **/
-  
-      
+	public String getEventDescription() {
+		return eventDescription;
+	}
 
-    public String getEventType() {
-    return eventType;
-  }
+	public void setEventDescription(String eventDescription) {
+		this.eventDescription = eventDescription;
+	}
 
-  public void setEventType(String eventType) {
-    this.eventType = eventType;
-  }
+	public BrAPIEvent eventParameters(List<BrAPIEventParameters> eventParameters) {
+		this.eventParameters = eventParameters;
+		return this;
+	}
 
-  public BrAPIEvent eventTypeDbId(String eventTypeDbId) {
-    this.eventTypeDbId = eventTypeDbId;
-    return this;
-  }
+	public BrAPIEvent addEventParametersItem(BrAPIEventParameters eventParametersItem) {
+		if (this.eventParameters == null) {
+			this.eventParameters = new ArrayList<BrAPIEventParameters>();
+		}
+		this.eventParameters.add(eventParametersItem);
+		return this;
+	}
 
-  /**
-   * An identifier for this event type, in the form of an ontology class reference  MIAPPE V1.1 (DM-66) Event accession number - Accession number of the event type in a suitable controlled vocabulary (Crop Ontology).
-   * @return eventTypeDbId
-  **/
-  
-  
-    public String getEventTypeDbId() {
-    return eventTypeDbId;
-  }
+	/**
+	 * A list of objects describing additional event parameters. Each of the
+	 * following accepts a human-readable value or URI
+	 * 
+	 * @return eventParameters
+	 **/
 
-  public void setEventTypeDbId(String eventTypeDbId) {
-    this.eventTypeDbId = eventTypeDbId;
-  }
+	public List<BrAPIEventParameters> getEventParameters() {
+		return eventParameters;
+	}
 
-  public BrAPIEvent observationUnitDbIds(List<String> observationUnitDbIds) {
-    this.observationUnitDbIds = observationUnitDbIds;
-    return this;
-  }
+	public void setEventParameters(List<BrAPIEventParameters> eventParameters) {
+		this.eventParameters = eventParameters;
+	}
 
-  public BrAPIEvent addObservationUnitDbIdsItem(String observationUnitDbIdsItem) {
-    if (this.observationUnitDbIds == null) {
-      this.observationUnitDbIds = new ArrayList<String>();
-    }
-    this.observationUnitDbIds.add(observationUnitDbIdsItem);
-    return this;
-  }
+	public BrAPIEvent eventType(String eventType) {
+		this.eventType = eventType;
+		return this;
+	}
 
-  /**
-   * A list of the affected observation units. If this parameter is not given, it is understood that the event affected all units in the study
-   * @return observationUnitDbIds
-  **/
-  
-  
-    public List<String> getObservationUnitDbIds() {
-    return observationUnitDbIds;
-  }
+	/**
+	 * General category for this event (e.g. Sowing, Watering, Rain). Each eventType
+	 * should correspond to exactly one eventTypeDbId, if provided. MIAPPE V1.1
+	 * (DM-65) Event type - Short name of the event.
+	 * 
+	 * @return eventType
+	 **/
 
-  public void setObservationUnitDbIds(List<String> observationUnitDbIds) {
-    this.observationUnitDbIds = observationUnitDbIds;
-  }
+	public String getEventType() {
+		return eventType;
+	}
 
-  public BrAPIEvent studyDbId(String studyDbId) {
-    this.studyDbId = studyDbId;
-    return this;
-  }
+	public void setEventType(String eventType) {
+		this.eventType = eventType;
+	}
 
-  /**
-   * The study in which the event occurred
-   * @return studyDbId
-  **/
-  
-  
-    public String getStudyDbId() {
-    return studyDbId;
-  }
+	public BrAPIEvent eventTypeDbId(String eventTypeDbId) {
+		this.eventTypeDbId = eventTypeDbId;
+		return this;
+	}
 
-  public void setStudyDbId(String studyDbId) {
-    this.studyDbId = studyDbId;
-  }
+	/**
+	 * An identifier for this event type, in the form of an ontology class reference
+	 * MIAPPE V1.1 (DM-66) Event accession number - Accession number of the event
+	 * type in a suitable controlled vocabulary (Crop Ontology).
+	 * 
+	 * @return eventTypeDbId
+	 **/
 
+	public String getEventTypeDbId() {
+		return eventTypeDbId;
+	}
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    BrAPIEvent event = (BrAPIEvent) o;
-    return Objects.equals(this.additionalInfo, event.additionalInfo) &&
-        Objects.equals(this.date, event.date) &&
-        Objects.equals(this.eventDbId, event.eventDbId) &&
-        Objects.equals(this.eventDescription, event.eventDescription) &&
-        Objects.equals(this.eventParameters, event.eventParameters) &&
-        Objects.equals(this.eventType, event.eventType) &&
-        Objects.equals(this.eventTypeDbId, event.eventTypeDbId) &&
-        Objects.equals(this.observationUnitDbIds, event.observationUnitDbIds) &&
-        Objects.equals(this.studyDbId, event.studyDbId);
-  }
+	public void setEventTypeDbId(String eventTypeDbId) {
+		this.eventTypeDbId = eventTypeDbId;
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(additionalInfo, date, eventDbId, eventDescription, eventParameters, eventType, eventTypeDbId, observationUnitDbIds, studyDbId);
-  }
+	public BrAPIEvent observationUnitDbIds(List<String> observationUnitDbIds) {
+		this.observationUnitDbIds = observationUnitDbIds;
+		return this;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Event {\n");
-    
-    sb.append("    additionalInfo: ").append(toIndentedString(additionalInfo)).append("\n");
-    sb.append("    date: ").append(toIndentedString(date)).append("\n");
-    sb.append("    eventDbId: ").append(toIndentedString(eventDbId)).append("\n");
-    sb.append("    eventDescription: ").append(toIndentedString(eventDescription)).append("\n");
-    sb.append("    eventParameters: ").append(toIndentedString(eventParameters)).append("\n");
-    sb.append("    eventType: ").append(toIndentedString(eventType)).append("\n");
-    sb.append("    eventTypeDbId: ").append(toIndentedString(eventTypeDbId)).append("\n");
-    sb.append("    observationUnitDbIds: ").append(toIndentedString(observationUnitDbIds)).append("\n");
-    sb.append("    studyDbId: ").append(toIndentedString(studyDbId)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
+	public BrAPIEvent addObservationUnitDbIdsItem(String observationUnitDbIdsItem) {
+		if (this.observationUnitDbIds == null) {
+			this.observationUnitDbIds = new ArrayList<String>();
+		}
+		this.observationUnitDbIds.add(observationUnitDbIdsItem);
+		return this;
+	}
 
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	/**
+	 * A list of the affected observation units. If this parameter is not given, it
+	 * is understood that the event affected all units in the study
+	 * 
+	 * @return observationUnitDbIds
+	 **/
+
+	public List<String> getObservationUnitDbIds() {
+		return observationUnitDbIds;
+	}
+
+	public void setObservationUnitDbIds(List<String> observationUnitDbIds) {
+		this.observationUnitDbIds = observationUnitDbIds;
+	}
+
+	public BrAPIEvent studyDbId(String studyDbId) {
+		this.studyDbId = studyDbId;
+		return this;
+	}
+
+	/**
+	 * The study in which the event occurred
+	 * 
+	 * @return studyDbId
+	 **/
+
+	public String getStudyDbId() {
+		return studyDbId;
+	}
+
+	public void setStudyDbId(String studyDbId) {
+		this.studyDbId = studyDbId;
+	}
+
+	public BrAPIEvent studyName(String studyName) {
+		this.studyName = studyName;
+		return this;
+	}
+
+	/**
+	 * The human readable name of a study
+	 *
+	 * @return studyName
+	 **/
+	public String getStudyName() {
+		return studyName;
+	}
+
+	public void setStudyName(String studyName) {
+		this.studyName = studyName;
+	}
+
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		BrAPIEvent event = (BrAPIEvent) o;
+		return Objects.equals(this.additionalInfo, event.additionalInfo) && Objects.equals(this.date, event.date)
+				&& Objects.equals(this.eventDbId, event.eventDbId)
+				&& Objects.equals(this.eventDescription, event.eventDescription)
+				&& Objects.equals(this.eventParameters, event.eventParameters)
+				&& Objects.equals(this.eventType, event.eventType)
+				&& Objects.equals(this.eventTypeDbId, event.eventTypeDbId)
+				&& Objects.equals(this.observationUnitDbIds, event.observationUnitDbIds)
+				&& Objects.equals(this.studyDbId, event.studyDbId);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(additionalInfo, date, eventDbId, eventDescription, eventParameters, eventType,
+				eventTypeDbId, observationUnitDbIds, studyDbId);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class Event {\n");
+
+		sb.append("    additionalInfo: ").append(toIndentedString(additionalInfo)).append("\n");
+		sb.append("    date: ").append(toIndentedString(date)).append("\n");
+		sb.append("    eventDbId: ").append(toIndentedString(eventDbId)).append("\n");
+		sb.append("    eventDescription: ").append(toIndentedString(eventDescription)).append("\n");
+		sb.append("    eventParameters: ").append(toIndentedString(eventParameters)).append("\n");
+		sb.append("    eventType: ").append(toIndentedString(eventType)).append("\n");
+		sb.append("    eventTypeDbId: ").append(toIndentedString(eventTypeDbId)).append("\n");
+		sb.append("    observationUnitDbIds: ").append(toIndentedString(observationUnitDbIds)).append("\n");
+		sb.append("    studyDbId: ").append(toIndentedString(studyDbId)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
+
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 }

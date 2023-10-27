@@ -12,13 +12,9 @@ import org.brapi.v2.model.BrAPIExternalReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
-import javax.validation.Valid;
-
-
 /**
  * Germplasm
  */
-
 
 public class BrAPIGermplasm {
 	@JsonProperty("germplasmDbId")
@@ -31,8 +27,7 @@ public class BrAPIGermplasm {
 	private LocalDate acquisitionDate = null;
 
 	@JsonProperty("additionalInfo")
-    @Valid
-    @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+	@JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
 	private JsonObject additionalInfo = null;
 
 	@JsonProperty("biologicalStatusOfAccessionCode")
@@ -43,6 +38,9 @@ public class BrAPIGermplasm {
 
 	@JsonProperty("breedingMethodDbId")
 	private String breedingMethodDbId = null;
+
+	@JsonProperty("breedingMethodName")
+	private String breedingMethodName = null;
 
 	@JsonProperty("collection")
 	private String collection = null;
@@ -60,7 +58,6 @@ public class BrAPIGermplasm {
 	private String documentationURL = null;
 
 	@JsonProperty("donors")
-	@Valid
 	private List<BrAPIGermplasmDonors> donors = null;
 
 	@JsonProperty("externalReferences")
@@ -73,7 +70,7 @@ public class BrAPIGermplasm {
 	private String germplasmName = null;
 
 	@JsonProperty("germplasmOrigin")
-	@Valid
+
 	private List<BrAPIGermplasmOrigin> germplasmOrigin = null;
 
 	@JsonProperty("germplasmPUI")
@@ -104,7 +101,7 @@ public class BrAPIGermplasm {
 	private String speciesAuthority = null;
 
 	@JsonProperty("storageTypes")
-	@Valid
+
 	private List<BrAPIGermplasmStorageTypes> storageTypes = null;
 
 	@JsonProperty("subtaxa")
@@ -114,11 +111,11 @@ public class BrAPIGermplasm {
 	private String subtaxaAuthority = null;
 
 	@JsonProperty("synonyms")
-	@Valid
+
 	private List<BrAPIGermplasmSynonyms> synonyms = null;
 
 	@JsonProperty("taxonIds")
-	@Valid
+
 	private List<BrAPITaxonID> taxonIds = null;
 
 	private final transient Gson gson = new Gson();
@@ -139,8 +136,6 @@ public class BrAPIGermplasm {
 	 * @return germplasmDbId
 	 **/
 
-
-
 	public String getGermplasmDbId() {
 		return germplasmDbId;
 	}
@@ -160,7 +155,6 @@ public class BrAPIGermplasm {
 	 *
 	 * @return accessionNumber
 	 **/
-
 
 	public String getAccessionNumber() {
 		return accessionNumber;
@@ -184,8 +178,6 @@ public class BrAPIGermplasm {
 	 * @return acquisitionDate
 	 **/
 
-
-	@Valid
 	public LocalDate getAcquisitionDate() {
 		return acquisitionDate;
 	}
@@ -200,20 +192,19 @@ public class BrAPIGermplasm {
 	}
 
 	public BrAPIGermplasm putAdditionalInfoItem(String key, Object additionalInfoItem) {
-        if (this.additionalInfo == null) {
-          this.additionalInfo = new JsonObject();
-        }
-        JsonElement newElement = gson.toJsonTree(additionalInfoItem);
-        this.additionalInfo.add(key, newElement);
-        return this;
-  	}
+		if (this.additionalInfo == null) {
+			this.additionalInfo = new JsonObject();
+		}
+		JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+		this.additionalInfo.add(key, newElement);
+		return this;
+	}
 
 	/**
 	 * Additional arbitrary info
 	 *
 	 * @return additionalInfo
 	 **/
-
 
 	public JsonObject getAdditionalInfo() {
 		return additionalInfo;
@@ -247,12 +238,12 @@ public class BrAPIGermplasm {
 	 * @return biologicalStatusOfAccessionCode
 	 **/
 
-
 	public BrAPIBiologicalStatusOfAccessionCode getBiologicalStatusOfAccessionCode() {
 		return biologicalStatusOfAccessionCode;
 	}
 
-	public void setBiologicalStatusOfAccessionCode(BrAPIBiologicalStatusOfAccessionCode biologicalStatusOfAccessionCode) {
+	public void setBiologicalStatusOfAccessionCode(
+			BrAPIBiologicalStatusOfAccessionCode biologicalStatusOfAccessionCode) {
 		this.biologicalStatusOfAccessionCode = biologicalStatusOfAccessionCode;
 	}
 
@@ -266,7 +257,6 @@ public class BrAPIGermplasm {
 	 *
 	 * @return biologicalStatusOfAccessionDescription
 	 **/
-
 
 	public String getBiologicalStatusOfAccessionDescription() {
 		return biologicalStatusOfAccessionDescription;
@@ -287,13 +277,31 @@ public class BrAPIGermplasm {
 	 * @return breedingMethodDbId
 	 **/
 
-
 	public String getBreedingMethodDbId() {
 		return breedingMethodDbId;
 	}
 
 	public void setBreedingMethodDbId(String breedingMethodDbId) {
 		this.breedingMethodDbId = breedingMethodDbId;
+	}
+
+	public BrAPIGermplasm breedingMethodName(String breedingMethodName) {
+		this.breedingMethodName = breedingMethodName;
+		return this;
+	}
+
+	/**
+	 * The unique identifier for the breeding method used to create this germplasm
+	 *
+	 * @return breedingMethodDbId
+	 **/
+
+	public String getBreedingMethodName() {
+		return breedingMethodName;
+	}
+
+	public void setBreedingMethodName(String breedingMethodName) {
+		this.breedingMethodName = breedingMethodName;
 	}
 
 	public BrAPIGermplasm collection(String collection) {
@@ -306,7 +314,6 @@ public class BrAPIGermplasm {
 	 *
 	 * @return collection
 	 **/
-
 
 	public String getCollection() {
 		return collection;
@@ -345,7 +352,6 @@ public class BrAPIGermplasm {
 	 * @return countryOfOriginCode
 	 **/
 
-
 	public String getCountryOfOriginCode() {
 		return countryOfOriginCode;
 	}
@@ -365,7 +371,6 @@ public class BrAPIGermplasm {
 	 * @return defaultDisplayName
 	 **/
 
-
 	public String getDefaultDisplayName() {
 		return defaultDisplayName;
 	}
@@ -384,7 +389,6 @@ public class BrAPIGermplasm {
 	 *
 	 * @return documentationURL
 	 **/
-
 
 	public String getDocumentationURL() {
 		return documentationURL;
@@ -413,7 +417,6 @@ public class BrAPIGermplasm {
 	 * @return donors
 	 **/
 
-	@Valid
 	public List<BrAPIGermplasmDonors> getDonors() {
 		return donors;
 	}
@@ -433,8 +436,6 @@ public class BrAPIGermplasm {
 	 * @return externalReferences
 	 **/
 
-
-	@Valid
 	public List<BrAPIExternalReference> getExternalReferences() {
 		return externalReferences;
 	}
@@ -456,7 +457,6 @@ public class BrAPIGermplasm {
 	 *
 	 * @return genus
 	 **/
-
 
 	public String getGenus() {
 		return genus;
@@ -500,7 +500,6 @@ public class BrAPIGermplasm {
 	 * @return germplasmOrigin
 	 **/
 
-	@Valid
 	public List<BrAPIGermplasmOrigin> getGermplasmOrigin() {
 		return germplasmOrigin;
 	}
@@ -535,7 +534,6 @@ public class BrAPIGermplasm {
 	 * @return germplasmPreprocessing
 	 **/
 
-
 	public String getGermplasmPreprocessing() {
 		return germplasmPreprocessing;
 	}
@@ -561,7 +559,6 @@ public class BrAPIGermplasm {
 	 * @return instituteCode
 	 **/
 
-
 	public String getInstituteCode() {
 		return instituteCode;
 	}
@@ -580,7 +577,6 @@ public class BrAPIGermplasm {
 	 *
 	 * @return instituteName
 	 **/
-
 
 	public String getInstituteName() {
 		return instituteName;
@@ -601,7 +597,6 @@ public class BrAPIGermplasm {
 	 * @return pedigree
 	 **/
 
-
 	public String getPedigree() {
 		return pedigree;
 	}
@@ -621,7 +616,6 @@ public class BrAPIGermplasm {
 	 * @return seedSource
 	 **/
 
-
 	public String getSeedSource() {
 		return seedSource;
 	}
@@ -640,7 +634,6 @@ public class BrAPIGermplasm {
 	 *
 	 * @return seedSourceDescription
 	 **/
-
 
 	public String getSeedSourceDescription() {
 		return seedSourceDescription;
@@ -665,7 +658,6 @@ public class BrAPIGermplasm {
 	 * @return species
 	 **/
 
-
 	public String getSpecies() {
 		return species;
 	}
@@ -686,7 +678,6 @@ public class BrAPIGermplasm {
 	 *
 	 * @return speciesAuthority
 	 **/
-
 
 	public String getSpeciesAuthority() {
 		return speciesAuthority;
@@ -715,7 +706,6 @@ public class BrAPIGermplasm {
 	 * @return storageTypes
 	 **/
 
-	@Valid
 	public List<BrAPIGermplasmStorageTypes> getStorageTypes() {
 		return storageTypes;
 	}
@@ -747,7 +737,6 @@ public class BrAPIGermplasm {
 	 * @return subtaxa
 	 **/
 
-
 	public String getSubtaxa() {
 		return subtaxa;
 	}
@@ -768,7 +757,6 @@ public class BrAPIGermplasm {
 	 *
 	 * @return subtaxaAuthority
 	 **/
-
 
 	public String getSubtaxaAuthority() {
 		return subtaxaAuthority;
@@ -797,7 +785,6 @@ public class BrAPIGermplasm {
 	 * @return synonyms
 	 **/
 
-	@Valid
 	public List<BrAPIGermplasmSynonyms> getSynonyms() {
 		return synonyms;
 	}
@@ -829,7 +816,6 @@ public class BrAPIGermplasm {
 	 * @return taxonIds
 	 **/
 
-	@Valid
 	public List<BrAPITaxonID> getTaxonIds() {
 		return taxonIds;
 	}
@@ -847,15 +833,15 @@ public class BrAPIGermplasm {
 			return false;
 		}
 		BrAPIGermplasm germplasm = (BrAPIGermplasm) o;
-		return Objects.equals(this.germplasmDbId, germplasm.germplasmDbId) &&
-				Objects.equals(this.accessionNumber, germplasm.accessionNumber)
+		return Objects.equals(this.germplasmDbId, germplasm.germplasmDbId)
+				&& Objects.equals(this.accessionNumber, germplasm.accessionNumber)
 				&& Objects.equals(this.acquisitionDate, germplasm.acquisitionDate)
 				&& Objects.equals(this.additionalInfo, germplasm.additionalInfo)
-				&& Objects.equals(this.biologicalStatusOfAccessionCode,
-								  germplasm.biologicalStatusOfAccessionCode)
+				&& Objects.equals(this.biologicalStatusOfAccessionCode, germplasm.biologicalStatusOfAccessionCode)
 				&& Objects.equals(this.biologicalStatusOfAccessionDescription,
-								  germplasm.biologicalStatusOfAccessionDescription)
+						germplasm.biologicalStatusOfAccessionDescription)
 				&& Objects.equals(this.breedingMethodDbId, germplasm.breedingMethodDbId)
+				&& Objects.equals(this.breedingMethodName, germplasm.breedingMethodName)
 				&& Objects.equals(this.collection, germplasm.collection)
 				&& Objects.equals(this.commonCropName, germplasm.commonCropName)
 				&& Objects.equals(this.countryOfOriginCode, germplasm.countryOfOriginCode)
@@ -884,12 +870,12 @@ public class BrAPIGermplasm {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(germplasmDbId, accessionNumber, acquisitionDate, additionalInfo, biologicalStatusOfAccessionCode,
-							biologicalStatusOfAccessionDescription, breedingMethodDbId, collection, commonCropName,
-							countryOfOriginCode, defaultDisplayName, documentationURL, donors, externalReferences, genus,
-							germplasmName, germplasmOrigin, germplasmPUI, germplasmPreprocessing, instituteCode, instituteName,
-							pedigree, seedSource, seedSourceDescription, species, speciesAuthority, storageTypes, subtaxa,
-							subtaxaAuthority, synonyms, taxonIds);
+		return Objects.hash(germplasmDbId, accessionNumber, acquisitionDate, additionalInfo,
+				biologicalStatusOfAccessionCode, biologicalStatusOfAccessionDescription, breedingMethodDbId,
+				breedingMethodName, collection, commonCropName, countryOfOriginCode, defaultDisplayName,
+				documentationURL, donors, externalReferences, genus, germplasmName, germplasmOrigin, germplasmPUI,
+				germplasmPreprocessing, instituteCode, instituteName, pedigree, seedSource, seedSourceDescription,
+				species, speciesAuthority, storageTypes, subtaxa, subtaxaAuthority, synonyms, taxonIds);
 	}
 
 	@Override
@@ -901,10 +887,11 @@ public class BrAPIGermplasm {
 		sb.append("    acquisitionDate: ").append(toIndentedString(acquisitionDate)).append("\n");
 		sb.append("    additionalInfo: ").append(toIndentedString(additionalInfo)).append("\n");
 		sb.append("    biologicalStatusOfAccessionCode: ").append(toIndentedString(biologicalStatusOfAccessionCode))
-		  .append("\n");
+				.append("\n");
 		sb.append("    biologicalStatusOfAccessionDescription: ")
-		  .append(toIndentedString(biologicalStatusOfAccessionDescription)).append("\n");
+				.append(toIndentedString(biologicalStatusOfAccessionDescription)).append("\n");
 		sb.append("    breedingMethodDbId: ").append(toIndentedString(breedingMethodDbId)).append("\n");
+		sb.append("    breedingMethodName: ").append(toIndentedString(breedingMethodName)).append("\n");
 		sb.append("    collection: ").append(toIndentedString(collection)).append("\n");
 		sb.append("    commonCropName: ").append(toIndentedString(commonCropName)).append("\n");
 		sb.append("    countryOfOriginCode: ").append(toIndentedString(countryOfOriginCode)).append("\n");

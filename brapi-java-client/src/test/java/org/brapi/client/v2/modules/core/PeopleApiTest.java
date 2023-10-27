@@ -29,7 +29,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * API tests for PeopleApi
@@ -49,19 +52,13 @@ public class PeopleApiTest extends BrAPIClientTest {
      */
     @Test
     public void peopleGetTest() throws ApiException {
-        String firstName = null;
-        String lastName = null;
-        String personDbId = null;
-        String userID = null;
-        String externalReferenceID = null;
-        String externalReferenceSource = null;
-        Integer page = null;
-        Integer pageSize = null;
+        String personDbId = "person1";
         
-        PeopleQueryParams queryParams = new PeopleQueryParams();
+        PeopleQueryParams queryParams = new PeopleQueryParams().personDbId(personDbId);
         ApiResponse<BrAPIPersonListResponse> response = api.peopleGet(queryParams);
 
-        // TODO: test validations
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertEquals(personDbId, response.getBody().getResult().getData().get(0).getPersonDbId());
     }
     /**
      * Get the details for a specific Person
@@ -73,13 +70,11 @@ public class PeopleApiTest extends BrAPIClientTest {
      */
     @Test
     public void peoplePersonDbIdGetTest() throws ApiException {
-        String personDbId = null;
+        String personDbId = "person1";
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIPersonSingleResponse> response = api.peoplePersonDbIdGet(personDbId);
-		});
 
-        // TODO: test validations
+        assertEquals(personDbId, response.getBody().getResult().getPersonDbId());
     }
     /**
      * Update an existing Person
@@ -91,14 +86,13 @@ public class PeopleApiTest extends BrAPIClientTest {
      */
     @Test
     public void peoplePersonDbIdPutTest() throws ApiException {
-        String personDbId = null;
-        BrAPIPerson body = null;
+        String personDbId = "person1";
+        BrAPIPerson body = new BrAPIPerson().firstName("New Name");
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPIPersonSingleResponse> response = api.peoplePersonDbIdPut(personDbId, body);
-		});
 
-        // TODO: test validations
+        assertEquals(personDbId, response.getBody().getResult().getPersonDbId());
+        assertEquals(body.getFirstName(), response.getBody().getResult().getFirstName());
     }
     /**
      * Create new People
@@ -110,11 +104,13 @@ public class PeopleApiTest extends BrAPIClientTest {
      */
     @Test
     public void peoplePostTest() throws ApiException {
-        List<BrAPIPerson> body = Arrays.asList(new BrAPIPerson());
+        List<BrAPIPerson> body = Arrays.asList(new BrAPIPerson().firstName("New Name"));
         
         ApiResponse<BrAPIPersonListResponse> response = api.peoplePost(body);
 
-        // TODO: test validations
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertNotNull(response.getBody().getResult().getData().get(0).getPersonDbId());
+        assertEquals("New Name", response.getBody().getResult().getData().get(0).getFirstName());
     }
     /**
      * Submit a search request for People
@@ -126,11 +122,20 @@ public class PeopleApiTest extends BrAPIClientTest {
      */
     @Test
     public void searchPeoplePostTest() throws ApiException {
-        BrAPIPersonSearchRequest body = new BrAPIPersonSearchRequest();
+		BrAPIPersonSearchRequest body = new BrAPIPersonSearchRequest()
+				.addPersonDbIdsItem("person1")
+				.addPersonDbIdsItem("person2");
 
-        ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchPeoplePost(body);
+		ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api
+				.searchPeoplePost(body);
+		
+        Optional<BrAPIPersonListResponse> listResponse = response.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+        // only results are returned
+        assertTrue(listResponse.isPresent());
+        assertFalse(searchIdResponse.isPresent());
 
-        // TODO: test validations
+        assertEquals(2, listResponse.get().getResult().getData().size(), "unexpected number of pedigree nodes returned");
     }
     /**
      * Get the results of a People search request
@@ -142,15 +147,28 @@ public class PeopleApiTest extends BrAPIClientTest {
      */
     @Test
     public void searchPeopleSearchResultsDbIdGetTest() throws ApiException {
-        String searchResultsDbId = null;
-        Integer page = null;
-        Integer pageSize = null;
+		BrAPIPersonSearchRequest baseRequest = new BrAPIPersonSearchRequest()
+				.addPersonDbIdsItem("person1")
+				.addPersonDbIdsItem("person1")
+				.addPersonDbIdsItem("person1")
+				.addPersonDbIdsItem("person2")
+				.addPersonDbIdsItem("person2");
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                    api.searchPeopleSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
-		});
+        ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = this.api.searchPeoplePost(baseRequest);
+        Optional<BrAPIPersonListResponse> listResponse = response.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+        // only search ID is returned
+        assertFalse(listResponse.isPresent());
+        assertTrue(searchIdResponse.isPresent());
 
-        // TODO: test validations
+        // Get results from search ID
+    	ApiResponse<Pair<Optional<BrAPIPersonListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchResponse = this.api.searchPeopleSearchResultsDbIdGet(searchIdResponse.get().getResult().getSearchResultsDbId(), 0, 10);
+        Optional<BrAPIPersonListResponse> listResponse2 = searchResponse.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse2 = searchResponse.getBody().getRight();
+        // only results are returned
+        assertTrue(listResponse2.isPresent());
+        assertFalse(searchIdResponse2.isPresent());
+
+        assertEquals(2, listResponse2.get().getResult().getData().size(), "unexpected number of pedigree nodes returned");
     }
 }

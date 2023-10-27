@@ -62,3 +62,8 @@ INSERT INTO germplasm_additional_info(germplasm_entity_id, additional_info_id) V
 INSERT INTO external_reference(id, external_reference_id, external_reference_source) VALUES ('germplasm_er_3', 'https://brapi.org/specification', 'BrAPI Doc');
 INSERT INTO germplasm_external_references(germplasm_entity_id, external_references_id) VALUES ('germplasm3', 'germplasm_er_3');
 
+-- pedigree API tests
+INSERT INTO germplasm (auth_user_id, id, germplasm_name, crop_id) VALUES('anonymousUser', 'pedigreeTest1', 'Pedigree Test 1', '1');
+INSERT INTO germplasm (auth_user_id, id, germplasm_name, crop_id) VALUES('anonymousUser', 'pedigreeTest2', 'Pedigree Test 2', '1');
+INSERT INTO germplasm (auth_user_id, id, germplasm_name, crop_id) VALUES('anonymousUser', 'pedigreeTest3', 'Pedigree Test 3', '1');
+INSERT INTO germplasm (auth_user_id, id, germplasm_name, crop_id) VALUES('anonymousUser', 'pedigreeTest4', 'Pedigree Test 4', '1');

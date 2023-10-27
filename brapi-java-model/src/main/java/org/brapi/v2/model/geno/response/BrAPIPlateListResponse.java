@@ -15,6 +15,7 @@ package org.brapi.v2.model.geno.response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.brapi.v2.model.BrAPIContext;
 import org.brapi.v2.model.BrAPIMetadata;
+import org.brapi.v2.model.BrAPIResponse;
 
 import java.util.Objects;
 
@@ -22,7 +23,7 @@ import java.util.Objects;
  * PlateListResponse
  */
 
-public class BrAPIPlateListResponse {
+public class BrAPIPlateListResponse implements BrAPIResponse<BrAPIPlateListResponseResult> {
     @JsonProperty("@context")
     private BrAPIContext _atContext = null;
 

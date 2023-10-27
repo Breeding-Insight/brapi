@@ -71,10 +71,10 @@ public class TraitsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "traitDbId", queryParams.traitDbId());
         if (queryParams.observationVariableDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "observationVariableDbId", queryParams.observationVariableDbId());
-        if (queryParams.externalReferenceID() != null) {
-            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
-        }
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

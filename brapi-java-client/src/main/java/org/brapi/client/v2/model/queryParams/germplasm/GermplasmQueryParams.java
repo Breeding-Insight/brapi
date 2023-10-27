@@ -26,28 +26,64 @@ import lombok.experimental.SuperBuilder;
 
 import org.brapi.client.v2.model.queryParams.core.BrAPIQueryParams;
 
-
 @Getter
 @Setter
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Accessors(fluent=true)
+@Accessors(fluent = true)
 public class GermplasmQueryParams extends BrAPIQueryParams {
 
-    private String germplasmPUI;
-    private String germplasmDbId;
-    private String germplasmName;
-    private String commonCropName;
-    private String accessionNumber;
-    private String collection;
-    private String genus;
-    private String species;
-    private String studyDbId;
-    private String synonym;
-    private String parentDbId;
-    private String progenyDbId;
-    private String externalReferenceID;
-    private String externalReferenceSource;
+	private String germplasmPUI;
+	private String germplasmDbId;
+	private String germplasmName;
+	private String commonCropName;
+	private String accessionNumber;
+	private String collection;
+	private String genus;
+	private String species;
+	private String binomialName;
+	private String programDbId;
+	private String trialDbId;
+	private String studyDbId;
+	private String synonym;
+	private String parentDbId;
+	private String progenyDbId;
+	private String externalReferenceSource;
+	private String externalReferenceId;
+	@Deprecated
+	private String externalReferenceID;
 
+	public String getExternalReferenceId() {
+		return externalReferenceId;
+	}
+
+	public String externalReferenceId() {
+		return externalReferenceId;
+	}
+
+	public void setExternalReferenceId(String externalReferenceId) {
+		this.externalReferenceId = externalReferenceId;
+	}
+
+	@Deprecated
+	public String getExternalReferenceID() {
+		return externalReferenceID;
+	}
+
+	@Deprecated
+	public String externalReferenceID() {
+		return externalReferenceID;
+	}
+
+	@Deprecated
+	public void setExternalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+	}
+
+	@Deprecated
+	public GermplasmQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

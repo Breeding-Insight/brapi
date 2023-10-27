@@ -42,11 +42,51 @@ public class ObservationTableQueryParams extends BrAPIQueryParams {
     protected String trialDbId;
     protected String programDbId;
     protected String seasonDbId;
+    @Deprecated
     protected String observationLevel;
     protected String searchResultsDbId;
     protected String observationTimeStampRangeStart;
     protected String observationTimeStampRangeEnd;
+    protected String externalReferenceId;
+    @Deprecated
     protected String externalReferenceID;
     protected String externalReferenceSource;
+    protected String observationUnitLevelRelationshipDbId;
+    protected String observationUnitLevelRelationshipCode;
+    protected String observationUnitLevelRelationshipOrder;
+    protected String observationUnitLevelOrder;
+    protected String observationUnitLevelCode;
+    protected String observationUnitLevelRelationshipName;
+    protected String observationUnitLevelName;
 
+
+    
+    public String getExternalReferenceId() {
+		return externalReferenceId;
+	}
+    public String externalReferenceId() {
+		return externalReferenceId;
+	}
+	public void setExternalReferenceId(String externalReferenceId) {
+		this.externalReferenceId = externalReferenceId;
+	}
+
+	@Deprecated
+	public String getExternalReferenceID() {
+		return externalReferenceID;
+	}
+	@Deprecated
+	public String externalReferenceID() {
+		return externalReferenceID;
+	}
+	@Deprecated
+	public void setExternalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+	}
+
+    @Deprecated
+    public ObservationTableQueryParams externalReferenceID(String externalReferenceID) {
+        this.externalReferenceID = externalReferenceID;
+        return this;
+    }
 }

@@ -31,13 +31,62 @@ import org.brapi.client.v2.model.queryParams.core.BrAPIQueryParams;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Accessors(fluent=true)
+@Accessors(fluent = true)
 public class VariableQueryParams extends BrAPIQueryParams {
 
+	private String commonCropName;
+	private String externalReferenceId;
+	@Deprecated
+	private String externalReferenceID;
+	private String externalReferenceSource;
+	private String methodDbId;
+	private String methodName;
+	private String methodPUI;
+	private String observationVariableDbId;
+	private String observationVariableName;
+	private String observationVariablePUI;
+	private String ontologyDbId;
+	private String programDbId;
+	private String scaleDbId;
+	private String scaleName;
+	private String scalePUI;
+	private String studyDbId;
 	private String traitClass;
-    private String studyDbId;
-    private String observationVariableDbId;
-    private String externalReferenceID;
-    private String externalReferenceSource;
+	private String traitDbId;
+	private String traitName;
+	private String traitPUI;
+	private String trialDbId;
 
+	public String getExternalReferenceId() {
+		return externalReferenceId;
+	}
+
+	public String externalReferenceId() {
+		return externalReferenceId;
+	}
+
+	public void setExternalReferenceId(String externalReferenceId) {
+		this.externalReferenceId = externalReferenceId;
+	}
+
+	@Deprecated
+	public String getExternalReferenceID() {
+		return externalReferenceID;
+	}
+
+	@Deprecated
+	public String externalReferenceID() {
+		return externalReferenceID;
+	}
+
+	@Deprecated
+	public void setExternalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+	}
+
+	@Deprecated
+	public VariableQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

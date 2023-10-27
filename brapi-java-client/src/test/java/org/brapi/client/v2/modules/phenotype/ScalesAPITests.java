@@ -97,7 +97,7 @@ public class ScalesAPITests extends BrAPIClientTest {
 	@Test
 	@Order(1)
 	public void scalesPostSuccess() throws Exception {
-		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID)
+		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID).referenceId(externalReferenceID)
 				.referenceSource(externalReferenceSource);
 
 		List<BrAPIExternalReference> externalReferences = new ArrayList<>();
@@ -112,7 +112,7 @@ public class ScalesAPITests extends BrAPIClientTest {
 		List<BrAPIScaleValidValuesCategories> categories = Arrays.asList(low, high);
 
 		BrAPITraitDataType dataType = BrAPITraitDataType.TEXT;
-		BrAPIScaleValidValues validValues = new BrAPIScaleValidValues().min(0).max(5).categories(categories);
+		BrAPIScaleValidValues validValues = new BrAPIScaleValidValues().min(0).minimumValue("0").max(5).maximumValue("5").categories(categories);
 
 		JsonObject additionalInfo = new JsonObject();
 		additionalInfo.addProperty("test", "test");
@@ -242,7 +242,7 @@ public class ScalesAPITests extends BrAPIClientTest {
 	public void updateScaleSuccess() throws Exception {
 		ApiResponse<BrAPIScaleListResponse> existingList = scalesAPI.scalesGet(new ScaleQueryParams());
 		BrAPIScale existingScale = existingList.getBody().getResult().getData().get(0);
-		existingScale.scaleName("updated_name").validValues(new BrAPIScaleValidValues().min(0).max(100).categories(Collections.emptyList()));
+		existingScale.scaleName("updated_name").validValues(new BrAPIScaleValidValues().min(0).minimumValue("0").max(100).maximumValue("100").categories(Collections.emptyList()));
 
 		// Check that it is a success and all data matches
 		ApiResponse<BrAPIScaleSingleResponse> updatedScaleResult = this.scalesAPI.scalesScaleDbIdPut(existingScale.getScaleDbId(), existingScale);

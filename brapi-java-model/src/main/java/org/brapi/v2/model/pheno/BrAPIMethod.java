@@ -1,8 +1,6 @@
 package org.brapi.v2.model.pheno;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,302 +8,308 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.JsonAdapter;
-import lombok.*;
-import lombok.experimental.Accessors;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
 import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
-
-import javax.validation.Valid;
-
 
 /**
  * Method
  */
 
-
 public class BrAPIMethod {
-  @JsonProperty("methodDbId")
-  private String methodDbId = null;
+	@JsonProperty("methodDbId")
+	private String methodDbId = null;
 
-  @JsonProperty("additionalInfo")
-  @Valid
-  @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
-  private JsonObject additionalInfo = null;
+	@JsonProperty("additionalInfo")
+	@JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+	private JsonObject additionalInfo = null;
 
-  @JsonProperty("bibliographicalReference")
-  private String bibliographicalReference = null;
+	@JsonProperty("bibliographicalReference")
+	private String bibliographicalReference = null;
 
-  @JsonProperty("description")
-  private String description = null;
+	@JsonProperty("description")
+	private String description = null;
 
-  @JsonProperty("externalReferences")
-  private List<BrAPIExternalReference> externalReferences = null;
+	@JsonProperty("externalReferences")
+	private List<BrAPIExternalReference> externalReferences = null;
 
-  @JsonProperty("formula")
-  private String formula = null;
+	@JsonProperty("formula")
+	private String formula = null;
 
-  @JsonProperty("methodClass")
-  private String methodClass = null;
+	@JsonProperty("methodClass")
+	private String methodClass = null;
 
-  @JsonProperty("methodName")
-  private String methodName = null;
+	@JsonProperty("methodName")
+	private String methodName = null;
 
-  @JsonProperty("ontologyReference")
-  private BrAPIOntologyReference ontologyReference = null;
+	@JsonProperty("methodPUI")
+	private String methodPUI = null;
 
-  private final transient Gson gson = new Gson();
+	@JsonProperty("ontologyReference")
+	private BrAPIOntologyReference ontologyReference = null;
 
-  public BrAPIMethod methodDbId(String methodDbId) {
-    this.methodDbId = methodDbId;
-    return this;
-  }
+	private final transient Gson gson = new Gson();
 
-  /**
-   * Method unique identifier
-   * @return methodDbId
-   **/
+	public BrAPIMethod methodDbId(String methodDbId) {
+		this.methodDbId = methodDbId;
+		return this;
+	}
 
+	/**
+	 * Method unique identifier
+	 * 
+	 * @return methodDbId
+	 **/
 
-  public String getMethodDbId() {
-    return methodDbId;
-  }
+	public String getMethodDbId() {
+		return methodDbId;
+	}
 
-  public void setMethodDbId(String methodDbId) {
-    this.methodDbId = methodDbId;
-  }
+	public void setMethodDbId(String methodDbId) {
+		this.methodDbId = methodDbId;
+	}
 
-  public BrAPIMethod additionalInfo(JsonObject additionalInfo) {
-    this.additionalInfo = additionalInfo;
-    return this;
-  }
+	public BrAPIMethod additionalInfo(JsonObject additionalInfo) {
+		this.additionalInfo = additionalInfo;
+		return this;
+	}
 
-  public BrAPIMethod putAdditionalInfoItem(String key, Object additionalInfoItem) {
-    if (this.additionalInfo == null) {
-      this.additionalInfo = new JsonObject();
-    }
-    JsonElement newElement = gson.toJsonTree(additionalInfoItem);
-    this.additionalInfo.add(key, newElement);
-    return this;
-  }
+	public BrAPIMethod putAdditionalInfoItem(String key, Object additionalInfoItem) {
+		if (this.additionalInfo == null) {
+			this.additionalInfo = new JsonObject();
+		}
+		JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+		this.additionalInfo.add(key, newElement);
+		return this;
+	}
 
-  /**
-   * Additional arbitrary info
-   *
-   * @return additionalInfo
-   **/
+	/**
+	 * Additional arbitrary info
+	 *
+	 * @return additionalInfo
+	 **/
 
+	public JsonObject getAdditionalInfo() {
+		return additionalInfo;
+	}
 
-  public JsonObject getAdditionalInfo() {
-    return additionalInfo;
-  }
+	public void setAdditionalInfo(JsonObject additionalInfo) {
+		this.additionalInfo = additionalInfo;
+	}
 
-  public void setAdditionalInfo(JsonObject additionalInfo) {
-    this.additionalInfo = additionalInfo;
-  }
+	public BrAPIMethod bibliographicalReference(String bibliographicalReference) {
+		this.bibliographicalReference = bibliographicalReference;
+		return this;
+	}
 
-  public BrAPIMethod bibliographicalReference(String bibliographicalReference) {
-    this.bibliographicalReference = bibliographicalReference;
-    return this;
-  }
+	/**
+	 * Bibliographical reference describing the method. MIAPPE V1.1 (DM-91)
+	 * Reference associated to the method - URI/DOI of reference describing the
+	 * method.
+	 *
+	 * @return bibliographicalReference
+	 **/
 
-  /**
-   * Bibliographical reference describing the method. MIAPPE V1.1 (DM-91)
-   * Reference associated to the method - URI/DOI of reference describing the
-   * method.
-   *
-   * @return bibliographicalReference
-   **/
+	public String getBibliographicalReference() {
+		return bibliographicalReference;
+	}
 
+	public void setBibliographicalReference(String bibliographicalReference) {
+		this.bibliographicalReference = bibliographicalReference;
+	}
 
-  public String getBibliographicalReference() {
-    return bibliographicalReference;
-  }
+	public BrAPIMethod description(String description) {
+		this.description = description;
+		return this;
+	}
 
-  public void setBibliographicalReference(String bibliographicalReference) {
-    this.bibliographicalReference = bibliographicalReference;
-  }
+	/**
+	 * Method description MIAPPE V1.1 (DM-90) Method description - Textual
+	 * description of the method, which may extend a method defined in an external
+	 * reference with specific parameters, e.g. growth stage, inoculation precise
+	 * organ (leaf number)
+	 *
+	 * @return description
+	 **/
 
-  public BrAPIMethod description(String description) {
-    this.description = description;
-    return this;
-  }
+	public String getDescription() {
+		return description;
+	}
 
-  /**
-   * Method description MIAPPE V1.1 (DM-90) Method description - Textual
-   * description of the method, which may extend a method defined in an external
-   * reference with specific parameters, e.g. growth stage, inoculation precise
-   * organ (leaf number)
-   *
-   * @return description
-   **/
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
+	public BrAPIMethod externalReferences(List<BrAPIExternalReference> externalReferences) {
+		this.externalReferences = externalReferences;
+		return this;
+	}
 
-  public String getDescription() {
-    return description;
-  }
+	/**
+	 * Get externalReferences
+	 *
+	 * @return externalReferences
+	 **/
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+	public List<BrAPIExternalReference> getExternalReferences() {
+		return externalReferences;
+	}
 
-  public BrAPIMethod externalReferences(List<BrAPIExternalReference> externalReferences) {
-    this.externalReferences = externalReferences;
-    return this;
-  }
+	public void setExternalReferences(List<BrAPIExternalReference> externalReferences) {
+		this.externalReferences = externalReferences;
+	}
 
-  /**
-   * Get externalReferences
-   *
-   * @return externalReferences
-   **/
+	public BrAPIMethod formula(String formula) {
+		this.formula = formula;
+		return this;
+	}
 
+	/**
+	 * For computational methods i.e., when the method consists in assessing the
+	 * trait by computing measurements, write the generic formula used for the
+	 * calculation
+	 *
+	 * @return formula
+	 **/
 
-  @Valid
-  public List<BrAPIExternalReference> getExternalReferences() {
-    return externalReferences;
-  }
+	public String getFormula() {
+		return formula;
+	}
 
-  public void setExternalReferences(List<BrAPIExternalReference> externalReferences) {
-    this.externalReferences = externalReferences;
-  }
+	public void setFormula(String formula) {
+		this.formula = formula;
+	}
 
-  public BrAPIMethod formula(String formula) {
-    this.formula = formula;
-    return this;
-  }
+	public BrAPIMethod methodClass(String methodClass) {
+		this.methodClass = methodClass;
+		return this;
+	}
 
-  /**
-   * For computational methods i.e., when the method consists in assessing the
-   * trait by computing measurements, write the generic formula used for the
-   * calculation
-   *
-   * @return formula
-   **/
+	/**
+	 * Method class (examples: \"Measurement\", \"Counting\", \"Estimation\",
+	 * \"Computation\", etc.)
+	 *
+	 * @return methodClass
+	 **/
 
+	public String getMethodClass() {
+		return methodClass;
+	}
 
-  public String getFormula() {
-    return formula;
-  }
+	public void setMethodClass(String methodClass) {
+		this.methodClass = methodClass;
+	}
 
-  public void setFormula(String formula) {
-    this.formula = formula;
-  }
+	public BrAPIMethod methodName(String methodName) {
+		this.methodName = methodName;
+		return this;
+	}
 
-  public BrAPIMethod methodClass(String methodClass) {
-    this.methodClass = methodClass;
-    return this;
-  }
+	/**
+	 * Human readable name for the method MIAPPE V1.1 (DM-88) Method Name of the
+	 * method of observation
+	 *
+	 * @return methodName
+	 **/
 
-  /**
-   * Method class (examples: \"Measurement\", \"Counting\", \"Estimation\",
-   * \"Computation\", etc.)
-   *
-   * @return methodClass
-   **/
+	public String getMethodName() {
+		return methodName;
+	}
 
+	public void setMethodName(String methodName) {
+		this.methodName = methodName;
+	}
 
-  public String getMethodClass() {
-    return methodClass;
-  }
+	public BrAPIMethod ontologyReference(BrAPIOntologyReference ontologyReference) {
+		this.ontologyReference = ontologyReference;
+		return this;
+	}
 
-  public void setMethodClass(String methodClass) {
-    this.methodClass = methodClass;
-  }
+	public BrAPIMethod methodPUI(String methodPUI) {
+		this.methodPUI = methodPUI;
+		return this;
+	}
 
-  public BrAPIMethod methodName(String methodName) {
-    this.methodName = methodName;
-    return this;
-  }
+	/**
+	 * The Permanent Unique Identifier of a Method, usually in the form of a URI
+	 *
+	 * @return methodPUI
+	 **/
+	public String getMethodPUI() {
+		return methodPUI;
+	}
 
-  /**
-   * Human readable name for the method MIAPPE V1.1 (DM-88) Method Name of the
-   * method of observation
-   *
-   * @return methodName
-   **/
+	public void setMethodPUI(String methodPUI) {
+		this.methodPUI = methodPUI;
+	}
 
+	/**
+	 * Get ontologyReference
+	 *
+	 * @return ontologyReference
+	 **/
 
-  public String getMethodName() {
-    return methodName;
-  }
+	public BrAPIOntologyReference getOntologyReference() {
+		return ontologyReference;
+	}
 
-  public void setMethodName(String methodName) {
-    this.methodName = methodName;
-  }
+	public void setOntologyReference(BrAPIOntologyReference ontologyReference) {
+		this.ontologyReference = ontologyReference;
+	}
 
-  public BrAPIMethod ontologyReference(BrAPIOntologyReference ontologyReference) {
-    this.ontologyReference = ontologyReference;
-    return this;
-  }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		BrAPIMethod method = (BrAPIMethod) o;
+		return Objects.equals(this.additionalInfo, method.additionalInfo)
+				&& Objects.equals(this.bibliographicalReference, method.bibliographicalReference)
+				&& Objects.equals(this.description, method.description)
+				&& Objects.equals(this.externalReferences, method.externalReferences)
+				&& Objects.equals(this.formula, method.formula) && Objects.equals(this.methodClass, method.methodClass)
+				&& Objects.equals(this.methodDbId, method.methodDbId)
+				&& Objects.equals(this.methodName, method.methodName)
+				&& Objects.equals(this.methodPUI, method.methodPUI)
+				&& Objects.equals(this.ontologyReference, method.ontologyReference);
+	}
 
-  /**
-   * Get ontologyReference
-   *
-   * @return ontologyReference
-   **/
+	@Override
+	public int hashCode() {
+		return Objects.hash(additionalInfo, bibliographicalReference, description, externalReferences, formula,
+				methodClass, methodDbId, methodName, methodPUI, ontologyReference);
+	}
 
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class Method {\n");
 
-  @Valid
-  public BrAPIOntologyReference getOntologyReference() {
-    return ontologyReference;
-  }
+		sb.append("    additionalInfo: ").append(toIndentedString(additionalInfo)).append("\n");
+		sb.append("    bibliographicalReference: ").append(toIndentedString(bibliographicalReference)).append("\n");
+		sb.append("    description: ").append(toIndentedString(description)).append("\n");
+		sb.append("    externalReferences: ").append(toIndentedString(externalReferences)).append("\n");
+		sb.append("    formula: ").append(toIndentedString(formula)).append("\n");
+		sb.append("    methodClass: ").append(toIndentedString(methodClass)).append("\n");
+		sb.append("    methodDbId: ").append(toIndentedString(methodDbId)).append("\n");
+		sb.append("    methodName: ").append(toIndentedString(methodName)).append("\n");
+		sb.append("    methodPUI: ").append(toIndentedString(methodPUI)).append("\n");
+		sb.append("    ontologyReference: ").append(toIndentedString(ontologyReference)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
 
-  public void setOntologyReference(BrAPIOntologyReference ontologyReference) {
-    this.ontologyReference = ontologyReference;
-  }
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    BrAPIMethod method = (BrAPIMethod) o;
-    return Objects.equals(this.methodDbId, method.methodDbId)
-            && Objects.equals(this.additionalInfo, method.additionalInfo)
-            && Objects.equals(this.bibliographicalReference, method.bibliographicalReference)
-            && Objects.equals(this.description, method.description)
-            && Objects.equals(this.externalReferences, method.externalReferences)
-            && Objects.equals(this.formula, method.formula)
-            && Objects.equals(this.methodClass, method.methodClass)
-            && Objects.equals(this.methodName, method.methodName)
-            && Objects.equals(this.ontologyReference, method.ontologyReference);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(methodDbId, additionalInfo, bibliographicalReference, description, externalReferences, formula,
-                        methodClass, methodName, ontologyReference);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Method {\n");
-    sb.append("    methodDbId: ").append(toIndentedString(methodDbId)).append("\n");
-    sb.append("    additionalInfo: ").append(toIndentedString(additionalInfo)).append("\n");
-    sb.append("    bibliographicalReference: ").append(toIndentedString(bibliographicalReference)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    externalReferences: ").append(toIndentedString(externalReferences)).append("\n");
-    sb.append("    formula: ").append(toIndentedString(formula)).append("\n");
-    sb.append("    methodClass: ").append(toIndentedString(methodClass)).append("\n");
-    sb.append("    methodName: ").append(toIndentedString(methodName)).append("\n");
-    sb.append("    ontologyReference: ").append(toIndentedString(ontologyReference)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 }

@@ -13,42 +13,38 @@
 package org.brapi.client.v2.modules.phenotype;
 
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.EventQueryParams;
 import org.brapi.v2.model.pheno.response.BrAPIEventsResponse;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-import java.time.OffsetDateTime;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * API tests for EventsApi
  */
-public class EventsApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class EventsApiTest extends BrAPIClientTest {
 
-    private final EventsApi api = new EventsApi();
+	private final EventsApi api = new EventsApi(this.apiClient);
 
-    /**
-     * Get the Events
-     *
-     * Get list of events
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void eventsGetTest() throws ApiException {
-        String studyDbId = null;
-        String observationUnitDbId = null;
-        String eventDbId = null;
-        String eventType = null;
-        OffsetDateTime dateRangeStart = null;
-        OffsetDateTime dateRangeEnd = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        EventQueryParams queryParams = new EventQueryParams();
-        ApiResponse<BrAPIEventsResponse> response = api.eventsGet(queryParams);
+	/**
+	 * Get the Events
+	 *
+	 * Get list of events
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void eventsGetTest() throws ApiException {
+		String eventDbId = "event1";
 
-        // TODO: test validations
-    }
+		EventQueryParams queryParams = new EventQueryParams().eventDbId(eventDbId);
+		ApiResponse<BrAPIEventsResponse> response = api.eventsGet(queryParams);
+
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(eventDbId, response.getBody().getResult().getData().get(0).getEventDbId());
+	}
 }

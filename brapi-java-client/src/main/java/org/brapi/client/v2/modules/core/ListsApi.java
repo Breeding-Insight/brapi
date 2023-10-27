@@ -34,7 +34,6 @@ import org.brapi.v2.model.core.response.BrAPIListResponse;
 import org.brapi.v2.model.core.request.BrAPIListSearchRequest;
 import org.brapi.v2.model.core.response.BrAPIListsListResponse;
 import org.brapi.v2.model.core.response.BrAPIListsSingleResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class ListsApi {
     private BrAPIClient apiClient;
@@ -80,10 +79,10 @@ public class ListsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "listDbId", queryParams.listDbId());
         if (queryParams.listSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "listSource", queryParams.listSource());
-        if (queryParams.externalReferenceID() != null) {
-            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
-        }
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

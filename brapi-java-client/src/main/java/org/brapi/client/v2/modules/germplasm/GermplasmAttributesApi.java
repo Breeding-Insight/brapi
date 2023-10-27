@@ -35,7 +35,6 @@ import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeSingleResponse;
 import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class GermplasmAttributesApi {
     private BrAPIClient apiClient;
@@ -309,10 +308,10 @@ public class GermplasmAttributesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "attributeName", queryParams.attributeName());
         if (queryParams.germplasmDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "germplasmDbId", queryParams.germplasmDbId());
-        if (queryParams.externalReferenceID() != null) {
-            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
-        }
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

@@ -1,10 +1,8 @@
 package org.brapi.v2.model.germ;
 
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
+import java.util.Objects;
 
 
 /**
@@ -12,18 +10,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 
 
-public class BrAPIPedigreeNodeParents   {
-  @JsonProperty("germplasmDbId")
-  private String germplasmDbId = null;
-
-  @JsonProperty("germplasmName")
-  private String germplasmName = null;
-
-  @JsonProperty("parentType")
-  private BrAPIParentType parentType = null;
+@Deprecated
+public class BrAPIPedigreeNodeParents extends BrAPIPedigreeNodeRelative {
 
   public BrAPIPedigreeNodeParents germplasmDbId(String germplasmDbId) {
-    this.germplasmDbId = germplasmDbId;
+    super.setGermplasmDbId(germplasmDbId);
     return this;
   }
 
@@ -32,17 +23,19 @@ public class BrAPIPedigreeNodeParents   {
    * @return germplasmDbId
   **/
   
-  
-    public String getGermplasmDbId() {
-    return germplasmDbId;
+  @Deprecated
+  public String getGermplasmDbId() {
+  return super.getGermplasmDbId();
   }
 
+  @Deprecated
   public void setGermplasmDbId(String germplasmDbId) {
-    this.germplasmDbId = germplasmDbId;
+    super.setGermplasmDbId(germplasmDbId);
   }
 
+  @Deprecated
   public BrAPIPedigreeNodeParents germplasmName(String germplasmName) {
-    this.germplasmName = germplasmName;
+    super.setGermplasmName(germplasmName);
     return this;
   }
 
@@ -50,18 +43,20 @@ public class BrAPIPedigreeNodeParents   {
    * the human readable name of the parent of this germplasm
    * @return germplasmName
   **/
-  
-  
-    public String getGermplasmName() {
-    return germplasmName;
+
+  @Deprecated
+  public String getGermplasmName() {
+    return super.getGermplasmName();
   }
 
+  @Deprecated
   public void setGermplasmName(String germplasmName) {
-    this.germplasmName = germplasmName;
+    super.setGermplasmName(germplasmName);
   }
 
+  @Deprecated
   public BrAPIPedigreeNodeParents parentType(BrAPIParentType parentType) {
-    this.parentType = parentType;
+    super.setParentType(parentType);
     return this;
   }
 
@@ -69,34 +64,26 @@ public class BrAPIPedigreeNodeParents   {
    * The type of parent the parent is. ex. 'MALE', 'FEMALE', 'SELF', 'POPULATION', etc.
    * @return parentType
   **/
-  
-  
-    public BrAPIParentType getParentType() {
-    return parentType;
+
+  @Deprecated
+  public BrAPIParentType getParentType() {
+    return super.getParentType();
   }
 
+  @Deprecated
   public void setParentType(BrAPIParentType parentType) {
-    this.parentType = parentType;
+    super.setParentType(parentType);
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    BrAPIPedigreeNodeParents pedigreeNodeParents = (BrAPIPedigreeNodeParents) o;
-    return Objects.equals(this.germplasmDbId, pedigreeNodeParents.germplasmDbId) &&
-        Objects.equals(this.germplasmName, pedigreeNodeParents.germplasmName) &&
-        Objects.equals(this.parentType, pedigreeNodeParents.parentType);
+  public boolean equals(Object o) {
+    return super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(germplasmDbId, germplasmName, parentType);
+    return super.hashCode();
   }
 
   @Override
@@ -104,9 +91,9 @@ public class BrAPIPedigreeNodeParents   {
     StringBuilder sb = new StringBuilder();
     sb.append("class PedigreeNodeParents {\n");
     
-    sb.append("    germplasmDbId: ").append(toIndentedString(germplasmDbId)).append("\n");
-    sb.append("    germplasmName: ").append(toIndentedString(germplasmName)).append("\n");
-    sb.append("    parentType: ").append(toIndentedString(parentType)).append("\n");
+    sb.append("    germplasmDbId: ").append(toIndentedString(super.getGermplasmDbId())).append("\n");
+    sb.append("    germplasmName: ").append(toIndentedString(super.getGermplasmName())).append("\n");
+    sb.append("    parentType: ").append(toIndentedString(super.getParentType())).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -115,7 +102,7 @@ public class BrAPIPedigreeNodeParents   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

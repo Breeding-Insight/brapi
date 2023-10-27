@@ -34,6 +34,7 @@ public class SeasonQueryParams extends BrAPIQueryParams {
 
     private String seasonDbId;
     private String season;
+    private String seasonName;
     private String year;
 
 }

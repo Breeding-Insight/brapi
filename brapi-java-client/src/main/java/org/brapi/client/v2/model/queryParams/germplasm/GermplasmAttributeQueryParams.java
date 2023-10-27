@@ -38,8 +38,52 @@ public class GermplasmAttributeQueryParams extends BrAPIQueryParams {
     private String attributeCategory;
     private String attributeDbId;
     private String attributeName;
-    private String germplasmDbId;
-    private String externalReferenceID;
+    private String attributePUI;
+    private String commonCropName;
     private String externalReferenceSource;
+    private String germplasmDbId;
+    private String methodDbId;
+	private String methodName;
+    private String methodPUI; 
+    private String programDbId;
+    private String scaleDbId;
+    private String scaleName;
+    private String scalePUI;
+    private String traitDbId;
+    private String traitName;
+    private String traitPUI;
 
+
+    private String externalReferenceId;
+    @Deprecated
+    private String externalReferenceID;
+    
+    public String getExternalReferenceId() {
+		return externalReferenceId;
+	}
+    public String externalReferenceId() {
+		return externalReferenceId;
+	}
+	public void setExternalReferenceId(String externalReferenceId) {
+		this.externalReferenceId = externalReferenceId;
+	}
+
+	@Deprecated
+	public String getExternalReferenceID() {
+		return externalReferenceID;
+	}
+	@Deprecated
+	public String externalReferenceID() {
+		return externalReferenceID;
+	}
+	@Deprecated
+	public void setExternalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+	}
+
+    @Deprecated
+    public GermplasmAttributeQueryParams externalReferenceID(String externalReferenceID) {
+        this.externalReferenceID = externalReferenceID;
+        return this;
+    }
 }
