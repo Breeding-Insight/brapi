@@ -145,7 +145,7 @@ public class PlatesApiTest extends BrAPIClientTest {
         Integer pageSize = null;
 
         ApiException exception = assertThrows(ApiException.class, () -> {
-            ApiResponse<BrAPIPlateListResponse> response = api.searchPlatesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+            ApiResponse<Pair<Optional<BrAPIPlateListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchPlatesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
         });
 
         // TODO: test validations

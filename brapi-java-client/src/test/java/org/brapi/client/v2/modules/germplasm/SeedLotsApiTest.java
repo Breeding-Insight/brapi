@@ -13,6 +13,7 @@
 package org.brapi.client.v2.modules.germplasm;
 
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.SeedLotQueryParams;
 import org.brapi.client.v2.model.queryParams.germplasm.SeedLotTransactionQueryParams;
@@ -22,156 +23,160 @@ import org.brapi.v2.model.germ.response.BrAPISeedLotListResponse;
 import org.brapi.v2.model.germ.response.BrAPISeedLotSingleResponse;
 import org.brapi.v2.model.germ.response.BrAPISeedLotTransactionListResponse;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * API tests for SeedLotsApi
  */
-public class SeedLotsApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class SeedLotsApiTest extends BrAPIClientTest {
 
-    private final SeedLotsApi api = new SeedLotsApi();
+	private final SeedLotsApi api = new SeedLotsApi(this.apiClient);
 
-    /**
-     * Get a filtered list of Seed Lot descriptions
-     *
-     * Get a filtered list of Seed Lot descriptions available in a system.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void seedlotsGetTest() throws ApiException {
-        String seedLotDbId = null;
-        String germplasmDbId = null;
-        String externalReferenceID = null;
-        String externalReferenceSource = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        SeedLotQueryParams queryParams = new SeedLotQueryParams();
-        ApiResponse<BrAPISeedLotListResponse> response = api.seedlotsGet(queryParams);
+	/**
+	 * Get a filtered list of Seed Lot descriptions
+	 *
+	 * Get a filtered list of Seed Lot descriptions available in a system.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void seedlotsGetTest() throws ApiException {
+		String seedLotDbId = "seed_lot1";
 
-        // TODO: test validations
-    }
-    /**
-     * Add new Seed Lot descriptions to a server
-     *
-     * Add new Seed Lot descriptions to a server
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void seedlotsPostTest() throws ApiException {
-        List<BrAPISeedLot> body = null;
+		SeedLotQueryParams queryParams = new SeedLotQueryParams().seedLotDbId(seedLotDbId);
+		ApiResponse<BrAPISeedLotListResponse> response = api.seedlotsGet(queryParams);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPISeedLotListResponse> response = api.seedlotsPost(body);
-		});
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(seedLotDbId, response.getBody().getResult().getData().get(0).getSeedLotDbId());
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Get a specific Seed Lot
-     *
-     * Get a specific Seed Lot by seedLotDbId
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void seedlotsSeedLotDbIdGetTest() throws ApiException {
-        String seedLotDbId = null;
+	/**
+	 * Add new Seed Lot descriptions to a server
+	 *
+	 * Add new Seed Lot descriptions to a server
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void seedlotsPostTest() throws ApiException {
+		BrAPISeedLot seedLot = new BrAPISeedLot().seedLotName("New Name");
+		List<BrAPISeedLot> body = Arrays.asList(seedLot);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPISeedLotSingleResponse> response = api.seedlotsSeedLotDbIdGet(seedLotDbId);
-		});
+		ApiResponse<BrAPISeedLotListResponse> response = api.seedlotsPost(body);
 
-        // TODO: test validations
-    }
-    /**
-     * Update an existing Seed Lot
-     *
-     * Update an existing Seed Lot
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void seedlotsSeedLotDbIdPutTest() throws ApiException {
-        String seedLotDbId = null;
-        BrAPISeedLot body = null;
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(seedLot.getSeedLotName(), response.getBody().getResult().getData().get(0).getSeedLotName());
+		assertNotNull(response.getBody().getResult().getData().get(0).getSeedLotDbId());
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPISeedLotSingleResponse> response = api.seedlotsSeedLotDbIdPut(seedLotDbId, body);
-		});
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Get all Transactions related to a specific Seed Lot
-     *
-     * Get all Transactions related to a specific Seed Lot
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void seedlotsSeedLotDbIdTransactionsGetTest() throws ApiException {
-        String seedLotDbId = null;
-        String transactionDbId = null;
-        String transactionDirection = null;
-        Integer page = null;
-        Integer pageSize = null;
+	/**
+	 * Get a specific Seed Lot
+	 *
+	 * Get a specific Seed Lot by seedLotDbId
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void seedlotsSeedLotDbIdGetTest() throws ApiException {
+		String seedLotDbId = "seed_lot1";
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsSeedLotDbIdTransactionsGet(seedLotDbId, transactionDbId, transactionDirection, page, pageSize);
-		});
+		ApiResponse<BrAPISeedLotSingleResponse> response = api.seedlotsSeedLotDbIdGet(seedLotDbId);
 
-        // TODO: test validations
-    }
-    /**
-     * Get a filtered list of Seed Lot Transactions
-     *
-     * Get a filtered list of Seed Lot Transactions
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void seedlotsTransactionsGetTest() throws ApiException {
-        String transactionDbId = null;
-        String seedLotDbId = null;
-        String germplasmDbId = null;
-        String externalReferenceID = null;
-        String externalReferenceSource = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        SeedLotTransactionQueryParams queryParams = new SeedLotTransactionQueryParams();
-        ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsTransactionsGet(queryParams);
+		assertEquals(seedLotDbId, response.getBody().getResult().getSeedLotDbId());
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Add new Seed Lot Transaction to be recorded
-     *
-     * Add new Seed Lot Transaction to be recorded
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void seedlotsTransactionsPostTest() throws ApiException {
-        List<BrAPISeedLotTransaction> body = null;
+	/**
+	 * Update an existing Seed Lot
+	 *
+	 * Update an existing Seed Lot
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void seedlotsSeedLotDbIdPutTest() throws ApiException {
+		String seedLotDbId = "seed_lot1";
+		BrAPISeedLot seedLot = new BrAPISeedLot().seedLotName("New Name").seedLotDbId(seedLotDbId);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsTransactionsPost(body);
-		});
+		ApiResponse<BrAPISeedLotSingleResponse> response = api.seedlotsSeedLotDbIdPut(seedLotDbId, seedLot);
 
-        // TODO: test validations
-    }
+		assertEquals(seedLot.getSeedLotDbId(), response.getBody().getResult().getSeedLotDbId());
+		assertEquals(seedLot.getSeedLotName(), response.getBody().getResult().getSeedLotName());
+	}
+
+	/**
+	 * Get all Transactions related to a specific Seed Lot
+	 *
+	 * Get all Transactions related to a specific Seed Lot
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void seedlotsSeedLotDbIdTransactionsGetTest() throws ApiException {
+		String seedLotDbId = "seed_lot1";
+		String transactionDbId = "seed_lot_transaction2";
+		String transactionDirection = null;
+		Integer page = null;
+		Integer pageSize = null;
+
+		ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsSeedLotDbIdTransactionsGet(seedLotDbId,
+				transactionDbId, transactionDirection, page, pageSize);
+
+		assertEquals(1, response.getBody().getResult().getData().size());
+	}
+
+	/**
+	 * Get a filtered list of Seed Lot Transactions
+	 *
+	 * Get a filtered list of Seed Lot Transactions
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void seedlotsTransactionsGetTest() throws ApiException {
+		String transactionDbId = "seed_lot_transaction1";
+
+		SeedLotTransactionQueryParams queryParams = new SeedLotTransactionQueryParams()
+				.transactionDbId(transactionDbId);
+		ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsTransactionsGet(queryParams);
+
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(transactionDbId, response.getBody().getResult().getData().get(0).getTransactionDbId());
+	}
+
+	/**
+	 * Add new Seed Lot Transaction to be recorded
+	 *
+	 * Add new Seed Lot Transaction to be recorded
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void seedlotsTransactionsPostTest() throws ApiException {
+		BrAPISeedLotTransaction transaction = new BrAPISeedLotTransaction().fromSeedLotDbId("seed_lot1")
+				.toSeedLotDbId("seed_lot2").amount(new BigDecimal(20)).transactionDescription("test").units("seeds");
+		List<BrAPISeedLotTransaction> body = Arrays.asList(transaction);
+
+		ApiResponse<BrAPISeedLotTransactionListResponse> response = api.seedlotsTransactionsPost(body);
+
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertNotNull(response.getBody().getResult().getData().get(0).getTransactionDbId());
+		assertEquals(transaction.getFromSeedLotDbId(),
+				response.getBody().getResult().getData().get(0).getFromSeedLotDbId());
+		assertEquals(transaction.getToSeedLotDbId(),
+				response.getBody().getResult().getData().get(0).getToSeedLotDbId());
+		assertEquals(transaction.getAmount(), response.getBody().getResult().getData().get(0).getAmount());
+		assertEquals(transaction.getTransactionDescription(),
+				response.getBody().getResult().getData().get(0).getTransactionDescription());
+		assertEquals(transaction.getUnits(), response.getBody().getResult().getData().get(0).getUnits());
+
+	}
 }

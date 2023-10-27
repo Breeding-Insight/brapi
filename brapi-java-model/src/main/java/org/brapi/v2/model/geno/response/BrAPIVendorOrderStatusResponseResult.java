@@ -6,8 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-
-
+import org.brapi.v2.model.BrAPIEnum;
 
 
 /**
@@ -19,7 +18,7 @@ public class BrAPIVendorOrderStatusResponseResult   {
   /**
    * Gets or Sets status
    */
-  public enum StatusEnum {
+  public enum StatusEnum implements BrAPIEnum {
     REGISTERED("registered"),
     
     RECEIVED("received"),
@@ -45,11 +44,16 @@ public class BrAPIVendorOrderStatusResponseResult   {
     @JsonCreator
     public static StatusEnum fromValue(String text) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (String.valueOf(b.value).equalsIgnoreCase(text)) {
           return b;
         }
       }
       return null;
+    }
+
+    @Override
+    public String getBrapiValue() {
+      return value;
     }
   }
   @JsonProperty("status")

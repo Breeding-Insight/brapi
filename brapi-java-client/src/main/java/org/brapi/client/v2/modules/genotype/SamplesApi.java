@@ -78,10 +78,10 @@ public class SamplesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "germplasmDbId", queryParams.germplasmDbId());
         if (queryParams.studyDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "studyDbId", queryParams.studyDbId());
-        if (queryParams.externalReferenceId() != null) {
+        if (queryParams.externalReferenceID() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
-            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceId());
-        }
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

@@ -13,6 +13,7 @@
 package org.brapi.v2.model.geno.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.brapi.v2.model.BrAPIResponseResult;
 import org.brapi.v2.model.geno.BrAPIPlate;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.Objects;
  * PlateListResponseResult
  */
 
-public class BrAPIPlateListResponseResult {
+public class BrAPIPlateListResponseResult implements BrAPIResponseResult<BrAPIPlate> {
     @JsonProperty("data")
     private List<BrAPIPlate> data = new ArrayList<BrAPIPlate>();
 

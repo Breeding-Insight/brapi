@@ -48,7 +48,43 @@ public class ObservationQueryParams extends BrAPIQueryParams {
     protected String observationUnitLevelCode;
     protected String observationTimeStampRangeStart;
     protected String observationTimeStampRangeEnd;
-    protected String externalReferenceID;
     protected String externalReferenceSource;
+    private String externalReferenceId;
+    @Deprecated
+    private String externalReferenceID;
+    private String observationUnitLevelRelationshipDbId;
+    private String observationUnitLevelRelationshipCode;
+    private String commonCropName;
+    private String observationUnitLevelRelationshipOrder;
+    private String observationUnitLevelRelationshipName;
 
+    
+    public String getExternalReferenceId() {
+		return externalReferenceId;
+	}
+    public String externalReferenceId() {
+		return externalReferenceId;
+	}
+	public void setExternalReferenceId(String externalReferenceId) {
+		this.externalReferenceId = externalReferenceId;
+	}
+
+	@Deprecated
+	public String getExternalReferenceID() {
+		return externalReferenceID;
+	}
+	@Deprecated
+	public String externalReferenceID() {
+		return externalReferenceID;
+	}
+	@Deprecated
+	public void setExternalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+	}
+
+    @Deprecated
+    public ObservationQueryParams externalReferenceID(String externalReferenceID) {
+        this.externalReferenceID = externalReferenceID;
+        return this;
+    }
 }

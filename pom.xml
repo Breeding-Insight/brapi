@@ -25,13 +25,82 @@
   <artifactId>brapi</artifactId>
   <version>2.1-SNAPSHOT</version>
 
-  <name>brapi</name>
-  <url>http://www.breedinginsight.org</url>
+  <name>${project.artifactId}</name>
+  <url>https://github.com/Breeding-Insight/brapi</url>
+  <description>BrAPI v2 Java libraries</description>
   <packaging>pom</packaging>
 
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>https://github.com/Breeding-Insight/brapi/blob/master/LICENSE</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Tim Parsons</name>
+      <email>tim.parsons@cornell.edu</email>
+      <organization>Breeding Insight</organization>
+      <organizationUrl>https://breedinginsight.org</organizationUrl>
+    </developer>
+    <developer>
+      <name>Peter Selby</name>
+      <email>ps664@cornell.edu</email>
+      <organization>BrAPI</organization>
+      <organizationUrl>https://brapi.org</organizationUrl>
+    </developer>
+    <developer>
+      <name>Nick Palladino</name>
+      <email>np398@cornell.edu</email>
+      <organization>Breeding Insight</organization>
+      <organizationUrl>https://breedinginsight.org</organizationUrl>
+    </developer>
+    <developer>
+      <name>Dave Meidlinger</name>
+      <email>djm226@cornell.edu</email>
+      <organization>Breeding Insight</organization>
+      <organizationUrl>https://breedinginsight.org</organizationUrl>
+    </developer>
+    <developer>
+      <name>Chris Tucker</name>
+      <organization>Breeding Insight</organization>
+      <organizationUrl>https://breedinginsight.org</organizationUrl>
+    </developer>
+    <developer>
+      <name>Heather Sweeney</name>
+      <email>hms243@cornell.edu</email>
+      <organization>Breeding Insight</organization>
+      <organizationUrl>https://breedinginsight.org</organizationUrl>
+    </developer>
+    <developer>
+      <name>David Phillips</name>
+      <email>drp227@cornell.edu</email>
+      <organization>Breeding Insight</organization>
+      <organizationUrl>https://breedinginsight.org</organizationUrl>
+    </developer>
+    <developer>
+      <name>Matthew Mandych</name>
+      <email>mlm483@cornell.edu</email>
+      <organization>Breeding Insight</organization>
+      <organizationUrl>https://breedinginsight.org</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git://github.com/Breeding-Insight/brapi.git</connection>
+    <developerConnection>scm:git:ssh://github.com:Breeding-Insight/brapi.git</developerConnection>
+    <url>https://github.com/Breeding-Insight/brapi/tree/master</url>
+  </scm>
+
+  <issueManagement>
+    <url>https://github.com/Breeding-Insight/brapi/issues</url>
+  </issueManagement>
+
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>8</java.version>
-    <lombok.version>1.18.16</lombok.version>
+    <lombok.version>1.18.28</lombok.version>
     <junit.jupiter.version>5.6.1</junit.jupiter.version>
     <mvnsurefire.version>3.0.0-M4</mvnsurefire.version>
     <jackson.annotations.version>2.10.1</jackson.annotations.version>
@@ -60,10 +129,13 @@
   </dependencies>
 
   <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
     <repository>
-      <id>github</id>
-      <name>GitHub Breeding Insight Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/Breeding-Insight/brapi</url>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
 
@@ -84,4 +156,71 @@
     </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>3.1.0</version>
+            <configuration>
+              <deployAtEnd>true</deployAtEnd>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>3.3.0</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.5.0</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <doclint>none</doclint>
+              <source>${java.version}</source>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <gpgArguments>
+                <arg>--pinentry-mode</arg>
+                <arg>loopback</arg>
+              </gpgArguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
