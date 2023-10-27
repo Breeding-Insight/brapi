@@ -42,38 +42,56 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * </p>
  */
 public enum BrAPITraitDataType implements BrAPIEnum {
-	CODE("Code"), 
-	DATE("Date"), 
-	DURATION("Duration"), 
-	NOMINAL("Nominal"), 
-	NUMERICAL("Numerical"), 
-	ORDINAL("Ordinal"),
-	TEXT("Text");
+  CODE("Code"),
+  DATE("Date"),
+  DURATION("Duration"),
+  NOMINAL("Nominal"),
+  NUMERICAL("Numerical"),
+  ORDINAL("Ordinal"),
+  TEXT("Text"),
 
-	private String value;
+  //Field Book Trait Types
+  NUMERIC("numeric"),
+  CATEGORICAL("categorical"),
+  MULTICAT("multicat"),
+  PERCENT("percent"),
+  BOOLEAN("boolean"),
+  PHOTO("photo"),
+  AUDIO("audio"),
+  COUNTER("counter"),
+  RUST_RATING("rust rating"),
+  DISEASE_RATING("disease rating"),
+  LOCATION("location"),
+  GNSS("gnss"),
+  ZEBRA_PRINTER("zebra label printer"),
+  USB_CAMERA("usb camera"),
+  BARCODE("barcode");
+  //end - Field Book Trait Types
 
-	BrAPITraitDataType(String value) {
-		this.value = value;
-	}
+  private String value;
 
-	@Override
-	@JsonValue
-	public String toString() {
-		return String.valueOf(value);
-	}
+  BrAPITraitDataType(String value) {
+    this.value = value;
+  }
 
-	@JsonCreator
-	public static BrAPITraitDataType fromValue(String text) {
-		for (BrAPITraitDataType b : BrAPITraitDataType.values()) {
-			if (String.valueOf(b.value).equals(text)) {
-				return b;
-			}
-		}
-		return null;
-	}
+  @Override
+  @JsonValue
+  public String toString() {
+    return String.valueOf(value);
+  }
 
-	@Override
-	public String getBrapiValue() {
-		return value;
-	}
+  @JsonCreator
+  public static BrAPITraitDataType fromValue(String text) {
+    for (BrAPITraitDataType b : BrAPITraitDataType.values()) {
+      if (String.valueOf(b.value).equalsIgnoreCase(text)) {
+        return b;
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public String getBrapiValue() {
+    return value;
+  }
 }
