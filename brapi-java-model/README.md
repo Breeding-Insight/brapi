@@ -1,10 +1,10 @@
 # BrAPI Java Models
 A library of BrAPI data models for JVM languages
 
-See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core/2.1
-See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping/2.1
-See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping/2.1
-See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm/2.1
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core/2.1  
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping/2.1  
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping/2.1  
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm/2.1  
 
 ## Integration
 
