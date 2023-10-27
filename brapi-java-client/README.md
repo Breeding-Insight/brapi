@@ -2,7 +2,34 @@
 
 This is a Java client library for making calls to a BrAPI-compliant service.  
 
-The library is currently in development to support BrAPI v2.0.
+The library is currently in development to support BrAPI v2.1.
+
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core/2.1
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping/2.1
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping/2.1
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm/2.1
+
+### Maven:
+```xml
+<dependency>
+    <groupId>org.brapi</groupId>
+    <artifactId>brapi-java-client</artifactId>
+    <version>${brapi-java-client.version}</version>
+</dependency>
+```
+
+Referencing Snapshots:
+Add the Nexus Sonatype Snapshots repository to your pom:
+
+```xml
+<repository>
+    <id>ossrh</id>
+    <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+    <releases>
+        <enabled>false</enabled>
+    </releases>
+</repository>
+```
 
 ## Usage
 Each API group that has been defined in the BrAPI specification as a correlating class.  Each class exposes public methods to make appropriate calls for that type.  For example, the `CallsAPI` class can make a `GET` request to retrieve a list of available calls that the target service supports.
@@ -23,7 +50,7 @@ if(authorizationToken instanceof OAuth) {
 If using IntelliJ, create a new configuration for Maven to build your project. 
 
 ```
-Working Directory: <your_path>/brapi-client
+Working Directory: <your_path>/brapi-java-client
 Command: clean install
 ```
 
@@ -31,7 +58,7 @@ If not using IntelliJ, running the command
 
 ```mvn clean install```
 
-when in your brapi-client directory will build the project. 
+when in your brapi-java-client directory will build the project. 
 
 ## Running the tests
 
