@@ -1,6 +1,6 @@
 /*
  * BrAPI-Phenotyping
- * The Breeding API (BrAPI) is a Standardized REST ful Web Service API Specification for communicating Plant Breeding Data. BrAPI allows for easy data sharing between databases and tools involved in plant breeding. <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">General Reference Documentation</h2> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/URL_Structure.md\">URL Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Response_Structure.md\">Response Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Date_Time_Encoding.md\">Date/Time Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Location_Encoding.md\">Location Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Error_Handling.md\">Error Handling</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Search_Services.md\">Search Services</a></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Core</h2> <div class=\"brapi-section-description\">The BrAPI Core module contains high level entities used for organization and management. This includes Programs, Trials, Studies, Locations, People, and Lists</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Core\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapicore.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"current-brapi-section brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Phenotyping</h2> <div class=\"brapi-section-description\">The BrAPI Phenotyping module contains entities related to phenotypic observations. This includes Observation Units, Observations, Observation Variables, Traits, Scales, Methods, and Images</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Phenotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapiphenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Genotyping</h2> <div class=\"brapi-section-description\">The BrAPI Genotyping module contains entities related to genotyping analysis. This includes Samples, Markers, Variant Sets, Variants, Call Sets, Calls, References, Reads, and Vendor Orders</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Genotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Germplasm</h2> <div class=\"brapi-section-description\">The BrAPI Germplasm module contains entities related to germplasm management. This includes Germplasm, Germplasm Attributes, Seed Lots, Crosses, Pedigree, and Progeny</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Germplasm\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigermplasm.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <style> .link-btn{ float: left;  margin: 2px 10px 0 0;  padding: 0 5px;  border-radius: 5px;  background-color: #ddd; } .stop-float{   clear: both; } .version-number{   float: left;    margin: 5px 10px 0 5px; } .brapi-section-title{   margin: 0 10px 0 0;   font-size: 20px; } .current-brapi-section{   font-weight: bolder;   border-radius: 5px;    background-color: #ddd; } .brapi-section{   padding: 5px 5px;  } .brapi-section-description{   margin: 5px 0 0 5px; } </style>
+ * The Breeding API (BrAPI) is a Standardized REST ful Web Service API Specification for communicating Plant Breeding Data. BrAPI allows for easy data sharing between databases and tools involved in plant breeding. <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">General Reference Documentation</h2> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/URL_Structure.md\">URL Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Response_Structure.md\">Response Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Date_Time_Encoding.md\">Date/Time Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Location_Encoding.md\">Location Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Error_Handling.md\">Error Handling</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Search_Services.md\">Search Services</a></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Core</h2> <div class=\"brapi-section-description\">The BrAPI Core module contains high level entities used for organization and management. This includes Programs, Trials, Studies, Locations, People, and Lists</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Core\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapicore.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"current-brapi-section brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Phenotyping</h2> <div class=\"brapi-section-description\">The BrAPI Phenotyping module contains entities related to phenotypic ontologies. This includes Ontology Units, Ontologies, Ontology Variables, Traits, Scales, Methods, and Images</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Phenotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapiphenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Genotyping</h2> <div class=\"brapi-section-description\">The BrAPI Genotyping module contains entities related to genotyping analysis. This includes Samples, Markers, Variant Sets, Variants, Call Sets, Calls, References, Reads, and Vendor Orders</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Genotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Germplasm</h2> <div class=\"brapi-section-description\">The BrAPI Germplasm module contains entities related to germplasm management. This includes Germplasm, Germplasm Attributes, Seed Lots, Crosses, Pedigree, and Progeny</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Germplasm\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigermplasm.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <style> .link-btn{ float: left;  margin: 2px 10px 0 0;  padding: 0 5px;  border-radius: 5px;  background-color: #ddd; } .stop-float{   clear: both; } .version-number{   float: left;    margin: 5px 10px 0 5px; } .brapi-section-title{   margin: 0 10px 0 0;   font-size: 20px; } .current-brapi-section{   font-weight: bolder;   border-radius: 5px;    background-color: #ddd; } .brapi-section{   padding: 5px 5px;  } .brapi-section-description{   margin: 5px 0 0 5px; } </style>
  *
  * OpenAPI spec version: 2.0
  * 
@@ -12,36 +12,134 @@
 
 package org.brapi.client.v2.modules.phenotype;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.OntologyQueryParams;
+import org.brapi.v2.model.pheno.BrAPIOntology;
 import org.brapi.v2.model.pheno.response.BrAPIOntologyListResponse;
+import org.brapi.v2.model.pheno.response.BrAPIOntologySingleResponse;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 /**
  * API tests for OntologiesApi
  */
-public class OntologiesApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class OntologiesApiTest extends BrAPIClientTest {
 
-    private final OntologiesApi api = new OntologiesApi();
+    private final OntologiesApi api = new OntologiesApi(this.apiClient);
 
     /**
      * Get the Ontologies
      *
-     * Call to retrieve a list of observation variable ontologies available in the system.
+     * Call to retrieve a list of ontology variable ontologies available in the system.
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
     public void ontologiesGetTest() throws ApiException {
-        String ontologyDbId = null;
-        Integer page = null;
-        Integer pageSize = null;
+        String ontologyDbId = "ontology_variable1";
         
-        OntologyQueryParams queryParams = new OntologyQueryParams();
+        OntologyQueryParams queryParams = new OntologyQueryParams().ontologyDbId(ontologyDbId);
         ApiResponse<BrAPIOntologyListResponse> response = api.ontologiesGet(queryParams);
 
-        // TODO: test validations
+        assertEquals(1, response.getBody().getResult().getData().size());
+        assertEquals(ontologyDbId, response.getBody().getResult().getData().get(0).getOntologyDbId());
     }
+
+	/**
+	 * Get the details of a specific Ontologies
+	 *
+	 * Get the details of a specific Ontologies ontologyTimestamp should be
+	 * ISO8601 format with timezone -&gt; YYYY-MM-DDThh:mm:ss+hhmm
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void ontologiesOntologyDbIdGetTest() throws ApiException {
+        String ontologyDbId = "ontology_variable1";
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIOntologySingleResponse> res = api.ontologiesOntologyDbIdGet(null);
+		});
+
+		ApiResponse<BrAPIOntologySingleResponse> response = api.ontologiesOntologyDbIdGet(ontologyDbId);
+		
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertNotNull(response.getBody().getMetadata());
+        assertNotNull(response.getBody().getResult());
+        assertEquals(response.getStatusCode(), 200);
+        assertEquals(response.getBody().getResult().getOntologyDbId(), ontologyDbId);
+	}
+
+	/**
+	 * Update an existing Ontology
+	 *
+	 * Update an existing Ontology
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void ontologiesOntologyDbIdPutTest() throws ApiException {
+        String ontologyDbId = "ontology_variable1";
+        String ontologyName = "Ontology.org";
+		BrAPIOntology body = new BrAPIOntology();
+		body.setOntologyName(ontologyName);
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIOntologySingleResponse> res = api.ontologiesOntologyDbIdPut(null, null);
+		});
+
+		ApiResponse<BrAPIOntologySingleResponse> response = api.ontologiesOntologyDbIdPut(ontologyDbId, body);
+		
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertNotNull(response.getBody().getMetadata());
+        assertNotNull(response.getBody().getResult());
+        assertEquals(response.getStatusCode(), 200);
+        assertEquals(response.getBody().getResult().getOntologyDbId(), ontologyDbId);
+        assertEquals(response.getBody().getResult().getOntologyName(), ontologyName);
+	}
+
+	/**
+	 * Add new Ontology entities
+	 *
+	 * Add new Ontology entities
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void ontologiesPostTest() throws ApiException {
+        String ontologyName = "Ontology.org";
+		BrAPIOntology bodyItem = new BrAPIOntology();
+		bodyItem.setOntologyName(ontologyName);
+		
+		List<BrAPIOntology> body = Arrays.asList(bodyItem);
+
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			ApiResponse<BrAPIOntologyListResponse> res = api.ontologiesPost(null);
+		});
+
+		ApiResponse<BrAPIOntologyListResponse> response = api.ontologiesPost(body);
+
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertNotNull(response.getBody().getMetadata());
+        assertNotNull(response.getBody().getResult());
+        assertEquals(response.getStatusCode(), 200);
+        assertEquals(response.getBody().getResult().getData().size(), 1);
+        assertEquals(response.getBody().getResult().getData().get(0).getOntologyName(), ontologyName);
+	}
 }

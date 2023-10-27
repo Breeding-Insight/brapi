@@ -1,18 +1,13 @@
 package org.brapi.v2.model.geno.request;
 
-import java.util.Objects;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import com.fasterxml.jackson.annotation.JsonValue;
-
-
-
-import java.util.ArrayList;
-import java.util.List;
+import org.brapi.v2.model.geno.BrAPISampleTypeEnum;
+import org.brapi.v2.model.geno.BrAPIVendorPlate;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -30,42 +25,10 @@ public class BrAPIVendorPlateSubmissionRequest   {
 
   @JsonProperty("plates")
   @Valid
-  private List<BrAPIVendorPlateSubmissionRequestPlates> plates = new ArrayList<BrAPIVendorPlateSubmissionRequestPlates>();
+  private List<BrAPIVendorPlate> plates = new ArrayList<>();
 
-  /**
-   * The type of Samples being submitted
-   */
-  public enum SampleTypeEnum {
-    DNA("DNA"),
-    
-    RNA("RNA"),
-    
-    TISSUE("Tissue");
-
-    private String value;
-
-    SampleTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static SampleTypeEnum fromValue(String text) {
-      for (SampleTypeEnum b : SampleTypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-  }
   @JsonProperty("sampleType")
-  private SampleTypeEnum sampleType = null;
+  private BrAPISampleTypeEnum sampleType = null;
 
   public BrAPIVendorPlateSubmissionRequest clientId(String clientId) {
     this.clientId = clientId;
@@ -107,12 +70,12 @@ public class BrAPIVendorPlateSubmissionRequest   {
     this.numberOfSamples = numberOfSamples;
   }
 
-  public BrAPIVendorPlateSubmissionRequest plates(List<BrAPIVendorPlateSubmissionRequestPlates> plates) {
+  public BrAPIVendorPlateSubmissionRequest plates(List<BrAPIVendorPlate> plates) {
     this.plates = plates;
     return this;
   }
 
-  public BrAPIVendorPlateSubmissionRequest addPlatesItem(BrAPIVendorPlateSubmissionRequestPlates platesItem) {
+  public BrAPIVendorPlateSubmissionRequest addPlatesItem(BrAPIVendorPlate platesItem) {
     this.plates.add(platesItem);
     return this;
   }
@@ -124,15 +87,15 @@ public class BrAPIVendorPlateSubmissionRequest   {
   
       
     @Valid
-    public List<BrAPIVendorPlateSubmissionRequestPlates> getPlates() {
+    public List<BrAPIVendorPlate> getPlates() {
     return plates;
   }
 
-  public void setPlates(List<BrAPIVendorPlateSubmissionRequestPlates> plates) {
+  public void setPlates(List<BrAPIVendorPlate> plates) {
     this.plates = plates;
   }
 
-  public BrAPIVendorPlateSubmissionRequest sampleType(SampleTypeEnum sampleType) {
+  public BrAPIVendorPlateSubmissionRequest sampleType(BrAPISampleTypeEnum sampleType) {
     this.sampleType = sampleType;
     return this;
   }
@@ -141,14 +104,11 @@ public class BrAPIVendorPlateSubmissionRequest   {
    * The type of Samples being submitted
    * @return sampleType
   **/
-  
-      
-
-    public SampleTypeEnum getSampleType() {
+  public BrAPISampleTypeEnum getSampleType() {
     return sampleType;
   }
 
-  public void setSampleType(SampleTypeEnum sampleType) {
+  public void setSampleType(BrAPISampleTypeEnum sampleType) {
     this.sampleType = sampleType;
   }
 

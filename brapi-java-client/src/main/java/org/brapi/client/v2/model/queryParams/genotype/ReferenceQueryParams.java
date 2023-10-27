@@ -41,5 +41,11 @@ public class ReferenceQueryParams extends BrAPIQueryParams {
     private String isDerived;
     private String minLength;
     private String maxLength;
+    private String commonCropName;
+    private String programDbId;
+    private String trialDbId;
+    private String studyDbId;
+    private String externalReferenceSource;
+    private String externalReferenceId;
 
 }

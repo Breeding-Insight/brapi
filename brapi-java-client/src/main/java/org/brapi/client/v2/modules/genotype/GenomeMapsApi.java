@@ -159,7 +159,7 @@ public class GenomeMapsApi {
         
         // create path and map variables
         String localVarPath = "/maps/{mapDbId}"
-            .replaceAll("\\{" + "mapDbId" + "\\}", apiClient.escapeString(mapDbId.toString()));
+            .replaceAll("\\{" + "mapDbId" + "\\}", apiClient.escapeString(mapDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -234,7 +234,7 @@ public class GenomeMapsApi {
         
         // create path and map variables
         String localVarPath = "/maps/{mapDbId}/linkagegroups"
-            .replaceAll("\\{" + "mapDbId" + "\\}", apiClient.escapeString(mapDbId.toString()));
+            .replaceAll("\\{" + "mapDbId" + "\\}", apiClient.escapeString(mapDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -463,7 +463,7 @@ public class GenomeMapsApi {
         
         // create path and map variables
         String localVarPath = "/search/markerpositions/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

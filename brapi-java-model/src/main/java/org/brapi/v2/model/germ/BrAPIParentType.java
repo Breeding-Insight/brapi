@@ -7,12 +7,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum BrAPIParentType implements BrAPIEnum {
     MALE("MALE"),
-    
     FEMALE("FEMALE"),
-    
     SELF("SELF"),
-    
-    POPULATION("POPULATION");
+    POPULATION("POPULATION"),
+    CLONAL("CLONAL");
 
     private String value;
 

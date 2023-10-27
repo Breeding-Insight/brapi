@@ -6,13 +6,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.JsonAdapter;
+import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -30,6 +29,12 @@ public class BrAPIReference {
     @Valid
     @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
 	private JsonObject additionalInfo = null;
+
+	@JsonProperty("commonCropName")
+	private String commonCropName = null;
+
+	@JsonProperty("externalReferences")
+	private List<BrAPIExternalReference> externalReferences = null;
 
 	@JsonProperty("isDerived")
 	private Boolean isDerived = null;
@@ -49,12 +54,18 @@ public class BrAPIReference {
 	@JsonProperty("referenceSetDbId")
 	private String referenceSetDbId = null;
 
+	@JsonProperty("referenceSetName")
+	private String referenceSetName = null;
+
 	@JsonProperty("sourceAccessions")
 	@Valid
 	private List<String> sourceAccessions = null;
 
 	@JsonProperty("sourceDivergence")
 	private Float sourceDivergence = null;
+
+	@JsonProperty("sourceGermplasm")
+	private List<BrAPIReferenceSourceGermplasm> sourceGermplasm = null;
 
 	@JsonProperty("sourceURI")
 	private String sourceURI = null;
@@ -99,6 +110,44 @@ public class BrAPIReference {
 
 	public void setAdditionalInfo(JsonObject additionalInfo) {
 		this.additionalInfo = additionalInfo;
+	}
+
+	public BrAPIReference commonCropName(String commonCropName) {
+		this.commonCropName = commonCropName;
+		return this;
+	}
+
+	/**
+	 * Common name for the crop
+	 *
+	 * @return commonCropName
+	 **/
+	public String getCommonCropName() {
+		return commonCropName;
+	}
+
+	public void setCommonCropName(String commonCropName) {
+		this.commonCropName = commonCropName;
+	}
+
+	public BrAPIReference externalReferences(List<BrAPIExternalReference> externalReferences) {
+		this.externalReferences = externalReferences;
+		return this;
+	}
+
+	/**
+	 * Get externalReferences
+	 * @return externalReferences
+	 **/
+
+
+	@Valid
+	public List<BrAPIExternalReference> getExternalReferences() {
+		return externalReferences;
+	}
+
+	public void setExternalReferences(List<BrAPIExternalReference> externalReferences) {
+		this.externalReferences = externalReferences;
 	}
 
 	public BrAPIReference isDerived(Boolean isDerived) {
@@ -207,6 +256,24 @@ public class BrAPIReference {
 		this.referenceName = referenceName;
 	}
 
+	public BrAPIReference referenceSetName(String referenceSetName) {
+		this.referenceSetName = referenceSetName;
+		return this;
+	}
+
+	/**
+	 * The human readable name of a &#x60;ReferenceSet&#x60;
+	 *
+	 * @return referenceSetName
+	 **/
+	public String getReferenceSetName() {
+		return referenceSetName;
+	}
+
+	public void setReferenceSetName(String referenceSetName) {
+		this.referenceSetName = referenceSetName;
+	}
+
 	public BrAPIReference sourceAccessions(List<String> sourceAccessions) {
 		this.sourceAccessions = sourceAccessions;
 		return this;
@@ -255,6 +322,32 @@ public class BrAPIReference {
 
 	public void setSourceDivergence(Float sourceDivergence) {
 		this.sourceDivergence = sourceDivergence;
+	}
+
+	public BrAPIReference sourceGermplasm(List<BrAPIReferenceSourceGermplasm> sourceGermplasm) {
+		this.sourceGermplasm = sourceGermplasm;
+		return this;
+	}
+
+	public BrAPIReference addSourceGermplasmItem(BrAPIReferenceSourceGermplasm sourceGermplasmItem) {
+		if (this.sourceGermplasm == null) {
+			this.sourceGermplasm = new ArrayList<BrAPIReferenceSourceGermplasm>();
+		}
+		this.sourceGermplasm.add(sourceGermplasmItem);
+		return this;
+	}
+
+	/**
+	 * All known corresponding Germplasm
+	 *
+	 * @return sourceGermplasm
+	 **/
+	public List<BrAPIReferenceSourceGermplasm> getSourceGermplasm() {
+		return sourceGermplasm;
+	}
+
+	public void setSourceGermplasm(List<BrAPIReferenceSourceGermplasm> sourceGermplasm) {
+		this.sourceGermplasm = sourceGermplasm;
 	}
 
 	public BrAPIReference sourceURI(String sourceURI) {
@@ -311,20 +404,25 @@ public class BrAPIReference {
 		}
 		BrAPIReference reference = (BrAPIReference) o;
 		return Objects.equals(this.additionalInfo, reference.additionalInfo)
+				&& Objects.equals(this.commonCropName, reference.commonCropName)
+				&& Objects.equals(this.externalReferences, reference.externalReferences)
 				&& Objects.equals(this.isDerived, reference.isDerived) && Objects.equals(this.length, reference.length)
 				&& Objects.equals(this.md5checksum, reference.md5checksum)
 				&& Objects.equals(this.referenceDbId, reference.referenceDbId)
 				&& Objects.equals(this.referenceName, reference.referenceName)
+				&& Objects.equals(this.referenceSetDbId, reference.referenceSetDbId)
+				&& Objects.equals(this.referenceSetName, reference.referenceSetName)
 				&& Objects.equals(this.sourceAccessions, reference.sourceAccessions)
 				&& Objects.equals(this.sourceDivergence, reference.sourceDivergence)
+				&& Objects.equals(this.sourceGermplasm, reference.sourceGermplasm)
 				&& Objects.equals(this.sourceURI, reference.sourceURI)
 				&& Objects.equals(this.species, reference.species);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(additionalInfo, isDerived, length, md5checksum, referenceDbId, referenceName,
-				sourceAccessions, sourceDivergence, sourceURI, species);
+		return Objects.hash(additionalInfo, commonCropName, externalReferences, isDerived, length, md5checksum, referenceDbId, referenceName,
+							referenceSetDbId, referenceSetName, sourceAccessions, sourceDivergence, sourceGermplasm, sourceURI, species);
 	}
 
 	@Override
@@ -333,13 +431,18 @@ public class BrAPIReference {
 		sb.append("class Reference {\n");
 
 		sb.append("    additionalInfo: ").append(toIndentedString(additionalInfo)).append("\n");
+        sb.append("    commonCropName: ").append(toIndentedString(commonCropName)).append("\n");
+        sb.append("    externalReferences: ").append(toIndentedString(externalReferences)).append("\n");
 		sb.append("    isDerived: ").append(toIndentedString(isDerived)).append("\n");
 		sb.append("    length: ").append(toIndentedString(length)).append("\n");
 		sb.append("    md5checksum: ").append(toIndentedString(md5checksum)).append("\n");
 		sb.append("    referenceDbId: ").append(toIndentedString(referenceDbId)).append("\n");
 		sb.append("    referenceName: ").append(toIndentedString(referenceName)).append("\n");
+        sb.append("    referenceSetDbId: ").append(toIndentedString(referenceSetDbId)).append("\n");
+        sb.append("    referenceSetName: ").append(toIndentedString(referenceSetName)).append("\n");
 		sb.append("    sourceAccessions: ").append(toIndentedString(sourceAccessions)).append("\n");
 		sb.append("    sourceDivergence: ").append(toIndentedString(sourceDivergence)).append("\n");
+        sb.append("    sourceGermplasm: ").append(toIndentedString(sourceGermplasm)).append("\n");
 		sb.append("    sourceURI: ").append(toIndentedString(sourceURI)).append("\n");
 		sb.append("    species: ").append(toIndentedString(species)).append("\n");
 		sb.append("}");

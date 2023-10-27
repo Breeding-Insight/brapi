@@ -27,10 +27,7 @@ import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.VariableQueryParams;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
-import org.brapi.v2.model.pheno.BrAPIMethod;
-import org.brapi.v2.model.pheno.BrAPIObservationVariable;
-import org.brapi.v2.model.pheno.BrAPIScale;
-import org.brapi.v2.model.pheno.BrAPITrait;
+import org.brapi.v2.model.pheno.*;
 import org.brapi.v2.model.pheno.response.BrAPIObservationVariableListResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationVariableSingleResponse;
 import org.junit.jupiter.api.*;
@@ -100,8 +97,7 @@ public class VariablesAPITests extends BrAPIClientTest {
 
 	@Test
 	@Order(1)
-	@SneakyThrows
-	public void createVariableSuccess() {
+	public void createVariableSuccess() throws Exception {
 
 		BrAPIObservationVariable brApiVariable = buildTestVariable();
 		List<BrAPIObservationVariable> brApiVariableList = new ArrayList<>();
@@ -121,7 +117,7 @@ public class VariablesAPITests extends BrAPIClientTest {
 
 	private BrAPIObservationVariable buildTestVariable() {
 
-		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID)
+		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID).referenceId(externalReferenceID)
 				.referenceSource(externalReferenceSource);
 
 		List<BrAPIExternalReference> externalReferences = new ArrayList<>();
@@ -149,15 +145,28 @@ public class VariablesAPITests extends BrAPIClientTest {
 
 		BrAPIScale scale = new BrAPIScale();
 		scale.setScaleName("scale scale");
+		scale.validValues(new BrAPIScaleValidValues().max(100).min(0));
 
 		OffsetDateTime timestamp = OffsetDateTime.parse("2020-05-26T20:45:10Z", DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 
 		BrAPIObservationVariable brApiVariable = (BrAPIObservationVariable) new BrAPIObservationVariable()
-				.observationVariableName("test variable").additionalInfo(additionalInfo).commonCropName(validCrop)
-				.contextOfUse(contextOfUse).defaultValue("test default").documentationURL("http://www.test.com")
-				.externalReferences(externalReferences).growthStage("test stage").institution("test institution")
-				.language("test language").ontologyReference(brApiOntologyReference).scientist("test scientist")
-				.status("test status").submissionTimestamp(timestamp).synonyms(synonyms).trait(trait).scale(scale)
+				.observationVariableName("test variable")
+				.additionalInfo(additionalInfo)
+				.commonCropName(validCrop)
+				.contextOfUse(contextOfUse)
+				.defaultValue("test default")
+				.documentationURL("http://www.test.com")
+				.externalReferences(externalReferences)
+				.growthStage("test stage")
+				.institution("test institution")
+				.language("test language")
+				.ontologyReference(brApiOntologyReference)
+				.scientist("test scientist")
+				.status("test status")
+				.submissionTimestamp(timestamp)
+				.synonyms(synonyms)
+				.trait(trait)
+				.scale(scale)
 				.method(method);
 
 		return brApiVariable;
@@ -197,8 +206,7 @@ public class VariablesAPITests extends BrAPIClientTest {
 
 	@Test
 	@Order(1)
-	@SneakyThrows
-	public void createVariablesMultipleSuccess() {
+	public void createVariablesMultipleSuccess() throws Exception {
 		BrAPIObservationVariable brApiVariable = new BrAPIObservationVariable()
 				.observationVariableName("new test variable1");
 
@@ -224,9 +232,8 @@ public class VariablesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
 	@Order(2)
-	void getVariablesSuccess() {
+	void getVariablesSuccess() throws Exception {
 		ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI
 				.variablesGet(new VariableQueryParams());
 
@@ -234,9 +241,8 @@ public class VariablesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
 	@Order(2)
-	void getVariablesPageFilter() {
+	void getVariablesPageFilter() throws Exception {
 		VariableQueryParams baseRequest = VariableQueryParams.builder().page(0).pageSize(1).build();
 
 		ApiResponse<BrAPIObservationVariableListResponse> variables = variablesAPI.variablesGet(baseRequest);
@@ -246,9 +252,8 @@ public class VariablesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
 	@Order(2)
-	void getVariablesByExternalReferenceIdSuccess() {
+	void getVariablesByExternalReferenceIdSuccess() throws Exception {
 		VariableQueryParams variablesRequest = VariableQueryParams.builder().externalReferenceID(externalReferenceID)
 				.build();
 
@@ -266,9 +271,8 @@ public class VariablesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
 	@Order(2)
-	void getVariableByIdSuccess() {
+	void getVariableByIdSuccess() throws Exception {
 		ApiResponse<BrAPIObservationVariableSingleResponse> optionalObservationVariable = variablesAPI
 				.variablesObservationVariableDbIdGet(createdVariable.getObservationVariableDbId());
 
@@ -279,8 +283,7 @@ public class VariablesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
-	void getVariableByIdInvalid() {
+	void getVariableByIdInvalid() throws Exception {
 		ApiException exception = assertThrows(ApiException.class, () -> {
 			ApiResponse<BrAPIObservationVariableSingleResponse> variable = variablesAPI
 					.variablesObservationVariableDbIdGet("badVariableId");
@@ -289,9 +292,8 @@ public class VariablesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
 	@Order(2)
-	public void updateVariableSuccess() {
+	public void updateVariableSuccess() throws Exception {
 		BrAPIObservationVariable variable = this.createdVariable;
 		variable.setObservationVariableName("updated_name");
 
@@ -305,8 +307,7 @@ public class VariablesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
-	public void updateVariableMissingId() {
+	public void updateVariableMissingId() throws Exception {
 		// Check that it throws an ApiException
 		BrAPIObservationVariable brApiVariable = new BrAPIObservationVariable()
 				.observationVariableName("new test variable");
@@ -326,11 +327,9 @@ public class VariablesAPITests extends BrAPIClientTest {
 	}
 
 	@Test
-	@SneakyThrows
-	public void createVariableWithComplexAdditionalInfoSuccess() {
+	public void createVariableWithComplexAdditionalInfoSuccess() throws Exception {
 
 		BrAPIObservationVariable brApiVariable = buildTestVariable();
-		brApiVariable.putAdditionalInfoItem("testObject", brApiVariable);
 		brApiVariable.putAdditionalInfoItem("testBool", true);
 		brApiVariable.putAdditionalInfoItem("testString", "test");
 		brApiVariable.putAdditionalInfoItem("testInt", 1);

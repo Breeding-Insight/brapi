@@ -24,6 +24,7 @@ import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
+import org.brapi.client.v2.model.queryParams.genotype.VendorQueryParams;
 import org.brapi.v2.model.geno.response.BrAPIVendorOrderListResponse;
 import org.brapi.v2.model.geno.response.BrAPIVendorOrderStatusResponse;
 import org.brapi.v2.model.geno.request.BrAPIVendorOrderSubmissionRequest;
@@ -56,14 +57,11 @@ public class VendorApi {
 
     /**
      * Build call for vendorOrdersGet
-     * @param orderId The order id returned by the vendor when the order was successfully submitted. From response of \&quot;POST /vendor/orders\&quot; (optional)
-     * @param submissionId The submission id returned by the vendor when a set of plates was successfully submitted. From response of \&quot;POST /vendor/plates\&quot; (optional)
-     * @param page Used to request a specific page of data to be returned.  The page indexing starts at 0 (the first page is &#x27;page&#x27;&#x3D; 0). Default is &#x60;0&#x60;. (optional)
-     * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
+     * @param queryParams
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call vendorOrdersGetCall(String orderId, String submissionId, Integer page, Integer pageSize) throws ApiException {
+    private Call vendorOrdersGetCall(VendorQueryParams queryParams) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -71,19 +69,16 @@ public class VendorApi {
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
-        if (orderId != null)
-            apiClient.prepQueryParameter(localVarQueryParams, "orderId", orderId);
-        if (submissionId != null)
-            apiClient.prepQueryParameter(localVarQueryParams, "submissionId", submissionId);
-        if (page != null)
-            apiClient.prepQueryParameter(localVarQueryParams, "page", page);
-        if (pageSize != null)
-            apiClient.prepQueryParameter(localVarQueryParams, "pageSize", pageSize);
+        if (queryParams.orderId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "orderId", queryParams.orderId());
+        if (queryParams.submissionId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "submissionId", queryParams.submissionId());
+        if (queryParams.page() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
+        if (queryParams.pageSize() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        
-        
-
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
@@ -103,6 +98,8 @@ public class VendorApi {
     }
 
     /**
+     * Deprecated - use vendorOrdersGet(VendorQueryParams)<br><br>
+     *
      * List current available orders
      * List current available orders
      * @param orderId The order id returned by the vendor when the order was successfully submitted. From response of \&quot;POST /vendor/orders\&quot; (optional)
@@ -113,13 +110,28 @@ public class VendorApi {
      * @return ApiResponse&lt;VendorOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<BrAPIVendorOrderListResponse> vendorOrdersGet(String orderId, String submissionId, Integer page, Integer pageSize) throws ApiException {
-        Call call = vendorOrdersGetCall(orderId, submissionId, page, pageSize);
+        return vendorOrdersGet(VendorQueryParams.builder().orderId(orderId).submissionId(submissionId).page(page).pageSize(pageSize).build());
+    }
+
+    /**
+     * List current available orders
+     * List current available orders
+     * @param queryParams
+
+     * @return ApiResponse&lt;VendorOrderListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BrAPIVendorOrderListResponse> vendorOrdersGet(VendorQueryParams queryParams) throws ApiException {
+        Call call = vendorOrdersGetCall(queryParams);
         Type localVarReturnType = new TypeToken<BrAPIVendorOrderListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
+     * Deprecated - use vendorOrdersGetAsync(VendorQueryParams, ApiCallback)<br><br>
+     *
      * List current available orders (asynchronously)
      * List current available orders
      * @param orderId The order id returned by the vendor when the order was successfully submitted. From response of \&quot;POST /vendor/orders\&quot; (optional)
@@ -131,39 +143,47 @@ public class VendorApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call vendorOrdersGetAsync(String orderId, String submissionId, Integer page, Integer pageSize, final ApiCallback<BrAPIVendorOrderListResponse> callback) throws ApiException {
-        Call call = vendorOrdersGetCall(orderId, submissionId, page, pageSize);
+        return vendorOrdersGetAsync(VendorQueryParams.builder().orderId(orderId).submissionId(submissionId).page(page).pageSize(pageSize).build(), callback);
+    }
+
+    /**
+     * List current available orders (asynchronously)
+     * List current available orders
+     * @param queryParams
+
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public Call vendorOrdersGetAsync(VendorQueryParams queryParams, final ApiCallback<BrAPIVendorOrderListResponse> callback) throws ApiException {
+        Call call = vendorOrdersGetCall(queryParams);
         Type localVarReturnType = new TypeToken<BrAPIVendorOrderListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for vendorOrdersOrderIdPlatesGet
-     * @param orderId The order id returned by the vendor when the order was successfully submitted. (required)
-     * @param page Used to request a specific page of data to be returned.  The page indexing starts at 0 (the first page is &#x27;page&#x27;&#x3D; 0). Default is &#x60;0&#x60;. (optional)
-     * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
-
-
-
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call vendorOrdersOrderIdPlatesGetCall(String orderId, Integer page, Integer pageSize) throws ApiException {
-        if(orderId == null) {
+    private Call vendorOrdersOrderIdPlatesGetCall(VendorQueryParams queryParams) throws ApiException {
+        if(queryParams == null || queryParams.orderId() == null) {
             throw new IllegalArgumentException("orderId cannot be null"); 
         }
         Object localVarPostBody = null;
         
         // create path and map variables
         String localVarPath = "/vendor/orders/{orderId}/plates"
-            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(queryParams.orderId()));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
-        if (page != null)
-            apiClient.prepQueryParameter(localVarQueryParams, "page", page);
-        if (pageSize != null)
-            apiClient.prepQueryParameter(localVarQueryParams, "pageSize", pageSize);
+        if (queryParams.page() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
+        if (queryParams.pageSize() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
@@ -188,6 +208,8 @@ public class VendorApi {
     }
 
     /**
+     * Deprecated - use vendorOrdersOrderIdPlatesGet(VendorQueryParams)<br><br>
+     *
      * Get the Plates for a specific Order
      * Retrieve the plate and sample details of an order being processed
      * @param orderId The order id returned by the vendor when the order was successfully submitted. (required)
@@ -197,13 +219,28 @@ public class VendorApi {
      * @return ApiResponse&lt;VendorPlateListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<BrAPIVendorPlateListResponse> vendorOrdersOrderIdPlatesGet(String orderId, Integer page, Integer pageSize) throws ApiException {
-        Call call = vendorOrdersOrderIdPlatesGetCall(orderId, page, pageSize);
+        return vendorOrdersOrderIdPlatesGet(VendorQueryParams.builder().orderId(orderId).page(page).pageSize(pageSize).build());
+    }
+
+    /**
+     * Get the Plates for a specific Order
+     * Retrieve the plate and sample details of an order being processed
+     * @param queryParams
+
+     * @return ApiResponse&lt;VendorPlateListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BrAPIVendorPlateListResponse> vendorOrdersOrderIdPlatesGet(VendorQueryParams queryParams) throws ApiException {
+        Call call = vendorOrdersOrderIdPlatesGetCall(queryParams);
         Type localVarReturnType = new TypeToken<BrAPIVendorPlateListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
+     * Deprecated - use vendorOrdersOrderIdPlatesGetAsync(VendorQueryParams, ApiCallback)<br><br>
+     *
      * Get the Plates for a specific Order (asynchronously)
      * Retrieve the plate and sample details of an order being processed
      * @param orderId The order id returned by the vendor when the order was successfully submitted. (required)
@@ -214,39 +251,48 @@ public class VendorApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call vendorOrdersOrderIdPlatesGetAsync(String orderId, Integer page, Integer pageSize, final ApiCallback<BrAPIVendorPlateListResponse> callback) throws ApiException {
-        Call call = vendorOrdersOrderIdPlatesGetCall(orderId, page, pageSize);
+        return vendorOrdersOrderIdPlatesGetAsync(VendorQueryParams.builder().orderId(orderId).page(page).pageSize(pageSize).build(), callback);
+    }
+
+    /**
+     * Get the Plates for a specific Order (asynchronously)
+     * Retrieve the plate and sample details of an order being processed
+     * @param queryParams
+
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public Call vendorOrdersOrderIdPlatesGetAsync(VendorQueryParams queryParams, final ApiCallback<BrAPIVendorPlateListResponse> callback) throws ApiException {
+        Call call = vendorOrdersOrderIdPlatesGetCall(queryParams);
         Type localVarReturnType = new TypeToken<BrAPIVendorPlateListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for vendorOrdersOrderIdResultsGet
-     * @param orderId The order id returned by the vendor when the order was successfully submitted. (required)
-     * @param page Used to request a specific page of data to be returned.  The page indexing starts at 0 (the first page is &#x27;page&#x27;&#x3D; 0). Default is &#x60;0&#x60;. (optional)
-     * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
-
-
-
+     * @param queryParams
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call vendorOrdersOrderIdResultsGetCall(String orderId, Integer page, Integer pageSize) throws ApiException {
-        if(orderId == null) {
+    private Call vendorOrdersOrderIdResultsGetCall(VendorQueryParams queryParams) throws ApiException {
+        if(queryParams == null || queryParams.orderId() == null) {
             throw new IllegalArgumentException("orderId cannot be null"); 
         }
         Object localVarPostBody = null;
         
         // create path and map variables
         String localVarPath = "/vendor/orders/{orderId}/results"
-            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(queryParams.orderId()));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
-        if (page != null)
-            apiClient.prepQueryParameter(localVarQueryParams, "page", page);
-        if (pageSize != null)
-            apiClient.prepQueryParameter(localVarQueryParams, "pageSize", pageSize);
+        if (queryParams.page() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
+        if (queryParams.pageSize() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
@@ -271,6 +317,8 @@ public class VendorApi {
     }
 
     /**
+     * Deprecated - use vendorOrdersOrderIdResultsGet(VendorQueryParams)<br><br>
+     *
      * Get the results of a specific Order
      * Retrieve the data files generated by the vendors analysis
      * @param orderId The order id returned by the vendor when the order was successfully submitted. (required)
@@ -280,13 +328,28 @@ public class VendorApi {
      * @return ApiResponse&lt;VendorResultFileListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<BrAPIVendorResultFileListResponse> vendorOrdersOrderIdResultsGet(String orderId, Integer page, Integer pageSize) throws ApiException {
-        Call call = vendorOrdersOrderIdResultsGetCall(orderId, page, pageSize);
+        return vendorOrdersOrderIdResultsGet(VendorQueryParams.builder().orderId(orderId).page(page).pageSize(pageSize).build());
+    }
+
+    /**
+     * Get the results of a specific Order
+     * Retrieve the data files generated by the vendors analysis
+     * @param queryParams
+
+     * @return ApiResponse&lt;VendorResultFileListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BrAPIVendorResultFileListResponse> vendorOrdersOrderIdResultsGet(VendorQueryParams queryParams) throws ApiException {
+        Call call = vendorOrdersOrderIdResultsGetCall(queryParams);
         Type localVarReturnType = new TypeToken<BrAPIVendorResultFileListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
+     * Deprecated - use vendorOrdersOrderIdResultsGetAsync(VendorQueryParams, ApiCallback)<br><br>
+     *
      * Get the results of a specific Order (asynchronously)
      * Retrieve the data files generated by the vendors analysis
      * @param orderId The order id returned by the vendor when the order was successfully submitted. (required)
@@ -297,8 +360,22 @@ public class VendorApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call vendorOrdersOrderIdResultsGetAsync(String orderId, Integer page, Integer pageSize, final ApiCallback<BrAPIVendorResultFileListResponse> callback) throws ApiException {
-        Call call = vendorOrdersOrderIdResultsGetCall(orderId, page, pageSize);
+        return vendorOrdersOrderIdResultsGetAsync(VendorQueryParams.builder().orderId(orderId).page(page).pageSize(pageSize).build(), callback);
+    }
+
+    /**
+     * Get the results of a specific Order (asynchronously)
+     * Retrieve the data files generated by the vendors analysis
+     * @param queryParams
+
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public Call vendorOrdersOrderIdResultsGetAsync(VendorQueryParams queryParams, final ApiCallback<BrAPIVendorResultFileListResponse> callback) throws ApiException {
+        Call call = vendorOrdersOrderIdResultsGetCall(queryParams);
         Type localVarReturnType = new TypeToken<BrAPIVendorResultFileListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -320,7 +397,7 @@ public class VendorApi {
         
         // create path and map variables
         String localVarPath = "/vendor/orders/{orderId}/status"
-            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -537,7 +614,7 @@ public class VendorApi {
         
         // create path and map variables
         String localVarPath = "/vendor/plates/{submissionId}"
-            .replaceAll("\\{" + "submissionId" + "\\}", apiClient.escapeString(submissionId.toString()));
+            .replaceAll("\\{" + "submissionId" + "\\}", apiClient.escapeString(submissionId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

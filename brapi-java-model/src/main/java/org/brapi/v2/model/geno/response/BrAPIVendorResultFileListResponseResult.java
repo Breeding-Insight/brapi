@@ -1,15 +1,13 @@
 package org.brapi.v2.model.geno.response;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.validation.Valid;
-
 import org.brapi.v2.model.BrAPIResponseResult;
 import org.brapi.v2.model.geno.BrAPIVendorResultFile;
+
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 /**

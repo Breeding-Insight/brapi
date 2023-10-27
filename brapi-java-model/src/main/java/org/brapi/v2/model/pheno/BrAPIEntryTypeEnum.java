@@ -1,5 +1,6 @@
 package org.brapi.v2.model.pheno;
 
+import lombok.NonNull;
 import org.brapi.v2.model.BrAPIEnum;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,8 +13,8 @@ public enum BrAPIEntryTypeEnum implements BrAPIEnum {
 
     private String value;
 
-    BrAPIEntryTypeEnum(String value) {
-      this.value = value;
+    BrAPIEntryTypeEnum(@NonNull String value) {
+      this.value = value.toUpperCase();
     }
 
     @Override
@@ -23,9 +24,9 @@ public enum BrAPIEntryTypeEnum implements BrAPIEnum {
     }
 
     @JsonCreator
-    public static BrAPIEntryTypeEnum fromValue(String text) {
+    public static BrAPIEntryTypeEnum fromValue(@NonNull String text) {
       for (BrAPIEntryTypeEnum b : BrAPIEntryTypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (String.valueOf(b.value).equals(text.toUpperCase())) {
           return b;
         }
       }

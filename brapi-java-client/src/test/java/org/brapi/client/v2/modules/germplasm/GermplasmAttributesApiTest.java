@@ -14,6 +14,7 @@ package org.brapi.client.v2.modules.germplasm;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmAttributeQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
@@ -24,152 +25,176 @@ import org.brapi.v2.model.germ.request.BrAPIGermplasmAttributeSearchRequest;
 import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeSingleResponse;
 import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * API tests for GermplasmAttributesApi
  */
-public class GermplasmAttributesApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class GermplasmAttributesApiTest extends BrAPIClientTest {
 
-    private final GermplasmAttributesApi api = new GermplasmAttributesApi();
+	private final GermplasmAttributesApi api = new GermplasmAttributesApi(this.apiClient);
 
-    /**
-     * Get the details for a specific Germplasm Attribute
-     *
-     * Get the details for a specific Germplasm Attribute
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void attributesAttributeDbIdGetTest() throws ApiException {
-        String attributeDbId = null;
+	/**
+	 * Get the details for a specific Germplasm Attribute
+	 *
+	 * Get the details for a specific Germplasm Attribute
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void attributesAttributeDbIdGetTest() throws ApiException {
+		String attributeDbId = "attribute1";
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIGermplasmAttributeSingleResponse> response = api.attributesAttributeDbIdGet(attributeDbId);
-		});
+		ApiResponse<BrAPIGermplasmAttributeSingleResponse> response = api.attributesAttributeDbIdGet(attributeDbId);
 
-        // TODO: test validations
-    }
-    /**
-     * Update an existing Germplasm Attribute
-     *
-     * Update an existing Germplasm Attribute
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void attributesAttributeDbIdPutTest() throws ApiException {
-        String attributeDbId = null;
-        BrAPIGermplasmAttribute body = null;
+		assertEquals(attributeDbId, response.getBody().getResult().getAttributeDbId());
+	}
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIGermplasmAttributeSingleResponse> response = api.attributesAttributeDbIdPut(attributeDbId, body);
-		});
+	/**
+	 * Update an existing Germplasm Attribute
+	 *
+	 * Update an existing Germplasm Attribute
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void attributesAttributeDbIdPutTest() throws ApiException {
+		String attributeDbId = "attribute1";
+		BrAPIGermplasmAttribute body = new BrAPIGermplasmAttribute().attributeName("New Name");
 
-        // TODO: test validations
-    }
-    /**
-     * Get the Categories of Germplasm Attributes
-     *
-     * List all available attribute categories.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void attributesCategoriesGetTest() throws ApiException {
-        Integer page = null;
-        Integer pageSize = null;
-        
-        ApiResponse<BrAPIGermplasmAttributeCategoryListResponse> response = api.attributesCategoriesGet(page, pageSize);
+		ApiResponse<BrAPIGermplasmAttributeSingleResponse> response = api.attributesAttributeDbIdPut(attributeDbId,
+				body);
 
-        // TODO: test validations
-    }
-    /**
-     * Get the Germplasm Attributes
-     *
-     * List available attributes.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void attributesGetTest() throws ApiException {
-        String attributeCategory = null;
-        String attributeDbId = null;
-        String attributeName = null;
-        String germplasmDbId = null;
-        String externalReferenceID = null;
-        String externalReferenceSource = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        GermplasmAttributeQueryParams queryParams = new GermplasmAttributeQueryParams();
-        ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.attributesGet(queryParams);
+		assertEquals(attributeDbId, response.getBody().getResult().getAttributeDbId());
+		assertEquals("New Name", response.getBody().getResult().getAttributeName());
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Create new Germplasm Attributes
-     *
-     * Create new Germplasm Attributes
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void attributesPostTest() throws ApiException {
-        List<BrAPIGermplasmAttribute> body = null;
+	/**
+	 * Get the Categories of Germplasm Attributes
+	 *
+	 * List all available attribute categories.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void attributesCategoriesGetTest() throws ApiException {
+		Integer page = null;
+		Integer pageSize = null;
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.attributesPost(body);
-		});
+		ApiResponse<BrAPIGermplasmAttributeCategoryListResponse> response = api.attributesCategoriesGet(page, pageSize);
 
-        // TODO: test validations
-    }
-    /**
-     * Submit a search request for Germplasm Attributes
-     *
-     * Search for a set of Germplasm Attributes based on some criteria          See Search Services for additional implementation details.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchAttributesPostTest() throws ApiException {
-        BrAPIGermplasmAttributeSearchRequest body = null;
+		assertFalse(response.getBody().getResult().getData().isEmpty());
+	}
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPIGermplasmAttributeListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchAttributesPost(body);
-		});
+	/**
+	 * Get the Germplasm Attributes
+	 *
+	 * List available attributes.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void attributesGetTest() throws ApiException {
+		String attributeCategory = null;
+		String attributeDbId = "attribute1";
+		String attributeName = null;
+		String germplasmDbId = null;
+		String externalReferenceID = null;
+		String externalReferenceSource = null;
+		Integer page = null;
+		Integer pageSize = null;
 
-        // TODO: test validations
-    }
-    /**
-     * Get the results of a Germplasm Attributes search request
-     *
-     * Get the results of a Germplasm Attributes search request  See Search Services for additional implementation details.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchAttributesSearchResultsDbIdGetTest() throws ApiException {
-        String searchResultsDbId = null;
-        Integer page = null;
-        Integer pageSize = null;
+		GermplasmAttributeQueryParams queryParams = new GermplasmAttributeQueryParams().attributeDbId(attributeDbId);
+		ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.attributesGet(queryParams);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPIGermplasmAttributeListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                    api.searchAttributesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
-		});
+		assertEquals(attributeDbId, response.getBody().getResult().getData().get(0).getAttributeDbId());
+	}
 
-        // TODO: test validations
-    }
+	/**
+	 * Create new Germplasm Attributes
+	 *
+	 * Create new Germplasm Attributes
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void attributesPostTest() throws ApiException {
+		BrAPIGermplasmAttribute attr = new BrAPIGermplasmAttribute().attributeName("New Attribute");
+		List<BrAPIGermplasmAttribute> body = Arrays.asList(attr);
+
+		ApiResponse<BrAPIGermplasmAttributeListResponse> response = api.attributesPost(body);
+
+		assertEquals(attr.getAttributeName(), response.getBody().getResult().getData().get(0).getAttributeName());
+	}
+
+	/**
+	 * Submit a search request for Germplasm Attributes
+	 *
+	 * Search for a set of Germplasm Attributes based on some criteria See Search
+	 * Services for additional implementation details.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void searchAttributesPostTest() throws ApiException {
+		BrAPIGermplasmAttributeSearchRequest body = new BrAPIGermplasmAttributeSearchRequest()
+				.addAttributeDbIdsItem("attribute1")
+				.addAttributeDbIdsItem("attribute2");
+
+		ApiResponse<Pair<Optional<BrAPIGermplasmAttributeListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api
+				.searchAttributesPost(body);
+		
+        Optional<BrAPIGermplasmAttributeListResponse> listResponse = response.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+        // only results are returned
+        assertTrue(listResponse.isPresent());
+        assertFalse(searchIdResponse.isPresent());
+
+        assertEquals(2, listResponse.get().getResult().getData().size(), "unexpected number of pedigree nodes returned");
+	}
+
+	/**
+	 * Get the results of a Germplasm Attributes search request
+	 *
+	 * Get the results of a Germplasm Attributes search request See Search Services
+	 * for additional implementation details.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void searchAttributesSearchResultsDbIdGetTest() throws ApiException {
+		BrAPIGermplasmAttributeSearchRequest baseRequest = new BrAPIGermplasmAttributeSearchRequest()
+				.addAttributeDbIdsItem("attribute1")
+				.addAttributeDbIdsItem("attribute1")
+				.addAttributeDbIdsItem("attribute1")
+				.addAttributeDbIdsItem("attribute1")
+				.addAttributeDbIdsItem("attribute2");
+
+        ApiResponse<Pair<Optional<BrAPIGermplasmAttributeListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = this.api.searchAttributesPost(baseRequest);
+        Optional<BrAPIGermplasmAttributeListResponse> listResponse = response.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+        // only search ID is returned
+        assertFalse(listResponse.isPresent());
+        assertTrue(searchIdResponse.isPresent());
+
+        // Get results from search ID
+    	ApiResponse<Pair<Optional<BrAPIGermplasmAttributeListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchResponse = this.api.searchAttributesSearchResultsDbIdGet(searchIdResponse.get().getResult().getSearchResultsDbId(), 0, 10);
+        Optional<BrAPIGermplasmAttributeListResponse> listResponse2 = searchResponse.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse2 = searchResponse.getBody().getRight();
+        // only results are returned
+        assertTrue(listResponse2.isPresent());
+        assertFalse(searchIdResponse2.isPresent());
+
+        assertEquals(2, listResponse2.get().getResult().getData().size(), "unexpected number of pedigree nodes returned");
+	}
 }

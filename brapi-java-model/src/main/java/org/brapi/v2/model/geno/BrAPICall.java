@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
 
@@ -37,7 +38,14 @@ public class BrAPICall   {
   @JsonProperty("genotype")
   private BrAPIListValue genotype = null;
 
+  @JsonProperty("genotypeMetadata")
+  private List<BrAPICallGenotypeMetadata> genotypeMetadata = null;
+
+  @JsonProperty("genotypeValue")
+  private String genotypeValue = null;
+
   @JsonProperty("genotype_likelihood")
+  @SerializedName("genotype_likelihood")
   @Valid
   private List<Double> genotypeLikelihood = null;
 
@@ -49,6 +57,12 @@ public class BrAPICall   {
 
   @JsonProperty("variantName")
   private String variantName = null;
+
+  @JsonProperty("variantSetDbId")
+  private String variantSetDbId = null;
+
+  @JsonProperty("variantSetName")
+  private String variantSetName = null;
 
   private final transient Gson gson = new Gson();
 
@@ -138,6 +152,44 @@ public class BrAPICall   {
     this.genotype = genotype;
   }
 
+  public BrAPICall genotypeMetadata(List<BrAPICallGenotypeMetadata> genotypeMetadata) {
+    this.genotypeMetadata = genotypeMetadata;
+    return this;
+  }
+
+  public BrAPICall addGenotypeMetadataItem(BrAPICallGenotypeMetadata genotypeMetadataItem) {
+    if (this.genotypeMetadata == null) {
+      this.genotypeMetadata = new ArrayList<BrAPICallGenotypeMetadata>();
+    }
+    this.genotypeMetadata.add(genotypeMetadataItem);
+    return this;
+  }
+
+  /**
+   * Genotype Metadata are additional layers of metadata associated with each genotype.
+   * @return genotypeMetadata
+   **/
+  public List<BrAPICallGenotypeMetadata> getGenotypeMetadata() {
+    return genotypeMetadata;
+  }
+
+  public void setGenotypeMetadata(List<BrAPICallGenotypeMetadata> genotypeMetadata) {
+    this.genotypeMetadata = genotypeMetadata;
+  }
+
+  public BrAPICall genotypeValue(String genotypeValue) {
+    this.genotypeValue = genotypeValue;
+    return this;
+  }
+
+  public String getGenotypeValue() {
+    return genotypeValue;
+  }
+
+  public void setGenotypeValue(String genotypeValue) {
+    this.genotypeValue = genotypeValue;
+  }
+
   public BrAPICall genotypeLikelihood(List<Double> genotypeLikelihood) {
     this.genotypeLikelihood = genotypeLikelihood;
     return this;
@@ -222,6 +274,40 @@ public class BrAPICall   {
     this.variantName = variantName;
   }
 
+  public BrAPICall variantSetDbId(String variantSetDbId) {
+    this.variantSetDbId = variantSetDbId;
+    return this;
+  }
+
+   /**
+   * The unique identifier for a VariantSet
+   * @return variantSetDbId
+  **/
+  public String getVariantSetDbId() {
+    return variantSetDbId;
+  }
+
+  public void setVariantSetDbId(String variantSetDbId) {
+    this.variantSetDbId = variantSetDbId;
+  }
+
+  public BrAPICall variantSetName(String variantSetName) {
+    this.variantSetName = variantSetName;
+    return this;
+  }
+
+   /**
+   * The human readable name for a VariantSet
+   * @return variantSetName
+  **/
+  public String getVariantSetName() {
+    return variantSetName;
+  }
+
+  public void setVariantSetName(String variantSetName) {
+    this.variantSetName = variantSetName;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -236,15 +322,19 @@ public class BrAPICall   {
         Objects.equals(this.callSetDbId, call.callSetDbId) &&
         Objects.equals(this.callSetName, call.callSetName) &&
         Objects.equals(this.genotype, call.genotype) &&
+        Objects.equals(this.genotypeMetadata, call.genotypeMetadata) &&
+        Objects.equals(this.genotypeValue, call.genotypeValue) &&
         Objects.equals(this.genotypeLikelihood, call.genotypeLikelihood) &&
         Objects.equals(this.phaseSet, call.phaseSet) &&
         Objects.equals(this.variantDbId, call.variantDbId) &&
-        Objects.equals(this.variantName, call.variantName);
+        Objects.equals(this.variantName, call.variantName) &&
+        Objects.equals(this.variantSetDbId, call.variantSetDbId) &&
+        Objects.equals(this.variantSetName, call.variantSetName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(additionalInfo, callSetDbId, callSetName, genotype, genotypeLikelihood, phaseSet, variantDbId, variantName);
+    return Objects.hash(additionalInfo, callSetDbId, callSetName, genotype, genotypeMetadata, genotypeValue, genotypeLikelihood, phaseSet, variantDbId, variantName, variantSetDbId, variantSetName);
   }
 
   @Override
@@ -256,10 +346,14 @@ public class BrAPICall   {
     sb.append("    callSetDbId: ").append(toIndentedString(callSetDbId)).append("\n");
     sb.append("    callSetName: ").append(toIndentedString(callSetName)).append("\n");
     sb.append("    genotype: ").append(toIndentedString(genotype)).append("\n");
+    sb.append("    genotypeMetadata: ").append(toIndentedString(genotypeMetadata)).append("\n");
+    sb.append("    genotypeValue: ").append(toIndentedString(genotypeValue)).append("\n");
     sb.append("    genotypeLikelihood: ").append(toIndentedString(genotypeLikelihood)).append("\n");
     sb.append("    phaseSet: ").append(toIndentedString(phaseSet)).append("\n");
     sb.append("    variantDbId: ").append(toIndentedString(variantDbId)).append("\n");
     sb.append("    variantName: ").append(toIndentedString(variantName)).append("\n");
+    sb.append("    variantSetDbId: ").append(toIndentedString(variantSetDbId)).append("\n");
+    sb.append("    variantSetName: ").append(toIndentedString(variantSetName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -9,6 +9,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 /**
@@ -48,20 +49,18 @@ public class SqlDateTypeAdapter extends TypeAdapter<java.sql.Date> {
 
     @Override
     public java.sql.Date read(JsonReader in) throws IOException {
-        switch (in.peek()) {
-            case NULL:
-                in.nextNull();
-                return null;
-            default:
-                String date = in.nextString();
-                try {
-                    if (dateFormat != null) {
-                        return new java.sql.Date(dateFormat.parse(date).getTime());
-                    }
-                    return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
-                } catch (ParseException e) {
-                    throw new JsonParseException(e);
-                }
+        if (in.peek() == JsonToken.NULL) {
+            in.nextNull();
+            return null;
+        }
+        String date = in.nextString();
+        try {
+            if (dateFormat != null) {
+                return new java.sql.Date(dateFormat.parse(date).getTime());
+            }
+            return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
+        } catch (ParseException e) {
+            throw new JsonParseException(e);
         }
     }
 }

@@ -1,10 +1,8 @@
 package org.brapi.v2.model.germ;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-
+import java.util.Objects;
 
 
 /**
@@ -12,68 +10,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 
 
-public class BrAPIPedigreeNodeSiblings   {
-  @JsonProperty("germplasmDbId")
-  private String germplasmDbId = null;
+@Deprecated
+public class BrAPIPedigreeNodeSiblings extends BrAPIPedigreeNodeSibling {
 
-  @JsonProperty("germplasmName")
-  private String germplasmName = null;
-
+  @Deprecated
   public BrAPIPedigreeNodeSiblings germplasmDbId(String germplasmDbId) {
-    this.germplasmDbId = germplasmDbId;
+    super.setGermplasmDbId(germplasmDbId);
     return this;
   }
 
-  /**
-   * the germplasm DbId of the sibling
-   * @return germplasmDbId
-  **/
-  
-  
-    public String getGermplasmDbId() {
-    return germplasmDbId;
-  }
-
-  public void setGermplasmDbId(String germplasmDbId) {
-    this.germplasmDbId = germplasmDbId;
-  }
-
+  @Deprecated
   public BrAPIPedigreeNodeSiblings germplasmName(String germplasmName) {
-    this.germplasmName = germplasmName;
+    super.setGermplasmName(germplasmName);
     return this;
   }
-
-  /**
-   * the germplasm name of the sibling
-   * @return germplasmName
-  **/
-  
-  
-    public String getGermplasmName() {
-    return germplasmName;
-  }
-
-  public void setGermplasmName(String germplasmName) {
-    this.germplasmName = germplasmName;
-  }
-
 
   @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    BrAPIPedigreeNodeSiblings pedigreeNodeSiblings = (BrAPIPedigreeNodeSiblings) o;
-    return Objects.equals(this.germplasmDbId, pedigreeNodeSiblings.germplasmDbId) &&
-        Objects.equals(this.germplasmName, pedigreeNodeSiblings.germplasmName);
+  public boolean equals(Object o) {
+    return super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(germplasmDbId, germplasmName);
+    return super.hashCode();
   }
 
   @Override
@@ -81,8 +40,8 @@ public class BrAPIPedigreeNodeSiblings   {
     StringBuilder sb = new StringBuilder();
     sb.append("class PedigreeNodeSiblings {\n");
     
-    sb.append("    germplasmDbId: ").append(toIndentedString(germplasmDbId)).append("\n");
-    sb.append("    germplasmName: ").append(toIndentedString(germplasmName)).append("\n");
+    sb.append("    germplasmDbId: ").append(toIndentedString(super.getGermplasmDbId())).append("\n");
+    sb.append("    germplasmName: ").append(toIndentedString(super.getGermplasmName())).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -91,7 +50,7 @@ public class BrAPIPedigreeNodeSiblings   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

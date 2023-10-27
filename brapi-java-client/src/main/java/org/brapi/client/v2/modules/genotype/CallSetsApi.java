@@ -72,7 +72,7 @@ public class CallSetsApi {
         
         // create path and map variables
         String localVarPath = "/callsets/{callSetDbId}/calls"
-            .replaceAll("\\{" + "callSetDbId" + "\\}", apiClient.escapeString(callSetDbId.toString()));
+            .replaceAll("\\{" + "callSetDbId" + "\\}", apiClient.escapeString(callSetDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -86,6 +86,8 @@ public class CallSetsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "sepUnphased", queryParams.sepUnphased());
         if (queryParams.pageToken() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageToken", queryParams.pageToken());
+        if (queryParams.page() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
 
@@ -155,7 +157,7 @@ public class CallSetsApi {
         
         // create path and map variables
         String localVarPath = "/callsets/{callSetDbId}"
-            .replaceAll("\\{" + "callSetDbId" + "\\}", apiClient.escapeString(callSetDbId.toString()));
+            .replaceAll("\\{" + "callSetDbId" + "\\}", apiClient.escapeString(callSetDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -242,6 +244,10 @@ public class CallSetsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
+        if (queryParams.externalReferenceId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
+        if (queryParams.externalReferenceSource() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
@@ -381,7 +387,7 @@ public class CallSetsApi {
         
         // create path and map variables
         String localVarPath = "/search/callsets/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

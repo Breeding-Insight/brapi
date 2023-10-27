@@ -67,7 +67,7 @@ public class CrossingProjectsApi {
         
         // create path and map variables
         String localVarPath = "/crossingprojects/{crossingProjectDbId}"
-            .replaceAll("\\{" + "crossingProjectDbId" + "\\}", apiClient.escapeString(crossingProjectDbId.toString()));
+            .replaceAll("\\{" + "crossingProjectDbId" + "\\}", apiClient.escapeString(crossingProjectDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -144,7 +144,7 @@ public class CrossingProjectsApi {
         
         // create path and map variables
         String localVarPath = "/crossingprojects/{crossingProjectDbId}"
-            .replaceAll("\\{" + "crossingProjectDbId" + "\\}", apiClient.escapeString(crossingProjectDbId.toString()));
+            .replaceAll("\\{" + "crossingProjectDbId" + "\\}", apiClient.escapeString(crossingProjectDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -221,8 +221,10 @@ public class CrossingProjectsApi {
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
         if (queryParams.crossingProjectDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "crossingProjectDbId", queryParams.crossingProjectDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

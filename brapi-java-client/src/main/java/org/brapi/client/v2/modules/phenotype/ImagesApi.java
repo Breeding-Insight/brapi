@@ -35,6 +35,7 @@ import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
 import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
+import org.brapi.v2.model.pheno.response.BrAPIImageDeleteResponse;
 
 public class ImagesApi {
     private BrAPIClient apiClient;
@@ -82,8 +83,10 @@ public class ImagesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "observationDbId", queryParams.observationDbId());
         if (queryParams.descriptiveOntologyTerm() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "descriptiveOntologyTerm", queryParams.descriptiveOntologyTerm());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
@@ -157,7 +160,7 @@ public class ImagesApi {
         
         // create path and map variables
         String localVarPath = "/images/{imageDbId}"
-            .replaceAll("\\{" + "imageDbId" + "\\}", apiClient.escapeString(imageDbId.toString()));
+            .replaceAll("\\{" + "imageDbId" + "\\}", apiClient.escapeString(imageDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -234,7 +237,7 @@ public class ImagesApi {
         
         // create path and map variables
         String localVarPath = "/images/{imageDbId}/imagecontent"
-            .replaceAll("\\{" + "imageDbId" + "\\}", apiClient.escapeString(imageDbId.toString()));
+            .replaceAll("\\{" + "imageDbId" + "\\}", apiClient.escapeString(imageDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -313,7 +316,7 @@ public class ImagesApi {
         
         // create path and map variables
         String localVarPath = "/images/{imageDbId}"
-            .replaceAll("\\{" + "imageDbId" + "\\}", apiClient.escapeString(imageDbId.toString()));
+            .replaceAll("\\{" + "imageDbId" + "\\}", apiClient.escapeString(imageDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -446,9 +449,6 @@ public class ImagesApi {
     /**
      * Build call for searchImagesPost
      * @param body  (optional)
-
-
-
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
@@ -534,7 +534,7 @@ public class ImagesApi {
         
         // create path and map variables
         String localVarPath = "/search/images/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -595,6 +595,74 @@ public class ImagesApi {
     public Call searchImagesSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<BrAPIImageListResponse> callback) throws ApiException {
         Call call = searchImagesSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPIImageListResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for deleteImage
+     * @param body  (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private Call deleteImagesPostCall(BrAPIImageSearchRequest body) throws ApiException {
+        if(body == null) {
+        	throw new IllegalArgumentException("body cannot be null");
+        }
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/delete/images";
+
+        Map<String, String> localVarQueryParams = new HashMap<>();
+        Map<String, String> localVarCollectionQueryParams = new HashMap<>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "AuthorizationToken" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames);
+    }
+
+    /**
+     * delete a set of images based on search criteria
+     * @param body  (optional)
+
+     * @return ApiResponse&lt;ImageListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BrAPIImageDeleteResponse> deleteImagesPost(BrAPIImageSearchRequest body) throws ApiException {
+        Call call = deleteImagesPostCall(body);
+        Type localVarReturnType = new TypeToken<BrAPIImageDeleteResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * 
+     * delete a set of images based on search criteria
+     * @param body  (optional)
+
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public Call deleteImagesPostAsync(BrAPIImageSearchRequest body, final ApiCallback<BrAPIImageListResponse> callback) throws ApiException {
+        Call call = deleteImagesPostCall(body);
+        Type localVarReturnType = new TypeToken<BrAPIImageDeleteResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
