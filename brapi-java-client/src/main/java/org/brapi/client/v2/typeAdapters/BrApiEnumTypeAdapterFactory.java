@@ -42,7 +42,7 @@ public class BrApiEnumTypeAdapterFactory implements TypeAdapterFactory {
 
         final Map<String, T> valueToNameMap = new HashMap<String, T>();
         for (T constant : rawType.getEnumConstants()) {
-            valueToNameMap.put(((BrAPIEnum)constant).getBrapiValue(), constant);
+            valueToNameMap.put(((BrAPIEnum)constant).getBrapiValue().toUpperCase(), constant);
         }
 
         return new TypeAdapter<T>() {
@@ -60,7 +60,8 @@ public class BrApiEnumTypeAdapterFactory implements TypeAdapterFactory {
                     reader.nextNull();
                     return null;
                 } else {
-                    return valueToNameMap.get(reader.nextString());
+                    String nextString = reader.nextString();
+                    return valueToNameMap.get(nextString.toUpperCase());
                 }
             }
         };

@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantQueryParams;
@@ -24,7 +25,6 @@ import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.brapi.v2.model.geno.response.BrAPIVariantSingleResponse;
 import org.brapi.v2.model.geno.response.BrAPIVariantsListResponse;
 import org.brapi.v2.model.geno.request.BrAPIVariantsSearchRequest;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -32,9 +32,9 @@ import java.util.Optional;
 /**
  * API tests for VariantsApi
  */
-public class VariantsApiTest {
+public class VariantsApiTest extends BrAPIClientTest {
 
-    private final VariantsApi api = new VariantsApi();
+    private final VariantsApi api = new VariantsApi(this.apiClient);
 
     /**
      * Gets a list of &#x60;Variant&#x60; matching the search criteria.
@@ -66,11 +66,12 @@ public class VariantsApiTest {
     public void searchVariantsSearchResultsDbIdGetTest() throws ApiException {
         String searchResultsDbId = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             ApiResponse<Pair<Optional<BrAPIVariantsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                    api.searchVariantsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
+                    api.searchVariantsSearchResultsDbIdGet(searchResultsDbId, pageToken, page, pageSize);
 		});
 
         // TODO: test validations
@@ -87,9 +88,14 @@ public class VariantsApiTest {
     public void variantsGetTest() throws ApiException {
         String variantDbId = null;
         String variantSetDbId = null;
+        String referenceDbId = null;
+        String referenceSetDbId = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
-        
+        String externalReferenceId = null;
+        String externalReferenceSource = null;
+
         VariantQueryParams queryParams = new VariantQueryParams();
         ApiResponse<BrAPIVariantsListResponse> response = api.variantsGet(queryParams);
 
@@ -111,6 +117,7 @@ public class VariantsApiTest {
         String sepPhased = null;
         String sepUnphased = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
         
         CallQueryParams queryParams = new CallQueryParams();

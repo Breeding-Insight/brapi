@@ -130,14 +130,12 @@ public class VariantsApi {
      * Build call for searchVariantsSearchResultsDbIdGet
      * @param searchResultsDbId Unique identifier which references the search results (required)
      * @param pageToken Used to request a specific page of data to be returned.  Tokenized pages are for large data sets which can not be efficiently broken into indexed pages. Use the nextPageToken and prevPageToken from a prior response to construct a query and move to the next or previous page respectively.  (optional)
+     * @param page Which result page is requested. The page indexing starts at 0 (the first page is 'page'= 0). Default is 0.
      * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
-
-
-
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call searchVariantsSearchResultsDbIdGetCall(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
+    private Call searchVariantsSearchResultsDbIdGetCall(String searchResultsDbId, String pageToken, Integer page, Integer pageSize) throws ApiException {
         if(searchResultsDbId == null) {
             throw new IllegalArgumentException("searchResultsDbId cannot be null"); 
         }
@@ -145,12 +143,14 @@ public class VariantsApi {
         
         // create path and map variables
         String localVarPath = "/search/variants/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
         if (pageToken != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageToken", pageToken);
+        if (page != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", page);
         if (pageSize != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", pageSize);
 
@@ -175,22 +175,37 @@ public class VariantsApi {
     }
 
     /**
+     * **Deprecated in v2.1** Please use {@code searchVariantsSearchResultsDbIdGet(searchResultsDbId, pageToken, page, pageSize)}.  <br><br>
      * Gets a list of &#x60;Variant&#x60; matching the search criteria.
      * Gets a list of &#x60;Variant&#x60; matching the search criteria.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
      * @param searchResultsDbId Unique identifier which references the search results (required)
      * @param pageToken Used to request a specific page of data to be returned.  Tokenized pages are for large data sets which can not be efficiently broken into indexed pages. Use the nextPageToken and prevPageToken from a prior response to construct a query and move to the next or previous page respectively.  (optional)
      * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
-
      * @return ApiResponse&lt;VariantsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<Pair<Optional<BrAPIVariantsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchVariantsSearchResultsDbIdGet(String searchResultsDbId, String pageToken, Integer pageSize) throws ApiException {
-        Call call = searchVariantsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, pageSize);
+        return searchVariantsSearchResultsDbIdGet(searchResultsDbId, pageToken, 0, pageSize);
+    }
+
+    /**
+     * Gets a list of &#x60;Variant&#x60; matching the search criteria.
+     * @param searchResultsDbId Unique identifier which references the search results (required)
+     * @param pageToken **Deprecated in v2.1** Please use page.<br>Used to request a specific page of data to be returned.  Tokenized pages are for large data sets which can not be efficiently broken into indexed pages. Use the nextPageToken and prevPageToken from a prior response to construct a query and move to the next or previous page respectively.  (optional)
+     * @param page Which result page is requested. The page indexing starts at 0 (the first page is 'page'= 0). Default is 0.
+     * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
+     * @return ApiResponse&lt;VariantsListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Pair<Optional<BrAPIVariantsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchVariantsSearchResultsDbIdGet(String searchResultsDbId, @Deprecated String pageToken, Integer page, Integer pageSize) throws ApiException {
+        Call call = searchVariantsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPIVariantsListResponse>(){}.getType();
         return apiClient.executeSearch(call, localVarReturnType);
     }
 
     /**
+     * **Deprecated in v2.1** Please use {@code searchVariantsSearchResultsDbIdGetAsync(searchResultsDbId, pageToken, page, pageSize, ApiCallback)}.  <br><br>
      * Gets a list of &#x60;Variant&#x60; matching the search criteria. (asynchronously)
      * Gets a list of &#x60;Variant&#x60; matching the search criteria.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
      * @param searchResultsDbId Unique identifier which references the search results (required)
@@ -201,8 +216,23 @@ public class VariantsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call searchVariantsSearchResultsDbIdGetAsync(String searchResultsDbId, String pageToken, Integer pageSize, final ApiCallback<BrAPIVariantsListResponse> callback) throws ApiException {
-        Call call = searchVariantsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, pageSize);
+        return searchVariantsSearchResultsDbIdGetAsync(searchResultsDbId, pageToken, 0, pageSize, callback);
+    }
+
+    /**
+     * Gets a list of &#x60;Variant&#x60; matching the search criteria. (asynchronously)
+     * @param searchResultsDbId Unique identifier which references the search results (required)
+     * @param pageToken **Deprecated in v2.1** Please use page.<br>Used to request a specific page of data to be returned.  Tokenized pages are for large data sets which can not be efficiently broken into indexed pages. Use the nextPageToken and prevPageToken from a prior response to construct a query and move to the next or previous page respectively.  (optional)
+     * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
+
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public Call searchVariantsSearchResultsDbIdGetAsync(String searchResultsDbId, @Deprecated String pageToken, Integer page, Integer pageSize, final ApiCallback<BrAPIVariantsListResponse> callback) throws ApiException {
+        Call call = searchVariantsSearchResultsDbIdGetCall(searchResultsDbId, pageToken, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPIVariantsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -228,10 +258,20 @@ public class VariantsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "variantDbId", queryParams.variantDbId());
         if (queryParams.variantSetDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "variantSetDbId", queryParams.variantSetDbId());
+        if (queryParams.referenceDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "referenceDbId", queryParams.referenceDbId());
+        if (queryParams.referenceSetDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "referenceSetDbId", queryParams.referenceSetDbId());
         if (queryParams.pageToken() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageToken", queryParams.pageToken());
+        if (queryParams.page() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
+        if (queryParams.externalReferenceId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
+        if (queryParams.externalReferenceSource() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -298,7 +338,7 @@ public class VariantsApi {
         
         // create path and map variables
         String localVarPath = "/variants/{variantDbId}/calls"
-            .replaceAll("\\{" + "variantDbId" + "\\}", apiClient.escapeString(variantDbId.toString()));
+            .replaceAll("\\{" + "variantDbId" + "\\}", apiClient.escapeString(variantDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -314,6 +354,8 @@ public class VariantsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "pageToken", queryParams.pageToken());
         if (queryParams.pageSize() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
+        if (queryParams.page() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
@@ -380,7 +422,7 @@ public class VariantsApi {
         
         // create path and map variables
         String localVarPath = "/variants/{variantDbId}"
-            .replaceAll("\\{" + "variantDbId" + "\\}", apiClient.escapeString(variantDbId.toString()));
+            .replaceAll("\\{" + "variantDbId" + "\\}", apiClient.escapeString(variantDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

@@ -72,8 +72,10 @@ public class CrossesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "crossingProjectDbId", queryParams.crossingProjectDbId());
         if (queryParams.crossDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "crossDbId", queryParams.crossDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
@@ -295,8 +297,10 @@ public class CrossesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "crossingProjectDbId", queryParams.crossingProjectDbId());
         if (queryParams.plannedCrossDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "plannedCrossDbId", queryParams.plannedCrossDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

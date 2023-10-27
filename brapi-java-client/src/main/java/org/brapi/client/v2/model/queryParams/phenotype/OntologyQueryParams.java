@@ -35,5 +35,6 @@ import org.brapi.client.v2.model.queryParams.core.BrAPIQueryParams;
 public class OntologyQueryParams extends BrAPIQueryParams {
 
     protected String ontologyDbId;
+    protected String ontologyName;
 
 }

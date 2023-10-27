@@ -14,151 +14,171 @@ package org.brapi.client.v2.modules.core;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.TrialQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.core.BrAPITrial;
-import org.brapi.v2.model.core.response.BrAPITrialListResponse;
 import org.brapi.v2.model.core.request.BrAPITrialSearchRequest;
+import org.brapi.v2.model.core.response.BrAPITrialListResponse;
 import org.brapi.v2.model.core.response.BrAPITrialSingleResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * API tests for TrialsApi
  */
-public class TrialsApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class TrialsApiTest extends BrAPIClientTest {
 
-    private final TrialsApi api = new TrialsApi();
+	private final TrialsApi api = new TrialsApi(this.apiClient);
 
-    /**
-     * Submit a search request for Trials
-     *
-     * Advanced searching for the programs resource. See Search Services for additional implementation details.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchTrialsPostTest() throws ApiException {
-        BrAPITrialSearchRequest body = new BrAPITrialSearchRequest();
+	/**
+	 * Submit a search request for Trials
+	 *
+	 * Advanced searching for the programs resource. See Search Services for
+	 * additional implementation details.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void searchTrialsPostTest() throws ApiException {
+		BrAPITrialSearchRequest body = new BrAPITrialSearchRequest()
+				.addTrialDbIdsItem("trial1")
+				.addTrialDbIdsItem("trial2");
 
-        ApiResponse<Pair<Optional<BrAPITrialListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchTrialsPost(body);
+		ApiResponse<Pair<Optional<BrAPITrialListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api
+				.searchTrialsPost(body);
 
-        // TODO: test validations
-    }
-    /**
-     * Get the results of a Trials search request
-     *
-     * Advanced searching for the trials resource. See Search Services for additional implementation details.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchTrialsSearchResultsDbIdGetTest() throws ApiException {
-        String searchResultsDbId = null;
-        Integer page = null;
-        Integer pageSize = null;
+		Optional<BrAPITrialListResponse> listResponse = response.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+		// only results are returned
+		assertTrue(listResponse.isPresent());
+		assertFalse(searchIdResponse.isPresent());
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPITrialListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                    api.searchTrialsSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
-		});
+		assertEquals(2, listResponse.get().getResult().getData().size(),
+				"unexpected number of pedigree nodes returned");
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Get a filtered list of Trials
-     *
-     * Retrieve a filtered list of breeding Trials. A Trial is a collection of Studies
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void trialsGetTest() throws ApiException {
-        Boolean active = null;
-        String commonCropName = null;
-        String contactDbId = null;
-        String programDbId = null;
-        String locationDbId = null;
-        LocalDate searchDateRangeStart = null;
-        LocalDate searchDateRangeEnd = null;
-        String studyDbId = null;
-        String trialDbId = null;
-        String trialName = null;
-        String trialPUI = null;
-        String sortBy = null;
-        String sortOrder = null;
-        String externalReferenceID = null;
-        String externalReferenceSource = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        TrialQueryParams queryParams = new TrialQueryParams();
-        ApiResponse<BrAPITrialListResponse> response = api.trialsGet(queryParams);
+	/**
+	 * Get the results of a Trials search request
+	 *
+	 * Advanced searching for the trials resource. See Search Services for
+	 * additional implementation details.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void searchTrialsSearchResultsDbIdGetTest() throws ApiException {
+		BrAPITrialSearchRequest body = new BrAPITrialSearchRequest()
+				.addTrialDbIdsItem("trial1")
+				.addTrialDbIdsItem("trial2")
+				.addTrialDbIdsItem("trial3")
+				.addTrialDbIdsItem("trial2")
+				.addTrialDbIdsItem("trial1");
 
-        // TODO: test validations
-    }
-    /**
-     * Create new trials
-     *
-     * Create new breeding Trials. A Trial represents a collection of related Studies. &#x60;trialDbId&#x60; is generated by the server.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void trialsPostTest() throws ApiException {
-        List<BrAPITrial> body = Arrays.asList(new BrAPITrial());
-        
-        ApiResponse<BrAPITrialListResponse> response = api.trialsPost(body);
+		ApiResponse<Pair<Optional<BrAPITrialListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api
+				.searchTrialsPost(body);
 
-        // TODO: test validations
-    }
-    /**
-     * Get the details of a specific Trial
-     *
-     * Get the details of a specific Trial
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void trialsTrialDbIdGetTest() throws ApiException {
-        String trialDbId = null;
+		Optional<BrAPITrialListResponse> listResponse = response.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+		// only search ID is returned
+		assertFalse(listResponse.isPresent());
+		assertTrue(searchIdResponse.isPresent());
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPITrialSingleResponse> response = api.trialsTrialDbIdGet(trialDbId);
-		});
+		// Get results from search ID
+		ApiResponse<Pair<Optional<BrAPITrialListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchResponse = this.api
+				.searchTrialsSearchResultsDbIdGet(searchIdResponse.get().getResult().getSearchResultsDbId(), 0, 10);
+		Optional<BrAPITrialListResponse> listResponse2 = searchResponse.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse2 = searchResponse.getBody().getRight();
+		// only results are returned
+		assertTrue(listResponse2.isPresent());
+		assertFalse(searchIdResponse2.isPresent());
 
-        // TODO: test validations
-    }
-    /**
-     * Update the details of an existing Trial
-     *
-     * Update the details of an existing Trial
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void trialsTrialDbIdPutTest() throws ApiException {
-        String trialDbId = null;
-        BrAPITrial body = null;
+		assertEquals(3, listResponse2.get().getResult().getData().size(),
+				"unexpected number of pedigree nodes returned");
+	}
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPITrialSingleResponse> response = api.trialsTrialDbIdPut(trialDbId, body);
-		});
+	/**
+	 * Get a filtered list of Trials
+	 *
+	 * Retrieve a filtered list of breeding Trials. A Trial is a collection of
+	 * Studies
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void trialsGetTest() throws ApiException {
+		String trialDbId = "trial1";
 
-        // TODO: test validations
-    }
+		TrialQueryParams queryParams = new TrialQueryParams().trialDbId(trialDbId);
+		ApiResponse<BrAPITrialListResponse> response = api.trialsGet(queryParams);
+
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(trialDbId, response.getBody().getResult().getData().get(0).getTrialDbId());
+	}
+
+	/**
+	 * Create new trials
+	 *
+	 * Create new breeding Trials. A Trial represents a collection of related
+	 * Studies. &#x60;trialDbId&#x60; is generated by the server.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void trialsPostTest() throws ApiException {
+		BrAPITrial trial = new BrAPITrial()
+				.trialName("New Trial Name");
+		List<BrAPITrial> body = Arrays.asList(trial);
+
+		ApiResponse<BrAPITrialListResponse> response = api.trialsPost(body);
+		
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(trial.getTrialName(), response.getBody().getResult().getData().get(0).getTrialName());
+		assertNotNull(response.getBody().getResult().getData().get(0).getTrialDbId());
+	}
+
+	/**
+	 * Get the details of a specific Trial
+	 *
+	 * Get the details of a specific Trial
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void trialsTrialDbIdGetTest() throws ApiException {
+		String trialDbId = "trial1";
+
+		ApiResponse<BrAPITrialSingleResponse> response = api.trialsTrialDbIdGet(trialDbId);
+
+		assertEquals(trialDbId, response.getBody().getResult().getTrialDbId());
+	}
+
+	/**
+	 * Update the details of an existing Trial
+	 *
+	 * Update the details of an existing Trial
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void trialsTrialDbIdPutTest() throws ApiException {
+		String trialDbId = "trial1";
+		BrAPITrial body = new BrAPITrial().trialName("New Trial Name");
+
+		ApiResponse<BrAPITrialSingleResponse> response = api.trialsTrialDbIdPut(trialDbId, body);
+
+		assertEquals(trialDbId, response.getBody().getResult().getTrialDbId());
+		assertEquals(body.getTrialName(), response.getBody().getResult().getTrialName());
+	}
 }

@@ -12,18 +12,23 @@
 
 package org.brapi.client.v2.modules.core;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.v2.model.BrAPIWSMIMEDataTypes;
 import org.brapi.v2.model.core.response.BrAPIServerInfoResponse;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 /**
  * API tests for ServerInfoApi
  */
-public class ServerInfoApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class ServerInfoApiTest  extends BrAPIClientTest {
 
-    private final ServerInfoApi api = new ServerInfoApi();
+    private final ServerInfoApi api = new ServerInfoApi(this.apiClient);
 
     /**
      * Get the list of implemented Calls
@@ -39,6 +44,6 @@ public class ServerInfoApiTest {
         
         ApiResponse<BrAPIServerInfoResponse> response = api.serverinfoGet(dataType);
 
-        // TODO: test validations
+        assertNotEquals(0, response.getBody().getResult().getCalls().size());
     }
 }

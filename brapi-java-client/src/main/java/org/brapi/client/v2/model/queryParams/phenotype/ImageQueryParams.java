@@ -34,12 +34,44 @@ import org.brapi.client.v2.model.queryParams.core.BrAPIQueryParams;
 @Accessors(fluent=true)
 public class ImageQueryParams extends BrAPIQueryParams {
 
+    protected String commonCropName;
+    protected String programDbId;
     protected String imageDbId;
     protected String imageName;
     protected String observationUnitDbId;
     protected String observationDbId;
     protected String descriptiveOntologyTerm;
-    protected String externalReferenceID;
     protected String externalReferenceSource;
+    private String externalReferenceId;
+    @Deprecated
+    private String externalReferenceID;
+    
+    public String getExternalReferenceId() {
+		return externalReferenceId;
+	}
+    public String externalReferenceId() {
+		return externalReferenceId;
+	}
+	public void setExternalReferenceId(String externalReferenceId) {
+		this.externalReferenceId = externalReferenceId;
+	}
 
+	@Deprecated
+	public String getExternalReferenceID() {
+		return externalReferenceID;
+	}
+	@Deprecated
+	public String externalReferenceID() {
+		return externalReferenceID;
+	}
+	@Deprecated
+	public void setExternalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+	}
+
+	@Deprecated
+	public ImageQueryParams externalReferenceID(String externalReferenceID) {
+		this.externalReferenceID = externalReferenceID;
+		return this;
+	}
 }

@@ -77,7 +77,7 @@ public class GermplasmApi {
         
         // create path and map variables
         String localVarPath = "/breedingmethods/{breedingMethodDbId}"
-            .replaceAll("\\{" + "breedingMethodDbId" + "\\}", apiClient.escapeString(breedingMethodDbId.toString()));
+            .replaceAll("\\{" + "breedingMethodDbId" + "\\}", apiClient.escapeString(breedingMethodDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -226,7 +226,7 @@ public class GermplasmApi {
         
         // create path and map variables
         String localVarPath = "/germplasm/{germplasmDbId}"
-            .replaceAll("\\{" + "germplasmDbId" + "\\}", apiClient.escapeString(germplasmDbId.toString()));
+            .replaceAll("\\{" + "germplasmDbId" + "\\}", apiClient.escapeString(germplasmDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -299,7 +299,7 @@ public class GermplasmApi {
         
         // create path and map variables
         String localVarPath = "/germplasm/{germplasmDbId}/mcpd"
-            .replaceAll("\\{" + "germplasmDbId" + "\\}", apiClient.escapeString(germplasmDbId.toString()));
+            .replaceAll("\\{" + "germplasmDbId" + "\\}", apiClient.escapeString(germplasmDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -366,6 +366,7 @@ public class GermplasmApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
+    @Deprecated
     private Call germplasmGermplasmDbIdPedigreeGetCall(String germplasmDbId, String notation, Boolean includeSiblings) throws ApiException {
         if(germplasmDbId == null) {
             throw new IllegalArgumentException("germplasmDbId cannot be null"); 
@@ -374,7 +375,7 @@ public class GermplasmApi {
         
         // create path and map variables
         String localVarPath = "/germplasm/{germplasmDbId}/pedigree"
-            .replaceAll("\\{" + "germplasmDbId" + "\\}", apiClient.escapeString(germplasmDbId.toString()));
+            .replaceAll("\\{" + "germplasmDbId" + "\\}", apiClient.escapeString(germplasmDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -415,6 +416,7 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmPedigreeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<BrAPIGermplasmPedigreeResponse> germplasmGermplasmDbIdPedigreeGet(String germplasmDbId, String notation, Boolean includeSiblings) throws ApiException {
         Call call = germplasmGermplasmDbIdPedigreeGetCall(germplasmDbId, notation, includeSiblings);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmPedigreeResponse>(){}.getType();
@@ -432,6 +434,7 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call germplasmGermplasmDbIdPedigreeGetAsync(String germplasmDbId, String notation, Boolean includeSiblings, final ApiCallback<BrAPIGermplasmPedigreeResponse> callback) throws ApiException {
         Call call = germplasmGermplasmDbIdPedigreeGetCall(germplasmDbId, notation, includeSiblings);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmPedigreeResponse>(){}.getType();
@@ -447,6 +450,7 @@ public class GermplasmApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
+    @Deprecated
     private Call germplasmGermplasmDbIdProgenyGetCall(String germplasmDbId) throws ApiException {
         if(germplasmDbId == null) {
             throw new IllegalArgumentException("germplasmDbId cannot be null"); 
@@ -455,7 +459,7 @@ public class GermplasmApi {
         
         // create path and map variables
         String localVarPath = "/germplasm/{germplasmDbId}/progeny"
-            .replaceAll("\\{" + "germplasmDbId" + "\\}", apiClient.escapeString(germplasmDbId.toString()));
+            .replaceAll("\\{" + "germplasmDbId" + "\\}", apiClient.escapeString(germplasmDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -490,6 +494,7 @@ public class GermplasmApi {
      * @return ApiResponse&lt;GermplasmProgenyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<BrAPIGermplasmProgenyResponse> germplasmGermplasmDbIdProgenyGet(String germplasmDbId) throws ApiException {
         Call call = germplasmGermplasmDbIdProgenyGetCall(germplasmDbId);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmProgenyResponse>(){}.getType();
@@ -505,6 +510,7 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call germplasmGermplasmDbIdProgenyGetAsync(String germplasmDbId, final ApiCallback<BrAPIGermplasmProgenyResponse> callback) throws ApiException {
         Call call = germplasmGermplasmDbIdProgenyGetCall(germplasmDbId);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmProgenyResponse>(){}.getType();
@@ -532,7 +538,7 @@ public class GermplasmApi {
         
         // create path and map variables
         String localVarPath = "/germplasm/{germplasmDbId}"
-            .replaceAll("\\{" + "germplasmDbId" + "\\}", apiClient.escapeString(germplasmDbId.toString()));
+            .replaceAll("\\{" + "germplasmDbId" + "\\}", apiClient.escapeString(germplasmDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -631,8 +637,10 @@ public class GermplasmApi {
             apiClient.prepQueryParameter(localVarQueryParams, "parentDbId", queryParams.parentDbId());
         if (queryParams.progenyDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "progenyDbId", queryParams.progenyDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
@@ -852,7 +860,7 @@ public class GermplasmApi {
         
         // create path and map variables
         String localVarPath = "/search/germplasm/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

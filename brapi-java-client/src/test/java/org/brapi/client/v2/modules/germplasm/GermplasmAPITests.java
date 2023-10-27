@@ -22,13 +22,11 @@ import com.github.filosganga.geogson.model.Point;
 import com.github.filosganga.geogson.model.positions.SinglePosition;
 
 import com.google.gson.JsonObject;
-import lombok.SneakyThrows;
 
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmQueryParams;
-import org.brapi.client.v2.model.queryParams.phenotype.ScaleQueryParams;
 import org.brapi.v2.model.BrApiGeoJSON;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.germ.BrAPIBiologicalStatusOfAccessionCode;
@@ -38,8 +36,6 @@ import org.brapi.v2.model.germ.BrAPIGermplasmDonors;
 import org.brapi.v2.model.germ.BrAPIGermplasmSynonyms;
 import org.brapi.v2.model.germ.BrAPIGermplasmOrigin;
 import org.brapi.v2.model.germ.response.BrAPIGermplasmSingleResponse;
-import org.brapi.v2.model.pheno.BrAPIScale;
-import org.brapi.v2.model.pheno.response.BrAPIScaleListResponse;
 import org.brapi.v2.model.germ.BrAPIGermplasmStorageTypes;
 import org.brapi.v2.model.germ.BrAPIGermplasmStorageTypesEnum;
 import org.brapi.v2.model.germ.BrAPITaxonID;
@@ -47,10 +43,9 @@ import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -60,8 +55,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     private BrAPIGermplasm germplasm;
 
     @Test
-    @SneakyThrows
-    public void getGermplasmSuccess() {
+    public void getGermplasmSuccess() throws Exception {
 
         ApiResponse<BrAPIGermplasmListResponse> germplasm = this.germplasmAPI.germplasmGet(new GermplasmQueryParams());
 
@@ -69,8 +63,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void getsGermplasmPageFilter() {
+    public void getsGermplasmPageFilter() throws Exception {
         GermplasmQueryParams baseRequest = GermplasmQueryParams.builder()
                 .page(0)
                 .pageSize(1)
@@ -82,9 +75,8 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
     @Order(1)
-    public void createGermplasmSuccess() {
+    public void createGermplasmSuccess() throws Exception {
 
         JsonObject additionalInfo = new JsonObject();
         additionalInfo.addProperty("test_key", "test_value");
@@ -163,8 +155,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void createMultipleGermplasmSuccess() {
+    public void createMultipleGermplasmSuccess() throws Exception {
 
         BrAPIGermplasm brApiGermplasm1 = new BrAPIGermplasm().germplasmName("test1");
         BrAPIGermplasm brApiGermplasm2 = new BrAPIGermplasm().germplasmName("test2");
@@ -183,8 +174,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void createGermplasmIdPresentFailure() {
+    public void createGermplasmIdPresentFailure() throws Exception {
         BrAPIGermplasm brApiGermplasm = new BrAPIGermplasm()
                 .germplasmName("new test germplasm");
 
@@ -194,8 +184,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void createGermplasmEmptySuccess() {
+    public void createGermplasmEmptySuccess() throws Exception {
         BrAPIGermplasm brApiGermplasm = new BrAPIGermplasm();
         ApiResponse<BrAPIGermplasmListResponse> createdGermplasm = this.germplasmAPI.germplasmPost(Arrays.asList(brApiGermplasm));
 
@@ -205,9 +194,8 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
     @Order(2)
-    public void getGermplasmByIDSuccess() {
+    public void getGermplasmByIDSuccess() throws Exception {
 		BrAPIGermplasm existingGermplasm = this.germplasm;
         ApiResponse<BrAPIGermplasmSingleResponse> germplasmRes = this.germplasmAPI.germplasmGermplasmDbIdGet(existingGermplasm.getGermplasmDbId());
 
@@ -285,9 +273,8 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
     @Order(2)
-    public void getGermplasmByExternalReferenceIDSuccess() {
+    public void getGermplasmByExternalReferenceIDSuccess() throws Exception {
     	List<BrAPIExternalReference> externalReferences = new ArrayList<>();
         externalReferences.add(new BrAPIExternalReference()
                 .referenceID(UUID.randomUUID().toString())
@@ -307,8 +294,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void getGermplasmByExternalReferenceIDDoesNotExist() {
+    public void getGermplasmByExternalReferenceIDDoesNotExist() throws Exception {
         GermplasmQueryParams germplasmRequest = GermplasmQueryParams.builder()
                 .externalReferenceID("will not exist")
                 .build();
@@ -319,8 +305,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void getGermplasmByIdNotExist() {
+    public void getGermplasmByIdNotExist() throws Exception {
 
     	ApiException exception = assertThrows(ApiException.class, () -> {
             ApiResponse<BrAPIGermplasmSingleResponse> germplasm = this.germplasmAPI.germplasmGermplasmDbIdGet("fake dbid");
@@ -333,25 +318,29 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
     @Order(3)
-    public void updateGermplasmSuccess() {
-    	BrAPIGermplasm germplasm = new BrAPIGermplasm();
+    public void updateGermplasmSuccess() throws Exception {
+    	BrAPIGermplasm germplasm = this.germplasm;
         germplasm.setGermplasmName("updated_name");
         germplasm.setAccessionNumber("A000004");
+        germplasm.setPedigree(null);
 
         // Check that it is a success and all data matches
-        ApiResponse<BrAPIGermplasmSingleResponse> updatedGermplasmResult = this.germplasmAPI.germplasmGermplasmDbIdPut("germplasm1", germplasm);
+        AtomicReference<ApiResponse<BrAPIGermplasmSingleResponse>> updatedGermplasmResult = new AtomicReference<>();
+        assertDoesNotThrow(() -> {
+            updatedGermplasmResult.set(this.germplasmAPI.germplasmGermplasmDbIdPut(germplasm.getGermplasmDbId(), germplasm));
+        });
+
 
         assertNotNull(updatedGermplasmResult, "Germplasm was not returned");
-        BrAPIGermplasm updatedGermplasm = updatedGermplasmResult.getBody().getResult();
+        BrAPIGermplasm updatedGermplasm = updatedGermplasmResult.get()
+                                                                .getBody().getResult();
         assertEquals(germplasm.getGermplasmName(), updatedGermplasm.getGermplasmName(), "Wrong germplasm name");
         assertEquals(germplasm.getAccessionNumber(), updatedGermplasm.getAccessionNumber(), "Wrong germplasm accession number");
     }
 
     @Test
-    @SneakyThrows
-    public void updateGermplasmBadId() {
+    public void updateGermplasmBadId() throws Exception {
         // Check that it throws a 404
         BrAPIGermplasm germplasm = new BrAPIGermplasm();
         germplasm.setGermplasmDbId("i_do_not_exist");
@@ -363,8 +352,7 @@ public class GermplasmAPITests extends BrAPIClientTest {
     }
 
     @Test
-    @SneakyThrows
-    public void updateGermplasmMissingId() {
+    public void updateGermplasmMissingId() throws Exception {
         String updateGermplasmIdMissingError = "germplasmDbId cannot be null";
         // Check that it throws an APIException
         BrAPIGermplasm brApiGermplasm = new BrAPIGermplasm().germplasmName("new test germplasm");

@@ -26,8 +26,13 @@
     <parent>
         <groupId>org.brapi</groupId>
         <artifactId>brapi</artifactId>
-        <version>2.0-SNAPSHOT</version>
+        <version>2.1-SNAPSHOT</version>
     </parent>
+
+    <name>${project.artifactId}</name>
+    <url>${parent.url}</url>
+    <description>BrAPI v2 Java Model Library</description>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

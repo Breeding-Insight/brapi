@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.GenomeMapQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.MarkerPositionQueryParams;
@@ -33,9 +34,9 @@ import java.util.Optional;
 /**
  * API tests for GenomeMapsApi
  */
-public class GenomeMapsApiTest {
+public class GenomeMapsApiTest extends BrAPIClientTest {
 
-    private final GenomeMapsApi api = new GenomeMapsApi();
+    private final GenomeMapsApi api = new GenomeMapsApi(this.apiClient);
 
     /**
      * Get the Genomic Maps

@@ -1,6 +1,6 @@
 /*
  * BrAPI-Phenotyping
- * The Breeding API (BrAPI) is a Standardized REST ful Web Service API Specification for communicating Plant Breeding Data. BrAPI allows for easy data sharing between databases and tools involved in plant breeding. <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">General Reference Documentation</h2> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/URL_Structure.md\">URL Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Response_Structure.md\">Response Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Date_Time_Encoding.md\">Date/Time Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Location_Encoding.md\">Location Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Error_Handling.md\">Error Handling</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Search_Services.md\">Search Services</a></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Core</h2> <div class=\"brapi-section-description\">The BrAPI Core module contains high level entities used for organization and management. This includes Programs, Trials, Studies, Locations, People, and Lists</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Core\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapicore.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"current-brapi-section brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Phenotyping</h2> <div class=\"brapi-section-description\">The BrAPI Phenotyping module contains entities related to phenotypic observations. This includes Observation Units, Observations, Observation Variables, Traits, Scales, Methods, and Images</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Phenotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapiphenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Genotyping</h2> <div class=\"brapi-section-description\">The BrAPI Genotyping module contains entities related to genotyping analysis. This includes Samples, Markers, Variant Sets, Variants, Call Sets, Calls, References, Reads, and Vendor Orders</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Genotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Germplasm</h2> <div class=\"brapi-section-description\">The BrAPI Germplasm module contains entities related to germplasm management. This includes Germplasm, Germplasm Attributes, Seed Lots, Crosses, Pedigree, and Progeny</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Germplasm\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigermplasm.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <style> .link-btn{ float: left;  margin: 2px 10px 0 0;  padding: 0 5px;  border-radius: 5px;  background-color: #ddd; } .stop-float{   clear: both; } .version-number{   float: left;    margin: 5px 10px 0 5px; } .brapi-section-title{   margin: 0 10px 0 0;   font-size: 20px; } .current-brapi-section{   font-weight: bolder;   border-radius: 5px;    background-color: #ddd; } .brapi-section{   padding: 5px 5px;  } .brapi-section-description{   margin: 5px 0 0 5px; } </style>
+ * The Breeding API (BrAPI) is a Standardized REST ful Web Service API Specification for communicating Plant Breeding Data. BrAPI allows for easy data sharing between databases and tools involved in plant breeding. <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">General Reference Documentation</h2> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/URL_Structure.md\">URL Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Response_Structure.md\">Response Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Date_Time_Encoding.md\">Date/Time Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Location_Encoding.md\">Location Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Error_Handling.md\">Error Handling</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Search_Services.md\">Search Services</a></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Core</h2> <div class=\"brapi-section-description\">The BrAPI Core module contains high level entities used for organization and management. This includes Programs, Trials, Studies, Locations, People, and Lists</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Core\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapicore.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"current-brapi-section brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Phenotyping</h2> <div class=\"brapi-section-description\">The BrAPI Phenotyping module contains entities related to phenotypic observations. This includes Observation Units, Observations, Observation Variables, Traits, Scales, Methods, and Images</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Phenotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapiphenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Genotyping</h2> <div class=\"brapi-section-description\">The BrAPI Genotyping module contains entities related to genotyping analysis. This includes Samples, Markers, Variant Sets, Variants, Call Sets, Calls, References, Reads, and Vendor Orders</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Genotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Germplasm</h2> <div class=\"brapi-section-description\">The BrAPI Germplasm module contains entities related to germplasm management. This includes Germplasm, Germplasm Images, Seed Lots, Crosses, Pedigree, and Progeny</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Germplasm\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigermplasm.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <style> .link-btn{ float: left;  margin: 2px 10px 0 0;  padding: 0 5px;  border-radius: 5px;  background-color: #ddd; } .stop-float{   clear: both; } .version-number{   float: left;    margin: 5px 10px 0 5px; } .brapi-section-title{   margin: 0 10px 0 0;   font-size: 20px; } .current-brapi-section{   font-weight: bolder;   border-radius: 5px;    background-color: #ddd; } .brapi-section{   padding: 5px 5px;  } .brapi-section-description{   margin: 5px 0 0 5px; } </style>
  *
  * OpenAPI spec version: 2.0
  * 
@@ -14,36 +14,35 @@ package org.brapi.client.v2.modules.phenotype;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.phenotype.ImageQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.pheno.BrAPIImage;
+import org.brapi.v2.model.pheno.response.BrAPIImageDeleteResponse;
 import org.brapi.v2.model.pheno.response.BrAPIImageListResponse;
 import org.brapi.v2.model.pheno.request.BrAPIImageSearchRequest;
 import org.brapi.v2.model.pheno.response.BrAPIImageSingleResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * API tests for ImagesApi
  */
-public class ImagesApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class ImagesApiTest extends BrAPIClientTest {
 
-	private static ImagesApi api;
-
-	@BeforeAll
-	public static void setup() throws ApiException {
-		api = new ImagesApi();
-		api.getApiClient().authenticate((v) -> {
-			return "XXXX";
-		});
-	}
+	private ImagesApi api = new ImagesApi(this.apiClient);
 
 	/**
 	 * Get the image meta data summaries
@@ -60,20 +59,13 @@ public class ImagesApiTest {
 	 */
 	@Test
 	public void imagesGetTest() throws ApiException {
-		String imageDbId = null;
-		String imageName = null;
-		String observationUnitDbId = null;
-		String observationDbId = null;
-		String descriptiveOntologyTerm = null;
-		String externalReferenceID = null;
-		String externalReferenceSource = null;
-		Integer page = null;
-		Integer pageSize = null;
+		String imageDbId = "image1";
 
-		ImageQueryParams queryParams = new ImageQueryParams();
+		ImageQueryParams queryParams = new ImageQueryParams().imageDbId(imageDbId);
 		ApiResponse<BrAPIImageListResponse> response = api.imagesGet(queryParams);
 
-		// TODO: test validations
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertEquals(imageDbId, response.getBody().getResult().getData().get(0).getImageDbId());
 	}
 
 	/**
@@ -91,13 +83,12 @@ public class ImagesApiTest {
 	 */
 	@Test
 	public void imagesImageDbIdGetTest() throws ApiException {
-		String imageDbId = null;
+		String imageDbId = "image1";
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdGet(imageDbId);
-		});
+		ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdGet(imageDbId);
 
-		// TODO: test validations
+		assertEquals(imageDbId, response.getBody().getResult().getImageDbId());
+
 	}
 
 	/**
@@ -114,14 +105,12 @@ public class ImagesApiTest {
 	 */
 	@Test
 	public void imagesImageDbIdImagecontentPutTest() throws ApiException {
-		String imageDbId = null;
-		Object body = null;
+		String imageDbId = "image1";
+		Object body = new byte[10];
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdImagecontentPut(imageDbId, body);
-		});
+		ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdImagecontentPut(imageDbId, body);
 
-		// TODO: test validations
+		assertEquals(imageDbId, response.getBody().getResult().getImageDbId());
 	}
 
 	/**
@@ -148,14 +137,13 @@ public class ImagesApiTest {
 	 */
 	@Test
 	public void imagesImageDbIdPutTest() throws ApiException {
-		String imageDbId = null;
-		BrAPIImage body = null;
+		String imageDbId = "image1";
+		BrAPIImage body = new BrAPIImage().imageDbId(imageDbId).imageName("New Name");
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdPut(imageDbId, body);
-		});
+		ApiResponse<BrAPIImageSingleResponse> response = api.imagesImageDbIdPut(imageDbId, body);
 
-		// TODO: test validations
+		assertEquals(imageDbId, response.getBody().getResult().getImageDbId());
+		assertEquals(body.getImageName(), response.getBody().getResult().getImageName());
 	}
 
 	/**
@@ -180,13 +168,14 @@ public class ImagesApiTest {
 	 */
 	@Test
 	public void imagesPostTest() throws ApiException {
-		List<BrAPIImage> body = null;
+		BrAPIImage img = new BrAPIImage().imageName("New Name");
+		List<BrAPIImage> body = Arrays.asList(img);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<BrAPIImageListResponse> response = api.imagesPost(body);
-		});
+		ApiResponse<BrAPIImageListResponse> response = api.imagesPost(body);
 
-		// TODO: test validations
+		assertEquals(1, response.getBody().getResult().getData().size());
+		assertNotNull(response.getBody().getResult().getData().get(0).getImageDbId());
+		assertEquals(img.getImageName(), response.getBody().getResult().getData().get(0).getImageName());
 	}
 
 	/**
@@ -205,13 +194,20 @@ public class ImagesApiTest {
 	 */
 	@Test
 	public void searchImagesPostTest() throws ApiException {
-		BrAPIImageSearchRequest body = null;
+		BrAPIImageSearchRequest body = new BrAPIImageSearchRequest().addImageDbIdsItem("image1")
+				.addImageDbIdsItem("image2");
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<Pair<Optional<BrAPIImageListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api.searchImagesPost(body);
-		});
+		ApiResponse<Pair<Optional<BrAPIImageListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api
+				.searchImagesPost(body);
 
-		// TODO: test validations
+		Optional<BrAPIImageListResponse> listResponse = response.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+		// only results are returned
+		assertTrue(listResponse.isPresent());
+		assertFalse(searchIdResponse.isPresent());
+
+		assertEquals(2, listResponse.get().getResult().getData().size(),
+				"unexpected number of element returned");
 	}
 
 	/**
@@ -229,15 +225,46 @@ public class ImagesApiTest {
 	 */
 	@Test
 	public void searchImagesSearchResultsDbIdGetTest() throws ApiException {
-		String searchResultsDbId = null;
-		Integer page = null;
-		Integer pageSize = null;
+		BrAPIImageSearchRequest baseRequest = new BrAPIImageSearchRequest().addImageDbIdsItem("image1")
+				.addImageDbIdsItem("image2").addImageDbIdsItem("image1").addImageDbIdsItem("image2")
+				.addImageDbIdsItem("image1").addImageDbIdsItem("image2");
 
+		ApiResponse<Pair<Optional<BrAPIImageListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = this.api
+				.searchImagesPost(baseRequest);
+		Optional<BrAPIImageListResponse> listResponse = response.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+		// only search ID is returned
+		assertFalse(listResponse.isPresent());
+		assertTrue(searchIdResponse.isPresent());
+
+		// Get results from search ID
+		ApiResponse<Pair<Optional<BrAPIImageListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchResponse = this.api
+				.searchImagesSearchResultsDbIdGet(searchIdResponse.get().getResult().getSearchResultsDbId(), 0, 10);
+		Optional<BrAPIImageListResponse> listResponse2 = searchResponse.getBody().getLeft();
+		Optional<BrAPIAcceptedSearchResponse> searchIdResponse2 = searchResponse.getBody().getRight();
+		// only results are returned
+		assertTrue(listResponse2.isPresent());
+		assertFalse(searchIdResponse2.isPresent());
+
+		assertEquals(2, listResponse2.get().getResult().getData().size(),
+				"unexpected number of elements returned");
+	}
+	
+	@Test
+	public void deleteImagesPostTest() throws ApiException {
+		
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			ApiResponse<Pair<Optional<BrAPIImageListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-					api.searchImagesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
+			ApiResponse<BrAPIImageDeleteResponse> res = api.deleteImagesPost(null);
 		});
-
+		
+		BrAPIImageSearchRequest body = new BrAPIImageSearchRequest();
+		ApiResponse<BrAPIImageDeleteResponse> response = api.deleteImagesPost(body);
+		
+		assertNotNull(response);
+		assertNotNull(response.getBody());
+		assertNotNull(response.getBody().getMetadata());
+		assertNotNull(response.getBody().getResult());
+		assertNotNull(response.getBody().getResult().getImageDbIds());
 		// TODO: test validations
 	}
 }

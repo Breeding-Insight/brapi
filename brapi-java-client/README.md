@@ -9,6 +9,15 @@ Each API group that has been defined in the BrAPI specification as a correlating
 
 The `BrAPIClient` is a central execution wrapper that is responsible for executing REST calls to the BrAPI service.  It is recommended that a single instance of `BrAPIClient` be created per BrAPI service you are communicating with. This allows for shared authorization across all calls.
 
+The `BrAPIClient` will automatically add an `Authorization` header to each request.  To set an authorization token in the `BrAPIClient`:
+
+```java
+Authentication authorizationToken = brAPIClient.getAuthentication("AuthorizationToken");
+if(authorizationToken instanceof OAuth) {
+    ((OAuth)authorizationToken).setAccessToken(authToken);
+}
+```
+
 ## Building the project
 
 If using IntelliJ, create a new configuration for Maven to build your project. 
@@ -41,7 +50,7 @@ brapiClient.execute(request, (metadata, resultJson, gson) -> {
             }.getType();
             DataResponse<Call> result = gson.fromJson(resultJson, resultGsonType);
             return result.data();
-        })
+        });
 ```
 
 Every endpoint should have at least one test

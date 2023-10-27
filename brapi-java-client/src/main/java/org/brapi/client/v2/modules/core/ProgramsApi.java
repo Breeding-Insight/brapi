@@ -79,8 +79,10 @@ public class ProgramsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "programName", queryParams.programName());
         if (queryParams.abbreviation() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "abbreviation", queryParams.abbreviation());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
@@ -226,7 +228,7 @@ public class ProgramsApi {
         
         // create path and map variables
         String localVarPath = "/programs/{programDbId}"
-            .replaceAll("\\{" + "programDbId" + "\\}", apiClient.escapeString(programDbId.toString()));
+            .replaceAll("\\{" + "programDbId" + "\\}", apiClient.escapeString(programDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -303,7 +305,7 @@ public class ProgramsApi {
         
         // create path and map variables
         String localVarPath = "/programs/{programDbId}"
-            .replaceAll("\\{" + "programDbId" + "\\}", apiClient.escapeString(programDbId.toString()));
+            .replaceAll("\\{" + "programDbId" + "\\}", apiClient.escapeString(programDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -452,7 +454,7 @@ public class ProgramsApi {
         
         // create path and map variables
         String localVarPath = "/search/programs/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
