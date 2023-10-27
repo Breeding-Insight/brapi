@@ -4,10 +4,10 @@ This is a Java client library for making calls to a BrAPI-compliant service.
 
 The library is currently in development to support BrAPI v2.1.
 
-See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core/2.1
-See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping/2.1
-See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping/2.1
-See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm/2.1
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core/2.1  
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping/2.1  
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping/2.1  
+See https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm/2.1  
 
 ### Maven:
 ```xml
