@@ -1,15 +1,11 @@
 package org.brapi.v2.model.geno.request;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-
-
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.Valid;
+import java.util.Objects;
 
 /**
  * VariantSetsExtractRequest
@@ -29,6 +25,12 @@ public class BrAPIVariantSetsExtractRequest {
 
   @JsonProperty("sepUnphased")
   private String sepUnphased = null;
+
+  @JsonProperty("studyDbIds")
+  private List<String> studyDbIds = null;
+
+  @JsonProperty("studyNames")
+  private List<String> studyNames = null;
 
   @JsonProperty("unknownString")
   private String unknownString = null;
@@ -125,6 +127,58 @@ public class BrAPIVariantSetsExtractRequest {
     this.sepUnphased = sepUnphased;
   }
 
+  public BrAPIVariantSetsExtractRequest studyDbIds(List<String> studyDbIds) {
+    this.studyDbIds = studyDbIds;
+    return this;
+  }
+
+  public BrAPIVariantSetsExtractRequest addStudyDbIdsItem(String studyDbIdsItem) {
+    if (this.studyDbIds == null) {
+      this.studyDbIds = new ArrayList<String>();
+    }
+    this.studyDbIds.add(studyDbIdsItem);
+    return this;
+  }
+
+  /**
+   * List of study identifiers to search for
+   *
+   * @return studyDbIds
+   **/
+  public List<String> getStudyDbIds() {
+    return studyDbIds;
+  }
+
+  public void setStudyDbIds(List<String> studyDbIds) {
+    this.studyDbIds = studyDbIds;
+  }
+
+  public BrAPIVariantSetsExtractRequest studyNames(List<String> studyNames) {
+    this.studyNames = studyNames;
+    return this;
+  }
+
+  public BrAPIVariantSetsExtractRequest addStudyNamesItem(String studyNamesItem) {
+    if (this.studyNames == null) {
+      this.studyNames = new ArrayList<String>();
+    }
+    this.studyNames.add(studyNamesItem);
+    return this;
+  }
+
+  /**
+   * List of study names to filter search results
+   *
+   * @return studyNames
+   **/
+  public List<String> getStudyNames() {
+    return studyNames;
+  }
+
+  public void setStudyNames(List<String> studyNames) {
+    this.studyNames = studyNames;
+  }
+
   public BrAPIVariantSetsExtractRequest unknownString(String unknownString) {
     this.unknownString = unknownString;
     return this;
@@ -212,6 +266,8 @@ public class BrAPIVariantSetsExtractRequest {
         Objects.equals(this.expandHomozygotes, variantSetsExtractRequest.expandHomozygotes) &&
         Objects.equals(this.sepPhased, variantSetsExtractRequest.sepPhased) &&
         Objects.equals(this.sepUnphased, variantSetsExtractRequest.sepUnphased) &&
+        Objects.equals(this.studyDbIds, variantSetsExtractRequest.studyDbIds) &&
+        Objects.equals(this.studyNames, variantSetsExtractRequest.studyNames) &&
         Objects.equals(this.unknownString, variantSetsExtractRequest.unknownString) &&
         Objects.equals(this.variantDbIds, variantSetsExtractRequest.variantDbIds) &&
         Objects.equals(this.variantSetDbIds, variantSetsExtractRequest.variantSetDbIds) &&
@@ -232,6 +288,8 @@ public class BrAPIVariantSetsExtractRequest {
     sb.append("    expandHomozygotes: ").append(toIndentedString(expandHomozygotes)).append("\n");
     sb.append("    sepPhased: ").append(toIndentedString(sepPhased)).append("\n");
     sb.append("    sepUnphased: ").append(toIndentedString(sepUnphased)).append("\n");
+    sb.append("    studyDbIds: ").append(toIndentedString(studyDbIds)).append("\n");
+    sb.append("    studyNames: ").append(toIndentedString(studyNames)).append("\n");
     sb.append("    unknownString: ").append(toIndentedString(unknownString)).append("\n");
     sb.append("    variantDbIds: ").append(toIndentedString(variantDbIds)).append("\n");
     sb.append("    variantSetDbIds: ").append(toIndentedString(variantSetDbIds)).append("\n");

@@ -34,7 +34,6 @@ import org.brapi.v2.model.core.response.BrAPIListResponse;
 import org.brapi.v2.model.core.request.BrAPIListSearchRequest;
 import org.brapi.v2.model.core.response.BrAPIListsListResponse;
 import org.brapi.v2.model.core.response.BrAPIListsSingleResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 
 public class ListsApi {
     private BrAPIClient apiClient;
@@ -80,8 +79,10 @@ public class ListsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "listDbId", queryParams.listDbId());
         if (queryParams.listSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "listSource", queryParams.listSource());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
@@ -150,7 +151,7 @@ public class ListsApi {
         
         // create path and map variables
         String localVarPath = "/lists/{listDbId}"
-            .replaceAll("\\{" + "listDbId" + "\\}", apiClient.escapeString(listDbId.toString()));
+            .replaceAll("\\{" + "listDbId" + "\\}", apiClient.escapeString(listDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -211,6 +212,7 @@ public class ListsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
+    @Deprecated
     private Call listsListDbIdItemsPostCall(String listDbId, List<String> body) throws ApiException {
         if(listDbId == null) {
             throw new IllegalArgumentException("listDbId cannot be null"); 
@@ -222,7 +224,7 @@ public class ListsApi {
         
         // create path and map variables
         String localVarPath = "/lists/{listDbId}/items"
-            .replaceAll("\\{" + "listDbId" + "\\}", apiClient.escapeString(listDbId.toString()));
+            .replaceAll("\\{" + "listDbId" + "\\}", apiClient.escapeString(listDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -257,6 +259,7 @@ public class ListsApi {
      * @return ApiResponse&lt;ListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<BrAPIListResponse> listsListDbIdItemsPost(String listDbId, List<String> body) throws ApiException {
         Call call = listsListDbIdItemsPostCall(listDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIListResponse>(){}.getType();
@@ -272,12 +275,88 @@ public class ListsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call listsListDbIdItemsPostAsync(String listDbId, List<String> body, final ApiCallback<BrAPIListResponse> callback) throws ApiException {
         Call call = listsListDbIdItemsPostCall(listDbId, body);
         Type localVarReturnType = new TypeToken<BrAPIListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+    /**
+     * Build call for listsListDbIdDataPost
+     * @param listDbId The unique ID of this generic list (required)
+     * @param body  (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private Call listsListDbIdDataPostCall(String listDbId, List<String> body) throws ApiException {
+        if(listDbId == null) {
+            throw new IllegalArgumentException("listDbId cannot be null"); 
+        }
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null"); 
+        }
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/lists/{listDbId}/data"
+            .replaceAll("\\{" + "listDbId" + "\\}", apiClient.escapeString(listDbId));
+
+        Map<String, String> localVarQueryParams = new HashMap<>();
+        Map<String, String> localVarCollectionQueryParams = new HashMap<>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "AuthorizationToken" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames);
+    }
+
+    /**
+     * Add Data to a specific List
+     * Add new data to a specific generic lists
+     * @param listDbId The unique ID of this generic list (required)
+     * @param body  (optional)
+     * @return ApiResponse&lt;ListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BrAPIListResponse> listsListDbIdDataPost(String listDbId, List<String> body) throws ApiException {
+        Call call = listsListDbIdDataPostCall(listDbId, body);
+        Type localVarReturnType = new TypeToken<BrAPIListResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Add Data to a specific List (asynchronously)
+     * Add new data to a specific generic lists
+     * @param listDbId The unique ID of this generic list (required)
+     * @param body  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public Call listsListDbIdDataPostAsync(String listDbId, List<String> body, final ApiCallback<BrAPIListResponse> callback) throws ApiException {
+        Call call = listsListDbIdDataPostCall(listDbId, body);
+        Type localVarReturnType = new TypeToken<BrAPIListResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+
     /**
      * Build call for listsListDbIdPut
      * @param listDbId The unique ID of this generic list (required)
@@ -296,7 +375,7 @@ public class ListsApi {
         
         // create path and map variables
         String localVarPath = "/lists/{listDbId}"
-            .replaceAll("\\{" + "listDbId" + "\\}", apiClient.escapeString(listDbId.toString()));
+            .replaceAll("\\{" + "listDbId" + "\\}", apiClient.escapeString(listDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -501,7 +580,7 @@ public class ListsApi {
         
         // create path and map variables
         String localVarPath = "/search/lists/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

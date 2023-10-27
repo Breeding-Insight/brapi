@@ -1,23 +1,14 @@
 package org.brapi.v2.model.pheno;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.JsonAdapter;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.Accessors;
 import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.BrAPIOntologyReference;
 import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
@@ -28,9 +19,9 @@ import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
 public class BrAPIScale {
 	@JsonProperty("additionalInfo")
-    @Valid
-    @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
+	@JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
 	private JsonObject additionalInfo = null;
+
 	@JsonProperty("dataType")
 	private BrAPITraitDataType dataType = null;
 
@@ -46,6 +37,12 @@ public class BrAPIScale {
 	@JsonProperty("scaleName")
 	private String scaleName = null;
 
+	@JsonProperty("scalePUI")
+	private String scalePUI = null;
+
+	@JsonProperty("units")
+	private String units = null;
+
 	@JsonProperty("validValues")
 	private BrAPIScaleValidValues validValues = null;
 
@@ -60,20 +57,19 @@ public class BrAPIScale {
 	}
 
 	public BrAPIScale putAdditionalInfoItem(String key, Object additionalInfoItem) {
-        if (this.additionalInfo == null) {
-          this.additionalInfo = new JsonObject();
-        }
-        JsonElement newElement = gson.toJsonTree(additionalInfoItem);
-        this.additionalInfo.add(key, newElement);
-        return this;
-  	}
+		if (this.additionalInfo == null) {
+			this.additionalInfo = new JsonObject();
+		}
+		JsonElement newElement = gson.toJsonTree(additionalInfoItem);
+		this.additionalInfo.add(key, newElement);
+		return this;
+	}
 
 	/**
 	 * Additional arbitrary info
 	 *
 	 * @return additionalInfo
 	 **/
-
 
 	public JsonObject getAdditionalInfo() {
 		return additionalInfo;
@@ -94,8 +90,6 @@ public class BrAPIScale {
 	 * @return dataType
 	 **/
 
-
-	@Valid
 	public BrAPITraitDataType getDataType() {
 		return dataType;
 	}
@@ -114,7 +108,6 @@ public class BrAPIScale {
 	 *
 	 * @return decimalPlaces
 	 **/
-
 
 	public Integer getDecimalPlaces() {
 		return decimalPlaces;
@@ -135,8 +128,6 @@ public class BrAPIScale {
 	 * @return externalReferences
 	 **/
 
-
-	@Valid
 	public List<BrAPIExternalReference> getExternalReferences() {
 		return externalReferences;
 	}
@@ -156,8 +147,6 @@ public class BrAPIScale {
 	 * @return ontologyReference
 	 **/
 
-
-	@Valid
 	public BrAPIOntologyReference getOntologyReference() {
 		return ontologyReference;
 	}
@@ -179,6 +168,45 @@ public class BrAPIScale {
 		this.scaleName = scaleName;
 	}
 
+	public BrAPIScale scalePUI(String scalePUI) {
+		this.scalePUI = scalePUI;
+		return this;
+	}
+
+	/**
+	 * The Permanent Unique Identifier of a Scale, usually in the form of a URI
+	 *
+	 * @return scalePUI
+	 **/
+	public String getScalePUI() {
+		return scalePUI;
+	}
+
+	public void setScalePUI(String scalePUI) {
+		this.scalePUI = scalePUI;
+	}
+
+	public BrAPIScale units(String units) {
+		this.units = units;
+		return this;
+	}
+
+	/**
+	 * This field can be used to describe the units used for this scale. This should
+	 * be the abbreviated form of the units, intended to be displayed with every
+	 * value using this scale. Usually this only applies when &#x60;dataType&#x60;
+	 * is Numeric, but could also be included for other dataTypes when applicable.
+	 *
+	 * @return units
+	 **/
+	public String getUnits() {
+		return units;
+	}
+
+	public void setUnits(String units) {
+		this.units = units;
+	}
+
 	public BrAPIScale validValues(BrAPIScaleValidValues validValues) {
 		this.validValues = validValues;
 		return this;
@@ -190,8 +218,6 @@ public class BrAPIScale {
 	 * @return validValues
 	 **/
 
-
-	@Valid
 	public BrAPIScaleValidValues getValidValues() {
 		return validValues;
 	}
@@ -206,11 +232,11 @@ public class BrAPIScale {
 	}
 
 	/**
-	 * Unique identifier of the scale. If left blank, the upload system will automatically generate a scale ID.
+	 * Unique identifier of the scale. If left blank, the upload system will
+	 * automatically generate a scale ID.
+	 * 
 	 * @return scaleDbId
 	 **/
-
-
 
 	public String getScaleDbId() {
 		return scaleDbId;
@@ -220,43 +246,51 @@ public class BrAPIScale {
 		this.scaleDbId = scaleDbId;
 	}
 
-	@Override
-	public boolean equals(java.lang.Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		BrAPIScale scale = (BrAPIScale) o;
-		return Objects.equals(this.scaleDbId, scale.scaleDbId)
-				&& Objects.equals(this.dataType, scale.dataType)
-				&& Objects.equals(this.decimalPlaces, scale.decimalPlaces)
-				&& Objects.equals(this.externalReferences, scale.externalReferences)
-				&& Objects.equals(this.ontologyReference, scale.ontologyReference)
-				&& Objects.equals(this.scaleName, scale.scaleName)
-				&& Objects.equals(this.validValues, scale.validValues);
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        BrAPIScale scale = (BrAPIScale) o;
+        return Objects.equals(this.additionalInfo, scale.additionalInfo) &&
+                Objects.equals(this.dataType, scale.dataType) &&
+                Objects.equals(this.decimalPlaces, scale.decimalPlaces) &&
+                Objects.equals(this.externalReferences, scale.externalReferences) &&
+                Objects.equals(this.ontologyReference, scale.ontologyReference) &&
+                Objects.equals(this.scaleDbId, scale.scaleDbId) &&
+                Objects.equals(this.scaleName, scale.scaleName) &&
+                Objects.equals(this.scalePUI, scale.scalePUI) &&
+                Objects.equals(this.units, scale.units) &&
+                Objects.equals(this.validValues, scale.validValues);
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(scaleDbId, dataType, decimalPlaces, externalReferences, ontologyReference, scaleName, validValues);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(additionalInfo, dataType, decimalPlaces, externalReferences, ontologyReference, scaleDbId, scaleName, scalePUI, units, validValues);
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("class ScaleBaseClass {\n");
-		sb.append("    scaleDbId: ").append(toIndentedString(scaleDbId)).append("\n");
-		sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
-		sb.append("    decimalPlaces: ").append(toIndentedString(decimalPlaces)).append("\n");
-		sb.append("    externalReferences: ").append(toIndentedString(externalReferences)).append("\n");
-		sb.append("    ontologyReference: ").append(toIndentedString(ontologyReference)).append("\n");
-		sb.append("    scaleName: ").append(toIndentedString(scaleName)).append("\n");
-		sb.append("    validValues: ").append(toIndentedString(validValues)).append("\n");
-		sb.append("}");
-		return sb.toString();
-	}
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class Scale {\n");
+
+        sb.append("    additionalInfo: ").append(toIndentedString(additionalInfo)).append("\n");
+        sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
+        sb.append("    decimalPlaces: ").append(toIndentedString(decimalPlaces)).append("\n");
+        sb.append("    externalReferences: ").append(toIndentedString(externalReferences)).append("\n");
+        sb.append("    ontologyReference: ").append(toIndentedString(ontologyReference)).append("\n");
+        sb.append("    scaleDbId: ").append(toIndentedString(scaleDbId)).append("\n");
+        sb.append("    scaleName: ").append(toIndentedString(scaleName)).append("\n");
+        sb.append("    scalePUI: ").append(toIndentedString(scalePUI)).append("\n");
+        sb.append("    units: ").append(toIndentedString(units)).append("\n");
+        sb.append("    validValues: ").append(toIndentedString(validValues)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
 
 	/**
 	 * Convert the given object to string with each line indented by 4 spaces

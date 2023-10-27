@@ -75,8 +75,10 @@ public class LocationsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "locationType", queryParams.locationType());
         if (queryParams.locationDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "locationDbId", queryParams.locationDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
@@ -147,7 +149,7 @@ public class LocationsApi {
         
         // create path and map variables
         String localVarPath = "/locations/{locationDbId}"
-            .replaceAll("\\{" + "locationDbId" + "\\}", apiClient.escapeString(locationDbId.toString()));
+            .replaceAll("\\{" + "locationDbId" + "\\}", apiClient.escapeString(locationDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -219,7 +221,7 @@ public class LocationsApi {
         
         // create path and map variables
         String localVarPath = "/locations/{locationDbId}"
-            .replaceAll("\\{" + "locationDbId" + "\\}", apiClient.escapeString(locationDbId.toString()));
+            .replaceAll("\\{" + "locationDbId" + "\\}", apiClient.escapeString(locationDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -425,7 +427,7 @@ public class LocationsApi {
         
         // create path and map variables
         String localVarPath = "/search/locations/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

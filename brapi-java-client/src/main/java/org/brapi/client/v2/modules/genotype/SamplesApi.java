@@ -16,10 +16,7 @@ import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
@@ -81,14 +78,28 @@ public class SamplesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "germplasmDbId", queryParams.germplasmDbId());
         if (queryParams.studyDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "studyDbId", queryParams.studyDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
+        if (queryParams.sampleName() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "sampleName", queryParams.sampleName());
+        if (queryParams.sampleGroupDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "sampleGroupDbId", queryParams.sampleGroupDbId());
+        if (queryParams.plateName() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "plateName", queryParams.plateName());
+        if (queryParams.programDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "programDbId", queryParams.programDbId());
+        if (queryParams.commonCropName() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "commonCropName", queryParams.commonCropName());
+        if (queryParams.trialDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "trialDbId", queryParams.trialDbId());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
@@ -211,6 +222,74 @@ public class SamplesApi {
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
+    /**
+     * Build call for samplesPut
+     *
+     * @param body                    (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private Call samplesPutCall(Map<String, BrAPISample> body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null");
+        }
+
+        // create path and map variables
+        String localVarPath = "/samples";
+
+        Map<String, String> localVarQueryParams = new HashMap<>();
+        Map<String, String> localVarCollectionQueryParams = new HashMap<>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<>();
+        Map<String, Object> localVarFormParams = new HashMap<>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+                "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[]{"AuthorizationToken"};
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames);
+    }
+
+    /**
+     * Update the details of existing Samples
+     * Update the details of existing Samples
+     *
+     * @param body          (optional)
+     * @return ApiResponse&lt;SampleListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BrAPISampleListResponse> samplesPut(Map<String, BrAPISample> body) throws ApiException {
+        Call call = samplesPutCall(body);
+        Type localVarReturnType = new TypeToken<BrAPISampleListResponse>() {}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Update the details of existing Samples (asynchronously)
+     * Update the details of existing Samples
+     *
+     * @param body          (optional)
+     * @param callback      The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public Call samplesPutAsync(Map<String, BrAPISample> body, final ApiCallback<BrAPISampleListResponse> callback) throws ApiException {
+        Call call = samplesPutCall(body);
+        Type localVarReturnType = new TypeToken<BrAPISampleListResponse>() {}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+
     /**
      * Build call for samplesSampleDbIdGet
      * @param sampleDbId the internal DB id for a sample (required)
@@ -228,7 +307,7 @@ public class SamplesApi {
         
         // create path and map variables
         String localVarPath = "/samples/{sampleDbId}"
-            .replaceAll("\\{" + "sampleDbId" + "\\}", apiClient.escapeString(sampleDbId.toString()));
+            .replaceAll("\\{" + "sampleDbId" + "\\}", apiClient.escapeString(sampleDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -305,7 +384,7 @@ public class SamplesApi {
         
         // create path and map variables
         String localVarPath = "/samples/{sampleDbId}"
-            .replaceAll("\\{" + "sampleDbId" + "\\}", apiClient.escapeString(sampleDbId.toString()));
+            .replaceAll("\\{" + "sampleDbId" + "\\}", apiClient.escapeString(sampleDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -333,14 +412,16 @@ public class SamplesApi {
     }
 
     /**
+     * **Deprecated in v2.1** Please use {@code samplesPut(Map<String, BrAPISample>)}. Github issue number #462  <br><br>
      * Update the details of an existing Sample
-     * Update the details of an existing Sample
+     *
      * @param sampleDbId the internal DB id for a sample (required)
      * @param body  (optional)
 
      * @return ApiResponse&lt;SampleSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<BrAPISampleSingleResponse> samplesSampleDbIdPut(String sampleDbId, BrAPISample body) throws ApiException {
         Call call = samplesSampleDbIdPutCall(sampleDbId, body);
         Type localVarReturnType = new TypeToken<BrAPISampleSingleResponse>(){}.getType();
@@ -348,8 +429,8 @@ public class SamplesApi {
     }
 
     /**
+     * **Deprecated in v2.1** Please use {@code samplesPutAsync(Map<String, BrAPISample>, ApiCallback)}. Github issue number #462  <br><br>
      * Update the details of an existing Sample (asynchronously)
-     * Update the details of an existing Sample
      * @param sampleDbId the internal DB id for a sample (required)
      * @param body  (optional)
 
@@ -357,6 +438,7 @@ public class SamplesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call samplesSampleDbIdPutAsync(String sampleDbId, BrAPISample body, final ApiCallback<BrAPISampleSingleResponse> callback) throws ApiException {
         Call call = samplesSampleDbIdPutCall(sampleDbId, body);
         Type localVarReturnType = new TypeToken<BrAPISampleSingleResponse>(){}.getType();
@@ -454,7 +536,7 @@ public class SamplesApi {
         
         // create path and map variables
         String localVarPath = "/search/samples/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

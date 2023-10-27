@@ -14,6 +14,7 @@ package org.brapi.client.v2.modules.genotype;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.SampleQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
@@ -21,20 +22,21 @@ import org.brapi.v2.model.geno.BrAPISample;
 import org.brapi.v2.model.geno.response.BrAPISampleListResponse;
 import org.brapi.v2.model.geno.request.BrAPISampleSearchRequest;
 import org.brapi.v2.model.geno.response.BrAPISampleSingleResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
  * API tests for SamplesApi
  */
-public class SamplesApiTest {
+public class SamplesApiTest extends BrAPIClientTest {
 
-    private final SamplesApi api = new SamplesApi();
+    private final SamplesApi api = new SamplesApi(this.apiClient);
 
     /**
      * Get the Samples
@@ -47,11 +49,18 @@ public class SamplesApiTest {
     @Test
     public void samplesGetTest() throws ApiException {
         String sampleDbId = null;
+        String sampleName = null;
+        String sampleGroupDbId = null;
         String observationUnitDbId = null;
         String plateDbId = null;
-        String germplasmDbId = null;
+        String plateName = null;
+        String commonCropName = null;
+        String programDbId = null;
+        String trialDbId = null;
         String studyDbId = null;
+        String germplasmDbId = null;
         String externalReferenceID = null;
+        String externalReferenceId = null;
         String externalReferenceSource = null;
         Integer page = null;
         Integer pageSize = null;
@@ -76,6 +85,21 @@ public class SamplesApiTest {
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
         ApiResponse<BrAPISampleListResponse> response = api.samplesPost(body);
 		});
+
+        // TODO: test validations
+    }
+    /**
+     * Update the details of existing Samples
+     *
+     * Update the details of existing Samples
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void samplesPutTest() throws Exception {
+        Map<String, BrAPISample> body = new HashMap<>();
+        ApiResponse<BrAPISampleListResponse> response = api.samplesPut(body);
 
         // TODO: test validations
     }
@@ -106,6 +130,7 @@ public class SamplesApiTest {
      *          if the Api call fails
      */
     @Test
+    @Deprecated
     public void samplesSampleDbIdPutTest() throws ApiException {
         String sampleDbId = null;
         BrAPISample body = null;

@@ -12,15 +12,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 
 
-public class BrAPISearchRequestParametersTokenPaging   {
-  @JsonProperty("pageSize")
-  private Integer pageSize = null;
-
+public class BrAPISearchRequestParametersTokenPaging extends BrAPISearchRequestParametersPaging {
   @JsonProperty("pageToken")
   private String pageToken = null;
 
   public BrAPISearchRequestParametersTokenPaging pageSize(Integer pageSize) {
-    this.pageSize = pageSize;
+    super.pageSize(pageSize);
     return this;
   }
 
@@ -30,14 +27,6 @@ public class BrAPISearchRequestParametersTokenPaging   {
   **/
   
   
-    public Integer getPageSize() {
-    return pageSize;
-  }
-
-  public void setPageSize(Integer pageSize) {
-    this.pageSize = pageSize;
-  }
-
   public BrAPISearchRequestParametersTokenPaging pageToken(String pageToken) {
     this.pageToken = pageToken;
     return this;
@@ -67,13 +56,13 @@ public class BrAPISearchRequestParametersTokenPaging   {
       return false;
     }
     BrAPISearchRequestParametersTokenPaging searchRequestParametersTokenPaging = (BrAPISearchRequestParametersTokenPaging) o;
-    return Objects.equals(this.pageSize, searchRequestParametersTokenPaging.pageSize) &&
+    return Objects.equals(super.getPageSize(), searchRequestParametersTokenPaging.getPageSize()) &&
         Objects.equals(this.pageToken, searchRequestParametersTokenPaging.pageToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pageSize, pageToken);
+    return Objects.hash(super.getPageSize(), pageToken);
   }
 
   @Override
@@ -81,7 +70,7 @@ public class BrAPISearchRequestParametersTokenPaging   {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchRequestParametersTokenPaging {\n");
     
-    sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
+    sb.append("    pageSize: ").append(toIndentedString(super.getPageSize())).append("\n");
     sb.append("    pageToken: ").append(toIndentedString(pageToken)).append("\n");
     sb.append("}");
     return sb.toString();

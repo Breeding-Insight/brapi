@@ -1,21 +1,20 @@
 package org.brapi.v2.model.geno;
 
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import org.brapi.v2.model.BrAPIExternalReference;
 import org.brapi.v2.model.NullableJsonElementTypeAdapterFactory;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.time.OffsetDateTime;
-
 import javax.validation.Valid;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A &#x60;Variant&#x60; represents a change in DNA sequence relative to some
@@ -32,7 +31,9 @@ public class BrAPIVariant {
     @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
 	private JsonObject additionalInfo = null;
 
-	@JsonProperty("alternate_bases")
+	@JsonProperty("alternateBases")
+	@JsonAlias({"alternate_bases"})
+	@SerializedName(value = "alternateBases", alternate = "alternate_bases")
 	@Valid
 	private List<String> alternateBases = null;
 
@@ -50,6 +51,9 @@ public class BrAPIVariant {
 	@JsonProperty("end")
 	private Integer end = null;
 
+	@JsonProperty("externalReferences")
+	private List<BrAPIExternalReference> externalReferences = null;
+
 	@JsonProperty("filtersApplied")
 	private Boolean filtersApplied = null;
 
@@ -63,8 +67,17 @@ public class BrAPIVariant {
 	@JsonProperty("referenceBases")
 	private String referenceBases = null;
 
+	@JsonProperty("referenceDbId")
+	private String referenceDbId = null;
+
 	@JsonProperty("referenceName")
 	private String referenceName = null;
+
+	@JsonProperty("referenceSetDbId")
+	private String referenceSetDbId = null;
+
+	@JsonProperty("referenceSetName")
+	private String referenceSetName = null;
 
 	@JsonProperty("start")
 	private Integer start = null;
@@ -134,13 +147,21 @@ public class BrAPIVariant {
 	}
 
 	/**
+	 * Deprecated, use getAlternateBases
+	 * @return
+	 */
+	@JsonProperty("alternate_bases")
+	@Deprecated
+	public List<String> getAlternate_bases() {
+		return getAlternateBases();
+	}
+
+	/**
 	 * The bases that appear instead of the reference bases. Multiple alternate
 	 * alleles are possible.
-	 * 
+	 *
 	 * @return alternateBases
 	 **/
-	
-
 	public List<String> getAlternateBases() {
 		return alternateBases;
 	}
@@ -253,6 +274,26 @@ public class BrAPIVariant {
 		this.end = end;
 	}
 
+	public BrAPIVariant externalReferences(List<BrAPIExternalReference> externalReferences) {
+		this.externalReferences = externalReferences;
+		return this;
+	}
+
+	/**
+	 * Get externalReferences
+	 * @return externalReferences
+	 **/
+
+
+	@Valid
+	public List<BrAPIExternalReference> getExternalReferences() {
+		return externalReferences;
+	}
+
+	public void setExternalReferences(List<BrAPIExternalReference> externalReferences) {
+		this.externalReferences = externalReferences;
+	}
+
 	public BrAPIVariant filtersApplied(Boolean filtersApplied) {
 		this.filtersApplied = filtersApplied;
 		return this;
@@ -344,6 +385,24 @@ public class BrAPIVariant {
 		this.referenceBases = referenceBases;
 	}
 
+	public BrAPIVariant referenceDbId(String referenceDbId) {
+		this.referenceDbId = referenceDbId;
+		return this;
+	}
+
+	/**
+	 * The unique identifier for a Reference
+	 *
+	 * @return referenceDbId
+	 **/
+	public String getReferenceDbId() {
+		return referenceDbId;
+	}
+
+	public void setReferenceDbId(String referenceDbId) {
+		this.referenceDbId = referenceDbId;
+	}
+
 	public BrAPIVariant referenceName(String referenceName) {
 		this.referenceName = referenceName;
 		return this;
@@ -362,6 +421,42 @@ public class BrAPIVariant {
 
 	public void setReferenceName(String referenceName) {
 		this.referenceName = referenceName;
+	}
+
+	public BrAPIVariant referenceSetDbId(String referenceSetDbId) {
+		this.referenceSetDbId = referenceSetDbId;
+		return this;
+	}
+
+	/**
+	 * The unique identifier for a ReferenceSet
+	 *
+	 * @return referenceSetDbId
+	 **/
+	public String getReferenceSetDbId() {
+		return referenceSetDbId;
+	}
+
+	public void setReferenceSetDbId(String referenceSetDbId) {
+		this.referenceSetDbId = referenceSetDbId;
+	}
+
+	public BrAPIVariant referenceSetName(String referenceSetName) {
+		this.referenceSetName = referenceSetName;
+		return this;
+	}
+
+	/**
+	 * The human readable name of the ReferenceSet
+	 *
+	 * @return referenceSetName
+	 **/
+	public String getReferenceSetName() {
+		return referenceSetName;
+	}
+
+	public void setReferenceSetName(String referenceSetName) {
+		this.referenceSetName = referenceSetName;
 	}
 
 	public BrAPIVariant start(Integer start) {
@@ -543,11 +638,15 @@ public class BrAPIVariant {
 				&& Objects.equals(this.alternateBases, variant.alternateBases)
 				&& Objects.equals(this.ciend, variant.ciend) && Objects.equals(this.cipos, variant.cipos)
 				&& Objects.equals(this.created, variant.created) && Objects.equals(this.end, variant.end)
+				&& Objects.equals(this.externalReferences, variant.externalReferences)
 				&& Objects.equals(this.filtersApplied, variant.filtersApplied)
 				&& Objects.equals(this.filtersFailed, variant.filtersFailed)
 				&& Objects.equals(this.filtersPassed, variant.filtersPassed)
 				&& Objects.equals(this.referenceBases, variant.referenceBases)
+				&& Objects.equals(this.referenceDbId, variant.referenceDbId)
 				&& Objects.equals(this.referenceName, variant.referenceName)
+				&& Objects.equals(this.referenceSetDbId, variant.referenceSetDbId)
+				&& Objects.equals(this.referenceSetName, variant.referenceSetName)
 				&& Objects.equals(this.start, variant.start) && Objects.equals(this.svlen, variant.svlen)
 				&& Objects.equals(this.updated, variant.updated)
 				&& Objects.equals(this.variantDbId, variant.variantDbId)
@@ -558,8 +657,8 @@ public class BrAPIVariant {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(additionalInfo, alternateBases, ciend, cipos, created, end, filtersApplied, filtersFailed,
-				filtersPassed, referenceBases, referenceName, start, svlen, updated, variantDbId, variantNames,
+		return Objects.hash(additionalInfo, alternateBases, ciend, cipos, created, end, externalReferences, filtersApplied, filtersFailed,
+				filtersPassed, referenceBases, referenceDbId, referenceName, referenceSetDbId, referenceSetName, start, svlen, updated, variantDbId, variantNames,
 				variantSetDbId, variantType);
 	}
 
@@ -574,11 +673,15 @@ public class BrAPIVariant {
 		sb.append("    cipos: ").append(toIndentedString(cipos)).append("\n");
 		sb.append("    created: ").append(toIndentedString(created)).append("\n");
 		sb.append("    end: ").append(toIndentedString(end)).append("\n");
+        sb.append("    externalReferences: ").append(toIndentedString(externalReferences)).append("\n");
 		sb.append("    filtersApplied: ").append(toIndentedString(filtersApplied)).append("\n");
 		sb.append("    filtersFailed: ").append(toIndentedString(filtersFailed)).append("\n");
 		sb.append("    filtersPassed: ").append(toIndentedString(filtersPassed)).append("\n");
 		sb.append("    referenceBases: ").append(toIndentedString(referenceBases)).append("\n");
+        sb.append("    referenceDbId: ").append(toIndentedString(referenceDbId)).append("\n");
 		sb.append("    referenceName: ").append(toIndentedString(referenceName)).append("\n");
+        sb.append("    referenceSetDbId: ").append(toIndentedString(referenceSetDbId)).append("\n");
+        sb.append("    referenceSetName: ").append(toIndentedString(referenceSetName)).append("\n");
 		sb.append("    start: ").append(toIndentedString(start)).append("\n");
 		sb.append("    svlen: ").append(toIndentedString(svlen)).append("\n");
 		sb.append("    updated: ").append(toIndentedString(updated)).append("\n");

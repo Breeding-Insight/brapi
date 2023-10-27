@@ -147,7 +147,7 @@ public class ObservationVariablesApi {
         
         // create path and map variables
         String localVarPath = "/search/variables/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -234,8 +234,10 @@ public class ObservationVariablesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "traitClass", queryParams.traitClass());
         if (queryParams.studyDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "studyDbId", queryParams.studyDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
@@ -309,7 +311,7 @@ public class ObservationVariablesApi {
         
         // create path and map variables
         String localVarPath = "/variables/{observationVariableDbId}"
-            .replaceAll("\\{" + "observationVariableDbId" + "\\}", apiClient.escapeString(observationVariableDbId.toString()));
+            .replaceAll("\\{" + "observationVariableDbId" + "\\}", apiClient.escapeString(observationVariableDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -389,7 +391,7 @@ public class ObservationVariablesApi {
         
         // create path and map variables
         String localVarPath = "/variables/{observationVariableDbId}"
-            .replaceAll("\\{" + "observationVariableDbId" + "\\}", apiClient.escapeString(observationVariableDbId.toString()));
+            .replaceAll("\\{" + "observationVariableDbId" + "\\}", apiClient.escapeString(observationVariableDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

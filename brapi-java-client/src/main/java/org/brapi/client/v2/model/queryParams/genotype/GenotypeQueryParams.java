@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
+import org.brapi.client.v2.model.queryParams.core.BrAPIQueryParams;
 
 @Getter
 @Setter
@@ -30,13 +31,17 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(fluent=true)
-public class GenotypeQueryParams {
+public class GenotypeQueryParams extends BrAPIQueryParams {
 
     private Boolean expandHomozygotes;
     private String unknownString;
     private String sepPhased;
     private String sepUnphased;
+
+    @Deprecated
+    /**
+     * **Deprecated in v2.1** Please use page
+     */
     private String pageToken;
-    private Integer pageSize;
 
 }

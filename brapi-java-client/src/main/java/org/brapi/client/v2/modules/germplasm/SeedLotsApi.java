@@ -74,8 +74,10 @@ public class SeedLotsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "seedLotDbId", queryParams.seedLotDbId());
         if (queryParams.germplasmDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "germplasmDbId", queryParams.germplasmDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
@@ -221,7 +223,7 @@ public class SeedLotsApi {
         
         // create path and map variables
         String localVarPath = "/seedlots/{seedLotDbId}"
-            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId.toString()));
+            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -298,7 +300,7 @@ public class SeedLotsApi {
         
         // create path and map variables
         String localVarPath = "/seedlots/{seedLotDbId}"
-            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId.toString()));
+            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -377,7 +379,7 @@ public class SeedLotsApi {
         
         // create path and map variables
         String localVarPath = "/seedlots/{seedLotDbId}/transactions"
-            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId.toString()));
+            .replaceAll("\\{" + "seedLotDbId" + "\\}", apiClient.escapeString(seedLotDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -472,8 +474,10 @@ public class SeedLotsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "seedLotDbId", queryParams.seedLotDbId());
         if (queryParams.germplasmDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "germplasmDbId", queryParams.germplasmDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)

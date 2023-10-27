@@ -38,5 +38,11 @@ public class ReferenceSetQueryParams extends BrAPIQueryParams {
     private String accession;
     private String md5checksum;
     private String assemblyPUI;
+    private String commonCropName;
+    private String programDbId;
+    private String trialDbId;
+    private String studyDbId;
+    private String externalReferenceSource;
+    private String externalReferenceId;
 
 }

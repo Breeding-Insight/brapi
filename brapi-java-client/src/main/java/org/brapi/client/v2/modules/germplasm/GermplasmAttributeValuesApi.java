@@ -72,7 +72,7 @@ public class GermplasmAttributeValuesApi {
         
         // create path and map variables
         String localVarPath = "/attributevalues/{attributeValueDbId}"
-            .replaceAll("\\{" + "attributeValueDbId" + "\\}", apiClient.escapeString(attributeValueDbId.toString()));
+            .replaceAll("\\{" + "attributeValueDbId" + "\\}", apiClient.escapeString(attributeValueDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -149,7 +149,7 @@ public class GermplasmAttributeValuesApi {
         
         // create path and map variables
         String localVarPath = "/attributevalues/{attributeValueDbId}"
-            .replaceAll("\\{" + "attributeValueDbId" + "\\}", apiClient.escapeString(attributeValueDbId.toString()));
+            .replaceAll("\\{" + "attributeValueDbId" + "\\}", apiClient.escapeString(attributeValueDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -232,8 +232,10 @@ public class GermplasmAttributeValuesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "attributeName", queryParams.attributeName());
         if (queryParams.germplasmDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "germplasmDbId", queryParams.germplasmDbId());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
@@ -453,7 +455,7 @@ public class GermplasmAttributeValuesApi {
         
         // create path and map variables
         String localVarPath = "/search/attributevalues/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

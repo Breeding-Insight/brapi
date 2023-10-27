@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
+import org.brapi.client.v2.model.queryParams.core.BrAPIQueryParams;
 
 @Getter
 @Setter
@@ -30,11 +31,15 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(fluent=true)
-public class VariantQueryParams {
+public class VariantQueryParams extends BrAPIQueryParams {
 
     private String variantDbId;
     private String variantSetDbId;
+    private String referenceDbId;
+    private String referenceSetDbId;
+    @Deprecated
     private String pageToken;
-    private Integer pageSize;
+    private String externalReferenceSource;
+    private String externalReferenceId;
 
 }

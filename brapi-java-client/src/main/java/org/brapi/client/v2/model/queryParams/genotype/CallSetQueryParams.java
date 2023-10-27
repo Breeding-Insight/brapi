@@ -39,5 +39,7 @@ public class CallSetQueryParams extends BrAPIQueryParams {
     private String variantSetDbId;
     private String sampleDbId;
     private String germplasmDbId;
+    private String externalReferenceSource;
+    private String externalReferenceId;
 
 }

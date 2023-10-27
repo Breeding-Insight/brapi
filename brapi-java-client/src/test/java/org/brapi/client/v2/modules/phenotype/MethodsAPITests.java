@@ -92,7 +92,7 @@ public class MethodsAPITests extends BrAPIClientTest {
 	@Order(1)
 	@SneakyThrows
 	public void createMethodSuccess() {
-		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID)
+		BrAPIExternalReference brApiExternalReference = new BrAPIExternalReference().referenceID(externalReferenceID).referenceId(externalReferenceID)
 				.referenceSource(externalReferenceSource);
 		List<BrAPIExternalReference> externalReferences = new ArrayList<>();
 		externalReferences.add(brApiExternalReference);

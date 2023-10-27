@@ -16,22 +16,25 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
+import org.brapi.v2.model.geno.BrAPICall;
 import org.brapi.v2.model.geno.response.BrAPICallsListResponse;
 import org.brapi.v2.model.geno.request.BrAPICallsSearchRequest;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
  * API tests for CallsApi
  */
-public class CallsApiTest {
+public class CallsApiTest extends BrAPIClientTest {
 
-    private final CallsApi api = new CallsApi();
+    private final CallsApi api = new CallsApi(this.apiClient);
 
     /**
      * Gets a filtered list of &#x60;Calls&#x60;
@@ -51,10 +54,26 @@ public class CallsApiTest {
         String sepPhased = null;
         String sepUnphased = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
         
         CallQueryParams queryParams = new CallQueryParams();
         ApiResponse<BrAPICallsListResponse> response = api.callsGet(queryParams);
+
+        // TODO: test validations
+    }
+    /**
+     * Update existing &#x60;Calls&#x60; with new genotype value or metadata
+     *
+     * Update existing &#x60;Calls&#x60; with new genotype value or metadata &lt;br/&gt;Implementation Note -  &lt;br/&gt;A &#x60;Call&#x60; object does not have a DbId of its own. It is defined by the unique combination of  &#x60;callSetDbId&#x60;, &#x60;variantDbId&#x60;, and &#x60;variantSetDbId&#x60;. These three fields MUST be present for every  &#x60;call&#x60; update request. This endpoint should not allow these fields to be modified for a given  &#x60;call&#x60;. Modifying these fields in the database is effectively moving a cell to a different location in the genotype matrix. This action is dangerous and can cause data collisions.
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void callsPutTest() throws Exception {
+        List<BrAPICall> body = new ArrayList<>();
+        ApiResponse<BrAPICallsListResponse> response = api.callsPut(body);
 
         // TODO: test validations
     }
@@ -86,11 +105,12 @@ public class CallsApiTest {
     public void searchCallsSearchResultsDbIdGetTest() throws ApiException {
         String searchResultsDbId = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             ApiResponse<Pair<Optional<BrAPICallsListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                    api.searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, pageSize);
+                    api.searchCallsSearchResultsDbIdGet(searchResultsDbId, pageToken, page, pageSize);
 		});
 
         // TODO: test validations

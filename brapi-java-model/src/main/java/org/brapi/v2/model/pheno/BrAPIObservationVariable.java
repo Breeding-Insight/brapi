@@ -27,6 +27,9 @@ public class BrAPIObservationVariable {
   @JsonProperty("observationVariableName")
   private String observationVariableName = null;
 
+  @JsonProperty("observationVariablePUI")
+  private String observationVariablePUI = null;
+
   @JsonProperty("additionalInfo")
   @Valid
   @JsonAdapter(NullableJsonElementTypeAdapterFactory.class)
@@ -115,6 +118,26 @@ public class BrAPIObservationVariable {
 
   public void setObservationVariableDbId(String observationVariableDbId) {
     this.observationVariableDbId = observationVariableDbId;
+  }
+
+  public BrAPIObservationVariable observationVariablePUI(String observationVariablePUI) {
+    this.observationVariablePUI = observationVariablePUI;
+    return this;
+  }
+
+  /**
+   * Variable unique identifier  MIAPPE V1.1 (DM-83) Variable ID - Code used to identify the variable in the data file. We recommend using a variable definition from the Crop Ontology where possible. Otherwise, the Crop Ontology naming convention is recommended: <trait abbreviation>_<method abbreviation>_<scale abbreviation>). A variable ID must be unique within a given investigation.
+   * @return observationVariablePUI
+  **/
+  
+      
+
+    public String getObservationVariablePUI() {
+    return observationVariablePUI;
+  }
+
+  public void setObservationVariablePUI(String observationVariablePUI) {
+    this.observationVariablePUI = observationVariablePUI;
   }
 
   public BrAPIObservationVariable additionalInfo(JsonObject additionalInfo) {
@@ -473,6 +496,7 @@ public class BrAPIObservationVariable {
     }
     BrAPIObservationVariable observationVariable = (BrAPIObservationVariable) o;
     return Objects.equals(this.observationVariableDbId, observationVariable.observationVariableDbId) &&
+    		Objects.equals(this.observationVariablePUI, observationVariable.observationVariablePUI) &&
             Objects.equals(this.observationVariableName, observationVariable.observationVariableName) &&
             Objects.equals(this.additionalInfo, observationVariable.additionalInfo) &&
             Objects.equals(this.commonCropName, observationVariable.commonCropName) &&
@@ -495,7 +519,7 @@ public class BrAPIObservationVariable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(observationVariableDbId, observationVariableName, additionalInfo, commonCropName, contextOfUse, defaultValue, documentationURL, externalReferences, growthStage, institution, language, method, ontologyReference, scale, scientist, status, submissionTimestamp, synonyms, trait);
+    return Objects.hash(observationVariableDbId, observationVariablePUI, observationVariableName, additionalInfo, commonCropName, contextOfUse, defaultValue, documentationURL, externalReferences, growthStage, institution, language, method, ontologyReference, scale, scientist, status, submissionTimestamp, synonyms, trait);
   }
 
   @Override
@@ -503,6 +527,7 @@ public class BrAPIObservationVariable {
     StringBuilder sb = new StringBuilder();
     sb.append("class ObservationVariable {\n");
     sb.append("    observationVariableDbId: ").append(toIndentedString(observationVariableDbId)).append("\n");
+    sb.append("    observationVariablePUI: ").append(toIndentedString(observationVariablePUI)).append("\n");
     sb.append("    observationVariableName: ").append(toIndentedString(observationVariableName)).append("\n");
     sb.append("    additionalInfo: ").append(toIndentedString(additionalInfo)).append("\n");
     sb.append("    commonCropName: ").append(toIndentedString(commonCropName)).append("\n");

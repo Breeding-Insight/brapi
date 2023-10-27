@@ -12,123 +12,178 @@ import javax.validation.Valid;
  * ScaleBaseClassValidValues
  */
 
-
 public class BrAPIScaleValidValues {
-  @JsonProperty("categories")
-  @Valid
-  private List<BrAPIScaleValidValuesCategories> categories = null;
+	@JsonProperty("categories")
+	@Valid
+	private List<BrAPIScaleValidValuesCategories> categories = null;
 
-  @JsonProperty("max")
-  private Integer max = null;
+	@JsonProperty("max")
+	@Deprecated
+	private Integer max = null;
 
-  @JsonProperty("min")
-  private Integer min = null;
+	@JsonProperty("maximumValue")
+	private String maximumValue = null;
 
-  public BrAPIScaleValidValues categories(List<BrAPIScaleValidValuesCategories> categories) {
-    this.categories = categories;
-    return this;
-  }
+	@JsonProperty("min")
+	@Deprecated
+	private Integer min = null;
 
-  public BrAPIScaleValidValues addCategoriesItem(BrAPIScaleValidValuesCategories categoriesItem) {
-    if (this.categories == null) {
-      this.categories = new ArrayList<BrAPIScaleValidValuesCategories>();
-    }
-    this.categories.add(categoriesItem);
-    return this;
-  }
+	@JsonProperty("minimumValue")
+	private String minimumValue = null;
 
-  /**
-   * List of possible values with optional labels
-   * @return categories
-  **/
-  
-      @Valid
-    public List<BrAPIScaleValidValuesCategories> getCategories() {
-    return categories;
-  }
+	public BrAPIScaleValidValues categories(List<BrAPIScaleValidValuesCategories> categories) {
+		this.categories = categories;
+		return this;
+	}
 
-  public void setCategories(List<BrAPIScaleValidValuesCategories> categories) {
-    this.categories = categories;
-  }
+	public BrAPIScaleValidValues addCategoriesItem(BrAPIScaleValidValuesCategories categoriesItem) {
+		if (this.categories == null) {
+			this.categories = new ArrayList<BrAPIScaleValidValuesCategories>();
+		}
+		this.categories.add(categoriesItem);
+		return this;
+	}
 
-  public BrAPIScaleValidValues max(Integer max) {
-    this.max = max;
-    return this;
-  }
+	/**
+	 * List of possible values with optional labels
+	 * 
+	 * @return categories
+	 **/
 
-  /**
-   * Maximum value (used for field data capture control).
-   * @return max
-  **/
-  
-  
-    public Integer getMax() {
-    return max;
-  }
+	@Valid
+	public List<BrAPIScaleValidValuesCategories> getCategories() {
+		return categories;
+	}
 
-  public void setMax(Integer max) {
-    this.max = max;
-  }
+	public void setCategories(List<BrAPIScaleValidValuesCategories> categories) {
+		this.categories = categories;
+	}
 
-  public BrAPIScaleValidValues min(Integer min) {
-    this.min = min;
-    return this;
-  }
+	public BrAPIScaleValidValues maximumValue(String maximumValue) {
+		this.maximumValue = maximumValue;
+		return this;
+	}
 
-  /**
-   * Minimum value (used for data capture control) for numerical and date scales
-   * @return min
-  **/
-  
-  
-    public Integer getMin() {
-    return min;
-  }
+	/**
+	 * Maximum value for numerical, date, and time scales. Typically used for data
+	 * capture control and QC.
+	 *
+	 * @return maximumValue
+	 **/
+	public String getMaximumValue() {
+		return maximumValue;
+	}
 
-  public void setMin(Integer min) {
-    this.min = min;
-  }
+	public void setMaximumValue(String maximumValue) {
+		this.maximumValue = maximumValue;
+	}
 
+	public BrAPIScaleValidValues minimumValue(String minimumValue) {
+		this.minimumValue = minimumValue;
+		return this;
+	}
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    BrAPIScaleValidValues scaleBaseClassValidValues = (BrAPIScaleValidValues) o;
-    return Objects.equals(this.categories, scaleBaseClassValidValues.categories) &&
-        Objects.equals(this.max, scaleBaseClassValidValues.max) &&
-        Objects.equals(this.min, scaleBaseClassValidValues.min);
-  }
+	/**
+	 * Minimum value for numerical, date, and time scales. Typically used for data
+	 * capture control and QC.
+	 *
+	 * @return minimumValue
+	 **/
+	public String getMinimumValue() {
+		return minimumValue;
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(categories, max, min);
-  }
+	public void setMinimumValue(String minimumValue) {
+		this.minimumValue = minimumValue;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ScaleBaseClassValidValues {\n");
-    
-    sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
-    sb.append("    max: ").append(toIndentedString(max)).append("\n");
-    sb.append("    min: ").append(toIndentedString(min)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
+	@Deprecated
+	public BrAPIScaleValidValues max(Integer max) {
+		this.max = max;
+		return this;
+	}
 
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	/**
+	 * Maximum value (used for field data capture control).
+	 * 
+	 * @return max
+	 **/
+
+	@Deprecated
+	public Integer getMax() {
+		return max;
+	}
+
+	@Deprecated
+	public void setMax(Integer max) {
+		this.max = max;
+	}
+
+	@Deprecated
+	public BrAPIScaleValidValues min(Integer min) {
+		this.min = min;
+		return this;
+	}
+
+	/**
+	 * Minimum value (used for data capture control) for numerical and date scales
+	 * 
+	 * @return min
+	 **/
+
+	@Deprecated
+	public Integer getMin() {
+		return min;
+	}
+
+	@Deprecated
+	public void setMin(Integer min) {
+		this.min = min;
+	}
+
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		BrAPIScaleValidValues scaleBaseClassValidValues = (BrAPIScaleValidValues) o;
+		return Objects.equals(this.categories, scaleBaseClassValidValues.categories)
+				&& Objects.equals(this.max, scaleBaseClassValidValues.max)
+				&& Objects.equals(this.maximumValue, scaleBaseClassValidValues.maximumValue)
+				&& Objects.equals(this.min, scaleBaseClassValidValues.min)
+				&& Objects.equals(this.minimumValue, scaleBaseClassValidValues.minimumValue);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(categories, max, min);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class ScaleBaseClassValidValues {\n");
+
+		sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
+		sb.append("    max: ").append(toIndentedString(max)).append("\n");
+        sb.append("    maximumValue: ").append(toIndentedString(maximumValue)).append("\n");
+		sb.append("    min: ").append(toIndentedString(min)).append("\n");
+        sb.append("    minimumValue: ").append(toIndentedString(minimumValue)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
+
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 }

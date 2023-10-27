@@ -39,5 +39,10 @@ public class VariantSetQueryParams extends BrAPIQueryParams {
     private String callSetDbId;
     private String studyDbId;
     private String studyName;
+    private String referenceSetDbId;
+    private String commonCropName;
+    private String programDbId;
+    private String externalReferenceId;
+    private String externalReferenceSource;
 
 }
