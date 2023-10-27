@@ -1,6 +1,6 @@
 /*
  * BrAPI-Germplasm
- * The Breeding API (BrAPI) is a Standardized REST ful Web Service API Specification for communicating Plant Breeding Data. BrAPI allows for easy data sharing between databases and tools involved in plant breeding. <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">General Reference Documentation</h2> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/URL_Structure.md\">URL Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Response_Structure.md\">Response Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Date_Time_Encoding.md\">Date/Time Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Location_Encoding.md\">Location Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Error_Handling.md\">Error Handling</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Search_Services.md\">Search Services</a></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Core</h2> <div class=\"brapi-section-description\">The BrAPI Core module contains high level entities used for organization and management. This includes Programs, Trials, Studies, Locations, People, and Lists</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Core\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapicore.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Phenotyping</h2> <div class=\"brapi-section-description\">The BrAPI Phenotyping module contains entities related to phenotypic observations. This includes Observation Units, Observations, Observation Variables, Traits, Scales, Methods, and Images</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Phenotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapiphenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Genotyping</h2> <div class=\"brapi-section-description\">The BrAPI Genotyping module contains entities related to genotyping analysis. This includes Samples, Markers, Variant Sets, Variants, Call Sets, Calls, References, Reads, and Vendor Orders</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Genotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"current-brapi-section brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Germplasm</h2> <div class=\"brapi-section-description\">The BrAPI Germplasm module contains entities related to germplasm management. This includes Germplasm, Germplasm Attributes, Seed Lots, Crosses, Pedigree, and Progeny</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Germplasm\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigermplasm.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <style> .link-btn{ float: left;  margin: 2px 10px 0 0;  padding: 0 5px;  border-radius: 5px;  background-color: #ddd; } .stop-float{   clear: both; } .version-number{   float: left;    margin: 5px 10px 0 5px; } .brapi-section-title{   margin: 0 10px 0 0;   font-size: 20px; } .current-brapi-section{   font-weight: bolder;   border-radius: 5px;    background-color: #ddd; } .brapi-section{   padding: 5px 5px;  } .brapi-section-description{   margin: 5px 0 0 5px; } </style>
+ * The Breeding API (BrAPI) is a Standardized REST ful Web Service API Specification for communicating Plant Breeding Data. BrAPI allows for easy data sharing between databases and tools involved in plant breeding. <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">General Reference Documentation</h2> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/URL_Structure.md\">URL Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Response_Structure.md\">Response Structure</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Date_Time_Encoding.md\">Date/Time Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Location_Encoding.md\">Location Encoding</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Error_Handling.md\">Error Handling</a></div> <div class=\"gen-info-link\"><a href=\"https://github.com/plantbreeding/API/blob/master/Specification/GeneralInfo/Search_Services.md\">Search Services</a></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Core</h2> <div class=\"brapi-section-description\">The BrAPI Core module contains high level entities used for organization and management. This includes Programs, Trials, Studies, Locations, People, and Lists</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Core\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Core\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapicore.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Phenotyping</h2> <div class=\"brapi-section-description\">The BrAPI Phenotyping module contains entities related to phenotypic observations. This includes Observation Units, Observations, Observation Variables, Traits, Scales, Methods, and Images</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Phenotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Phenotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapiphenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Genotyping</h2> <div class=\"brapi-section-description\">The BrAPI Genotyping module contains entities related to genotyping analysis. This includes Samples, Markers, Variant Sets, Variants, Call Sets, Calls, References, Reads, and Vendor Orders</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Genotyping\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Genotyping\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigenotyping.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <div class=\"current-brapi-section brapi-section\"> <h2 class=\"brapi-section-title\">BrAPI Germplasm</h2> <div class=\"brapi-section-description\">The BrAPI Germplasm module contains entities related to germplasm management. This includes Germplasm, Germplasm AttributeValues, Seed Lots, Crosses, Pedigree, and Progeny</div> <div class=\"version-number\">V2.0</div> <div class=\"link-btn\"><a href=\"https://github.com/plantbreeding/API/tree/master/Specification/BrAPI-Germplasm\">GitHub</a></div> <div class=\"link-btn\"><a href=\"https://app.swaggerhub.com/apis/PlantBreedingAPI/BrAPI-Germplasm\">SwaggerHub</a></div> <div class=\"link-btn\"><a href=\"https://brapigermplasm.docs.apiary.io\">Apiary</a></div> <div class=\"stop-float\"></div> </div>  <style> .link-btn{ float: left;  margin: 2px 10px 0 0;  padding: 0 5px;  border-radius: 5px;  background-color: #ddd; } .stop-float{   clear: both; } .version-number{   float: left;    margin: 5px 10px 0 5px; } .brapi-section-title{   margin: 0 10px 0 0;   font-size: 20px; } .current-brapi-section{   font-weight: bolder;   border-radius: 5px;    background-color: #ddd; } .brapi-section{   padding: 5px 5px;  } .brapi-section-description{   margin: 5px 0 0 5px; } </style>
  *
  * OpenAPI spec version: 2.0
  * 
@@ -14,6 +14,7 @@ package org.brapi.client.v2.modules.germplasm;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.germplasm.GermplasmAttributeValueQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
@@ -21,138 +22,151 @@ import org.brapi.v2.model.germ.BrAPIGermplasmAttributeValue;
 import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeValueListResponse;
 import org.brapi.v2.model.germ.request.BrAPIGermplasmAttributeValueSearchRequest;
 import org.brapi.v2.model.germ.response.BrAPIGermplasmAttributeValueSingleResponse;
-import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponse;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * API tests for GermplasmAttributeValuesApi
  */
-public class GermplasmAttributeValuesApiTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class GermplasmAttributeValuesApiTest extends BrAPIClientTest {
 
-    private final GermplasmAttributeValuesApi api = new GermplasmAttributeValuesApi();
+    private final GermplasmAttributeValuesApi api = new GermplasmAttributeValuesApi(this.apiClient);
 
-    /**
-     * Get the details for a specific Germplasm Attribute
-     *
-     * Get the details for a specific Germplasm Attribute
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void attributevaluesAttributeValueDbIdGetTest() throws ApiException {
-        String attributeValueDbId = null;
+	/**
+	 * Get the details for a specific Germplasm Attribute
+	 *
+	 * Get the details for a specific Germplasm Attribute
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void attributesAttributeValueDbIdGetTest() throws ApiException {
+		String attributeValueDbId = "attribute_val1";
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIGermplasmAttributeValueSingleResponse> response = api.attributevaluesAttributeValueDbIdGet(attributeValueDbId);
-		});
+		ApiResponse<BrAPIGermplasmAttributeValueSingleResponse> response = api.attributevaluesAttributeValueDbIdGet(attributeValueDbId);
 
-        // TODO: test validations
-    }
-    /**
-     * Update an existing Germplasm Attribute Value
-     *
-     * Update an existing Germplasm Attribute Value
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void attributevaluesAttributeValueDbIdPutTest() throws ApiException {
-        String attributeValueDbId = null;
-        BrAPIGermplasmAttributeValue body = null;
+		assertEquals(attributeValueDbId, response.getBody().getResult().getAttributeValueDbId());
+	}
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIGermplasmAttributeValueSingleResponse> response = api.attributevaluesAttributeValueDbIdPut(attributeValueDbId, body);
-		});
+	/**
+	 * Update an existing Germplasm Attribute
+	 *
+	 * Update an existing Germplasm Attribute
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void attributesAttributeValueDbIdPutTest() throws ApiException {
+		String attributeValueDbId = "attribute_val1";
+		BrAPIGermplasmAttributeValue body = new BrAPIGermplasmAttributeValue().value("new value");
 
-        // TODO: test validations
-    }
-    /**
-     * Get the Germplasm Attribute Values
-     *
-     * Get the Germplasm Attribute Values
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void attributevaluesGetTest() throws ApiException {
-        String attributeValueDbId = null;
-        String attributeDbId = null;
-        String attributeName = null;
-        String germplasmDbId = null;
-        String externalReferenceID = null;
-        String externalReferenceSource = null;
-        Integer page = null;
-        Integer pageSize = null;
-        
-        GermplasmAttributeValueQueryParams queryParams = new GermplasmAttributeValueQueryParams();
-        ApiResponse<BrAPIGermplasmAttributeValueListResponse> response = api.attributevaluesGet(queryParams);
+		ApiResponse<BrAPIGermplasmAttributeValueSingleResponse> response = api.attributevaluesAttributeValueDbIdPut(attributeValueDbId, body);
 
-        // TODO: test validations
-    }
-    /**
-     * Create new Germplasm Attribute Values
-     *
-     * Create new Germplasm Attribute Values
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void attributevaluesPostTest() throws ApiException {
-        List<BrAPIGermplasmAttributeValue> body = null;
+		assertEquals(attributeValueDbId, response.getBody().getResult().getAttributeValueDbId());
+		assertEquals("new value", response.getBody().getResult().getValue());
+	}
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIGermplasmAttributeValueListResponse> response = api.attributevaluesPost(body);
-		});
+	/**
+	 * Get the Germplasm AttributeValues
+	 *
+	 * List available attributes.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void attributesGetTest() throws ApiException {
+		String attributeValueDbId = "attribute_val1";
 
-        // TODO: test validations
-    }
-    /**
-     * Submit a search request for Germplasm Attribute Values
-     *
-     * Search for a set of Germplasm Attribute Values based on some criteria          See Search Services for additional implementation details.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchAttributevaluesPostTest() throws ApiException {
-        BrAPIGermplasmAttributeValueSearchRequest body = null;
+		GermplasmAttributeValueQueryParams queryParams = new GermplasmAttributeValueQueryParams().attributeValueDbId(attributeValueDbId);
+		ApiResponse<BrAPIGermplasmAttributeValueListResponse> response = api.attributevaluesGet(queryParams);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPIGermplasmAttributeValueListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                    api.searchAttributevaluesPost(body);
-		});
+		assertEquals(attributeValueDbId, response.getBody().getResult().getData().get(0).getAttributeValueDbId());
+	}
 
-        // TODO: test validations
-    }
-    /**
-     * Get the results of a Germplasm Attribute Values search request
-     *
-     * Get the results of a Germplasm Attribute Values search request  See Search Services for additional implementation details.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void searchAttributevaluesSearchResultsDbIdGetTest() throws ApiException {
-        String searchResultsDbId = null;
-        Integer page = null;
-        Integer pageSize = null;
+	/**
+	 * Create new Germplasm AttributeValues
+	 *
+	 * Create new Germplasm AttributeValues
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void attributesPostTest() throws ApiException {
+		BrAPIGermplasmAttributeValue attr = new BrAPIGermplasmAttributeValue().attributeDbId("attribute1").value("new value");
+		List<BrAPIGermplasmAttributeValue> body = Arrays.asList(attr);
 
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            ApiResponse<Pair<Optional<BrAPIGermplasmAttributeValueListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response =
-                    api.searchAttributevaluesSearchResultsDbIdGet(searchResultsDbId, page, pageSize);
-		});
+		ApiResponse<BrAPIGermplasmAttributeValueListResponse> response = api.attributevaluesPost(body);
 
-        // TODO: test validations
-    }
+		assertEquals(attr.getAttributeDbId(), response.getBody().getResult().getData().get(0).getAttributeDbId());
+		assertEquals(attr.getValue(), response.getBody().getResult().getData().get(0).getValue());
+	}
+
+	/**
+	 * Submit a search request for Germplasm AttributeValues
+	 *
+	 * Search for a set of Germplasm AttributeValues based on some criteria See Search
+	 * Services for additional implementation details.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void searchAttributeValuesPostTest() throws ApiException {
+		BrAPIGermplasmAttributeValueSearchRequest body = new BrAPIGermplasmAttributeValueSearchRequest()
+				.addAttributeValueDbIdsItem("attribute_val1")
+				.addAttributeValueDbIdsItem("attribute_val2");
+
+		ApiResponse<Pair<Optional<BrAPIGermplasmAttributeValueListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = api
+				.searchAttributevaluesPost(body);
+		
+        Optional<BrAPIGermplasmAttributeValueListResponse> listResponse = response.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+        // only results are returned
+        assertTrue(listResponse.isPresent());
+        assertFalse(searchIdResponse.isPresent());
+
+        assertEquals(2, listResponse.get().getResult().getData().size(), "unexpected number of pedigree nodes returned");
+	}
+
+	/**
+	 * Get the results of a Germplasm AttributeValues search request
+	 *
+	 * Get the results of a Germplasm AttributeValues search request See Search Services
+	 * for additional implementation details.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void searchAttributeValuesSearchResultsDbIdGetTest() throws ApiException {
+		BrAPIGermplasmAttributeValueSearchRequest baseRequest = new BrAPIGermplasmAttributeValueSearchRequest()
+				.addAttributeValueDbIdsItem("attribute_val1")
+				.addAttributeValueDbIdsItem("attribute_val2")
+				.addAttributeValueDbIdsItem("attribute_val3")
+				.addAttributeValueDbIdsItem("attribute_val2")
+				.addAttributeValueDbIdsItem("attribute_val1");
+
+        ApiResponse<Pair<Optional<BrAPIGermplasmAttributeValueListResponse>, Optional<BrAPIAcceptedSearchResponse>>> response = this.api.searchAttributevaluesPost(baseRequest);
+        Optional<BrAPIGermplasmAttributeValueListResponse> listResponse = response.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse = response.getBody().getRight();
+        // only search ID is returned
+        assertFalse(listResponse.isPresent());
+        assertTrue(searchIdResponse.isPresent());
+
+        // Get results from search ID
+    	ApiResponse<Pair<Optional<BrAPIGermplasmAttributeValueListResponse>, Optional<BrAPIAcceptedSearchResponse>>> searchResponse = this.api.searchAttributevaluesSearchResultsDbIdGet(searchIdResponse.get().getResult().getSearchResultsDbId(), 0, 10);
+        Optional<BrAPIGermplasmAttributeValueListResponse> listResponse2 = searchResponse.getBody().getLeft();
+        Optional<BrAPIAcceptedSearchResponse> searchIdResponse2 = searchResponse.getBody().getRight();
+        // only results are returned
+        assertTrue(listResponse2.isPresent());
+        assertFalse(searchIdResponse2.isPresent());
+
+        assertEquals(3, listResponse2.get().getResult().getData().size(), "unexpected number of pedigree nodes returned");
+	}
 }

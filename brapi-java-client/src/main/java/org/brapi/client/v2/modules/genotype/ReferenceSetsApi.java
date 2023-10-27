@@ -81,6 +81,18 @@ public class ReferenceSetsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
+        if (queryParams.commonCropName() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "commonCropName", queryParams.commonCropName());
+        if (queryParams.programDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "programDbId", queryParams.programDbId());
+        if (queryParams.trialDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "trialDbId", queryParams.trialDbId());
+        if (queryParams.studyDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "studyDbId", queryParams.studyDbId());
+        if (queryParams.externalReferenceId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
+        if (queryParams.externalReferenceSource() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
@@ -148,7 +160,7 @@ public class ReferenceSetsApi {
         
         // create path and map variables
         String localVarPath = "/referencesets/{referenceSetDbId}"
-            .replaceAll("\\{" + "referenceSetDbId" + "\\}", apiClient.escapeString(referenceSetDbId.toString()));
+            .replaceAll("\\{" + "referenceSetDbId" + "\\}", apiClient.escapeString(referenceSetDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -295,7 +307,7 @@ public class ReferenceSetsApi {
         
         // create path and map variables
         String localVarPath = "/search/referencesets/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

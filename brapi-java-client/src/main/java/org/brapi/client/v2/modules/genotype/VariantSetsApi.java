@@ -148,7 +148,7 @@ public class VariantSetsApi {
         
         // create path and map variables
         String localVarPath = "/search/variantsets/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -305,10 +305,20 @@ public class VariantSetsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "variantDbId", queryParams.variantDbId());
         if (queryParams.callSetDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "callSetDbId", queryParams.callSetDbId());
+        if (queryParams.referenceSetDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "referenceSetDbId", queryParams.referenceSetDbId());
+        if (queryParams.commonCropName() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "commonCropName", queryParams.commonCropName());
+        if (queryParams.programDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "programDbId", queryParams.programDbId());
         if (queryParams.studyDbId() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "studyDbId", queryParams.studyDbId());
         if (queryParams.studyName() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "studyName", queryParams.studyName());
+        if (queryParams.externalReferenceId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
+        if (queryParams.externalReferenceSource() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
@@ -381,7 +391,7 @@ public class VariantSetsApi {
         
         // create path and map variables
         String localVarPath = "/variantsets/{variantSetDbId}/calls"
-            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId.toString()));
+            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -395,6 +405,8 @@ public class VariantSetsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "sepUnphased", queryParams.sepUnphased());
         if (queryParams.pageToken() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageToken", queryParams.pageToken());
+        if (queryParams.page() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
 
@@ -470,7 +482,7 @@ public class VariantSetsApi {
         
         // create path and map variables
         String localVarPath = "/variantsets/{variantSetDbId}/callsets"
-            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId.toString()));
+            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -559,7 +571,7 @@ public class VariantSetsApi {
         
         // create path and map variables
         String localVarPath = "/variantsets/{variantSetDbId}"
-            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId.toString()));
+            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -627,7 +639,7 @@ public class VariantSetsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call variantsetsVariantSetDbIdVariantsGetCall(String variantSetDbId, String variantDbId, String pageToken, Integer pageSize) throws ApiException {
+    private Call variantsetsVariantSetDbIdVariantsGetCall(String variantSetDbId, String variantDbId, String pageToken, Integer page, Integer pageSize) throws ApiException {
         if(variantSetDbId == null) {
             throw new IllegalArgumentException("variantSetDbId cannot be null"); 
         }
@@ -635,7 +647,7 @@ public class VariantSetsApi {
         
         // create path and map variables
         String localVarPath = "/variantsets/{variantSetDbId}/variants"
-            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId.toString()));
+            .replaceAll("\\{" + "variantSetDbId" + "\\}", apiClient.escapeString(variantSetDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -643,6 +655,8 @@ public class VariantSetsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "variantDbId", variantDbId);
         if (pageToken != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageToken", pageToken);
+        if (page != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", page);
         if (pageSize != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", pageSize);
 
@@ -669,6 +683,7 @@ public class VariantSetsApi {
     }
 
     /**
+     * **Deprecated in v2.1** Please use {@code variantsetsVariantSetDbIdVariantsGet(variantSetDbId, variantDbId, pageToken, page, pageSize)}.  <br><br>
      * Gets a &#x60;Variants&#x60; for a given &#x60;VariantSet&#x60;.
      * This call will return an array of &#x60;Variants&#x60;.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
      * @param variantSetDbId The ID of the &#x60;VariantSet&#x60; to be retrieved. (required)
@@ -679,13 +694,31 @@ public class VariantSetsApi {
      * @return ApiResponse&lt;VariantsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<BrAPIVariantsListResponse> variantsetsVariantSetDbIdVariantsGet(String variantSetDbId, String variantDbId, String pageToken, Integer pageSize) throws ApiException {
-        Call call = variantsetsVariantSetDbIdVariantsGetCall(variantSetDbId, variantDbId, pageToken, pageSize);
+        return variantsetsVariantSetDbIdVariantsGet(variantSetDbId, variantDbId, pageToken, 0, pageSize);
+    }
+
+    /**
+     * Gets a &#x60;Variants&#x60; for a given &#x60;VariantSet&#x60;.
+     * This call will return an array of &#x60;Variants&#x60;.
+     * @param variantSetDbId The ID of the &#x60;VariantSet&#x60; to be retrieved. (required)
+     * @param variantDbId The ID of the &#x60;Variant&#x60; to be retrieved. (optional)
+     * @param pageToken **Deprecated in v2.1** Please use page.<br>Used to request a specific page of data to be returned.  Tokenized pages are for large data sets which can not be efficiently broken into indexed pages. Use the nextPageToken and prevPageToken from a prior response to construct a query and move to the next or previous page respectively.  (optional)
+     * @param page Which result page is requested. The page indexing starts at 0 (the first page is 'page'= 0). Default is 0.
+     * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
+
+     * @return ApiResponse&lt;VariantsListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BrAPIVariantsListResponse> variantsetsVariantSetDbIdVariantsGet(String variantSetDbId, String variantDbId, @Deprecated String pageToken, Integer page, Integer pageSize) throws ApiException {
+        Call call = variantsetsVariantSetDbIdVariantsGetCall(variantSetDbId, variantDbId, pageToken, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPIVariantsListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
+     * **Deprecated in v2.1** Please use {@code variantsetsVariantSetDbIdVariantsGetAsync(variantSetDbId, variantDbId, pageToken, page, pageSize, ApiCallback)}.  <br><br>
      * Gets a &#x60;Variants&#x60; for a given &#x60;VariantSet&#x60;. (asynchronously)
      * This call will return an array of &#x60;Variants&#x60;.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
      * @param variantSetDbId The ID of the &#x60;VariantSet&#x60; to be retrieved. (required)
@@ -697,8 +730,26 @@ public class VariantSetsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public Call variantsetsVariantSetDbIdVariantsGetAsync(String variantSetDbId, String variantDbId, String pageToken, Integer pageSize, final ApiCallback<BrAPIVariantsListResponse> callback) throws ApiException {
-        Call call = variantsetsVariantSetDbIdVariantsGetCall(variantSetDbId, variantDbId, pageToken, pageSize);
+        return variantsetsVariantSetDbIdVariantsGetAsync(variantSetDbId, variantDbId, pageToken, 0, pageSize, callback);
+    }
+
+    /**
+     * Gets a &#x60;Variants&#x60; for a given &#x60;VariantSet&#x60;. (asynchronously)
+     * This call will return an array of &#x60;Variants&#x60;.  ** THIS ENDPOINT USES TOKEN BASED PAGING **
+     * @param variantSetDbId The ID of the &#x60;VariantSet&#x60; to be retrieved. (required)
+     * @param variantDbId The ID of the &#x60;Variant&#x60; to be retrieved. (optional)
+     * @param pageToken **Deprecated in v2.1** Please use page.<br>Used to request a specific page of data to be returned.  Tokenized pages are for large data sets which can not be efficiently broken into indexed pages. Use the nextPageToken and prevPageToken from a prior response to construct a query and move to the next or previous page respectively.  (optional)
+     * @param page Which result page is requested. The page indexing starts at 0 (the first page is 'page'= 0). Default is 0.
+     * @param pageSize The size of the pages to be returned. Default is &#x60;1000&#x60;. (optional)
+
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public Call variantsetsVariantSetDbIdVariantsGetAsync(String variantSetDbId, String variantDbId, @Deprecated String pageToken, Integer page, Integer pageSize, final ApiCallback<BrAPIVariantsListResponse> callback) throws ApiException {
+        Call call = variantsetsVariantSetDbIdVariantsGetCall(variantSetDbId, variantDbId, pageToken, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPIVariantsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

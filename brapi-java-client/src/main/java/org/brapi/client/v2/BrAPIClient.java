@@ -56,14 +56,14 @@ import java.util.regex.Pattern;
 public class BrAPIClient {
 
 	private String basePath;
-	private boolean debugging = false;
-	private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
+	private final boolean debugging = false;
+	private final Map<String, String> defaultHeaderMap = new HashMap<String, String>();
 	private String tempFolderPath = null;
 
 	private Map<String, Authentication> authentications;
 
 	private DateFormat dateFormat;
-	private static int DEFAULT_TIMEOUT=10000;
+	private static final int DEFAULT_TIMEOUT=10000;
 
 	private InputStream sslCaCert;
 	private boolean verifyingSsl;
@@ -443,7 +443,7 @@ public class BrAPIClient {
 				if (b.length() > 0) {
 					b.append(",");
 				}
-				b.append(String.valueOf(o));
+				b.append(o);
 			}
 			return b.toString();
 		} else {
@@ -859,7 +859,7 @@ public class BrAPIClient {
 			public void onResponse(Call request, Response response) throws IOException {
 				T result;
 				try {
-					result = (T) handleResponse(response, returnType);
+					result = handleResponse(response, returnType);
 				} catch (ApiException e) {
 					callback.onFailure(e, response.code(), response.headers().toMultimap());
 					return;
@@ -920,7 +920,6 @@ public class BrAPIClient {
 	 * @param headerParams            The header parameters
 	 * @param formParams              The form parameters
 	 * @param authNames               The authentications to apply
-	 * @param progressRequestListener Progress request listener
 	 * @return The HTTP call
 	 * @throws ApiException If fail to serialize the request body object
 	 */
@@ -944,7 +943,6 @@ public class BrAPIClient {
 	 * @param headerParams            The header parameters
 	 * @param formParams              The form parameters
 	 * @param authNames               The authentications to apply
-	 * @param progressRequestListener Progress request listener
 	 * @return The HTTP request
 	 * @throws ApiException If fail to serialize the request body object
 	 */
@@ -956,7 +954,7 @@ public class BrAPIClient {
 		final Request.Builder reqBuilder = new Request.Builder().url(url);
 		processHeaderParams(headerParams, reqBuilder);
 
-		String contentType = (String) headerParams.get("Content-Type");
+		String contentType = headerParams.get("Content-Type");
 		// ensuring a default content type
 		if (contentType == null) {
 			contentType = "application/json";
@@ -1130,7 +1128,7 @@ public class BrAPIClient {
 				KeyStore caKeyStore = newEmptyKeyStore(password);
 				int index = 0;
 				for (Certificate certificate : certificates) {
-					String certificateAlias = "ca" + Integer.toString(index++);
+					String certificateAlias = "ca" + index++;
 					caKeyStore.setCertificateEntry(certificateAlias, certificate);
 				}
 				TrustManagerFactory trustManagerFactory = TrustManagerFactory

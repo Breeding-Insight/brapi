@@ -34,12 +34,44 @@ import lombok.experimental.SuperBuilder;
 @Accessors(fluent=true)
 public class SampleQueryParams extends BrAPIQueryParams {
 
+    private String sampleName;
+    private String sampleGroupDbId;
+    private String plateName;
+    private String programDbId;
+    private String commonCropName;
+    private String trialDbId;
     private String sampleDbId;
     private String observationUnitDbId;
     private String plateDbId;
     private String germplasmDbId;
     private String studyDbId;
-    private String externalReferenceID;
+    private String externalReferenceId;
     private String externalReferenceSource;
+
+    /**
+     * **Deprecated in v2.1** Please use externalReferenceId
+     */
+    @Deprecated
+    public String externalReferenceID() {
+        return externalReferenceId;
+    }
+
+    /**
+     * **Deprecated in v2.1** Please use externalReferenceId
+     */
+    @Deprecated
+    public SampleQueryParams externalReferenceID(String externalReferenceID) {
+        this.externalReferenceId = externalReferenceID;
+        return this;
+    }
+
+    public String externalReferenceId() {
+        return externalReferenceId;
+    }
+
+    public SampleQueryParams externalReferenceId(String externalReferenceId) {
+        this.externalReferenceId = externalReferenceId;
+        return this;
+    }
 
 }

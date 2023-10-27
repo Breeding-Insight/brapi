@@ -145,7 +145,7 @@ public class TrialsApi {
         
         // create path and map variables
         String localVarPath = "/search/trials/{searchResultsDbId}"
-            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId.toString()));
+            .replaceAll("\\{" + "searchResultsDbId" + "\\}", apiClient.escapeString(searchResultsDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -252,8 +252,10 @@ public class TrialsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "sortBy", queryParams.sortBy());
         if (queryParams.sortOrder() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "sortOrder", queryParams.sortOrder());
-        if (queryParams.externalReferenceID() != null)
+        if (queryParams.externalReferenceID() != null) 
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceID", queryParams.externalReferenceID());
+        if (queryParams.externalReferenceId() != null) 
+            apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
         if (queryParams.page() != null)
@@ -399,7 +401,7 @@ public class TrialsApi {
         
         // create path and map variables
         String localVarPath = "/trials/{trialDbId}"
-            .replaceAll("\\{" + "trialDbId" + "\\}", apiClient.escapeString(trialDbId.toString()));
+            .replaceAll("\\{" + "trialDbId" + "\\}", apiClient.escapeString(trialDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();
@@ -476,7 +478,7 @@ public class TrialsApi {
         
         // create path and map variables
         String localVarPath = "/trials/{trialDbId}"
-            .replaceAll("\\{" + "trialDbId" + "\\}", apiClient.escapeString(trialDbId.toString()));
+            .replaceAll("\\{" + "trialDbId" + "\\}", apiClient.escapeString(trialDbId));
 
         Map<String, String> localVarQueryParams = new HashMap<>();
         Map<String, String> localVarCollectionQueryParams = new HashMap<>();

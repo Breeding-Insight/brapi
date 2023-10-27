@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
+import org.brapi.client.v2.BrAPIClientTest;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.genotype.CallQueryParams;
 import org.brapi.client.v2.model.queryParams.genotype.VariantSetQueryParams;
@@ -35,9 +36,9 @@ import java.util.Optional;
 /**
  * API tests for VariantSetsApi
  */
-public class VariantSetsApiTest {
+public class VariantSetsApiTest extends BrAPIClientTest {
 
-    private final VariantSetsApi api = new VariantSetsApi();
+    private final VariantSetsApi api = new VariantSetsApi(this.apiClient);
 
     /**
      * Gets a list of &#x60;VariantSet&#x60; matching the search criteria.
@@ -107,8 +108,13 @@ public class VariantSetsApiTest {
         String variantSetDbId = null;
         String variantDbId = null;
         String callSetDbId = null;
+        String referenceSetDbId = null;
+        String commonCropName = null;
+        String programDbId = null;
         String studyDbId = null;
         String studyName = null;
+        String externalReferenceId = null;
+        String externalReferenceSource = null;
         Integer page = null;
         Integer pageSize = null;
         
@@ -133,6 +139,7 @@ public class VariantSetsApiTest {
         String sepPhased = null;
         String sepUnphased = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
         
         CallQueryParams queryParams = new CallQueryParams();
@@ -195,10 +202,11 @@ public class VariantSetsApiTest {
         String variantSetDbId = null;
         String variantDbId = null;
         String pageToken = null;
+        Integer page = null;
         Integer pageSize = null;
 
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-        ApiResponse<BrAPIVariantsListResponse> response = api.variantsetsVariantSetDbIdVariantsGet(variantSetDbId, variantDbId, pageToken, pageSize);
+        ApiResponse<BrAPIVariantsListResponse> response = api.variantsetsVariantSetDbIdVariantsGet(variantSetDbId, variantDbId, pageToken, page, pageSize);
 		});
 
         // TODO: test validations
