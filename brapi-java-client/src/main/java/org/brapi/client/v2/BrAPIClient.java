@@ -801,30 +801,45 @@ public class BrAPIClient {
 		Type jsonReturnType = new TypeToken<JsonObject>(){}.getType();
 		ApiResponse<JsonObject> searchResponse = execute(call, jsonReturnType);
 
-		// Check our response to construct the Pair
-		Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponse>> result;
-		if (searchResponse.getBody() != null) {
-			JsonObject searchBody = searchResponse.getBody();
-			JsonObject searchResult = searchBody.getAsJsonObject("result");
-			try {
-				if (searchResult != null && searchResult.get("searchResultsDbId") != null) {
-					// Parse into a BrAPI Accepted Search Response
-					BrAPIAcceptedSearchResponse searchResultObject = json.getGson().fromJson(searchBody, BrAPIAcceptedSearchResponse.class);
-					result = new ImmutablePair<>(Optional.empty(), Optional.of(searchResultObject));
-				} else {
-					// Parse into the actual response object
-					T listResponse = json.getGson().fromJson(searchBody, returnType);
-					result = new ImmutablePair<>(Optional.of(listResponse), Optional.empty());
-				}
-			} catch (JsonSyntaxException e){
-				throw new ApiException(e);
-			}
-
-		} else {
-			throw new ApiException("Search body was not returned:" );
-		}
+		Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponse>> result = handleSearchApiResponse(searchResponse, returnType);
 
 		return new ApiResponse<>(searchResponse.getStatusCode(), searchResponse.getHeaders(), result);
+	}
+
+	/**
+	 * Execute HTTP call asynchronously.
+	 *
+	 * @see #execute(Call, Type)
+	 * @param <T>        Type
+	 * @param call       The callback to be executed when the API call finishes
+	 * @param returnType Return type
+	 * @param callback   ApiCallback
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> void executeSearchAsync(Call call, final Type returnType, final ApiCallback<Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponse>>> callback) {
+		call.enqueue(new Callback() {
+			@Override
+			public void onFailure(Call request, IOException e) {
+				callback.onFailure(new ApiException(e), 0, null);
+			}
+
+			@Override
+			public void onResponse(Call request, Response response) throws IOException {
+				Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponse>> result;
+				try {
+					Type jsonReturnType = new TypeToken<JsonObject>(){}.getType();
+					ApiResponse<JsonObject> searchResponse = handleResponse(response, jsonReturnType);
+					result = handleSearchApiResponse(searchResponse, returnType);
+				} catch (ApiException e) {
+					callback.onFailure(e, response.code(), response.headers().toMultimap());
+					return;
+				}catch (Exception e) {
+					callback.onFailure(new ApiException(e), response.code(), response.headers().toMultimap());
+					return;
+				}
+				callback.onSuccess(result, response.code(), response.headers().toMultimap());
+			}
+		});
 	}
 
 	/**
@@ -1158,5 +1173,31 @@ public class BrAPIClient {
 		} catch (IOException e) {
 			throw new AssertionError(e);
 		}
+	}
+
+	private <T> Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponse>> handleSearchApiResponse(ApiResponse<JsonObject> searchResponse, Type returnType) throws ApiException {
+		// Check our response to construct the Pair
+		Pair<Optional<T>, Optional<BrAPIAcceptedSearchResponse>> result;
+		if (searchResponse.getBody() != null) {
+			JsonObject searchBody = searchResponse.getBody();
+			JsonObject searchResult = searchBody.getAsJsonObject("result");
+			try {
+				if (searchResult != null && searchResult.get("searchResultsDbId") != null) {
+					// Parse into a BrAPI Accepted Search Response
+					BrAPIAcceptedSearchResponse searchResultObject = json.getGson().fromJson(searchBody, BrAPIAcceptedSearchResponse.class);
+					result = new ImmutablePair<>(Optional.empty(), Optional.of(searchResultObject));
+				} else {
+					// Parse into the actual response object
+					T listResponse = json.getGson().fromJson(searchBody, returnType);
+					result = new ImmutablePair<>(Optional.of(listResponse), Optional.empty());
+				}
+			} catch (JsonSyntaxException e){
+				throw new ApiException(e);
+			}
+
+		} else {
+			throw new ApiException("Search body was not returned:" );
+		}
+		return result;
 	}
 }

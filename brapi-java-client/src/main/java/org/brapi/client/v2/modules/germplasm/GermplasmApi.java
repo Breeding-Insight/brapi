@@ -835,10 +835,10 @@ public class GermplasmApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchGermplasmPostAsync(BrAPIGermplasmSearchRequest body, final ApiCallback<BrAPIGermplasmListResponse> callback) throws ApiException {
+    public Call searchGermplasmPostAsync(BrAPIGermplasmSearchRequest body, final ApiCallback<Pair<Optional<BrAPIGermplasmListResponse>, Optional<BrAPIAcceptedSearchResponse>>> callback) throws ApiException {
         Call call = searchGermplasmPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIGermplasmListResponse>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
+        apiClient.executeSearchAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
