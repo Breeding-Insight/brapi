@@ -17,6 +17,8 @@
 
 package org.brapi.client.v2.modules.germplasm;
 
+import com.google.gson.JsonObject;
+
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.BrAPIClientTest;
@@ -109,8 +111,8 @@ public class PedigreeAPITests extends BrAPIClientTest {
     @Test
     public void createPedigreeSuccess() throws Exception {
 
-        Map<String, String> additionalInfo = new HashMap<String, String>();
-        additionalInfo.put("test_key", "test_value");
+        JsonObject additionalInfo = new JsonObject();
+        additionalInfo.addProperty("test_key", "test_value");
         List<BrAPIExternalReference> externalReferences = new ArrayList<>();
         externalReferences.add(new BrAPIExternalReference()
                 .referenceID(UUID.randomUUID().toString())
