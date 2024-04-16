@@ -17,12 +17,13 @@ import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.brapi.v2.model.BrAPISearchRequestParametersPaging;
 
 /**
  * PedigreeSearchRequest
  */
 
-public class BrAPIPedigreeSearchRequest {
+public class BrAPIPedigreeSearchRequest extends BrAPISearchRequestParametersPaging {
     @JsonProperty("accessionNumbers")
     private List<String> accessionNumbers = null;
 
