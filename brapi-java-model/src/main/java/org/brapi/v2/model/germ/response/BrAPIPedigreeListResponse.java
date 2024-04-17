@@ -18,12 +18,14 @@ import java.util.Objects;
 
 import org.brapi.v2.model.BrAPIContext;
 import org.brapi.v2.model.BrAPIMetadata;
+import org.brapi.v2.model.BrAPIResponse;
+import org.brapi.v2.model.pheno.response.BrAPIObservationUnitListResponseResult;
 
 /**
  * PedigreeListResponse
  */
 
-public class BrAPIPedigreeListResponse {
+public class BrAPIPedigreeListResponse implements BrAPIResponse<BrAPIPedigreeListResponseResult> {
     @JsonProperty("@context")
     private BrAPIContext _atContext = null;
 

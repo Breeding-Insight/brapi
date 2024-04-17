@@ -75,12 +75,6 @@ public class BrAPIPedigreeSearchRequest extends BrAPISearchRequestParametersPagi
     @JsonProperty("instituteCodes")
     private List<String> instituteCodes = null;
 
-    @JsonProperty("page")
-    private Integer page = null;
-
-    @JsonProperty("pageSize")
-    private Integer pageSize = null;
-
     @JsonProperty("pedigreeDepth")
     private Integer pedigreeDepth = null;
 
@@ -521,42 +515,6 @@ public class BrAPIPedigreeSearchRequest extends BrAPISearchRequestParametersPagi
         this.instituteCodes = instituteCodes;
     }
 
-    public BrAPIPedigreeSearchRequest page(Integer page) {
-        this.page = page;
-        return this;
-    }
-
-    /**
-     * Which result page is requested. The page indexing starts at 0 (the first page is &#x27;page&#x27;&#x3D; 0). Default is &#x60;0&#x60;.
-     *
-     * @return page
-     **/
-    public Integer getPage() {
-        return page;
-    }
-
-    public void setPage(Integer page) {
-        this.page = page;
-    }
-
-    public BrAPIPedigreeSearchRequest pageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-        return this;
-    }
-
-    /**
-     * The size of the pages to be returned. Default is &#x60;1000&#x60;.
-     *
-     * @return pageSize
-     **/
-    public Integer getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public BrAPIPedigreeSearchRequest pedigreeDepth(Integer pedigreeDepth) {
         this.pedigreeDepth = pedigreeDepth;
         return this;
@@ -828,8 +786,6 @@ public class BrAPIPedigreeSearchRequest extends BrAPISearchRequestParametersPagi
                 Objects.equals(this.includeProgeny, pedigreeSearchRequest.includeProgeny) &&
                 Objects.equals(this.includeSiblings, pedigreeSearchRequest.includeSiblings) &&
                 Objects.equals(this.instituteCodes, pedigreeSearchRequest.instituteCodes) &&
-                Objects.equals(this.page, pedigreeSearchRequest.page) &&
-                Objects.equals(this.pageSize, pedigreeSearchRequest.pageSize) &&
                 Objects.equals(this.pedigreeDepth, pedigreeSearchRequest.pedigreeDepth) &&
                 Objects.equals(this.progenyDepth, pedigreeSearchRequest.progenyDepth) &&
                 Objects.equals(this.programDbIds, pedigreeSearchRequest.programDbIds) &&
@@ -844,7 +800,7 @@ public class BrAPIPedigreeSearchRequest extends BrAPISearchRequestParametersPagi
 
     @Override
     public int hashCode() {
-        return Objects.hash(accessionNumbers, binomialNames, collections, commonCropNames, externalReferenceIDs, externalReferenceIds, externalReferenceSources, familyCodes, genus, germplasmDbIds, germplasmNames, germplasmPUIs, includeFullTree, includeParents, includeProgeny, includeSiblings, instituteCodes, page, pageSize, pedigreeDepth, progenyDepth, programDbIds, programNames, species, studyDbIds, studyNames, synonyms, trialDbIds, trialNames);
+        return Objects.hash(accessionNumbers, binomialNames, collections, commonCropNames, externalReferenceIDs, externalReferenceIds, externalReferenceSources, familyCodes, genus, germplasmDbIds, germplasmNames, germplasmPUIs, includeFullTree, includeParents, includeProgeny, includeSiblings, instituteCodes, pedigreeDepth, progenyDepth, programDbIds, programNames, species, studyDbIds, studyNames, synonyms, trialDbIds, trialNames);
     }
 
 
@@ -870,8 +826,6 @@ public class BrAPIPedigreeSearchRequest extends BrAPISearchRequestParametersPagi
         sb.append("    includeProgeny: ").append(toIndentedString(includeProgeny)).append("\n");
         sb.append("    includeSiblings: ").append(toIndentedString(includeSiblings)).append("\n");
         sb.append("    instituteCodes: ").append(toIndentedString(instituteCodes)).append("\n");
-        sb.append("    page: ").append(toIndentedString(page)).append("\n");
-        sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
         sb.append("    pedigreeDepth: ").append(toIndentedString(pedigreeDepth)).append("\n");
         sb.append("    progenyDepth: ").append(toIndentedString(progenyDepth)).append("\n");
         sb.append("    programDbIds: ").append(toIndentedString(programDbIds)).append("\n");
