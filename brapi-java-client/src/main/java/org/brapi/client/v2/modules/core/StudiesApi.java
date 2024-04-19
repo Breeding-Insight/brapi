@@ -121,12 +121,13 @@ public class StudiesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchStudiesPostAsync(BrAPIStudySearchRequest body, final ApiCallback<BrAPIStudyListResponse> callback) throws ApiException {
+    public Call searchStudiesPostAsync(BrAPIStudySearchRequest body, final ApiCallback<Pair<Optional<BrAPIStudyListResponse>, Optional<BrAPIAcceptedSearchResponse>>> callback) throws ApiException {
         Call call = searchStudiesPostCall(body);
         Type localVarReturnType = new TypeToken<BrAPIStudyListResponse>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
+        apiClient.executeSearchAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for searchStudiesSearchResultsDbIdGet
      * @param searchResultsDbId Unique identifier which references the search results (required)
@@ -204,10 +205,10 @@ public class StudiesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call searchStudiesSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<BrAPIStudyListResponse> callback) throws ApiException {
+    public Call searchStudiesSearchResultsDbIdGetAsync(String searchResultsDbId, Integer page, Integer pageSize, final ApiCallback<Pair<Optional<BrAPIStudyListResponse>, Optional<BrAPIAcceptedSearchResponse>>> callback) throws ApiException {
         Call call = searchStudiesSearchResultsDbIdGetCall(searchResultsDbId, page, pageSize);
         Type localVarReturnType = new TypeToken<BrAPIStudyListResponse>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
+        apiClient.executeSearchAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
