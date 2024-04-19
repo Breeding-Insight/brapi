@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import com.google.gson.JsonObject;
 import org.brapi.v2.model.BrAPIExternalReference;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BrAPIPedigreeNode {
     @JsonProperty("additionalInfo")
-    private Map<String, String> additionalInfo = null;
+    private JsonObject additionalInfo = null;
 
     @JsonProperty("breedingMethodDbId")
     private String breedingMethodDbId = null;
@@ -76,16 +77,16 @@ public class BrAPIPedigreeNode {
     @JsonProperty("siblings")
     private List<BrAPIPedigreeNodeSibling> siblings = null;
 
-    public BrAPIPedigreeNode additionalInfo(Map<String, String> additionalInfo) {
+    public BrAPIPedigreeNode additionalInfo(JsonObject additionalInfo) {
         this.additionalInfo = additionalInfo;
         return this;
     }
 
     public BrAPIPedigreeNode putAdditionalInfoItem(String key, String additionalInfoItem) {
         if (this.additionalInfo == null) {
-            this.additionalInfo = new HashMap<String, String>();
+            this.additionalInfo = new JsonObject();
         }
-        this.additionalInfo.put(key, additionalInfoItem);
+        this.additionalInfo.addProperty(key, additionalInfoItem);
         return this;
     }
 
@@ -94,11 +95,11 @@ public class BrAPIPedigreeNode {
      *
      * @return additionalInfo
      **/
-    public Map<String, String> getAdditionalInfo() {
+    public JsonObject getAdditionalInfo() {
         return additionalInfo;
     }
 
-    public void setAdditionalInfo(Map<String, String> additionalInfo) {
+    public void setAdditionalInfo(JsonObject additionalInfo) {
         this.additionalInfo = additionalInfo;
     }
 
