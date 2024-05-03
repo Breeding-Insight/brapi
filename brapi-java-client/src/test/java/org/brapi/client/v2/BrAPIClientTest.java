@@ -69,7 +69,7 @@ public class BrAPIClientTest {
                 .withEnv("BRAPI_DB_PASSWORD", "postgres")
                 .withClasspathResourceMapping("brapi/properties/application.properties", "/home/brapi/properties/application.properties", BindMode.READ_ONLY)
                 .withClasspathResourceMapping("sql/", "/home/brapi/sql/", BindMode.READ_ONLY)
-                .waitingFor(Wait.forLogMessage(".*Started BrapiTestServer in \\d*.\\d* seconds.*", 1).withStartupTimeout(Duration.ofMinutes(1)));
+                .waitingFor(Wait.forLogMessage(".*Started BrapiTestServer in \\d*.\\d* seconds.*", 1).withStartupTimeout(Duration.ofMinutes(5)));
 
         dbContainer.start();
         brapiContainer.start();
