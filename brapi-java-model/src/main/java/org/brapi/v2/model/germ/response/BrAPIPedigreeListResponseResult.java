@@ -18,13 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.brapi.v2.model.BrAPIResponseResult;
 import org.brapi.v2.model.germ.BrAPIPedigreeNode;
+import org.brapi.v2.model.pheno.BrAPIObservationUnit;
 
 /**
  * PedigreeListResponseResult
  */
 
-public class BrAPIPedigreeListResponseResult {
+public class BrAPIPedigreeListResponseResult implements BrAPIResponseResult<BrAPIPedigreeNode> {
 	@JsonProperty("data")
     private List<BrAPIPedigreeNode> data = new ArrayList<BrAPIPedigreeNode>();
 
