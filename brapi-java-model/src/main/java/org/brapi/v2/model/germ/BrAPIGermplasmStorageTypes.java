@@ -43,12 +43,10 @@ public class BrAPIGermplasmStorageTypes {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("class BrAPIGermplasmStorageTypes {\n");
-		sb.append("    code: ").append(this.toIndentedString(this.code)).append("\n");
-		sb.append("    description: ").append(this.toIndentedString(this.description)).append("\n");
-		sb.append("}");
-		return sb.toString();
+        return "class BrAPIGermplasmStorageTypes {\n" +
+                "    code: " + this.toIndentedString(this.code) + "\n" +
+                "    description: " + this.toIndentedString(this.description) + "\n" +
+                "}";
 	}
 
 	private String toIndentedString(Object o) {
