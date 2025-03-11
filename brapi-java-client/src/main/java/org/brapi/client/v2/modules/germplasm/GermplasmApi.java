@@ -924,4 +924,54 @@ public class GermplasmApi {
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
+    /*
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private Call germplasmDeleteByDbIdCall(String germplasmDbId, boolean hardDelete) throws ApiException {
+        if(germplasmDbId == null) {
+            throw new IllegalArgumentException("germplasmDbId cannot be null");
+        }
+        Object localVarPostBody = null;
+        
+        String localVarPath = String.format("/germplasm/%s?hardDelete=%s",apiClient.escapeString(germplasmDbId), hardDelete);
+
+        Map<String, String> localVarQueryParams = new HashMap<>();
+        Map<String, String> localVarCollectionQueryParams = new HashMap<>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "AuthorizationToken" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames);
+    }
+
+    /**
+     * Delete
+     * @param germplasmDbId Unique identifier which references germplasm to be deleted
+     * @param hardDelete Indicates whether the delete is a hard or soft delete
+     *
+     * @return ApiResponse;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body germplasmDelete germplasmDeleteCall
+     */
+    public ApiResponse<Object> germplasmDeleteByDbId(String germplasmDbId, boolean hardDelete) throws ApiException {
+        Call call = germplasmDeleteByDbIdCall(germplasmDbId, hardDelete);
+        Type localVarReturnType = new TypeToken<BrAPIGermplasmListResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
 }
