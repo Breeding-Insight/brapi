@@ -9,24 +9,24 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.brapi.v2.model.BrAPIResponseResult;
-import org.brapi.v2.model.core.BrAPIListSummary;
+import org.brapi.v2.model.core.BrAPIBatchDelete;
 
 /**
  * BatchDeleteListResponseResult
  */
 
 
-public class BatchDeleteListResponseResult implements BrAPIResponseResult<BrAPIListSummary>  {
+public class BrAPIBatchDeleteListResponseResult implements BrAPIResponseResult<BrAPIBatchDelete>  {
     @JsonProperty("data")
     @Valid
-    private List<BrAPIListSummary> data = new ArrayList<BrAPIListSummary>();
+    private List<BrAPIBatchDelete> data = new ArrayList<BrAPIBatchDelete>();
 
-    public BatchDeleteListResponseResult data(List<BrAPIListSummary> data) {
+    public BrAPIBatchDeleteListResponseResult data(List<BrAPIBatchDelete> data) {
         this.data = data;
         return this;
     }
 
-    public BatchDeleteListResponseResult addDataItem(BrAPIListSummary dataItem) {
+    public BrAPIBatchDeleteListResponseResult addDataItem(BrAPIBatchDelete dataItem) {
         this.data.add(dataItem);
         return this;
     }
@@ -38,11 +38,11 @@ public class BatchDeleteListResponseResult implements BrAPIResponseResult<BrAPIL
 
 
     @Valid
-    public List<BrAPIListSummary> getData() {
+    public List<BrAPIBatchDelete> getData() {
         return data;
     }
 
-    public void setData(List<BrAPIListSummary> data) {
+    public void setData(List<BrAPIBatchDelete> data) {
         this.data = data;
     }
 
@@ -56,7 +56,7 @@ public class BatchDeleteListResponseResult implements BrAPIResponseResult<BrAPIL
             return false;
         }
 
-        BatchDeleteListResponseResult batchDeleteListResponseResult = (BatchDeleteListResponseResult) o;
+        BrAPIBatchDeleteListResponseResult batchDeleteListResponseResult = (BrAPIBatchDeleteListResponseResult) o;
         return Objects.equals(this.data, batchDeleteListResponseResult.data);
     }
 

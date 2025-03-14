@@ -934,7 +934,7 @@ public class GermplasmApi {
             throw new IllegalArgumentException("germplasmDbId cannot be null");
         }
         Object localVarPostBody = null;
-        
+
         String localVarPath = String.format("/germplasm/%s?hardDelete=%s",apiClient.escapeString(germplasmDbId), hardDelete);
 
         Map<String, String> localVarQueryParams = new HashMap<>();

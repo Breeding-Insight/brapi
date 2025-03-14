@@ -12,10 +12,9 @@ import org.brapi.client.v2.BrAPIClient;
 import org.brapi.client.v2.ApiResponse;
 import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
-import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
 import org.brapi.v2.model.core.BrAPIBatchDelete;
-import org.brapi.v2.model.core.response.BatchDeleteSingleResponse;
-import org.brapi.v2.model.core.response.BatchDeleteListResponse;
+import org.brapi.v2.model.core.response.BrAPIBatchDeleteSingleResponse;
+import org.brapi.v2.model.core.response.BrAPIBatchDeleteListResponse;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -90,9 +89,9 @@ public class BatchDeletesApi {
      * @return ApiResponse&lt;BatchDeleteSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BatchDeleteSingleResponse> batchDeleteBatchDeleteDbIdGet(String batchDeleteDbId) throws ApiException {
+    public ApiResponse<BrAPIBatchDeleteSingleResponse> batchDeleteBatchDeleteDbIdGet(String batchDeleteDbId) throws ApiException {
         Call call = batchDeleteBatchDeleteDbIdGetCall(batchDeleteDbId);
-        Type localVarReturnType = new TypeToken<BatchDeleteSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIBatchDeleteSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -104,9 +103,9 @@ public class BatchDeletesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call batchDeletebatchDeleteDbIdGetAsync(String batchDeleteDbId, final ApiCallback<BatchDeleteSingleResponse> callback) throws ApiException {
+    public Call batchDeletebatchDeleteDbIdGetAsync(String batchDeleteDbId, final ApiCallback<BrAPIBatchDeleteSingleResponse> callback) throws ApiException {
         Call call = batchDeleteBatchDeleteDbIdGetCall(batchDeleteDbId);
-        Type localVarReturnType = new TypeToken<BatchDeleteSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIBatchDeleteSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -166,9 +165,9 @@ public class BatchDeletesApi {
      * @return ApiResponse&lt;BatchDeleteSingleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BatchDeleteSingleResponse> batchDeleteBatchDeleteDbIdPut(String batchDeleteDbId, BrAPIBatchDelete body) throws ApiException {
+    public ApiResponse<BrAPIBatchDeleteSingleResponse> batchDeleteBatchDeleteDbIdPut(String batchDeleteDbId, BrAPIBatchDelete body) throws ApiException {
         Call call = batchDeleteBatchDeleteDbIdPutCall(batchDeleteDbId, body);
-        Type localVarReturnType = new TypeToken<BatchDeleteSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIBatchDeleteSingleResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -181,9 +180,9 @@ public class BatchDeletesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call batchDeleteBatchDeleteDbIdPutAsync(String batchDeleteDbId, BrAPIBatchDelete body, final ApiCallback<BatchDeleteSingleResponse> callback) throws ApiException {
+    public Call batchDeleteBatchDeleteDbIdPutAsync(String batchDeleteDbId, BrAPIBatchDelete body, final ApiCallback<BrAPIBatchDeleteSingleResponse> callback) throws ApiException {
         Call call = batchDeleteBatchDeleteDbIdPutCall(batchDeleteDbId, body);
-        Type localVarReturnType = new TypeToken<BatchDeleteSingleResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIBatchDeleteSingleResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -238,9 +237,9 @@ public class BatchDeletesApi {
      * @return ApiResponse&lt;BatchDeleteListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BatchDeleteListResponse> batchDeletePost(List<BrAPIBatchDelete> body) throws ApiException {
+    public ApiResponse<BrAPIBatchDeleteListResponse> batchDeletePost(List<BrAPIBatchDelete> body) throws ApiException {
         Call call = batchDeletePostCall(body);
-        Type localVarReturnType = new TypeToken<BatchDeleteListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIBatchDeleteListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -253,9 +252,9 @@ public class BatchDeletesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public Call batchDeletePostAsync(List<BrAPIBatchDelete> body, final ApiCallback<BatchDeleteListResponse> callback) throws ApiException {
+    public Call batchDeletePostAsync(List<BrAPIBatchDelete> body, final ApiCallback<BrAPIBatchDeleteListResponse> callback) throws ApiException {
         Call call = batchDeletePostCall(body);
-        Type localVarReturnType = new TypeToken<BatchDeleteListResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrAPIBatchDeleteListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

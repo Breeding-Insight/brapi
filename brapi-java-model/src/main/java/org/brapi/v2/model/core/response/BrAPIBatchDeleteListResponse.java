@@ -9,15 +9,12 @@ import org.brapi.v2.model.BrAPIResponse;
 import org.brapi.v2.model.BrAPIContext;
 import org.brapi.v2.model.BrAPIMetadata;
 
-import org.brapi.v2.model.core.BrAPIBatchDelete;
-
-
 /**
- * BatchDeleteSingleResponse
+ * BatchDeleteListResponse
  */
 
 
-public class BatchDeleteSingleResponse implements BrAPIResponse<BrAPIBatchDelete>  {
+public class BrAPIBatchDeleteListResponse implements BrAPIResponse<BrAPIBatchDeleteListResponseResult> {
     @JsonProperty("@context")
     private BrAPIContext _atContext = null;
 
@@ -25,26 +22,25 @@ public class BatchDeleteSingleResponse implements BrAPIResponse<BrAPIBatchDelete
     private BrAPIMetadata metadata = null;
 
     @JsonProperty("result")
-    private BrAPIBatchDelete result = null;
+    private BrAPIBatchDeleteListResponseResult result = null;
 
-    public BatchDeleteSingleResponse _atContext(BrAPIContext _atContext) {
-        this._atContext = _atContext;
-        return this;
+    public BrAPIBatchDeleteListResponse() {
+        this._atContext = new BrAPIContext();
+        this._atContext.add("context");
     }
 
 
-
-    public void setAtContext(BrAPIContext _atContext) {
+    public void set_atContext(BrAPIContext _atContext) {
         this._atContext = _atContext;
     }
-
-    public BatchDeleteSingleResponse metadata(BrAPIMetadata metadata) {
+    public BrAPIBatchDeleteListResponse metadata(BrAPIMetadata metadata) {
         this.metadata = metadata;
         return this;
     }
 
     /**
      * Get metadata
+     *
      * @return metadata
      **/
 
@@ -59,27 +55,27 @@ public class BatchDeleteSingleResponse implements BrAPIResponse<BrAPIBatchDelete
         this.metadata = metadata;
     }
 
-    public BatchDeleteSingleResponse result(BrAPIBatchDelete result) {
+    public BrAPIBatchDeleteListResponse result(BrAPIBatchDeleteListResponseResult result) {
         this.result = result;
         return this;
     }
 
     /**
      * Get result
+     *
      * @return result
      **/
 
 
 
     @Valid
-    public BrAPIBatchDelete getResult() {
+    public BrAPIBatchDeleteListResponseResult getResult() {
         return result;
     }
 
-    public void setResult(BrAPIBatchDelete result) {
+    public void setResult(BrAPIBatchDeleteListResponseResult result) {
         this.result = result;
     }
-
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -89,10 +85,10 @@ public class BatchDeleteSingleResponse implements BrAPIResponse<BrAPIBatchDelete
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BatchDeleteSingleResponse germplasmSingleResponse = (BatchDeleteSingleResponse) o;
-        return Objects.equals(this._atContext, germplasmSingleResponse._atContext) &&
-                Objects.equals(this.metadata, germplasmSingleResponse.metadata) &&
-                Objects.equals(this.result, germplasmSingleResponse.result);
+        BrAPIBatchDeleteListResponse brAPIBatchDeleteListResponse = (BrAPIBatchDeleteListResponse) o;
+        return Objects.equals(this._atContext, brAPIBatchDeleteListResponse._atContext)
+                && Objects.equals(this.metadata, brAPIBatchDeleteListResponse.metadata)
+                && Objects.equals(this.result, brAPIBatchDeleteListResponse.result);
     }
 
     @Override
@@ -103,7 +99,7 @@ public class BatchDeleteSingleResponse implements BrAPIResponse<BrAPIBatchDelete
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class GermplasmSingleResponse {\n");
+        sb.append("class BatchDeleteListResponse {\n");
 
         sb.append("    _atContext: ").append(toIndentedString(_atContext)).append("\n");
         sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
