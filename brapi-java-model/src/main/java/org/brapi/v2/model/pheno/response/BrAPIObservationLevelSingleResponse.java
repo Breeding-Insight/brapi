@@ -13,7 +13,7 @@ import javax.validation.Valid;
 
 
 /**
- * ObservationLevelListResponse
+ * ObservationLevelSingleResponse
  */
 @Valid
 public class BrAPIObservationLevelSingleResponse implements BrAPIResponse<BrAPIObservationUnitHierarchyLevel> {
