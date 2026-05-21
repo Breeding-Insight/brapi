@@ -156,6 +156,21 @@ public class BrAPIObservation {
 		this.externalReferences = externalReferences;
 	}
 
+	public BrAPIObservation geoCoordinates(BrApiGeoJSON geoCoordinates) {
+		this.geoCoordinates = geoCoordinates;
+		return this;
+	}
+
+	/**
+	 * Get geoJson
+	 * @return geoJson
+	 */
+	public BrApiGeoJSON getGeoCoordinates() { return geoCoordinates; }
+
+	public void setGeoCoordinates(BrApiGeoJSON geoCoordinates) {
+		this.geoCoordinates = geoCoordinates;
+	}
+
 	public BrAPIObservation germplasmDbId(String germplasmDbId) {
 		this.germplasmDbId = germplasmDbId;
 		return this;

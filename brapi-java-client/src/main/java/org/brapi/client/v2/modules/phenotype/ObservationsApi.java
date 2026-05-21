@@ -496,6 +496,10 @@ public class ObservationsApi {
             apiClient.prepQueryParameter(localVarQueryParams, "observationTimeStampRangeStart", queryParams.observationTimeStampRangeStart());
         if (queryParams.observationTimeStampRangeEnd() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "observationTimeStampRangeEnd", queryParams.observationTimeStampRangeEnd());
+        if (queryParams.page() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
+        if (queryParams.pageSize() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (accept != null)
