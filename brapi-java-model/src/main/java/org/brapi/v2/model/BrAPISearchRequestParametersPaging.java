@@ -1,16 +1,11 @@
 package org.brapi.v2.model;
 
+import java.util.List;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-
-
-
-
 /**
  * SearchRequestParametersPaging
  */
-
 
 public class BrAPISearchRequestParametersPaging   {
   @JsonProperty("page")
@@ -18,6 +13,12 @@ public class BrAPISearchRequestParametersPaging   {
 
   @JsonProperty("pageSize")
   private Integer pageSize = null;
+
+  @JsonProperty("sortBy")
+  protected List<BrAPISortBy> sortBy = null;
+
+  @JsonProperty("filterBy")
+  protected List<BrAPIFilterBy> filterBy = null;
 
   public BrAPISearchRequestParametersPaging page(Integer page) {
     this.page = page;
@@ -57,6 +58,21 @@ public class BrAPISearchRequestParametersPaging   {
     this.pageSize = pageSize;
   }
 
+  public List<BrAPISortBy> getSortBy() {
+    return sortBy;
+  }
+
+  public void setSortBy(List<BrAPISortBy> sortBy) {
+    this.sortBy = sortBy;
+  }
+
+  public List<BrAPIFilterBy> getFilterBy() {
+    return filterBy;
+  }
+
+  public void setFilterBy(List<BrAPIFilterBy> filterBy) {
+    this.filterBy = filterBy;
+  }
 
   @Override
   public boolean equals(java.lang.Object o) {
