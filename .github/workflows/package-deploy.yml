@@ -57,7 +57,7 @@ jobs:
           echo "GPG_TTY=$GPG_TTY" >> $GITHUB_ENV
 
       - name: Publish package
-        run: mvn --batch-mode -P release deploy -Dgpg.passphrase=${{ secrets.OSSRH_GPG_PASSPHRASE }}
+        run: mvn --batch-mode -P release deploy -DskipTests -Dgpg.passphrase=${{ secrets.OSSRH_GPG_PASSPHRASE }}
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_UN }}
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PW }}
