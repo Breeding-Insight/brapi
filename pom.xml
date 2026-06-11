@@ -97,31 +97,6 @@
     <url>https://github.com/Breeding-Insight/brapi/issues</url>
   </issueManagement>
 
-  <profiles>
-    <profile>
-      <id>release</id>
-      <build>
-        <plugins>
-          <!-- GPG signing plugin, only necessary for release builds -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>8</java.version>
@@ -225,6 +200,21 @@
               <autoPublish>true</autoPublish>
               <publishingServerId>central</publishingServerId>
             </configuration>
+          </plugin>
+          <!-- GPG signing plugin, only necessary for release builds -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
