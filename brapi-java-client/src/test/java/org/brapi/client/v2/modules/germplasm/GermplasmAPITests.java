@@ -363,4 +363,24 @@ public class GermplasmAPITests extends BrAPIClientTest {
 
         assertEquals(updateGermplasmIdMissingError, exception.getMessage(), "Wrong error message");
     }
+
+    public void softDeleteGermplasm() throws Exception {
+        String germplasmDbId = "todo";
+
+        ApiResponse<Object> deleteResult = this.germplasmAPI.germplasmDeleteByDbId(germplasmDbId, false);
+
+        //assertEquals(todo, deleteResult, "Wrong output");
+
+        //todo also do a get and assert
+        //todo do test for missing dbid?
+    }
+
+    public void hardDeleteGermplasm() throws Exception {
+        String germplasmDbId = "todo";
+
+        ApiResponse<Object> deleteResult = this.germplasmAPI.germplasmDeleteByDbId(germplasmDbId, true);
+
+        //assertEquals(todo, deleteResult, "Wrong output");
+        }
+
 }
