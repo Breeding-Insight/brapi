@@ -118,6 +118,12 @@ public class BrAPIGermplasm {
 
 	private List<BrAPITaxonID> taxonIds = null;
 
+	@JsonProperty("programDbId")
+	private String programDbId = null;
+
+	@JsonProperty("programName")
+	private String programName = null;
+
 	private final transient Gson gson = new Gson();
 
 	public BrAPIGermplasm germplasmDbId(String germplasmDbId) {
@@ -824,6 +830,22 @@ public class BrAPIGermplasm {
 		this.taxonIds = taxonIds;
 	}
 
+	public String getProgramDbId() {
+		return programDbId;
+	}
+
+	public void setProgramDbId(String programDbId) {
+		this.programDbId = programDbId;
+	}
+
+	public String getProgramName() {
+		return programName;
+	}
+
+	public void setProgramName(String programName) {
+		this.programName = programName;
+	}
+
 	@Override
 	public boolean equals(java.lang.Object o) {
 		if (this == o) {
@@ -865,7 +887,9 @@ public class BrAPIGermplasm {
 				&& Objects.equals(this.subtaxa, germplasm.subtaxa)
 				&& Objects.equals(this.subtaxaAuthority, germplasm.subtaxaAuthority)
 				&& Objects.equals(this.synonyms, germplasm.synonyms)
-				&& Objects.equals(this.taxonIds, germplasm.taxonIds);
+				&& Objects.equals(this.taxonIds, germplasm.taxonIds)
+				&& Objects.equals(this.programDbId, germplasm.programDbId)
+				&& Objects.equals(this.programName, germplasm.programName);
 	}
 
 	@Override
@@ -875,7 +899,7 @@ public class BrAPIGermplasm {
 				breedingMethodName, collection, commonCropName, countryOfOriginCode, defaultDisplayName,
 				documentationURL, donors, externalReferences, genus, germplasmName, germplasmOrigin, germplasmPUI,
 				germplasmPreprocessing, instituteCode, instituteName, pedigree, seedSource, seedSourceDescription,
-				species, speciesAuthority, storageTypes, subtaxa, subtaxaAuthority, synonyms, taxonIds);
+				species, speciesAuthority, storageTypes, subtaxa, subtaxaAuthority, synonyms, taxonIds, programDbId,  programName);
 	}
 
 	@Override
@@ -916,6 +940,8 @@ public class BrAPIGermplasm {
 		sb.append("    subtaxaAuthority: ").append(toIndentedString(subtaxaAuthority)).append("\n");
 		sb.append("    synonyms: ").append(toIndentedString(synonyms)).append("\n");
 		sb.append("    taxonIds: ").append(toIndentedString(taxonIds)).append("\n");
+		sb.append("    programDbId: ").append(toIndentedString(programDbId)).append("\n");
+		sb.append("    programName: ").append(toIndentedString(programName)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}
