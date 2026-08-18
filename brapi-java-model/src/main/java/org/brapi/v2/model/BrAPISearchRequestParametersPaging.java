@@ -84,12 +84,14 @@ public class BrAPISearchRequestParametersPaging   {
     }
     BrAPISearchRequestParametersPaging searchRequestParametersPaging = (BrAPISearchRequestParametersPaging) o;
     return Objects.equals(this.page, searchRequestParametersPaging.page) &&
-        Objects.equals(this.pageSize, searchRequestParametersPaging.pageSize);
+        Objects.equals(this.pageSize, searchRequestParametersPaging.pageSize) &&
+        Objects.equals(this.filterBy, searchRequestParametersPaging.filterBy) &&
+        Objects.equals(this.sortBy, searchRequestParametersPaging.sortBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(page, pageSize);
+    return Objects.hash(page, pageSize, sortBy, filterBy);
   }
 
   @Override
@@ -99,6 +101,8 @@ public class BrAPISearchRequestParametersPaging   {
     
     sb.append("    page: ").append(toIndentedString(page)).append("\n");
     sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
+    sb.append("    sortBy: ").append(toIndentedString(sortBy)).append("\n");
+    sb.append("    filterBy: ").append(toIndentedString(filterBy)).append("\n");
     sb.append("}");
     return sb.toString();
   }
