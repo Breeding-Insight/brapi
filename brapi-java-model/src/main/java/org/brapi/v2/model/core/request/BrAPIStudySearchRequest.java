@@ -74,12 +74,6 @@ public class BrAPIStudySearchRequest extends BrAPISearchRequestParametersPaging 
 	@JsonProperty("seasonDbIds")
 	private List<String> seasonDbIds = null;
 
-	@JsonProperty("sortBy")
-	private BrAPISortBy sortBy = null;
-
-	@JsonProperty("sortOrder")
-	private BrAPISortOrder sortOrder = null;
-
 	@JsonProperty("studyCodes")
 	private List<String> studyCodes = null;
 
@@ -598,45 +592,6 @@ public class BrAPIStudySearchRequest extends BrAPISearchRequestParametersPaging 
 		this.seasonDbIds = seasonDbIds;
 	}
 
-	public BrAPIStudySearchRequest sortBy(BrAPISortBy sortBy) {
-		this.sortBy = sortBy;
-		return this;
-	}
-
-	/**
-	 * Name of one of the fields within the study object on which results can be
-	 * sorted
-	 * 
-	 * @return sortBy
-	 **/
-
-	public BrAPISortBy getSortBy() {
-		return sortBy;
-	}
-
-	public void setSortBy(BrAPISortBy sortBy) {
-		this.sortBy = sortBy;
-	}
-
-	public BrAPIStudySearchRequest sortOrder(BrAPISortOrder sortOrder) {
-		this.sortOrder = sortOrder;
-		return this;
-	}
-
-	/**
-	 * Order results should be sorted. ex. \"ASC\" or \"DESC\"
-	 * 
-	 * @return sortOrder
-	 **/
-
-	public BrAPISortOrder getSortOrder() {
-		return sortOrder;
-	}
-
-	public void setSortOrder(BrAPISortOrder sortOrder) {
-		this.sortOrder = sortOrder;
-	}
-
 	public BrAPIStudySearchRequest studyCodes(List<String> studyCodes) {
 		this.studyCodes = studyCodes;
 		return this;
@@ -748,7 +703,6 @@ public class BrAPIStudySearchRequest extends BrAPISearchRequestParametersPaging 
 				&& Objects.equals(this.active, studySearchRequest.active)
 				&& Objects.equals(this.seasonDbIds, studySearchRequest.seasonDbIds)
 				&& Objects.equals(this.sortBy, studySearchRequest.sortBy)
-				&& Objects.equals(this.sortOrder, studySearchRequest.sortOrder)
 				&& Objects.equals(this.studyCodes, studySearchRequest.studyCodes)
 				&& Objects.equals(this.studyPUIs, studySearchRequest.studyPUIs)
 				&& Objects.equals(this.studyTypes, studySearchRequest.studyTypes) && super.equals(o);
@@ -759,7 +713,7 @@ public class BrAPIStudySearchRequest extends BrAPISearchRequestParametersPaging 
 		return Objects.hash(commonCropNames, programDbIds, programNames, trialDbIds, trialNames, studyDbIds, studyNames,
 				locationDbIds, locationNames, germplasmDbIds, germplasmNames, observationVariableDbIds,
 				observationVariableNames, observationVariablePUIs, externalReferenceIds, externalReferenceIDs,
-				externalReferenceSources, active, seasonDbIds, sortBy, sortOrder, studyCodes, studyPUIs, studyTypes,
+				externalReferenceSources, active, seasonDbIds, sortBy, studyCodes, studyPUIs, studyTypes,
 				super.hashCode());
 	}
 
@@ -788,7 +742,6 @@ public class BrAPIStudySearchRequest extends BrAPISearchRequestParametersPaging 
 		sb.append("    active: ").append(toIndentedString(active)).append("\n");
 		sb.append("    seasonDbIds: ").append(toIndentedString(seasonDbIds)).append("\n");
 		sb.append("    sortBy: ").append(toIndentedString(sortBy)).append("\n");
-		sb.append("    sortOrder: ").append(toIndentedString(sortOrder)).append("\n");
 		sb.append("    studyCodes: ").append(toIndentedString(studyCodes)).append("\n");
 		sb.append("    studyPUIs: ").append(toIndentedString(studyPUIs)).append("\n");
 		sb.append("    studyTypes: ").append(toIndentedString(studyTypes)).append("\n");

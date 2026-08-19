@@ -8,8 +8,6 @@ import java.util.List;
 import java.time.LocalDate;
 
 import org.brapi.v2.model.BrAPISearchRequestParametersPaging;
-import org.brapi.v2.model.BrAPISortBy;
-import org.brapi.v2.model.BrAPISortOrder;
 
 /**
  * TrialSearchRequest
@@ -67,28 +65,6 @@ public class BrAPITrialSearchRequest extends BrAPISearchRequestParametersPaging 
 
 	@JsonProperty("trialPUIs")
 	private List<String> trialPUIs = null;
-
-	@JsonProperty("sortBy")
-	private BrAPISortBy sortBy = null;
-
-	@JsonProperty("sortOrder")
-	private BrAPISortOrder sortOrder = null;
-
-	public BrAPISortBy getSortBy() {
-		return sortBy;
-	}
-
-	public void setSortBy(BrAPISortBy sortBy) {
-		this.sortBy = sortBy;
-	}
-
-	public BrAPISortOrder getSortOrder() {
-		return sortOrder;
-	}
-
-	public void setSortOrder(BrAPISortOrder sortOrder) {
-		this.sortOrder = sortOrder;
-	}
 
 	public BrAPITrialSearchRequest commonCropNames(List<String> commonCropNames) {
 		this.commonCropNames = commonCropNames;

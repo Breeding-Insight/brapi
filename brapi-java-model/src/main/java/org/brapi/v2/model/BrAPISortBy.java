@@ -1,62 +1,30 @@
 package org.brapi.v2.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+public class BrAPISortBy {
+    private String sortedOn;
+    private BrAPISortOrder  sortOrder = BrAPISortOrder.ASC;
 
-public enum BrAPISortBy implements BrAPIEnum {
-
-    STUDYDBID("studyDbId"),
-
-    STARTDATE("startDate"),
-
-    ENDDATE("endDate"),
-    
-    TRIALDBID("trialDbId"),
-    
-    TRIALNAME("trialName"),
-    
-    PROGRAMDBID("programDbId"),
-    
-    LOCATIONDBID("locationDbId"),
-    
-    SEASONDBID("seasonDbId"),
-    
-    STUDYTYPE("studyType"),
-    
-    STUDYNAME("studyName"),
-    
-    STUDYLOCATION("studyLocation"),
-    
-    PROGRAMNAME("programName"),
-    
-    GERMPLASMDBID("germplasmDbId"),
-    
-    OBSERVATIONVARIABLEDBID("observationVariableDbId");
-
-    private String value;
-
-    BrAPISortBy(String value) {
-      this.value = value;
+    public BrAPISortBy(String sortedOn,
+                  BrAPISortOrder sortOrder) {
+        this.sortedOn = sortedOn;
+        this.sortOrder = sortOrder;
     }
 
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
+    public BrAPISortBy() {}
+
+    public String getSortedOn() {
+        return sortedOn;
     }
 
-    @JsonCreator
-    public static BrAPISortBy fromValue(String text) {
-      for (BrAPISortBy b : BrAPISortBy.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
+    public void setSortedOn(String sortedOn) {
+        this.sortedOn = sortedOn;
     }
 
-	@Override
-	public String getBrapiValue() {
-		return value;
-	}
+    public BrAPISortOrder getSortOrder() {
+        return sortOrder;
+    }
+
+    public void setSortOrder(BrAPISortOrder sortOrder) {
+        this.sortOrder = sortOrder;
+    }
 }

@@ -1,16 +1,11 @@
 package org.brapi.v2.model;
 
+import java.util.List;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-
-
-
-
 /**
  * SearchRequestParametersPaging
  */
-
 
 public class BrAPISearchRequestParametersPaging   {
   @JsonProperty("page")
@@ -18,6 +13,12 @@ public class BrAPISearchRequestParametersPaging   {
 
   @JsonProperty("pageSize")
   private Integer pageSize = null;
+
+  @JsonProperty("sortBy")
+  protected List<BrAPISortBy> sortBy = null;
+
+  @JsonProperty("filterBy")
+  protected List<BrAPIFilterBy> filterBy = null;
 
   public BrAPISearchRequestParametersPaging page(Integer page) {
     this.page = page;
@@ -57,6 +58,21 @@ public class BrAPISearchRequestParametersPaging   {
     this.pageSize = pageSize;
   }
 
+  public List<BrAPISortBy> getSortBy() {
+    return sortBy;
+  }
+
+  public void setSortBy(List<BrAPISortBy> sortBy) {
+    this.sortBy = sortBy;
+  }
+
+  public List<BrAPIFilterBy> getFilterBy() {
+    return filterBy;
+  }
+
+  public void setFilterBy(List<BrAPIFilterBy> filterBy) {
+    this.filterBy = filterBy;
+  }
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -68,12 +84,14 @@ public class BrAPISearchRequestParametersPaging   {
     }
     BrAPISearchRequestParametersPaging searchRequestParametersPaging = (BrAPISearchRequestParametersPaging) o;
     return Objects.equals(this.page, searchRequestParametersPaging.page) &&
-        Objects.equals(this.pageSize, searchRequestParametersPaging.pageSize);
+        Objects.equals(this.pageSize, searchRequestParametersPaging.pageSize) &&
+        Objects.equals(this.filterBy, searchRequestParametersPaging.filterBy) &&
+        Objects.equals(this.sortBy, searchRequestParametersPaging.sortBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(page, pageSize);
+    return Objects.hash(page, pageSize, sortBy, filterBy);
   }
 
   @Override
@@ -83,6 +101,8 @@ public class BrAPISearchRequestParametersPaging   {
     
     sb.append("    page: ").append(toIndentedString(page)).append("\n");
     sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
+    sb.append("    sortBy: ").append(toIndentedString(sortBy)).append("\n");
+    sb.append("    filterBy: ").append(toIndentedString(filterBy)).append("\n");
     sb.append("}");
     return sb.toString();
   }
