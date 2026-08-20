@@ -647,6 +647,10 @@ public class GermplasmApi {
             apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "pageSize", queryParams.pageSize());
+        if (queryParams.programDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "programDbId", queryParams.programDbId());
+        if (queryParams.programName() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "programName", queryParams.programName());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
