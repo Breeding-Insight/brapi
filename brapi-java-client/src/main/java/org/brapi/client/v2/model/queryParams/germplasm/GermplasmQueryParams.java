@@ -44,6 +44,7 @@ public class GermplasmQueryParams extends BrAPIQueryParams {
 	private String species;
 	private String binomialName;
 	private String programDbId;
+	private String programName;
 	private String trialDbId;
 	private String studyDbId;
 	private String synonym;
