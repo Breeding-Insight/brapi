@@ -1,4 +1,4 @@
-name: Java CI
+name: Deploy Maven Package
 
 on:
   push:
@@ -24,7 +24,6 @@ jobs:
         with:
           java-version: '8'
           distribution: 'temurin'
-
 
       - name: Write Maven settings.xml with credentials
         run: |
