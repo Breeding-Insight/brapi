@@ -12,6 +12,7 @@
 
 package org.brapi.client.v2.modules.core;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
@@ -29,7 +30,10 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.ListQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
+import org.brapi.v2.model.BrAPISearchRequestParametersPaging;
+import org.brapi.v2.model.core.BrAPIListItemWithFullItem;
 import org.brapi.v2.model.core.request.BrAPIListNewRequest;
+import org.brapi.v2.model.core.response.BrAPIListItemsListResponse;
 import org.brapi.v2.model.core.response.BrAPIListResponse;
 import org.brapi.v2.model.core.request.BrAPIListSearchRequest;
 import org.brapi.v2.model.core.response.BrAPIListsListResponse;
@@ -538,6 +542,45 @@ public class ListsApi {
     }
 
     /**
+     * Build call for searchListsPost
+     * @param body  (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private Call searchListItemsPostCall(String listDbId, JsonNode body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null");
+        }
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/search/lists/{listDbId}"
+                .replaceAll("\\{" + "listDbId" + "\\}", apiClient.escapeString(listDbId)) + "/items";
+
+        Map<String, String> localVarQueryParams = new HashMap<>();
+        Map<String, String> localVarCollectionQueryParams = new HashMap<>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+                "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "AuthorizationToken" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames);
+    }
+
+    /**
      * Submit a search request for Lists
      * Advanced searching for the list resource. See Search Services for additional implementation details.
      * @param body  (optional)
@@ -641,5 +684,29 @@ public class ListsApi {
         Type localVarReturnType = new TypeToken<BrAPIListsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
+    }
+
+    /**
+     * Submit a search request for ListItems
+     * Unlike other endpoints, this endpoint is not strongly typed to the search request, and is detected based off of the submitted listDbId.
+     * Because of this, create the SearchRequest of the entity that belongs to the list, for example. Like a BrAPIGermplasmSearchRequest.
+     * Then, to conform to the detection this endpoint provides for the specific list, convert the object to JsonNode.
+     * @param listDbId (required)
+     * @param body  (optional)
+     * @param itemClass (required)  This is the BrAPI model class that you want each item to represent.
+     * @return ApiResponse&lt;ListsListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public <T> ApiResponse<BrAPIListItemsListResponse<T>> searchListItemsByList(String listDbId, JsonNode body, Class<T> itemClass) throws ApiException {
+        Call call = searchListItemsPostCall(listDbId, body);
+
+        // This will populate the parameterized class throughout the BrAPIListItemsListResponse chain, all the way down
+        // to where the items live in BrAPIListItemsListResponseResult.data
+        Type listResponseType = TypeToken.getParameterized(
+                BrAPIListItemsListResponse.class,
+                itemClass
+        ).getType();
+
+        return apiClient.execute(call, listResponseType);
     }
 }

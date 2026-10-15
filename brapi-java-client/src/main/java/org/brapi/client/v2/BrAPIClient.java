@@ -12,6 +12,7 @@
 
 package org.brapi.client.v2;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.*;
@@ -674,6 +675,8 @@ public class BrAPIClient {
 		} else if (obj instanceof File) {
 			// File body parameter support.
 			return RequestBody.create(MediaType.parse(contentType), (File) obj);
+		} else if (obj instanceof JsonNode) {
+			return RequestBody.create(MediaType.parse(contentType), obj.toString());
 		} else if (isJsonMime(contentType)) {
 			String content;
 			if (obj != null) {
