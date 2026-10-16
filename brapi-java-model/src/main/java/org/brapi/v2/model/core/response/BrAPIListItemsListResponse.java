@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.brapi.v2.model.BrAPIContext;
 import org.brapi.v2.model.BrAPIMetadata;
 import org.brapi.v2.model.BrAPIResponse;
+import org.brapi.v2.model.core.BrAPIListTypes;
 
 /**
  * ListItemsListResponse
@@ -18,6 +19,9 @@ public class BrAPIListItemsListResponse<T> implements BrAPIResponse<BrAPIListIte
 
     @JsonProperty("result")
     private BrAPIListItemsListResponseResult<T> result = null;
+
+    @JsonProperty("resultListType")
+    private BrAPIListTypes resultListType = null;
 
     public BrAPIListItemsListResponse() {
         this._atContext = new BrAPIContext();
@@ -53,6 +57,14 @@ public class BrAPIListItemsListResponse<T> implements BrAPIResponse<BrAPIListIte
 
     public void setResult(BrAPIListItemsListResponseResult<T> result) {
         this.result = result;
+    }
+
+    public BrAPIListTypes getResultListType() {
+        return resultListType;
+    }
+
+    public void setResultListType(BrAPIListTypes resultListType) {
+        this.resultListType = resultListType;
     }
 
     @Override

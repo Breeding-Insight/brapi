@@ -13,15 +13,21 @@
 package org.brapi.client.v2.modules.core;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
+
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import okhttp3.Response;
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
 import org.brapi.client.v2.BrAPIClient;
@@ -30,14 +36,14 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.ListQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
-import org.brapi.v2.model.BrAPISearchRequestParametersPaging;
-import org.brapi.v2.model.core.BrAPIListItemWithFullItem;
+import org.brapi.v2.model.core.BrAPIListTypes;
 import org.brapi.v2.model.core.request.BrAPIListNewRequest;
 import org.brapi.v2.model.core.response.BrAPIListItemsListResponse;
 import org.brapi.v2.model.core.response.BrAPIListResponse;
 import org.brapi.v2.model.core.request.BrAPIListSearchRequest;
 import org.brapi.v2.model.core.response.BrAPIListsListResponse;
 import org.brapi.v2.model.core.response.BrAPIListsSingleResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasm;
 
 public class ListsApi {
     private BrAPIClient apiClient;
@@ -56,6 +62,12 @@ public class ListsApi {
 
     public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
+    }
+
+    private static final Map<BrAPIListTypes, Class<?>> supportedItemClassByBrAPIListTypes = new HashMap<>();
+
+    static {
+        supportedItemClassByBrAPIListTypes.put(BrAPIListTypes.GERMPLASM, BrAPIGermplasm.class);
     }
 
     /**
@@ -693,20 +705,37 @@ public class ListsApi {
      * Then, to conform to the detection this endpoint provides for the specific list, convert the object to JsonNode.
      * @param listDbId (required)
      * @param body  (optional)
-     * @param itemClass (required)  This is the BrAPI model class that you want each item to represent.
      * @return ApiResponse&lt;ListsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public <T> ApiResponse<BrAPIListItemsListResponse<T>> searchListItemsByList(String listDbId, JsonNode body, Class<T> itemClass) throws ApiException {
+    public <T> ApiResponse<BrAPIListItemsListResponse<T>> searchListItemsByList(String listDbId, JsonNode body) throws ApiException {
         Call call = searchListItemsPostCall(listDbId, body);
 
-        // This will populate the parameterized class throughout the BrAPIListItemsListResponse chain, all the way down
-        // to where the items live in BrAPIListItemsListResponseResult.data
-        Type listResponseType = TypeToken.getParameterized(
+        return apiClient.execute(call, this::deserializeListItemsResponse);
+    }
+
+    private <T> BrAPIListItemsListResponse<T> deserializeListItemsResponse(Response response) throws ApiException, IOException {
+
+        // Ignore NPE check here, this function is used after a response check has already occurred further downstream
+        String json = response.body().string();
+
+        JsonParser parser = new JsonParser();
+
+        JsonObject root = parser.parse(json).getAsJsonObject();
+
+        BrAPIListTypes listType =  BrAPIListTypes.fromValue(root.getAsJsonPrimitive("resultListType").getAsString());
+
+        Class<?> itemClass = supportedItemClassByBrAPIListTypes.get(listType);
+
+        if (itemClass == null) {
+            throw new ApiException("Unsupported list type: " + listType);
+        }
+
+        Type responseType = TypeToken.getParameterized(
                 BrAPIListItemsListResponse.class,
                 itemClass
         ).getType();
 
-        return apiClient.execute(call, listResponseType);
+        return apiClient.getJSON().deserialize(json, responseType);
     }
 }

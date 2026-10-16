@@ -762,7 +762,8 @@ public class BrAPIClient {
 	 * @return ApiResponse&lt;T&gt;
 	 */
 	public <T> ApiResponse<T> execute(Call call) throws ApiException {
-		return execute(call, null);
+		Type returnType = null;
+		return execute(call, returnType);
 	}
 
 	/**
@@ -781,6 +782,16 @@ public class BrAPIClient {
 		try {
 			Response response = call.execute();
 			T data = handleResponse(response, returnType);
+			return new ApiResponse<T>(response.code(), response.headers().toMultimap(), data);
+		} catch (IOException e) {
+			throw new ApiException(e);
+		}
+	}
+
+	public <T> ApiResponse<T> execute(Call call, ResponseDeserializer<T> responseDeserializer) throws ApiException {
+		try {
+			Response response = call.execute();
+			T data = handleResponse(response, responseDeserializer);
 			return new ApiResponse<T>(response.code(), response.headers().toMultimap(), data);
 		} catch (IOException e) {
 			throw new ApiException(e);
@@ -897,6 +908,31 @@ public class BrAPIClient {
 				return null;
 			} else {
 				return deserialize(response, returnType);
+			}
+		} else {
+			String respBody = null;
+			if (response.body() != null) {
+				try {
+					respBody = response.body().string();
+				} catch (IOException e) {
+					throw new ApiException(response.message(), e, response.code(), response.headers().toMultimap());
+				}
+			}
+			throw new ApiException(response.message(), response.code(), response.headers().toMultimap(), respBody);
+		}
+	}
+
+	public <T> T handleResponse(Response response, ResponseDeserializer<T> deserializer) throws ApiException, IOException {
+		if (response.isSuccessful()) {
+			if (response.code() == 204) {
+				// returning null if the returnType is not defined,
+				// or the status code is 204 (No Content)
+				if (response.body() != null) {
+					response.body().close();
+				}
+				return null;
+			} else {
+				return deserializer.deserialize(response);
 			}
 		} else {
 			String respBody = null;
