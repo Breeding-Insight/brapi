@@ -723,19 +723,24 @@ public class ListsApi {
 
         JsonObject root = parser.parse(json).getAsJsonObject();
 
+        // The prod server response will return with the data type.
         BrAPIListTypes listType =  BrAPIListTypes.fromValue(root.getAsJsonPrimitive("resultListType").getAsString());
 
+        // Get the BrAPI model object that corresponds to the returned data type.
         Class<?> itemClass = supportedItemClassByBrAPIListTypes.get(listType);
 
         if (itemClass == null) {
             throw new ApiException("Unsupported list type: " + listType);
         }
 
+        // Ensure that BrAPIListItemsListResponse has its parameterized <T> set with the appropriate object, which will
+        // populate all the way down to BrAPIListItemWithFullItem<T>
         Type responseType = TypeToken.getParameterized(
                 BrAPIListItemsListResponse.class,
                 itemClass
         ).getType();
 
+        // Apply deserialization of the response
         return apiClient.getJSON().deserialize(json, responseType);
     }
 }

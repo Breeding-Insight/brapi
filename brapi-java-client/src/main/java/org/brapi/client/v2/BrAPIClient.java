@@ -788,6 +788,19 @@ public class BrAPIClient {
 		}
 	}
 
+	/**
+	 * Execute HTTP call and deserialize the HTTP response body into a return type based off of the submitted ResponseDeserializer<T>.
+	 *
+	 * @param call       Call
+	 * @param responseDeserializer A function passed through which will be applied to the final response.
+	 *                             In particular, this function needs to set the <T> return datatype.
+	 *                             See ListsApi.deserializeListItemsResponse() for usage examples.
+	 * @param <T>        The return type corresponding to (same with) returnType
+	 * @return ApiResponse object containing response status, headers and data,
+	 *         which is a Java object deserialized from response body and would be
+	 *         null when returnType is null.
+	 * @throws ApiException If fail to execute the call
+	 */
 	public <T> ApiResponse<T> execute(Call call, ResponseDeserializer<T> responseDeserializer) throws ApiException {
 		try {
 			Response response = call.execute();
@@ -922,6 +935,17 @@ public class BrAPIClient {
 		}
 	}
 
+	/**
+	 * Handle the given response, return the deserialized object when the response
+	 * is successful, and apply the additional passed ResponseDeserializer logic.
+	 *
+	 * @param response   Response
+	 * @param deserializer A function passed through which will be applied to the final response.
+	 *                     In particular, this function needs to set the <T> return datatype.
+	 *                     See ListsApi.deserializeListItemsResponse() for usage examples.	 * @throws ApiException If the response has a unsuccessful status code or fail
+	 *                      to deserialize the response body
+	 * @return Type
+	 */
 	public <T> T handleResponse(Response response, ResponseDeserializer<T> deserializer) throws ApiException, IOException {
 		if (response.isSuccessful()) {
 			if (response.code() == 204) {
