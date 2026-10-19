@@ -701,10 +701,10 @@ public class ListsApi {
     /**
      * Submit a search request for ListItems
      * Unlike other endpoints, this endpoint is not strongly typed to the search request, and is detected based off of the submitted listDbId.
-     * Because of this, create the SearchRequest of the entity that belongs to the list, for example. Like a BrAPIGermplasmSearchRequest.
-     * Then, to conform to the detection this endpoint provides for the specific list, convert the object to JsonNode.
+     * To accommodate for this, a functional interface is passed to the apiClient to ensure the parameterized<T> is properly initialized to the right BrAPI model object.
+     * Async and searchDbIds are not currently supported for this endpoint.
      * @param listDbId (required)
-     * @param body  (optional)
+     * @param body  (required)
      * @return ApiResponse&lt;ListsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
