@@ -12,6 +12,7 @@
 
 package org.brapi.client.v2;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.*;
@@ -674,6 +675,8 @@ public class BrAPIClient {
 		} else if (obj instanceof File) {
 			// File body parameter support.
 			return RequestBody.create(MediaType.parse(contentType), (File) obj);
+		} else if (obj instanceof JsonNode) {
+			return RequestBody.create(MediaType.parse(contentType), obj.toString());
 		} else if (isJsonMime(contentType)) {
 			String content;
 			if (obj != null) {
@@ -759,7 +762,8 @@ public class BrAPIClient {
 	 * @return ApiResponse&lt;T&gt;
 	 */
 	public <T> ApiResponse<T> execute(Call call) throws ApiException {
-		return execute(call, null);
+		Type returnType = null;
+		return execute(call, returnType);
 	}
 
 	/**
@@ -778,6 +782,29 @@ public class BrAPIClient {
 		try {
 			Response response = call.execute();
 			T data = handleResponse(response, returnType);
+			return new ApiResponse<T>(response.code(), response.headers().toMultimap(), data);
+		} catch (IOException e) {
+			throw new ApiException(e);
+		}
+	}
+
+	/**
+	 * Execute HTTP call and deserialize the HTTP response body into a return type based off of the submitted ResponseDeserializer<T>.
+	 *
+	 * @param call       Call
+	 * @param responseDeserializer A function passed through which will be applied to the final response.
+	 *                             In particular, this function needs to set the <T> return datatype.
+	 *                             See ListsApi.deserializeListItemsResponse() for usage examples.
+	 * @param <T>        The return type corresponding to (same with) returnType
+	 * @return ApiResponse object containing response status, headers and data,
+	 *         which is a Java object deserialized from response body and would be
+	 *         null when returnType is null.
+	 * @throws ApiException If fail to execute the call
+	 */
+	public <T> ApiResponse<T> execute(Call call, ResponseDeserializer<T> responseDeserializer) throws ApiException {
+		try {
+			Response response = call.execute();
+			T data = handleResponse(response, responseDeserializer);
 			return new ApiResponse<T>(response.code(), response.headers().toMultimap(), data);
 		} catch (IOException e) {
 			throw new ApiException(e);
@@ -894,6 +921,42 @@ public class BrAPIClient {
 				return null;
 			} else {
 				return deserialize(response, returnType);
+			}
+		} else {
+			String respBody = null;
+			if (response.body() != null) {
+				try {
+					respBody = response.body().string();
+				} catch (IOException e) {
+					throw new ApiException(response.message(), e, response.code(), response.headers().toMultimap());
+				}
+			}
+			throw new ApiException(response.message(), response.code(), response.headers().toMultimap(), respBody);
+		}
+	}
+
+	/**
+	 * Handle the given response, return the deserialized object when the response
+	 * is successful, and apply the additional passed ResponseDeserializer logic.
+	 *
+	 * @param response   Response
+	 * @param deserializer A function passed through which will be applied to the final response.
+	 *                     In particular, this function needs to set the <T> return datatype.
+	 *                     See ListsApi.deserializeListItemsResponse() for usage examples.	 * @throws ApiException If the response has a unsuccessful status code or fail
+	 *                      to deserialize the response body
+	 * @return Type
+	 */
+	public <T> T handleResponse(Response response, ResponseDeserializer<T> deserializer) throws ApiException, IOException {
+		if (response.isSuccessful()) {
+			if (response.code() == 204) {
+				// returning null if the returnType is not defined,
+				// or the status code is 204 (No Content)
+				if (response.body() != null) {
+					response.body().close();
+				}
+				return null;
+			} else {
+				return deserializer.deserialize(response);
 			}
 		} else {
 			String respBody = null;

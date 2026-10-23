@@ -12,15 +12,23 @@
 
 package org.brapi.client.v2.modules.core;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
+
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import okhttp3.Response;
 import org.apache.commons.lang3.tuple.Pair;
 import org.brapi.client.v2.ApiCallback;
 import org.brapi.client.v2.BrAPIClient;
@@ -29,11 +37,14 @@ import org.brapi.client.v2.Configuration;
 import org.brapi.client.v2.model.exceptions.ApiException;
 import org.brapi.client.v2.model.queryParams.core.ListQueryParams;
 import org.brapi.v2.model.BrAPIAcceptedSearchResponse;
+import org.brapi.v2.model.core.BrAPIListTypes;
 import org.brapi.v2.model.core.request.BrAPIListNewRequest;
+import org.brapi.v2.model.core.response.BrAPIListItemsListResponse;
 import org.brapi.v2.model.core.response.BrAPIListResponse;
 import org.brapi.v2.model.core.request.BrAPIListSearchRequest;
 import org.brapi.v2.model.core.response.BrAPIListsListResponse;
 import org.brapi.v2.model.core.response.BrAPIListsSingleResponse;
+import org.brapi.v2.model.germ.BrAPIGermplasm;
 
 public class ListsApi {
     private BrAPIClient apiClient;
@@ -52,6 +63,12 @@ public class ListsApi {
 
     public void setApiClient(BrAPIClient apiClient) {
         this.apiClient = apiClient;
+    }
+
+    private static final Map<BrAPIListTypes, Class<?>> supportedItemClassByBrAPIListTypes = new HashMap<>();
+
+    static {
+        supportedItemClassByBrAPIListTypes.put(BrAPIListTypes.GERMPLASM, BrAPIGermplasm.class);
     }
 
     /**
@@ -538,6 +555,45 @@ public class ListsApi {
     }
 
     /**
+     * Build call for searchListsPost
+     * @param body  (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private Call searchListItemsPostCall(String listDbId, JsonNode body) throws ApiException {
+        if(body == null) {
+            throw new IllegalArgumentException("body cannot be null");
+        }
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/search/lists/{listDbId}"
+                .replaceAll("\\{" + "listDbId" + "\\}", apiClient.escapeString(listDbId)) + "/items";
+
+        Map<String, String> localVarQueryParams = new HashMap<>();
+        Map<String, String> localVarCollectionQueryParams = new HashMap<>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+                "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "AuthorizationToken" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames);
+    }
+
+    /**
      * Submit a search request for Lists
      * Advanced searching for the list resource. See Search Services for additional implementation details.
      * @param body  (optional)
@@ -641,5 +697,61 @@ public class ListsApi {
         Type localVarReturnType = new TypeToken<BrAPIListsListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
+    }
+
+    /**
+     * Submit a search request for ListItems
+     * Unlike other endpoints, this endpoint is not strongly typed to the search request, and is detected based off of the submitted listDbId.
+     * To accommodate for this, a functional interface is passed to the apiClient to ensure the parameterized<T> is properly initialized to the right BrAPI model object.
+     * Async and searchDbIds are not currently supported for this endpoint.
+     * @param listDbId (required)
+     * @param body  (required)
+     * @return ApiResponse&lt;ListsListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public <T> ApiResponse<BrAPIListItemsListResponse<T>> searchListItemsByList(String listDbId, JsonNode body) throws ApiException {
+        Call call = searchListItemsPostCall(listDbId, body);
+
+        return apiClient.execute(call, this::deserializeListItemsResponse);
+    }
+
+    private <T> BrAPIListItemsListResponse<T> deserializeListItemsResponse(Response response) throws ApiException, IOException {
+
+        // Ignore NPE check here, this function is used after a response check has already occurred further downstream
+        String json = response.body().string();
+
+        JsonParser parser = new JsonParser();
+
+        JsonObject root = parser.parse(json).getAsJsonObject();
+
+        // The prod server response will return with the data type.
+        JsonPrimitive resultListType = root.getAsJsonPrimitive("resultListType");
+
+        if (resultListType == null) {
+            throw new ApiException(500, "BrAPI server responded without resultListType in the response");
+        }
+
+        BrAPIListTypes listType =  BrAPIListTypes.fromValue(resultListType.getAsString());
+
+        if (listType == null) {
+            throw new ApiException(500, "BrAPI server responded with an invalid BrPIListType in the response");
+        }
+
+        // Get the BrAPI model object that corresponds to the returned data type.
+        Class<?> itemClass = supportedItemClassByBrAPIListTypes.get(listType);
+
+        if (itemClass == null) {
+            throw new ApiException("Unsupported list type: " + listType);
+        }
+
+        // Ensure that BrAPIListItemsListResponse has its parameterized <T> set with the appropriate object, which will
+        // populate all the way down to BrAPIListItemWithFullItem<T>
+        Type responseType = TypeToken.getParameterized(
+                BrAPIListItemsListResponse.class,
+                itemClass
+        ).getType();
+
+        // Apply deserialization of the response
+        return apiClient.getJSON().deserialize(json, responseType);
     }
 }
