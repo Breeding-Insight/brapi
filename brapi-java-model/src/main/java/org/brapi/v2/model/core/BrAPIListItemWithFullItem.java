@@ -38,8 +38,7 @@ public class BrAPIListItemWithFullItem<T>  {
             return false;
         }
         BrAPIListItemWithFullItem<T> listItemWithFullItem = (BrAPIListItemWithFullItem<T>) o;
-        return Objects.equals(this.listItem, listItemWithFullItem.listItem) &&
-                super.equals(o);
+        return Objects.equals(this.listItem, listItemWithFullItem.listItem);
     }
 
     @Override

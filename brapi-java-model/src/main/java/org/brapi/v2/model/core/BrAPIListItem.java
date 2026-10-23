@@ -51,8 +51,7 @@ public class BrAPIListItem  {
             return false;
         }
         BrAPIListItem ListItem = (BrAPIListItem) o;
-        return Objects.equals(this.listItemDbId, ListItem.listItemDbId) &&
-                super.equals(o);
+        return Objects.equals(this.listItemDbId, ListItem.listItemDbId);
     }
 
     @Override

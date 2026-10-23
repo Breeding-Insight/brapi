@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
@@ -724,7 +725,17 @@ public class ListsApi {
         JsonObject root = parser.parse(json).getAsJsonObject();
 
         // The prod server response will return with the data type.
-        BrAPIListTypes listType =  BrAPIListTypes.fromValue(root.getAsJsonPrimitive("resultListType").getAsString());
+        JsonPrimitive resultListType = root.getAsJsonPrimitive("resultListType");
+
+        if (resultListType == null) {
+            throw new ApiException(500, "BrAPI server responded without resultListType in the response");
+        }
+
+        BrAPIListTypes listType =  BrAPIListTypes.fromValue(resultListType.getAsString());
+
+        if (listType == null) {
+            throw new ApiException(500, "BrAPI server responded with an invalid BrPIListType in the response");
+        }
 
         // Get the BrAPI model object that corresponds to the returned data type.
         Class<?> itemClass = supportedItemClassByBrAPIListTypes.get(listType);
