@@ -85,6 +85,12 @@ public class BrAPIObservationVariable {
   @JsonProperty("trait")
   private BrAPITrait trait = null;
 
+  @JsonProperty("programDbId")
+  private String programDbId = null;
+
+  @JsonProperty("programName")
+  private String programName = null;
+
   private transient Gson gson = new Gson();
 
   public BrAPIObservationVariable observationVariableName(String observationVariableName) {
@@ -129,8 +135,8 @@ public class BrAPIObservationVariable {
    * Variable unique identifier  MIAPPE V1.1 (DM-83) Variable ID - Code used to identify the variable in the data file. We recommend using a variable definition from the Crop Ontology where possible. Otherwise, the Crop Ontology naming convention is recommended: <trait abbreviation>_<method abbreviation>_<scale abbreviation>). A variable ID must be unique within a given investigation.
    * @return observationVariablePUI
   **/
-  
-      
+
+
 
     public String getObservationVariablePUI() {
     return observationVariablePUI;
@@ -485,6 +491,27 @@ public class BrAPIObservationVariable {
     this.trait = trait;
   }
 
+  public BrAPIObservationVariable programDbId(String programDbId) {
+    this.programDbId = programDbId;
+    return this;
+  }
+
+  public String getProgramDbId() {
+    return programDbId;
+  }
+
+  public void setProgramDbId(String programDbId) {
+    this.programDbId = programDbId;
+  }
+
+  public String getProgramName() {
+    return programName;
+  }
+
+  public void setProgramName(String programName) {
+    this.programName = programName;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -514,12 +541,13 @@ public class BrAPIObservationVariable {
             Objects.equals(this.status, observationVariable.status) &&
             Objects.equals(this.submissionTimestamp, observationVariable.submissionTimestamp) &&
             Objects.equals(this.synonyms, observationVariable.synonyms) &&
-            Objects.equals(this.trait, observationVariable.trait);
+            Objects.equals(this.trait, observationVariable.trait) &&
+            Objects.equals(this.programDbId, observationVariable.programDbId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(observationVariableDbId, observationVariablePUI, observationVariableName, additionalInfo, commonCropName, contextOfUse, defaultValue, documentationURL, externalReferences, growthStage, institution, language, method, ontologyReference, scale, scientist, status, submissionTimestamp, synonyms, trait);
+    return Objects.hash(observationVariableDbId, observationVariablePUI, observationVariableName, additionalInfo, commonCropName, contextOfUse, defaultValue, documentationURL, externalReferences, growthStage, institution, language, method, ontologyReference, scale, scientist, status, submissionTimestamp, synonyms, trait, programDbId);
   }
 
   @Override
@@ -546,6 +574,8 @@ public class BrAPIObservationVariable {
     sb.append("    submissionTimestamp: ").append(toIndentedString(submissionTimestamp)).append("\n");
     sb.append("    synonyms: ").append(toIndentedString(synonyms)).append("\n");
     sb.append("    trait: ").append(toIndentedString(trait)).append("\n");
+    sb.append("    programDbId: ").append(toIndentedString(programDbId)).append("\n");
+    sb.append("    programName: ").append(toIndentedString(programName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
