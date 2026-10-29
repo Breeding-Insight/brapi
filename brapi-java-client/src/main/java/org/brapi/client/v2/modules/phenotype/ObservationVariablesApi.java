@@ -240,6 +240,8 @@ public class ObservationVariablesApi {
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceId", queryParams.externalReferenceId());
         if (queryParams.externalReferenceSource() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "externalReferenceSource", queryParams.externalReferenceSource());
+        if (queryParams.programDbId() != null)
+            apiClient.prepQueryParameter(localVarQueryParams, "programDbId", queryParams.programDbId());
         if (queryParams.page() != null)
             apiClient.prepQueryParameter(localVarQueryParams, "page", queryParams.page());
         if (queryParams.pageSize() != null)
