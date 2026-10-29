@@ -504,6 +504,11 @@ public class BrAPIObservationVariable {
     this.programDbId = programDbId;
   }
 
+  public BrAPIObservationVariable programName(String programName) {
+    this.programName = programName;
+    return this;
+  }
+
   public String getProgramName() {
     return programName;
   }
@@ -542,12 +547,13 @@ public class BrAPIObservationVariable {
             Objects.equals(this.submissionTimestamp, observationVariable.submissionTimestamp) &&
             Objects.equals(this.synonyms, observationVariable.synonyms) &&
             Objects.equals(this.trait, observationVariable.trait) &&
-            Objects.equals(this.programDbId, observationVariable.programDbId);
+            Objects.equals(this.programDbId, observationVariable.programDbId) &&
+            Objects.equals(this.programName, observationVariable.programName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(observationVariableDbId, observationVariablePUI, observationVariableName, additionalInfo, commonCropName, contextOfUse, defaultValue, documentationURL, externalReferences, growthStage, institution, language, method, ontologyReference, scale, scientist, status, submissionTimestamp, synonyms, trait, programDbId);
+    return Objects.hash(observationVariableDbId, observationVariablePUI, observationVariableName, additionalInfo, commonCropName, contextOfUse, defaultValue, documentationURL, externalReferences, growthStage, institution, language, method, ontologyReference, scale, scientist, status, submissionTimestamp, synonyms, trait, programDbId, programName);
   }
 
   @Override
